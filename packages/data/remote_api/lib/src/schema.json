@@ -1,0 +1,1671 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "FastAPI",
+        "version": "0.1.0"
+    },
+    "servers": [
+        {
+            "url": "/api/v1"
+        }
+    ],
+    "paths": {
+        "/auth/send_verification_code/": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Verify",
+                "operationId": "verify_auth_send_verification_code__post",
+                "parameters": [
+                    {
+                        "name": "verification_type",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/VerificationType"
+                        }
+                    },
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_verify_auth_send_verification_code__post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/register/": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Register",
+                "operationId": "register_auth_register__post",
+                "parameters": [
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_register_auth_register__post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": true,
+                                    "title": "Response Register Auth Register  Post"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/forgot_password/": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Forgot Password",
+                "operationId": "forgot_password_auth_forgot_password__post",
+                "parameters": [
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_forgot_password_auth_forgot_password__post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": true,
+                                    "title": "Response Forgot Password Auth Forgot Password  Post"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/token/": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login For Access Token",
+                "operationId": "login_for_access_token_auth_token__post",
+                "parameters": [
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_login_for_access_token_auth_token__post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/user_profile/": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Read User",
+                "operationId": "read_user_user_user_profile__get",
+                "security": [
+                    {
+                        "OAuth2PasswordBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/update_profile/": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update User",
+                "operationId": "update_user_user_update_profile__put",
+                "security": [
+                    {
+                        "OAuth2PasswordBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/update_user_bio_data/": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update User Bio Data",
+                "operationId": "update_user_bio_data_user_update_user_bio_data__put",
+                "security": [
+                    {
+                        "OAuth2PasswordBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserBioDataUpsert"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/read_user_bio_data/": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Read User Bio Data",
+                "operationId": "read_user_bio_data_user_read_user_bio_data__get",
+                "security": [
+                    {
+                        "OAuth2PasswordBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/read_user_image_profile/": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Read User Profile Image",
+                "operationId": "read_user_profile_image_user_read_user_image_profile__get",
+                "security": [
+                    {
+                        "OAuth2PasswordBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/read_user_image_gallary/": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Read User Image Gallary",
+                "operationId": "read_user_image_gallary_user_read_user_image_gallary__get",
+                "security": [
+                    {
+                        "OAuth2PasswordBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "tags",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/GallaryTag"
+                            },
+                            "title": "Tags"
+                        }
+                    },
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/add_user_images/": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Add User Image",
+                "operationId": "add_user_image_user_add_user_images__post",
+                "security": [
+                    {
+                        "OAuth2PasswordBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_add_user_image_user_add_user_images__post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/archive_user_images/": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Archive User Images",
+                "operationId": "archive_user_images_user_archive_user_images__post",
+                "security": [
+                    {
+                        "OAuth2PasswordBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "title": "Images Id"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/foods_nutrition/read_foods_nutritions_by_text/": {
+            "post": {
+                "tags": [
+                    "Foods Nutritions"
+                ],
+                "summary": "Read Foods Nutritions By Text",
+                "operationId": "read_foods_nutritions_by_text_foods_nutrition_read_foods_nutritions_by_text__post",
+                "security": [
+                    {
+                        "OAuth2PasswordBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "string",
+                                "maxLength": 700,
+                                "title": "Prompt"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/foods_nutrition/read_foods_nutritions_by_voice/": {
+            "post": {
+                "tags": [
+                    "Foods Nutritions"
+                ],
+                "summary": "Read Foods Nutritions By Voice",
+                "operationId": "read_foods_nutritions_by_voice_foods_nutrition_read_foods_nutritions_by_voice__post",
+                "security": [
+                    {
+                        "OAuth2PasswordBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Body_read_foods_nutritions_by_voice_foods_nutrition_read_foods_nutritions_by_voice__post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/foods_nutrition/read_foods_nutritions/": {
+            "get": {
+                "tags": [
+                    "Foods Nutritions"
+                ],
+                "summary": "Read Foods Nutritions",
+                "operationId": "read_foods_nutritions_foods_nutrition_read_foods_nutritions__get",
+                "security": [
+                    {
+                        "OAuth2PasswordBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "start_date",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time",
+                            "title": "Start Date"
+                        }
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time",
+                            "title": "End Date"
+                        }
+                    },
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/foods_nutrition/update_foods_nutritions/": {
+            "get": {
+                "tags": [
+                    "Foods Nutritions"
+                ],
+                "summary": "Update Foods Nutritions",
+                "operationId": "update_foods_nutritions_foods_nutrition_update_foods_nutritions__get",
+                "security": [
+                    {
+                        "OAuth2PasswordBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": " Id"
+                        }
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "User Id"
+                        }
+                    },
+                    {
+                        "name": "upsert_date",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date-time",
+                            "title": "Upsert Date"
+                        }
+                    },
+                    {
+                        "name": "user_language",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/Language"
+                        }
+                    },
+                    {
+                        "name": "user_native_language_food_name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "User Native Language Food Name"
+                        }
+                    },
+                    {
+                        "name": "translated_to_english_food_name",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Translated To English Food Name"
+                        }
+                    },
+                    {
+                        "name": "unit_of_measurement_native_language",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Unit Of Measurement Native Language"
+                        }
+                    },
+                    {
+                        "name": "translated_to_english_unit_of_measurement",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "title": "Translated To English Unit Of Measurement"
+                        }
+                    },
+                    {
+                        "name": "calculated_calorie",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Calculated Calorie"
+                        }
+                    },
+                    {
+                        "name": "quantity_of_unit_of_measurement",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Quantity Of Unit Of Measurement"
+                        }
+                    },
+                    {
+                        "name": "carbohydrate_source",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/CarbohydrateSourceLD"
+                        }
+                    },
+                    {
+                        "name": "macro_nutrition",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/TotalMacroNutritionPerFood"
+                        }
+                    },
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/foods_nutrition/delete_foods_nutritions/": {
+            "delete": {
+                "tags": [
+                    "Foods Nutritions"
+                ],
+                "summary": "Delete Foods Nutritions",
+                "operationId": "delete_foods_nutritions_foods_nutrition_delete_foods_nutritions__delete",
+                "security": [
+                    {
+                        "OAuth2PasswordBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "food_ids",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "title": "Food Ids"
+                        }
+                    },
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "summary": "Read Root",
+                "operationId": "read_root__get",
+                "parameters": [
+                    {
+                        "name": "accept-language",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "en",
+                            "title": "Accept-Language"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ActivityLevel": {
+                "type": "string",
+                "enum": [
+                    "sedentary",
+                    "fairyActive",
+                    "moderatelyActive",
+                    "active",
+                    "veryActive",
+                    "other"
+                ],
+                "title": "ActivityLevel"
+            },
+            "Address": {
+                "properties": {
+                    "address_lines": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Address Lines"
+                    },
+                    "address_lines2": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Address Lines2"
+                    },
+                    "city": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "City"
+                    },
+                    "state": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "State"
+                    },
+                    "postcode": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Postcode"
+                    },
+                    "country": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Country"
+                    }
+                },
+                "type": "object",
+                "title": "Address"
+            },
+            "AudioMemeType": {
+                "type": "string",
+                "enum": [
+                    "audio/wav",
+                    "audio/mp3",
+                    "audio/aiff",
+                    "audio/aac",
+                    "audio/ogg",
+                    "audio/flac"
+                ],
+                "title": "AudioMemeType"
+            },
+            "Body_add_user_image_user_add_user_images__post": {
+                "properties": {
+                    "tag": {
+                        "$ref": "#/components/schemas/GallaryTag"
+                    },
+                    "image_gallary_files": {
+                        "items": {
+                            "type": "string",
+                            "format": "binary"
+                        },
+                        "type": "array",
+                        "title": "Image Gallary Files"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "tag",
+                    "image_gallary_files"
+                ],
+                "title": "Body_add_user_image_user_add_user_images__post"
+            },
+            "Body_forgot_password_auth_forgot_password__post": {
+                "properties": {
+                    "user_name": {
+                        "type": "string",
+                        "pattern": "^09\\d{9}$",
+                        "title": "User Name"
+                    },
+                    "new_password": {
+                        "type": "string",
+                        "minLength": 4,
+                        "title": "New Password"
+                    },
+                    "verification_code": {
+                        "type": "string",
+                        "maxLength": 4,
+                        "minLength": 4,
+                        "pattern": "^\\d{4}$",
+                        "title": "Verification Code"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "user_name",
+                    "new_password",
+                    "verification_code"
+                ],
+                "title": "Body_forgot_password_auth_forgot_password__post"
+            },
+            "Body_login_for_access_token_auth_token__post": {
+                "properties": {
+                    "grant_type": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "pattern": "^password$"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Grant Type"
+                    },
+                    "username": {
+                        "type": "string",
+                        "title": "Username"
+                    },
+                    "password": {
+                        "type": "string",
+                        "title": "Password"
+                    },
+                    "scope": {
+                        "type": "string",
+                        "title": "Scope",
+                        "default": ""
+                    },
+                    "client_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Client Id"
+                    },
+                    "client_secret": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Client Secret"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "username",
+                    "password"
+                ],
+                "title": "Body_login_for_access_token_auth_token__post"
+            },
+            "Body_read_foods_nutritions_by_voice_foods_nutrition_read_foods_nutritions_by_voice__post": {
+                "properties": {
+                    "meme_type": {
+                        "$ref": "#/components/schemas/AudioMemeType"
+                    },
+                    "prompt": {
+                        "type": "string",
+                        "format": "binary",
+                        "title": "Prompt"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "meme_type",
+                    "prompt"
+                ],
+                "title": "Body_read_foods_nutritions_by_voice_foods_nutrition_read_foods_nutritions_by_voice__post"
+            },
+            "Body_register_auth_register__post": {
+                "properties": {
+                    "user_name": {
+                        "type": "string",
+                        "pattern": "^09\\d{9}$",
+                        "title": "User Name"
+                    },
+                    "password": {
+                        "type": "string",
+                        "minLength": 4,
+                        "title": "Password"
+                    },
+                    "verification_code": {
+                        "type": "string",
+                        "maxLength": 4,
+                        "minLength": 4,
+                        "pattern": "^\\d{4}$",
+                        "title": "Verification Code"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "user_name",
+                    "password",
+                    "verification_code"
+                ],
+                "title": "Body_register_auth_register__post"
+            },
+            "Body_verify_auth_send_verification_code__post": {
+                "properties": {
+                    "phone_number": {
+                        "type": "string",
+                        "pattern": "^09\\d{9}$",
+                        "title": "Phone Number"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "phone_number"
+                ],
+                "title": "Body_verify_auth_send_verification_code__post"
+            },
+            "CarbohydrateSourceLD": {
+                "type": "string",
+                "enum": [
+                    "fruits_or_non_starchy_vegetables",
+                    "others"
+                ],
+                "title": "CarbohydrateSourceLD"
+            },
+            "GallaryTag": {
+                "type": "string",
+                "enum": [
+                    "default",
+                    "profile_image",
+                    "certificate"
+                ],
+                "title": "GallaryTag"
+            },
+            "Gender": {
+                "type": "string",
+                "enum": [
+                    "male",
+                    "female"
+                ],
+                "title": "Gender"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "Language": {
+                "type": "string",
+                "enum": [
+                    "en",
+                    "zh",
+                    "hi",
+                    "es",
+                    "fr",
+                    "ar",
+                    "bn",
+                    "ru",
+                    "pt",
+                    "ur",
+                    "id",
+                    "de",
+                    "ja",
+                    "mr",
+                    "te",
+                    "tr",
+                    "ta",
+                    "vi",
+                    "tl",
+                    "ko",
+                    "fa",
+                    "ha",
+                    "jv",
+                    "it",
+                    "pa",
+                    "kn",
+                    "gu",
+                    "th",
+                    "pl",
+                    "uk"
+                ],
+                "title": "Language"
+            },
+            "TotalMacroNutritionPerFood": {
+                "properties": {
+                    "fat": {
+                        "type": "number",
+                        "title": "Fat"
+                    },
+                    "carbohydrate": {
+                        "type": "number",
+                        "title": "Carbohydrate"
+                    },
+                    "protein": {
+                        "type": "number",
+                        "title": "Protein"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "fat",
+                    "carbohydrate",
+                    "protein"
+                ],
+                "title": "TotalMacroNutritionPerFood"
+            },
+            "UserBioDataUpsert": {
+                "properties": {
+                    "gender": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/Gender"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "age": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Age"
+                    },
+                    "height": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Height"
+                    },
+                    "weight": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Weight"
+                    },
+                    "waist_circumference": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Waist Circumference"
+                    },
+                    "arm_circumference": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Arm Circumference"
+                    },
+                    "chest_circumference": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Chest Circumference"
+                    },
+                    "thigh_circumference": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Thigh Circumference"
+                    },
+                    "calf_muscle_circumference": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Calf Muscle Circumference"
+                    },
+                    "hip_circumference": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Hip Circumference"
+                    },
+                    "activity_level": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/ActivityLevel"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    }
+                },
+                "type": "object",
+                "title": "UserBioDataUpsert"
+            },
+            "UserUpdateRequest": {
+                "properties": {
+                    "phone_number": {
+                        "type": "string",
+                        "title": "Phone Number"
+                    },
+                    "address": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/Address"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "full_name": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Full Name"
+                    },
+                    "language": {
+                        "$ref": "#/components/schemas/Language",
+                        "default": "en"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "phone_number"
+                ],
+                "title": "UserUpdateRequest"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            },
+            "VerificationType": {
+                "type": "string",
+                "enum": [
+                    "register",
+                    "forgot_password"
+                ],
+                "title": "VerificationType"
+            }
+        },
+        "securitySchemes": {
+            "OAuth2PasswordBearer": {
+                "type": "oauth2",
+                "flows": {
+                    "password": {
+                        "scopes": {},
+                        "tokenUrl": "auth/token/"
+                    }
+                }
+            }
+        }
+    }
+}
