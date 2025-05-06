@@ -30,6 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  remote_api:
+    path: packages/data/remote_api
 
 dev_dependencies:
   flutter_test:

@@ -10,6 +10,8 @@ import 'package:remote_api/src/utility/utility.dart';
 
 class RemoteApiBase implements RemoteApi {
   RemoteApiBase({required this.get_user_language});
+  static const _message = 'message';
+  static const _data = 'data';
 
   Future<Language> Function() get_user_language;
 
@@ -30,7 +32,8 @@ class RemoteApiBase implements RemoteApi {
     final res = await _handleRequest(
       () => interceptedHttp.post(uri, body: verificationCodeRequest.toJson()),
     );
-    return SuccessResponse(message: jsonDecode(res.body));
+    final message = jsonDecode(res.body)[_message];
+    return SuccessResponse(message: message);
   }
 
   Future<Response> _handleRequest(Future<Response> Function() request) async {
@@ -42,6 +45,9 @@ class RemoteApiBase implements RemoteApi {
       }
 
       return res;
+    } on Exception catch (e) {
+      print(e);
+      rethrow;
     } on ValidationError {
       rethrow;
     } on HttpException {
