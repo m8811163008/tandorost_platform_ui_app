@@ -10,20 +10,24 @@ class UriBuilder {
       queryParameters: {'verification_type': verificationType.name},
     );
   }
+
   static Uri register() {
-    return baseUri.replace(
-      path: '$basePath/auth/register/'
-    );
+    return baseUri.replace(path: '$basePath/auth/register/');
   }
 
   static Uri forgotPasswrd() {
-    return baseUri.replace(
-      path: '$basePath/auth/forgot_password/'
-    );
+    return baseUri.replace(path: '$basePath/auth/forgot_password/');
   }
+
   static Uri authToken() {
-    return baseUri.replace(
-      path: '$basePath/auth/token/'
-    );
+    return baseUri.replace(path: '$basePath/auth/token/');
+  }
+
+  static Uri userProfile() {
+    return baseUri.replace(path: '$basePath/user/user_profile/');
+  }
+
+  static Uri updateProfile() {
+    return baseUri.replace(path: '$basePath/user/update_profile/');
   }
 }

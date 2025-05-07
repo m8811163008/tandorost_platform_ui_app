@@ -11,9 +11,13 @@ import 'package:remote_api/src/utility/utility.dart';
 typedef JsonMap = Map<String, dynamic>;
 
 class RemoteApiBase implements RemoteApi {
-  RemoteApiBase({required this.get_user_language});
+  RemoteApiBase({
+    required this.get_user_language,
+    required this.get_access_token,
+  });
 
   Future<Language> Function() get_user_language;
+  Future<String> Function() get_access_token;
   static const _content = 'content';
   static const _detail = 'detail';
 
@@ -85,25 +89,33 @@ class RemoteApiBase implements RemoteApi {
     final res = await _handleRequest<JsonMap>(
       () => interceptedHttp.post(uri, body: credential.toJson()),
     );
-    print(res);
     return Token.fromJson(res);
   }
 
-  Future<Token> user_profile({required Credential credential}) async {
+  Future<UserProfile> user_profile() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         LanguageInterceptor(get_user_language),
-        ContentTypeInterceptor(
-          contentType: ContentType.applicationXWwwFormUrlencoded,
-        ),
+        AccessTokenInterceptor(get_access_token),
       ],
     );
-    final uri = UriBuilder.authToken();
-    final res = await _handleRequest<JsonMap>(
-      () => interceptedHttp.post(uri, body: credential.toJson()),
-    );
+    final uri = UriBuilder.userProfile();
+    final res = await _handleRequest<JsonMap>(() => interceptedHttp.get(uri));
     print(res);
-    return Token.fromJson(res);
+    return UserProfile.fromJson(res);
+  }
+  
+  Future<UserProfile> update_profile() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        LanguageInterceptor(get_user_language),
+        AccessTokenInterceptor(get_access_token),
+      ],
+    );
+    final uri = UriBuilder.userProfile();
+    final res = await _handleRequest<JsonMap>(() => interceptedHttp.get(uri));
+    print(res);
+    return UserProfile.fromJson(res);
   }
 
   Future<E> _handleRequest<E>(Future<Response> Function() request) async {
@@ -112,7 +124,9 @@ class RemoteApiBase implements RemoteApi {
       final jsonResponse = json.decode(res.body) as E;
       if (res.statusCode != 200 && res.statusCode != 201) {
         assert(jsonResponse is JsonMap);
-        final response = ApiErrorResponse.fromJson((jsonResponse as JsonMap)[_detail]);
+        final response = ApiErrorResponse.fromJson(
+          (jsonResponse as JsonMap)[_detail],
+        );
         throw HttpException(response.message!);
       } else {
         return jsonResponse;

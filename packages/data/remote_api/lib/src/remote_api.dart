@@ -11,4 +11,6 @@ abstract interface class RemoteApi {
   });
 
   Future<Token> authenticate({required Credential credential});
+
+  Future<UserProfile> user_profile();
 }
