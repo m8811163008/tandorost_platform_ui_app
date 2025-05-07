@@ -8,4 +8,20 @@ class UriBuilder {
       queryParameters: {'verification_type': verificationType.name},
     );
   }
+  static Uri register() {
+    return baseUri.replace(
+      path: '/auth/register/'
+    );
+  }
+
+  static Uri forgotPasswrd() {
+    return baseUri.replace(
+      path: '/auth/forgot_password/'
+    );
+  }
+  static Uri authToken() {
+    return baseUri.replace(
+      path: '/auth/token/'
+    );
+  }
 }

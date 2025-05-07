@@ -1,8 +1,14 @@
 import 'package:remote_api/src/model/model.dart';
 
 abstract interface class RemoteApi {
-  Future<SuccessResponse> sendVerificationCode({
+  Future<ApiResponse> sendVerificationCode({
     required VerificationCodeRequest verificationCodeRequest,
   });
-  Future<SuccessResponse> register({required RegisterRequest registerRequest});
+  Future<ApiResponse> register({required RegisterRequest registerRequest});
+
+  Future<ApiResponse> forgot_password({
+    required ForgotPasswordRequest forgotPasswordRequest,
+  });
+
+  Future<Token> authenticate({required Credential credential});
 }
