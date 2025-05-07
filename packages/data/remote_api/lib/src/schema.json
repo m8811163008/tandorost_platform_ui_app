@@ -49,12 +49,18 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
                                 "schema": {}
                             }
                         }
+                    },
+                    "404": {
+                        "description": "HTTP_404_NOT_FOUND"
+                    },
+                    "409": {
+                        "description": "HTTP_409_CONFLICT"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -65,6 +71,12 @@
                                 }
                             }
                         }
+                    },
+                    "429": {
+                        "description": "HTTP_429_TOO_MANY_REQUESTS"
+                    },
+                    "503": {
+                        "description": "HTTP_503_SERVICE_UNAVAILABLE"
                     }
                 }
             }
@@ -99,17 +111,22 @@
                     }
                 },
                 "responses": {
-                    "201": {
-                        "description": "Successful Response",
+                    "200": {
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "additionalProperties": true,
-                                    "title": "Response Register Auth Register  Post"
-                                }
+                                "schema": {}
                             }
                         }
+                    },
+                    "401": {
+                        "description": "HTTP_401_UNAUTHORIZED"
+                    },
+                    "404": {
+                        "description": "HTTP_404_NOT_FOUND"
+                    },
+                    "409": {
+                        "description": "HTTP_409_CONFLICT"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -154,17 +171,19 @@
                     }
                 },
                 "responses": {
-                    "201": {
-                        "description": "Successful Response",
+                    "200": {
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "additionalProperties": true,
-                                    "title": "Response Forgot Password Auth Forgot Password  Post"
-                                }
+                                "schema": {}
                             }
                         }
+                    },
+                    "404": {
+                        "description": "HTTP_404_NOT_FOUND"
+                    },
+                    "409": {
+                        "description": "HTTP_409_CONFLICT"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -210,12 +229,23 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/Token"
+                                }
                             }
                         }
+                    },
+                    "401": {
+                        "description": "HTTP_401_UNAUTHORIZED"
+                    },
+                    "403": {
+                        "description": "HTTP_403_FORBIDDEN"
+                    },
+                    "404": {
+                        "description": "HTTP_404_NOT_FOUND"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -256,10 +286,12 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserInDB"
+                                }
                             }
                         }
                     },
@@ -312,12 +344,20 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserInDB"
+                                }
                             }
                         }
+                    },
+                    "403": {
+                        "description": "HTTP_403_FORBIDDEN"
+                    },
+                    "404": {
+                        "description": "HTTP_404_NOT_FOUND"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -368,12 +408,17 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserBioData"
+                                }
                             }
                         }
+                    },
+                    "400": {
+                        "description": "HTTP_400_BAD_REQUEST"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -414,12 +459,17 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserBioData"
+                                }
                             }
                         }
+                    },
+                    "404": {
+                        "description": "HTTP_404_NOT_FOUND"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -460,10 +510,16 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/FileData"
+                                    },
+                                    "title": "Response 200 Read User Profile Image User Read User Image Profile  Get"
+                                }
                             }
                         }
                     },
@@ -518,10 +574,16 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/FileData"
+                                    },
+                                    "title": "Response 200 Read User Image Gallary User Read User Image Gallary  Get"
+                                }
                             }
                         }
                     },
@@ -574,12 +636,21 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/FileData"
+                                    },
+                                    "title": "Response 200 Add User Image User Add User Images  Post"
+                                }
                             }
                         }
+                    },
+                    "400": {
+                        "description": "HTTP_400_BAD_REQUEST"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -590,6 +661,9 @@
                                 }
                             }
                         }
+                    },
+                    "500": {
+                        "description": "HTTP_500_INTERNAL_SERVER_ERROR"
                     }
                 }
             }
@@ -634,10 +708,12 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/ArchiveUserImagesResponse"
+                                }
                             }
                         }
                     },
@@ -692,12 +768,30 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Food"
+                                    },
+                                    "title": "Response 200 Read Foods Nutritions By Text Foods Nutrition Read Foods Nutritions By Text  Post"
+                                }
                             }
                         }
+                    },
+                    "400": {
+                        "description": "HTTP_400_BAD_REQUEST"
+                    },
+                    "403": {
+                        "description": "HTTP_403_FORBIDDEN"
+                    },
+                    "404": {
+                        "description": "HTTP_404_NOT_FOUND"
+                    },
+                    "412": {
+                        "description": "HTTP_412_PRECONDITION_FAILED"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -708,6 +802,18 @@
                                 }
                             }
                         }
+                    },
+                    "429": {
+                        "description": "HTTP_429_TOO_MANY_REQUESTS"
+                    },
+                    "500": {
+                        "description": "HTTP_500_INTERNAL_SERVER_ERROR"
+                    },
+                    "503": {
+                        "description": "HTTP_503_SERVICE_UNAVAILABLE"
+                    },
+                    "504": {
+                        "description": "HTTP_504_GATEWAY_TIMEOUT"
                     }
                 }
             }
@@ -748,12 +854,30 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Food"
+                                    },
+                                    "title": "Response 200 Read Foods Nutritions By Voice Foods Nutrition Read Foods Nutritions By Voice  Post"
+                                }
                             }
                         }
+                    },
+                    "400": {
+                        "description": "HTTP_400_BAD_REQUEST"
+                    },
+                    "403": {
+                        "description": "HTTP_403_FORBIDDEN"
+                    },
+                    "404": {
+                        "description": "HTTP_404_NOT_FOUND"
+                    },
+                    "412": {
+                        "description": "HTTP_412_PRECONDITION_FAILED"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -764,6 +888,18 @@
                                 }
                             }
                         }
+                    },
+                    "429": {
+                        "description": "HTTP_429_TOO_MANY_REQUESTS"
+                    },
+                    "500": {
+                        "description": "HTTP_500_INTERNAL_SERVER_ERROR"
+                    },
+                    "503": {
+                        "description": "HTTP_503_SERVICE_UNAVAILABLE"
+                    },
+                    "504": {
+                        "description": "HTTP_504_GATEWAY_TIMEOUT"
                     }
                 }
             }
@@ -814,10 +950,16 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Food"
+                                    },
+                                    "title": "Response 200 Read Foods Nutritions Foods Nutrition Read Foods Nutritions  Get"
+                                }
                             }
                         }
                     },
@@ -973,12 +1115,21 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Food"
+                                    },
+                                    "title": "Response 200 Update Foods Nutritions Foods Nutrition Update Foods Nutritions  Get"
+                                }
                             }
                         }
+                    },
+                    "403": {
+                        "description": "HTTP_403_FORBIDDEN"
                     },
                     "422": {
                         "description": "Validation Error",
@@ -1031,10 +1182,16 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful Response",
+                        "description": "HTTP_200_OK",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "title": "Response 200 Delete Foods Nutritions Foods Nutrition Delete Foods Nutritions  Delete"
+                                }
                             }
                         }
                     },
@@ -1175,6 +1332,30 @@
                 },
                 "type": "object",
                 "title": "Address"
+            },
+            "ArchiveUserImagesResponse": {
+                "properties": {
+                    "updated_images_ids": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Updated Images Ids"
+                    },
+                    "images_id": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "title": "Images Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "updated_images_ids",
+                    "images_id"
+                ],
+                "title": "ArchiveUserImagesResponse"
             },
             "AudioMemeType": {
                 "type": "string",
@@ -1362,6 +1543,172 @@
                 ],
                 "title": "CarbohydrateSourceLD"
             },
+            "DataPoint": {
+                "properties": {
+                    "value": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/ActivityLevel"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ],
+                        "title": "Value"
+                    },
+                    "create_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Create Date"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "value",
+                    "create_date"
+                ],
+                "title": "DataPoint"
+            },
+            "FileData": {
+                "properties": {
+                    "_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Id"
+                    },
+                    "user_id": {
+                        "type": "string",
+                        "title": "User Id"
+                    },
+                    "tag": {
+                        "$ref": "#/components/schemas/GallaryTag"
+                    },
+                    "file_name": {
+                        "type": "string",
+                        "title": "File Name"
+                    },
+                    "file_size": {
+                        "type": "integer",
+                        "title": "File Size"
+                    },
+                    "upload_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Upload Date"
+                    },
+                    "content_type": {
+                        "type": "string",
+                        "title": "Content Type"
+                    },
+                    "file_upload_path": {
+                        "type": "string",
+                        "title": "File Upload Path"
+                    },
+                    "processing_status": {
+                        "$ref": "#/components/schemas/ProcessingStatus",
+                        "default": "approved"
+                    },
+                    "reject_processing_status_desc": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/ImageRejectionReason"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "user_id",
+                    "tag",
+                    "file_name",
+                    "file_size",
+                    "upload_date",
+                    "content_type",
+                    "file_upload_path"
+                ],
+                "title": "FileData"
+            },
+            "Food": {
+                "properties": {
+                    "_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Id"
+                    },
+                    "user_id": {
+                        "type": "string",
+                        "title": "User Id"
+                    },
+                    "upsert_date": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Upsert Date"
+                    },
+                    "user_language": {
+                        "$ref": "#/components/schemas/Language"
+                    },
+                    "user_native_language_food_name": {
+                        "type": "string",
+                        "title": "User Native Language Food Name"
+                    },
+                    "translated_to_english_food_name": {
+                        "type": "string",
+                        "title": "Translated To English Food Name"
+                    },
+                    "unit_of_measurement_native_language": {
+                        "type": "string",
+                        "title": "Unit Of Measurement Native Language"
+                    },
+                    "translated_to_english_unit_of_measurement": {
+                        "type": "string",
+                        "title": "Translated To English Unit Of Measurement"
+                    },
+                    "calculated_calorie": {
+                        "type": "integer",
+                        "title": "Calculated Calorie"
+                    },
+                    "quantity_of_unit_of_measurement": {
+                        "type": "integer",
+                        "title": "Quantity Of Unit Of Measurement"
+                    },
+                    "carbohydrate_source": {
+                        "$ref": "#/components/schemas/CarbohydrateSourceLD"
+                    },
+                    "macro_nutrition": {
+                        "$ref": "#/components/schemas/TotalMacroNutritionPerFood"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "user_id",
+                    "upsert_date",
+                    "user_language",
+                    "user_native_language_food_name",
+                    "translated_to_english_food_name",
+                    "unit_of_measurement_native_language",
+                    "translated_to_english_unit_of_measurement",
+                    "calculated_calorie",
+                    "quantity_of_unit_of_measurement",
+                    "carbohydrate_source",
+                    "macro_nutrition"
+                ],
+                "title": "Food"
+            },
             "GallaryTag": {
                 "type": "string",
                 "enum": [
@@ -1391,6 +1738,26 @@
                 },
                 "type": "object",
                 "title": "HTTPValidationError"
+            },
+            "ImageRejectionReason": {
+                "type": "string",
+                "enum": [
+                    "poor_quality",
+                    "inappropriate_content",
+                    "irrelevant_content",
+                    "cropped_or_obstructed",
+                    "poor_lighting",
+                    "unsafe_activity",
+                    "lack_of_consent",
+                    "violates_guidelines",
+                    "file_format_unsupported",
+                    "file_size_too_large",
+                    "watermark_or_logo",
+                    "misleading_or_false",
+                    "other_rejection_reason"
+                ],
+                "title": "ImageRejectionReason",
+                "description": "Common reasons why an image might be rejected in a fitness application\nor according to software industry best practices."
             },
             "Language": {
                 "type": "string",
@@ -1428,6 +1795,50 @@
                 ],
                 "title": "Language"
             },
+            "ProcessingStatus": {
+                "type": "string",
+                "enum": [
+                    "pending",
+                    "approved",
+                    "rejected",
+                    "archived"
+                ],
+                "title": "ProcessingStatus"
+            },
+            "Token": {
+                "properties": {
+                    "_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Id"
+                    },
+                    "user_id": {
+                        "type": "string",
+                        "title": "User Id"
+                    },
+                    "access_token": {
+                        "type": "string",
+                        "title": "Access Token"
+                    },
+                    "token_type": {
+                        "type": "string",
+                        "title": "Token Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "user_id",
+                    "access_token",
+                    "token_type"
+                ],
+                "title": "Token"
+            },
             "TotalMacroNutritionPerFood": {
                 "properties": {
                     "fat": {
@@ -1450,6 +1861,111 @@
                     "protein"
                 ],
                 "title": "TotalMacroNutritionPerFood"
+            },
+            "UserBioData": {
+                "properties": {
+                    "_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Id"
+                    },
+                    "user_id": {
+                        "type": "string",
+                        "title": "User Id"
+                    },
+                    "gender": {
+                        "$ref": "#/components/schemas/Gender"
+                    },
+                    "age": {
+                        "type": "integer",
+                        "title": "Age"
+                    },
+                    "height": {
+                        "items": {
+                            "$ref": "#/components/schemas/DataPoint"
+                        },
+                        "type": "array",
+                        "title": "Height"
+                    },
+                    "weight": {
+                        "items": {
+                            "$ref": "#/components/schemas/DataPoint"
+                        },
+                        "type": "array",
+                        "title": "Weight"
+                    },
+                    "waist_circumference": {
+                        "items": {
+                            "$ref": "#/components/schemas/DataPoint"
+                        },
+                        "type": "array",
+                        "title": "Waist Circumference"
+                    },
+                    "arm_circumference": {
+                        "items": {
+                            "$ref": "#/components/schemas/DataPoint"
+                        },
+                        "type": "array",
+                        "title": "Arm Circumference"
+                    },
+                    "chest_circumference": {
+                        "items": {
+                            "$ref": "#/components/schemas/DataPoint"
+                        },
+                        "type": "array",
+                        "title": "Chest Circumference"
+                    },
+                    "thigh_circumference": {
+                        "items": {
+                            "$ref": "#/components/schemas/DataPoint"
+                        },
+                        "type": "array",
+                        "title": "Thigh Circumference"
+                    },
+                    "calf_muscle_circumference": {
+                        "items": {
+                            "$ref": "#/components/schemas/DataPoint"
+                        },
+                        "type": "array",
+                        "title": "Calf Muscle Circumference"
+                    },
+                    "hip_circumference": {
+                        "items": {
+                            "$ref": "#/components/schemas/DataPoint"
+                        },
+                        "type": "array",
+                        "title": "Hip Circumference"
+                    },
+                    "activity_level": {
+                        "items": {
+                            "$ref": "#/components/schemas/DataPoint"
+                        },
+                        "type": "array",
+                        "title": "Activity Level"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "user_id",
+                    "gender",
+                    "age",
+                    "height",
+                    "weight",
+                    "waist_circumference",
+                    "arm_circumference",
+                    "chest_circumference",
+                    "thigh_circumference",
+                    "calf_muscle_circumference",
+                    "hip_circumference",
+                    "activity_level"
+                ],
+                "title": "UserBioData"
             },
             "UserBioDataUpsert": {
                 "properties": {
@@ -1576,6 +2092,81 @@
                 "type": "object",
                 "title": "UserBioDataUpsert"
             },
+            "UserInDB": {
+                "properties": {
+                    "_id": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Id"
+                    },
+                    "phone_number": {
+                        "type": "string",
+                        "title": "Phone Number"
+                    },
+                    "address": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/Address"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "full_name": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Full Name"
+                    },
+                    "language": {
+                        "$ref": "#/components/schemas/Language",
+                        "default": "en"
+                    },
+                    "hashed_password": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Hashed Password"
+                    },
+                    "verification_code": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/VerificationCode"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "is_verified": {
+                        "type": "boolean",
+                        "title": "Is Verified",
+                        "default": false
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "phone_number"
+                ],
+                "title": "UserInDB"
+            },
             "UserUpdateRequest": {
                 "properties": {
                     "phone_number": {
@@ -1646,6 +2237,24 @@
                     "type"
                 ],
                 "title": "ValidationError"
+            },
+            "VerificationCode": {
+                "properties": {
+                    "created_at": {
+                        "type": "string",
+                        "title": "Created At"
+                    },
+                    "verification_code": {
+                        "type": "string",
+                        "title": "Verification Code"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "created_at",
+                    "verification_code"
+                ],
+                "title": "VerificationCode"
             },
             "VerificationType": {
                 "type": "string",

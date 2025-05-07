@@ -9,21 +9,21 @@ class Credential {
   final String username;
   final String password;
 
-  final String? scope;
+  final String scope;
 
   @JsonKey(name: 'client_id')
-  final String? clientId;
+  final String clientId;
 
   @JsonKey(name: 'client_secret')
-  final String? clientSecret;
+  final String clientSecret;
 
   Credential({
     this.grantType = 'password',
     required this.username,
     required this.password,
     this.scope = '',
-    this.clientId,
-    this.clientSecret,
+    this.clientId = '',
+    this.clientSecret = '',
   });
 
 

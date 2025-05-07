@@ -4,7 +4,6 @@ part 'token.g.dart';
 
 @JsonSerializable(createToJson: false)
 class Token {
-  @JsonKey(name: '_id')
   final String id;
   final String userId;
   final String accessToken;

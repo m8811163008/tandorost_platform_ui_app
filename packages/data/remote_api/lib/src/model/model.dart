@@ -14,7 +14,7 @@ export 'gender.dart';
 export 'header_content_type.dart';
 export 'language.dart';
 export 'register_request.dart';
-export 'api_response.dart';
+export 'api_error_response.dart';
 export 'total_macro_nutrition_per_food.dart';
 export 'user_image.dart';
 export 'user_update_request.dart';
