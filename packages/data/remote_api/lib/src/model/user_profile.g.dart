@@ -39,7 +39,7 @@ Map<String, dynamic> _$UserProfileToJson(UserProfile instance) =>
     <String, dynamic>{
       'id': instance.id,
       'phone_number': instance.phoneNumber,
-      'address': instance.address?.toJson(),
-      'full_name': instance.fullName,
-      'language': instance.language,
+      if (instance.address?.toJson() case final value?) 'address': value,
+      if (instance.fullName case final value?) 'full_name': value,
+      if (instance.language case final value?) 'language': value,
     };

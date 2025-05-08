@@ -6,20 +6,26 @@ part of 'bio_data_upsert.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$UserBioDataUpsertToJson(UserBioDataUpsert instance) =>
-    <String, dynamic>{
-      'gender': _$GenderEnumMap[instance.gender],
-      'age': instance.age,
-      'height': instance.height,
-      'weight': instance.weight,
-      'waist_circumference': instance.waistCircumference,
-      'arm_circumference': instance.armCircumference,
-      'chest_circumference': instance.chestCircumference,
-      'thigh_circumference': instance.thighCircumference,
-      'calf_muscle_circumference': instance.calfMuscleCircumference,
-      'hip_circumference': instance.hipCircumference,
-      'activity_level': _$ActivityLevelEnumMap[instance.activityLevel],
-    };
+Map<String, dynamic> _$UserBioDataUpsertToJson(
+  UserBioDataUpsert instance,
+) => <String, dynamic>{
+  if (_$GenderEnumMap[instance.gender] case final value?) 'gender': value,
+  if (instance.age case final value?) 'age': value,
+  if (instance.height case final value?) 'height': value,
+  if (instance.weight case final value?) 'weight': value,
+  if (instance.waistCircumference case final value?)
+    'waist_circumference': value,
+  if (instance.armCircumference case final value?) 'arm_circumference': value,
+  if (instance.chestCircumference case final value?)
+    'chest_circumference': value,
+  if (instance.thighCircumference case final value?)
+    'thigh_circumference': value,
+  if (instance.calfMuscleCircumference case final value?)
+    'calf_muscle_circumference': value,
+  if (instance.hipCircumference case final value?) 'hip_circumference': value,
+  if (_$ActivityLevelEnumMap[instance.activityLevel] case final value?)
+    'activity_level': value,
+};
 
 const _$GenderEnumMap = {Gender.male: 'male', Gender.female: 'female'};
 

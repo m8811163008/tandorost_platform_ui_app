@@ -6,11 +6,11 @@ abstract interface class RemoteApi {
   });
   Future<String> register({required RegisterRequest registerRequest});
 
-  Future<String> forgot_password({
+  Future<String> forgotPassword({
     required ForgotPasswordRequest forgotPasswordRequest,
   });
 
   Future<Token> authenticate({required Credential credential});
 
-  Future<UserProfile> user_profile();
+  Future<UserProfile> userProfile();
 }

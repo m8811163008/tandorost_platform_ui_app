@@ -30,4 +30,19 @@ class UriBuilder {
   static Uri updateProfile() {
     return baseUri.replace(path: '$basePath/user/update_profile/');
   }
+
+  static Uri readUserBioData() {
+    return baseUri.replace(path: '$basePath/user/read_user_bio_data/');
+  }
+
+  static Uri updateUserBioData() {
+    return baseUri.replace(path: '$basePath/user/update_user_bio_data/');
+  }
+
+  static Uri deleteUserBioData(String dataPointsId) {
+    return baseUri.replace(
+      path: '$basePath/user/delete_user_bio_data/',
+      queryParameters: {'data_point_id': dataPointsId},
+    );
+  }
 }

@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:http_interceptor/http_interceptor.dart';
 import 'package:remote_api/src/interceptor/interceptor.dart';
 import 'package:remote_api/src/model/model.dart';
+import 'package:remote_api/src/model/user_bio_data.dart';
 import 'package:remote_api/src/remote_api.dart';
 import 'package:remote_api/src/utility/utility.dart';
 
@@ -39,7 +40,7 @@ class RemoteApiBase implements RemoteApi {
       () => interceptedHttp.post(uri, body: verificationCodeRequest.toJson()),
     );
 
-    return res;
+    return res!;
   }
 
   Future<String> register({required RegisterRequest registerRequest}) async {
@@ -55,10 +56,10 @@ class RemoteApiBase implements RemoteApi {
     final res = await _handleRequest<String>(
       () => interceptedHttp.post(uri, body: registerRequest.toJson()),
     );
-    return res;
+    return res!;
   }
 
-  Future<String> forgot_password({
+  Future<String> forgotPassword({
     required ForgotPasswordRequest forgotPasswordRequest,
   }) async {
     final interceptedHttp = InterceptedHttp.build(
@@ -73,7 +74,7 @@ class RemoteApiBase implements RemoteApi {
     final res = await _handleRequest<String>(
       () => interceptedHttp.post(uri, body: forgotPasswordRequest.toJson()),
     );
-    return res;
+    return res!;
   }
 
   Future<Token> authenticate({required Credential credential}) async {
@@ -89,10 +90,10 @@ class RemoteApiBase implements RemoteApi {
     final res = await _handleRequest<JsonMap>(
       () => interceptedHttp.post(uri, body: credential.toJson()),
     );
-    return Token.fromJson(res);
+    return Token.fromJson(res!);
   }
 
-  Future<UserProfile> user_profile() async {
+  Future<UserProfile> userProfile() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         LanguageInterceptor(get_user_language),
@@ -102,35 +103,89 @@ class RemoteApiBase implements RemoteApi {
     final uri = UriBuilder.userProfile();
     final res = await _handleRequest<JsonMap>(() => interceptedHttp.get(uri));
     print(res);
-    return UserProfile.fromJson(res);
+    return UserProfile.fromJson(res!);
   }
-  
-  Future<UserProfile> update_profile() async {
+
+  Future<UserProfile> updateProfile(UserProfile updatedProfile) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        LanguageInterceptor(get_user_language),
+        ContentTypeInterceptor(contentType: ContentType.applicationJson),
+        AccessTokenInterceptor(get_access_token),
+      ],
+    );
+    final uri = UriBuilder.updateProfile();
+    final updateProfileJson = updatedProfile.toJson();
+    final res = await _handleRequest<JsonMap>(
+      () => interceptedHttp.put(uri, body: json.encode(updateProfileJson)),
+    );
+    return UserProfile.fromJson(res!);
+  }
+
+  Future<UserBioData> userBioData() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         LanguageInterceptor(get_user_language),
         AccessTokenInterceptor(get_access_token),
       ],
     );
-    final uri = UriBuilder.userProfile();
+    final uri = UriBuilder.readUserBioData();
     final res = await _handleRequest<JsonMap>(() => interceptedHttp.get(uri));
     print(res);
-    return UserProfile.fromJson(res);
+    return UserBioData.fromJson(res!);
   }
 
-  Future<E> _handleRequest<E>(Future<Response> Function() request) async {
+  Future<void> deleteUserBioDataPoint({required String dataPointsId}) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        LanguageInterceptor(get_user_language),
+        AccessTokenInterceptor(get_access_token),
+        ContentTypeInterceptor(contentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.deleteUserBioData(dataPointsId);
+    await _handleRequest<JsonMap>(
+      () => interceptedHttp.delete(uri),
+    );
+  }
+
+  Future<UserBioData> updateUserBioData(
+    UserBioDataUpsert userBioDataUpsert,
+  ) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        LanguageInterceptor(get_user_language),
+        AccessTokenInterceptor(get_access_token),
+        ContentTypeInterceptor(contentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.updateUserBioData();
+    final userBioDataUpsertJson = userBioDataUpsert.toJson();
+    final res = await _handleRequest<JsonMap>(
+      () => interceptedHttp.put(uri, body: json.encode(userBioDataUpsertJson)),
+    );
+    print(res);
+    return UserBioData.fromJson(res!);
+  }
+
+  Future<E?> _handleRequest<E>(Future<Response> Function() request) async {
     try {
       final res = await request();
-      final jsonResponse = json.decode(res.body) as E;
-      if (res.statusCode != 200 && res.statusCode != 201) {
-        assert(jsonResponse is JsonMap);
-        final response = ApiErrorResponse.fromJson(
-          (jsonResponse as JsonMap)[_detail],
-        );
-        throw HttpException(response.message!);
-      } else {
-        return jsonResponse;
+      if (res.statusCode == 204) {
+        return null;
+      }else{
+        final jsonResponse = json.decode(res.body) as E;
+        if (res.statusCode != 200 && res.statusCode != 201) {
+          assert(jsonResponse is JsonMap);
+          final response = ApiErrorResponse.fromJson(
+            (jsonResponse as JsonMap)[_detail],
+          );
+          throw HttpException(response.message!);
+        } else {
+          return jsonResponse;
+        }
       }
+
 
       // if (res.statusCode == 422) {
       //   final body = jsonDecode(res.body);

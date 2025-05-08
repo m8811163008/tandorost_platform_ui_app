@@ -11,6 +11,22 @@ class UserProfile {
   final String? fullName;
   final String? language;
 
+  UserProfile copyWith({
+    String? id,
+    String? phoneNumber,
+    Address? address,
+    String? fullName,
+    String? language,
+  }) {
+    return UserProfile(
+      id: id ?? this.id,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      address: address ?? this.address,
+      fullName: fullName ?? this.fullName,
+      language: language ?? this.language,
+    );
+  }
+
   UserProfile({
     required this.id,
     required this.phoneNumber,

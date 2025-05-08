@@ -33,13 +33,14 @@ UserUpdateRequest _$UserUpdateRequestFromJson(
   fieldKeyMap: const {'phoneNumber': 'phone_number', 'fullName': 'full_name'},
 );
 
-Map<String, dynamic> _$UserUpdateRequestToJson(UserUpdateRequest instance) =>
-    <String, dynamic>{
-      'phone_number': instance.phoneNumber,
-      'address': instance.address?.toJson(),
-      'full_name': instance.fullName,
-      'language': _$LanguageEnumMap[instance.language],
-    };
+Map<String, dynamic> _$UserUpdateRequestToJson(
+  UserUpdateRequest instance,
+) => <String, dynamic>{
+  'phone_number': instance.phoneNumber,
+  if (instance.address?.toJson() case final value?) 'address': value,
+  if (instance.fullName case final value?) 'full_name': value,
+  if (_$LanguageEnumMap[instance.language] case final value?) 'language': value,
+};
 
 const _$LanguageEnumMap = {
   Language.english: 'english',

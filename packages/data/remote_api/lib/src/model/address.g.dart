@@ -38,10 +38,10 @@ Address _$AddressFromJson(Map<String, dynamic> json) => $checkedCreate(
 );
 
 Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
-  'address_lines': instance.addressLines,
-  'address_lines2': instance.addressLines2,
-  'city': instance.city,
-  'state': instance.state,
-  'postcode': instance.postcode,
-  'country': instance.country,
+  if (instance.addressLines case final value?) 'address_lines': value,
+  if (instance.addressLines2 case final value?) 'address_lines2': value,
+  if (instance.city case final value?) 'city': value,
+  if (instance.state case final value?) 'state': value,
+  if (instance.postcode case final value?) 'postcode': value,
+  if (instance.country case final value?) 'country': value,
 };

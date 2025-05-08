@@ -25,5 +25,6 @@ ValidationErrors _$ValidationErrorsFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ValidationErrorsToJson(ValidationErrors instance) =>
     <String, dynamic>{
-      'detail': instance.detail?.map((e) => e.toJson()).toList(),
+      if (instance.detail?.map((e) => e.toJson()).toList() case final value?)
+        'detail': value,
     };
