@@ -29,32 +29,40 @@ class FileData {
     this.rejectProcessingStatusDesc,
   });
 
-  factory FileData.fromJson(Map<String, dynamic> json) => _$FileDataFromJson(json);
+  factory FileData.fromJson(Map<String, dynamic> json) =>
+      _$FileDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$FileDataToJson(this);
 }
 
+@JsonEnum()
+enum ProcessingStatus { pending, approved, rejected, archived }
 
-enum ProcessingStatus {
-  pending,
-  approved,
-  rejected,
-  archived,
-}
-
+@JsonEnum(fieldRename: FieldRename.snake)
 enum ImageRejectionReason {
   poorQuality,
+
   inappropriateContent,
+
   irrelevantContent,
+
   croppedOrObstructed,
+
   poorLighting,
+
   unsafeActivity,
+
   lackOfConsent,
+
   violatesGuidelines,
+
   fileFormatUnsupported,
+
   fileSizeTooLarge,
+
   watermarkOrLogo,
+
   misleadingOrFalse,
+
   otherRejectionReason,
 }
-

@@ -47,10 +47,20 @@ class UriBuilder {
   static Uri readUserImageGallary(List<GallaryTag> gallaryTags) {
     return baseUri.replace(
       path: '$basePath/user/read_user_image_gallary/',
-      queryParameters: Map.fromEntries(
-        gallaryTags.map((e) => MapEntry('tags', e.requestName)),
-      ),
+      queryParameters: {'tags': gallaryTags.map((e) => e.requestName).toList()},
     );
+  }
+
+  static Uri readUserProfileImage() {
+    return baseUri.replace(path: '$basePath/user/read_user_image_profile/');
+  }
+
+  static Uri archiveUserImages() {
+    return baseUri.replace(path: '$basePath/user/archive_user_images/');
+  }
+
+  static Uri readImage(String fileUploadPath) {
+    return baseUri.replace(path: '$basePath/$fileUploadPath');
   }
 
   static Uri deleteUserBioData(String dataPointsId) {

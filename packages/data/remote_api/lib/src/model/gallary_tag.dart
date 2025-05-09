@@ -1,8 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
-
+@JsonEnum(fieldRename: FieldRename.snake)
 enum GallaryTag {
   @JsonValue('default')
-  defaultTag, // Renamed to avoid conflict with reserved keyword 'default'
+  defaultTag,
   profileImage,
   certificate;
 

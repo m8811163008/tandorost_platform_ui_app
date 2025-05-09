@@ -170,7 +170,9 @@ class RemoteApiBase implements RemoteApi {
     return UserBioData.fromJson(res!);
   }
 
-  Future<List<FileData>> readUserImageGallary(List<GallaryTag> gallaryTags) async {
+  Future<List<FileData>> readUserImageGallary(
+    List<GallaryTag> gallaryTags,
+  ) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         CommonInterceptor(get_user_language),
@@ -178,10 +180,53 @@ class RemoteApiBase implements RemoteApi {
       ],
     );
     final uri = UriBuilder.readUserImageGallary(gallaryTags);
-    final res = await _handleRequest<List>(
-      () => interceptedHttp.get(uri),
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => FileData.fromJson(e)).toList();
+  }
+
+  Future<List<FileData>> readUserProfileImage() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(get_user_language),
+        AccessTokenInterceptor(get_access_token),
+      ],
     );
-    return res!.map((e)=>FileData.fromJson(e)).toList();
+    final uri = UriBuilder.readUserProfileImage();
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => FileData.fromJson(e)).toList();
+  }
+
+  Future<FileDetail> readImage(
+    FileData fileData,
+  ) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(get_user_language),
+        AccessTokenInterceptor(get_access_token),
+      ],
+    );
+    final uri = UriBuilder.readImage(fileData.fileUploadPath);
+    final res = await interceptedHttp.get(uri,);
+
+    return FileDetail(fileName: fileData.fileName, bytes: res.bodyBytes);
+  }
+
+  Future<ArchiveUserImagesResponse> archiveUserImages(
+    List<String> imagesId,
+  ) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(get_user_language),
+        AccessTokenInterceptor(get_access_token),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.archiveUserImages();
+    final res = await _handleRequest<JsonMap>(
+      () => interceptedHttp.post(uri, body: json.encode(imagesId)),
+    );
+
+    return ArchiveUserImagesResponse.fromJson(res!);
   }
 
   Future<List<FileData>> addUserImages(UserImage userImage) async {

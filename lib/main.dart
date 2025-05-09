@@ -1,7 +1,7 @@
 import 'dart:html' as webFile;
 import 'dart:typed_data';
-import 'package:file_picker/file_picker.dart' as webPicker;
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 
@@ -13,7 +13,7 @@ void main() async {
     get_user_language: () => Future.value(Language.english),
     get_access_token:
         () => Future.value(
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiJkMDVjMTFkOS0wYmUxLTQ2Y2EtYmUzMy04MWQ5NWE5MzIzMzAiLCJleHAiOjE3NDY3MjQyMTF9.jiK3Omtz72wTBaJcPQDEkQ27HbxZ0amo1PhBQDtrTCM',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiJkMDVjMTFkOS0wYmUxLTQ2Y2EtYmUzMy04MWQ5NWE5MzIzMzAiLCJleHAiOjE3NDY4MTc5MDJ9.r-tD3_xZhJjvt4D3-O3xJ0oEjuyZL6h0yEVtE3a8j9M',
         ),
   );
 
@@ -74,9 +74,47 @@ void main() async {
   //     ),
   //   );
   // }
-  final res = await remote_api.readUserImageGallary([
-    GallaryTag.defaultTag,
-    GallaryTag.profileImage,
-  ]);
-  print(res);
+  // final res = await remote_api.readUserImageGallary([
+  //   GallaryTag.defaultTag,
+  //   GallaryTag.profileImage,
+  // ]);
+  // final res = await remote_api.readUserProfileImage();
+  // print(res.first.id);
+  // final res2 = await remote_api.archiveUserImages(res.map((e)=> e.id).skip(2).toList());
+  // print(res2);
+  // final res3 = await remote_api.readImage(res.first);
+  // runApp(MyApp(remote_api: remote_api));
 }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key, required this.remote_api});
+//   final RemoteApiBase remote_api;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Center(
+//         child: FutureBuilder<List<FileData>>(
+//           future: remote_api.readUserProfileImage(),
+//           builder: (context, snapshot) {
+//             if (snapshot.connectionState == ConnectionState.done) {
+//               final fileDate = snapshot.data!.first;
+//               return FutureBuilder<FileDetail>(
+//                 future: remote_api.readImage(fileDate),
+//                 builder: (context, snapshot) {
+//                   if (snapshot.connectionState == ConnectionState.done) {
+//                     return SizedBox(child: Image.memory(snapshot.data!.bytes));
+//                   }else{
+//                     return CircularProgressIndicator();
+//                   }
+//                 },
+//               );
+//             }else{
+//               return CircularProgressIndicator();
+//             }
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }

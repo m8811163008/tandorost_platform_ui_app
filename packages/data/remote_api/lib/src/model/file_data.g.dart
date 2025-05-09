@@ -77,7 +77,7 @@ Map<String, dynamic> _$FileDataToJson(FileData instance) => <String, dynamic>{
 
 const _$GallaryTagEnumMap = {
   GallaryTag.defaultTag: 'default',
-  GallaryTag.profileImage: 'profileImage',
+  GallaryTag.profileImage: 'profile_image',
   GallaryTag.certificate: 'certificate',
 };
 
@@ -89,17 +89,17 @@ const _$ProcessingStatusEnumMap = {
 };
 
 const _$ImageRejectionReasonEnumMap = {
-  ImageRejectionReason.poorQuality: 'poorQuality',
-  ImageRejectionReason.inappropriateContent: 'inappropriateContent',
-  ImageRejectionReason.irrelevantContent: 'irrelevantContent',
-  ImageRejectionReason.croppedOrObstructed: 'croppedOrObstructed',
-  ImageRejectionReason.poorLighting: 'poorLighting',
-  ImageRejectionReason.unsafeActivity: 'unsafeActivity',
-  ImageRejectionReason.lackOfConsent: 'lackOfConsent',
-  ImageRejectionReason.violatesGuidelines: 'violatesGuidelines',
-  ImageRejectionReason.fileFormatUnsupported: 'fileFormatUnsupported',
-  ImageRejectionReason.fileSizeTooLarge: 'fileSizeTooLarge',
-  ImageRejectionReason.watermarkOrLogo: 'watermarkOrLogo',
-  ImageRejectionReason.misleadingOrFalse: 'misleadingOrFalse',
-  ImageRejectionReason.otherRejectionReason: 'otherRejectionReason',
+  ImageRejectionReason.poorQuality: 'poor_quality',
+  ImageRejectionReason.inappropriateContent: 'inappropriate_content',
+  ImageRejectionReason.irrelevantContent: 'irrelevant_content',
+  ImageRejectionReason.croppedOrObstructed: 'cropped_or_obstructed',
+  ImageRejectionReason.poorLighting: 'poor_lighting',
+  ImageRejectionReason.unsafeActivity: 'unsafe_activity',
+  ImageRejectionReason.lackOfConsent: 'lack_of_consent',
+  ImageRejectionReason.violatesGuidelines: 'violates_guidelines',
+  ImageRejectionReason.fileFormatUnsupported: 'file_format_unsupported',
+  ImageRejectionReason.fileSizeTooLarge: 'file_size_too_large',
+  ImageRejectionReason.watermarkOrLogo: 'watermark_or_logo',
+  ImageRejectionReason.misleadingOrFalse: 'misleading_or_false',
+  ImageRejectionReason.otherRejectionReason: 'other_rejection_reason',
 };
