@@ -1,13 +1,22 @@
+import 'dart:html' as webFile;
+import 'dart:typed_data';
+import 'package:file_picker/file_picker.dart' as webPicker;
+import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
+import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
+
 import 'package:remote_api/remote_api.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final remote_api = RemoteApiBase(
     get_user_language: () => Future.value(Language.english),
     get_access_token:
         () => Future.value(
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiJkMDVjMTFkOS0wYmUxLTQ2Y2EtYmUzMy04MWQ5NWE5MzIzMzAiLCJleHAiOjE3NDY3MDQ4NTN9.r9ff3OFo2OBSoVx1k5gXRL7J4QCn0T3eEf-kFoKIPSE',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiJkMDVjMTFkOS0wYmUxLTQ2Y2EtYmUzMy04MWQ5NWE5MzIzMzAiLCJleHAiOjE3NDY3MjQyMTF9.jiK3Omtz72wTBaJcPQDEkQ27HbxZ0amo1PhBQDtrTCM',
         ),
   );
+
   // final res = await remote_api.sendVerificationCode(
   //   verificationCodeRequest: VerificationCodeRequest(
   //     phoneNumber: '09212805230',
@@ -55,4 +64,19 @@ void main() async {
   // final bioData2 = await remote_api.userBioData();
   // print(bioData2);
   // print(deleted_id);
+  // if (kIsWeb) {
+  //   PickedFile localFile = PickedFile('1.png');
+  //   Uint8List bytes = await localFile.readAsBytes();
+  //   final res = await remote_api.addUserImages(
+  //     UserImage(
+  //       gallaryTag: GallaryTag.profileImage,
+  //       imageGallaryFiles: [bytes],
+  //     ),
+  //   );
+  // }
+  final res = await remote_api.readUserImageGallary([
+    GallaryTag.defaultTag,
+    GallaryTag.profileImage,
+  ]);
+  print(res);
 }

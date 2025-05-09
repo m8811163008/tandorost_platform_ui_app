@@ -1,3 +1,4 @@
+import 'package:remote_api/remote_api.dart';
 import 'package:remote_api/src/model/verification_type.dart';
 
 class UriBuilder {
@@ -37,6 +38,19 @@ class UriBuilder {
 
   static Uri updateUserBioData() {
     return baseUri.replace(path: '$basePath/user/update_user_bio_data/');
+  }
+
+  static Uri addUsersImages() {
+    return baseUri.replace(path: '$basePath/user/add_user_images/');
+  }
+
+  static Uri readUserImageGallary(List<GallaryTag> gallaryTags) {
+    return baseUri.replace(
+      path: '$basePath/user/read_user_image_gallary/',
+      queryParameters: Map.fromEntries(
+        gallaryTags.map((e) => MapEntry('tags', e.requestName)),
+      ),
+    );
   }
 
   static Uri deleteUserBioData(String dataPointsId) {

@@ -7,12 +7,16 @@ import 'package:http_interceptor/http_interceptor.dart';
 import 'package:remote_api/src/model/header_content_type.dart';
 
 class ContentTypeInterceptor implements InterceptorContract {
-  ContentTypeInterceptor({required this.contentType});
-  final ContentType contentType;
+  ContentTypeInterceptor({
+    required this.requestContentType,
+    this.acceptHeader = ContentType.applicationJson,
+  });
+  final ContentType requestContentType;
+  final ContentType acceptHeader;
 
   @override
   Future<BaseRequest> interceptRequest({required BaseRequest request}) async {
-    request.headers[HttpHeaders.contentTypeHeader] = contentType.value;
+    request.headers[HttpHeaders.contentTypeHeader] = requestContentType.value;
     return request;
   }
 

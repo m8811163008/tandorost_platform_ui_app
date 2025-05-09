@@ -1,8 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:http_interceptor/http_interceptor.dart';
+import 'package:http_interceptor/http_interceptor.dart' as http;
+import 'package:http_parser/http_parser.dart';
+import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 import 'package:remote_api/src/interceptor/interceptor.dart';
 import 'package:remote_api/src/model/model.dart';
 import 'package:remote_api/src/model/user_bio_data.dart';
@@ -27,9 +31,9 @@ class RemoteApiBase implements RemoteApi {
   }) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        LanguageInterceptor(get_user_language),
+        CommonInterceptor(get_user_language),
         ContentTypeInterceptor(
-          contentType: ContentType.applicationXWwwFormUrlencoded,
+          requestContentType: ContentType.applicationXWwwFormUrlencoded,
         ),
       ],
     );
@@ -46,9 +50,9 @@ class RemoteApiBase implements RemoteApi {
   Future<String> register({required RegisterRequest registerRequest}) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        LanguageInterceptor(get_user_language),
+        CommonInterceptor(get_user_language),
         ContentTypeInterceptor(
-          contentType: ContentType.applicationXWwwFormUrlencoded,
+          requestContentType: ContentType.applicationXWwwFormUrlencoded,
         ),
       ],
     );
@@ -64,9 +68,9 @@ class RemoteApiBase implements RemoteApi {
   }) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        LanguageInterceptor(get_user_language),
+        CommonInterceptor(get_user_language),
         ContentTypeInterceptor(
-          contentType: ContentType.applicationXWwwFormUrlencoded,
+          requestContentType: ContentType.applicationXWwwFormUrlencoded,
         ),
       ],
     );
@@ -80,9 +84,9 @@ class RemoteApiBase implements RemoteApi {
   Future<Token> authenticate({required Credential credential}) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        LanguageInterceptor(get_user_language),
+        CommonInterceptor(get_user_language),
         ContentTypeInterceptor(
-          contentType: ContentType.applicationXWwwFormUrlencoded,
+          requestContentType: ContentType.applicationXWwwFormUrlencoded,
         ),
       ],
     );
@@ -96,7 +100,7 @@ class RemoteApiBase implements RemoteApi {
   Future<UserProfile> userProfile() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        LanguageInterceptor(get_user_language),
+        CommonInterceptor(get_user_language),
         AccessTokenInterceptor(get_access_token),
       ],
     );
@@ -109,8 +113,8 @@ class RemoteApiBase implements RemoteApi {
   Future<UserProfile> updateProfile(UserProfile updatedProfile) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        LanguageInterceptor(get_user_language),
-        ContentTypeInterceptor(contentType: ContentType.applicationJson),
+        CommonInterceptor(get_user_language),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
         AccessTokenInterceptor(get_access_token),
       ],
     );
@@ -125,7 +129,7 @@ class RemoteApiBase implements RemoteApi {
   Future<UserBioData> userBioData() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        LanguageInterceptor(get_user_language),
+        CommonInterceptor(get_user_language),
         AccessTokenInterceptor(get_access_token),
       ],
     );
@@ -138,15 +142,13 @@ class RemoteApiBase implements RemoteApi {
   Future<void> deleteUserBioDataPoint({required String dataPointsId}) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        LanguageInterceptor(get_user_language),
+        CommonInterceptor(get_user_language),
         AccessTokenInterceptor(get_access_token),
-        ContentTypeInterceptor(contentType: ContentType.applicationJson),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
     final uri = UriBuilder.deleteUserBioData(dataPointsId);
-    await _handleRequest<JsonMap>(
-      () => interceptedHttp.delete(uri),
-    );
+    await _handleRequest<JsonMap>(() => interceptedHttp.delete(uri));
   }
 
   Future<UserBioData> updateUserBioData(
@@ -154,9 +156,9 @@ class RemoteApiBase implements RemoteApi {
   ) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        LanguageInterceptor(get_user_language),
+        CommonInterceptor(get_user_language),
         AccessTokenInterceptor(get_access_token),
-        ContentTypeInterceptor(contentType: ContentType.applicationJson),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
     final uri = UriBuilder.updateUserBioData();
@@ -168,12 +170,69 @@ class RemoteApiBase implements RemoteApi {
     return UserBioData.fromJson(res!);
   }
 
+  Future<List<FileData>> readUserImageGallary(List<GallaryTag> gallaryTags) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(get_user_language),
+        AccessTokenInterceptor(get_access_token),
+      ],
+    );
+    final uri = UriBuilder.readUserImageGallary(gallaryTags);
+    final res = await _handleRequest<List>(
+      () => interceptedHttp.get(uri),
+    );
+    return res!.map((e)=>FileData.fromJson(e)).toList();
+  }
+
+  Future<List<FileData>> addUserImages(UserImage userImage) async {
+    final uri = UriBuilder.addUsersImages();
+
+    final request = http.MultipartRequest('POST', uri);
+
+    request.fields['tag'] = userImage.gallaryTag.requestName;
+
+    for (FileDetail file in userImage.imageGallaryFiles) {
+      request.files.add(
+        await http.MultipartFile.fromBytes(
+          'image_gallary_files',
+          file.bytes,
+          filename: file.fileName,
+          contentType: file.mediaType,
+        ),
+      );
+    }
+
+    final token = await get_access_token();
+    final language = await get_user_language();
+
+    request.headers.addAll({
+      'Authorization': 'Bearer $token',
+      HttpHeaders.acceptLanguageHeader: language.name,
+      HttpHeaders.contentTypeHeader: 'multipart/form-data',
+    });
+
+    var response = await request.send();
+
+    final jsonResponseString = await response.stream.bytesToString();
+    final jsonResponse = json.decode(jsonResponseString);
+
+    if (response.statusCode != 200) {
+      assert(jsonResponse is JsonMap);
+      final response = ApiErrorResponse.fromJson(
+        (jsonResponse as JsonMap)[_detail],
+      );
+      throw HttpException(response.message!);
+    } else {
+      return (jsonResponse as List).map((e) => FileData.fromJson(e)).toList();
+    }
+  }
+
   Future<E?> _handleRequest<E>(Future<Response> Function() request) async {
     try {
       final res = await request();
       if (res.statusCode == 204) {
         return null;
-      }else{
+      } else {
         final jsonResponse = json.decode(res.body) as E;
         if (res.statusCode != 200 && res.statusCode != 201) {
           assert(jsonResponse is JsonMap);
@@ -185,7 +244,6 @@ class RemoteApiBase implements RemoteApi {
           return jsonResponse;
         }
       }
-
 
       // if (res.statusCode == 422) {
       //   final body = jsonDecode(res.body);

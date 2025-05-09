@@ -22,3 +22,4 @@ export 'verification_code_request.dart';
 export 'verification_type.dart';
 export 'token.dart';
 export 'user_profile.dart';
+export 'file_data.dart';
