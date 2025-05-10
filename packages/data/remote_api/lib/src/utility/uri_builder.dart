@@ -72,9 +72,10 @@ class UriBuilder {
     );
   }
 
-  static Uri deleteFoodsNutritions() {
+  static Uri deleteFoodsNutritions(List<String> foodIds) {
     return baseUri.replace(
       path: '$basePath/foods_nutrition/delete_foods_nutritions/',
+      queryParameters: {'food_ids': foodIds},
     );
   }
 

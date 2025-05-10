@@ -13,7 +13,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
     $checkKeys(
       json,
       allowedKeys: const [
-        'id',
+        '_id',
         'phone_number',
         'address',
         'full_name',
@@ -21,7 +21,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
       ],
     );
     final val = UserProfile(
-      id: $checkedConvert('id', (v) => v as String),
+      id: $checkedConvert('_id', (v) => v as String),
       phoneNumber: $checkedConvert('phone_number', (v) => v as String),
       address: $checkedConvert(
         'address',
@@ -32,12 +32,16 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
     );
     return val;
   },
-  fieldKeyMap: const {'phoneNumber': 'phone_number', 'fullName': 'full_name'},
+  fieldKeyMap: const {
+    'id': '_id',
+    'phoneNumber': 'phone_number',
+    'fullName': 'full_name',
+  },
 );
 
 Map<String, dynamic> _$UserProfileToJson(UserProfile instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      '_id': instance.id,
       'phone_number': instance.phoneNumber,
       if (instance.address?.toJson() case final value?) 'address': value,
       if (instance.fullName case final value?) 'full_name': value,

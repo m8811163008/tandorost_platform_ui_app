@@ -5,6 +5,7 @@ part 'file_data.g.dart';
 
 @JsonSerializable()
 class FileData {
+  @JsonKey(name: '_id')
   final String id;
   final String userId;
   final GallaryTag tag;

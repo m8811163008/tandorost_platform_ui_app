@@ -8,9 +8,12 @@ class DoubleDataPoint {
   final String dataPointId;
   final double value;
   final DateTime createDate;
-  
 
-  DoubleDataPoint({required this.value, required this.createDate, required this.dataPointId});
+  DoubleDataPoint({
+    required this.value,
+    required this.createDate,
+    required this.dataPointId,
+  });
 
   factory DoubleDataPoint.fromJson(Map<String, dynamic> json) =>
       _$DoubleDataPointFromJson(json);
@@ -22,7 +25,11 @@ class ActivityLevelDataPoint {
   final ActivityLevel value;
   final DateTime createDate;
 
-  ActivityLevelDataPoint({required this.value, required this.createDate, required this.dataPointId});
+  ActivityLevelDataPoint({
+    required this.value,
+    required this.createDate,
+    required this.dataPointId,
+  });
 
   factory ActivityLevelDataPoint.fromJson(Map<String, dynamic> json) =>
       _$ActivityLevelDataPointFromJson(json);
@@ -30,6 +37,7 @@ class ActivityLevelDataPoint {
 
 @JsonSerializable(createToJson: false)
 class UserBioData {
+  @JsonKey(name: '_id')
   final String id;
   final String userId;
   final Gender gender;

@@ -76,7 +76,7 @@ UserBioData _$UserBioDataFromJson(Map<String, dynamic> json) => $checkedCreate(
     $checkKeys(
       json,
       allowedKeys: const [
-        'id',
+        '_id',
         'user_id',
         'gender',
         'age',
@@ -92,7 +92,7 @@ UserBioData _$UserBioDataFromJson(Map<String, dynamic> json) => $checkedCreate(
       ],
     );
     final val = UserBioData(
-      id: $checkedConvert('id', (v) => v as String),
+      id: $checkedConvert('_id', (v) => v as String),
       userId: $checkedConvert('user_id', (v) => v as String),
       gender: $checkedConvert('gender', (v) => $enumDecode(_$GenderEnumMap, v)),
       age: $checkedConvert('age', (v) => (v as num).toInt()),
@@ -167,6 +167,7 @@ UserBioData _$UserBioDataFromJson(Map<String, dynamic> json) => $checkedCreate(
     return val;
   },
   fieldKeyMap: const {
+    'id': '_id',
     'userId': 'user_id',
     'waistCircumference': 'waist_circumference',
     'armCircumference': 'arm_circumference',

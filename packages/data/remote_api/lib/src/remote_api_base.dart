@@ -229,8 +229,16 @@ class RemoteApiBase implements RemoteApi {
 
   Future<List<FileData>> addUserImages(UserImage userImage) async {
     final uri = UriBuilder.addUsersImages();
-
     final request = http.MultipartRequest('POST', uri);
+
+    final token = await get_access_token();
+    final language = await get_user_language();
+
+    request.headers.addAll({
+      'Authorization': 'Bearer $token',
+      HttpHeaders.acceptLanguageHeader: language.name,
+      HttpHeaders.contentTypeHeader: 'multipart/form-data',
+    });
 
     request.fields['tag'] = userImage.gallaryTag.requestName;
 
@@ -245,14 +253,6 @@ class RemoteApiBase implements RemoteApi {
       );
     }
 
-    final token = await get_access_token();
-    final language = await get_user_language();
-
-    request.headers.addAll({
-      'Authorization': 'Bearer $token',
-      HttpHeaders.acceptLanguageHeader: language.name,
-      HttpHeaders.contentTypeHeader: 'multipart/form-data',
-    });
     try {
       var response = await request.send();
 
@@ -306,7 +306,11 @@ class RemoteApiBase implements RemoteApi {
 
     return res!.map((e) => Food.fromJson(e)).toList();
   }
-  Future<List<Food>> readFoodsNutrition(DateTime startDate, DateTime endDate) async {
+
+  Future<List<Food>> readFoodsNutrition(
+    DateTime startDate,
+    DateTime endDate,
+  ) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         CommonInterceptor(get_user_language),
@@ -315,17 +319,53 @@ class RemoteApiBase implements RemoteApi {
       ],
     );
     final uri = UriBuilder.readFoodsNutritions(startDate, endDate);
-    final res = await _handleRequest<List>(
-      () => interceptedHttp.get(uri),
-    );
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
 
     return res!.map((e) => Food.fromJson(e)).toList();
   }
 
-  Future<List<Food>> readFoodsNutritionsByVoice({required FileDetail prompt,required  Language userSpokenLanguage} ) async {
-    final uri = UriBuilder.readFoodsNutritionsByVoice();
+  Future<Food> updateFoodsNutritions(Food food) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(get_user_language),
+        AccessTokenInterceptor(get_access_token),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.updateFoodsNutritions();
+    final res = await _handleRequest<JsonMap>(
+      () => interceptedHttp.post(uri, body: json.encode(food.toJson())),
+    );
 
+    return Food.fromJson(res!);
+  }
+
+  Future<void> deleteFoodsNutritions(List<String> foodIds) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(get_user_language),
+        AccessTokenInterceptor(get_access_token),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.deleteFoodsNutritions(foodIds);
+    await _handleRequest<JsonMap?>(() => interceptedHttp.delete(uri));
+  }
+
+  Future<List<Food>> readFoodsNutritionsByVoice({
+    required FileDetail prompt,
+    required Language userSpokenLanguage,
+  }) async {
+    final uri = UriBuilder.readFoodsNutritionsByVoice();
     final request = http.MultipartRequest('POST', uri);
+    final token = await get_access_token();
+    final language = await get_user_language();
+
+    request.headers.addAll({
+      'Authorization': 'Bearer $token',
+      HttpHeaders.acceptLanguageHeader: language.name,
+      HttpHeaders.contentTypeHeader: 'multipart/form-data',
+    });
 
     request.fields['meme_type'] = prompt.mediaType.mimeType;
     request.fields['language'] = userSpokenLanguage.code;
@@ -339,14 +379,6 @@ class RemoteApiBase implements RemoteApi {
       ),
     );
 
-    final token = await get_access_token();
-    final language = await get_user_language();
-
-    request.headers.addAll({
-      'Authorization': 'Bearer $token',
-      HttpHeaders.acceptLanguageHeader: language.name,
-      HttpHeaders.contentTypeHeader: 'multipart/form-data',
-    });
     try {
       var response = await request.send();
 
@@ -402,34 +434,6 @@ class RemoteApiBase implements RemoteApi {
           return jsonResponse;
         }
       }
-
-      // if (res.statusCode == 422) {
-      //   final body = jsonDecode(res.body);
-      //   throw ValidationErrors.fromJson(body);
-      // } else if (res.statusCode == 403) {
-      //   throw HttpException('HTTP_403_FORBIDDEN');
-      // } else if (res.statusCode == 404) {
-      //   throw HttpException('HTTP_404_NOT_FOUND');
-      // } else if (res.statusCode == 400) {
-      //   throw HttpException('HTTP_400_BAD_REQUEST');
-      // } else if (res.statusCode == 500) {
-      //   throw HttpException('HTTP_500_INTERNAL_SERVER_ERROR');
-      // } else if (res.statusCode == 412) {
-      //   throw HttpException('HTTP_412_PRECONDITION_FAILED');
-      // } else if (res.statusCode == 503) {
-      //   throw HttpException('HTTP_503_SERVICE_UNAVAILABLE');
-      // } else if (res.statusCode == 504) {
-      //   throw HttpException('HTTP_504_GATEWAY_TIMEOUT');
-      // } else if (res.statusCode == 429) {
-      //   throw HttpException('HTTP_429_TOO_MANY_REQUESTS');
-      // } else if (res.statusCode == 409) {
-      //   throw HttpException('HTTP_409_CONFLICT');
-      // } else if (res.statusCode == 401) {
-      //   throw HttpException('HTTP_401_UNAUTHORIZED');
-      // }
-    } on Exception catch (e) {
-      print(e);
-      rethrow;
     } on ValidationError {
       rethrow;
     } on HttpException {

@@ -5,6 +5,7 @@ part 'food.g.dart';
 
 @JsonSerializable()
 class Food {
+  @JsonKey(name: '_id')
   final String id;
 
   final String userId;
@@ -28,6 +29,42 @@ class Food {
   final CarbohydrateSourceLD carbohydrateSource;
 
   final MacroNutrition macroNutrition;
+
+  Food copyWith({
+    String? id,
+    String? userId,
+    DateTime? upsertDate,
+    Language? userLanguage,
+    String? userNativeLanguageFoodName,
+    String? translatedToEnglishFoodName,
+    String? unitOfMeasurementNativeLanguage,
+    String? translatedToEnglishUnitOfMeasurement,
+    int? calculatedCalorie,
+    int? quantityOfUnitOfMeasurement,
+    CarbohydrateSourceLD? carbohydrateSource,
+    MacroNutrition? macroNutrition,
+  }) {
+    return Food(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      upsertDate: upsertDate ?? this.upsertDate,
+      userLanguage: userLanguage ?? this.userLanguage,
+      userNativeLanguageFoodName:
+          userNativeLanguageFoodName ?? this.userNativeLanguageFoodName,
+      translatedToEnglishFoodName:
+          translatedToEnglishFoodName ?? this.translatedToEnglishFoodName,
+      unitOfMeasurementNativeLanguage: unitOfMeasurementNativeLanguage ??
+          this.unitOfMeasurementNativeLanguage,
+      translatedToEnglishUnitOfMeasurement:
+          translatedToEnglishUnitOfMeasurement ??
+              this.translatedToEnglishUnitOfMeasurement,
+      calculatedCalorie: calculatedCalorie ?? this.calculatedCalorie,
+      quantityOfUnitOfMeasurement:
+          quantityOfUnitOfMeasurement ?? this.quantityOfUnitOfMeasurement,
+      carbohydrateSource: carbohydrateSource ?? this.carbohydrateSource,
+      macroNutrition: macroNutrition ?? this.macroNutrition,
+    );
+  }
 
   Food({
     required this.id,
@@ -54,6 +91,18 @@ class MacroNutrition {
   final int fat;
   final int carbohydrate;
   final int protein;
+
+  MacroNutrition copyWith({
+    int? fat,
+    int? carbohydrate,
+    int? protein,
+  }) {
+    return MacroNutrition(
+      fat: fat ?? this.fat,
+      carbohydrate: carbohydrate ?? this.carbohydrate,
+      protein: protein ?? this.protein,
+    );
+  }
 
   MacroNutrition({
     required this.fat,
