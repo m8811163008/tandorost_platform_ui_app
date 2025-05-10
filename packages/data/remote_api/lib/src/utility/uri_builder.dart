@@ -44,6 +44,40 @@ class UriBuilder {
     return baseUri.replace(path: '$basePath/user/add_user_images/');
   }
 
+  static Uri readFoodsNutritionsByText() {
+    return baseUri.replace(
+      path: '$basePath/foods_nutrition/read_foods_nutritions_by_text/',
+    );
+  }
+
+  static Uri readFoodsNutritionsByVoice() {
+    return baseUri.replace(
+      path: '$basePath/foods_nutrition/read_foods_nutritions_by_voice/',
+    );
+  }
+
+  static Uri readFoodsNutritions(DateTime startDate, DateTime endDate) {
+    return baseUri.replace(
+      path: '$basePath/foods_nutrition/read_foods_nutritions/',
+      queryParameters: {
+        'start_date': startDate.toIso8601String(),
+        'end_date': endDate.toIso8601String(),
+      },
+    );
+  }
+
+  static Uri updateFoodsNutritions() {
+    return baseUri.replace(
+      path: '$basePath/foods_nutrition/update_foods_nutritions/',
+    );
+  }
+
+  static Uri deleteFoodsNutritions() {
+    return baseUri.replace(
+      path: '$basePath/foods_nutrition/delete_foods_nutritions/',
+    );
+  }
+
   static Uri readUserImageGallary(List<GallaryTag> gallaryTags) {
     return baseUri.replace(
       path: '$basePath/user/read_user_image_gallary/',

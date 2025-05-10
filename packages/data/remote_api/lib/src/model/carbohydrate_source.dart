@@ -1,4 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+
 enum CarbohydrateSourceLD {
+  @JsonValue('fruits_or_non_starchy_vegetables')
   fruitsOrNonStarchyVegetables,
   others,
 }

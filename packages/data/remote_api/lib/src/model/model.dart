@@ -24,3 +24,4 @@ export 'token.dart';
 export 'user_profile.dart';
 export 'file_data.dart';
 export 'archive_user_images_response.dart';
+export 'food.dart';

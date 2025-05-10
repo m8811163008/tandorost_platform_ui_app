@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-@JsonEnum()
+@JsonEnum(valueField: 'code')
 enum Language {
   english('en'),
   chinese('zh'),

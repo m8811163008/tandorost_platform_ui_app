@@ -196,9 +196,7 @@ class RemoteApiBase implements RemoteApi {
     return res!.map((e) => FileData.fromJson(e)).toList();
   }
 
-  Future<FileDetail> readImage(
-    FileData fileData,
-  ) async {
+  Future<FileDetail> readImage(FileData fileData) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         CommonInterceptor(get_user_language),
@@ -206,7 +204,7 @@ class RemoteApiBase implements RemoteApi {
       ],
     );
     final uri = UriBuilder.readImage(fileData.fileUploadPath);
-    final res = await interceptedHttp.get(uri,);
+    final res = await interceptedHttp.get(uri);
 
     return FileDetail(fileName: fileData.fileName, bytes: res.bodyBytes);
   }
@@ -255,20 +253,135 @@ class RemoteApiBase implements RemoteApi {
       HttpHeaders.acceptLanguageHeader: language.name,
       HttpHeaders.contentTypeHeader: 'multipart/form-data',
     });
+    try {
+      var response = await request.send();
 
-    var response = await request.send();
+      final jsonResponseString = await response.stream.bytesToString();
+      final jsonResponse = json.decode(jsonResponseString);
 
-    final jsonResponseString = await response.stream.bytesToString();
-    final jsonResponse = json.decode(jsonResponseString);
+      if (response.statusCode != 200) {
+        assert(jsonResponse is JsonMap);
+        final response = ApiErrorResponse.fromJson(
+          (jsonResponse as JsonMap)[_detail],
+        );
+        throw HttpException(response.message!);
+      } else {
+        return (jsonResponse as List).map((e) => FileData.fromJson(e)).toList();
+      }
+    } on ValidationError {
+      rethrow;
+    } on HttpException {
+      rethrow;
+    } on SocketException {
+      if (!await hasInternetConnection()) {
+        throw InternetConnectionException();
+      }
+      throw HttpException('SocketException');
+    } on TimeoutException {
+      throw HttpException('TimeoutException');
+    } on HandshakeException {
+      throw HttpException('HandshakeException: SSL/TLS handshake failed');
+    } on TlsException {
+      throw HttpException('TlsException: TLS/SSL error occurred');
+    } on OSError catch (e) {
+      throw HttpException('OSError: ${e.message}');
+    } catch (e) {
+      print(e);
+      throw HttpException(e.toString());
+    }
+  }
 
-    if (response.statusCode != 200) {
-      assert(jsonResponse is JsonMap);
-      final response = ApiErrorResponse.fromJson(
-        (jsonResponse as JsonMap)[_detail],
-      );
-      throw HttpException(response.message!);
-    } else {
-      return (jsonResponse as List).map((e) => FileData.fromJson(e)).toList();
+  Future<List<Food>> readFoodsNutritionsByText(String prompt) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(get_user_language),
+        AccessTokenInterceptor(get_access_token),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.readFoodsNutritionsByText();
+    final res = await _handleRequest<List>(
+      () => interceptedHttp.post(uri, body: json.encode(prompt)),
+    );
+
+    return res!.map((e) => Food.fromJson(e)).toList();
+  }
+  Future<List<Food>> readFoodsNutrition(DateTime startDate, DateTime endDate) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(get_user_language),
+        AccessTokenInterceptor(get_access_token),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.readFoodsNutritions(startDate, endDate);
+    final res = await _handleRequest<List>(
+      () => interceptedHttp.get(uri),
+    );
+
+    return res!.map((e) => Food.fromJson(e)).toList();
+  }
+
+  Future<List<Food>> readFoodsNutritionsByVoice({required FileDetail prompt,required  Language userSpokenLanguage} ) async {
+    final uri = UriBuilder.readFoodsNutritionsByVoice();
+
+    final request = http.MultipartRequest('POST', uri);
+
+    request.fields['meme_type'] = prompt.mediaType.mimeType;
+    request.fields['language'] = userSpokenLanguage.code;
+
+    request.files.add(
+      await http.MultipartFile.fromBytes(
+        'prompt',
+        prompt.bytes,
+        filename: prompt.fileName,
+        contentType: prompt.mediaType,
+      ),
+    );
+
+    final token = await get_access_token();
+    final language = await get_user_language();
+
+    request.headers.addAll({
+      'Authorization': 'Bearer $token',
+      HttpHeaders.acceptLanguageHeader: language.name,
+      HttpHeaders.contentTypeHeader: 'multipart/form-data',
+    });
+    try {
+      var response = await request.send();
+
+      final jsonResponseString = await response.stream.bytesToString();
+      final jsonResponse = json.decode(jsonResponseString);
+
+      if (response.statusCode != 200) {
+        assert(jsonResponse is JsonMap);
+        final response = ApiErrorResponse.fromJson(
+          (jsonResponse as JsonMap)[_detail],
+        );
+        throw HttpException(response.message!);
+      } else {
+        return (jsonResponse as List).map((e) => Food.fromJson(e)).toList();
+      }
+    } on ValidationError {
+      rethrow;
+    } on HttpException {
+      rethrow;
+    } on SocketException {
+      if (!await hasInternetConnection()) {
+        throw InternetConnectionException();
+      }
+      throw HttpException('SocketException');
+    } on TimeoutException {
+      throw HttpException('TimeoutException');
+    } on HandshakeException {
+      throw HttpException('HandshakeException: SSL/TLS handshake failed');
+    } on TlsException {
+      throw HttpException('TlsException: TLS/SSL error occurred');
+    } on OSError catch (e) {
+      throw HttpException('OSError: ${e.message}');
+    } catch (e) {
+      print(e);
+      throw HttpException(e.toString());
     }
   }
 

@@ -13,7 +13,7 @@ void main() async {
     get_user_language: () => Future.value(Language.english),
     get_access_token:
         () => Future.value(
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiJkMDVjMTFkOS0wYmUxLTQ2Y2EtYmUzMy04MWQ5NWE5MzIzMzAiLCJleHAiOjE3NDY4MTc5MDJ9.r-tD3_xZhJjvt4D3-O3xJ0oEjuyZL6h0yEVtE3a8j9M',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiJkMDVjMTFkOS0wYmUxLTQ2Y2EtYmUzMy04MWQ5NWE5MzIzMzAiLCJleHAiOjE3NDY4NjUzODR9.s7JhA024mx2G556gebLh72K73GiU_I2LVMcVmEzygxY',
         ),
   );
 
@@ -70,9 +70,10 @@ void main() async {
   //   final res = await remote_api.addUserImages(
   //     UserImage(
   //       gallaryTag: GallaryTag.profileImage,
-  //       imageGallaryFiles: [bytes],
+  //       imageGallaryFiles: [FileDetail(fileName: '1.png', bytes: bytes),],
   //     ),
   //   );
+  //   print(res);
   // }
   // final res = await remote_api.readUserImageGallary([
   //   GallaryTag.defaultTag,
@@ -84,6 +85,17 @@ void main() async {
   // print(res2);
   // final res3 = await remote_api.readImage(res.first);
   // runApp(MyApp(remote_api: remote_api));
+  // if (kIsWeb) {
+  //   PickedFile localFile = PickedFile('4.mp3');
+  //   Uint8List bytes = await localFile.readAsBytes();
+  //   final res = await remote_api.readFoodsNutritionsByVoice(
+  //     prompt : FileDetail(fileName: '4.mp3', bytes: bytes),userSpokenLanguage: Language.english
+  //   );
+  //   print(res);
+  // }
+  // final res = await remote_api.readFoodsNutritionsByText('یک عدد سیب و یک کاسه قرمه سبزی');
+  final res = await remote_api.readFoodsNutrition(DateTime.now().subtract(Duration(days: 1)), DateTime.now(), );
+  print(res);
 }
 
 // class MyApp extends StatelessWidget {
