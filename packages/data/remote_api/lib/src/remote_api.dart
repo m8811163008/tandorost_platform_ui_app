@@ -1,4 +1,5 @@
 import 'package:remote_api/remote_api.dart';
+import 'remote_api_base.dart';
 abstract interface class RemoteApi {
   factory RemoteApi({
     required Future<Language> Function() get_user_language,

@@ -9,11 +9,24 @@ import 'package:remote_api/remote_api.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final remote_api = RemoteApi(
-    get_user_language: () => Future.value(Language.english),
-    get_access_token:
-        () => Future.value(
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiJkMDVjMTFkOS0wYmUxLTQ2Y2EtYmUzMy04MWQ5NWE5MzIzMzAiLCJleHAiOjE3NDY4Nzk4MTF9.J-suZ6xKHU1F9uZux_sSTU4w_E1HNE5Z-kZDnpOeaDg',
-        ),
-  );
+  // final remote_api = RemoteApi(
+  //   get_user_language: () => Future.value(Language.english),
+  //   get_access_token:
+  //       () => Future.value(
+  //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiJkMDVjMTFkOS0wYmUxLTQ2Y2EtYmUzMy04MWQ5NWE5MzIzMzAiLCJleHAiOjE3NDY4Nzk4MTF9.J-suZ6xKHU1F9uZux_sSTU4w_E1HNE5Z-kZDnpOeaDg',
+  //       ),
+  // );
+  runApp(TandorostPlatform());
+}
+
+class TandorostPlatform extends StatelessWidget {
+  const TandorostPlatform({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData.light(useMaterial3: true),
+      home: Center(),
+    );
+  }
 }

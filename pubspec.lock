@@ -423,6 +423,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.1"
+  tandorost_components:
+    dependency: "direct main"
+    description:
+      path: "packages/tandorost_components"
+      relative: true
+    source: path
+    version: "0.0.1"
   term_glyph:
     dependency: transitive
     description:

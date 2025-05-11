@@ -34,6 +34,8 @@ dependencies:
   path_provider: ^2.1.5
   remote_api:
     path: packages/data/remote_api
+  tandorost_components:
+    path: packages/tandorost_components
 
 dev_dependencies:
   flutter_test:
