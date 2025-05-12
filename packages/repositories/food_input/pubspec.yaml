@@ -1,6 +1,7 @@
 name: food_input
-description: A starting point for Dart libraries or applications.
+description:  A repository for managing food nutrition data using remote APIs.
 version: 1.0.0
+publish_to: none
 # repository: https://github.com/my_org/my_repo
 
 environment:
@@ -8,7 +9,8 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
-  # path: ^1.8.0
+  remote_api:
+    path: ../../data/remote_api
 
 dev_dependencies:
   lints: ^5.0.0

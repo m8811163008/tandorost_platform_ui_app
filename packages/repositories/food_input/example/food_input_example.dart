@@ -1,6 +1,6 @@
-import 'package:food_input/food_input.dart';
+// import 'package:food_input/food_input.dart';
 
-void main() {
-  var awesome = Awesome();
-  print('awesome: ${awesome.isAwesome}');
-}
+// void main() {
+//   var awesome = Awesome();
+//   print('awesome: ${awesome.isAwesome}');
+// }
