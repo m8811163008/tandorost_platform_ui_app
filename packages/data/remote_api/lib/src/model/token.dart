@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'token.g.dart';
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class Token {
   final String id;
   final String userId;
@@ -17,4 +17,6 @@ class Token {
   });
 
   factory Token.fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TokenToJson(this);
 }

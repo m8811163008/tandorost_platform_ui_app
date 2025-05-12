@@ -28,3 +28,10 @@ Token _$TokenFromJson(Map<String, dynamic> json) => $checkedCreate(
     'tokenType': 'token_type',
   },
 );
+
+Map<String, dynamic> _$TokenToJson(Token instance) => <String, dynamic>{
+  'id': instance.id,
+  'user_id': instance.userId,
+  'access_token': instance.accessToken,
+  'token_type': instance.tokenType,
+};
