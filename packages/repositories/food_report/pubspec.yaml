@@ -1,6 +1,7 @@
 name: food_report
-description: A starting point for Dart libraries or applications.
+description: A library for managing and interacting with food nutrition data, including reading, updating, and deleting food nutrition records.
 version: 1.0.0
+publish_to: none
 # repository: https://github.com/my_org/my_repo
 
 environment:
@@ -8,7 +9,8 @@ environment:
 
 # Add regular dependencies here.
 dependencies:
-  # path: ^1.8.0
+  remote_api:
+    path: ../../data/remote_api
 
 dev_dependencies:
   lints: ^5.0.0
