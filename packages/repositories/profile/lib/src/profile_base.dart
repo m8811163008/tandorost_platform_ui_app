@@ -1,6 +1,26 @@
-// TODO: Put public facing types in this file.
+import 'package:remote_api/remote_api.dart';
+import 'package:rxdart/rxdart.dart';
 
-/// Checks if you are awesome. Spoiler: you are.
-class Awesome {
-  bool get isAwesome => true;
+class ProfileRepository {
+  final RemoteApi remoteApi;
+  final BehaviorSubject<Language> _controller;
+
+  ProfileRepository({required this.remoteApi})
+    : _controller = BehaviorSubject.seeded(Language.english);
+
+  Stream<Language> get userLanguage async* {
+    yield* _controller.stream.asBroadcastStream();
+  }
+
+  Future<UserProfile> userProfile() async {
+    final profile = await remoteApi.userProfile();
+    _controller.add(profile.language);
+    return profile;
+  }
+
+  Future<UserProfile> updateProfile(UserProfile updatedProfile) async {
+    final profile = await remoteApi.updateProfile(updatedProfile);
+    _controller.add(profile.language);
+    return profile;
+  }
 }

@@ -10,14 +10,14 @@ class UserProfile {
   final String phoneNumber;
   final Address? address;
   final String? fullName;
-  final String? language;
+  final Language language;
 
   UserProfile copyWith({
     String? id,
     String? phoneNumber,
     Address? address,
     String? fullName,
-    String? language,
+    Language? language,
   }) {
     return UserProfile(
       id: id ?? this.id,

@@ -1,6 +1,6 @@
-import 'package:profile/profile.dart';
+// import 'package:profile/profile.dart';
 
-void main() {
-  var awesome = Awesome();
-  print('awesome: ${awesome.isAwesome}');
-}
+// void main() {
+//   var awesome = Awesome();
+//   print('awesome: ${awesome.isAwesome}');
+// }
