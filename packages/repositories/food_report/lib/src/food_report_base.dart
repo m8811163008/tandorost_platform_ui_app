@@ -1,5 +1,4 @@
 import 'package:remote_api/remote_api.dart';
-import 'package:rxdart/rxdart.dart';
 
 class FoodReport {
   final RemoteApi remoteApi;
