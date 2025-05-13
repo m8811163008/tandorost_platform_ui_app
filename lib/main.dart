@@ -13,9 +13,10 @@ void main() async {
   //   get_user_language: () => Future.value(Language.english),
   //   get_access_token:
   //       () => Future.value(
-  //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiJkMDVjMTFkOS0wYmUxLTQ2Y2EtYmUzMy04MWQ5NWE5MzIzMzAiLCJleHAiOjE3NDY4Nzk4MTF9.J-suZ6xKHU1F9uZux_sSTU4w_E1HNE5Z-kZDnpOeaDg',
+  //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiIxMjBjZmY1Mi03YTVjLTRhOTYtOWJjMC1mZjQ1MTVjYTkwZmEiLCJleHAiOjE3NDcxNDYwMTl9.cbFxpHvjqsql-i5LP9No6MXbsOvI0ukOnAMl93lWwys',
   //       ),
   // );
+
   runApp(TandorostPlatform());
 }
 

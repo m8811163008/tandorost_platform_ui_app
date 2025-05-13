@@ -62,10 +62,10 @@ ActivityLevelDataPoint _$ActivityLevelDataPointFromJson(
 
 const _$ActivityLevelEnumMap = {
   ActivityLevel.sedentary: 'sedentary',
-  ActivityLevel.fairyActive: 'fairyActive',
-  ActivityLevel.moderatelyActive: 'moderatelyActive',
+  ActivityLevel.fairyActive: 'fairy_active',
+  ActivityLevel.moderatelyActive: 'moderately_active',
   ActivityLevel.active: 'active',
-  ActivityLevel.veryActive: 'veryActive',
+  ActivityLevel.veryActive: 'very_active',
   ActivityLevel.other: 'other',
 };
 

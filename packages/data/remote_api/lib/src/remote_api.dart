@@ -157,4 +157,14 @@ abstract interface class RemoteApi {
     required FileDetail prompt,
     required Language userSpokenLanguage,
   });
+
+  /// Reads the fitness data from the remote API.
+  /// 
+  /// Returns a [FitnessData] object containing the fitness-related information.
+  Future<FitnessData> readFitnessData();
+
+  /// Reads the nutrition requirements from the remote API.
+  /// 
+  /// Returns a [NutritionRequirements] object containing the nutritional information.
+  Future<NutritionRequirements> readNutritionRequirements();
 }

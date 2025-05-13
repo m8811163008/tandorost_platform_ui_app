@@ -367,7 +367,7 @@ class RemoteApiBase implements RemoteApi {
       HttpHeaders.contentTypeHeader: 'multipart/form-data',
     });
 
-    request.fields['meme_type'] = prompt.mediaType.mimeType;
+
     request.fields['language'] = userSpokenLanguage.code;
 
     request.files.add(
@@ -415,6 +415,34 @@ class RemoteApiBase implements RemoteApi {
       print(e);
       throw HttpException(e.toString());
     }
+  }
+
+  Future<FitnessData> readFitnessData() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(get_user_language),
+        AccessTokenInterceptor(get_access_token),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.readFitnessData();
+    final res = await _handleRequest<JsonMap>(() => interceptedHttp.get(uri));
+
+    return FitnessData.fromJson(res!);
+  }
+
+  Future<NutritionRequirements> readNutritionRequirements() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(get_user_language),
+        AccessTokenInterceptor(get_access_token),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.readNutritionRequirements();
+    final res = await _handleRequest<JsonMap>(() => interceptedHttp.get(uri));
+
+    return NutritionRequirements.fromJson(res!);
   }
 
   Future<E?> _handleRequest<E>(Future<Response> Function() request) async {

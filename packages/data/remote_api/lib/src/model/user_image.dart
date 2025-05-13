@@ -28,7 +28,7 @@ class FileDetail {
       case 'wav':
         return MediaType('audio', 'wav');
       case 'mp3':
-        return MediaType('audio', 'mp3');
+        return MediaType('audio', 'mpeg');
       case 'aiff':
         return MediaType('audio', 'aiff');
       case 'aac':

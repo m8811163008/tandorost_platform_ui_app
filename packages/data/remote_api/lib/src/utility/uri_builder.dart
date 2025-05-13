@@ -79,6 +79,16 @@ class UriBuilder {
     );
   }
 
+  static Uri readNutritionRequirements() {
+    return baseUri.replace(
+      path: '$basePath/fitness/nutrition_requerment_data/',
+    );
+  }
+
+  static Uri readFitnessData() {
+    return baseUri.replace(path: '$basePath/fitness/fitness_data/');
+  }
+
   static Uri readUserImageGallary(List<GallaryTag> gallaryTags) {
     return baseUri.replace(
       path: '$basePath/user/read_user_image_gallary/',
