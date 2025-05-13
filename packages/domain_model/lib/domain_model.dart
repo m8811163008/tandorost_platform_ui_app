@@ -1,5 +1,4 @@
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+library;
+
+/// Export data models to use widely in the app.
+export 'package:remote_api/remote_api.dart' hide RemoteApi;

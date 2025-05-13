@@ -19,7 +19,6 @@ class RemoteApiBase implements RemoteApi {
 
   Future<Language> Function() get_user_language;
   Future<String> Function() get_access_token;
-  static const _content = 'content';
   static const _detail = 'detail';
 
   Future<String> sendVerificationCode({

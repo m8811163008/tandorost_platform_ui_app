@@ -1,7 +1,7 @@
-name: domain_model
-description: "Domain models to use in application."
+name: fitness_profile
+description: "A new Flutter package project."
 version: 0.0.1
-publish_to: none
+homepage:
 
 environment:
   sdk: ^3.7.2
@@ -10,8 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  remote_api:
-    path: ../data/remote_api/
 
 dev_dependencies:
   flutter_test:
