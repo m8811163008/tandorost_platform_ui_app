@@ -32,10 +32,43 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^9.1.1
   go_router: ^15.1.2
+  # Data layers
   remote_api:
     path: packages/data/remote_api
+  local_storage:
+    path: packages/data/local_storage
+  # Repositories
+  authentication:
+    path: packages/repositories/authentication
+  fitness_nutrition:
+    path: packages/repositories/fitness_nutrition
+  food_input:
+    path: packages/repositories/food_input
+  food_report:
+    path: packages/repositories/food_report
+  image_repository:
+    path: packages/repositories/image_repository
+  profile:
+    path: packages/repositories/profile
+  # Common
   tandorost_components:
     path: packages/tandorost_components
+  domain_model:
+    path: packages/domain_model
+  # Features or application
+  authentication_app:
+    path: packages/application/authentication
+  fitness_profile_app:
+    path: packages/application/fitness_profile
+  food_input_app:
+    path: packages/application/food_input
+  food_report_app:
+    path: packages/application/food_report
+  introduction_app:
+    path: packages/application/introduction
+  profile_app:
+    path: packages/application/profile
+  
 
 dev_dependencies:
   flutter_test:

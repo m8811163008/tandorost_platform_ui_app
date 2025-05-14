@@ -4,87 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:food_input_app/food_input.dart';
 
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: Routes.splash,
+      initialLocation: '/${SearchRoute.name}',
       routes: [
         ShellRoute(
           builder: (context, state, child) {
-            return BlocProvider(
-              create:
-                  (context) => FoodSelectionBloc(
-                    RepositoryProvider.of<FoodRepostiory>(context),
-                  ),
-              // lazy: true,
-              child: child,
-            );
+            return FoodInputShell(body: child);
           },
           routes: [
             GoRoute(
-              name: Routes.foodSelection,
-              path: Routes.foodSelection,
+              path: '/${SearchRoute.name}',
               builder: (context, state) {
-                return const FoodSelectionRoute();
+                return SearchRoute();
               },
               routes: [
                 GoRoute(
-                  name: Routes.foodSelectionFoodAmountInput,
-                  path: Routes.foodSelectionFoodAmountInput,
+                  path: '/${SearchRoute.name}/${ResultRoute.name}',
                   builder: (_, state) {
-                    return const FoodAmountPage();
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-        GoRoute(
-          name: Routes.foodSelectionList,
-          path: Routes.foodSelectionList,
-          builder: (context, state) {
-            return const SelectedFoodsListPage();
-          },
-        ),
-        GoRoute(
-          name: Routes.foodList,
-          path: Routes.foodList,
-          builder: (context, state) {
-            return const FoodsListRoute();
-          },
-        ),
-        GoRoute(
-          name: Routes.strengthTraining,
-          path: Routes.strengthTraining,
-          builder: (context, state) {
-            return StrengthTrainingRoute();
-          },
-        ),
-        GoRoute(
-          name: Routes.vo2maxCalculator,
-          path: Routes.vo2maxCalculator,
-          builder: (context, state) {
-            return Vo2maxCalculatorRoute();
-          },
-        ),
-        ShellRoute(
-          builder: (context, state, child) {
-            return child;
-          },
-          routes: [
-            GoRoute(
-              name: Routes.profile,
-              path: Routes.profile,
-              builder: (context, state) {
-                return const ProfileRoute();
-              },
-              routes: [
-                GoRoute(
-                  name: Routes.profileActivePremiumWizard,
-                  path: Routes.profileActivePremiumWizard,
-                  builder: (context, state) {
-                    return const ActivePremiumWizardRoute();
+                    return const ResultRoute();
                   },
                 ),
               ],
@@ -92,6 +33,56 @@ class Navigation {
           ],
         ),
       ],
+    );
+  }
+}
+
+class FoodInputShell extends StatelessWidget {
+  const FoodInputShell({super.key, required this.body});
+  final Widget body;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppScaffold(body: body);
+  }
+}
+
+class AppScaffold extends StatelessWidget {
+  const AppScaffold({
+    super.key,
+    required this.body,
+    this.appBar,
+    this.bottomNavigationBar,
+    this.bottomAppBar,
+    this.drawer,
+    this.fab,
+  }) : assert(
+         (bottomNavigationBar == null) || (bottomAppBar == null),
+         'Either bottomNavigationBar or bottomAppBar can be set, not both.',
+       ),
+       assert(
+         (bottomNavigationBar == null) || (fab == null),
+         'If bottomNavigationBar is set, fab cannot be set.',
+       );
+
+  final Widget body;
+  final AppBar? appBar;
+  final BottomNavigationBar? bottomNavigationBar;
+  final BottomAppBar? bottomAppBar;
+  final Drawer? drawer;
+  final FloatingActionButton? fab;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: appBar,
+      body: body,
+      floatingActionButton: fab,
+      floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
+      bottomNavigationBar: bottomNavigationBar ?? bottomAppBar,
+      drawer: drawer,
+      resizeToAvoidBottomInset: true,
+      extendBody: true,
     );
   }
 }
