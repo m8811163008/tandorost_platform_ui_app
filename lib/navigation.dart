@@ -11,24 +11,17 @@ class Navigation {
     return GoRouter(
       initialLocation: '/${SearchRoute.name}',
       routes: [
-        ShellRoute(
-          builder: (context, state, child) {
-            return FoodInputShell(body: child);
+        GoRoute(
+          path: '/${SearchRoute.name}',
+          builder: (context, state) {
+            return SearchRouteT();
           },
           routes: [
             GoRoute(
-              path: '/${SearchRoute.name}',
-              builder: (context, state) {
-                return SearchRoute();
+              path: '/${SearchRoute.name}/${ResultRoute.name}',
+              builder: (_, state) {
+                return const ResultRoute();
               },
-              routes: [
-                GoRoute(
-                  path: '/${SearchRoute.name}/${ResultRoute.name}',
-                  builder: (_, state) {
-                    return const ResultRoute();
-                  },
-                ),
-              ],
             ),
           ],
         ),
@@ -37,13 +30,26 @@ class Navigation {
   }
 }
 
-class FoodInputShell extends StatelessWidget {
-  const FoodInputShell({super.key, required this.body});
-  final Widget body;
+class SearchRouteT extends StatelessWidget {
+  const SearchRouteT({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(body: body);
+    return AppScaffold(body: SearchBody());
+  }
+}
+
+class SearchBody extends StatelessWidget {
+  const SearchBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        IconButton.outlined(onPressed: () {}, icon: Icon(Icons.mic)),
+        IconButton.filledTonal(onPressed: () {}, icon: Icon(Icons.keyboard)),
+      ],
+    );
   }
 }
 
@@ -78,7 +84,7 @@ class AppScaffold extends StatelessWidget {
       appBar: appBar,
       body: body,
       floatingActionButton: fab,
-      floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: bottomNavigationBar ?? bottomAppBar,
       drawer: drawer,
       resizeToAvoidBottomInset: true,
