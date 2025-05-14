@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tandorost_platform_ui_app/navigation.dart';
 
 
 void main() async {
@@ -19,9 +20,9 @@ class TandorostPlatform extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       theme: ThemeData.light(useMaterial3: true),
-      home: Center(),
+      routerConfig: Navigation.goRouter(context),
     );
   }
 }

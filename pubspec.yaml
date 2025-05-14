@@ -30,8 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  image_picker_platform_interface: ^2.10.1
-  path_provider: ^2.1.5
+  flutter_bloc: ^9.1.1
+  go_router: ^15.1.2
   remote_api:
     path: packages/data/remote_api
   tandorost_components:
