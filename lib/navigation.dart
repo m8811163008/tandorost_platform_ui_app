@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:food_input_app/food_input.dart';
+import 'package:tandorost_components/tandorost_components.dart';
 
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
@@ -45,9 +46,14 @@ class SearchBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         IconButton.outlined(onPressed: () {}, icon: Icon(Icons.mic)),
         IconButton.filledTonal(onPressed: () {}, icon: Icon(Icons.keyboard)),
+        LoadingLottie(),
+        ActiveChatLotties(),
+        // IdleChatLottie(),
       ],
     );
   }
