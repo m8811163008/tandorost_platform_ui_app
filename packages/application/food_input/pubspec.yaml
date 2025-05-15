@@ -1,6 +1,7 @@
 name: food_input_app
-description: "A new Flutter package project."
+description: "A new Flutter package for food input."
 version: 0.0.1
+publish_to: none
 homepage:
 
 environment:
@@ -10,6 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  tandorost_components:
+    path: ../../tandorost_components
+  domain_model:
+    path: ../../domain_model
 
 dev_dependencies:
   flutter_test:

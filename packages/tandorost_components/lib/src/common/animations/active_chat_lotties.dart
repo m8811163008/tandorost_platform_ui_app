@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:tandorost_components/src/animations/circle_clipper.dart';
+import 'package:tandorost_components/src/common/animations/circle_clipper.dart';
 
 class ActiveChatLotties extends StatelessWidget {
   const ActiveChatLotties({super.key, this.size});

@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:tandorost_components/src/animations/animation_video_player.dart';
+import 'package:tandorost_components/src/common/animations/animation_video_player.dart';
 
 class CircleClipperAnimation extends StatelessWidget {
   CircleClipperAnimation({super.key, required this.path, Size? size})
