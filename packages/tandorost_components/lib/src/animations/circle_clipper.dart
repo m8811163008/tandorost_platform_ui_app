@@ -9,13 +9,11 @@ class CircleClipperAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.fromSize(
-      size: size,
-      child: ClipPath(
-        clipper: CircleClipper(),
-        child: AnimationVideoPlayer(
-          path: path,
-        ),
+    return ClipPath(
+      clipper: CircleClipper(),
+      child: SizedBox.fromSize(
+        size: size,
+        child: AnimationVideoPlayer(path: path),
       ),
     );
   }
