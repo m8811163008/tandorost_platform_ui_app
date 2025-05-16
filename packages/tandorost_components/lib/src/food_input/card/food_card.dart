@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:domain_model/domain_model.dart';
 
 class FoodResultCard extends StatelessWidget {
-  const FoodResultCard({super.key, required this.food});
+  const FoodResultCard({
+    super.key,
+    required this.food,
+    this.onTapDelete,
+    this.onTapEdit,
+  });
   final Food food;
+  final VoidCallback? onTapEdit;
+  final VoidCallback? onTapDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +45,12 @@ class FoodResultCard extends StatelessWidget {
               child: Row(
                 children: [
                   IconButton.filledTonal(
-                    onPressed: () {},
+                    onPressed: onTapDelete,
                     icon: Icon(Icons.delete),
                   ),
                   SizedBox(width: 8.0),
                   IconButton.filledTonal(
-                    onPressed: () {},
+                    onPressed: onTapEdit,
                     icon: Icon(Icons.edit),
                   ),
                 ],

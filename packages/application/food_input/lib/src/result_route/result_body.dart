@@ -1,6 +1,8 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:food_input_app/src/result_route/delete_food_dialog.dart';
+import 'package:food_input_app/src/result_route/edit_food_dialog.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class ResultBody extends StatelessWidget {
@@ -26,30 +28,42 @@ class ResultBody extends StatelessWidget {
         return List.filled(
           10,
           FoodResultCard(
-            food: Food(
-              id: 'id',
-              userId: 'userId',
-              upsertDate: DateTime.now(),
-              userLanguage: Language.arabic,
-              userNativeLanguageFoodName: 'userNativeLanguageFoodName',
-              translatedToEnglishFoodName: 'translatedToEnglishFoodName',
-              unitOfMeasurementNativeLanguage:
-                  'unitOfMeasurementNativeLanguage',
-              translatedToEnglishUnitOfMeasurement:
-                  'translatedToEnglishUnitOfMeasurement',
-              calculatedCalorie: 200,
-              quantityOfUnitOfMeasurement: 2,
-              carbohydrateSource:
-                  CarbohydrateSourceLD.fruitsOrNonStarchyVegetables,
-              macroNutrition: MacroNutrition(
-                fat: 44,
-                carbohydrate: 20,
-                protein: 25,
-              ),
-            ),
+            onTapEdit: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return EditFoodDialog(food: _food);
+                },
+              );
+            },
+            onTapDelete: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return DeleteFoodDialog(food: _food);
+                },
+              );
+            },
+            food: _food,
           ),
         )[index];
       },
     );
   }
+
+  Food get _food => Food(
+    id: 'id',
+    userId: 'userId',
+    upsertDate: DateTime.now(),
+    userLanguage: Language.arabic,
+    userNativeLanguageFoodName: 'userNativeLanguageFoodName',
+    translatedToEnglishFoodName: 'translatedToEnglishFoodName',
+    unitOfMeasurementNativeLanguage: 'unitOfMeasurementNativeLanguage',
+    translatedToEnglishUnitOfMeasurement:
+        'translatedToEnglishUnitOfMeasurement',
+    calculatedCalorie: 200,
+    quantityOfUnitOfMeasurement: 2,
+    carbohydrateSource: CarbohydrateSourceLD.fruitsOrNonStarchyVegetables,
+    macroNutrition: MacroNutrition(fat: 44, carbohydrate: 20, protein: 25),
+  );
 }
