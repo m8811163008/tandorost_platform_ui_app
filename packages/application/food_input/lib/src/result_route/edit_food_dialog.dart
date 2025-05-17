@@ -1,6 +1,7 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:food_input_app/src/result_route/delete_food_dialog.dart';
+import 'package:tandorost_components/tandorost_components.dart';
 
 class EditFoodDialog extends StatelessWidget {
   const EditFoodDialog({super.key, required this.food});
