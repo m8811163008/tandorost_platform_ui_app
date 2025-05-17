@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tandorost_platform_ui_app/navigation.dart';
 import 'package:tandorost_theme/tandorost_theme.dart';
+import 'package:tandorost_components/tandorost_components.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +24,14 @@ class TandorostPlatform extends StatelessWidget {
     return MaterialApp.router(
       theme: AppTheme(locale: Locale('fa')).lightTheme,
       routerConfig: Navigation.goRouter(context),
+      localizationsDelegates: const [
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        ComponentLibraryLocalizations.delegate,
+      ],
+      supportedLocales: const [Locale("fa")],
+      locale: const Locale("fa"),
     );
   }
 }

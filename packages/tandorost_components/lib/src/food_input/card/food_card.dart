@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:domain_model/domain_model.dart';
+import 'package:tandorost_components/src/utility/build_context_l10n_extension.dart';
 
 class FoodResultCard extends StatelessWidget {
   const FoodResultCard({
@@ -21,24 +22,41 @@ class FoodResultCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildRichText('Food name', food.userNativeLanguageFoodName),
-            Divider(),
-            _buildRichText('Calorie', food.calculatedCalorie.toString()),
             _buildRichText(
-              'Unit of measurement',
+              context.l10n.foodName,
+              food.userNativeLanguageFoodName,
+            ),
+            Divider(),
+            _buildRichText(
+              context.l10n.calculatedCalorie,
+              food.calculatedCalorie.toString(),
+            ),
+            _buildRichText(
+              context.l10n.unitOfMeasurement,
               food.unitOfMeasurementNativeLanguage,
             ),
             _buildRichText(
-              'Quantity',
+              context.l10n.quantityOfUnitOfMeasurement,
               food.quantityOfUnitOfMeasurement.toString(),
             ),
             _buildRichText(
-              'Carbohydrate',
+              context.l10n.carbohydrate,
               food.macroNutrition.carbohydrate.toString(),
             ),
-            _buildRichText('Carbohydrate source', food.carbohydrateSource.name),
-            _buildRichText('Fat', food.macroNutrition.fat.toString()),
-            _buildRichText('Protein', food.macroNutrition.protein.toString()),
+            _buildRichText(
+              context.l10n.carbohydrateSource,
+              context.l10n.carbohydrateSourceValue(
+                food.carbohydrateSource.name,
+              ),
+            ),
+            _buildRichText(
+              context.l10n.fat,
+              food.macroNutrition.fat.toString(),
+            ),
+            _buildRichText(
+              context.l10n.protein,
+              food.macroNutrition.protein.toString(),
+            ),
             Divider(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),

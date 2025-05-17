@@ -24,11 +24,14 @@ class AppTheme {
     final themeData = ThemeData.light(useMaterial3: true);
     if (locale.languageCode == 'fa') {
       return themeData.textTheme.apply(
-        fontFamily: 'Vazirmatn',
+        fontFamily: 'IranSansFaNum',
         package: 'tandorost_theme',
       );
     } else {
-      return themeData.textTheme;
+      return themeData.textTheme.apply(
+        fontFamily: 'IranSansEnNum',
+        package: 'tandorost_theme',
+      );
     }
   }
 }

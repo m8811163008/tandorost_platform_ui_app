@@ -11,11 +11,11 @@
     "quantityOfUnitOfMeasurement": "تعداد واحد اندازه‌گیری",
     "carbohydrateSource": "منبع کربوهیدرات",
     "carbohydrateSourceValue": "{source, select, fruitsOrNonStarchyVegetables{میوه و سبزی} others{کربوهیدرات غنی} other{ترجمه تعریف نشده}}",
-    "@carbohydrateSource": {
+    "@carbohydrateSourceValue": {
         "placeholders": {
             "source": {
                  "type": "String"
             }
         }
-    },
+    }
 }
