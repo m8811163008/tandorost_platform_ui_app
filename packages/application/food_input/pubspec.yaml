@@ -15,8 +15,10 @@ dependencies:
     path: ../../tandorost_components
   domain_model:
     path: ../../domain_model
+  food_input : 
+    path: ../../repositories/food_input
   flutter_bloc: ^9.1.1
-
+  
 
 dev_dependencies:
   flutter_test:

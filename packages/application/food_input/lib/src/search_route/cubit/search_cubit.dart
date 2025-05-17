@@ -5,10 +5,10 @@ import 'package:domain_model/domain_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:food_input/food_input.dart';
-part 'food_input_state.dart';
+part 'search_state.dart';
 
-class FoodInputCubit extends Cubit<FoodInputState> {
-  FoodInputCubit({required this.foodInputRepository}) : super(FoodInputState());
+class SearchCubit extends Cubit<SearchState> {
+  SearchCubit({required this.foodInputRepository}) : super(SearchState());
   final FoodInputRepository foodInputRepository;
   void onFoodSearchUnfocused() {
     if (state.foodName.isPure) {
@@ -26,10 +26,10 @@ class FoodInputCubit extends Cubit<FoodInputState> {
     if (state.foodName.isValid) {
       emit(state.copyWith(searchFoodsStatus: AsyncProcessingStatus.loading));
       try {
-        final result = await foodInputRepository.readFoodsNutritionsByText(
+       await foodInputRepository.readFoodsNutritionsByText(
           state.foodName.value,
         );
-        emit(state.copyWith(result: result));
+        
       } on InternetConnectionException {
         emit(
           state.copyWith(
