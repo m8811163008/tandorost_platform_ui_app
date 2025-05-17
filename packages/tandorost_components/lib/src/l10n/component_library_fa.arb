@@ -1,0 +1,21 @@
+{
+    "@@locale": "fa",
+    "foodName": "نام غذا",
+    "fat": "چربی",
+    "carbohydrate": "کربوهیدرات",
+    "protein": "پروتئین",
+    "id": "شناسه",
+    "upsertDate": "تاریخ ثبت/بروزرسانی",
+    "unitOfMeasurement": "واحد اندازه‌گیری",
+    "calculatedCalorie": "کالری محاسبه شده",
+    "quantityOfUnitOfMeasurement": "تعداد واحد اندازه‌گیری",
+    "carbohydrateSource": "منبع کربوهیدرات",
+    "carbohydrateSourceValue": "{source, select, fruitsOrNonStarchyVegetables{میوه و سبزی} others{کربوهیدرات غنی} other{ترجمه تعریف نشده}}",
+    "@carbohydrateSource": {
+        "placeholders": {
+            "source": {
+                 "type": "String"
+            }
+        }
+    },
+}
