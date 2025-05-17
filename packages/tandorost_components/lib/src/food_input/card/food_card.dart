@@ -18,7 +18,7 @@ class FoodResultCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 8.0),
+        padding: EdgeInsets.symmetric(vertical: context.sizeExtenstion.small),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,14 +70,16 @@ class FoodResultCard extends StatelessWidget {
 
             Divider(),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: EdgeInsets.symmetric(
+                horizontal: context.sizeExtenstion.small,
+              ),
               child: Row(
                 children: [
                   IconButton.filledTonal(
                     onPressed: onTapDelete,
                     icon: Icon(Icons.delete),
                   ),
-                  SizedBox(width: 8.0),
+                  SizedBox(width: context.sizeExtenstion.small),
                   IconButton.filledTonal(
                     onPressed: onTapEdit,
                     icon: Icon(Icons.edit),
@@ -93,7 +95,7 @@ class FoodResultCard extends StatelessWidget {
 
   Widget _buildRichText(BuildContext context, String label, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: EdgeInsets.symmetric(horizontal: context.sizeExtenstion.small),
       child: RichText(
         textAlign: TextAlign.start,
         text: TextSpan(

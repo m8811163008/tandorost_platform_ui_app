@@ -1,6 +1,5 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
-import 'package:food_input_app/src/result_route/delete_food_dialog.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class EditFoodDialog extends StatelessWidget {
@@ -9,44 +8,56 @@ class EditFoodDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final gap = SizedBox(height: context.sizeExtenstion.small);
     return AppDialog(
       title: context.l10n.update,
       contents: [
         TextField(
           decoration: InputDecoration(label: Text(context.l10n.upsertDate)),
         ),
+        gap,
         TextField(
           decoration: InputDecoration(label: Text(context.l10n.foodName)),
         ),
+        gap,
         TextField(
           decoration: InputDecoration(
             label: Text(context.l10n.unitOfMeasurement),
           ),
         ),
+        gap,
         TextField(
           decoration: InputDecoration(
             label: Text(context.l10n.quantityOfUnitOfMeasurement),
           ),
         ),
+        gap,
         TextField(
           decoration: InputDecoration(
             label: Text(context.l10n.calculatedCalorie),
           ),
         ),
+        gap,
         TextField(decoration: InputDecoration(label: Text(context.l10n.fat))),
+        gap,
         TextField(
           decoration: InputDecoration(label: Text(context.l10n.protein)),
         ),
+        gap,
         TextField(
           decoration: InputDecoration(
             label: Text(context.l10n.carbohydrateSource),
           ),
         ),
+        gap,
         TextField(
           decoration: InputDecoration(label: Text(context.l10n.carbohydrate)),
         ),
       ],
-      submitButton: TextButton(onPressed: () {}, child: Text(context.l10n.update)),
+      submitButton: TextButton(
+        onPressed: () {},
+        child: Text(context.l10n.update),
+      ),
     );
   }
 }

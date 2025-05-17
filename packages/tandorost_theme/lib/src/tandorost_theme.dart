@@ -17,7 +17,7 @@ class AppTheme {
       onSecondary: ThemeColor.white.color,
     ),
     textTheme: textTheme(locale),
-    extensions: [SizeExtenstion.defaultValues()],
+    extensions: [SizeExtenstion()],
     inputDecorationTheme: InputDecorationTheme(border: OutlineInputBorder()),
   );
 

@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class AIChatButton extends StatefulWidget {
@@ -59,14 +57,14 @@ class _AIChatButtonState extends State<AIChatButton>
                 child: Opacity(opacity: _animation.value, child: child),
               );
             },
-            child: LoadingLottie(size: Size.square(180)),
+            child: LoadingLottie(size: context.sizeExtenstion.chatButton),
           ),
           AnimatedBuilder(
             animation: _animation,
             builder: (context, child) {
               return Opacity(opacity: 1 - _animation.value, child: child);
             },
-            child: ActiveChatLotties(size: Size.square(180)),
+            child: ActiveChatLotties(size: context.sizeExtenstion.chatButton),
           ),
         ],
       ),

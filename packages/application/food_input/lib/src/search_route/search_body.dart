@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class SearchBody extends StatefulWidget {

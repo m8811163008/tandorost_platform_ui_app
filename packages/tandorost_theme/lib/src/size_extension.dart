@@ -12,32 +12,20 @@ class SizeExtenstion extends ThemeExtension<SizeExtenstion> {
   final double extraLarge;
   final double xExtraLarge;
   final double full;
+  final Size chatButton;
 
   /// Creates a [SizeExtenstion] with the specified sizes.
   const SizeExtenstion({
-    required this.none,
-    required this.extraSmall,
-    required this.small,
-    required this.medium,
-    required this.large,
-    required this.extraLarge,
-    required this.full,
-    required this.xExtraLarge,
+    this.none = 0,
+    this.extraSmall = 4,
+    this.small = 8,
+    this.medium = 16,
+    this.large = 24,
+    this.extraLarge = 32,
+    this.full = double.infinity,
+    this.xExtraLarge = 40,
+    this.chatButton = const Size.square(180),
   });
-
-  /// Creates a [SizeExtenstion] with default size values.
-  factory SizeExtenstion.defaultValues() {
-    return const SizeExtenstion(
-      none: 0,
-      extraSmall: 4,
-      small: 8,
-      medium: 16,
-      large: 24,
-      extraLarge: 32,
-      xExtraLarge: 40,
-      full: double.infinity,
-    );
-  }
 
   @override
   ThemeExtension<SizeExtenstion> copyWith({
@@ -64,7 +52,9 @@ class SizeExtenstion extends ThemeExtension<SizeExtenstion> {
 
   @override
   ThemeExtension<SizeExtenstion> lerp(
-      covariant ThemeExtension<SizeExtenstion>? other, double t) {
+    covariant ThemeExtension<SizeExtenstion>? other,
+    double t,
+  ) {
     if (other is! SizeExtenstion) {
       return this;
     }
@@ -79,8 +69,4 @@ class SizeExtenstion extends ThemeExtension<SizeExtenstion> {
       full: lerpDouble(full, other.full, t)!,
     );
   }
-
-  @override
-  String toString() =>
-      'SizeExtenstion(none: $none, extraSmall: $extraSmall, small: $small, medium: $medium, large: $large, extraLarge: $extraLarge,xExtraLarge: $xExtraLarge full: $full)';
 }
