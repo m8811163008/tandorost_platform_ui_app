@@ -10,6 +10,7 @@ class EditFoodDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final gap = SizedBox(height: context.sizeExtenstion.small);
     return AppDialog(
+      fullscreen: true,
       title: context.l10n.update,
       contents: [
         TextField(

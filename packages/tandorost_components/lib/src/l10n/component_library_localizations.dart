@@ -182,6 +182,48 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'آیا {food} حذف شود؟'**
   String delete_confirm_question(String food);
+
+  /// No description provided for @searchFoodBottomSheetHeading.
+  ///
+  /// In fa, this message translates to:
+  /// **'اضافه کردن غذا'**
+  String get searchFoodBottomSheetHeading;
+
+  /// No description provided for @searchFoodBottomSheetTextFieldHintExample1.
+  ///
+  /// In fa, this message translates to:
+  /// **'برای مثال یک عدد سینه مرغ سرخ شده و دو عدد سیب زمینی پخته متوسط'**
+  String get searchFoodBottomSheetTextFieldHintExample1;
+
+  /// No description provided for @searchFoodBottomSheetTextFieldHintExample2.
+  ///
+  /// In fa, this message translates to:
+  /// **'یک بشقاب قرمه سبزی و یک کاسه سالاد شیرازی و دو لیوان دوغ'**
+  String get searchFoodBottomSheetTextFieldHintExample2;
+
+  /// No description provided for @searchFoodBottomSheetTextFieldHintExample3.
+  ///
+  /// In fa, this message translates to:
+  /// **'یه کاسه ماست یونانی و یک مشت جو دوسر'**
+  String get searchFoodBottomSheetTextFieldHintExample3;
+
+  /// No description provided for @searchFoodBottomSheetTextFieldHintExample4.
+  ///
+  /// In fa, this message translates to:
+  /// **'نصف بشقاب باقلی قاتق و یک لیوان آب جو بدون الکل'**
+  String get searchFoodBottomSheetTextFieldHintExample4;
+
+  /// No description provided for @searchFoodBottomSheetTextFieldHintExample5.
+  ///
+  /// In fa, this message translates to:
+  /// **'اشکنه'**
+  String get searchFoodBottomSheetTextFieldHintExample5;
+
+  /// No description provided for @searchFoodBottomSheetButtonLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'جستجو'**
+  String get searchFoodBottomSheetButtonLabel;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

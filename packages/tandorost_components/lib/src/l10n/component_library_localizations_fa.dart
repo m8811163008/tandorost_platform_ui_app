@@ -64,4 +64,25 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String delete_confirm_question(String food) {
     return 'آیا $food حذف شود؟';
   }
+
+  @override
+  String get searchFoodBottomSheetHeading => 'اضافه کردن غذا';
+
+  @override
+  String get searchFoodBottomSheetTextFieldHintExample1 => 'برای مثال یک عدد سینه مرغ سرخ شده و دو عدد سیب زمینی پخته متوسط';
+
+  @override
+  String get searchFoodBottomSheetTextFieldHintExample2 => 'یک بشقاب قرمه سبزی و یک کاسه سالاد شیرازی و دو لیوان دوغ';
+
+  @override
+  String get searchFoodBottomSheetTextFieldHintExample3 => 'یه کاسه ماست یونانی و یک مشت جو دوسر';
+
+  @override
+  String get searchFoodBottomSheetTextFieldHintExample4 => 'نصف بشقاب باقلی قاتق و یک لیوان آب جو بدون الکل';
+
+  @override
+  String get searchFoodBottomSheetTextFieldHintExample5 => 'اشکنه';
+
+  @override
+  String get searchFoodBottomSheetButtonLabel => 'جستجو';
 }
