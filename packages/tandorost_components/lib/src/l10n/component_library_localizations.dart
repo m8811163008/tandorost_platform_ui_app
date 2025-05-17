@@ -216,7 +216,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @searchFoodBottomSheetTextFieldHintExample5.
   ///
   /// In fa, this message translates to:
-  /// **'اشکنه'**
+  /// **'اشکنه شنبلیله و نعناع یک کاسه بزرگ'**
   String get searchFoodBottomSheetTextFieldHintExample5;
 
   /// No description provided for @searchFoodBottomSheetButtonLabel.

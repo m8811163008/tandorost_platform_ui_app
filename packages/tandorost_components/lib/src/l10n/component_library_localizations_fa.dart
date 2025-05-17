@@ -81,7 +81,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get searchFoodBottomSheetTextFieldHintExample4 => 'نصف بشقاب باقلی قاتق و یک لیوان آب جو بدون الکل';
 
   @override
-  String get searchFoodBottomSheetTextFieldHintExample5 => 'اشکنه';
+  String get searchFoodBottomSheetTextFieldHintExample5 => 'اشکنه شنبلیله و نعناع یک کاسه بزرگ';
 
   @override
   String get searchFoodBottomSheetButtonLabel => 'جستجو';
