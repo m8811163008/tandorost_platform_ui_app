@@ -1,9 +1,8 @@
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
 import 'package:domain_model/domain_model.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_input/food_input.dart';
 part 'search_state.dart';
 
@@ -26,10 +25,9 @@ class SearchCubit extends Cubit<SearchState> {
     if (state.foodName.isValid) {
       emit(state.copyWith(searchFoodsStatus: AsyncProcessingStatus.loading));
       try {
-       await foodInputRepository.readFoodsNutritionsByText(
+        await foodInputRepository.readFoodsNutritionsByText(
           state.foodName.value,
         );
-        
       } on InternetConnectionException {
         emit(
           state.copyWith(
