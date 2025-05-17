@@ -18,6 +18,7 @@ class AppTheme {
     ),
     textTheme: textTheme(locale),
     extensions: [SizeExtenstion.defaultValues()],
+    inputDecorationTheme: InputDecorationTheme(border: OutlineInputBorder()),
   );
 
   TextTheme textTheme(Locale locale) {

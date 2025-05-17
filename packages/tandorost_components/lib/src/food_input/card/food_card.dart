@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:tandorost_components/src/utility/build_context_l10n_extension.dart';
+import 'package:tandorost_theme/tandorost_theme.dart';
 
 class FoodResultCard extends StatelessWidget {
   const FoodResultCard({
@@ -23,40 +24,50 @@ class FoodResultCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildRichText(
+              context,
               context.l10n.foodName,
               food.userNativeLanguageFoodName,
             ),
             Divider(),
+
             _buildRichText(
-              context.l10n.calculatedCalorie,
-              food.calculatedCalorie.toString(),
-            ),
-            _buildRichText(
+              context,
               context.l10n.unitOfMeasurement,
               food.unitOfMeasurementNativeLanguage,
             ),
             _buildRichText(
+              context,
               context.l10n.quantityOfUnitOfMeasurement,
               food.quantityOfUnitOfMeasurement.toString(),
             ),
             _buildRichText(
+              context,
+              context.l10n.calculatedCalorie,
+              food.calculatedCalorie.toString(),
+            ),
+            _buildRichText(
+              context,
+              context.l10n.fat,
+              food.macroNutrition.fat.toString(),
+            ),
+            _buildRichText(
+              context,
+              context.l10n.protein,
+              food.macroNutrition.protein.toString(),
+            ),
+            _buildRichText(
+              context,
               context.l10n.carbohydrate,
               food.macroNutrition.carbohydrate.toString(),
             ),
             _buildRichText(
+              context,
               context.l10n.carbohydrateSource,
               context.l10n.carbohydrateSourceValue(
                 food.carbohydrateSource.name,
               ),
             ),
-            _buildRichText(
-              context.l10n.fat,
-              food.macroNutrition.fat.toString(),
-            ),
-            _buildRichText(
-              context.l10n.protein,
-              food.macroNutrition.protein.toString(),
-            ),
+
             Divider(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -80,13 +91,16 @@ class FoodResultCard extends StatelessWidget {
     );
   }
 
-  Widget _buildRichText(String label, String value) {
+  Widget _buildRichText(BuildContext context, String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: RichText(
         textAlign: TextAlign.start,
         text: TextSpan(
-          children: [TextSpan(text: '$label : '), TextSpan(text: value)],
+          children: [
+            TextSpan(text: '$label : ', style: context.textTheme.titleSmall),
+            TextSpan(text: value, style: context.textTheme.bodyMedium),
+          ],
         ),
       ),
     );

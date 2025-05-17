@@ -50,4 +50,18 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get cancle => 'لغو';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get update => 'بروزرسانی';
+
+  @override
+  String delete_confirm_question(String food) {
+    return 'آیا $food حذف شود؟';
+  }
 }

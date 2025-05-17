@@ -158,6 +158,30 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'{source, select, fruitsOrNonStarchyVegetables{میوه و سبزی} others{کربوهیدرات غنی} other{ترجمه تعریف نشده}}'**
   String carbohydrateSourceValue(String source);
+
+  /// No description provided for @cancle.
+  ///
+  /// In fa, this message translates to:
+  /// **'لغو'**
+  String get cancle;
+
+  /// No description provided for @delete.
+  ///
+  /// In fa, this message translates to:
+  /// **'حذف'**
+  String get delete;
+
+  /// No description provided for @update.
+  ///
+  /// In fa, this message translates to:
+  /// **'بروزرسانی'**
+  String get update;
+
+  /// No description provided for @delete_confirm_question.
+  ///
+  /// In fa, this message translates to:
+  /// **'آیا {food} حذف شود؟'**
+  String delete_confirm_question(String food);
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

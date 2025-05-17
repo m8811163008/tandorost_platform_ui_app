@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tandorost_components/src/utility/build_context_l10n_extension.dart';
+import 'package:tandorost_theme/tandorost_theme.dart';
 
 class AppDialog extends StatelessWidget {
   const AppDialog({
@@ -21,14 +23,14 @@ class AppDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: Theme.of(context).textTheme.titleLarge),
+              Text(title, style: context.textTheme.headlineMedium),
               SizedBox(height: 16.0),
               ...contents,
               SizedBox(height: 16.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(onPressed: Navigator.of(context).pop, child: Text('Cancle')),
+                  TextButton(onPressed: Navigator.of(context).pop, child: Text(context.l10n.cancle)),
                   SizedBox(width: 8),
                   submitButton,
                 ],

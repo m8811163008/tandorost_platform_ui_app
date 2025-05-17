@@ -53,8 +53,6 @@ dependencies:
   # Common
   tandorost_components:
     path: packages/tandorost_components
-  tandorost_theme:
-    path: packages/tandorost_theme
   domain_model:
     path: packages/domain_model
   # Features or application

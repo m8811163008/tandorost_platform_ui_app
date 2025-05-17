@@ -17,5 +17,17 @@
                  "type": "String"
             }
         }
+    },
+    "cancle": "لغو",
+    "delete" : "حذف",
+    "update" : "بروزرسانی",
+    "delete_confirm_question" : "آیا {food} حذف شود؟",
+    "@delete_confirm_question": {
+        "placeholders": {
+            "food": {
+                "type": "String"
+            }
+        }
     }
+    
 }

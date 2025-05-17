@@ -14,6 +14,8 @@ dependencies:
   video_player: ^2.9.5
   domain_model:
     path: ../domain_model
+  tandorost_theme:
+    path: ../tandorost_theme
   flutter_localizations:
     sdk: flutter
   intl: any

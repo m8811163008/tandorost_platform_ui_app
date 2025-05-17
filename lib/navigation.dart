@@ -6,7 +6,7 @@ import 'package:food_input_app/food_input.dart';
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: '/${SearchRoute.name}/${ResultRoute.name}',
+      initialLocation: '/${ResultRoute.name}',
       routes: [
         GoRoute(
           path: '/${SearchRoute.name}',

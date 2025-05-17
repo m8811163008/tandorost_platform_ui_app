@@ -9,12 +9,16 @@ class DeleteFoodDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppDialog(
-      title: 'title',
+      title: context.l10n.delete,
       contents: [
-        Text('Are you sure delete ${food.userNativeLanguageFoodName}?'),
+        Text(
+          context.l10n.delete_confirm_question(food.userNativeLanguageFoodName),
+        ),
       ],
-      submitButton: TextButton(onPressed: () {}, child: Text('Delete')),
+      submitButton: TextButton(
+        onPressed: () {},
+        child: Text(context.l10n.delete),
+      ),
     );
   }
 }
-

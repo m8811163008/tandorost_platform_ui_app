@@ -5,3 +5,5 @@ export 'src/common/diaog/app_diaog.dart';
 export 'src/l10n/component_library_localizations.dart';
 export 'src/utility/build_context_l10n_extension.dart';
 export 'package:flutter_localizations/flutter_localizations.dart';
+// theme
+export 'package:tandorost_theme/tandorost_theme.dart';

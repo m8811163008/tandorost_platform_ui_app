@@ -10,13 +10,43 @@ class EditFoodDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppDialog(
-      title: 'Editing food',
+      title: context.l10n.update,
       contents: [
-        TextField(decoration: InputDecoration(label: Text('Upsert date'))),
-        TextField(decoration: InputDecoration(label: Text('Field2'))),
-        TextField(decoration: InputDecoration(label: Text('Field3'))),
+        TextField(
+          decoration: InputDecoration(label: Text(context.l10n.upsertDate)),
+        ),
+        TextField(
+          decoration: InputDecoration(label: Text(context.l10n.foodName)),
+        ),
+        TextField(
+          decoration: InputDecoration(
+            label: Text(context.l10n.unitOfMeasurement),
+          ),
+        ),
+        TextField(
+          decoration: InputDecoration(
+            label: Text(context.l10n.quantityOfUnitOfMeasurement),
+          ),
+        ),
+        TextField(
+          decoration: InputDecoration(
+            label: Text(context.l10n.calculatedCalorie),
+          ),
+        ),
+        TextField(decoration: InputDecoration(label: Text(context.l10n.fat))),
+        TextField(
+          decoration: InputDecoration(label: Text(context.l10n.protein)),
+        ),
+        TextField(
+          decoration: InputDecoration(
+            label: Text(context.l10n.carbohydrateSource),
+          ),
+        ),
+        TextField(
+          decoration: InputDecoration(label: Text(context.l10n.carbohydrate)),
+        ),
       ],
-      submitButton: TextButton(onPressed: () {}, child: Text('Save')),
+      submitButton: TextButton(onPressed: () {}, child: Text(context.l10n.update)),
     );
   }
 }
