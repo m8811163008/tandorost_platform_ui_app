@@ -52,3 +52,25 @@ flutter:
   #
   # For details regarding fonts in packages, see
   # https://flutter.dev/to/font-from-package
+  fonts:
+    - family : Vazirmatn
+      fonts:
+        - asset: fonts/vazirmatn/Vazirmatn-Thin.ttf
+          weight: 100
+        - asset: fonts/vazirmatn/Vazirmatn-ExtraLight.ttf
+          weight: 200
+        - asset: fonts/vazirmatn/Vazirmatn-Light.ttf
+          weight: 300
+        - asset: fonts/vazirmatn/Vazirmatn-Regular.ttf
+          weight: 400
+        - asset: fonts/vazirmatn/Vazirmatn-Medium.ttf
+          weight: 500
+        - asset: fonts/vazirmatn/Vazirmatn-SemiBold.ttf
+          weight: 600
+        - asset: fonts/vazirmatn/Vazirmatn-Bold.ttf
+          weight: 700
+        - asset: fonts/vazirmatn/Vazirmatn-ExtraBold.ttf
+          weight: 800
+        - asset: fonts/vazirmatn/Vazirmatn-Black.ttf
+          weight: 900
+        

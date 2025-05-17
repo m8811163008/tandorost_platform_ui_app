@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tandorost_platform_ui_app/navigation.dart';
+import 'package:tandorost_theme/tandorost_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +21,7 @@ class TandorostPlatform extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      theme: 
+      theme: AppTheme(locale: Locale('fa')).lightTheme,
       routerConfig: Navigation.goRouter(context),
     );
   }
