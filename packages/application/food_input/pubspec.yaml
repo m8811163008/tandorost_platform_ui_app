@@ -17,9 +17,12 @@ dependencies:
     path: ../../domain_model
   food_input : 
     path: ../../repositories/food_input
+  profile:
+    path: ../../repositories/profile
   flutter_bloc: ^9.1.1
-  
-
+  record: ^6.0.0
+  image_picker_platform_interface: ^2.10.1
+  path_provider: ^2.1.5
 dev_dependencies:
   flutter_test:
     sdk: flutter

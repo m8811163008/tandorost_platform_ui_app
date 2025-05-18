@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_input/food_input.dart';
 import 'package:local_storage/local_storage.dart';
+import 'package:profile/profile.dart';
 import 'package:remote_api/remote_api.dart';
 import 'package:tandorost_platform_ui_app/navigation.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -32,7 +33,10 @@ class DependencyManager extends StatelessWidget {
 
           final remoteApi = RemoteApi(
             get_user_language: () => Future.value(Language.english),
-            get_access_token: () => Future.value('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiIxMjBjZmY1Mi03YTVjLTRhOTYtOWJjMC1mZjQ1MTVjYTkwZmEiLCJleHAiOjE3NDc1NTM3MDN9.cJhVK68MHfQEKDcmWuQPTLCRDZztUHvelSMqRUJT55g'),
+            get_access_token:
+                () => Future.value(
+                  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiIxMjBjZmY1Mi03YTVjLTRhOTYtOWJjMC1mZjQ1MTVjYTkwZmEiLCJleHAiOjE3NDc1NTM3MDN9.cJhVK68MHfQEKDcmWuQPTLCRDZztUHvelSMqRUJT55g',
+                ),
           );
 
           AndroidOptions _getAndroidOptions() =>
@@ -45,13 +49,19 @@ class DependencyManager extends StatelessWidget {
           );
 
           final foodInputRep = FoodInputRepository(remoteApi: remoteApi);
+          final profileRep = ProfileRepository(
+            remoteApi: remoteApi,
+            localStorage: localStorage,
+          );
 
           return MultiRepositoryProvider(
             providers: [
               RepositoryProvider(
                 create: (_) => foodInputRep,
                 dispose: (value) async => await value.dispose(),
+                lazy: true,
               ),
+              RepositoryProvider(create: (_) => profileRep, lazy: true),
             ],
             child: TandorostPlatform(),
           );

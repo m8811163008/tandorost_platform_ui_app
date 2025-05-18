@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
@@ -13,6 +15,8 @@ class _AIChatButtonState extends State<AIChatButton>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _animation;
+  Timer _timer = Timer(Duration.zero, () {});
+  final Duration _conversation_duration = Duration(seconds: 2);
   bool _isPressed = false;
 
   @override
@@ -23,6 +27,7 @@ class _AIChatButtonState extends State<AIChatButton>
       reverseDuration: Duration(seconds: 1),
     );
     _animation = Tween(begin: 1.0, end: 0.0).animate(_controller);
+
     super.initState();
   }
 
@@ -40,10 +45,28 @@ class _AIChatButtonState extends State<AIChatButton>
       onLongPressStart: (_) {
         _isPressed = true;
         _controller.forward();
+        _timer.cancel();
+
+        _timer = Timer(_conversation_duration, () {});
+
+        widget.onLongPressStart?.call();
       },
       onLongPressUp: () {
         _isPressed = false;
         _controller.reverse();
+        if (!_timer.isActive) {
+          widget.onLongPressUp?.call();
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                context.l10n.voiceAiInsufficientLength(
+                  _conversation_duration.inSeconds,
+                ),
+              ),
+            ),
+          );
+        }
       },
       child: Stack(
         children: [

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_input/food_input.dart';
 import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
 import 'package:food_input_app/src/search_route/search_body.dart';
+import 'package:profile/profile.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class SearchRoute extends StatelessWidget {
@@ -18,6 +19,7 @@ class SearchRoute extends StatelessWidget {
           foodInputRepository: RepositoryProvider.of<FoodInputRepository>(
             context,
           ),
+          profileRepository: RepositoryProvider.of<ProfileRepository>(context),
         );
       },
       child: AppScaffold(

@@ -236,6 +236,18 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'خطای اینترنت. اینترنت خود را روشن نمایید'**
   String get internetConnectionError;
+
+  /// No description provided for @voiceAiInsufficientLength.
+  ///
+  /// In fa, this message translates to:
+  /// **'حداقل {seconds} ثانیه گفتگو کنید'**
+  String voiceAiInsufficientLength(int seconds);
+
+  /// No description provided for @selectLanguageBottomSheetHeading.
+  ///
+  /// In fa, this message translates to:
+  /// **'انتخاب کردن زبان گفتار'**
+  String get selectLanguageBottomSheetHeading;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

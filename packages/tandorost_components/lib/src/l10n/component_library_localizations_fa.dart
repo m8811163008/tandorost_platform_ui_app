@@ -91,4 +91,12 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get internetConnectionError => 'خطای اینترنت. اینترنت خود را روشن نمایید';
+
+  @override
+  String voiceAiInsufficientLength(int seconds) {
+    return 'حداقل $seconds ثانیه گفتگو کنید';
+  }
+
+  @override
+  String get selectLanguageBottomSheetHeading => 'انتخاب کردن زبان گفتار';
 }
