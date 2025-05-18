@@ -36,10 +36,8 @@ class FoodInputRepository {
       prompt: prompt,
       userSpokenLanguage: userSpokenLanguage,
     );
-
     _cotroller.add(result);
   }
 
-  Future<void> dispose() =>  _cotroller.close();
-  
+  Future<void> dispose() => _cotroller.close();
 }

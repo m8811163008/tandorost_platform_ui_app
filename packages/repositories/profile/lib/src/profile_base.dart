@@ -18,7 +18,9 @@ class ProfileRepository {
   Future<Language> get userSpokenLanguage async {
     final language = await localStorage.read(StorageKey.userspokenLanguage);
     final String languageCode =
-        language != null ? language[StorageKey.userspokenLanguage] : Language.persian;
+        language != null
+            ? language[StorageKey.userspokenLanguage]
+            : Language.persian.code;
 
     return Language.values.singleWhere((item) => item.code == languageCode);
   }
