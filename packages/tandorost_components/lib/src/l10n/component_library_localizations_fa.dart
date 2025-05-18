@@ -85,4 +85,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get searchFoodBottomSheetButtonLabel => 'جستجو';
+
+  @override
+  String get networkError => 'خطای ارتباط. دوباره امتحان کنید';
+
+  @override
+  String get internetConnectionError => 'خطای اینترنت. اینترنت خود را روشن نمایید';
 }

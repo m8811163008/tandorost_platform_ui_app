@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
 import 'package:food_input_app/src/search_route/search_bottom_sheet.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
@@ -34,7 +36,7 @@ class _SearchBodyState extends State<SearchBody> {
               onPressed: () {
                 showBottomSheet(
                   context: context,
-                  builder: (context) {
+                  builder: (_) {
                     return SearchFoodBottomSheet();
                   },
                 );

@@ -13,6 +13,7 @@ class SizeExtenstion extends ThemeExtension<SizeExtenstion> {
   final double xExtraLarge;
   final double full;
   final Size chatButton;
+  final Size appButton;
 
   /// Creates a [SizeExtenstion] with the specified sizes.
   const SizeExtenstion({
@@ -25,29 +26,12 @@ class SizeExtenstion extends ThemeExtension<SizeExtenstion> {
     this.full = double.infinity,
     this.xExtraLarge = 40,
     this.chatButton = const Size.square(180),
+    this.appButton = const Size.square(180),
   });
 
   @override
-  ThemeExtension<SizeExtenstion> copyWith({
-    double? none,
-    double? extraSmall,
-    double? small,
-    double? medium,
-    double? large,
-    double? extraLarge,
-    double? xExtraLarge,
-    double? full,
-  }) {
-    return SizeExtenstion(
-      none: none ?? this.none,
-      extraSmall: extraSmall ?? this.extraSmall,
-      small: small ?? this.small,
-      medium: medium ?? this.medium,
-      large: large ?? this.large,
-      extraLarge: extraLarge ?? this.extraLarge,
-      xExtraLarge: xExtraLarge ?? this.xExtraLarge,
-      full: full ?? this.full,
-    );
+  ThemeExtension<SizeExtenstion> copyWith() {
+    return SizeExtenstion();
   }
 
   @override
@@ -58,15 +42,6 @@ class SizeExtenstion extends ThemeExtension<SizeExtenstion> {
     if (other is! SizeExtenstion) {
       return this;
     }
-    return SizeExtenstion(
-      none: lerpDouble(none, other.none, t)!,
-      extraSmall: lerpDouble(extraSmall, other.extraSmall, t)!,
-      small: lerpDouble(small, other.small, t)!,
-      medium: lerpDouble(medium, other.medium, t)!,
-      large: lerpDouble(large, other.large, t)!,
-      extraLarge: lerpDouble(extraLarge, other.extraLarge, t)!,
-      xExtraLarge: lerpDouble(xExtraLarge, other.xExtraLarge, t)!,
-      full: lerpDouble(full, other.full, t)!,
-    );
+    return SizeExtenstion();
   }
 }

@@ -16,13 +16,12 @@ void main() async {
   //       ),
   // );
 
-  runApp(TandorostPlatform());
+  runApp(DependencyManager());
 }
 
 class DependencyManager extends StatelessWidget {
   const DependencyManager({super.key});
 
-  @override
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -48,7 +47,12 @@ class DependencyManager extends StatelessWidget {
           final foodInputRep = FoodInputRepository(remoteApi: remoteApi);
 
           return MultiRepositoryProvider(
-            providers: [RepositoryProvider(create: (_) => foodInputRep)],
+            providers: [
+              RepositoryProvider(
+                create: (_) => foodInputRep,
+                dispose: (value) async => await value.dispose(),
+              ),
+            ],
             child: TandorostPlatform(),
           );
         }

@@ -39,4 +39,7 @@ class FoodInputRepository {
 
     _cotroller.add(result);
   }
+
+  Future<void> dispose() =>  _cotroller.close();
+  
 }

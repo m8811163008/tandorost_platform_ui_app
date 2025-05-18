@@ -224,6 +224,18 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'جستجو'**
   String get searchFoodBottomSheetButtonLabel;
+
+  /// No description provided for @networkError.
+  ///
+  /// In fa, this message translates to:
+  /// **'خطای ارتباط. دوباره امتحان کنید'**
+  String get networkError;
+
+  /// No description provided for @internetConnectionError.
+  ///
+  /// In fa, this message translates to:
+  /// **'خطای اینترنت. اینترنت خود را روشن نمایید'**
+  String get internetConnectionError;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {
