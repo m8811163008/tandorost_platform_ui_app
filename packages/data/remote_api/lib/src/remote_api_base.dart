@@ -130,7 +130,6 @@ class RemoteApiBase implements RemoteApi {
     );
     final uri = UriBuilder.readUserBioData();
     final res = await _handleRequest<JsonMap>(() => interceptedHttp.get(uri));
-    print(res);
     return UserBioData.fromJson(res!);
   }
 
@@ -393,10 +392,11 @@ class RemoteApiBase implements RemoteApi {
       rethrow;
     } on HttpException {
       rethrow;
-    } on SocketException {
+    } on SocketException catch(e){
       if (!await hasInternetConnection()) {
         throw InternetConnectionException();
       }
+      print(e);
       throw HttpException('SocketException');
     } on TimeoutException {
       throw HttpException('TimeoutException');

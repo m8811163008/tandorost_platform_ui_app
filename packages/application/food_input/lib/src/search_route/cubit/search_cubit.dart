@@ -48,7 +48,7 @@ class SearchCubit extends Cubit<SearchState> {
       String path = '';
       if (!kIsWeb) {
         final tempDir = await getTemporaryDirectory();
-        path = '$tempDir/record.wav';
+        path = '${tempDir.path}/record.wav';
       }
       await recorder.start(const RecordConfig(), path: path);
     }
@@ -75,15 +75,13 @@ class SearchCubit extends Cubit<SearchState> {
     emit(state.copyWith(searchFoodsStatus: AsyncProcessingStatus.loading));
     late Uint8List bytes;
     if (!kIsWeb) {
-      final tempDir = await getTemporaryDirectory();
-      final path = '$tempDir/record.wav';
-      final file = File(path);
+      final file = File(out);
       bytes = await file.readAsBytes();
     } else {
       final file = PickedFile(out);
       bytes = await file.readAsBytes();
     }
-    final fileDetail = FileDetail(fileName: 'user_foods.wav', bytes: bytes);
+    final fileDetail = FileDetail(fileName: 'user_voice_foods.wav', bytes: bytes);
     await onReadFoodsNutritionsByVoice(fileDetail);
   }
 
