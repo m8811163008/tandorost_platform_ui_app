@@ -26,7 +26,7 @@ class SizeExtenstion extends ThemeExtension<SizeExtenstion> {
     this.full = double.infinity,
     this.xExtraLarge = 40,
     this.chatButton = const Size.square(180),
-    this.appButton = const Size.square(180),
+    this.appButton = const Size.square(24),
   });
 
   @override

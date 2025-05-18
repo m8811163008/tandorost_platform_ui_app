@@ -32,7 +32,7 @@ class DependencyManager extends StatelessWidget {
 
           final remoteApi = RemoteApi(
             get_user_language: () => Future.value(Language.english),
-            get_access_token: () => Future.value('Language.english'),
+            get_access_token: () => Future.value('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiIxMjBjZmY1Mi03YTVjLTRhOTYtOWJjMC1mZjQ1MTVjYTkwZmEiLCJleHAiOjE3NDc1NTM3MDN9.cJhVK68MHfQEKDcmWuQPTLCRDZztUHvelSMqRUJT55g'),
           );
 
           AndroidOptions _getAndroidOptions() =>

@@ -154,10 +154,10 @@ class _SearchFoodBottomSheetFormState extends State<SearchFoodBottomSheetForm> {
 
 class AppOutLineButton extends StatelessWidget {
   const AppOutLineButton({super.key, this.onTap, required this.label})
-    : _isLoading = true;
+    : _isLoading = false;
 
   const AppOutLineButton.loading({super.key, this.onTap, required this.label})
-    : _isLoading = false;
+    : _isLoading = true;
   final bool _isLoading;
   final VoidCallback? onTap;
   final String label;
@@ -168,7 +168,7 @@ class AppOutLineButton extends StatelessWidget {
         ? OutlinedButton.icon(
           onPressed: onTap,
           label: Text(label),
-          icon: LoadingLottie(size: context.sizeExtenstion.chatButton),
+          icon: LoadingLottie(size: context.sizeExtenstion.appButton),
         )
         : OutlinedButton(onPressed: onTap, child: Text(label));
   }

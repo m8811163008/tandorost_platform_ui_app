@@ -28,6 +28,7 @@ class SearchCubit extends Cubit<SearchState> {
         await foodInputRepository.readFoodsNutritionsByText(
           state.foodName.value,
         );
+        emit(state.copyWith(searchFoodsStatus: AsyncProcessingStatus.success));
       } on InternetConnectionException {
         emit(
           state.copyWith(
