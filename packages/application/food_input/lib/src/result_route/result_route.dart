@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:food_input_app/src/result_route/result_body.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 

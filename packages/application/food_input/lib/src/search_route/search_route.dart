@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_input/food_input.dart';
 import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';

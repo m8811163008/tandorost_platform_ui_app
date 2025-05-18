@@ -1,13 +1,7 @@
-import 'dart:math';
-import 'package:domain_model/domain_model.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
 import 'package:food_input_app/src/search_route/language_bottom_sheet.dart';
 
-import 'dart:io';
-import 'package:path_provider/path_provider.dart';
-import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 import 'package:flutter/material.dart';
 import 'package:food_input_app/src/search_route/search_bottom_sheet.dart';
 

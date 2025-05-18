@@ -8,6 +8,10 @@ class FoodInputRepository {
     : _cotroller = BehaviorSubject.seeded([]);
   final BehaviorSubject<List<Food>> _cotroller;
 
+  Stream<List<Food>> get foodList async* {
+    yield* _cotroller.stream.asBroadcastStream();
+  }
+
   Future<void> readFoodsNutritionsByText(String prompt) async {
     final result = await remoteApi.readFoodsNutritionsByText(prompt);
     _cotroller.add(result);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
-import 'package:tandorost_theme/tandorost_theme.dart';
 
 class AppOutLineButton extends StatelessWidget {
   const AppOutLineButton({super.key, this.onTap, required this.label})
