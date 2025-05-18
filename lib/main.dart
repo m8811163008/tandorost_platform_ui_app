@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_input/food_input.dart';
+import 'package:local_storage/local_storage.dart';
+import 'package:remote_api/remote_api.dart';
 import 'package:tandorost_platform_ui_app/navigation.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
@@ -13,6 +17,45 @@ void main() async {
   // );
 
   runApp(TandorostPlatform());
+}
+
+class DependencyManager extends StatelessWidget {
+  const DependencyManager({super.key});
+
+  @override
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: Future.wait([SharedPreferences.getInstance()]),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final nonSecureStorage = snapshot.data![0];
+
+          final remoteApi = RemoteApi(
+            get_user_language: () => Future.value(Language.english),
+            get_access_token: () => Future.value('Language.english'),
+          );
+
+          AndroidOptions _getAndroidOptions() =>
+              const AndroidOptions(encryptedSharedPreferences: true);
+
+          final storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
+          final localStorage = LocalStorage(
+            flutterSecureStorage: storage,
+            sharedPreferences: nonSecureStorage,
+          );
+
+          final foodInputRep = FoodInputRepository(remoteApi: remoteApi);
+
+          return MultiRepositoryProvider(
+            providers: [RepositoryProvider(create: (_) => foodInputRep)],
+            child: TandorostPlatform(),
+          );
+        }
+        return SizedBox();
+      },
+    );
+  }
 }
 
 class TandorostPlatform extends StatelessWidget {
