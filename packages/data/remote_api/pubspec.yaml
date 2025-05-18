@@ -11,7 +11,7 @@ dependencies:
   json_serializable: ^6.9.5
   http_interceptor: ^2.0.0
   image_picker_platform_interface: ^2.10.1
-
+  equatable: ^2.0.7
 
   json_annotation: any
   http_parser: any

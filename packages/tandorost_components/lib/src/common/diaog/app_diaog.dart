@@ -12,7 +12,7 @@ class AppDialog extends StatelessWidget {
   });
   final String title;
   final List<Widget> contents;
-  final TextButton submitButton;
+  final Widget submitButton;
   final bool fullscreen;
 
   @override

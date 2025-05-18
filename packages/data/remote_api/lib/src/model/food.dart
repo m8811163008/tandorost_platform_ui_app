@@ -1,10 +1,11 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remote_api/remote_api.dart';
 
 part 'food.g.dart';
 
 @JsonSerializable()
-class Food {
+class Food extends Equatable {
   @JsonKey(name: '_id')
   final String id;
 
@@ -53,11 +54,12 @@ class Food {
           userNativeLanguageFoodName ?? this.userNativeLanguageFoodName,
       translatedToEnglishFoodName:
           translatedToEnglishFoodName ?? this.translatedToEnglishFoodName,
-      unitOfMeasurementNativeLanguage: unitOfMeasurementNativeLanguage ??
+      unitOfMeasurementNativeLanguage:
+          unitOfMeasurementNativeLanguage ??
           this.unitOfMeasurementNativeLanguage,
       translatedToEnglishUnitOfMeasurement:
           translatedToEnglishUnitOfMeasurement ??
-              this.translatedToEnglishUnitOfMeasurement,
+          this.translatedToEnglishUnitOfMeasurement,
       calculatedCalorie: calculatedCalorie ?? this.calculatedCalorie,
       quantityOfUnitOfMeasurement:
           quantityOfUnitOfMeasurement ?? this.quantityOfUnitOfMeasurement,
@@ -84,19 +86,31 @@ class Food {
   factory Food.fromJson(Map<String, dynamic> json) => _$FoodFromJson(json);
 
   Map<String, dynamic> toJson() => _$FoodToJson(this);
+
+  @override
+  List<Object?> get props => [
+    id,
+    userId,
+    upsertDate,
+    userLanguage,
+    userNativeLanguageFoodName,
+    translatedToEnglishFoodName,
+    unitOfMeasurementNativeLanguage,
+    translatedToEnglishUnitOfMeasurement,
+    calculatedCalorie,
+    quantityOfUnitOfMeasurement,
+    carbohydrateSource,
+    macroNutrition,
+  ];
 }
 
 @JsonSerializable()
-class MacroNutrition {
+class MacroNutrition extends Equatable {
   final int fat;
   final int carbohydrate;
   final int protein;
 
-  MacroNutrition copyWith({
-    int? fat,
-    int? carbohydrate,
-    int? protein,
-  }) {
+  MacroNutrition copyWith({int? fat, int? carbohydrate, int? protein}) {
     return MacroNutrition(
       fat: fat ?? this.fat,
       carbohydrate: carbohydrate ?? this.carbohydrate,
@@ -114,4 +128,7 @@ class MacroNutrition {
       _$MacroNutritionFromJson(json);
 
   Map<String, dynamic> toJson() => _$MacroNutritionToJson(this);
+
+  @override
+  List<Object?> get props => [fat, carbohydrate, protein];
 }
