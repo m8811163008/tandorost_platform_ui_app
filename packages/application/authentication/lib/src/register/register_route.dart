@@ -1,3 +1,5 @@
+import 'package:authentication/authentication.dart';
+import 'package:authentication_app/src/register/cubit/register_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -10,7 +12,13 @@ class RegisterRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(body: RegisterForm());
+    return BlocProvider(
+      create:
+          (context) => RegisterCubit(
+            RepositoryProvider.of<AuthenticationRepository>(context),
+          ),
+      child: AppScaffold(body: RegisterForm()),
+    );
   }
 }
 
@@ -26,21 +34,7 @@ class RegisterForm extends StatelessWidget {
         SizedBox(height: context.sizeExtenstion.medium),
         TextField(decoration: InputDecoration(labelText: 'Phonenumber')),
         SizedBox(height: context.sizeExtenstion.small),
-        TextField(decoration: InputDecoration(labelText: 'Gender')),
-        SizedBox(height: context.sizeExtenstion.small),
-
-        TextField(decoration: InputDecoration(labelText: 'birthday')),
-        SizedBox(height: context.sizeExtenstion.small),
-        TextField(
-          decoration: InputDecoration(labelText: 'waist circumfrences'),
-        ),
-        SizedBox(height: context.sizeExtenstion.small),
-        TextField(decoration: InputDecoration(labelText: 'Height')),
-        SizedBox(height: context.sizeExtenstion.small),
-        TextField(decoration: InputDecoration(labelText: 'Weight')),
-        SizedBox(height: context.sizeExtenstion.small),
-        TextField(decoration: InputDecoration(labelText: 'activityLevel')),
-
+        TextField(decoration: InputDecoration(labelText: 'Password')),
         SizedBox(height: context.sizeExtenstion.large),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -31,7 +31,6 @@ class ForgotPasswordForm extends StatelessWidget {
 
         SizedBox(height: context.sizeExtenstion.large),
         OutlinedButton(onPressed: () {}, child: Text('ForgotPassword')),
-
         SizedBox(height: context.sizeExtenstion.large),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
