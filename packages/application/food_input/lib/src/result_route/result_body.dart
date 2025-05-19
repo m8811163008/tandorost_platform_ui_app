@@ -1,4 +1,3 @@
-import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_input_app/src/result_route/cubit/result_cubit.dart';
