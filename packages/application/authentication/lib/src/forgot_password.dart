@@ -23,16 +23,21 @@ class ForgotPasswordForm extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('forgot password', style: context.textTheme.headlineLarge,),
+        Text('forgot password', style: context.textTheme.headlineLarge),
+        SizedBox(height: context.sizeExtenstion.medium),
         TextField(decoration: InputDecoration(labelText: 'Phonenumber')),
+        SizedBox(height: context.sizeExtenstion.small),
         TextField(decoration: InputDecoration(labelText: 'NewPassword')),
-        ElevatedButton(onPressed: () {}, child: Text('Forgot password')),
-        SizedBox(width: context.sizeExtenstion.medium,),
+
+        SizedBox(height: context.sizeExtenstion.large),
+        OutlinedButton(onPressed: () {}, child: Text('ForgotPassword')),
+
+        SizedBox(height: context.sizeExtenstion.large),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton(onPressed: () {}, child: Text('Register')),
-            SizedBox(width: context.sizeExtenstion.small,),
+            SizedBox(width: context.sizeExtenstion.small),
             TextButton(onPressed: () {}, child: Text('Login')),
           ],
         ),

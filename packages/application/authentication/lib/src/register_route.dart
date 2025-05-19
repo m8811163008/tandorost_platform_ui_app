@@ -10,12 +10,12 @@ class RegisterRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(body: ForgotPasswordForm());
+    return AppScaffold(body: RegisterForm());
   }
 }
 
-class ForgotPasswordForm extends StatelessWidget {
-  const ForgotPasswordForm({super.key});
+class RegisterForm extends StatelessWidget {
+  const RegisterForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +23,35 @@ class ForgotPasswordForm extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('register', style: context.textTheme.headlineLarge),
+        SizedBox(height: context.sizeExtenstion.medium),
         TextField(decoration: InputDecoration(labelText: 'Phonenumber')),
+        SizedBox(height: context.sizeExtenstion.small),
         TextField(decoration: InputDecoration(labelText: 'Gender')),
+        SizedBox(height: context.sizeExtenstion.small),
 
         TextField(decoration: InputDecoration(labelText: 'birthday')),
+        SizedBox(height: context.sizeExtenstion.small),
         TextField(
           decoration: InputDecoration(labelText: 'waist circumfrences'),
         ),
+        SizedBox(height: context.sizeExtenstion.small),
         TextField(decoration: InputDecoration(labelText: 'Height')),
+        SizedBox(height: context.sizeExtenstion.small),
         TextField(decoration: InputDecoration(labelText: 'Weight')),
+        SizedBox(height: context.sizeExtenstion.small),
         TextField(decoration: InputDecoration(labelText: 'activityLevel')),
-        ElevatedButton(onPressed: () {}, child: Text('Register')),
-        SizedBox(width: context.sizeExtenstion.medium),
+
+        SizedBox(height: context.sizeExtenstion.large),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            OutlinedButton(onPressed: () {}, child: Text('Register')),
+            SizedBox(width: context.sizeExtenstion.small),
+            TextButton(onPressed: () {}, child: Text('Cancle')),
+          ],
+        ),
+
+        SizedBox(height: context.sizeExtenstion.large),
         TextButton(onPressed: () {}, child: Text('Login')),
       ],
     );

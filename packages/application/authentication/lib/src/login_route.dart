@@ -11,7 +11,7 @@ class LoginRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(body: LoginForm());
+    return LoginForm();
   }
 }
 
@@ -24,15 +24,27 @@ class LoginForm extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('login', style: context.textTheme.headlineLarge),
+        SizedBox(height: context.sizeExtenstion.medium),
+
         TextField(decoration: InputDecoration(labelText: 'Phonenumber')),
+        SizedBox(height: context.sizeExtenstion.small),
         TextField(decoration: InputDecoration(labelText: 'Password')),
-        ElevatedButton(onPressed: () {}, child: Text('Login')),
-        SizedBox(width: context.sizeExtenstion.medium,),
+
+        SizedBox(height: context.sizeExtenstion.large),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            OutlinedButton(onPressed: () {}, child: Text('Login')),
+            SizedBox(width: context.sizeExtenstion.small),
+            TextButton(onPressed: () {}, child: Text('Cancle')),
+          ],
+        ),
+        SizedBox(height: context.sizeExtenstion.large),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton(onPressed: () {}, child: Text('Register')),
-            SizedBox(width: context.sizeExtenstion.small,),
+            SizedBox(width: context.sizeExtenstion.small),
             TextButton(onPressed: () {}, child: Text('ForgotPass')),
           ],
         ),
