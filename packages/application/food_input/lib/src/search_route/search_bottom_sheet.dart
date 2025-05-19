@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
@@ -47,14 +46,15 @@ class SearchFoodBottomSheetForm extends StatelessWidget {
     return BlocListener<SearchCubit, SearchState>(
       listenWhen:
           (previous, current) =>
-              previous.searchFoodsStatus != current.searchFoodsStatus,
+              previous.searchFoodsByTextInputStatus !=
+              current.searchFoodsByTextInputStatus,
       listener: (context, state) {
-        if (state.searchFoodsStatus.isServerConnectionError) {
+        if (state.searchFoodsByTextInputStatus.isServerConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.searchFoodsStatus.isServerConnectionError) {
+        } else if (state.searchFoodsByTextInputStatus.isServerConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,

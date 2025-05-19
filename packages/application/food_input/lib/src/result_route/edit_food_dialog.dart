@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -186,7 +184,9 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
         _buildInputDecorator(context, updatedFood),
       ],
       submitButton: BlocBuilder<ResultCubit, ResultState>(
-        buildWhen: (previous, current) => previous.updatingStatus != current.updatingStatus,
+        buildWhen:
+            (previous, current) =>
+                previous.updatingStatus != current.updatingStatus,
         builder: (context, state) {
           return state.updatingStatus.isLoading
               ? AppTextButton.loading(label: context.l10n.update)

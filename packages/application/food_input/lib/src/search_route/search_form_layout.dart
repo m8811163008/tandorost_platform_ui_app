@@ -1,4 +1,3 @@
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -53,10 +52,10 @@ class _FormLayoutState extends State<FormLayout> {
                 BlocBuilder<SearchCubit, SearchState>(
                   buildWhen:
                       (previous, current) =>
-                          previous.searchFoodsStatus !=
-                          current.searchFoodsStatus,
+                          previous.searchFoodsByTextInputStatus !=
+                          current.searchFoodsByTextInputStatus,
                   builder: (context, state) {
-                    if (state.searchFoodsStatus.isLoading) {
+                    if (state.searchFoodsByTextInputStatus.isLoading) {
                       return AppOutLineButton.loading(
                         label: context.l10n.searchFoodBottomSheetButtonLabel,
                       );

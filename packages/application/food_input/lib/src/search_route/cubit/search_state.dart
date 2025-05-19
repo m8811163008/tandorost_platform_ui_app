@@ -4,29 +4,41 @@ part of 'search_cubit.dart';
 class SearchState extends Equatable {
   final TextInput foodName;
   final FileData? voiceData;
-  final AsyncProcessingStatus searchFoodsStatus;
+  final AsyncProcessingStatus searchFoodsByTextInputStatus;
+  final AsyncProcessingStatus searchFoodsByVoiceInputStatus;
   final Language? userSpokenLanguage;
 
   const SearchState({
     this.foodName = const TextInput.pure(''),
-    this.searchFoodsStatus = AsyncProcessingStatus.inital,
+    this.searchFoodsByTextInputStatus = AsyncProcessingStatus.inital,
+    this.searchFoodsByVoiceInputStatus = AsyncProcessingStatus.inital,
     this.voiceData,
     this.userSpokenLanguage,
   });
 
   @override
-  List<Object?> get props => [foodName, voiceData, searchFoodsStatus,userSpokenLanguage];
+  List<Object?> get props => [
+    foodName,
+    voiceData,
+    searchFoodsByTextInputStatus,
+    userSpokenLanguage,
+    searchFoodsByVoiceInputStatus
+  ];
   SearchState copyWith({
     TextInput? foodName,
     Language? userSpokenLanguage,
     ValueGetter<FileData?>? voiceData,
-    AsyncProcessingStatus? searchFoodsStatus,
+    AsyncProcessingStatus? searchFoodsByTextInputStatus,
+    AsyncProcessingStatus? searchFoodsByVoiceInputStatus,
   }) {
     return SearchState(
       userSpokenLanguage: userSpokenLanguage,
       foodName: foodName ?? this.foodName,
       voiceData: voiceData != null ? voiceData() : this.voiceData,
-      searchFoodsStatus: searchFoodsStatus ?? this.searchFoodsStatus,
+      searchFoodsByTextInputStatus:
+          searchFoodsByTextInputStatus ?? this.searchFoodsByTextInputStatus,
+      searchFoodsByVoiceInputStatus:
+          searchFoodsByVoiceInputStatus ?? this.searchFoodsByVoiceInputStatus,
     );
   }
 }
