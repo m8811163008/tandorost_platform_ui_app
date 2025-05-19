@@ -30,7 +30,7 @@ class SearchCubit extends Cubit<SearchState> {
       state.copyWith(
         searchFoodsByTextInputStatus: AsyncProcessingStatus.inital,
         searchFoodsByVoiceInputStatus: AsyncProcessingStatus.inital,
-        foodName: TextInput.pure(),
+        foodName: '',
       ),
     );
   }
@@ -43,11 +43,6 @@ class SearchCubit extends Cubit<SearchState> {
   final FoodInputRepository foodInputRepository;
   final ProfileRepository profileRepository;
   final AudioRecorder recorder;
-  void onFoodSearchUnfocused() {
-    if (state.foodName.isPure) {
-      state.copyWith(foodName: TextInput.dirty(state.foodName.value));
-    }
-  }
 
   Future<bool> get isPremissionAllowed => recorder.hasPermission();
 
@@ -64,9 +59,7 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   void onFoodSearchChanged(String value) {
-    final foodInput =
-        state.foodName.isPure ? TextInput.pure(value) : TextInput.dirty(value);
-    emit(state.copyWith(foodName: foodInput));
+    emit(state.copyWith(foodName: value));
   }
 
   void onChangeLanguage(Language? language) async {
@@ -131,36 +124,32 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   void readFoodsNutritionsByText() async {
-    if (state.foodName.isValid) {
+    emit(
+      state.copyWith(
+        searchFoodsByTextInputStatus: AsyncProcessingStatus.loading,
+      ),
+    );
+    try {
+      await foodInputRepository.readFoodsNutritionsByText(state.foodName);
       emit(
         state.copyWith(
-          searchFoodsByTextInputStatus: AsyncProcessingStatus.loading,
+          searchFoodsByTextInputStatus: AsyncProcessingStatus.success,
         ),
       );
-      try {
-        await foodInputRepository.readFoodsNutritionsByText(
-          state.foodName.value,
-        );
-        emit(
-          state.copyWith(
-            searchFoodsByTextInputStatus: AsyncProcessingStatus.success,
-          ),
-        );
-      } on InternetConnectionException {
-        emit(
-          state.copyWith(
-            searchFoodsByTextInputStatus:
-                AsyncProcessingStatus.internetConnectionError,
-          ),
-        );
-      } on HttpException {
-        emit(
-          state.copyWith(
-            searchFoodsByTextInputStatus:
-                AsyncProcessingStatus.serverConnectionError,
-          ),
-        );
-      }
+    } on InternetConnectionException {
+      emit(
+        state.copyWith(
+          searchFoodsByTextInputStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      emit(
+        state.copyWith(
+          searchFoodsByTextInputStatus:
+              AsyncProcessingStatus.serverConnectionError,
+        ),
+      );
     }
   }
 }

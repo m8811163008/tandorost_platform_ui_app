@@ -18,7 +18,13 @@ class AppTheme {
     ),
     textTheme: textTheme(locale),
     extensions: [SizeExtenstion()],
-    inputDecorationTheme: InputDecorationTheme(border: OutlineInputBorder()),
+
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(),
+      hintStyle: textTheme(
+        locale,
+      ).bodyMedium!.copyWith(color: ThemeColor.charcoal.color),
+    ),
   );
 
   TextTheme textTheme(Locale locale) {

@@ -47,5 +47,14 @@
             }
         }
     },
-    "selectLanguageBottomSheetHeading": "انتخاب کردن زبان گفتار"
+    "selectLanguageBottomSheetHeading": "انتخاب کردن زبان گفتار",
+    "emptyFormFieldValidationError": "این فیلد خالی است. درآن تایپ کن",
+    "minLengthFormFieldValidationError": "حداقل {minLength} حروف باید تایپ کنید",
+    "@minLengthFormFieldValidationError": {
+        "placeholders": {
+            "minLength": {
+                "type": "int"
+            }
+        }
+    }
 }

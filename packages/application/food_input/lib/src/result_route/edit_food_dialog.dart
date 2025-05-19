@@ -15,6 +15,7 @@ class EditFoodDialog extends StatefulWidget {
 
 class _EditFoodDialogState extends State<EditFoodDialog> {
   late Food updatedFood;
+  final _formKey = GlobalKey<FormState>();
   @override
   void initState() {
     updatedFood = widget.food;
@@ -44,114 +45,119 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
           Navigator.of(context).pop();
         }
       },
-      child: AppDialog(
-        fullscreen: true,
-        title: context.l10n.update,
-        contents: [
-          _buildDateTextField(),
-          gap,
-          UpdateFoodTextField(
-            label: context.l10n.foodName,
-            initailValue: updatedFood.userNativeLanguageFoodName,
-            onUpdate: (value) {
-              updatedFood = updatedFood.copyWith(
-                userNativeLanguageFoodName: value,
-              );
-            },
-          ),
-
-          gap,
-          UpdateFoodTextField(
-            label: context.l10n.unitOfMeasurement,
-            initailValue: updatedFood.unitOfMeasurementNativeLanguage,
-            onUpdate: (value) {
-              updatedFood = updatedFood.copyWith(
-                unitOfMeasurementNativeLanguage: value,
-              );
-            },
-          ),
-
-          gap,
-          UpdateFoodTextField(
-            label: context.l10n.quantityOfUnitOfMeasurement,
-            initailValue: updatedFood.quantityOfUnitOfMeasurement.toString(),
-            onUpdate: (value) {
-              updatedFood = updatedFood.copyWith(
-                quantityOfUnitOfMeasurement: int.parse(value),
-              );
-            },
-            isDigitField: true,
-          ),
-
-          gap,
-          UpdateFoodTextField(
-            label: context.l10n.calculatedCalorie,
-            initailValue: updatedFood.calculatedCalorie.toString(),
-            onUpdate: (value) {
-              updatedFood = updatedFood.copyWith(
-                calculatedCalorie: int.parse(value),
-              );
-            },
-            isDigitField: true,
-          ),
-          gap,
-          UpdateFoodTextField(
-            label: context.l10n.fat,
-            initailValue: updatedFood.macroNutrition.fat.toString(),
-            onUpdate: (value) {
-              updatedFood = updatedFood.copyWith(
-                macroNutrition: updatedFood.macroNutrition.copyWith(
-                  fat: int.parse(value),
-                ),
-              );
-            },
-            isDigitField: true,
-          ),
-
-          gap,
-          UpdateFoodTextField(
-            label: context.l10n.protein,
-            initailValue: updatedFood.macroNutrition.protein.toString(),
-            onUpdate: (value) {
-              updatedFood = updatedFood.copyWith(
-                macroNutrition: updatedFood.macroNutrition.copyWith(
-                  protein: int.parse(value),
-                ),
-              );
-            },
-            isDigitField: true,
-          ),
-
-          gap,
-          UpdateFoodTextField(
-            label: context.l10n.carbohydrate,
-            initailValue: updatedFood.macroNutrition.carbohydrate.toString(),
-            onUpdate: (value) {
-              updatedFood = updatedFood.copyWith(
-                macroNutrition: updatedFood.macroNutrition.copyWith(
-                  carbohydrate: int.parse(value),
-                ),
-              );
-            },
-            isDigitField: true,
-          ),
-          gap,
-          _buildDropDown(),
-        ],
-        submitButton: BlocBuilder<ResultCubit, ResultState>(
-          buildWhen:
-              (previous, current) =>
-                  previous.updatingStatus != current.updatingStatus,
-          builder: (context, state) {
-            return state.updatingStatus.isLoading
-                ? AppTextButton.loading(label: context.l10n.update)
-                : AppTextButton(
-                  label: context.l10n.update,
-                  onTap: () {
-                    context.read<ResultCubit>().updateFood(updatedFood);
-                  },
+      child: Form(
+        key: _formKey,
+        child: AppDialog(
+          fullscreen: true,
+          title: context.l10n.update,
+          contents: [
+            _buildDateTextField(),
+            gap,
+            UpdateFoodTextField(
+              label: context.l10n.foodName,
+              initailValue: updatedFood.userNativeLanguageFoodName,
+              onUpdate: (value) {
+                updatedFood = updatedFood.copyWith(
+                  userNativeLanguageFoodName: value,
                 );
-          },
+              },
+            ),
+
+            gap,
+            UpdateFoodTextField(
+              label: context.l10n.unitOfMeasurement,
+              initailValue: updatedFood.unitOfMeasurementNativeLanguage,
+              onUpdate: (value) {
+                updatedFood = updatedFood.copyWith(
+                  unitOfMeasurementNativeLanguage: value,
+                );
+              },
+            ),
+
+            gap,
+            UpdateFoodTextField(
+              label: context.l10n.quantityOfUnitOfMeasurement,
+              initailValue: updatedFood.quantityOfUnitOfMeasurement.toString(),
+              onUpdate: (value) {
+                updatedFood = updatedFood.copyWith(
+                  quantityOfUnitOfMeasurement: int.parse(value),
+                );
+              },
+              isDigitField: true,
+            ),
+
+            gap,
+            UpdateFoodTextField(
+              label: context.l10n.calculatedCalorie,
+              initailValue: updatedFood.calculatedCalorie.toString(),
+              onUpdate: (value) {
+                updatedFood = updatedFood.copyWith(
+                  calculatedCalorie: int.parse(value),
+                );
+              },
+              isDigitField: true,
+            ),
+            gap,
+            UpdateFoodTextField(
+              label: context.l10n.fat,
+              initailValue: updatedFood.macroNutrition.fat.toString(),
+              onUpdate: (value) {
+                updatedFood = updatedFood.copyWith(
+                  macroNutrition: updatedFood.macroNutrition.copyWith(
+                    fat: int.parse(value),
+                  ),
+                );
+              },
+              isDigitField: true,
+            ),
+
+            gap,
+            UpdateFoodTextField(
+              label: context.l10n.protein,
+              initailValue: updatedFood.macroNutrition.protein.toString(),
+              onUpdate: (value) {
+                updatedFood = updatedFood.copyWith(
+                  macroNutrition: updatedFood.macroNutrition.copyWith(
+                    protein: int.parse(value),
+                  ),
+                );
+              },
+              isDigitField: true,
+            ),
+
+            gap,
+            UpdateFoodTextField(
+              label: context.l10n.carbohydrate,
+              initailValue: updatedFood.macroNutrition.carbohydrate.toString(),
+              onUpdate: (value) {
+                updatedFood = updatedFood.copyWith(
+                  macroNutrition: updatedFood.macroNutrition.copyWith(
+                    carbohydrate: int.parse(value),
+                  ),
+                );
+              },
+              isDigitField: true,
+            ),
+            gap,
+            _buildDropDown(),
+          ],
+          submitButton: BlocBuilder<ResultCubit, ResultState>(
+            buildWhen:
+                (previous, current) =>
+                    previous.updatingStatus != current.updatingStatus,
+            builder: (context, state) {
+              return state.updatingStatus.isLoading
+                  ? AppTextButton.loading(label: context.l10n.update)
+                  : AppTextButton(
+                    label: context.l10n.update,
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        context.read<ResultCubit>().updateFood(updatedFood);
+                      }
+                    },
+                  );
+            },
+          ),
         ),
       ),
     );
@@ -228,10 +234,10 @@ class UpdateFoodTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: TextEditingController(text: initailValue),
       onChanged: onUpdate,
-      onSubmitted: onUpdate,
+
       decoration: InputDecoration(label: Text(label)),
       keyboardType:
           isDigitField
@@ -239,6 +245,11 @@ class UpdateFoodTextField extends StatelessWidget {
               : null,
       inputFormatters:
           isDigitField ? [FilteringTextInputFormatter.digitsOnly] : null,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return context.l10n.emptyFormFieldValidationError;
+        }
+      },
     );
   }
 }

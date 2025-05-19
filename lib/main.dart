@@ -1,3 +1,4 @@
+import 'package:authentication/authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_input/food_input.dart';
@@ -53,6 +54,10 @@ class DependencyManager extends StatelessWidget {
             remoteApi: remoteApi,
             localStorage: localStorage,
           );
+          final authenticationRep = AuthenticationRepository(
+            remoteApi: remoteApi,
+            localStorage: localStorage,
+          );
 
           return MultiRepositoryProvider(
             providers: [
@@ -62,6 +67,7 @@ class DependencyManager extends StatelessWidget {
                 lazy: true,
               ),
               RepositoryProvider(create: (_) => profileRep, lazy: true),
+              RepositoryProvider(create: (_) => authenticationRep, lazy: true),
             ],
             child: TandorostPlatform(),
           );

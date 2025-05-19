@@ -45,27 +45,27 @@ part of 'register_cubit.dart';
 // }
 @immutable
 class RegisterState extends Equatable {
-  final TextInput phoneNumber;
-  final TextInput password;
+  final String phoneNumber;
+  final String password;
 
   final AsyncProcessingStatus registerStatus;
 
   final AsyncProcessingStatus verificationStatus;
-  final TextInput verificationCode;
+  final String verificationCode;
 
   const RegisterState({
-    this.phoneNumber = const TextInput.pure(),
-    this.password = const TextInput.pure(),
-    this.verificationCode = const TextInput.pure(),
+    this.phoneNumber = '',
+    this.password = '',
+    this.verificationCode = '',
     this.registerStatus = AsyncProcessingStatus.inital,
     this.verificationStatus = AsyncProcessingStatus.inital,
   });
 
   RegisterState copyWith({
-    TextInput? phoneNumber,
-    TextInput? password,
+    String? phoneNumber,
+    String? password,
     AsyncProcessingStatus? registerStatus,
-    TextInput? verificationCode,
+    String? verificationCode,
     AsyncProcessingStatus? verificationStatus,
   }) {
     return RegisterState(

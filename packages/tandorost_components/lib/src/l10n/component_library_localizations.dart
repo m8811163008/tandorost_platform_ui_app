@@ -254,6 +254,18 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'انتخاب کردن زبان گفتار'**
   String get selectLanguageBottomSheetHeading;
+
+  /// No description provided for @emptyFormFieldValidationError.
+  ///
+  /// In fa, this message translates to:
+  /// **'این فیلد خالی است. درآن تایپ کن'**
+  String get emptyFormFieldValidationError;
+
+  /// No description provided for @minLengthFormFieldValidationError.
+  ///
+  /// In fa, this message translates to:
+  /// **'حداقل {minLength} حروف باید تایپ کنید'**
+  String minLengthFormFieldValidationError(int minLength);
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

@@ -2,14 +2,14 @@ part of 'search_cubit.dart';
 
 @immutable
 class SearchState extends Equatable {
-  final TextInput foodName;
+  final String foodName;
   final FileData? voiceData;
   final AsyncProcessingStatus searchFoodsByTextInputStatus;
   final AsyncProcessingStatus searchFoodsByVoiceInputStatus;
   final Language? userSpokenLanguage;
 
   const SearchState({
-    this.foodName = const TextInput.pure(''),
+    this.foodName = '',
     this.searchFoodsByTextInputStatus = AsyncProcessingStatus.inital,
     this.searchFoodsByVoiceInputStatus = AsyncProcessingStatus.inital,
     this.voiceData,
@@ -25,7 +25,7 @@ class SearchState extends Equatable {
     searchFoodsByVoiceInputStatus
   ];
   SearchState copyWith({
-    TextInput? foodName,
+    String? foodName,
     Language? userSpokenLanguage,
     ValueGetter<FileData?>? voiceData,
     AsyncProcessingStatus? searchFoodsByTextInputStatus,

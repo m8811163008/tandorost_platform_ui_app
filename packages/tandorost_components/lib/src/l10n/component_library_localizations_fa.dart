@@ -102,4 +102,12 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get selectLanguageBottomSheetHeading => 'انتخاب کردن زبان گفتار';
+
+  @override
+  String get emptyFormFieldValidationError => 'این فیلد خالی است. درآن تایپ کن';
+
+  @override
+  String minLengthFormFieldValidationError(int minLength) {
+    return 'حداقل $minLength حروف باید تایپ کنید';
+  }
 }
