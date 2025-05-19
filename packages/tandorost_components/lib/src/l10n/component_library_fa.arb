@@ -20,6 +20,7 @@
     },
     "cancle": "لغو",
     "delete": "حذف",
+    "deleteAll": "حذف همه",
     "update": "بروزرسانی",
     "delete_confirm_question": "آیا {food} حذف شود؟",
     "@delete_confirm_question": {

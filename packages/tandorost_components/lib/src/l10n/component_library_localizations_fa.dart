@@ -58,6 +58,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get delete => 'حذف';
 
   @override
+  String get deleteAll => 'حذف همه';
+
+  @override
   String get update => 'بروزرسانی';
 
   @override

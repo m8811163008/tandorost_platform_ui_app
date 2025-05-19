@@ -10,24 +10,43 @@ class DeleteFoodDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener(
+    return BlocListener<ResultCubit, ResultState>(
+      listenWhen:
+          (previous, current) =>
+              previous.deletingStatus != current.deletingStatus,
       listener: (context, state) {
-        
+        if (state.deletingStatus.isServerConnectionError) {
+          final content = context.l10n.networkError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.deletingStatus.isServerConnectionError) {
+          final content = context.l10n.internetConnectionError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.deletingStatus.isSuccess) {
+          Navigator.of(context).pop();
+        }
       },
       child: AppDialog(
         title: context.l10n.delete,
         contents: [
           Text(
-            context.l10n.delete_confirm_question(food.userNativeLanguageFoodName),
+            context.l10n.delete_confirm_question(
+              food.userNativeLanguageFoodName,
+            ),
           ),
         ],
         submitButton: BlocBuilder<ResultCubit, ResultState>(
-          buildWhen: (previous, current) => previous.deletingStatus != current.deletingStatus,
+          buildWhen:
+              (previous, current) =>
+                  previous.deletingStatus != current.deletingStatus,
           builder: (context, state) {
-            return state.updatingStatus.isLoading
-                ? AppTextButton.loading(label: context.l10n.update)
-                : AppTextButton.loading(
-                  label: context.l10n.update,
+            return state.deletingStatus.isLoading
+                ? AppTextButton.loading(label: context.l10n.delete)
+                : AppTextButton(
+                  label: context.l10n.delete,
                   onTap: () {
                     context.read<ResultCubit>().deleteFood([food.id]);
                   },

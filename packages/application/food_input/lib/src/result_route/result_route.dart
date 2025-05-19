@@ -11,17 +11,32 @@ class ResultRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
-      appBar: AppBar(),
-      fab: FloatingActionButton(onPressed: () {}),
-      body: BlocProvider(
-        create:
-            (_) => ResultCubit(
-              foodInputRepository: RepositoryProvider.of<FoodInputRepository>(
-                context,
-              ),
+    return BlocProvider(
+      create:
+          (_) => ResultCubit(
+            foodInputRepository: RepositoryProvider.of<FoodInputRepository>(
+              context,
             ),
-        child: const ResultBody(),
+          ),
+      child: AppScaffold(
+        appBar: AppBar(),
+
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'a'),
+            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'a'),
+            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'a'),
+          ],
+        ),
+        body: BlocProvider(
+          create:
+              (_) => ResultCubit(
+                foodInputRepository: RepositoryProvider.of<FoodInputRepository>(
+                  context,
+                ),
+              ),
+          child: const ResultBody(),
+        ),
       ),
     );
   }

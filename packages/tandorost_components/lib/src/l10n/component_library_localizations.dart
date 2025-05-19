@@ -171,6 +171,12 @@ abstract class ComponentLibraryLocalizations {
   /// **'حذف'**
   String get delete;
 
+  /// No description provided for @deleteAll.
+  ///
+  /// In fa, this message translates to:
+  /// **'حذف همه'**
+  String get deleteAll;
+
   /// No description provided for @update.
   ///
   /// In fa, this message translates to:

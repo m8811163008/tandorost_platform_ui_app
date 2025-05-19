@@ -46,17 +46,17 @@ class ResultCubit extends Cubit<ResultState> {
     emit(state.copyWith(deletingStatus: AsyncProcessingStatus.loading));
     try {
       await foodInputRepository.deleteFoodsNutritions(foodIds);
-      emit(state.copyWith(updatingStatus: AsyncProcessingStatus.success));
+      emit(state.copyWith(deletingStatus: AsyncProcessingStatus.success));
     } on InternetConnectionException {
       emit(
         state.copyWith(
-          updatingStatus: AsyncProcessingStatus.internetConnectionError,
+          deletingStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
       emit(
         state.copyWith(
-          updatingStatus: AsyncProcessingStatus.serverConnectionError,
+          deletingStatus: AsyncProcessingStatus.serverConnectionError,
         ),
       );
     }

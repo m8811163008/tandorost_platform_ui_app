@@ -19,7 +19,10 @@ class ResultBody extends StatelessWidget {
                 : 3
             : 2;
     return BlocBuilder<ResultCubit, ResultState>(
-      buildWhen: (previous, current) => previous.foods != current.foods,
+      buildWhen:
+          (previous, current) =>
+              previous.foods != current.foods ||
+              previous.deletingStatus != current.deletingStatus,
       builder: (context, state) {
         return GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -34,16 +37,22 @@ class ResultBody extends StatelessWidget {
               onTapEdit: () {
                 showDialog(
                   context: context,
-                  builder: (context) {
-                    return EditFoodDialog(food: food);
+                  builder: (_) {
+                    return BlocProvider.value(
+                      value: context.read<ResultCubit>(),
+                      child: EditFoodDialog(food: food),
+                    );
                   },
                 );
               },
               onTapDelete: () {
                 showDialog(
                   context: context,
-                  builder: (context) {
-                    return DeleteFoodDialog(food: food);
+                  builder: (_) {
+                    return BlocProvider.value(
+                      value: context.read<ResultCubit>(),
+                      child: DeleteFoodDialog(food: food),
+                    );
                   },
                 );
               },
