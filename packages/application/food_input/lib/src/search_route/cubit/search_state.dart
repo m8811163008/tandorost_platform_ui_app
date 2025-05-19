@@ -32,7 +32,7 @@ class SearchState extends Equatable {
     AsyncProcessingStatus? searchFoodsByVoiceInputStatus,
   }) {
     return SearchState(
-      userSpokenLanguage: userSpokenLanguage,
+      userSpokenLanguage: userSpokenLanguage ?? this.userSpokenLanguage,
       foodName: foodName ?? this.foodName,
       voiceData: voiceData != null ? voiceData() : this.voiceData,
       searchFoodsByTextInputStatus:

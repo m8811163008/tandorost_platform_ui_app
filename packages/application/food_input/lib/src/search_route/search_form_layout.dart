@@ -49,7 +49,13 @@ class _FormLayoutState extends State<FormLayout> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _buildTextField(),
-                BlocBuilder<SearchCubit, SearchState>(
+                BlocConsumer<SearchCubit, SearchState>(
+                  listenWhen: (previous, current) => previous.searchFoodsByTextInputStatus != current.searchFoodsByTextInputStatus,
+                  listener: (context, state) {
+                    if(state.searchFoodsByTextInputStatus.isSuccess){
+                      Navigator.of(context).pop();
+                    }
+                  },
                   buildWhen:
                       (previous, current) =>
                           previous.searchFoodsByTextInputStatus !=

@@ -10,7 +10,9 @@ class Navigation {
         GoRoute(
           path: '/${SearchRoute.name}',
           builder: (context, state) {
-            return SearchRoute();
+            return SearchRoute(
+              onSeachFoodSuccess: () => context.go('/${SearchRoute.name}/${ResultRoute.name}'),
+            );
           },
           routes: [
             GoRoute(

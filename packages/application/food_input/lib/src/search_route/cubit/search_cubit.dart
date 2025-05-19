@@ -25,6 +25,16 @@ class SearchCubit extends Cubit<SearchState> {
     super.close();
   }
 
+  void resetStatus() {
+    emit(
+      state.copyWith(
+        searchFoodsByTextInputStatus: AsyncProcessingStatus.inital,
+        searchFoodsByVoiceInputStatus: AsyncProcessingStatus.inital,
+        foodName: TextInput.pure(),
+      ),
+    );
+  }
+
   void _init() async {
     final language = await profileRepository.userSpokenLanguage;
     emit(state.copyWith(userSpokenLanguage: language));
@@ -61,8 +71,8 @@ class SearchCubit extends Cubit<SearchState> {
 
   void onChangeLanguage(Language? language) async {
     if (language != null) {
-      emit(state.copyWith(userSpokenLanguage: language));
       await profileRepository.upsertUserSpokenLanguage(language);
+      emit(state.copyWith(userSpokenLanguage: language));
     }
   }
 
@@ -71,7 +81,11 @@ class SearchCubit extends Cubit<SearchState> {
     if (out == null) {
       return;
     }
-    emit(state.copyWith(searchFoodsByVoiceInputStatus: AsyncProcessingStatus.loading));
+    emit(
+      state.copyWith(
+        searchFoodsByVoiceInputStatus: AsyncProcessingStatus.loading,
+      ),
+    );
     late Uint8List bytes;
     if (!kIsWeb) {
       final file = File(out);
@@ -80,7 +94,10 @@ class SearchCubit extends Cubit<SearchState> {
       final file = PickedFile(out);
       bytes = await file.readAsBytes();
     }
-    final fileDetail = FileDetail(fileName: 'user_voice_foods.wav', bytes: bytes);
+    final fileDetail = FileDetail(
+      fileName: 'user_voice_foods.wav',
+      bytes: bytes,
+    );
     await onReadFoodsNutritionsByVoice(fileDetail);
   }
 
@@ -91,17 +108,23 @@ class SearchCubit extends Cubit<SearchState> {
         prompt: fileDetail,
         userSpokenLanguage: state.userSpokenLanguage ?? userLanguage,
       );
-      emit(state.copyWith(searchFoodsByVoiceInputStatus: AsyncProcessingStatus.success));
+      emit(
+        state.copyWith(
+          searchFoodsByVoiceInputStatus: AsyncProcessingStatus.success,
+        ),
+      );
     } on InternetConnectionException {
       emit(
         state.copyWith(
-          searchFoodsByVoiceInputStatus: AsyncProcessingStatus.internetConnectionError,
+          searchFoodsByVoiceInputStatus:
+              AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
       emit(
         state.copyWith(
-          searchFoodsByVoiceInputStatus: AsyncProcessingStatus.serverConnectionError,
+          searchFoodsByVoiceInputStatus:
+              AsyncProcessingStatus.serverConnectionError,
         ),
       );
     }
@@ -109,22 +132,32 @@ class SearchCubit extends Cubit<SearchState> {
 
   void readFoodsNutritionsByText() async {
     if (state.foodName.isValid) {
-      emit(state.copyWith(searchFoodsByTextInputStatus: AsyncProcessingStatus.loading));
+      emit(
+        state.copyWith(
+          searchFoodsByTextInputStatus: AsyncProcessingStatus.loading,
+        ),
+      );
       try {
         await foodInputRepository.readFoodsNutritionsByText(
           state.foodName.value,
         );
-        emit(state.copyWith(searchFoodsByTextInputStatus: AsyncProcessingStatus.success));
+        emit(
+          state.copyWith(
+            searchFoodsByTextInputStatus: AsyncProcessingStatus.success,
+          ),
+        );
       } on InternetConnectionException {
         emit(
           state.copyWith(
-            searchFoodsByTextInputStatus: AsyncProcessingStatus.internetConnectionError,
+            searchFoodsByTextInputStatus:
+                AsyncProcessingStatus.internetConnectionError,
           ),
         );
       } on HttpException {
         emit(
           state.copyWith(
-            searchFoodsByTextInputStatus: AsyncProcessingStatus.serverConnectionError,
+            searchFoodsByTextInputStatus:
+                AsyncProcessingStatus.serverConnectionError,
           ),
         );
       }

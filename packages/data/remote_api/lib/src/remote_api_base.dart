@@ -16,7 +16,7 @@ class RemoteApiBase implements RemoteApi {
     required this.get_user_language,
     required this.get_access_token,
   });
-
+  // Todo handle Unauthorized
   Future<Language> Function() get_user_language;
   Future<String> Function() get_access_token;
   static const _detail = 'detail';
@@ -361,7 +361,6 @@ class RemoteApiBase implements RemoteApi {
       HttpHeaders.contentTypeHeader: 'multipart/form-data',
     });
 
-
     request.fields['language'] = userSpokenLanguage.code;
 
     request.files.add(
@@ -392,7 +391,7 @@ class RemoteApiBase implements RemoteApi {
       rethrow;
     } on HttpException {
       rethrow;
-    } on SocketException catch(e){
+    } on SocketException catch (e) {
       if (!await hasInternetConnection()) {
         throw InternetConnectionException();
       }
@@ -443,7 +442,9 @@ class RemoteApiBase implements RemoteApi {
   Future<E?> _handleRequest<E>(Future<Response> Function() request) async {
     try {
       final res = await request();
-      if (res.statusCode == 204) {
+      if (res.statusCode == 401) {
+        throw UnauthorizedException();
+      } else if (res.statusCode == 204) {
         return null;
       } else {
         final jsonResponse = json.decode(res.body) as E;

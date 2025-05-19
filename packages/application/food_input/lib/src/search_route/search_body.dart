@@ -7,34 +7,54 @@ import 'package:food_input_app/src/search_route/search_bottom_sheet.dart';
 
 import 'package:tandorost_components/tandorost_components.dart';
 
-class SearchBody extends StatefulWidget {
-  const SearchBody({super.key});
+class SearchBody extends StatelessWidget {
+  const SearchBody({super.key, this.onSeachFoodSuccess});
+  final VoidCallback? onSeachFoodSuccess;
 
-  @override
-  State<SearchBody> createState() => _SearchBodyState();
-}
-
-class _SearchBodyState extends State<SearchBody> {
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SearchCubit, SearchState>(
-      listenWhen:
-          (previous, current) =>
-              previous.searchFoodsByVoiceInputStatus !=
-              current.searchFoodsByVoiceInputStatus,
-      listener: (context, state) {
-        if (state.searchFoodsByVoiceInputStatus.isServerConnectionError) {
-          final content = context.l10n.networkError;
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.searchFoodsByVoiceInputStatus.isServerConnectionError) {
-          final content = context.l10n.internetConnectionError;
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(content)));
-        }
-      },
+    final cubit = context.read<SearchCubit>();
+    return MultiBlocListener(
+      listeners: [
+        // handle routing
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
+                  (previous.searchFoodsByVoiceInputStatus !=
+                          current.searchFoodsByVoiceInputStatus ||
+                      previous.searchFoodsByTextInputStatus !=
+                          current.searchFoodsByTextInputStatus) &&
+                  (current.searchFoodsByTextInputStatus.isSuccess ||
+                      current.searchFoodsByVoiceInputStatus.isSuccess),
+          listener: (context, state) async {
+            cubit.resetStatus();
+            onSeachFoodSuccess?.call();
+          },
+        ),
+        // handle errors
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
+                  previous.searchFoodsByVoiceInputStatus !=
+                  current.searchFoodsByVoiceInputStatus,
+          listener: (context, state) {
+            if (state.searchFoodsByVoiceInputStatus.isServerConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state
+                .searchFoodsByVoiceInputStatus
+                .isServerConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            }
+          },
+        ),
+      ],
+
       child: Column(
         children: [
           Spacer(),
@@ -63,7 +83,14 @@ class _SearchBodyState extends State<SearchBody> {
                         context.read<SearchCubit>().onSearchByVoicePressedUp,
                   );
                   bool isAllowed = snapshot.data ?? false;
-                  return IgnorePointer(ignoring: !isAllowed, child: chatButton);
+                  bool isLoading = context.select<SearchCubit, bool>(
+                    (cubit) =>
+                        cubit.state.searchFoodsByVoiceInputStatus.isLoading,
+                  );
+                  return IgnorePointer(
+                    ignoring: !isAllowed || isLoading,
+                    child: chatButton,
+                  );
                 },
               ),
               IconButton.filledTonal(

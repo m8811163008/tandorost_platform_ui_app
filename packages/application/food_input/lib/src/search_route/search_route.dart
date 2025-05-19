@@ -7,8 +7,9 @@ import 'package:profile/profile.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class SearchRoute extends StatelessWidget {
-  const SearchRoute({super.key});
+  const SearchRoute({super.key, this.onSeachFoodSuccess});
   static const String name = 'search-route';
+  final VoidCallback? onSeachFoodSuccess;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class SearchRoute extends StatelessWidget {
             BottomNavigationBarItem(icon: Icon(Icons.add), label: 'a'),
           ],
         ),
-        body: const SearchBody(),
+        body: SearchBody(onSeachFoodSuccess: onSeachFoodSuccess),
       ),
     );
   }
