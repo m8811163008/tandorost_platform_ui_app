@@ -1,5 +1,5 @@
 import 'package:authentication_app/src/register/cubit/register_cubit.dart';
-import 'package:authentication_app/src/verify_form.dart';
+import 'package:authentication_app/src/register/verify_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -7,6 +7,24 @@ import 'package:tandorost_components/tandorost_components.dart';
 class RegisterVerifyPhoneNumberRoute extends StatelessWidget {
   const RegisterVerifyPhoneNumberRoute({super.key, this.goToLoginRoute});
   static const String name = 'register-verify-phone-number';
+  final VoidCallback? goToLoginRoute;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppScaffold(
+      appBar: AppBar(),
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.sizeExtenstion.extraLarge,
+        ),
+        child: VerifyPhoneListener(goToLoginRoute: goToLoginRoute),
+      ),
+    );
+  }
+}
+
+class VerifyPhoneListener extends StatelessWidget {
+  const VerifyPhoneListener({super.key, this.goToLoginRoute});
   final VoidCallback? goToLoginRoute;
 
   @override
@@ -30,13 +48,7 @@ class RegisterVerifyPhoneNumberRoute extends StatelessWidget {
           goToLoginRoute?.call();
         }
       },
-      child: AppScaffold(
-        body: VerifyForm(
-          submitLabel: 'submit',
-          onSubmitPressed: context.read<RegisterCubit>().onRegister,
-          onChangeCode: context.read<RegisterCubit>().onChangeVerificationCode,
-        ),
-      ),
+      child: VerifyFormRegister(),
     );
   }
 }

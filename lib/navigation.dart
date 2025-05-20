@@ -15,7 +15,7 @@ class Navigation {
     final forgotPassRoute = '/${ForgotPasswordRoute.name}';
     final verificationRoute = '/${RegisterVerifyPhoneNumberRoute.name}';
     return GoRouter(
-      initialLocation: '/${RegisterRoute.name}',
+      initialLocation: loginRoute,
       routes: [
         GoRoute(
           path: searchRoute,
@@ -35,8 +35,8 @@ class Navigation {
         ),
         ShellRoute(
           builder: (context, state, child) {
-            return AuthShell(
-              createBloc:
+            return BlocProvider(
+              create:
                   (context) => RegisterCubit(
                     RepositoryProvider.of<AuthenticationRepository>(context),
                   ),
@@ -69,8 +69,8 @@ class Navigation {
         ),
         ShellRoute(
           builder: (context, state, child) {
-            return AuthShell(
-              createBloc:
+            return BlocProvider(
+              create:
                   (context) => LoginCubit(
                     RepositoryProvider.of<AuthenticationRepository>(context),
                   ),
@@ -83,7 +83,7 @@ class Navigation {
               builder: (context, state) {
                 return LoginRoute(
                   goToForgotPasswordRoute: () {
-                    context.go('$loginRoute$forgotPassRoute');
+                    context.go(forgotPassRoute);
                   },
                   goToHomeRoute: () {
                     // Todo nav to home for all routes
@@ -95,13 +95,27 @@ class Navigation {
                 );
               },
             ),
+          ],
+        ),
+        ShellRoute(
+          builder: (context, state, child) {
+            return BlocProvider(
+              create:
+                  (context) => ForgotPasswordCubit(
+                    RepositoryProvider.of<AuthenticationRepository>(context),
+                  ),
+              child: child,
+            );
+          },
+          routes: [
             GoRoute(
               path: forgotPassRoute,
               builder: (context, state) {
                 return ForgotPasswordRoute(
-                  goToLoginRoute : () => context.go(loginRoute),
-                  goToVerificationRoute : () => context.go('$loginRoute$forgotPassRoute$verificationRoute'),
-                  goToRegisterRoute : () => context.go(registerRoute)
+                  goToLoginRoute: () => context.go(loginRoute),
+                  goToVerificationRoute:
+                      () => context.go('$forgotPassRoute$verificationRoute'),
+                  goToRegisterRoute: () => context.go(registerRoute),
                 );
               },
               routes: [
@@ -118,32 +132,6 @@ class Navigation {
           ],
         ),
       ],
-    );
-  }
-}
-
-class AuthShell<T extends StateStreamableSource<Object?>>
-    extends StatelessWidget {
-  const AuthShell({super.key, required this.child, required this.createBloc});
-  final Widget child;
-  final T Function(BuildContext) createBloc;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: createBloc,
-      // (context) => RegisterCubit(
-      //   RepositoryProvider.of<AuthenticationRepository>(context),
-      // ),
-      child: AppScaffold(
-        appBar: AppBar(),
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: context.sizeExtenstion.extraLarge,
-          ),
-          child: child,
-        ),
-      ),
     );
   }
 }

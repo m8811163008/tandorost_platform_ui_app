@@ -19,10 +19,18 @@ class RegisterRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RegisterListener(
-      goToVerificationRoute: goToVerificationRoute,
-      goToLoginRoute: goToLoginRoute,
-      goToHomeRoute: goToHomeRoute,
+    return AppScaffold(
+      appBar: AppBar(),
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.sizeExtenstion.extraLarge,
+        ),
+        child: RegisterListener(
+          goToVerificationRoute: goToVerificationRoute,
+          goToLoginRoute: goToLoginRoute,
+          goToHomeRoute: goToHomeRoute,
+        ),
+      ),
     );
   }
 }

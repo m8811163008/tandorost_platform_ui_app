@@ -18,6 +18,34 @@ class LoginRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return AppScaffold(
+      appBar: AppBar(),
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.sizeExtenstion.extraLarge,
+        ),
+        child: LoginListener(
+          goToRegisterRoute: goToRegisterRoute,
+          goToForgotPasswordRoute: goToForgotPasswordRoute,
+          goToHomeRoute: goToHomeRoute,
+        ),
+      ),
+    );
+  }
+}
+
+class LoginListener extends StatelessWidget {
+  const LoginListener({
+    super.key,
+    this.goToRegisterRoute,
+    this.goToForgotPasswordRoute,
+    this.goToHomeRoute,
+  });
+  final VoidCallback? goToRegisterRoute;
+  final VoidCallback? goToForgotPasswordRoute;
+  final VoidCallback? goToHomeRoute;
+  @override
+  Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
       listenWhen:
           (previous, current) => previous.loginStatus != current.loginStatus,

@@ -7,7 +7,7 @@ class UriBuilder {
   static Uri authSendVerificationCode(VerificationType verificationType) {
     return baseUri.replace(
       path: '$basePath/auth/send_verification_code/',
-      queryParameters: {'verification_type': verificationType.name},
+      queryParameters: {'verification_type': verificationType.snakeCase},
     );
   }
 

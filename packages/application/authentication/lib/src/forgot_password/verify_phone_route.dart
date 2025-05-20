@@ -1,6 +1,6 @@
 import 'package:authentication_app/src/forgot_password/cubit/forgot_password_cubit.dart';
-import 'package:authentication_app/src/register/cubit/register_cubit.dart';
-import 'package:authentication_app/src/verify_form.dart';
+import 'package:authentication_app/src/forgot_password/verify_form.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -10,6 +10,23 @@ class ForgotPasswordVerifyPhoneNumberRoute extends StatelessWidget {
   static const String name = 'forgot-password-verify-phone-number';
   final VoidCallback? goToLoginRoute;
 
+  @override
+  Widget build(BuildContext context) {
+    return AppScaffold(
+      appBar: AppBar(),
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.sizeExtenstion.extraLarge,
+        ),
+        child: ForgotPasswordVerifyListener(goToLoginRoute: goToLoginRoute),
+      ),
+    );
+  }
+}
+
+class ForgotPasswordVerifyListener extends StatelessWidget {
+  const ForgotPasswordVerifyListener({super.key, this.goToLoginRoute});
+  final VoidCallback? goToLoginRoute;
   @override
   Widget build(BuildContext context) {
     return BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
@@ -31,13 +48,7 @@ class ForgotPasswordVerifyPhoneNumberRoute extends StatelessWidget {
           goToLoginRoute?.call();
         }
       },
-      child: AppScaffold(
-        body: VerifyForm(
-          submitLabel: 'submit',
-          onSubmitPressed: context.read<ForgotPasswordCubit>().onForgotPassword,
-          onChangeCode: context.read<ForgotPasswordCubit>().onChangeVerificationCode,
-        ),
-      ),
+      child: VerifyFormForgotPassword(),
     );
   }
 }

@@ -18,6 +18,35 @@ class ForgotPasswordRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return AppScaffold(
+      appBar: AppBar(),
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.sizeExtenstion.extraLarge,
+        ),
+        child: ForgotPasswordListener(
+          goToLoginRoute: goToLoginRoute,
+          goToVerificationRoute: goToVerificationRoute,
+          goToRegisterRoute: goToRegisterRoute,
+        ),
+      ),
+    );
+  }
+}
+
+class ForgotPasswordListener extends StatelessWidget {
+  const ForgotPasswordListener({
+    super.key,
+    this.goToLoginRoute,
+    this.goToVerificationRoute,
+    this.goToRegisterRoute,
+  });
+  final VoidCallback? goToLoginRoute;
+  final VoidCallback? goToVerificationRoute;
+  final VoidCallback? goToRegisterRoute;
+
+  @override
+  Widget build(BuildContext context) {
     return BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
       listenWhen:
           (previous, current) =>
@@ -37,12 +66,10 @@ class ForgotPasswordRoute extends StatelessWidget {
           goToVerificationRoute?.call();
         }
       },
-      child: AppScaffold(
-        body: ForgotPasswordForm(
-          goToRegisterRoute: goToRegisterRoute,
-          goToLoginRoute: goToLoginRoute,
-          goToVerificationRoute: goToVerificationRoute,
-        ),
+      child: ForgotPasswordForm(
+        goToRegisterRoute: goToRegisterRoute,
+        goToLoginRoute: goToLoginRoute,
+        goToVerificationRoute: goToVerificationRoute,
       ),
     );
   }
