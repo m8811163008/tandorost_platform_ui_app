@@ -18,7 +18,7 @@ class AppTheme {
     ),
     textTheme: textTheme(locale),
     extensions: [SizeExtenstion()],
-
+    appBarTheme: AppBarTheme(color: ThemeColor.white.color),
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(),
       hintStyle: textTheme(

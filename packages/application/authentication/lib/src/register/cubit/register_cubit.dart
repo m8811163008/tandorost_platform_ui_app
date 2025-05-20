@@ -41,10 +41,11 @@ class RegisterCubit extends Cubit<RegisterState> {
           verificationStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
-    } on HttpException {
+    } on HttpException catch (e) {
       emit(
         state.copyWith(
           verificationStatus: AsyncProcessingStatus.serverConnectionError,
+          exception: e.message,
         ),
       );
     }
@@ -66,10 +67,11 @@ class RegisterCubit extends Cubit<RegisterState> {
           registerStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
-    } on HttpException {
+    } on HttpException catch (e) {
       emit(
         state.copyWith(
           registerStatus: AsyncProcessingStatus.serverConnectionError,
+          exception: e.message,
         ),
       );
     }

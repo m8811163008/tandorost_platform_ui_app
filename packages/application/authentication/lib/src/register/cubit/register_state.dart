@@ -52,6 +52,7 @@ class RegisterState extends Equatable {
 
   final AsyncProcessingStatus verificationStatus;
   final String verificationCode;
+  final String? exception;
 
   const RegisterState({
     this.phoneNumber = '',
@@ -59,6 +60,7 @@ class RegisterState extends Equatable {
     this.verificationCode = '',
     this.registerStatus = AsyncProcessingStatus.inital,
     this.verificationStatus = AsyncProcessingStatus.inital,
+    this.exception
   });
 
   RegisterState copyWith({
@@ -67,6 +69,7 @@ class RegisterState extends Equatable {
     AsyncProcessingStatus? registerStatus,
     String? verificationCode,
     AsyncProcessingStatus? verificationStatus,
+    String? exception
   }) {
     return RegisterState(
       phoneNumber: phoneNumber ?? this.phoneNumber,
@@ -74,6 +77,7 @@ class RegisterState extends Equatable {
       registerStatus: registerStatus ?? this.registerStatus,
       verificationCode: verificationCode ?? this.verificationCode,
       verificationStatus: verificationStatus ?? this.verificationStatus,
+      exception : exception ?? this.exception
     );
   }
 
@@ -81,7 +85,7 @@ class RegisterState extends Equatable {
   List<Object?> get props => [
     phoneNumber,
     password,
-
+exception,
     registerStatus,
     verificationCode,
     verificationStatus,

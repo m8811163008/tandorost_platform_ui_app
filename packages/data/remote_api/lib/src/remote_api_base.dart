@@ -447,7 +447,7 @@ class RemoteApiBase implements RemoteApi {
       } else if (res.statusCode == 204) {
         return null;
       } else {
-        final jsonResponse = json.decode(res.body) as E;
+        final jsonResponse = json.decode(res.body) ;
         if (res.statusCode != 200 && res.statusCode != 201) {
           assert(jsonResponse is JsonMap);
           final response = ApiErrorResponse.fromJson(
@@ -455,7 +455,7 @@ class RemoteApiBase implements RemoteApi {
           );
           throw HttpException(response.message!);
         } else {
-          return jsonResponse;
+          return jsonResponse as E;
         }
       }
     } on ValidationError {

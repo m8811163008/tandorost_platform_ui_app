@@ -1,7 +1,6 @@
 import 'package:authentication/authentication.dart';
 import 'package:authentication_app/src/register/cubit/register_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
@@ -20,21 +19,24 @@ class RegisterRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create:
-          (context) => RegisterCubit(
-            RepositoryProvider.of<AuthenticationRepository>(context),
-          ),
-      child: AppScaffold(
-        body: RegisterListener(goToVerificationRoute: goToVerificationRoute),
-      ),
+    return RegisterListener(
+      goToVerificationRoute: goToVerificationRoute,
+      goToLoginRoute: goToLoginRoute,
+      goToHomeRoute: goToHomeRoute,
     );
   }
 }
 
 class RegisterListener extends StatelessWidget {
-  const RegisterListener({super.key, this.goToVerificationRoute});
+  const RegisterListener({
+    super.key,
+    this.goToVerificationRoute,
+    this.goToLoginRoute,
+    this.goToHomeRoute,
+  });
   final VoidCallback? goToVerificationRoute;
+  final VoidCallback? goToLoginRoute;
+  final VoidCallback? goToHomeRoute;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +49,7 @@ class RegisterListener extends StatelessWidget {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
-          ).showSnackBar(SnackBar(content: Text(content)));
+          ).showSnackBar(SnackBar(content: Text(state.exception ?? content)));
         } else if (state.verificationStatus.isServerConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
@@ -57,7 +59,10 @@ class RegisterListener extends StatelessWidget {
           goToVerificationRoute?.call();
         }
       },
-      child: RegisterForm(),
+      child: RegisterForm(
+        goToHomeRoute: goToHomeRoute,
+        goToLoginRoute: goToLoginRoute,
+      ),
     );
   }
 }
@@ -141,50 +146,6 @@ class _RegisterFormState extends State<RegisterForm> {
           SizedBox(height: context.sizeExtenstion.large),
           TextButton(onPressed: widget.goToLoginRoute, child: Text('Login')),
         ],
-      ),
-    );
-  }
-}
-
-class NumberTextField extends StatelessWidget {
-  const NumberTextField({
-    super.key,
-    required this.label,
-    this.prefix,
-    this.hintText,
-    this.maxLength,
-    this.onChange,
-    this.validator,
-    this.obscureText = false,
-  });
-  final String label;
-  final String? prefix;
-  final String? hintText;
-  final int? maxLength;
-  final ValueSetter<String>? onChange;
-  final String? Function(String?)? validator;
-  final bool obscureText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: TextFormField(
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        keyboardType: TextInputType.number,
-        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-        decoration: InputDecoration(
-          labelText: label,
-          prefixText: prefix,
-          hintText: hintText,
-        ),
-        obscureText: obscureText,
-        textDirection: TextDirection.ltr,
-        maxLength: maxLength,
-        textAlign: TextAlign.left,
-        onChanged: onChange,
-
-        validator: validator,
       ),
     );
   }
