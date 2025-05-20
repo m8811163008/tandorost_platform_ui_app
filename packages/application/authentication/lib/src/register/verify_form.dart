@@ -20,8 +20,11 @@ class _VerifyFormRegisterState extends State<VerifyFormRegister> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Verify number', style: context.textTheme.headlineLarge),
-          SizedBox(height: context.sizeExtenstion.medium),
+          Text(
+            context.l10n.verifyNumberTextFieldLabel,
+            style: context.textTheme.headlineLarge,
+          ),
+          SizedBox(height: context.sizeExtenstion.extraLarge),
 
           VerificationCodeTextField(
             onChanged: context.read<RegisterCubit>().onChangeVerificationCode,
@@ -33,9 +36,11 @@ class _VerifyFormRegisterState extends State<VerifyFormRegister> {
                     previous.registerStatus != current.registerStatus,
             builder: (context, state) {
               return state.registerStatus.isLoading
-                  ? AppOutLineButton.loading(label: 'submit')
+                  ? AppOutLineButton.loading(
+                    label: context.l10n.verifyFormOutlineLabel,
+                  )
                   : AppOutLineButton(
-                    label: 'submit',
+                    label: context.l10n.verifyFormOutlineLabel,
                     onTap: () {
                       if (_key.currentState!.validate()) {
                         context.read<RegisterCubit>().onRegister();

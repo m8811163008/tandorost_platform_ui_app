@@ -94,8 +94,11 @@ class _RegisterFormState extends State<RegisterForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('register', style: context.textTheme.headlineLarge),
-          SizedBox(height: context.sizeExtenstion.medium),
+          Text(
+            context.l10n.registerLabel,
+            style: context.textTheme.headlineLarge,
+          ),
+          SizedBox(height: context.sizeExtenstion.extraLarge),
           PhoneNumberTextField(
             onChange: (value) {
               context.read<RegisterCubit>().onChangePhoneNumber('09$value');
@@ -118,9 +121,11 @@ class _RegisterFormState extends State<RegisterForm> {
                         current.verificationStatus,
                 builder: (context, state) {
                   return state.verificationStatus.isLoading
-                      ? AppOutLineButton.loading(label: 'Send')
+                      ? AppOutLineButton.loading(
+                        label: context.l10n.verifyRouteOutlineLabel,
+                      )
                       : AppOutLineButton(
-                        label: 'Send',
+                        label: context.l10n.verifyRouteOutlineLabel,
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
                             context
@@ -134,13 +139,16 @@ class _RegisterFormState extends State<RegisterForm> {
               SizedBox(width: context.sizeExtenstion.small),
               TextButton(
                 onPressed: widget.goToHomeRoute,
-                child: Text('Cancle'),
+                child: Text(context.l10n.outlineLabelBackToHome),
               ),
             ],
           ),
 
           SizedBox(height: context.sizeExtenstion.large),
-          TextButton(onPressed: widget.goToLoginRoute, child: Text('Login')),
+          TextButton(
+            onPressed: widget.goToLoginRoute,
+            child: Text(context.l10n.textButtonLabelLogin),
+          ),
         ],
       ),
     );

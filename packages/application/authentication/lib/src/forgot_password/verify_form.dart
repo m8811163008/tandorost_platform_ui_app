@@ -21,8 +21,11 @@ class _VerifyFormForgotPasswordState extends State<VerifyFormForgotPassword> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Verify number', style: context.textTheme.headlineLarge),
-          SizedBox(height: context.sizeExtenstion.medium),
+          Text(
+            context.l10n.verifyNumberTextFieldLabel,
+            style: context.textTheme.headlineLarge,
+          ),
+          SizedBox(height: context.sizeExtenstion.extraLarge),
           VerificationCodeTextField(
             onChanged:
                 context.read<ForgotPasswordCubit>().onChangeVerificationCode,
@@ -36,9 +39,11 @@ class _VerifyFormForgotPasswordState extends State<VerifyFormForgotPassword> {
                     current.forgotPasswordStatus,
             builder: (context, state) {
               return state.forgotPasswordStatus.isLoading
-                  ? AppOutLineButton.loading(label: 'submit')
+                  ? AppOutLineButton.loading(
+                    label: context.l10n.verifyFormOutlineLabel,
+                  )
                   : AppOutLineButton(
-                    label: 'submit',
+                    label: context.l10n.verifyFormOutlineLabel,
                     onTap: () {
                       if (_key.currentState!.validate()) {
                         context.read<ForgotPasswordCubit>().onForgotPassword();

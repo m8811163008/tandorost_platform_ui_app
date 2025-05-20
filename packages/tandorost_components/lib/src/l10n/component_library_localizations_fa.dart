@@ -110,4 +110,37 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String minLengthFormFieldValidationError(int minLength) {
     return 'حداقل $minLength حروف باید تایپ کنید';
   }
+
+  @override
+  String get registerLabel => 'ثبت نام';
+
+  @override
+  String get loginRouteLabel => 'ورود';
+
+  @override
+  String get verifyRouteOutlineLabel => 'ارسال کد';
+
+  @override
+  String get outlineLabelBackToHome => 'بازگشت به خانه';
+
+  @override
+  String get textButtonLabelLogin => 'ورود';
+
+  @override
+  String get verifyNumberTextFieldLabel => 'تایید شماره همراه';
+
+  @override
+  String get verifyFormOutlineLabel => 'ارسال';
+
+  @override
+  String get forgotPasswordLabel => 'فراموشی رمز عبور';
+
+  @override
+  String get phoneNumberTextFieldLabel => 'شماره تلفن همراه';
+
+  @override
+  String get passwordTextFieldLabel => 'رمز عبور';
+
+  @override
+  String get verificationCodeTextFieldLabel => 'کد پیامک شده';
 }

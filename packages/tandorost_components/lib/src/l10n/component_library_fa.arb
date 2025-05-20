@@ -56,5 +56,16 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "registerLabel": "ثبت نام",
+    "loginRouteLabel": "ورود",
+    "verifyRouteOutlineLabel": "ارسال کد",
+    "outlineLabelBackToHome": "بازگشت به خانه",
+    "textButtonLabelLogin": "ورود",
+    "verifyNumberTextFieldLabel": "تایید شماره همراه",
+    "verifyFormOutlineLabel": "ارسال",
+    "forgotPasswordLabel": "فراموشی رمز عبور",
+    "phoneNumberTextFieldLabel": "شماره تلفن همراه",
+    "passwordTextFieldLabel": "رمز عبور",
+    "verificationCodeTextFieldLabel": "کد پیامک شده"
 }

@@ -8,7 +8,7 @@ class PhoneNumberTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NumberTextField(
-      label: 'phonenumber',
+      label: context.l10n.phoneNumberTextFieldLabel,
       prefix: '+98  9',
       hintText: '---------',
       maxLength: 9,

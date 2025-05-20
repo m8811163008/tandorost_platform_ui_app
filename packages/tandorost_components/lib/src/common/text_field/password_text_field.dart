@@ -8,7 +8,7 @@ class PasswordTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NumberTextField(
-      label: 'Password',
+      label: context.l10n.passwordTextFieldLabel,
       hintText: '1234',
       maxLength: 4,
       obscureText: true,

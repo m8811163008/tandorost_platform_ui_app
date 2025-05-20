@@ -8,7 +8,7 @@ class VerificationCodeTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NumberTextField(
-      label: 'verificationCode',
+      label: context.l10n.verificationCodeTextFieldLabel,
       hintText: '- - - -',
       maxLength: 4,
       onChange: onChanged,

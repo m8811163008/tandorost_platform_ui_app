@@ -99,8 +99,11 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('forgot password', style: context.textTheme.headlineLarge),
-          SizedBox(height: context.sizeExtenstion.medium),
+          Text(
+            context.l10n.forgotPasswordLabel,
+            style: context.textTheme.headlineLarge,
+          ),
+          SizedBox(height: context.sizeExtenstion.extraLarge),
           PhoneNumberTextField(
             onChange: (value) {
               context.read<ForgotPasswordCubit>().onChangePhoneNumber(
@@ -120,9 +123,11 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                     previous.verificationStatus != current.verificationStatus,
             builder: (context, state) {
               return state.verificationStatus.isLoading
-                  ? AppOutLineButton.loading(label: 'Send')
+                  ? AppOutLineButton.loading(
+                    label: context.l10n.verifyRouteOutlineLabel,
+                  )
                   : AppOutLineButton(
-                    label: 'Send',
+                    label: context.l10n.verifyRouteOutlineLabel,
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
                         context
@@ -139,12 +144,12 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
             children: [
               TextButton(
                 onPressed: widget.goToRegisterRoute,
-                child: Text('Register'),
+                child: Text(context.l10n.registerLabel),
               ),
               SizedBox(width: context.sizeExtenstion.small),
               TextButton(
                 onPressed: widget.goToLoginRoute,
-                child: Text('Login'),
+                child: Text(context.l10n.textButtonLabelLogin),
               ),
             ],
           ),

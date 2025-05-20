@@ -97,8 +97,11 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('login', style: context.textTheme.headlineLarge),
-          SizedBox(height: context.sizeExtenstion.medium),
+          Text(
+            context.l10n.loginRouteLabel,
+            style: context.textTheme.headlineLarge,
+          ),
+          SizedBox(height: context.sizeExtenstion.extraLarge),
           PhoneNumberTextField(
             onChange: (value) {
               context.read<LoginCubit>().onChangePhoneNumber('09$value');
@@ -119,9 +122,11 @@ class _LoginFormState extends State<LoginForm> {
                         previous.loginStatus != current.loginStatus,
                 builder: (context, state) {
                   return state.loginStatus.isLoading
-                      ? AppOutLineButton.loading(label: 'Login')
+                      ? AppOutLineButton.loading(
+                        label: context.l10n.textButtonLabelLogin,
+                      )
                       : AppOutLineButton(
-                        label: 'Login',
+                        label: context.l10n.textButtonLabelLogin,
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
                             context.read<LoginCubit>().login();
@@ -133,7 +138,7 @@ class _LoginFormState extends State<LoginForm> {
               SizedBox(width: context.sizeExtenstion.small),
               TextButton(
                 onPressed: widget.goToHomeRoute?.call,
-                child: Text('Cancle'),
+                child: Text(context.l10n.outlineLabelBackToHome),
               ),
             ],
           ),
@@ -143,12 +148,12 @@ class _LoginFormState extends State<LoginForm> {
             children: [
               TextButton(
                 onPressed: widget.goToRegisterRoute?.call,
-                child: Text('Register'),
+                child: Text(context.l10n.registerLabel),
               ),
               SizedBox(width: context.sizeExtenstion.small),
               TextButton(
                 onPressed: widget.goToForgotPasswordRoute?.call,
-                child: Text('ForgotPass'),
+                child: Text(context.l10n.forgotPasswordLabel),
               ),
             ],
           ),

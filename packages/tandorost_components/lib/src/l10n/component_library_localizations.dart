@@ -266,6 +266,72 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'حداقل {minLength} حروف باید تایپ کنید'**
   String minLengthFormFieldValidationError(int minLength);
+
+  /// No description provided for @registerLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'ثبت نام'**
+  String get registerLabel;
+
+  /// No description provided for @loginRouteLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'ورود'**
+  String get loginRouteLabel;
+
+  /// No description provided for @verifyRouteOutlineLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'ارسال کد'**
+  String get verifyRouteOutlineLabel;
+
+  /// No description provided for @outlineLabelBackToHome.
+  ///
+  /// In fa, this message translates to:
+  /// **'بازگشت به خانه'**
+  String get outlineLabelBackToHome;
+
+  /// No description provided for @textButtonLabelLogin.
+  ///
+  /// In fa, this message translates to:
+  /// **'ورود'**
+  String get textButtonLabelLogin;
+
+  /// No description provided for @verifyNumberTextFieldLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'تایید شماره همراه'**
+  String get verifyNumberTextFieldLabel;
+
+  /// No description provided for @verifyFormOutlineLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'ارسال'**
+  String get verifyFormOutlineLabel;
+
+  /// No description provided for @forgotPasswordLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'فراموشی رمز عبور'**
+  String get forgotPasswordLabel;
+
+  /// No description provided for @phoneNumberTextFieldLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'شماره تلفن همراه'**
+  String get phoneNumberTextFieldLabel;
+
+  /// No description provided for @passwordTextFieldLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'رمز عبور'**
+  String get passwordTextFieldLabel;
+
+  /// No description provided for @verificationCodeTextFieldLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'کد پیامک شده'**
+  String get verificationCodeTextFieldLabel;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {
