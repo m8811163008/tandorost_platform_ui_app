@@ -25,12 +25,8 @@ class AuthenticationRepository {
   }) => remoteApi.forgotPassword(forgotPasswordRequest: forgotPasswordRequest);
 
   Future<void> authenticate({required Credential credential}) async {
-    try {
-      final token = await remoteApi.authenticate(credential: credential);
-      await localStorage.upsert(StorageKey.token, token.toJson());
-    } on Exception {
-      rethrow;
-    }
+    final token = await remoteApi.authenticate(credential: credential);
+    await localStorage.upsert(StorageKey.token, token.toJson());
   }
 
   Future<Token?> getToken() async {

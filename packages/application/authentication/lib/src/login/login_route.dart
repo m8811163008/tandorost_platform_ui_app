@@ -4,31 +4,68 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class LoginRoute extends StatelessWidget {
-  const LoginRoute({super.key, this.onForgotPasswordTap, this.onRegisterTap});
+  const LoginRoute({
+    super.key,
+    this.goToRegisterRoute,
+    this.goToForgotPasswordRoute,
+    this.goToHomeRoute,
+  });
   static const String name = 'login';
 
-  final VoidCallback? onRegisterTap;
-  final VoidCallback? onForgotPasswordTap;
+  final VoidCallback? goToRegisterRoute;
+  final VoidCallback? goToForgotPasswordRoute;
+  final VoidCallback? goToHomeRoute;
 
   @override
   Widget build(BuildContext context) {
-    return LoginForm();
+    return BlocListener<LoginCubit, LoginState>(
+      listenWhen:
+          (previous, current) => previous.loginStatus != current.loginStatus,
+      listener: (context, state) {
+        if (state.loginStatus.isServerConnectionError) {
+          final content = context.l10n.networkError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.exception ?? content)));
+        } else if (state.loginStatus.isServerConnectionError) {
+          final content = context.l10n.internetConnectionError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.loginStatus.isSuccess) {
+          goToHomeRoute?.call();
+        }
+      },
+      child: LoginForm(
+        goToRegisterRoute: goToRegisterRoute,
+        goToForgotPasswordRoute: goToForgotPasswordRoute,
+        goToHomeRoute: goToHomeRoute,
+      ),
+    );
   }
 }
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+  const LoginForm({
+    super.key,
+    this.goToRegisterRoute,
+    this.goToForgotPasswordRoute,
+    this.goToHomeRoute,
+  });
+  final VoidCallback? goToRegisterRoute;
+  final VoidCallback? goToForgotPasswordRoute;
+  final VoidCallback? goToHomeRoute;
 
   @override
   State<LoginForm> createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final _form = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _form,
+      key: _formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -57,22 +94,34 @@ class _LoginFormState extends State<LoginForm> {
                       ? AppOutLineButton.loading(label: 'Login')
                       : AppOutLineButton(
                         label: 'Login',
-                        onTap: context.read<LoginCubit>().login,
+                        onTap: () {
+                          if (_formKey.currentState!.validate()) {
+                            context.read<LoginCubit>().login();
+                          }
+                        },
                       );
                 },
               ),
-
               SizedBox(width: context.sizeExtenstion.small),
-              TextButton(onPressed: () {}, child: Text('Cancle')),
+              TextButton(
+                onPressed: widget.goToHomeRoute?.call,
+                child: Text('Cancle'),
+              ),
             ],
           ),
           SizedBox(height: context.sizeExtenstion.large),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextButton(onPressed: () {}, child: Text('Register')),
+              TextButton(
+                onPressed: widget.goToRegisterRoute?.call,
+                child: Text('Register'),
+              ),
               SizedBox(width: context.sizeExtenstion.small),
-              TextButton(onPressed: () {}, child: Text('ForgotPass')),
+              TextButton(
+                onPressed: widget.goToForgotPasswordRoute?.call,
+                child: Text('ForgotPass'),
+              ),
             ],
           ),
         ],

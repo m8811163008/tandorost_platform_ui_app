@@ -1,0 +1,128 @@
+import 'package:authentication_app/src/forgot_password/cubit/forgot_password_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tandorost_components/tandorost_components.dart';
+
+class ForgotPasswordRoute extends StatelessWidget {
+  const ForgotPasswordRoute({
+    super.key,
+    this.goToLoginRoute,
+    this.goToVerificationRoute,
+    this.goToRegisterRoute,
+  });
+  static const String name = 'forgot-password';
+
+  final VoidCallback? goToLoginRoute;
+  final VoidCallback? goToVerificationRoute;
+  final VoidCallback? goToRegisterRoute;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
+      listenWhen:
+          (previous, current) =>
+              previous.verificationStatus != current.verificationStatus,
+      listener: (context, state) {
+        if (state.verificationStatus.isServerConnectionError) {
+          final content = context.l10n.networkError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.exception ?? content)));
+        } else if (state.verificationStatus.isServerConnectionError) {
+          final content = context.l10n.internetConnectionError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.verificationStatus.isSuccess) {
+          goToVerificationRoute?.call();
+        }
+      },
+      child: AppScaffold(
+        body: ForgotPasswordForm(
+          goToRegisterRoute: goToRegisterRoute,
+          goToLoginRoute: goToLoginRoute,
+          goToVerificationRoute: goToVerificationRoute,
+        ),
+      ),
+    );
+  }
+}
+
+class ForgotPasswordForm extends StatefulWidget {
+  const ForgotPasswordForm({
+    super.key,
+    this.goToRegisterRoute,
+    this.goToLoginRoute,
+    this.goToVerificationRoute,
+  });
+  final VoidCallback? goToLoginRoute;
+  final VoidCallback? goToVerificationRoute;
+  final VoidCallback? goToRegisterRoute;
+
+  @override
+  State<ForgotPasswordForm> createState() => _ForgotPasswordFormState();
+}
+
+class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
+  final _formKey = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('forgot password', style: context.textTheme.headlineLarge),
+          SizedBox(height: context.sizeExtenstion.medium),
+          PhoneNumberTextField(
+            onChange: (value) {
+              context.read<ForgotPasswordCubit>().onChangePhoneNumber(
+                '09$value',
+              );
+            },
+          ),
+          SizedBox(height: context.sizeExtenstion.small),
+          PasswordTextField(
+            onChange: context.read<ForgotPasswordCubit>().onChangePinCode,
+          ),
+
+          SizedBox(height: context.sizeExtenstion.large),
+          BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
+            buildWhen:
+                (previous, current) =>
+                    previous.verificationStatus != current.verificationStatus,
+            builder: (context, state) {
+              return state.verificationStatus.isLoading
+                  ? AppOutLineButton.loading(label: 'Send')
+                  : AppOutLineButton(
+                    label: 'Send',
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        context
+                            .read<ForgotPasswordCubit>()
+                            .sendVerificationCode();
+                      }
+                    },
+                  );
+            },
+          ),
+          SizedBox(height: context.sizeExtenstion.large),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: widget.goToRegisterRoute,
+                child: Text('Register'),
+              ),
+              SizedBox(width: context.sizeExtenstion.small),
+              TextButton(
+                onPressed: widget.goToLoginRoute,
+                child: Text('Login'),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

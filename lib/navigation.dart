@@ -35,57 +35,12 @@ class Navigation {
         ),
         ShellRoute(
           builder: (context, state, child) {
-            return AppScaffold(
-              appBar: AppBar(),
-              body: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: context.sizeExtenstion.extraLarge,
-                ),
-                child: child,
-              ),
-            );
-          },
-          routes: [
-            GoRoute(
-              path: loginRoute,
-              builder: (context, state) {
-                return LoginRoute();
-              },
-            ),
-            GoRoute(
-              path: forgotPassRoute,
-              builder: (context, state) {
-                return ForgotPasswordRoute();
-              },
-              routes: [
-                GoRoute(
-                  path: verificationRoute,
-                  builder: (context, state) {
-                    return RegisterVerifyPhoneNumberRoute(
-                      goToLoginRoute: () => context.go(loginRoute),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-        ShellRoute(
-          builder: (context, state, child) {
-            return BlocProvider(
-              create:
+            return AuthShell(
+              createBloc:
                   (context) => RegisterCubit(
                     RepositoryProvider.of<AuthenticationRepository>(context),
                   ),
-              child: AppScaffold(
-                appBar: AppBar(),
-                body: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: context.sizeExtenstion.extraLarge,
-                  ),
-                  child: child,
-                ),
-              ),
+              child: child,
             );
           },
           routes: [
@@ -112,7 +67,83 @@ class Navigation {
             ),
           ],
         ),
+        ShellRoute(
+          builder: (context, state, child) {
+            return AuthShell(
+              createBloc:
+                  (context) => LoginCubit(
+                    RepositoryProvider.of<AuthenticationRepository>(context),
+                  ),
+              child: child,
+            );
+          },
+          routes: [
+            GoRoute(
+              path: loginRoute,
+              builder: (context, state) {
+                return LoginRoute(
+                  goToForgotPasswordRoute: () {
+                    context.go('$loginRoute$forgotPassRoute');
+                  },
+                  goToHomeRoute: () {
+                    // Todo nav to home for all routes
+                    context.go('$loginRoute$forgotPassRoute');
+                  },
+                  goToRegisterRoute: () {
+                    context.go(registerRoute);
+                  },
+                );
+              },
+            ),
+            GoRoute(
+              path: forgotPassRoute,
+              builder: (context, state) {
+                return ForgotPasswordRoute(
+                  goToLoginRoute : () => context.go(loginRoute),
+                  goToVerificationRoute : () => context.go('$loginRoute$forgotPassRoute$verificationRoute'),
+                  goToRegisterRoute : () => context.go(registerRoute)
+                );
+              },
+              routes: [
+                GoRoute(
+                  path: verificationRoute,
+                  builder: (context, state) {
+                    return ForgotPasswordVerifyPhoneNumberRoute(
+                      goToLoginRoute: () => context.go(loginRoute),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
+    );
+  }
+}
+
+class AuthShell<T extends StateStreamableSource<Object?>>
+    extends StatelessWidget {
+  const AuthShell({super.key, required this.child, required this.createBloc});
+  final Widget child;
+  final T Function(BuildContext) createBloc;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: createBloc,
+      // (context) => RegisterCubit(
+      //   RepositoryProvider.of<AuthenticationRepository>(context),
+      // ),
+      child: AppScaffold(
+        appBar: AppBar(),
+        body: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: context.sizeExtenstion.extraLarge,
+          ),
+          child: child,
+        ),
+      ),
     );
   }
 }

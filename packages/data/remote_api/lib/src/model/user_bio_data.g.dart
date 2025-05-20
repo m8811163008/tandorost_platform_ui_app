@@ -179,4 +179,8 @@ UserBioData _$UserBioDataFromJson(Map<String, dynamic> json) => $checkedCreate(
   },
 );
 
-const _$GenderEnumMap = {Gender.male: 'male', Gender.female: 'female'};
+const _$GenderEnumMap = {
+  Gender.male: 'male',
+  Gender.female: 'female',
+  Gender.unknown: 'unknown',
+};

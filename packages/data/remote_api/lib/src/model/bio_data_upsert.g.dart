@@ -27,7 +27,11 @@ Map<String, dynamic> _$UserBioDataUpsertToJson(
     'activity_level': value,
 };
 
-const _$GenderEnumMap = {Gender.male: 'male', Gender.female: 'female'};
+const _$GenderEnumMap = {
+  Gender.male: 'male',
+  Gender.female: 'female',
+  Gender.unknown: 'unknown',
+};
 
 const _$ActivityLevelEnumMap = {
   ActivityLevel.sedentary: 'sedentary',
