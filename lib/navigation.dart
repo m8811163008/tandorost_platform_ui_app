@@ -60,7 +60,7 @@ class Navigation {
               routes: [
                 GoRoute(
                   path: verificationRoute,
-                  builder: (_, state) {
+                  builder: (context, state) {
                     return RegisterVerifyPhoneNumberRoute(
                       goToLoginRoute: () => context.go(loginRoute),
                     );
@@ -94,7 +94,7 @@ class Navigation {
               builder: (context, state) {
                 return RegisterRoute(
                   goToHomeRoute: () {},
-                  goToLoginRoute: () => context.go('$loginRoute'),
+                  goToLoginRoute: () => context.go(loginRoute),
                   goToVerificationRoute:
                       () => context.go('$registerRoute$verificationRoute'),
                 );
@@ -102,7 +102,7 @@ class Navigation {
               routes: [
                 GoRoute(
                   path: verificationRoute,
-                  builder: (_, state) {
+                  builder: (context, state) {
                     return RegisterVerifyPhoneNumberRoute(
                       goToLoginRoute: () => context.go(loginRoute),
                     );

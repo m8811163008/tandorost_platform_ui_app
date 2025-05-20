@@ -88,52 +88,40 @@ class _RegisterFormState extends State<RegisterForm> {
         children: [
           Text('register', style: context.textTheme.headlineLarge),
           SizedBox(height: context.sizeExtenstion.medium),
-          NumberTextField(
-            label: 'Phonenumber',
-            prefix: '+98  9',
-            hintText: '---------',
-            maxLength: 9,
+          PhoneNumberTextField(
             onChange: (value) {
               context.read<RegisterCubit>().onChangePhoneNumber('09$value');
-            },
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return context.l10n.emptyFormFieldValidationError;
-              } else if (value.length < 9) {
-                return context.l10n.minLengthFormFieldValidationError(9);
-              }
-              return null;
             },
           ),
 
           SizedBox(height: context.sizeExtenstion.small),
-          NumberTextField(
-            label: 'PinCode',
-            hintText: '1234',
-            maxLength: 4,
-            obscureText: true,
+          PasswordTextField(
             onChange: context.read<RegisterCubit>().onChangePinCode,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return context.l10n.emptyFormFieldValidationError;
-              } else if (value.length < 4) {
-                return context.l10n.minLengthFormFieldValidationError(4);
-              }
-              return null;
-            },
           ),
 
           SizedBox(height: context.sizeExtenstion.large),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              OutlinedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    context.read<RegisterCubit>().sendVerificationCode();
-                  }
+              BlocBuilder<RegisterCubit, RegisterState>(
+                buildWhen:
+                    (previous, current) =>
+                        previous.verificationStatus !=
+                        current.verificationStatus,
+                builder: (context, state) {
+                  return state.verificationStatus.isLoading
+                      ? AppOutLineButton.loading(label: 'Send')
+                      : AppOutLineButton(
+                        label: 'Send',
+                        onTap: () {
+                          if (_formKey.currentState!.validate()) {
+                            context
+                                .read<RegisterCubit>()
+                                .sendVerificationCode();
+                          }
+                        },
+                      );
                 },
-                child: Text('Register'),
               ),
               SizedBox(width: context.sizeExtenstion.small),
               TextButton(

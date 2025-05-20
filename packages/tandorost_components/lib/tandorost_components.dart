@@ -3,7 +3,7 @@ export 'src/food_input/food_input.dart';
 export 'src/common/diaog/app_diaog.dart';
 export 'src/common/layout/app_scaffold.dart';
 export 'src/common/button/button.dart';
-export 'src/common/text_field/number_text_field.dart';
+export 'src/common/text_field/text_field.dart';
 // l10n
 export 'src/l10n/component_library_localizations.dart';
 export 'src/utility/build_context_l10n_extension.dart';

@@ -26,7 +26,7 @@ class RegisterVerifyPhoneNumberRoute extends StatelessWidget {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.exception ?? content)));
-        } else if (state.verificationStatus.isSuccess) {
+        } else if (state.registerStatus.isSuccess) {
           goToLoginRoute?.call();
         }
       },
