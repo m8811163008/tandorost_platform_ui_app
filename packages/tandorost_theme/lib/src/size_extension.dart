@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 /// A class that represents the extension for defining sizes in a theme.
@@ -10,6 +9,7 @@ class SizeExtenstion extends ThemeExtension<SizeExtenstion> {
   final double large;
   final double extraLarge;
   final double xExtraLarge;
+  final double profileRadius;
   final double full;
   final Size chatButton;
   final Size appButton;
@@ -24,6 +24,7 @@ class SizeExtenstion extends ThemeExtension<SizeExtenstion> {
     this.extraLarge = 32,
     this.full = double.infinity,
     this.xExtraLarge = 40,
+    this.profileRadius = 48,
     this.chatButton = const Size.square(180),
     this.appButton = const Size.square(24),
   });

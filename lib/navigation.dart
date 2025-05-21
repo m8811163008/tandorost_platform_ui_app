@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:food_input_app/food_input.dart';
+import 'package:profile_app/profile.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class Navigation {
@@ -14,8 +15,9 @@ class Navigation {
     final resultRoute = '/${ResultRoute.name}';
     final forgotPassRoute = '/${ForgotPasswordRoute.name}';
     final verificationRoute = '/${RegisterVerifyPhoneNumberRoute.name}';
+    final profileRoute = '/${ProfileRoute.name}';
     return GoRouter(
-      initialLocation: loginRoute,
+      initialLocation: profileRoute,
       routes: [
         GoRoute(
           path: searchRoute,
@@ -130,6 +132,12 @@ class Navigation {
               ],
             ),
           ],
+        ),
+        GoRoute(
+          path: profileRoute,
+          builder: (context, state) {
+            return ProfileRoute();
+          },
         ),
       ],
     );

@@ -7,25 +7,34 @@ class AppTheme {
 
   AppTheme({required this.locale});
 
-  ThemeData get lightTheme => ThemeData.light(useMaterial3: true).copyWith(
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: ThemeColor.pictonBlue.color,
-      primary: ThemeColor.pictonBlue.color,
-      secondary: ThemeColor.oxfordBlue.color,
-      tertiary: ThemeColor.pigmentGreen.color,
-      onPrimary: ThemeColor.charcoal.color,
-      onSecondary: ThemeColor.white.color,
-    ),
-    textTheme: textTheme(locale),
-    extensions: [SizeExtenstion()],
-    appBarTheme: AppBarTheme(color: ThemeColor.white.color),
-    inputDecorationTheme: InputDecorationTheme(
-      border: OutlineInputBorder(),
-      hintStyle: textTheme(
-        locale,
-      ).bodyMedium!.copyWith(color: ThemeColor.charcoal.color),
-    ),
-  );
+  ThemeData get lightTheme {
+    final sizeExtenstion = SizeExtenstion();
+    return ThemeData.light(useMaterial3: true).copyWith(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: ThemeColor.pictonBlue.color,
+        primary: ThemeColor.pictonBlue.color,
+        secondary: ThemeColor.oxfordBlue.color,
+        tertiary: ThemeColor.pigmentGreen.color,
+        onPrimary: ThemeColor.charcoal.color,
+        onSecondary: ThemeColor.white.color,
+      ),
+      textTheme: textTheme(locale),
+      extensions: [sizeExtenstion],
+      appBarTheme: AppBarTheme(color: ThemeColor.white.color),
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(),
+        hintStyle: textTheme(
+          locale,
+        ).bodyMedium!.copyWith(color: ThemeColor.charcoal.color),
+      ),
+      cardTheme: CardThemeData(
+        margin: EdgeInsets.symmetric(
+          horizontal: sizeExtenstion.medium,
+          vertical: sizeExtenstion.small,
+        ),
+      ),
+    );
+  }
 
   TextTheme textTheme(Locale locale) {
     final themeData = ThemeData.light(useMaterial3: true);

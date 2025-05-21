@@ -18,6 +18,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
         'address',
         'full_name',
         'language',
+        'change_weight_speed',
       ],
     );
     final val = UserProfile(
@@ -32,6 +33,10 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
         'language',
         (v) => $enumDecode(_$LanguageEnumMap, v),
       ),
+      changeWeightSpeed: $checkedConvert(
+        'change_weight_speed',
+        (v) => $enumDecode(_$ChangeWeightSpeedEnumMap, v),
+      ),
     );
     return val;
   },
@@ -39,6 +44,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
     'id': '_id',
     'phoneNumber': 'phone_number',
     'fullName': 'full_name',
+    'changeWeightSpeed': 'change_weight_speed',
   },
 );
 
@@ -49,6 +55,8 @@ Map<String, dynamic> _$UserProfileToJson(UserProfile instance) =>
       if (instance.address?.toJson() case final value?) 'address': value,
       if (instance.fullName case final value?) 'full_name': value,
       'language': _$LanguageEnumMap[instance.language]!,
+      'change_weight_speed':
+          _$ChangeWeightSpeedEnumMap[instance.changeWeightSpeed]!,
     };
 
 const _$LanguageEnumMap = {
@@ -82,4 +90,11 @@ const _$LanguageEnumMap = {
   Language.thai: 'th',
   Language.polish: 'pl',
   Language.ukrainian: 'uk',
+};
+
+const _$ChangeWeightSpeedEnumMap = {
+  ChangeWeightSpeed.constant: 'constant',
+  ChangeWeightSpeed.slowAndEasy: 'slow_and_easy',
+  ChangeWeightSpeed.medium: 'medium',
+  ChangeWeightSpeed.fastAndHard: 'fast_and_hard',
 };

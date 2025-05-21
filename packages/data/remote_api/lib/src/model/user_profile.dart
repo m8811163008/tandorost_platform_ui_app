@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remote_api/remote_api.dart';
+import 'package:remote_api/src/model/change_weight_speed.dart';
 
 part 'user_profile.g.dart';
 
@@ -11,6 +12,7 @@ class UserProfile {
   final Address? address;
   final String? fullName;
   final Language language;
+  final ChangeWeightSpeed changeWeightSpeed;
 
   UserProfile copyWith({
     String? id,
@@ -18,6 +20,7 @@ class UserProfile {
     Address? address,
     String? fullName,
     Language? language,
+    ChangeWeightSpeed? changeWeightSpeed,
   }) {
     return UserProfile(
       id: id ?? this.id,
@@ -25,6 +28,7 @@ class UserProfile {
       address: address ?? this.address,
       fullName: fullName ?? this.fullName,
       language: language ?? this.language,
+      changeWeightSpeed: changeWeightSpeed ?? this.changeWeightSpeed,
     );
   }
 
@@ -34,6 +38,7 @@ class UserProfile {
     required this.address,
     required this.fullName,
     required this.language,
+    required this.changeWeightSpeed,
   });
 
   factory UserProfile.fromJson(Map<String, dynamic> json) =>
