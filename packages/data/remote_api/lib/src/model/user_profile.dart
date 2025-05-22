@@ -59,5 +59,6 @@ class UserProfile extends Equatable {
     fullName,
     language,
     changeWeightSpeed,
+    isFasting,
   ];
 }

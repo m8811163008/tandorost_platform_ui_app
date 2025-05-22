@@ -14,6 +14,7 @@ class ChangeWeightSpeedSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text('data', style: context.textTheme.titleMedium),
         SegmentedButton<ChangeWeightSpeed>(
@@ -35,8 +36,11 @@ class ChangeWeightSpeedSetting extends StatelessWidget {
               label: Text('M'),
             ),
           ],
-          selected: {ChangeWeightSpeed.constant},
-          onSelectionChanged: (Set<ChangeWeightSpeed> newSelection) {},
+          selected: {selected},
+          onSelectionChanged: (Set<ChangeWeightSpeed> newSelection) {
+            onSelectionChanged?.call(newSelection.first);
+          },
+          multiSelectionEnabled: false,
         ),
       ],
     );

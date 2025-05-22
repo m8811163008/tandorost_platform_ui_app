@@ -3,29 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:profile_app/src/cubit/profile_cubit.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
-class EditNameButton extends StatelessWidget {
-  const EditNameButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      visualDensity: VisualDensity.compact,
-      onPressed: () {
-        showDialog(
-          context: context,
-          builder: (_) {
-            return BlocProvider.value(
-              value: context.read<ProfileCubit>(),
-
-              child: EditNameDialog(),
-            );
-          },
-        );
-      },
-      icon: Icon(Icons.edit),
-    );
-  }
-}
 
 class EditNameDialog extends StatelessWidget {
   const EditNameDialog({super.key});

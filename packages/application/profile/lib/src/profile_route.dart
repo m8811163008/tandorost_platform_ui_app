@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_repository/image_repository.dart';
 import 'package:profile/profile.dart';
 import 'package:profile_app/src/cubit/profile_cubit.dart';
+import 'package:profile_app/src/edit_dialog.dart';
+import 'package:profile_app/src/edit_language_button.dart';
 import 'package:profile_app/src/edit_name_button.dart';
 import 'package:tandorost_components/src/profile/language_setting.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -59,7 +61,7 @@ class ProfileCard extends StatelessWidget {
                       name: context.select(
                         (ProfileCubit cubit) => cubit.state.name,
                       ),
-                      editNameButton: EditNameButton(),
+                      editNameButton: EditDialog(dialog: EditNameDialog()),
                     ),
                     SizedBox(height: context.sizeExtenstion.small),
                     PhoneNumberRichText(),
@@ -117,12 +119,28 @@ class SettingCard extends StatelessWidget {
         children: [
           Text('Setting', style: context.textTheme.headlineMedium),
           SizedBox(height: context.sizeExtenstion.medium),
-          ChangeWeightSpeedSetting(selected: ChangeWeightSpeed.constant),
+          ChangeWeightSpeedSetting(
+            selected: context.select(
+              (ProfileCubit cubit) => cubit.state.changeWeightSpeed,
+            ),
+            onSelectionChanged:
+                context.read<ProfileCubit>().onChangeWeightSpeed,
+          ),
           SizedBox(height: context.sizeExtenstion.medium),
-          IsFastingSetting(value: false),
-          // SizedBox(height: context.sizeExtenstion.medium),
+          IsFastingSetting(
+            value: context.select(
+              (ProfileCubit cubit) => cubit.state.isFasting,
+            ),
+            onChanged: context.read<ProfileCubit>().onChangeIsFasting,
+          ),
           Divider(height: context.sizeExtenstion.medium),
-          LanguageSetting(groupValue: Language.arabic),
+          LanguageSetting(
+            value: context.select((ProfileCubit cubit) => cubit.state.language),
+            onChangeLanguageDialog: BlocProvider.value(
+              value: context.read<ProfileCubit>(),
+              child: ChangeLanguageDialog(),
+            ),
+          ),
         ],
       ),
     );

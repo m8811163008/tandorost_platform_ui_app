@@ -37,7 +37,7 @@ class DependencyManager extends StatelessWidget {
             get_user_language: () => Future.value(Language.english),
             get_access_token:
                 () => Future.value(
-                  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiI0ZTU1YWExMC1iMmExLTRlZTktYjhiNC1hYzY5OTVkNzJlZGIiLCJleHAiOjE3NDc5NDA5MDd9._NWnIu9TAWrCkry1cK_59nSACX6h9_CVyoqMWbaMr6c',
+                  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiI0ZTU1YWExMC1iMmExLTRlZTktYjhiNC1hYzY5OTVkNzJlZGIiLCJleHAiOjE3NDc5NTE3NTV9.RmqHCXmfrwi56Mt5RNStjsuMua_HH6sbHQkRSoYaFdY',
                 ),
           );
 

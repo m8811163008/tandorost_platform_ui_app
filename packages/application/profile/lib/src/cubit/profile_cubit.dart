@@ -121,22 +121,21 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void onChangeWeightSpeed(ChangeWeightSpeed speed) async {
-    await updateProfile(
-      state.userProfile!.copyWith(changeWeightSpeed: state.changeWeightSpeed),
-    );
+    await updateProfile(state.userProfile!.copyWith(changeWeightSpeed: speed));
     emit(state.copyWith(changeWeightSpeed: speed));
   }
 
   void onChangeIsFasting(bool isFasting) async {
-    await updateProfile(
-      state.userProfile!.copyWith(isFasting: state.isFasting),
-    );
+    await updateProfile(state.userProfile!.copyWith(isFasting: isFasting));
     emit(state.copyWith(isFasting: isFasting));
   }
 
-  void onChangeLanguage(Language language) async {
-    await updateProfile(state.userProfile!.copyWith(language: state.language));
+  void onChangeLanguage(Language? language) async {
     emit(state.copyWith(language: language));
+  }
+
+  void updateLanguage() async {
+    await updateProfile(state.userProfile!.copyWith(language: state.language));
   }
 
   Future<void> updateProfile(UserProfile updatedProfile) async {

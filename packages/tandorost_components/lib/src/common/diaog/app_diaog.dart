@@ -23,30 +23,38 @@ class AppDialog extends StatelessWidget {
   }
 
   Widget buildChild(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: context.textTheme.headlineMedium),
-            SizedBox(height: 16.0),
-            ...contents,
-            SizedBox(height: 16.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  onPressed: Navigator.of(context).pop,
-                  child: Text(context.l10n.cancle),
-                ),
-                SizedBox(width: 8),
-                submitButton,
-              ],
+    return Padding(
+      padding: EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 16.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(title, style: context.textTheme.headlineMedium),
+                  SizedBox(height: 16.0),
+                  ...contents,
+                  SizedBox(height: 16.0),
+                ],
+              ),
             ),
-          ],
-        ),
+          ),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: Navigator.of(context).pop,
+                child: Text(context.l10n.cancle),
+              ),
+              SizedBox(width: 8),
+              submitButton,
+            ],
+          ),
+        ],
       ),
     );
   }
