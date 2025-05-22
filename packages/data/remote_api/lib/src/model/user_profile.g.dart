@@ -19,6 +19,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
         'full_name',
         'language',
         'change_weight_speed',
+        'is_fasting',
       ],
     );
     final val = UserProfile(
@@ -37,6 +38,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
         'change_weight_speed',
         (v) => $enumDecode(_$ChangeWeightSpeedEnumMap, v),
       ),
+      isFasting: $checkedConvert('is_fasting', (v) => v as bool),
     );
     return val;
   },
@@ -45,6 +47,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
     'phoneNumber': 'phone_number',
     'fullName': 'full_name',
     'changeWeightSpeed': 'change_weight_speed',
+    'isFasting': 'is_fasting',
   },
 );
 
@@ -57,6 +60,7 @@ Map<String, dynamic> _$UserProfileToJson(UserProfile instance) =>
       'language': _$LanguageEnumMap[instance.language]!,
       'change_weight_speed':
           _$ChangeWeightSpeedEnumMap[instance.changeWeightSpeed]!,
+      'is_fasting': instance.isFasting,
     };
 
 const _$LanguageEnumMap = {

@@ -1,7 +1,9 @@
 import 'package:domain_model/domain_model.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_repository/image_repository.dart';
+import 'package:profile/profile.dart';
+import 'package:profile_app/src/cubit/profile_cubit.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class ProfileRoute extends StatelessWidget {
@@ -10,7 +12,12 @@ class ProfileRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(appBar: AppBar(), body: ProfileView());
+    return BlocProvider(
+      create:
+          (context) =>
+              ProfileCubit(RepositoryProvider.of<ProfileRepository>(context),RepositoryProvider.of<ImageRepository>(context)),
+      child: AppScaffold(appBar: AppBar(), body: ProfileView()),
+    );
   }
 }
 
@@ -48,81 +55,106 @@ class SettingCard extends StatelessWidget {
         children: [
           Text('Setting', style: context.textTheme.headlineMedium),
           SizedBox(height: context.sizeExtenstion.medium),
-          Text('data', style: context.textTheme.titleMedium),
-          SegmentedButton<ChangeWeightSpeed>(
-            segments: const <ButtonSegment<ChangeWeightSpeed>>[
-              ButtonSegment<ChangeWeightSpeed>(
-                value: ChangeWeightSpeed.constant,
-                label: Text('XS'),
-              ),
-              ButtonSegment<ChangeWeightSpeed>(
-                value: ChangeWeightSpeed.fastAndHard,
-                label: Text('S'),
-              ),
-              ButtonSegment<ChangeWeightSpeed>(
-                value: ChangeWeightSpeed.medium,
-                label: Text('M'),
-              ),
-              ButtonSegment<ChangeWeightSpeed>(
-                value: ChangeWeightSpeed.slowAndEasy,
-                label: Text('M'),
-              ),
-            ],
-            selected: {ChangeWeightSpeed.constant},
-            onSelectionChanged: (Set<ChangeWeightSpeed> newSelection) {},
-          ),
+          ChangeWeightSpeedSetting(),
           SizedBox(height: context.sizeExtenstion.medium),
-          Text('data', style: context.textTheme.titleMedium),
-          Switch(value: true, onChanged: (value) {}),
-
+          IsFastingSetting(),
           // SizedBox(height: context.sizeExtenstion.medium),
           Divider(height: context.sizeExtenstion.medium),
-          Row(
-            children: [
-              Text('language', style: context.textTheme.titleMedium),
-              SizedBox(width: context.sizeExtenstion.small),
-              TextButton.icon(
-                label: Text(Language.persian.name),
-                onPressed: () {
-                  showDialog(
-                    context: context,
-
-                    builder: (context) {
-                      return AppDialog(
-                        title: 'ChangeName',
-                        contents: [
-                          Row(
-                            children: [
-                              Text(Language.arabic.name),
-                              Radio(
-                                value: Language.arabic,
-                                groupValue: Language.bengali,
-                                onChanged: (value) {},
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(Language.arabic.name),
-                              Radio(
-                                value: Language.arabic,
-                                groupValue: Language.bengali,
-                                onChanged: (value) {},
-                              ),
-                            ],
-                          ),
-                        ],
-                        submitButton: AppTextButton(label: 'ok'),
-                      );
-                    },
-                  );
-                },
-                icon: Icon(Icons.language),
-              ),
-            ],
-          ),
+          LanguageSetting(),
         ],
       ),
+    );
+  }
+}
+
+class LanguageSetting extends StatelessWidget {
+  const LanguageSetting({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text('language', style: context.textTheme.titleMedium),
+        SizedBox(width: context.sizeExtenstion.small),
+        TextButton.icon(
+          label: Text(Language.persian.name),
+          onPressed: () {
+            showDialog(
+              context: context,
+
+              builder: (context) {
+                return AppDialog(
+                  title: 'ChangeLanguage',
+                  contents: [
+                    Row(
+                      children: [
+                        Text(Language.arabic.name),
+                        Radio(
+                          value: Language.arabic,
+                          groupValue: Language.bengali,
+                          onChanged: (value) {},
+                        ),
+                      ],
+                    ),
+                    
+                  ],
+                  submitButton: AppTextButton(label: 'ok'),
+                );
+              },
+            );
+          },
+          icon: Icon(Icons.language),
+        ),
+      ],
+    );
+  }
+}
+
+class IsFastingSetting extends StatelessWidget {
+  const IsFastingSetting({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('data', style: context.textTheme.titleMedium),
+        Switch(value: true, onChanged: (value) {}),
+      ],
+    );
+  }
+}
+
+class ChangeWeightSpeedSetting extends StatelessWidget {
+  const ChangeWeightSpeedSetting({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text('data', style: context.textTheme.titleMedium),
+        SegmentedButton<ChangeWeightSpeed>(
+          segments: const <ButtonSegment<ChangeWeightSpeed>>[
+            ButtonSegment<ChangeWeightSpeed>(
+              value: ChangeWeightSpeed.constant,
+              label: Text('XS'),
+            ),
+            ButtonSegment<ChangeWeightSpeed>(
+              value: ChangeWeightSpeed.fastAndHard,
+              label: Text('S'),
+            ),
+            ButtonSegment<ChangeWeightSpeed>(
+              value: ChangeWeightSpeed.medium,
+              label: Text('M'),
+            ),
+            ButtonSegment<ChangeWeightSpeed>(
+              value: ChangeWeightSpeed.slowAndEasy,
+              label: Text('M'),
+            ),
+          ],
+          selected: {ChangeWeightSpeed.constant},
+          onSelectionChanged: (Set<ChangeWeightSpeed> newSelection) {},
+        ),
+      ],
     );
   }
 }

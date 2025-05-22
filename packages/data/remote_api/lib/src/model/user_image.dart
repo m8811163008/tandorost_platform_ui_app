@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:equatable/equatable.dart';
 import 'package:remote_api/src/model/gallary_tag.dart';
 import 'package:http_parser/http_parser.dart';
 
@@ -10,7 +11,7 @@ class UserImage {
   UserImage({required this.gallaryTag, required this.imageGallaryFiles});
 }
 
-class FileDetail {
+class FileDetail extends Equatable {
   final String fileName;
   final Uint8List bytes;
 
@@ -41,4 +42,7 @@ class FileDetail {
         return MediaType('application', 'octet-stream');
     }
   }
+
+  @override
+  List<Object?> get props => [fileName, bytes];
 }

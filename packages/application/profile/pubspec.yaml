@@ -17,6 +17,8 @@ dependencies:
     path: ../../domain_model
   profile:
     path: ../../repositories/profile
+  image_repository:
+    path: ../../repositories/image_repository
   flutter_bloc: ^9.1.1
 dev_dependencies:
   flutter_test:
