@@ -7,6 +7,7 @@ import 'package:profile/profile.dart';
 import 'package:remote_api/remote_api.dart';
 import 'package:tandorost_platform_ui_app/navigation.dart';
 import 'package:tandorost_components/tandorost_components.dart';
+import 'package:image_repository/image_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -58,6 +59,7 @@ class DependencyManager extends StatelessWidget {
             remoteApi: remoteApi,
             localStorage: localStorage,
           );
+          final imageRepository = ImageRepository(remoteApi: remoteApi);
 
           return MultiRepositoryProvider(
             providers: [
@@ -68,6 +70,7 @@ class DependencyManager extends StatelessWidget {
               ),
               RepositoryProvider(create: (_) => profileRep, lazy: true),
               RepositoryProvider(create: (_) => authenticationRep, lazy: true),
+              RepositoryProvider(create: (_) => imageRepository, lazy: true),
             ],
             child: TandorostPlatform(),
           );
