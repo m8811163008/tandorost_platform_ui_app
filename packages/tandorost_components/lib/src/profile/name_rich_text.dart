@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tandorost_components/src/profile/edit_name_button.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class NameRichText extends StatelessWidget {
-  const NameRichText({super.key, this.name = '', required this.submitButton});
+  const NameRichText({super.key, this.name = '', required this.editNameButton});
   final String name;
-  final Widget submitButton;
+
+  final Widget? editNameButton;
 
   @override
   Widget build(BuildContext context) {
     return RichText(
-      textAlign: TextAlign.end,
+      textAlign: TextAlign.start,
       text: TextSpan(
         children: [
           TextSpan(text: 'Name : ', style: context.textTheme.titleSmall),
@@ -18,10 +18,7 @@ class NameRichText extends StatelessWidget {
           WidgetSpan(
             child: Padding(
               padding: EdgeInsetsDirectional.only(start: 8.0),
-              child: EditNameButton(
-                initialValue: name,
-                submitButton: submitButton,
-              ),
+              child: editNameButton,
             ),
           ),
         ],

@@ -9,7 +9,7 @@ class ProfileState extends Equatable {
     this.name = '',
     this.phoneNumber = '',
     this.updatingProfileStatus = AsyncProcessingStatus.inital,
-
+    this.uploadingImageProfileStatus = AsyncProcessingStatus.inital,
     this.readProfileImageStatus = AsyncProcessingStatus.inital,
     this.readProfileStatus = AsyncProcessingStatus.inital,
     this.userProfile,
@@ -24,6 +24,7 @@ class ProfileState extends Equatable {
   final AsyncProcessingStatus updatingProfileStatus;
   final AsyncProcessingStatus readProfileStatus;
   final AsyncProcessingStatus readProfileImageStatus;
+  final AsyncProcessingStatus uploadingImageProfileStatus;
   final UserProfile? userProfile;
   final FileDetail? profileImage;
 
@@ -36,6 +37,7 @@ class ProfileState extends Equatable {
     AsyncProcessingStatus? updatingProfileStatus,
     AsyncProcessingStatus? readProfileStatus,
     AsyncProcessingStatus? readProfileImageStatus,
+    AsyncProcessingStatus? uploadingImageProfileStatus,
     UserProfile? userProfile,
     FileDetail? profileImage,
   }) {
@@ -48,6 +50,8 @@ class ProfileState extends Equatable {
       updatingProfileStatus:
           updatingProfileStatus ?? this.updatingProfileStatus,
       readProfileStatus: readProfileStatus ?? this.readProfileStatus,
+      uploadingImageProfileStatus:
+          uploadingImageProfileStatus ?? this.uploadingImageProfileStatus,
       readProfileImageStatus:
           readProfileImageStatus ?? this.readProfileImageStatus,
       userProfile: userProfile ?? this.userProfile,
@@ -65,6 +69,7 @@ class ProfileState extends Equatable {
     updatingProfileStatus,
     readProfileStatus,
     readProfileImageStatus,
+    uploadingImageProfileStatus,
     userProfile,
     profileImage,
   ];

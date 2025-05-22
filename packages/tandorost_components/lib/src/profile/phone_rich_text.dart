@@ -7,7 +7,7 @@ class PhoneNumberRichText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
-      textAlign: TextAlign.end,
+      textAlign: TextAlign.start,
       overflow: TextOverflow.fade,
       text: TextSpan(
         children: [

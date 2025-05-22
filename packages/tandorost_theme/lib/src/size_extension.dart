@@ -24,7 +24,7 @@ class SizeExtenstion extends ThemeExtension<SizeExtenstion> {
     this.extraLarge = 32,
     this.full = double.infinity,
     this.xExtraLarge = 40,
-    this.profileRadius = 48,
+    this.profileRadius = 56,
     this.chatButton = const Size.square(180),
     this.appButton = const Size.square(24),
   });

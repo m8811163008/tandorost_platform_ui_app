@@ -21,11 +21,16 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(state.copyWith(readProfileImageStatus: AsyncProcessingStatus.loading));
     try {
       final profileImage = await _imageRepository.readUserProfileImage();
-      final actualImage = await _imageRepository.readImage(profileImage.last);
+      FileDetail? actualImage;
+      if (profileImage.isNotEmpty) {
+        actualImage = await _imageRepository.readImage(profileImage.last);
+      }
 
       emit(
-        state.copyWith(readProfileImageStatus: AsyncProcessingStatus.success,
-        profileImage: actualImage),
+        state.copyWith(
+          readProfileImageStatus: AsyncProcessingStatus.success,
+          profileImage: actualImage,
+        ),
       );
     } on InternetConnectionException {
       emit(
@@ -42,20 +47,25 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-
-
   void updateImageProfile(FileDetail profileImage) async {
     emit(state.copyWith(updatingProfileStatus: AsyncProcessingStatus.loading));
     try {
-      final userImage = UserImage(gallaryTag: GallaryTag.profileImage, imageGallaryFiles: [
-        profileImage
-      ]);
-      final updatedProfileImage = await _imageRepository.addUserImages(userImage);
-      final actualImage = await _imageRepository.readImage(updatedProfileImage.last);
+      final userImage = UserImage(
+        gallaryTag: GallaryTag.profileImage,
+        imageGallaryFiles: [profileImage],
+      );
+      final updatedProfileImage = await _imageRepository.addUserImages(
+        userImage,
+      );
+      final actualImage = await _imageRepository.readImage(
+        updatedProfileImage.last,
+      );
 
       emit(
-        state.copyWith(updatingProfileStatus: AsyncProcessingStatus.success,
-        profileImage: actualImage),
+        state.copyWith(
+          updatingProfileStatus: AsyncProcessingStatus.success,
+          profileImage: actualImage,
+        ),
       );
     } on InternetConnectionException {
       emit(
@@ -103,8 +113,11 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void onChangeName(String name) async {
-    await updateProfile(state.userProfile!.copyWith(fullName: state.name));
     emit(state.copyWith(name: name));
+  }
+
+  void updateName() async {
+    await updateProfile(state.userProfile!.copyWith(fullName: state.name));
   }
 
   void onChangeWeightSpeed(ChangeWeightSpeed speed) async {
