@@ -13,7 +13,10 @@ class NameRichText extends StatelessWidget {
       textAlign: TextAlign.start,
       text: TextSpan(
         children: [
-          TextSpan(text: 'Name : ', style: context.textTheme.titleSmall),
+          TextSpan(
+            text: '${context.l10n.personalInfoNameLabel} : ',
+            style: context.textTheme.titleSmall,
+          ),
           TextSpan(text: name, style: context.textTheme.bodyMedium),
           WidgetSpan(
             child: Padding(

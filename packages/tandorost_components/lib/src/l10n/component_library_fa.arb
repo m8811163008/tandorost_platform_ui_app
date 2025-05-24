@@ -67,5 +67,25 @@
     "forgotPasswordLabel": "فراموشی رمز عبور",
     "phoneNumberTextFieldLabel": "شماره تلفن همراه",
     "passwordTextFieldLabel": "رمز عبور",
-    "verificationCodeTextFieldLabel": "کد پیامک شده"
+    "verificationCodeTextFieldLabel": "کد پیامک شده",
+    "dialogTitleChangeApplicationLanguage": "تغییر زبان نرم افزار",
+    "dialogTitleChangeName": "تغییرنام",
+    "changeNameTextFieldLabel": "نام",
+    "personalInfoNameLabel": "نام",
+    "personalInfoPhoneLabel": "شماره تلفن",
+    "updateButton": "بروزرسانی",
+    "personalInfoSettingLabel": "مشخصات فردی",
+    "settingLabel": "تنظیمات",
+    "changeWeightSpeedLabel": "سرعت کاهش وزن",
+    "changeWeightSpeedInfoConstantSpeed": "در حالت تثبیت وزن از انرژی مورد نیاز کم نمیشود",
+    "changeWeightSpeedInfoSlowAndEasySpeed": "در حالت آهسته و آسان در روز استراحت 10 درصد از انرژی مورد نیاز کم میشود و در روز تمرین 0 درصد از انرژی مورد نیاز کم میشود",
+    "changeWeightSpeedInfoMediumSpeed": "در حالت طبیعی در روز استراحت 10 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  5 درصد از انرژی مورد نیاز کم میشود",
+    "changeWeightSpeedInfoFastSpeed": "در حالت سریع در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  5 درصد از انرژی مورد نیاز کم میشود",
+    "changeWeightSpeedInfoFastAndHardSpeed": "در حالت سریع و سخت در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  15 درصد از انرژی مورد نیاز کم میشود",
+    "profileChangeWeightSpeedButtonLabel": "{changeWeightSpeed, select, constant{تثبیت وزن} slowAndEasy{آهسته و آسان} medium{طبیعی} fast{سریع} fastAndHard{سریع و سخت} other{ترجمه تعریف نشده}}",
+    "@profileChangeWeightSpeedButtonLabel": {
+        "placeholders": {
+            "changeWeightSpeed": {}
+        }
+    }
 }

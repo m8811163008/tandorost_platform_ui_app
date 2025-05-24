@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class PhoneNumberRichText extends StatelessWidget {
-  const PhoneNumberRichText({super.key});
+  const PhoneNumberRichText({super.key, this.phoneNumber = ''});
+  final String phoneNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +12,13 @@ class PhoneNumberRichText extends StatelessWidget {
       overflow: TextOverflow.fade,
       text: TextSpan(
         children: [
-          TextSpan(text: 'PhoneNumber : ', style: context.textTheme.titleSmall),
+          TextSpan(
+            text: '${context.l10n.personalInfoPhoneLabel} : ',
+            style: context.textTheme.titleSmall,
+          ),
           TextSpan(
             // style: TextStyle(),
-            text: '+9892123123',
+            text: phoneNumber,
             // style: context.textTheme.bodyMedium,
           ),
         ],

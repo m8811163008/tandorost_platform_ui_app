@@ -31,7 +31,7 @@ class ChangeLanguageDialog extends StatelessWidget {
       buildWhen: (previous, current) => previous.language != current.language,
       builder: (context, state) {
         return AppDialog(
-          title: 'ChangeLanguage',
+          title: context.l10n.dialogTitleChangeApplicationLanguage,
           contents:
               Language.values
                   .map(
@@ -49,10 +49,13 @@ class ChangeLanguageDialog extends StatelessWidget {
                     previous.updatingProfileStatus !=
                     current.updatingProfileStatus,
             builder: (context, state) {
+            final label = context.l10n.updateButton;
               return state.updatingProfileStatus.isLoading
-                  ? AppTextButton.loading(label: 'update language')
+                  ? AppTextButton.loading(
+                    label: label,
+                  )
                   : AppTextButton(
-                    label: 'update language',
+                    label: label,
                     onTap: context.read<ProfileCubit>().updateLanguage,
                   );
             },

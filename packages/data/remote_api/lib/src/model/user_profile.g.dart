@@ -100,5 +100,6 @@ const _$ChangeWeightSpeedEnumMap = {
   ChangeWeightSpeed.constant: 'constant',
   ChangeWeightSpeed.slowAndEasy: 'slow_and_easy',
   ChangeWeightSpeed.medium: 'medium',
+  ChangeWeightSpeed.fast: 'fast',
   ChangeWeightSpeed.fastAndHard: 'fast_and_hard',
 };

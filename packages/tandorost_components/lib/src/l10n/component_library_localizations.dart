@@ -332,6 +332,96 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'کد پیامک شده'**
   String get verificationCodeTextFieldLabel;
+
+  /// No description provided for @dialogTitleChangeApplicationLanguage.
+  ///
+  /// In fa, this message translates to:
+  /// **'تغییر زبان نرم افزار'**
+  String get dialogTitleChangeApplicationLanguage;
+
+  /// No description provided for @dialogTitleChangeName.
+  ///
+  /// In fa, this message translates to:
+  /// **'تغییرنام'**
+  String get dialogTitleChangeName;
+
+  /// No description provided for @changeNameTextFieldLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'نام'**
+  String get changeNameTextFieldLabel;
+
+  /// No description provided for @personalInfoNameLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'نام'**
+  String get personalInfoNameLabel;
+
+  /// No description provided for @personalInfoPhoneLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'شماره تلفن'**
+  String get personalInfoPhoneLabel;
+
+  /// No description provided for @updateButton.
+  ///
+  /// In fa, this message translates to:
+  /// **'بروزرسانی'**
+  String get updateButton;
+
+  /// No description provided for @personalInfoSettingLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'مشخصات فردی'**
+  String get personalInfoSettingLabel;
+
+  /// No description provided for @settingLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'تنظیمات'**
+  String get settingLabel;
+
+  /// No description provided for @changeWeightSpeedLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'سرعت کاهش وزن'**
+  String get changeWeightSpeedLabel;
+
+  /// No description provided for @changeWeightSpeedInfoConstantSpeed.
+  ///
+  /// In fa, this message translates to:
+  /// **'در حالت تثبیت وزن از انرژی مورد نیاز کم نمیشود'**
+  String get changeWeightSpeedInfoConstantSpeed;
+
+  /// No description provided for @changeWeightSpeedInfoSlowAndEasySpeed.
+  ///
+  /// In fa, this message translates to:
+  /// **'در حالت آهسته و آسان در روز استراحت 10 درصد از انرژی مورد نیاز کم میشود و در روز تمرین 0 درصد از انرژی مورد نیاز کم میشود'**
+  String get changeWeightSpeedInfoSlowAndEasySpeed;
+
+  /// No description provided for @changeWeightSpeedInfoMediumSpeed.
+  ///
+  /// In fa, this message translates to:
+  /// **'در حالت طبیعی در روز استراحت 10 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  5 درصد از انرژی مورد نیاز کم میشود'**
+  String get changeWeightSpeedInfoMediumSpeed;
+
+  /// No description provided for @changeWeightSpeedInfoFastSpeed.
+  ///
+  /// In fa, this message translates to:
+  /// **'در حالت سریع در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  5 درصد از انرژی مورد نیاز کم میشود'**
+  String get changeWeightSpeedInfoFastSpeed;
+
+  /// No description provided for @changeWeightSpeedInfoFastAndHardSpeed.
+  ///
+  /// In fa, this message translates to:
+  /// **'در حالت سریع و سخت در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  15 درصد از انرژی مورد نیاز کم میشود'**
+  String get changeWeightSpeedInfoFastAndHardSpeed;
+
+  /// No description provided for @profileChangeWeightSpeedButtonLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'{changeWeightSpeed, select, constant{تثبیت وزن} slowAndEasy{آهسته و آسان} medium{طبیعی} fast{سریع} fastAndHard{سریع و سخت} other{ترجمه تعریف نشده}}'**
+  String profileChangeWeightSpeedButtonLabel(String changeWeightSpeed);
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

@@ -143,4 +143,62 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get verificationCodeTextFieldLabel => 'کد پیامک شده';
+
+  @override
+  String get dialogTitleChangeApplicationLanguage => 'تغییر زبان نرم افزار';
+
+  @override
+  String get dialogTitleChangeName => 'تغییرنام';
+
+  @override
+  String get changeNameTextFieldLabel => 'نام';
+
+  @override
+  String get personalInfoNameLabel => 'نام';
+
+  @override
+  String get personalInfoPhoneLabel => 'شماره تلفن';
+
+  @override
+  String get updateButton => 'بروزرسانی';
+
+  @override
+  String get personalInfoSettingLabel => 'مشخصات فردی';
+
+  @override
+  String get settingLabel => 'تنظیمات';
+
+  @override
+  String get changeWeightSpeedLabel => 'سرعت کاهش وزن';
+
+  @override
+  String get changeWeightSpeedInfoConstantSpeed => 'در حالت تثبیت وزن از انرژی مورد نیاز کم نمیشود';
+
+  @override
+  String get changeWeightSpeedInfoSlowAndEasySpeed => 'در حالت آهسته و آسان در روز استراحت 10 درصد از انرژی مورد نیاز کم میشود و در روز تمرین 0 درصد از انرژی مورد نیاز کم میشود';
+
+  @override
+  String get changeWeightSpeedInfoMediumSpeed => 'در حالت طبیعی در روز استراحت 10 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  5 درصد از انرژی مورد نیاز کم میشود';
+
+  @override
+  String get changeWeightSpeedInfoFastSpeed => 'در حالت سریع در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  5 درصد از انرژی مورد نیاز کم میشود';
+
+  @override
+  String get changeWeightSpeedInfoFastAndHardSpeed => 'در حالت سریع و سخت در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  15 درصد از انرژی مورد نیاز کم میشود';
+
+  @override
+  String profileChangeWeightSpeedButtonLabel(String changeWeightSpeed) {
+    String _temp0 = intl.Intl.selectLogic(
+      changeWeightSpeed,
+      {
+        'constant': 'تثبیت وزن',
+        'slowAndEasy': 'آهسته و آسان',
+        'medium': 'طبیعی',
+        'fast': 'سریع',
+        'fastAndHard': 'سریع و سخت',
+        'other': 'ترجمه تعریف نشده',
+      },
+    );
+    return '$_temp0';
+  }
 }

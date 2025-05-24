@@ -16,26 +16,30 @@ class ChangeWeightSpeedSetting extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('data', style: context.textTheme.titleMedium),
-        SegmentedButton<ChangeWeightSpeed>(
-          segments: const <ButtonSegment<ChangeWeightSpeed>>[
-            ButtonSegment<ChangeWeightSpeed>(
-              value: ChangeWeightSpeed.constant,
-              label: Text('XS'),
+        Row(
+          children: [
+            Text(
+              context.l10n.changeWeightSpeedLabel,
+              style: context.textTheme.titleMedium,
             ),
-            ButtonSegment<ChangeWeightSpeed>(
-              value: ChangeWeightSpeed.fastAndHard,
-              label: Text('S'),
-            ),
-            ButtonSegment<ChangeWeightSpeed>(
-              value: ChangeWeightSpeed.medium,
-              label: Text('M'),
-            ),
-            ButtonSegment<ChangeWeightSpeed>(
-              value: ChangeWeightSpeed.slowAndEasy,
-              label: Text('M'),
+            IconButton.outlined(
+              icon: Icon(Icons.info),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return ChangeWeightSpeedInfoDialog();
+                  },
+                );
+              },
             ),
           ],
+        ),
+        SegmentedButton<ChangeWeightSpeed>(
+          segments:  ChangeWeightSpeed.values.map((e) => ButtonSegment<ChangeWeightSpeed>(
+              value: e,
+              label: Text(context.l10n.profileChangeWeightSpeedButtonLabel(e.name)),
+            ),).toList(),
           selected: {selected},
           onSelectionChanged: (Set<ChangeWeightSpeed> newSelection) {
             onSelectionChanged?.call(newSelection.first);

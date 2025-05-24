@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:profile_app/src/cubit/profile_cubit.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
-
 class EditNameDialog extends StatelessWidget {
   const EditNameDialog({super.key});
 
@@ -30,11 +29,13 @@ class EditNameDialog extends StatelessWidget {
         }
       },
       child: AppDialog(
-        title: 'ChangeName',
+        title: context.l10n.dialogTitleChangeName,
         contents: [
           TextFormField(
             initialValue: cubit.state.name,
-            decoration: InputDecoration(labelText: 'name'),
+            decoration: InputDecoration(
+              labelText: context.l10n.changeNameTextFieldLabel,
+            ),
             onChanged: cubit.onChangeName,
           ),
         ],
@@ -44,10 +45,11 @@ class EditNameDialog extends StatelessWidget {
                   previous.updatingProfileStatus !=
                   current.updatingProfileStatus,
           builder: (context, state) {
+            final label = context.l10n.updateButton;
             return state.updatingProfileStatus.isLoading
-                ? AppTextButton.loading(label: 'update name')
+                ? AppTextButton.loading(label: label)
                 : AppTextButton(
-                  label: 'update name',
+                  label: label,
                   onTap: context.read<ProfileCubit>().updateName,
                 );
           },

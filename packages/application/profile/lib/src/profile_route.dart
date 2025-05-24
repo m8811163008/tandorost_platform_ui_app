@@ -33,7 +33,25 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [ProfileCard(), SettingCard()]);
+    return BlocListener<ProfileCubit, ProfileState>(
+      listenWhen:
+          (previous, current) =>
+              previous.updatingProfileStatus != current.updatingProfileStatus,
+      listener: (context, state) {
+        if (state.updatingProfileStatus.isServerConnectionError) {
+          final content = context.l10n.networkError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.updatingProfileStatus.isServerConnectionError) {
+          final content = context.l10n.internetConnectionError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        }
+      },
+      child: Column(children: [ProfileCard(), SettingCard()]),
+    );
   }
 }
 
@@ -42,12 +60,14 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<ProfileCubit>();
     return AppCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Personal info', style: context.textTheme.headlineMedium),
+          Text(
+            context.l10n.personalInfoSettingLabel,
+            style: context.textTheme.headlineMedium,
+          ),
           SizedBox(height: context.sizeExtenstion.medium),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -64,7 +84,13 @@ class ProfileCard extends StatelessWidget {
                       editNameButton: EditDialog(dialog: EditNameDialog()),
                     ),
                     SizedBox(height: context.sizeExtenstion.small),
-                    PhoneNumberRichText(),
+                    PhoneNumberRichText(
+                      phoneNumber: context
+                          .read<ProfileCubit>()
+                          .state
+                          .phoneNumber
+                          .replaceFirst('0', '+98'),
+                    ),
                   ],
                 ),
               ),
@@ -79,22 +105,7 @@ class ProfileCard extends StatelessWidget {
                       (ProfileCubit cubit) => cubit.state.profileImage,
                     ),
                     onEditPressed: () async {
-                      FilePickerResult? result = await FilePicker.platform
-                          .pickFiles(
-                            type: FileType.custom,
-                            allowedExtensions: ['png', 'jpg', 'jpeg'],
-                          );
-                      if (result != null) {
-                        final singleResult = result.files.single;
-                        if (singleResult.bytes == null) {
-                          return;
-                        }
-                        final fileDetail = FileDetail(
-                          fileName: singleResult.name,
-                          bytes: singleResult.bytes!,
-                        );
-                        cubit.updateImageProfile(fileDetail);
-                      }
+                      await onEditImage(context);
                     },
                     isUploading: state.uploadingImageProfileStatus.isLoading,
                   );
@@ -105,6 +116,25 @@ class ProfileCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> onEditImage(BuildContext context) async {
+    final cubit = context.read<ProfileCubit>();
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['png', 'jpg', 'jpeg'],
+    );
+    if (result != null) {
+      final singleResult = result.files.single;
+      if (singleResult.bytes == null) {
+        return;
+      }
+      final fileDetail = FileDetail(
+        fileName: singleResult.name,
+        bytes: singleResult.bytes!,
+      );
+      cubit.updateImageProfile(fileDetail);
+    }
   }
 }
 
@@ -117,7 +147,10 @@ class SettingCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Setting', style: context.textTheme.headlineMedium),
+          Text(
+            context.l10n.settingLabel,
+            style: context.textTheme.headlineMedium,
+          ),
           SizedBox(height: context.sizeExtenstion.medium),
           ChangeWeightSpeedSetting(
             selected: context.select(
