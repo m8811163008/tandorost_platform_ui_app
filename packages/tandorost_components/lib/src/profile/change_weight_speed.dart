@@ -17,6 +17,7 @@ class ChangeWeightSpeedSetting extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               context.l10n.changeWeightSpeedLabel,
@@ -35,11 +36,21 @@ class ChangeWeightSpeedSetting extends StatelessWidget {
             ),
           ],
         ),
+        SizedBox(height: context.sizeExtenstion.small),
         SegmentedButton<ChangeWeightSpeed>(
-          segments:  ChangeWeightSpeed.values.map((e) => ButtonSegment<ChangeWeightSpeed>(
-              value: e,
-              label: Text(context.l10n.profileChangeWeightSpeedButtonLabel(e.name)),
-            ),).toList(),
+          segments:
+              ChangeWeightSpeed.values
+                  .map(
+                    (e) => ButtonSegment<ChangeWeightSpeed>(
+                      value: e,
+                      label: Text(
+                        context.l10n.profileChangeWeightSpeedButtonLabel(
+                          e.name,
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
           selected: {selected},
           onSelectionChanged: (Set<ChangeWeightSpeed> newSelection) {
             onSelectionChanged?.call(newSelection.first);

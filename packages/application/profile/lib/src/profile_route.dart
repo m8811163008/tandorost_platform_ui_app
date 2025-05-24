@@ -86,10 +86,10 @@ class ProfileCard extends StatelessWidget {
                     SizedBox(height: context.sizeExtenstion.small),
                     PhoneNumberRichText(
                       phoneNumber: context
-                          .read<ProfileCubit>()
-                          .state
-                          .phoneNumber
-                          .replaceFirst('0', '+98'),
+                          .select<ProfileCubit, String>(
+                            (cubit) => cubit.state.phoneNumber,
+                          )
+                          .replaceFirst('0', '98'),
                     ),
                   ],
                 ),
@@ -160,9 +160,9 @@ class SettingCard extends StatelessWidget {
                 context.read<ProfileCubit>().onChangeWeightSpeed,
           ),
           SizedBox(height: context.sizeExtenstion.medium),
-          IsFastingSetting(
+          TimeRestrictedSetting(
             value: context.select(
-              (ProfileCubit cubit) => cubit.state.isFasting,
+              (ProfileCubit cubit) => cubit.state.isTimeRestrictedEating,
             ),
             onChanged: context.read<ProfileCubit>().onChangeIsFasting,
           ),

@@ -4,7 +4,7 @@ part of 'profile_cubit.dart';
 class ProfileState extends Equatable {
   const ProfileState({
     this.changeWeightSpeed = ChangeWeightSpeed.constant,
-    this.isFasting = false,
+    this.isTimeRestrictedEating = false,
     this.language = Language.english,
     this.name = '',
     this.phoneNumber = '',
@@ -17,7 +17,7 @@ class ProfileState extends Equatable {
   });
 
   final ChangeWeightSpeed changeWeightSpeed;
-  final bool isFasting;
+  final bool isTimeRestrictedEating;
   final Language language;
   final String name;
   final String phoneNumber;
@@ -30,7 +30,7 @@ class ProfileState extends Equatable {
 
   ProfileState copyWith({
     ChangeWeightSpeed? changeWeightSpeed,
-    bool? isFasting,
+    bool? isTimeRestrictedEating,
     Language? language,
     String? name,
     String? phoneNumber,
@@ -43,7 +43,8 @@ class ProfileState extends Equatable {
   }) {
     return ProfileState(
       changeWeightSpeed: changeWeightSpeed ?? this.changeWeightSpeed,
-      isFasting: isFasting ?? this.isFasting,
+      isTimeRestrictedEating:
+          isTimeRestrictedEating ?? this.isTimeRestrictedEating,
       language: language ?? this.language,
       name: name ?? this.name,
       phoneNumber: phoneNumber ?? this.phoneNumber,
@@ -62,7 +63,7 @@ class ProfileState extends Equatable {
   @override
   List<Object?> get props => [
     changeWeightSpeed,
-    isFasting,
+    isTimeRestrictedEating,
     language,
     name,
     phoneNumber,

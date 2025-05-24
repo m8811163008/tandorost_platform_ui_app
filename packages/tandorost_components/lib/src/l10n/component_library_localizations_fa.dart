@@ -187,6 +187,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get changeWeightSpeedInfoFastAndHardSpeed => 'در حالت سریع و سخت در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  15 درصد از انرژی مورد نیاز کم میشود';
 
   @override
+  String get changeWeightSpeedInfoFastAndHardSpeedCaution => 'دقت کنید حالت سریع و سخت برای بعضی روزهای تمرین مناب تر است چون باعث میشه انرژی کمی برای تمرین فراهم باشد.';
+
+  @override
   String profileChangeWeightSpeedButtonLabel(String changeWeightSpeed) {
     String _temp0 = intl.Intl.selectLogic(
       changeWeightSpeed,
@@ -196,6 +199,53 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
         'medium': 'طبیعی',
         'fast': 'سریع',
         'fastAndHard': 'سریع و سخت',
+        'other': 'ترجمه تعریف نشده',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get timeRestrictedEatingLabel => 'رژیم با زمان محدود(فستینگ)';
+
+  @override
+  String get languageSettingLabel => 'زبان نرم افزار';
+
+  @override
+  String languageTranslation(String language_name) {
+    String _temp0 = intl.Intl.selectLogic(
+      language_name,
+      {
+        'english': 'انگلیسی',
+        'chinese': 'چینی',
+        'hindi': 'هندی',
+        'spanish': 'اسپانیایی',
+        'french': 'فرانسوی',
+        'arabic': 'عربی',
+        'bengali': 'بنگالی',
+        'russian': 'روسی',
+        'portuguese': 'پرتغالی',
+        'urdu': 'اردو',
+        'indonesian': 'اندونزیایی',
+        'german': 'آلمانی',
+        'japanese': 'ژاپنی',
+        'marathi': 'مراتی',
+        'telugu': 'تلوگو',
+        'turkish': 'ترکی',
+        'tamil': 'تامیلی',
+        'vietnamese': 'ویتنامی',
+        'tagalog': 'تاگالوگ',
+        'korean': 'کره‌ای',
+        'persian': 'فارسی',
+        'hausa': 'هوسا',
+        'javanese': 'جاوه‌ای',
+        'italian': 'ایتالیایی',
+        'punjabi': 'پنجابی',
+        'kannada': 'کانادا',
+        'gujarati': 'گجراتی',
+        'thai': 'تایلندی',
+        'polish': 'لهستانی',
+        'ukrainian': 'اوکراینی',
         'other': 'ترجمه تعریف نشده',
       },
     );

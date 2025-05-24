@@ -36,6 +36,7 @@ class ChangeLanguageDialog extends StatelessWidget {
               Language.values
                   .map(
                     (language) => _buildLanguageRow(
+                      context,
                       language: language,
                       groupValue: state.language,
                       onChanged: context.read<ProfileCubit>().onChangeLanguage,
@@ -49,11 +50,9 @@ class ChangeLanguageDialog extends StatelessWidget {
                     previous.updatingProfileStatus !=
                     current.updatingProfileStatus,
             builder: (context, state) {
-            final label = context.l10n.updateButton;
+              final label = context.l10n.updateButton;
               return state.updatingProfileStatus.isLoading
-                  ? AppTextButton.loading(
-                    label: label,
-                  )
+                  ? AppTextButton.loading(label: label)
                   : AppTextButton(
                     label: label,
                     onTap: context.read<ProfileCubit>().updateLanguage,
@@ -65,7 +64,9 @@ class ChangeLanguageDialog extends StatelessWidget {
     );
   }
 
-  Widget _buildLanguageRow({
+  Widget _buildLanguageRow(
+    BuildContext context, {
+
     required Language language,
     required Language groupValue,
     required ValueSetter<Language?> onChanged,
@@ -75,12 +76,23 @@ class ChangeLanguageDialog extends StatelessWidget {
         Radio(
           value: language,
           groupValue: groupValue,
-          onChanged: (language) {
+          onChanged: (_) {
             if (language == null) return;
             onChanged(language);
           },
         ),
-        Text(language.name),
+        GestureDetector(
+          onTap: () {
+            onChanged(language);
+          },
+          child: Row(
+            children: [
+              Text(context.l10n.languageTranslation(language.name)),
+              SizedBox(width: context.sizeExtenstion.small),
+              Text(language.name),
+            ],
+          ),
+        ),
       ],
     );
   }

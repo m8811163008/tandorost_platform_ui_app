@@ -17,7 +17,10 @@ class LanguageSetting extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('language', style: context.textTheme.titleMedium),
+        Text(
+          context.l10n.languageSettingLabel,
+          style: context.textTheme.titleMedium,
+        ),
         SizedBox(width: context.sizeExtenstion.small),
         TextButton.icon(
           label: Text(value.name),

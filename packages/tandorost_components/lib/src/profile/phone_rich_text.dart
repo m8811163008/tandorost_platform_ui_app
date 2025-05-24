@@ -10,17 +10,14 @@ class PhoneNumberRichText extends StatelessWidget {
     return RichText(
       textAlign: TextAlign.start,
       overflow: TextOverflow.fade,
+
       text: TextSpan(
         children: [
           TextSpan(
             text: '${context.l10n.personalInfoPhoneLabel} : ',
             style: context.textTheme.titleSmall,
           ),
-          TextSpan(
-            // style: TextStyle(),
-            text: phoneNumber,
-            // style: context.textTheme.bodyMedium,
-          ),
+          TextSpan(text: phoneNumber),
         ],
       ),
     );

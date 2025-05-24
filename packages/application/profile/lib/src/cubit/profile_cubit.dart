@@ -91,7 +91,7 @@ class ProfileCubit extends Cubit<ProfileState> {
           name: profile.fullName,
           phoneNumber: profile.phoneNumber,
           changeWeightSpeed: profile.changeWeightSpeed,
-          isFasting: profile.isFasting,
+          isTimeRestrictedEating: profile.isTimeRestrictedEating,
           userProfile: profile,
           language: profile.language,
         ),
@@ -125,9 +125,13 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(state.copyWith(changeWeightSpeed: speed));
   }
 
-  void onChangeIsFasting(bool isFasting) async {
-    await updateProfile(state.userProfile!.copyWith(isFasting: isFasting));
-    emit(state.copyWith(isFasting: isFasting));
+  void onChangeIsFasting(bool isTimeRestrictedEating) async {
+    await updateProfile(
+      state.userProfile!.copyWith(
+        isTimeRestrictedEating: isTimeRestrictedEating,
+      ),
+    );
+    emit(state.copyWith(isTimeRestrictedEating: isTimeRestrictedEating));
   }
 
   void onChangeLanguage(Language? language) async {

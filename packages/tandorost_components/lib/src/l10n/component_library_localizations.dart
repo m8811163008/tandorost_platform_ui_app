@@ -417,11 +417,35 @@ abstract class ComponentLibraryLocalizations {
   /// **'در حالت سریع و سخت در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  15 درصد از انرژی مورد نیاز کم میشود'**
   String get changeWeightSpeedInfoFastAndHardSpeed;
 
+  /// No description provided for @changeWeightSpeedInfoFastAndHardSpeedCaution.
+  ///
+  /// In fa, this message translates to:
+  /// **'دقت کنید حالت سریع و سخت برای بعضی روزهای تمرین مناب تر است چون باعث میشه انرژی کمی برای تمرین فراهم باشد.'**
+  String get changeWeightSpeedInfoFastAndHardSpeedCaution;
+
   /// No description provided for @profileChangeWeightSpeedButtonLabel.
   ///
   /// In fa, this message translates to:
   /// **'{changeWeightSpeed, select, constant{تثبیت وزن} slowAndEasy{آهسته و آسان} medium{طبیعی} fast{سریع} fastAndHard{سریع و سخت} other{ترجمه تعریف نشده}}'**
   String profileChangeWeightSpeedButtonLabel(String changeWeightSpeed);
+
+  /// No description provided for @timeRestrictedEatingLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'رژیم با زمان محدود(فستینگ)'**
+  String get timeRestrictedEatingLabel;
+
+  /// No description provided for @languageSettingLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'زبان نرم افزار'**
+  String get languageSettingLabel;
+
+  /// No description provided for @languageTranslation.
+  ///
+  /// In fa, this message translates to:
+  /// **'{language_name, select, english{انگلیسی} chinese{چینی} hindi{هندی} spanish{اسپانیایی} french{فرانسوی} arabic{عربی} bengali{بنگالی} russian{روسی} portuguese{پرتغالی} urdu{اردو} indonesian{اندونزیایی} german{آلمانی} japanese{ژاپنی} marathi{مراتی} telugu{تلوگو} turkish{ترکی} tamil{تامیلی} vietnamese{ویتنامی} tagalog{تاگالوگ} korean{کره‌ای} persian{فارسی} hausa{هوسا} javanese{جاوه‌ای} italian{ایتالیایی} punjabi{پنجابی} kannada{کانادا} gujarati{گجراتی} thai{تایلندی} polish{لهستانی} ukrainian{اوکراینی} other{ترجمه تعریف نشده}}'**
+  String languageTranslation(String language_name);
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

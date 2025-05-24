@@ -33,6 +33,7 @@ class AppDialog extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(title, style: context.textTheme.headlineMedium),
                   SizedBox(height: 16.0),

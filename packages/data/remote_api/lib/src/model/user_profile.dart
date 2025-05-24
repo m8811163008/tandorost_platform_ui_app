@@ -14,7 +14,7 @@ class UserProfile extends Equatable {
   final String? fullName;
   final Language language;
   final ChangeWeightSpeed changeWeightSpeed;
-  final bool isFasting;
+  final bool isTimeRestrictedEating;
 
   UserProfile copyWith({
     String? id,
@@ -23,7 +23,7 @@ class UserProfile extends Equatable {
     String? fullName,
     Language? language,
     ChangeWeightSpeed? changeWeightSpeed,
-    bool? isFasting,
+    bool? isTimeRestrictedEating,
   }) {
     return UserProfile(
       id: id ?? this.id,
@@ -32,7 +32,7 @@ class UserProfile extends Equatable {
       fullName: fullName ?? this.fullName,
       language: language ?? this.language,
       changeWeightSpeed: changeWeightSpeed ?? this.changeWeightSpeed,
-      isFasting: isFasting ?? this.isFasting,
+      isTimeRestrictedEating: isTimeRestrictedEating ?? this.isTimeRestrictedEating,
     );
   }
 
@@ -43,7 +43,7 @@ class UserProfile extends Equatable {
     required this.fullName,
     required this.language,
     required this.changeWeightSpeed,
-    required this.isFasting,
+    required this.isTimeRestrictedEating,
   });
 
   factory UserProfile.fromJson(Map<String, dynamic> json) =>
@@ -59,6 +59,6 @@ class UserProfile extends Equatable {
     fullName,
     language,
     changeWeightSpeed,
-    isFasting,
+    isTimeRestrictedEating,
   ];
 }

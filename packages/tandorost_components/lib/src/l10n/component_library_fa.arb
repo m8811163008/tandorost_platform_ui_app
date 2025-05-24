@@ -82,10 +82,19 @@
     "changeWeightSpeedInfoMediumSpeed": "در حالت طبیعی در روز استراحت 10 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  5 درصد از انرژی مورد نیاز کم میشود",
     "changeWeightSpeedInfoFastSpeed": "در حالت سریع در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  5 درصد از انرژی مورد نیاز کم میشود",
     "changeWeightSpeedInfoFastAndHardSpeed": "در حالت سریع و سخت در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  15 درصد از انرژی مورد نیاز کم میشود",
+    "changeWeightSpeedInfoFastAndHardSpeedCaution": "دقت کنید حالت سریع و سخت برای بعضی روزهای تمرین مناب تر است چون باعث میشه انرژی کمی برای تمرین فراهم باشد.",
     "profileChangeWeightSpeedButtonLabel": "{changeWeightSpeed, select, constant{تثبیت وزن} slowAndEasy{آهسته و آسان} medium{طبیعی} fast{سریع} fastAndHard{سریع و سخت} other{ترجمه تعریف نشده}}",
     "@profileChangeWeightSpeedButtonLabel": {
         "placeholders": {
             "changeWeightSpeed": {}
+        }
+    },
+    "timeRestrictedEatingLabel": "رژیم با زمان محدود(فستینگ)",
+    "languageSettingLabel": "زبان نرم افزار",
+    "languageTranslation" : "{language_name, select, english{انگلیسی} chinese{چینی} hindi{هندی} spanish{اسپانیایی} french{فرانسوی} arabic{عربی} bengali{بنگالی} russian{روسی} portuguese{پرتغالی} urdu{اردو} indonesian{اندونزیایی} german{آلمانی} japanese{ژاپنی} marathi{مراتی} telugu{تلوگو} turkish{ترکی} tamil{تامیلی} vietnamese{ویتنامی} tagalog{تاگالوگ} korean{کره‌ای} persian{فارسی} hausa{هوسا} javanese{جاوه‌ای} italian{ایتالیایی} punjabi{پنجابی} kannada{کانادا} gujarati{گجراتی} thai{تایلندی} polish{لهستانی} ukrainian{اوکراینی} other{ترجمه تعریف نشده}}",
+    "@languageTranslation": {
+        "placeholders": {
+            "language_name": {}
         }
     }
 }
