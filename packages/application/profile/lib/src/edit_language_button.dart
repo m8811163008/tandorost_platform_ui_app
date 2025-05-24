@@ -77,7 +77,6 @@ class ChangeLanguageDialog extends StatelessWidget {
           value: language,
           groupValue: groupValue,
           onChanged: (_) {
-            if (language == null) return;
             onChanged(language);
           },
         ),
