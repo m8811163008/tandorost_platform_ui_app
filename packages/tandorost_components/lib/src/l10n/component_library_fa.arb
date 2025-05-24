@@ -91,10 +91,16 @@
     },
     "timeRestrictedEatingLabel": "رژیم با زمان محدود(فستینگ)",
     "languageSettingLabel": "زبان نرم افزار",
-    "languageTranslation" : "{language_name, select, english{انگلیسی} chinese{چینی} hindi{هندی} spanish{اسپانیایی} french{فرانسوی} arabic{عربی} bengali{بنگالی} russian{روسی} portuguese{پرتغالی} urdu{اردو} indonesian{اندونزیایی} german{آلمانی} japanese{ژاپنی} marathi{مراتی} telugu{تلوگو} turkish{ترکی} tamil{تامیلی} vietnamese{ویتنامی} tagalog{تاگالوگ} korean{کره‌ای} persian{فارسی} hausa{هوسا} javanese{جاوه‌ای} italian{ایتالیایی} punjabi{پنجابی} kannada{کانادا} gujarati{گجراتی} thai{تایلندی} polish{لهستانی} ukrainian{اوکراینی} other{ترجمه تعریف نشده}}",
+    "languageTranslation": "{language_name, select, english{انگلیسی} chinese{چینی} hindi{هندی} spanish{اسپانیایی} french{فرانسوی} arabic{عربی} bengali{بنگالی} russian{روسی} portuguese{پرتغالی} urdu{اردو} indonesian{اندونزیایی} german{آلمانی} japanese{ژاپنی} marathi{مراتی} telugu{تلوگو} turkish{ترکی} tamil{تامیلی} vietnamese{ویتنامی} tagalog{تاگالوگ} korean{کره‌ای} persian{فارسی} hausa{هوسا} javanese{جاوه‌ای} italian{ایتالیایی} punjabi{پنجابی} kannada{کانادا} gujarati{گجراتی} thai{تایلندی} polish{لهستانی} ukrainian{اوکراینی} other{ترجمه تعریف نشده}}",
     "@languageTranslation": {
         "placeholders": {
             "language_name": {}
+        }
+    },
+    "profileChartTypeLabel": "{chartType, select, weight{وزن} waistCircumference{دور کمر} armCircumference{دور بازو} chestCircumference{دور سینه} thightCircumference{دور ران} calfMuscleCircumference{ماهیچه ساق پا} hipCircumference{دور باسن} activityLevel{سطح فعالیت} other{ترجمه تعریف نشده}}",
+    "@profileChartTypeLabel": {
+        "placeholders": {
+            "chartType": {}
         }
     }
 }

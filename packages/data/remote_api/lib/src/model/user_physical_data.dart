@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remote_api/remote_api.dart';
 
-part 'user_bio_data.g.dart';
+part 'user_physical_data.g.dart';
 
 @JsonSerializable(createToJson: false)
 class DoubleDataPoint {
@@ -36,7 +36,7 @@ class ActivityLevelDataPoint {
 }
 
 @JsonSerializable(createToJson: false)
-class UserBioData {
+class UserPhysicalProfile {
   @JsonKey(name: '_id')
   final String id;
   final String userId;
@@ -52,7 +52,7 @@ class UserBioData {
   final List<DoubleDataPoint> hipCircumference;
   final List<ActivityLevelDataPoint> activityLevel;
 
-  UserBioData({
+  UserPhysicalProfile({
     required this.id,
     required this.userId,
     required this.gender,
@@ -68,6 +68,6 @@ class UserBioData {
     required this.activityLevel,
   });
 
-  factory UserBioData.fromJson(Map<String, dynamic> json) =>
-      _$UserBioDataFromJson(json);
+  factory UserPhysicalProfile.fromJson(Map<String, dynamic> json) =>
+      _$UserPhysicalProfileFromJson(json);
 }

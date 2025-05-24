@@ -121,19 +121,21 @@ class RemoteApiBase implements RemoteApi {
     return UserProfile.fromJson(res!);
   }
 
-  Future<UserBioData> userBioData() async {
+  Future<UserPhysicalProfile> userPhysicalData() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         CommonInterceptor(get_user_language),
         AccessTokenInterceptor(get_access_token),
       ],
     );
-    final uri = UriBuilder.readUserBioData();
+    final uri = UriBuilder.readUserPhysicalData();
     final res = await _handleRequest<JsonMap>(() => interceptedHttp.get(uri));
-    return UserBioData.fromJson(res!);
+    return UserPhysicalProfile.fromJson(res!);
   }
 
-  Future<void> deleteUserBioDataPoint({required String dataPointsId}) async {
+  Future<void> deleteUserPhysicalDataPoint({
+    required String dataPointsId,
+  }) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         CommonInterceptor(get_user_language),
@@ -141,12 +143,12 @@ class RemoteApiBase implements RemoteApi {
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
-    final uri = UriBuilder.deleteUserBioData(dataPointsId);
+    final uri = UriBuilder.deleteUserPhysicalData(dataPointsId);
     await _handleRequest<JsonMap>(() => interceptedHttp.delete(uri));
   }
 
-  Future<UserBioData> updateUserBioData(
-    UserBioDataUpsert userBioDataUpsert,
+  Future<UserPhysicalProfile> updateUserPhysicalData(
+    UserPhysicalDataUpsert userPhysicalDataUpsert,
   ) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
@@ -155,13 +157,16 @@ class RemoteApiBase implements RemoteApi {
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
-    final uri = UriBuilder.updateUserBioData();
-    final userBioDataUpsertJson = userBioDataUpsert.toJson();
+    final uri = UriBuilder.updateUserPhysicalData();
+    final userPhysicalDataUpsertJson = userPhysicalDataUpsert.toJson();
     final res = await _handleRequest<JsonMap>(
-      () => interceptedHttp.put(uri, body: json.encode(userBioDataUpsertJson)),
+      () => interceptedHttp.put(
+        uri,
+        body: json.encode(userPhysicalDataUpsertJson),
+      ),
     );
     print(res);
-    return UserBioData.fromJson(res!);
+    return UserPhysicalProfile.fromJson(res!);
   }
 
   Future<List<FileData>> readUserImageGallary(
@@ -447,7 +452,7 @@ class RemoteApiBase implements RemoteApi {
       } else if (res.statusCode == 204) {
         return null;
       } else {
-        final jsonResponse = json.decode(res.body) ;
+        final jsonResponse = json.decode(res.body);
         if (res.statusCode != 200 && res.statusCode != 201) {
           assert(jsonResponse is JsonMap);
           final response = ApiErrorResponse.fromJson(

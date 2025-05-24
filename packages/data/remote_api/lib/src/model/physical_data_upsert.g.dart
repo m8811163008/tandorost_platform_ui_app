@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'bio_data_upsert.dart';
+part of 'physical_data_upsert.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$UserBioDataUpsertToJson(
-  UserBioDataUpsert instance,
+Map<String, dynamic> _$UserPhysicalDataUpsertToJson(
+  UserPhysicalDataUpsert instance,
 ) => <String, dynamic>{
   if (_$GenderEnumMap[instance.gender] case final value?) 'gender': value,
   if (instance.age case final value?) 'age': value,

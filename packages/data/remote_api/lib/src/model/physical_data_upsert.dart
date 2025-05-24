@@ -2,10 +2,10 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:remote_api/src/model/activity_level.dart';
 import 'package:remote_api/src/model/gender.dart';
 
-part 'bio_data_upsert.g.dart';
+part 'physical_data_upsert.g.dart';
 
 @JsonSerializable(createFactory: false)
-class UserBioDataUpsert {
+class UserPhysicalDataUpsert {
   final Gender? gender;
   final int? age;
   final double? height;
@@ -18,7 +18,7 @@ class UserBioDataUpsert {
   final double? hipCircumference;
   final ActivityLevel? activityLevel;
 
-  UserBioDataUpsert({
+  UserPhysicalDataUpsert({
     this.gender,
     this.age,
     this.height,
@@ -32,5 +32,5 @@ class UserBioDataUpsert {
     this.activityLevel,
   });
 
-  Map<String, dynamic> toJson() => _$UserBioDataUpsertToJson(this);
+  Map<String, dynamic> toJson() => _$UserPhysicalDataUpsertToJson(this);
 }

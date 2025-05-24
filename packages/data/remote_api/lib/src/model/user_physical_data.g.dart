@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_bio_data.dart';
+part of 'user_physical_data.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -69,8 +69,10 @@ const _$ActivityLevelEnumMap = {
   ActivityLevel.other: 'other',
 };
 
-UserBioData _$UserBioDataFromJson(Map<String, dynamic> json) => $checkedCreate(
-  'UserBioData',
+UserPhysicalProfile _$UserPhysicalProfileFromJson(
+  Map<String, dynamic> json,
+) => $checkedCreate(
+  'UserPhysicalProfile',
   json,
   ($checkedConvert) {
     $checkKeys(
@@ -91,7 +93,7 @@ UserBioData _$UserBioDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'activity_level',
       ],
     );
-    final val = UserBioData(
+    final val = UserPhysicalProfile(
       id: $checkedConvert('_id', (v) => v as String),
       userId: $checkedConvert('user_id', (v) => v as String),
       gender: $checkedConvert('gender', (v) => $enumDecode(_$GenderEnumMap, v)),

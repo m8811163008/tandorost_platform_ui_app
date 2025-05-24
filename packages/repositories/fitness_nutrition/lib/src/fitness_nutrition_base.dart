@@ -5,11 +5,18 @@ class FitnessNutrition {
 
   FitnessNutrition({required this.remoteApi});
 
-  Future<UserBioData> userBioData() => remoteApi.userBioData();
+  Future<UserPhysicalProfile> userPhysicalData() =>
+      remoteApi.userPhysicalData();
 
-  Future<void> deleteUserBioDataPoint({required String dataPointsId}) =>
-      remoteApi.deleteUserBioDataPoint(dataPointsId: dataPointsId);
+  Future<void> deleteUserPhysicalDataPoint({required String dataPointsId}) =>
+      remoteApi.deleteUserPhysicalDataPoint(dataPointsId: dataPointsId);
 
-  Future<UserBioData> updateUserBioData(UserBioDataUpsert userBioDataUpsert) =>
-      remoteApi.updateUserBioData(userBioDataUpsert);
+  Future<UserPhysicalProfile> updateUserPhysicalData(
+    UserPhysicalDataUpsert userPhysicalDataUpsert,
+  ) => remoteApi.updateUserPhysicalData(userPhysicalDataUpsert);
+
+  Future<FitnessData> readFitnessData() => remoteApi.readFitnessData();
+
+  Future<NutritionRequirements> readNutritionRequirements() =>
+      remoteApi.readNutritionRequirements();
 }

@@ -66,24 +66,26 @@ abstract interface class RemoteApi {
   /// Returns a [Future] that resolves to the updated [UserProfile].
   Future<UserProfile> updateProfile(UserProfile updatedProfile);
 
-  /// Retrieves the user's biodata.
+  /// Retrieves the user's physicaldata.
   ///
-  /// Returns a [Future] that resolves to a [UserBioData] object.
-  Future<UserBioData> userBioData();
+  /// Returns a [Future] that resolves to a [UserPhysicalProfile] object.
+  Future<UserPhysicalProfile> userPhysicalData();
 
-  /// Deletes a specific biodata point for the user.
+  /// Deletes a specific physicaldata point for the user.
   ///
-  /// - [dataPointsId]: The ID of the biodata point to delete.
+  /// - [dataPointsId]: The ID of the physicaldata point to delete.
   ///
   /// Returns a [Future] that completes when the operation is done.
-  Future<void> deleteUserBioDataPoint({required String dataPointsId});
+  Future<void> deleteUserPhysicalDataPoint({required String dataPointsId});
 
-  /// Updates the user's biodata with the provided information.
+  /// Updates the user's physicaldata with the provided information.
   ///
-  /// - [userBioDataUpsert]: The biodata to update or insert.
+  /// - [userPhysicalDataUpsert]: The physicaldata to update or insert.
   ///
-  /// Returns a [Future] that resolves to the updated [UserBioData].
-  Future<UserBioData> updateUserBioData(UserBioDataUpsert userBioDataUpsert);
+  /// Returns a [Future] that resolves to the updated [UserPhysicalProfile].
+  Future<UserPhysicalProfile> updateUserPhysicalData(
+    UserPhysicalDataUpsert userPhysicalDataUpsert,
+  );
 
   /// Reads the user's image gallery based on the provided tags.
   ///
@@ -159,12 +161,12 @@ abstract interface class RemoteApi {
   });
 
   /// Reads the fitness data from the remote API.
-  /// 
+  ///
   /// Returns a [FitnessData] object containing the fitness-related information.
   Future<FitnessData> readFitnessData();
 
   /// Reads the nutrition requirements from the remote API.
-  /// 
+  ///
   /// Returns a [NutritionRequirements] object containing the nutritional information.
   Future<NutritionRequirements> readNutritionRequirements();
 }

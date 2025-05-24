@@ -1,7 +1,7 @@
 export 'activity_level.dart';
 export 'address.dart';
 export 'audio_meme_type.dart';
-export 'bio_data_upsert.dart';
+export 'physical_data_upsert.dart';
 export 'carbohydrate_source.dart';
 export 'credential.dart';
 export 'exception/exception.dart';
@@ -21,7 +21,7 @@ export 'user_profile.dart';
 export 'file_data.dart';
 export 'archive_user_images_response.dart';
 export 'food.dart';
-export 'user_bio_data.dart';
+export 'user_physical_data.dart';
 export 'nutrition_requirements.dart';
 export 'fitness_data.dart';
 export 'async_processing_status.dart';

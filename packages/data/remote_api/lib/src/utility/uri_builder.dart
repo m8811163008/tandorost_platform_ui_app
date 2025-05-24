@@ -31,12 +31,12 @@ class UriBuilder {
     return baseUri.replace(path: '$basePath/user/update_profile/');
   }
 
-  static Uri readUserBioData() {
-    return baseUri.replace(path: '$basePath/user/read_user_bio_data/');
+  static Uri readUserPhysicalData() {
+    return baseUri.replace(path: '$basePath/user/read_user_physical_data/');
   }
 
-  static Uri updateUserBioData() {
-    return baseUri.replace(path: '$basePath/user/update_user_bio_data/');
+  static Uri updateUserPhysicalData() {
+    return baseUri.replace(path: '$basePath/user/update_user_physical_data/');
   }
 
   static Uri addUsersImages() {
@@ -107,9 +107,9 @@ class UriBuilder {
     return baseUri.replace(path: '$basePath/$fileUploadPath');
   }
 
-  static Uri deleteUserBioData(String dataPointsId) {
+  static Uri deleteUserPhysicalData(String dataPointsId) {
     return baseUri.replace(
-      path: '$basePath/user/delete_user_bio_data/',
+      path: '$basePath/user/delete_user_physical_data/',
       queryParameters: {'data_point_id': dataPointsId},
     );
   }

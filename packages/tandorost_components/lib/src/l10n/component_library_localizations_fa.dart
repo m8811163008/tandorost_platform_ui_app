@@ -251,4 +251,23 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String profileChartTypeLabel(String chartType) {
+    String _temp0 = intl.Intl.selectLogic(
+      chartType,
+      {
+        'weight': 'وزن',
+        'waistCircumference': 'دور کمر',
+        'armCircumference': 'دور بازو',
+        'chestCircumference': 'دور سینه',
+        'thightCircumference': 'دور ران',
+        'calfMuscleCircumference': 'ماهیچه ساق پا',
+        'hipCircumference': 'دور باسن',
+        'activityLevel': 'سطح فعالیت',
+        'other': 'ترجمه تعریف نشده',
+      },
+    );
+    return '$_temp0';
+  }
 }

@@ -4,3 +4,4 @@ library;
 export 'package:remote_api/remote_api.dart' hide RemoteApi;
 export 'package:formz/formz.dart';
 export 'package:equatable/equatable.dart';
+export 'src/chart_type.dart';

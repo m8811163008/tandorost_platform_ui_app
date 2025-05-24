@@ -446,6 +446,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'{language_name, select, english{انگلیسی} chinese{چینی} hindi{هندی} spanish{اسپانیایی} french{فرانسوی} arabic{عربی} bengali{بنگالی} russian{روسی} portuguese{پرتغالی} urdu{اردو} indonesian{اندونزیایی} german{آلمانی} japanese{ژاپنی} marathi{مراتی} telugu{تلوگو} turkish{ترکی} tamil{تامیلی} vietnamese{ویتنامی} tagalog{تاگالوگ} korean{کره‌ای} persian{فارسی} hausa{هوسا} javanese{جاوه‌ای} italian{ایتالیایی} punjabi{پنجابی} kannada{کانادا} gujarati{گجراتی} thai{تایلندی} polish{لهستانی} ukrainian{اوکراینی} other{ترجمه تعریف نشده}}'**
   String languageTranslation(String language_name);
+
+  /// No description provided for @profileChartTypeLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'{chartType, select, weight{وزن} waistCircumference{دور کمر} armCircumference{دور بازو} chestCircumference{دور سینه} thightCircumference{دور ران} calfMuscleCircumference{ماهیچه ساق پا} hipCircumference{دور باسن} activityLevel{سطح فعالیت} other{ترجمه تعریف نشده}}'**
+  String profileChartTypeLabel(String chartType);
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {
