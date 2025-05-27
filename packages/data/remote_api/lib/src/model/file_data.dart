@@ -1,10 +1,11 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remote_api/src/model/model.dart';
 
 part 'file_data.g.dart';
 
 @JsonSerializable()
-class FileData {
+class FileData extends Equatable {
   @JsonKey(name: '_id')
   final String id;
   final String userId;
@@ -34,6 +35,20 @@ class FileData {
       _$FileDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$FileDataToJson(this);
+
+  @override
+  List<Object?> get props => [
+    id,
+    userId,
+    tag,
+    fileName,
+    fileSize,
+    uploadDate,
+    contentType,
+    fileUploadPath,
+    processingStatus,
+    rejectProcessingStatusDesc,
+  ];
 }
 
 @JsonEnum()

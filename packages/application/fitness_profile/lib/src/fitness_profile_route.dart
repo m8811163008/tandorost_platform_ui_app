@@ -4,9 +4,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fitness_nutrition/fitness_nutrition.dart';
+import 'package:fitness_profile_app/src/cubit/fitness_profile_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_repository/image_repository.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 import 'package:pro_image_editor/pro_image_editor.dart';
 
@@ -15,7 +17,15 @@ class FitnessProfileRoute extends StatelessWidget {
   static const String name = 'fitness-profile';
   @override
   Widget build(BuildContext context) {
-    return const FitnessProfileView();
+    return BlocProvider(
+      create:
+          (_) => FitnessProfileCubit(
+            imageRepository: RepositoryProvider.of<ImageRepository>(context),
+            fitnessNutrition: RepositoryProvider.of<FitnessNutrition>(context),
+          ),
+      lazy: false,
+      child: const FitnessProfileView(),
+    );
   }
 }
 
@@ -57,12 +67,89 @@ class FitnessProfileView extends StatelessWidget {
         ),
       ],
     );
-    return Column(
-      children: [
-        FitnessInfo(fitnessData: data),
-        ImageGallary(),
-        PhysicalDataChart(userPhysicalProfile: profile),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ImageGallary(),
+          FitnessInfoConsumer(),
+          PhysicalDataChart(userPhysicalProfile: profile),
+        ],
+      ),
+    );
+  }
+}
+
+class FitnessInfoConsumer extends StatelessWidget {
+  const FitnessInfoConsumer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<FitnessProfileCubit, FitnessProfileState>(
+      listenWhen:
+          (previous, current) =>
+              previous.readFitnessDataStatus != current.readFitnessDataStatus,
+      listener: (context, state) {
+        if (state.readUserImageGallaryStatus.isServerConnectionError) {
+          final content = context.l10n.networkError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.readUserImageGallaryStatus.isServerConnectionError) {
+          final content = context.l10n.internetConnectionError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        }
+      },
+      buildWhen:
+          (previous, current) =>
+              previous.readFitnessDataStatus != current.readFitnessDataStatus,
+      builder:
+          (context, state) => switch (state.readFitnessDataStatus) {
+            AsyncProcessingStatus.inital => AppState.inital(),
+            AsyncProcessingStatus.loading => AppState.loading(),
+            AsyncProcessingStatus.serverConnectionError =>
+              AppState.serverError(),
+            AsyncProcessingStatus.internetConnectionError =>
+              AppState.internetConnectionError(),
+            AsyncProcessingStatus.success => FitnessInfo(
+              fitnessData: state.fitnessData!,
+            ),
+          },
+    );
+  }
+}
+
+class AppState extends StatelessWidget {
+  const AppState.inital({super.key}) : _status = AsyncProcessingStatus.inital;
+  const AppState.loading({super.key}) : _status = AsyncProcessingStatus.loading;
+  const AppState.serverError({super.key})
+    : _status = AsyncProcessingStatus.serverConnectionError;
+  const AppState.internetConnectionError({super.key})
+    : _status = AsyncProcessingStatus.internetConnectionError;
+  final AsyncProcessingStatus _status;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppCard(
+      child: Center(
+        child: Builder(
+          builder: (context) {
+            switch (_status) {
+              case AsyncProcessingStatus.inital:
+                return const Text('Initial state');
+              case AsyncProcessingStatus.loading:
+                return const LoadingLottie();
+              case AsyncProcessingStatus.serverConnectionError:
+                return const Text('Server connection error');
+              case AsyncProcessingStatus.internetConnectionError:
+                return const Text('Internet connection error');
+              default:
+                return const SizedBox.shrink();
+            }
+          },
+        ),
+      ),
     );
   }
 }
@@ -73,24 +160,30 @@ class PhysicalDataChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        AppLineChart(
-          dataPoints: userPhysicalProfile.weight.sublist(
-            userPhysicalProfile.weight.length > 10
-                ? userPhysicalProfile.weight.length - 10
-                : 0,
+    return AppCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Physical data chart', style: context.textTheme.headlineMedium),
+          SizedBox(height: context.sizeExtenstion.medium),
+          TextButton(onPressed: () {}, child: Text('Add new measurement')),
+          AppLineChart(
+            dataPoints: userPhysicalProfile.weight.sublist(
+              userPhysicalProfile.weight.length > 10
+                  ? userPhysicalProfile.weight.length - 10
+                  : 0,
+            ),
           ),
-        ),
-        AppLineChartInputChips(
-          chartTypes: [
-            ChartType.armCircumference,
-            ChartType.waistCircumference,
-            ChartType.weight,
-          ],
-        ),
-        Placeholder(),
-      ],
+          AppLineChartInputChips(
+            chartTypes: [
+              ChartType.armCircumference,
+              ChartType.waistCircumference,
+              ChartType.weight,
+            ],
+          ),
+          // Placeholder(),
+        ],
+      ),
     );
     // return BlocBuilder<ProfileCubit, ProfileState>(
     //   buildWhen:
@@ -120,7 +213,10 @@ class FitnessInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCard(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text('Your Physical data', style: context.textTheme.headlineMedium),
+          SizedBox(height: context.sizeExtenstion.medium),
           _buildFitnessData(
             context,
             'Resting Metabolic Rate',
@@ -176,71 +272,188 @@ class FitnessInfo extends StatelessWidget {
       children: [
         Text(label),
         SizedBox(width: context.sizeExtenstion.small),
-        Text(label),
+        Text(value),
       ],
     );
   }
 }
 
 class ImageGallary extends StatelessWidget {
-  const ImageGallary({
-    super.key,
-    this.filesData = const [],
-    this.filesDetail = const [],
-  }) : assert(filesData.length == filesDetail.length);
-  final List<FileData> filesData;
-  final List<FileDetail> filesDetail;
+  const ImageGallary({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppCard(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextButton.icon(
-            onPressed: () async {
-              final result = await onEditImage(context);
-              if (result == null) return;
-
-              final overlay = Overlay.of(context);
-              late OverlayEntry entry;
-
-              entry = OverlayEntry(
-                builder:
-                    (context) => Material(
-                      color: Colors.black54,
-                      child: Center(
-                        child: SizedBox(
-                          width: 350,
-                          height: 500,
-                          child: ImageEditor(
-                            bytes: result.bytes,
-                            onComplete: (editedBytes) {
-                              // Handle the edited image here
-                              entry.remove(); // Remove the overlay
-                            },
-                          ),
-                        ),
-                      ),
-                    ),
-              );
-
-              overlay.insert(entry);
-            },
-            label: Text('Add new image'),
-          ),
-          CarouselSlider(
-            options: CarouselOptions(height: 400.0, aspectRatio: 9 / 11),
-            items:
-                filesDetail.map((fileDetail) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Image.memory(fileDetail.bytes);
-                    },
-                  );
-                }).toList(),
-          ),
+          Text('Your image gallary', style: context.textTheme.headlineMedium),
+          SizedBox(height: context.sizeExtenstion.medium),
+          AddImageTextButton(),
+          CarouselSliderBuilder(),
         ],
       ),
+    );
+  }
+}
+
+class CarouselSliderBuilder extends StatelessWidget {
+  const CarouselSliderBuilder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<FitnessProfileCubit, FitnessProfileState>(
+      listenWhen:
+          (previous, current) =>
+              previous.readUserImageGallaryStatus !=
+              current.readUserImageGallaryStatus,
+      listener: (context, state) {
+        if (state.readUserImageGallaryStatus.isServerConnectionError) {
+          final content = context.l10n.networkError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.readUserImageGallaryStatus.isServerConnectionError) {
+          final content = context.l10n.internetConnectionError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        }
+      },
+      buildWhen:
+          (previous, current) => previous.filesDetail != current.filesDetail,
+      builder: (context, state) {
+        if (state.filesDetail.isEmpty) {
+          return Stack(
+            alignment: AlignmentDirectional.topCenter,
+            children: [
+              AspectRatio(
+                aspectRatio: 16 / 9,
+                child: UserImageBorder(child: AddNewImageSelfie()),
+              ),
+              Text(
+                'Add your new Image',
+                style: context.textTheme.headlineSmall!.copyWith(
+                  backgroundColor: context.themeData.colorScheme.primary,
+                ),
+              ),
+            ],
+          );
+        }
+        return CarouselSlider(
+          options: CarouselOptions(
+            enableInfiniteScroll: false,
+            scrollDirection: Axis.vertical,
+          ),
+          items:
+              state.filesDetail.map((fileDetail) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return UserImageBorder(
+                      child: Image.memory(fileDetail.bytes),
+                    );
+                  },
+                );
+              }).toList(),
+        );
+      },
+    );
+  }
+}
+
+class UserImageBorder extends StatelessWidget {
+  const UserImageBorder({super.key, this.child});
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: context.sizeExtenstion.small),
+      child: Material(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(),
+          borderRadius: BorderRadius.circular(context.sizeExtenstion.small),
+        ),
+
+        child: child,
+      ),
+    );
+  }
+}
+
+class AddImageTextButton extends StatelessWidget {
+  const AddImageTextButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final naviagtor = Navigator.of(context);
+    return TextButton.icon(
+      onPressed: () async {
+        final result = await onEditImage(context);
+        if (result == null) return;
+
+        await naviagtor.push(
+          MaterialPageRoute(
+            builder:
+                (_) => BlocProvider.value(
+                  value: context.read<FitnessProfileCubit>(),
+                  child: Scaffold(
+                    // appBar: AppBar(title: Text('Edit Image')),
+                    body: Builder(
+                      builder: (context) {
+                        return BlocListener<
+                          FitnessProfileCubit,
+                          FitnessProfileState
+                        >(
+                          listenWhen:
+                              (previous, current) =>
+                                  previous.addUserImageStatus !=
+                                  current.addUserImageStatus,
+                          listener: (context, state) {
+                            if (state
+                                .addUserImageStatus
+                                .isServerConnectionError) {
+                              final content = context.l10n.networkError;
+                              ScaffoldMessenger.of(
+                                context,
+                              ).showSnackBar(SnackBar(content: Text(content)));
+                            } else if (state
+                                .addUserImageStatus
+                                .isServerConnectionError) {
+                              final content =
+                                  context.l10n.internetConnectionError;
+                              ScaffoldMessenger.of(
+                                context,
+                              ).showSnackBar(SnackBar(content: Text(content)));
+                            }
+                          },
+                          child: Center(
+                            child: SizedBox.fromSize(
+                              size: MediaQuery.of(context).size,
+                              child: ImageEditor(
+                                bytes: result.bytes,
+                                onComplete: (editedBytes) {
+                                  context
+                                      .read<FitnessProfileCubit>()
+                                      .onEditImageComplete(
+                                        editedBytes,
+                                        result.fileName,
+                                      );
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+            fullscreenDialog: true,
+          ),
+        );
+      },
+      label: Text('Add new image'),
     );
   }
 
@@ -260,43 +473,5 @@ class ImageGallary extends StatelessWidget {
       );
       return fileDetail;
     }
-  }
-}
-
-class ImageEditor extends StatelessWidget {
-  const ImageEditor({super.key, required this.bytes, this.onComplete});
-  final Uint8List bytes;
-  final ValueSetter<Uint8List>? onComplete;
-
-  @override
-  Widget build(BuildContext context) {
-    return ProImageEditor.memory(
-      bytes,
-      callbacks: ProImageEditorCallbacks(
-        onImageEditingComplete: (Uint8List bytes) async {
-          /*
-          Your code to process the edited image, such as uploading it to your server.
-
-          You can choose to use await to keep the loading dialog visible until 
-          your code completes, or run it without async to close the loading dialog immediately.
-
-          By default, the image bytes are in JPG format.
-        */
-          Navigator.pop(context);
-        },
-        /* 
-        Optional: If you want haptic feedback when a line is hit, similar to WhatsApp, 
-        you can use the code below along with the vibration package.
-
-          mainEditorCallbacks: MainEditorCallbacks(
-            helperLines: HelperLinesCallbacks(
-              onLineHit: () {
-                Vibration.vibrate(duration: 3);
-              }
-            ),
-          ),
-        */
-      ),
-    );
   }
 }

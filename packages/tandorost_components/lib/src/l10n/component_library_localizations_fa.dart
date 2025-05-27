@@ -187,7 +187,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get changeWeightSpeedInfoFastAndHardSpeed => 'در حالت سریع و سخت در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  15 درصد از انرژی مورد نیاز کم میشود';
 
   @override
-  String get changeWeightSpeedInfoFastAndHardSpeedCaution => 'دقت کنید حالت سریع و سخت برای بعضی روزهای تمرین مناب تر است چون باعث میشه انرژی کمی برای تمرین فراهم باشد.';
+  String get changeWeightSpeedInfoFastAndHardSpeedCaution => 'دقت کنید حالت سریع و سخت برای بعضی روزهای تمرین مناسب نیست چون باعث میشه انرژی کمی برای تمرین فراهم باشد.';
 
   @override
   String profileChangeWeightSpeedButtonLabel(String changeWeightSpeed) {
@@ -270,4 +270,178 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get photoEditorRemove => 'حذف';
+
+  @override
+  String get photoEditorEdit => 'ویرایش';
+
+  @override
+  String get photoEditorRotateScale => 'چرخش و تغییر اندازه';
+
+  @override
+  String get photoEditorMoveAndZoom => 'بزرگنمایی';
+
+  @override
+  String get photoEditorBottomNavigationBarText => 'نقاشی';
+
+  @override
+  String get photoEditorFreestyle => 'آزاد';
+
+  @override
+  String get photoEditorArrow => 'فلش';
+
+  @override
+  String get photoEditorLine => 'خط';
+
+  @override
+  String get photoEditorRectangle => 'مستطیل';
+
+  @override
+  String get photoEditorCircle => 'دایره';
+
+  @override
+  String get photoEditorDashLine => 'خط چین';
+
+  @override
+  String get photoEditorBlur => 'محو کردن';
+
+  @override
+  String get photoEditorPixelate => 'پیکسلی کردن';
+
+  @override
+  String get photoEditorLineWidth => 'ضخامت خط';
+
+  @override
+  String get photoEditorEraser => 'پاک‌کن';
+
+  @override
+  String get photoEditorToggleFill => 'تغییر حالت پر کردن';
+
+  @override
+  String get photoEditorChangeOpacity => 'تغییر شفافیت';
+
+  @override
+  String get photoEditorUndo => 'برگرداندن';
+
+  @override
+  String get photoEditorRedo => 'دوباره انجام دادن';
+
+  @override
+  String get photoEditorDone => 'انجام شد';
+
+  @override
+  String get photoEditorBack => 'بازگشت';
+
+  @override
+  String get photoEditorSmallScreenMoreTooltip => 'بیشتر';
+
+  @override
+  String get photoEditorInputHintText => 'متن را وارد کنید';
+
+  @override
+  String get photoEditorBottomNavigationBarTextText => 'متن';
+
+  @override
+  String get photoEditorBackText => 'بازگشت';
+
+  @override
+  String get photoEditorDoneText => 'انجام شد';
+
+  @override
+  String get photoEditorTextAlign => 'تراز متن';
+
+  @override
+  String get photoEditorFontScale => 'مقیاس فونت';
+
+  @override
+  String get photoEditorBackgroundMode => 'حالت پس‌زمینه';
+
+  @override
+  String get photoEditorSmallScreenMoreTooltipText => 'بیشتر';
+
+  @override
+  String get photoEditorBottomNavigationBarTextCropRotate => 'برش/چرخش';
+
+  @override
+  String get photoEditorRotate => 'چرخش';
+
+  @override
+  String get photoEditorFlip => 'برعکس';
+
+  @override
+  String get photoEditorRatio => 'نسبت';
+
+  @override
+  String get photoEditorCancel => 'لغو';
+
+  @override
+  String get photoEditorReset => 'بازنشانی';
+
+  @override
+  String get photoEditorBottomNavigationBarTextFilter => 'فیلتر';
+
+  @override
+  String get photoEditorBottomNavigationBarTextTune => 'تنظیم';
+
+  @override
+  String get photoEditorBrightness => 'روشنایی';
+
+  @override
+  String get photoEditorContrast => 'کنتراست';
+
+  @override
+  String get photoEditorSaturation => 'اشباع رنگ';
+
+  @override
+  String get photoEditorExposure => 'نوردهی';
+
+  @override
+  String get photoEditorHue => 'رنگ‌مایه';
+
+  @override
+  String get photoEditorTemperature => 'دمای رنگ';
+
+  @override
+  String get photoEditorSharpness => 'وضوح';
+
+  @override
+  String get photoEditorFade => 'محو شدن';
+
+  @override
+  String get photoEditorLuminance => 'درخشندگی';
+
+  @override
+  String get photoEditorUndoText => 'برگرداندن';
+
+  @override
+  String get photoEditorRedoText => 'دوباره انجام دادن';
+
+  @override
+  String get photoEditorBottomNavigationBarTextBlur => 'محو کردن';
+
+  @override
+  String get photoEditorBottomNavigationBarTextSticker => 'برچسب';
+
+  @override
+  String get photoEditorLoadingDialogMsg => 'لطفاً صبر کنید...';
+
+  @override
+  String get photoEditorCloseEditorWarningTitle => 'بستن ویرایشگر تصویر؟';
+
+  @override
+  String get photoEditorCloseEditorWarningMessage => 'آیا مطمئن هستید که می‌خواهید ویرایشگر تصویر را ببندید؟ تغییرات شما ذخیره نخواهد شد.';
+
+  @override
+  String get photoEditorCloseEditorWarningConfirmBtn => 'تأیید';
+
+  @override
+  String get photoEditorCloseEditorWarningCancelBtn => 'لغو';
+
+  @override
+  String get photoEditorImportStateHistoryMsg => 'ویرایشگر در حال راه‌اندازی است';
+
+  @override
+  String get photoEditorDoneLoadingMsg => 'تغییرات در حال اعمال هستند';
 }

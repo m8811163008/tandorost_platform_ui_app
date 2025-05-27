@@ -1,11 +1,11 @@
 /* https://docs.flutter.dev/platform-integration/web/bootstrapping */
 
-{ { flutter_js } }
-{ { flutter_build_config } }
+{{flutter_js}}
+{{flutter_build_config}}
 
 _flutter.loader.load({
     serviceWorkerSettings: {
-        serviceWorkerVersion: {{ flutter_service_worker_version }},
+        serviceWorkerVersion: {{flutter_service_worker_version}},
     },
     onEntrypointLoaded: function (engineInitializer) {
         engineInitializer.initializeEngine({
@@ -16,7 +16,6 @@ _flutter.loader.load({
         });
     }
 });
-
 
 window.addEventListener('flutter-first-frame', function () {
     var loadingScreen = document.getElementById('loading-screen');

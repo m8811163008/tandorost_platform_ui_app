@@ -9,7 +9,8 @@
             "request": "launch",
             "type": "dart",
             "args": [
-                "--web-port=59363"
+                "--web-port=59363",
+                "-v"
             ]
         },
         {

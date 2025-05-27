@@ -420,7 +420,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @changeWeightSpeedInfoFastAndHardSpeedCaution.
   ///
   /// In fa, this message translates to:
-  /// **'دقت کنید حالت سریع و سخت برای بعضی روزهای تمرین مناب تر است چون باعث میشه انرژی کمی برای تمرین فراهم باشد.'**
+  /// **'دقت کنید حالت سریع و سخت برای بعضی روزهای تمرین مناسب نیست چون باعث میشه انرژی کمی برای تمرین فراهم باشد.'**
   String get changeWeightSpeedInfoFastAndHardSpeedCaution;
 
   /// No description provided for @profileChangeWeightSpeedButtonLabel.
@@ -452,6 +452,354 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'{chartType, select, weight{وزن} waistCircumference{دور کمر} armCircumference{دور بازو} chestCircumference{دور سینه} thightCircumference{دور ران} calfMuscleCircumference{ماهیچه ساق پا} hipCircumference{دور باسن} activityLevel{سطح فعالیت} other{ترجمه تعریف نشده}}'**
   String profileChartTypeLabel(String chartType);
+
+  /// No description provided for @photoEditorRemove.
+  ///
+  /// In fa, this message translates to:
+  /// **'حذف'**
+  String get photoEditorRemove;
+
+  /// No description provided for @photoEditorEdit.
+  ///
+  /// In fa, this message translates to:
+  /// **'ویرایش'**
+  String get photoEditorEdit;
+
+  /// No description provided for @photoEditorRotateScale.
+  ///
+  /// In fa, this message translates to:
+  /// **'چرخش و تغییر اندازه'**
+  String get photoEditorRotateScale;
+
+  /// No description provided for @photoEditorMoveAndZoom.
+  ///
+  /// In fa, this message translates to:
+  /// **'بزرگنمایی'**
+  String get photoEditorMoveAndZoom;
+
+  /// No description provided for @photoEditorBottomNavigationBarText.
+  ///
+  /// In fa, this message translates to:
+  /// **'نقاشی'**
+  String get photoEditorBottomNavigationBarText;
+
+  /// No description provided for @photoEditorFreestyle.
+  ///
+  /// In fa, this message translates to:
+  /// **'آزاد'**
+  String get photoEditorFreestyle;
+
+  /// No description provided for @photoEditorArrow.
+  ///
+  /// In fa, this message translates to:
+  /// **'فلش'**
+  String get photoEditorArrow;
+
+  /// No description provided for @photoEditorLine.
+  ///
+  /// In fa, this message translates to:
+  /// **'خط'**
+  String get photoEditorLine;
+
+  /// No description provided for @photoEditorRectangle.
+  ///
+  /// In fa, this message translates to:
+  /// **'مستطیل'**
+  String get photoEditorRectangle;
+
+  /// No description provided for @photoEditorCircle.
+  ///
+  /// In fa, this message translates to:
+  /// **'دایره'**
+  String get photoEditorCircle;
+
+  /// No description provided for @photoEditorDashLine.
+  ///
+  /// In fa, this message translates to:
+  /// **'خط چین'**
+  String get photoEditorDashLine;
+
+  /// No description provided for @photoEditorBlur.
+  ///
+  /// In fa, this message translates to:
+  /// **'محو کردن'**
+  String get photoEditorBlur;
+
+  /// No description provided for @photoEditorPixelate.
+  ///
+  /// In fa, this message translates to:
+  /// **'پیکسلی کردن'**
+  String get photoEditorPixelate;
+
+  /// No description provided for @photoEditorLineWidth.
+  ///
+  /// In fa, this message translates to:
+  /// **'ضخامت خط'**
+  String get photoEditorLineWidth;
+
+  /// No description provided for @photoEditorEraser.
+  ///
+  /// In fa, this message translates to:
+  /// **'پاک‌کن'**
+  String get photoEditorEraser;
+
+  /// No description provided for @photoEditorToggleFill.
+  ///
+  /// In fa, this message translates to:
+  /// **'تغییر حالت پر کردن'**
+  String get photoEditorToggleFill;
+
+  /// No description provided for @photoEditorChangeOpacity.
+  ///
+  /// In fa, this message translates to:
+  /// **'تغییر شفافیت'**
+  String get photoEditorChangeOpacity;
+
+  /// No description provided for @photoEditorUndo.
+  ///
+  /// In fa, this message translates to:
+  /// **'برگرداندن'**
+  String get photoEditorUndo;
+
+  /// No description provided for @photoEditorRedo.
+  ///
+  /// In fa, this message translates to:
+  /// **'دوباره انجام دادن'**
+  String get photoEditorRedo;
+
+  /// No description provided for @photoEditorDone.
+  ///
+  /// In fa, this message translates to:
+  /// **'انجام شد'**
+  String get photoEditorDone;
+
+  /// No description provided for @photoEditorBack.
+  ///
+  /// In fa, this message translates to:
+  /// **'بازگشت'**
+  String get photoEditorBack;
+
+  /// No description provided for @photoEditorSmallScreenMoreTooltip.
+  ///
+  /// In fa, this message translates to:
+  /// **'بیشتر'**
+  String get photoEditorSmallScreenMoreTooltip;
+
+  /// No description provided for @photoEditorInputHintText.
+  ///
+  /// In fa, this message translates to:
+  /// **'متن را وارد کنید'**
+  String get photoEditorInputHintText;
+
+  /// No description provided for @photoEditorBottomNavigationBarTextText.
+  ///
+  /// In fa, this message translates to:
+  /// **'متن'**
+  String get photoEditorBottomNavigationBarTextText;
+
+  /// No description provided for @photoEditorBackText.
+  ///
+  /// In fa, this message translates to:
+  /// **'بازگشت'**
+  String get photoEditorBackText;
+
+  /// No description provided for @photoEditorDoneText.
+  ///
+  /// In fa, this message translates to:
+  /// **'انجام شد'**
+  String get photoEditorDoneText;
+
+  /// No description provided for @photoEditorTextAlign.
+  ///
+  /// In fa, this message translates to:
+  /// **'تراز متن'**
+  String get photoEditorTextAlign;
+
+  /// No description provided for @photoEditorFontScale.
+  ///
+  /// In fa, this message translates to:
+  /// **'مقیاس فونت'**
+  String get photoEditorFontScale;
+
+  /// No description provided for @photoEditorBackgroundMode.
+  ///
+  /// In fa, this message translates to:
+  /// **'حالت پس‌زمینه'**
+  String get photoEditorBackgroundMode;
+
+  /// No description provided for @photoEditorSmallScreenMoreTooltipText.
+  ///
+  /// In fa, this message translates to:
+  /// **'بیشتر'**
+  String get photoEditorSmallScreenMoreTooltipText;
+
+  /// No description provided for @photoEditorBottomNavigationBarTextCropRotate.
+  ///
+  /// In fa, this message translates to:
+  /// **'برش/چرخش'**
+  String get photoEditorBottomNavigationBarTextCropRotate;
+
+  /// No description provided for @photoEditorRotate.
+  ///
+  /// In fa, this message translates to:
+  /// **'چرخش'**
+  String get photoEditorRotate;
+
+  /// No description provided for @photoEditorFlip.
+  ///
+  /// In fa, this message translates to:
+  /// **'برعکس'**
+  String get photoEditorFlip;
+
+  /// No description provided for @photoEditorRatio.
+  ///
+  /// In fa, this message translates to:
+  /// **'نسبت'**
+  String get photoEditorRatio;
+
+  /// No description provided for @photoEditorCancel.
+  ///
+  /// In fa, this message translates to:
+  /// **'لغو'**
+  String get photoEditorCancel;
+
+  /// No description provided for @photoEditorReset.
+  ///
+  /// In fa, this message translates to:
+  /// **'بازنشانی'**
+  String get photoEditorReset;
+
+  /// No description provided for @photoEditorBottomNavigationBarTextFilter.
+  ///
+  /// In fa, this message translates to:
+  /// **'فیلتر'**
+  String get photoEditorBottomNavigationBarTextFilter;
+
+  /// No description provided for @photoEditorBottomNavigationBarTextTune.
+  ///
+  /// In fa, this message translates to:
+  /// **'تنظیم'**
+  String get photoEditorBottomNavigationBarTextTune;
+
+  /// No description provided for @photoEditorBrightness.
+  ///
+  /// In fa, this message translates to:
+  /// **'روشنایی'**
+  String get photoEditorBrightness;
+
+  /// No description provided for @photoEditorContrast.
+  ///
+  /// In fa, this message translates to:
+  /// **'کنتراست'**
+  String get photoEditorContrast;
+
+  /// No description provided for @photoEditorSaturation.
+  ///
+  /// In fa, this message translates to:
+  /// **'اشباع رنگ'**
+  String get photoEditorSaturation;
+
+  /// No description provided for @photoEditorExposure.
+  ///
+  /// In fa, this message translates to:
+  /// **'نوردهی'**
+  String get photoEditorExposure;
+
+  /// No description provided for @photoEditorHue.
+  ///
+  /// In fa, this message translates to:
+  /// **'رنگ‌مایه'**
+  String get photoEditorHue;
+
+  /// No description provided for @photoEditorTemperature.
+  ///
+  /// In fa, this message translates to:
+  /// **'دمای رنگ'**
+  String get photoEditorTemperature;
+
+  /// No description provided for @photoEditorSharpness.
+  ///
+  /// In fa, this message translates to:
+  /// **'وضوح'**
+  String get photoEditorSharpness;
+
+  /// No description provided for @photoEditorFade.
+  ///
+  /// In fa, this message translates to:
+  /// **'محو شدن'**
+  String get photoEditorFade;
+
+  /// No description provided for @photoEditorLuminance.
+  ///
+  /// In fa, this message translates to:
+  /// **'درخشندگی'**
+  String get photoEditorLuminance;
+
+  /// No description provided for @photoEditorUndoText.
+  ///
+  /// In fa, this message translates to:
+  /// **'برگرداندن'**
+  String get photoEditorUndoText;
+
+  /// No description provided for @photoEditorRedoText.
+  ///
+  /// In fa, this message translates to:
+  /// **'دوباره انجام دادن'**
+  String get photoEditorRedoText;
+
+  /// No description provided for @photoEditorBottomNavigationBarTextBlur.
+  ///
+  /// In fa, this message translates to:
+  /// **'محو کردن'**
+  String get photoEditorBottomNavigationBarTextBlur;
+
+  /// No description provided for @photoEditorBottomNavigationBarTextSticker.
+  ///
+  /// In fa, this message translates to:
+  /// **'برچسب'**
+  String get photoEditorBottomNavigationBarTextSticker;
+
+  /// No description provided for @photoEditorLoadingDialogMsg.
+  ///
+  /// In fa, this message translates to:
+  /// **'لطفاً صبر کنید...'**
+  String get photoEditorLoadingDialogMsg;
+
+  /// No description provided for @photoEditorCloseEditorWarningTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'بستن ویرایشگر تصویر؟'**
+  String get photoEditorCloseEditorWarningTitle;
+
+  /// No description provided for @photoEditorCloseEditorWarningMessage.
+  ///
+  /// In fa, this message translates to:
+  /// **'آیا مطمئن هستید که می‌خواهید ویرایشگر تصویر را ببندید؟ تغییرات شما ذخیره نخواهد شد.'**
+  String get photoEditorCloseEditorWarningMessage;
+
+  /// No description provided for @photoEditorCloseEditorWarningConfirmBtn.
+  ///
+  /// In fa, this message translates to:
+  /// **'تأیید'**
+  String get photoEditorCloseEditorWarningConfirmBtn;
+
+  /// No description provided for @photoEditorCloseEditorWarningCancelBtn.
+  ///
+  /// In fa, this message translates to:
+  /// **'لغو'**
+  String get photoEditorCloseEditorWarningCancelBtn;
+
+  /// No description provided for @photoEditorImportStateHistoryMsg.
+  ///
+  /// In fa, this message translates to:
+  /// **'ویرایشگر در حال راه‌اندازی است'**
+  String get photoEditorImportStateHistoryMsg;
+
+  /// No description provided for @photoEditorDoneLoadingMsg.
+  ///
+  /// In fa, this message translates to:
+  /// **'تغییرات در حال اعمال هستند'**
+  String get photoEditorDoneLoadingMsg;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

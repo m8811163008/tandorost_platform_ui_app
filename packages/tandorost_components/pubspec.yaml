@@ -20,6 +20,8 @@ dependencies:
     sdk: flutter
   intl: any
   fl_chart: ^1.0.0
+  carousel_slider: ^5.0.0
+  pro_image_editor: ^9.9.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -37,6 +39,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
       - assets/animations-lottie/
+      - assets/images/
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/to/asset-from-package

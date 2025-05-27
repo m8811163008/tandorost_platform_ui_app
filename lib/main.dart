@@ -1,4 +1,5 @@
 import 'package:authentication/authentication.dart';
+import 'package:fitness_nutrition/fitness_nutrition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_input/food_input.dart';
@@ -37,7 +38,7 @@ class DependencyManager extends StatelessWidget {
             get_user_language: () => Future.value(Language.english),
             get_access_token:
                 () => Future.value(
-                  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiIzZmQxY2Q1MS1jZDA0LTRkZjUtOTBjOC0yMWU2NDM1ODc2NmYiLCJleHAiOjE3NDgwODQ0NTR9.orWyfqjfuuv6rGlo1-G8thHR3DuGjscFSN0MlLfFvp0',
+                  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiIzZmQxY2Q1MS1jZDA0LTRkZjUtOTBjOC0yMWU2NDM1ODc2NmYiLCJleHAiOjE3NDgyOTM2OTB9.vDe0enHVbA8Cpu_tPj5UjBvcenznxg_QmSHdDBjCLi0',
                 ),
           );
 
@@ -60,6 +61,7 @@ class DependencyManager extends StatelessWidget {
             localStorage: localStorage,
           );
           final imageRepository = ImageRepository(remoteApi: remoteApi);
+          final fitnessNutrition = FitnessNutrition(remoteApi: remoteApi);
 
           return MultiRepositoryProvider(
             providers: [
@@ -71,6 +73,7 @@ class DependencyManager extends StatelessWidget {
               RepositoryProvider(create: (_) => profileRep, lazy: true),
               RepositoryProvider(create: (_) => authenticationRep, lazy: true),
               RepositoryProvider(create: (_) => imageRepository, lazy: true),
+              RepositoryProvider(create: (_) => fitnessNutrition, lazy: true),
             ],
             child: TandorostPlatform(),
           );
