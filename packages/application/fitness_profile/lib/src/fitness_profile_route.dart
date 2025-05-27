@@ -5,11 +5,9 @@ import 'package:domain_model/domain_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fitness_nutrition/fitness_nutrition.dart';
 import 'package:fitness_profile_app/src/cubit/fitness_profile_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_repository/image_repository.dart';
-import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 import 'package:pro_image_editor/pro_image_editor.dart';
 
@@ -167,7 +165,20 @@ class PhysicalDataChart extends StatelessWidget {
         children: [
           Text('Physical data chart', style: context.textTheme.headlineMedium),
           SizedBox(height: context.sizeExtenstion.medium),
-          TextButton(onPressed: () {}, child: Text('Add new measurement')),
+          TextButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return BlocProvider.value(
+                    value: context.read<FitnessProfileCubit>(),
+                    child: AddNewMeasurementDialog(),
+                  );
+                },
+              );
+            },
+            child: Text('Add new measurement'),
+          ),
           AppLineChart(
             dataPoints: userPhysicalProfile.weight.sublist(
               userPhysicalProfile.weight.length > 10
@@ -212,6 +223,7 @@ class AddNewMeasurementDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<FitnessProfileCubit>();
+    final gap = SizedBox(height: context.sizeExtenstion.small);
     return AppDialog(
       title: 'Add new measurement',
       contents: [
@@ -223,6 +235,7 @@ class AddNewMeasurementDialog extends StatelessWidget {
           ),
           items:
               Gender.values
+                  .sublist(0, Gender.values.length - 1)
                   .map(
                     (e) => DropdownMenuItem(
                       value: e,
@@ -231,6 +244,7 @@ class AddNewMeasurementDialog extends StatelessWidget {
                   )
                   .toList(),
         ),
+        gap,
         RegullarTextField(
           label: 'birthday',
           readOnly: true,
@@ -241,14 +255,19 @@ class AddNewMeasurementDialog extends StatelessWidget {
                     .toIso8601String(),
           ),
           onTap: () async {
-            final local = Localizations.localeOf(context);
+            final locale = Localizations.localeOf(context);
             late final DateTime? pickedDate;
-            if (local.languageCode == 'fa') {
+            if (locale.languageCode == 'fa') {
               Jalali? picked = await showPersianDatePicker(
                 context: context,
-                initialDate: Jalali.now(),
-                firstDate: Jalali(1385, 8),
-                lastDate: Jalali(1450, 9),
+                initialDate: Jalali.fromDateTime(
+                  DateTime.now().subtract(Duration(days: 365 * 25)),
+                ),
+                firstDate: Jalali(1350),
+                lastDate: Jalali.fromDateTime(
+                  DateTime.now().subtract(Duration(days: 365 * 17)),
+                ),
+
                 initialEntryMode: PersianDatePickerEntryMode.calendarOnly,
                 initialDatePickerMode: PersianDatePickerMode.year,
               );
@@ -256,7 +275,7 @@ class AddNewMeasurementDialog extends StatelessWidget {
             } else {
               pickedDate = await showDatePicker(
                 context: context,
-                initialDate: DateTime(2021, 7, 25),
+                initialDate: DateTime.now().subtract(Duration(days: 365 * 25)),
                 firstDate: DateTime(1950),
                 // to limit the application to users who are at least 18 years old
                 lastDate: DateTime.now().subtract(Duration(days: 365 * 17)),
@@ -269,19 +288,149 @@ class AddNewMeasurementDialog extends StatelessWidget {
             cubit.onChangeBirthDay(pickedDate);
           },
         ),
+        gap,
         NumberTextField(
           label: 'height',
           onChange: (value) {
             cubit.onChangeHeight(double.parse(value));
           },
-          initalValue: context.select<FitnessProfileCubit, String?>(
-            (cubit) => cubit.state.userPhysicalDataUpsert.height?.toString(),
+          initalValue:
+              context
+                  .read<FitnessProfileCubit>()
+                  .state
+                  .userPhysicalDataUpsert
+                  .height
+                  .tryToString(),
+        ),
+        gap,
+        NumberTextField(
+          label: 'weight',
+          onChange: (value) {
+            cubit.onChangeWeight(double.parse(value));
+          },
+          initalValue:
+              context
+                  .read<FitnessProfileCubit>()
+                  .state
+                  .userPhysicalDataUpsert
+                  .weight
+                  .tryToString(),
+        ),
+        gap,
+        NumberTextField(
+          label: 'WaistCircumference',
+          onChange: (value) {
+            cubit.onChangeWaistCircumference(double.parse(value));
+          },
+          initalValue:
+              context
+                  .read<FitnessProfileCubit>()
+                  .state
+                  .userPhysicalDataUpsert
+                  .waistCircumference
+                  .tryToString(),
+        ),
+        gap,
+        NumberTextField(
+          label: 'ArmCircumference',
+          onChange: (value) {
+            cubit.onChangeArmCircumference(double.parse(value));
+          },
+          initalValue:
+              context
+                  .read<FitnessProfileCubit>()
+                  .state
+                  .userPhysicalDataUpsert
+                  .armCircumference
+                  .tryToString(),
+        ),
+        gap,
+        NumberTextField(
+          label: 'ChestCircumference',
+          onChange: (value) {
+            cubit.onChangeChestCircumference(double.parse(value));
+          },
+          initalValue:
+              context
+                  .read<FitnessProfileCubit>()
+                  .state
+                  .userPhysicalDataUpsert
+                  .chestCircumference
+                  .tryToString(),
+        ),
+        gap,
+        NumberTextField(
+          label: 'ThighCircumference',
+          onChange: (value) {
+            cubit.onChangeThighCircumference(double.parse(value));
+          },
+          initalValue:
+              context
+                  .read<FitnessProfileCubit>()
+                  .state
+                  .userPhysicalDataUpsert
+                  .thighCircumference
+                  .tryToString(),
+        ),
+        gap,
+        NumberTextField(
+          label: 'CalfMuscleCircumference',
+          onChange: (value) {
+            cubit.onChangeCalfMuscleCircumference(double.parse(value));
+          },
+          initalValue:
+              context
+                  .read<FitnessProfileCubit>()
+                  .state
+                  .userPhysicalDataUpsert
+                  .calfMuscleCircumference
+                  .tryToString(),
+        ),
+        gap,
+        NumberTextField(
+          label: 'HipCircumference',
+          onChange: (value) {
+            cubit.onChangeHipCircumference(double.parse(value));
+          },
+          initalValue:
+              context
+                  .read<FitnessProfileCubit>()
+                  .state
+                  .userPhysicalDataUpsert
+                  .hipCircumference
+                  .tryToString(),
+        ),
+        gap,
+        DropDownField<ActivityLevel>(
+          label: 'Activity Level',
+          onChange: context.read<FitnessProfileCubit>().onChangeActivityLevel,
+          value: context.select<FitnessProfileCubit, ActivityLevel?>(
+            (cubit) => cubit.state.userPhysicalDataUpsert.activityLevel,
           ),
+          items:
+              ActivityLevel.values
+                  .sublist(0, ActivityLevel.values.length - 1)
+                  .map(
+                    (e) => DropdownMenuItem(
+                      value: e,
+                      child: Text(context.l10n.physicalActivityLevel(e.name)),
+                    ),
+                  )
+                  .toList(),
         ),
       ],
       fullscreen: true,
-      submitButton: TextButton(onPressed: () {}, child: Text('add new')),
+      submitButton: TextButton(
+        onPressed: context.read<FitnessProfileCubit>().updateUserPhysicalData,
+        child: Text('add new'),
+      ),
     );
+  }
+}
+
+extension on double? {
+  String tryToString() {
+    return this == null ? '' : this.toString();
   }
 }
 

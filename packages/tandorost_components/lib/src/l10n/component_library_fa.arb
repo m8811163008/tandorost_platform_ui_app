@@ -175,10 +175,16 @@
     "photoEditorDone": "انجام شد",
     "photoEditorRemove": "حذف",
     "photoEditorDoneLoadingMsg": "تغییرات در حال اعمال هستند",
-    "physicalDataGender": "{gender, select, male{وزن} female{دور کمر} other{ترجمه تعریف نشده}}",
+    "physicalDataGender": "{gender, select, male{مرد} female{زن} other{ترجمه تعریف نشده}}",
     "@physicalDataGender": {
         "placeholders": {
             "gender": {}
+        }
+    },
+    "physicalActivityLevel": "{activityLevel, select, sedentary{غیرفعال و زیاد میشینم} fairyActive{تقریبا فعال، هر هفته یکی دوبار ورزش میکنم و پیاده روی میکنم} moderatelyActive{فعال، هر هفته دو سه روز ورزش میکنم} active{خیلی فعال، هر هفته بیش از 3 بار با شدت بالا ورزش میکنم} veryActive{روزی دوبار ورزش میکنم} other{ترجمه تعریف نشده}}",
+    "@physicalActivityLevel": {
+        "placeholders": {
+            "activityLevel": {}
         }
     }
 }

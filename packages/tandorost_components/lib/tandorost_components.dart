@@ -17,3 +17,6 @@ export 'package:tandorost_theme/tandorost_theme.dart';
 export 'src/food_input/food_input.dart';
 export 'src/profile/profile.dart';
 export 'src/fitness_profile/fitness_profile.dart';
+
+// export persian calander
+export 'package:persian_datetime_picker/persian_datetime_picker.dart';

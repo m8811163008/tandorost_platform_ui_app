@@ -69,7 +69,7 @@ abstract interface class RemoteApi {
   /// Retrieves the user's physicaldata.
   ///
   /// Returns a [Future] that resolves to a [UserPhysicalProfile] object.
-  Future<UserPhysicalProfile> userPhysicalData();
+  Future<UserPhysicalProfile?> readUserPhysicalProfile();
 
   /// Deletes a specific physicaldata point for the user.
   ///
@@ -163,10 +163,10 @@ abstract interface class RemoteApi {
   /// Reads the fitness data from the remote API.
   ///
   /// Returns a [FitnessData] object containing the fitness-related information.
-  Future<FitnessData> readFitnessData();
+  Future<FitnessData?> readFitnessData();
 
   /// Reads the nutrition requirements from the remote API.
   ///
   /// Returns a [NutritionRequirements] object containing the nutritional information.
-  Future<NutritionRequirements> readNutritionRequirements();
+  Future<NutritionRequirements?> readNutritionRequirements();
 }

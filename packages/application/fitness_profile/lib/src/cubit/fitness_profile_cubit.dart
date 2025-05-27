@@ -137,11 +137,75 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
   }
 
-  void onChangeActivityLevel(ActivityLevel activityLevel) {
+  void onChangeActivityLevel(ActivityLevel? activityLevel) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       activityLevel: () => activityLevel,
     );
     emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+  }
+
+  void readUserPhysicalProfile() async {
+    emit(
+      state.copyWith(
+        readUserPhysicalProfileStatus: AsyncProcessingStatus.loading,
+      ),
+    );
+    try {
+      final userPhysicalProfile =
+          await _fitnessNutrition.readUserPhysicalProfile();
+      emit(
+        state.copyWith(
+          readUserPhysicalProfileStatus: AsyncProcessingStatus.success,
+          userPhysicalProfile: userPhysicalProfile,
+        ),
+      );
+    } on InternetConnectionException {
+      emit(
+        state.copyWith(
+          readUserPhysicalProfileStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      emit(
+        state.copyWith(
+          readUserPhysicalProfileStatus:
+              AsyncProcessingStatus.serverConnectionError,
+        ),
+      );
+    }
+  }
+
+  void updateUserPhysicalData() async {
+    emit(
+      state.copyWith(
+        updateUserPhysicalDataStatus: AsyncProcessingStatus.loading,
+      ),
+    );
+    try {
+      final userPhysicalProfile = await _fitnessNutrition
+          .updateUserPhysicalData(state.userPhysicalDataUpsert);
+      emit(
+        state.copyWith(
+          updateUserPhysicalDataStatus: AsyncProcessingStatus.success,
+          userPhysicalProfile: userPhysicalProfile,
+        ),
+      );
+    } on InternetConnectionException {
+      emit(
+        state.copyWith(
+          updateUserPhysicalDataStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      emit(
+        state.copyWith(
+          updateUserPhysicalDataStatus:
+              AsyncProcessingStatus.serverConnectionError,
+        ),
+      );
+    }
   }
 
   void readUserImageGallary() async {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tandorost_theme/tandorost_theme.dart';
 
 class DropDownField<E> extends StatelessWidget {
   const DropDownField({
@@ -19,6 +20,10 @@ class DropDownField<E> extends StatelessWidget {
       decoration: InputDecoration(
         label: Text(label),
         border: const OutlineInputBorder(),
+        contentPadding: EdgeInsets.symmetric(
+          vertical: 0,
+          horizontal: context.sizeExtenstion.small,
+        ),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<E>(

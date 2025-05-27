@@ -804,8 +804,14 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @physicalDataGender.
   ///
   /// In fa, this message translates to:
-  /// **'{gender, select, male{وزن} female{دور کمر} other{ترجمه تعریف نشده}}'**
+  /// **'{gender, select, male{مرد} female{زن} other{ترجمه تعریف نشده}}'**
   String physicalDataGender(String gender);
+
+  /// No description provided for @physicalActivityLevel.
+  ///
+  /// In fa, this message translates to:
+  /// **'{activityLevel, select, sedentary{غیرفعال و زیاد میشینم} fairyActive{تقریبا فعال، هر هفته یکی دوبار ورزش میکنم و پیاده روی میکنم} moderatelyActive{فعال، هر هفته دو سه روز ورزش میکنم} active{خیلی فعال، هر هفته بیش از 3 بار با شدت بالا ورزش میکنم} veryActive{روزی دوبار ورزش میکنم} other{ترجمه تعریف نشده}}'**
+  String physicalActivityLevel(String activityLevel);
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

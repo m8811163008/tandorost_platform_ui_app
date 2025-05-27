@@ -38,7 +38,7 @@ class DependencyManager extends StatelessWidget {
             get_user_language: () => Future.value(Language.english),
             get_access_token:
                 () => Future.value(
-                  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiIzZmQxY2Q1MS1jZDA0LTRkZjUtOTBjOC0yMWU2NDM1ODc2NmYiLCJleHAiOjE3NDgzMzY4NjF9.it8HiWe0DXHjE5UOA6-7BIUp3q-5pKUUxTc_CNxhDtY',
+                  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiIzZmQxY2Q1MS1jZDA0LTRkZjUtOTBjOC0yMWU2NDM1ODc2NmYiLCJleHAiOjE3NDgzNjc0MjF9.7OX86k0AkqiY_aBtwLlakbAaJUDVsx6z8f_Cu4n46XU',
                 ),
           );
 
@@ -93,13 +93,16 @@ class TandorostPlatform extends StatelessWidget {
       theme: AppTheme(locale: Locale('fa')).lightTheme,
       routerConfig: Navigation.goRouter(context),
       localizationsDelegates: const [
+        PersianMaterialLocalizations.delegate,
+        PersianCupertinoLocalizations.delegate,
+
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         ComponentLibraryLocalizations.delegate,
       ],
-      supportedLocales: const [Locale("fa")],
-      locale: const Locale("fa"),
+      supportedLocales: const [Locale("fa", "IR")],
+      locale: const Locale("fa", "IR"),
     );
   }
 }

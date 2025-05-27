@@ -121,7 +121,7 @@ class RemoteApiBase implements RemoteApi {
     return UserProfile.fromJson(res!);
   }
 
-  Future<UserPhysicalProfile> userPhysicalData() async {
+  Future<UserPhysicalProfile?> readUserPhysicalProfile() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         CommonInterceptor(get_user_language),
@@ -129,8 +129,9 @@ class RemoteApiBase implements RemoteApi {
       ],
     );
     final uri = UriBuilder.readUserPhysicalData();
-    final res = await _handleRequest<JsonMap>(() => interceptedHttp.get(uri));
-    return UserPhysicalProfile.fromJson(res!);
+    final res = await _handleRequest<JsonMap?>(() => interceptedHttp.get(uri));
+    if (res == null) return null;
+    return UserPhysicalProfile.fromJson(res);
   }
 
   Future<void> deleteUserPhysicalDataPoint({
@@ -159,13 +160,13 @@ class RemoteApiBase implements RemoteApi {
     );
     final uri = UriBuilder.updateUserPhysicalData();
     final userPhysicalDataUpsertJson = userPhysicalDataUpsert.toJson();
-    final res = await _handleRequest<JsonMap>(
+    final res = await _handleRequest<JsonMap?>(
       () => interceptedHttp.put(
         uri,
         body: json.encode(userPhysicalDataUpsertJson),
       ),
     );
-    print(res);
+
     return UserPhysicalProfile.fromJson(res!);
   }
 
@@ -416,7 +417,7 @@ class RemoteApiBase implements RemoteApi {
     }
   }
 
-  Future<FitnessData> readFitnessData() async {
+  Future<FitnessData?> readFitnessData() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         CommonInterceptor(get_user_language),
@@ -425,12 +426,13 @@ class RemoteApiBase implements RemoteApi {
       ],
     );
     final uri = UriBuilder.readFitnessData();
-    final res = await _handleRequest<JsonMap>(() => interceptedHttp.get(uri));
+    final res = await _handleRequest<JsonMap?>(() => interceptedHttp.get(uri));
+    if (res == null) return null;
 
-    return FitnessData.fromJson(res!);
+    return FitnessData.fromJson(res);
   }
 
-  Future<NutritionRequirements> readNutritionRequirements() async {
+  Future<NutritionRequirements?> readNutritionRequirements() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         CommonInterceptor(get_user_language),
@@ -440,8 +442,8 @@ class RemoteApiBase implements RemoteApi {
     );
     final uri = UriBuilder.readNutritionRequirements();
     final res = await _handleRequest<JsonMap>(() => interceptedHttp.get(uri));
-
-    return NutritionRequirements.fromJson(res!);
+    if (res == null) return null;
+    return NutritionRequirements.fromJson(res);
   }
 
   Future<E?> _handleRequest<E>(Future<Response> Function() request) async {
@@ -449,7 +451,7 @@ class RemoteApiBase implements RemoteApi {
       final res = await request();
       if (res.statusCode == 401) {
         throw UnauthorizedException();
-      } else if (res.statusCode == 204) {
+      } else if (res.statusCode == 204 || res.statusCode == 404) {
         return null;
       } else {
         final jsonResponse = json.decode(res.body);
