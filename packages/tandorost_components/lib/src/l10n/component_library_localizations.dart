@@ -800,6 +800,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'تغییرات در حال اعمال هستند'**
   String get photoEditorDoneLoadingMsg;
+
+  /// No description provided for @physicalDataGender.
+  ///
+  /// In fa, this message translates to:
+  /// **'{gender, select, male{وزن} female{دور کمر} other{ترجمه تعریف نشده}}'**
+  String physicalDataGender(String gender);
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

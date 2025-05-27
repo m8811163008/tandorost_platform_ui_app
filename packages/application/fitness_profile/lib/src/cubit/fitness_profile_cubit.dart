@@ -67,16 +67,16 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     }
   }
 
-  void onChangeGender(Gender gender) {
+  void onChangeGender(Gender? gender) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       gender: () => gender,
     );
     emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
   }
 
-  void onChangeAge(int age) {
+  void onChangeBirthDay(DateTime birthday) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
-      age: () => age,
+      birthday: () => birthday,
     );
     emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
   }

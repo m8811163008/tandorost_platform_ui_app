@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_repository/image_repository.dart';
+import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 import 'package:pro_image_editor/pro_image_editor.dart';
 
@@ -166,9 +167,7 @@ class PhysicalDataChart extends StatelessWidget {
         children: [
           Text('Physical data chart', style: context.textTheme.headlineMedium),
           SizedBox(height: context.sizeExtenstion.medium),
-          TextButton(onPressed: () {
-
-          }, child: Text('Add new measurement')),
+          TextButton(onPressed: () {}, child: Text('Add new measurement')),
           AppLineChart(
             dataPoints: userPhysicalProfile.weight.sublist(
               userPhysicalProfile.weight.length > 10
@@ -212,18 +211,78 @@ class AddNewMeasurementDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<FitnessProfileCubit>();
     return AppDialog(
       title: 'Add new measurement',
       contents: [
-          NumberTextField(label: 'label'),
-          
+        DropDownField<Gender>(
+          label: 'gender',
+          onChange: context.read<FitnessProfileCubit>().onChangeGender,
+          value: context.select<FitnessProfileCubit, Gender?>(
+            (cubit) => cubit.state.userPhysicalDataUpsert.gender,
+          ),
+          items:
+              Gender.values
+                  .map(
+                    (e) => DropdownMenuItem(
+                      value: e,
+                      child: Text(context.l10n.physicalDataGender(e.name)),
+                    ),
+                  )
+                  .toList(),
+        ),
+        RegullarTextField(
+          label: 'birthday',
+          readOnly: true,
+          initalValue: context.select<FitnessProfileCubit, String?>(
+            (cubit) =>
+                cubit.state.userPhysicalDataUpsert.birthday
+                    ?.toLocal()
+                    .toIso8601String(),
+          ),
+          onTap: () async {
+            final local = Localizations.localeOf(context);
+            late final DateTime? pickedDate;
+            if (local.languageCode == 'fa') {
+              Jalali? picked = await showPersianDatePicker(
+                context: context,
+                initialDate: Jalali.now(),
+                firstDate: Jalali(1385, 8),
+                lastDate: Jalali(1450, 9),
+                initialEntryMode: PersianDatePickerEntryMode.calendarOnly,
+                initialDatePickerMode: PersianDatePickerMode.year,
+              );
+              pickedDate = picked?.toDateTime();
+            } else {
+              pickedDate = await showDatePicker(
+                context: context,
+                initialDate: DateTime(2021, 7, 25),
+                firstDate: DateTime(1950),
+                // to limit the application to users who are at least 18 years old
+                lastDate: DateTime.now().subtract(Duration(days: 365 * 17)),
+              );
+            }
+
+            if (pickedDate == null) {
+              return;
+            }
+            cubit.onChangeBirthDay(pickedDate);
+          },
+        ),
+        NumberTextField(
+          label: 'height',
+          onChange: (value) {
+            cubit.onChangeHeight(double.parse(value));
+          },
+          initalValue: context.select<FitnessProfileCubit, String?>(
+            (cubit) => cubit.state.userPhysicalDataUpsert.height?.toString(),
+          ),
+        ),
       ],
       fullscreen: true,
-      submitButton: TextButton(onPressed: (){}, child:Text('add new')),
+      submitButton: TextButton(onPressed: () {}, child: Text('add new')),
     );
   }
-
-  
 }
 
 class FitnessInfo extends StatelessWidget {

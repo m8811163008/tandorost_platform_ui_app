@@ -13,7 +13,9 @@ class RegullarTextField extends StatelessWidget {
     this.onChange,
     this.validator,
     this.obscureText = false,
+    this.readOnly = false,
     this.initalValue,
+    this.onTap,
   });
   final String label;
   final String? prefix;
@@ -23,6 +25,8 @@ class RegullarTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool obscureText;
   final String? initalValue;
+  final bool readOnly;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,8 @@ class RegullarTextField extends StatelessWidget {
       controller: TextEditingController(text: initalValue),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: TextInputType.text,
-
+      readOnly: readOnly,
+      onTap: onTap,
       decoration: InputDecoration(
         labelText: label,
         prefixText: prefix,

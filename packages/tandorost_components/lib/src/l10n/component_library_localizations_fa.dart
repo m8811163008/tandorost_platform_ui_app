@@ -444,4 +444,17 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get photoEditorDoneLoadingMsg => 'تغییرات در حال اعمال هستند';
+
+  @override
+  String physicalDataGender(String gender) {
+    String _temp0 = intl.Intl.selectLogic(
+      gender,
+      {
+        'male': 'وزن',
+        'female': 'دور کمر',
+        'other': 'ترجمه تعریف نشده',
+      },
+    );
+    return '$_temp0';
+  }
 }

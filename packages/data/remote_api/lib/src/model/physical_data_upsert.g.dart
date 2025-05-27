@@ -9,8 +9,10 @@ part of 'physical_data_upsert.dart';
 Map<String, dynamic> _$UserPhysicalDataUpsertToJson(
   UserPhysicalDataUpsert instance,
 ) => <String, dynamic>{
+  if (instance.stringify case final value?) 'stringify': value,
+  'hash_code': instance.hashCode,
   if (_$GenderEnumMap[instance.gender] case final value?) 'gender': value,
-  if (instance.age case final value?) 'age': value,
+  if (instance.birthday?.toIso8601String() case final value?) 'birthday': value,
   if (instance.height case final value?) 'height': value,
   if (instance.weight case final value?) 'weight': value,
   if (instance.waistCircumference case final value?)
@@ -25,6 +27,7 @@ Map<String, dynamic> _$UserPhysicalDataUpsertToJson(
   if (instance.hipCircumference case final value?) 'hip_circumference': value,
   if (_$ActivityLevelEnumMap[instance.activityLevel] case final value?)
     'activity_level': value,
+  'props': instance.props,
 };
 
 const _$GenderEnumMap = {

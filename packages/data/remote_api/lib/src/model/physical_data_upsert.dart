@@ -10,7 +10,7 @@ part 'physical_data_upsert.g.dart';
 class UserPhysicalDataUpsert extends Equatable {
   const UserPhysicalDataUpsert({
     this.gender,
-    this.age,
+    this.birthday,
     this.height,
     this.weight,
     this.waistCircumference,
@@ -22,7 +22,7 @@ class UserPhysicalDataUpsert extends Equatable {
     this.activityLevel,
   });
   final Gender? gender;
-  final int? age;
+  final DateTime? birthday;
   final double? height;
   final double? weight;
   final double? waistCircumference;
@@ -38,7 +38,7 @@ class UserPhysicalDataUpsert extends Equatable {
   @override
   List<Object?> get props => [
     gender,
-    age,
+    birthday,
     height,
     weight,
     waistCircumference,
@@ -51,7 +51,7 @@ class UserPhysicalDataUpsert extends Equatable {
   ];
   UserPhysicalDataUpsert copyWith({
     ValueGetter<Gender?>? gender,
-    ValueGetter<int?>? age,
+    ValueGetter<DateTime?>? birthday,
     ValueGetter<double?>? height,
     ValueGetter<double?>? weight,
     ValueGetter<double?>? waistCircumference,
@@ -64,7 +64,7 @@ class UserPhysicalDataUpsert extends Equatable {
   }) {
     return UserPhysicalDataUpsert(
       gender: gender != null ? gender() : this.gender,
-      age: age != null ? age() : this.age,
+      birthday: birthday != null ? birthday() : this.birthday,
       height: height != null ? height() : this.height,
       weight: weight != null ? weight() : this.weight,
       waistCircumference:

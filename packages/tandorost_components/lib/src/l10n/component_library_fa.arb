@@ -174,5 +174,11 @@
     "photoEditorRedo": "دوباره انجام دادن",
     "photoEditorDone": "انجام شد",
     "photoEditorRemove": "حذف",
-    "photoEditorDoneLoadingMsg": "تغییرات در حال اعمال هستند"
+    "photoEditorDoneLoadingMsg": "تغییرات در حال اعمال هستند",
+    "physicalDataGender": "{gender, select, male{وزن} female{دور کمر} other{ترجمه تعریف نشده}}",
+    "@physicalDataGender": {
+        "placeholders": {
+            "gender": {}
+        }
+    }
 }
