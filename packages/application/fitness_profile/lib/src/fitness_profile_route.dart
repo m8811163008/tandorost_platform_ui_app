@@ -111,10 +111,44 @@ class FitnessInfoConsumer extends StatelessWidget {
               AppState.serverError(),
             AsyncProcessingStatus.internetConnectionError =>
               AppState.internetConnectionError(),
-            AsyncProcessingStatus.success => FitnessInfo(
-              fitnessData: state.fitnessData!,
-            ),
+            AsyncProcessingStatus.success =>
+              state.fitnessData == null
+                  ? NoDataFound(title: 'Physical data')
+                  : FitnessInfo(fitnessData: state.fitnessData!),
           },
+    );
+  }
+}
+
+class NoDataFound extends StatelessWidget {
+  const NoDataFound({super.key, this.title = ''});
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AppCardHeader(title: title),
+          Center(
+            child: Stack(
+              alignment: AlignmentDirectional.bottomCenter,
+              children: [
+                AppRoundedRectangleBorder(
+                  child: ChartAnimation(size: Size.fromHeight(200)),
+                ),
+                Text(
+                  'Add new mesurement',
+                  style: context.textTheme.headlineSmall!.copyWith(
+                    backgroundColor: context.themeData.colorScheme.primary,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -126,6 +160,8 @@ class AppState extends StatelessWidget {
     : _status = AsyncProcessingStatus.serverConnectionError;
   const AppState.internetConnectionError({super.key})
     : _status = AsyncProcessingStatus.internetConnectionError;
+  const AppState.notFound({super.key})
+    : _status = AsyncProcessingStatus.success;
   final AsyncProcessingStatus _status;
 
   @override
@@ -153,6 +189,28 @@ class AppState extends StatelessWidget {
   }
 }
 
+class AddNewMeasurementTextButton extends StatelessWidget {
+  const AddNewMeasurementTextButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        showDialog(
+          context: context,
+          builder: (_) {
+            return BlocProvider.value(
+              value: context.read<FitnessProfileCubit>(),
+              child: AddNewMeasurementDialog(),
+            );
+          },
+        );
+      },
+      child: Text('Add new measurement'),
+    );
+  }
+}
+
 class PhysicalDataChart extends StatelessWidget {
   const PhysicalDataChart({super.key, required this.userPhysicalProfile});
   final UserPhysicalProfile userPhysicalProfile;
@@ -163,22 +221,8 @@ class PhysicalDataChart extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Physical data chart', style: context.textTheme.headlineMedium),
-          SizedBox(height: context.sizeExtenstion.medium),
-          TextButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (_) {
-                  return BlocProvider.value(
-                    value: context.read<FitnessProfileCubit>(),
-                    child: AddNewMeasurementDialog(),
-                  );
-                },
-              );
-            },
-            child: Text('Add new measurement'),
-          ),
+          AppCardHeader(title: 'Physical data chart'),
+
           AppLineChart(
             dataPoints: userPhysicalProfile.weight.sublist(
               userPhysicalProfile.weight.length > 10
@@ -434,6 +478,24 @@ extension on double? {
   }
 }
 
+class AppCardHeader extends StatelessWidget {
+  const AppCardHeader({super.key, this.title = ''});
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('Physical data', style: context.textTheme.headlineMedium),
+        SizedBox(height: context.sizeExtenstion.small),
+        AddNewMeasurementTextButton(),
+        SizedBox(height: context.sizeExtenstion.small),
+      ],
+    );
+  }
+}
+
 class FitnessInfo extends StatelessWidget {
   const FitnessInfo({super.key, required this.fitnessData});
   final FitnessData fitnessData;
@@ -444,8 +506,7 @@ class FitnessInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Your Physical data', style: context.textTheme.headlineMedium),
-          SizedBox(height: context.sizeExtenstion.medium),
+          AppCardHeader(title: 'Your Physical data'),
           _buildFitnessData(
             context,
             'Resting Metabolic Rate',
@@ -517,8 +578,9 @@ class ImageGallary extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Your image gallary', style: context.textTheme.headlineMedium),
-          SizedBox(height: context.sizeExtenstion.medium),
+          SizedBox(height: context.sizeExtenstion.small),
           AddImageTextButton(),
+          SizedBox(height: context.sizeExtenstion.small),
           CarouselSliderBuilder(),
         ],
       ),
@@ -558,7 +620,7 @@ class CarouselSliderBuilder extends StatelessWidget {
             children: [
               AspectRatio(
                 aspectRatio: 16 / 9,
-                child: UserImageBorder(child: AddNewImageSelfie()),
+                child: AppRoundedRectangleBorder(child: AddNewImageSelfie()),
               ),
               Text(
                 'Add your new Image',
@@ -578,7 +640,7 @@ class CarouselSliderBuilder extends StatelessWidget {
               state.filesDetail.map((fileDetail) {
                 return Builder(
                   builder: (BuildContext context) {
-                    return UserImageBorder(
+                    return AppRoundedRectangleBorder(
                       child: Image.memory(fileDetail.bytes),
                     );
                   },
@@ -590,8 +652,8 @@ class CarouselSliderBuilder extends StatelessWidget {
   }
 }
 
-class UserImageBorder extends StatelessWidget {
-  const UserImageBorder({super.key, this.child});
+class AppRoundedRectangleBorder extends StatelessWidget {
+  const AppRoundedRectangleBorder({super.key, this.child});
   final Widget? child;
 
   @override

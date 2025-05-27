@@ -1,16 +1,21 @@
 import 'package:flutter/widgets.dart';
 import 'package:tandorost_components/src/common/animations/animation_video_player.dart';
 
-class CircleClipperAnimation extends StatelessWidget {
-  CircleClipperAnimation({super.key, required this.path, Size? size})
-    : size = size ?? Size.square(40);
+class AnimationClipper extends StatelessWidget {
+  AnimationClipper({
+    super.key,
+    required this.path,
+    this.isCircle = true,
+    Size? size,
+  }) : size = size ?? Size.square(40);
   final String path;
   final Size size;
+  final bool isCircle;
 
   @override
   Widget build(BuildContext context) {
     return ClipPath(
-      clipper: CircleClipper(),
+      clipper: isCircle ? CircleClipper() : null,
       child: SizedBox.fromSize(
         size: size,
         child: AnimationVideoPlayer(path: path),

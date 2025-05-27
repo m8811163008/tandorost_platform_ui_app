@@ -7,7 +7,7 @@ class ActiveChatLotties extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleClipperAnimation(
+    return AnimationClipper(
       size: size,
       path: 'assets/animations-lottie/active_chat.mp4',
     );
