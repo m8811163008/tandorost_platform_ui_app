@@ -12,6 +12,7 @@ class NumberTextField extends StatelessWidget {
     this.onChange,
     this.validator,
     this.obscureText = false,
+    this.initalValue,
   });
   final String label;
   final String? prefix;
@@ -20,12 +21,14 @@ class NumberTextField extends StatelessWidget {
   final ValueSetter<String>? onChange;
   final String? Function(String?)? validator;
   final bool obscureText;
+  final String? initalValue;
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: TextFormField(
+        controller: TextEditingController(text: initalValue),
         autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: TextInputType.number,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],

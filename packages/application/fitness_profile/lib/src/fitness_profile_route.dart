@@ -166,7 +166,9 @@ class PhysicalDataChart extends StatelessWidget {
         children: [
           Text('Physical data chart', style: context.textTheme.headlineMedium),
           SizedBox(height: context.sizeExtenstion.medium),
-          TextButton(onPressed: () {}, child: Text('Add new measurement')),
+          TextButton(onPressed: () {
+
+          }, child: Text('Add new measurement')),
           AppLineChart(
             dataPoints: userPhysicalProfile.weight.sublist(
               userPhysicalProfile.weight.length > 10
@@ -203,6 +205,25 @@ class PhysicalDataChart extends StatelessWidget {
     //   },
     // );
   }
+}
+
+class AddNewMeasurementDialog extends StatelessWidget {
+  const AddNewMeasurementDialog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppDialog(
+      title: 'Add new measurement',
+      contents: [
+          NumberTextField(label: 'label'),
+          
+      ],
+      fullscreen: true,
+      submitButton: TextButton(onPressed: (){}, child:Text('add new')),
+    );
+  }
+
+  
 }
 
 class FitnessInfo extends StatelessWidget {

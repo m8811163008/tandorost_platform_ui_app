@@ -67,6 +67,83 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     }
   }
 
+  void onChangeGender(Gender gender) {
+    final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
+      gender: () => gender,
+    );
+    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+  }
+
+  void onChangeAge(int age) {
+    final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
+      age: () => age,
+    );
+    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+  }
+
+  void onChangeHeight(double height) {
+    final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
+      height: () => height,
+    );
+    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+  }
+
+  void onChangeWeight(double weight) {
+    final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
+      weight: () => weight,
+    );
+    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+  }
+
+  void onChangeWaistCircumference(double waistCircumference) {
+    final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
+      waistCircumference: () => waistCircumference,
+    );
+    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+  }
+
+  void onChangeArmCircumference(double armCircumference) {
+    final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
+      armCircumference: () => armCircumference,
+    );
+    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+  }
+
+  void onChangeChestCircumference(double chestCircumference) {
+    final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
+      chestCircumference: () => chestCircumference,
+    );
+    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+  }
+
+  void onChangeThighCircumference(double thighCircumference) {
+    final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
+      thighCircumference: () => thighCircumference,
+    );
+    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+  }
+
+  void onChangeCalfMuscleCircumference(double calfMuscleCircumference) {
+    final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
+      calfMuscleCircumference: () => calfMuscleCircumference,
+    );
+    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+  }
+
+  void onChangeHipCircumference(double hipCircumference) {
+    final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
+      hipCircumference: () => hipCircumference,
+    );
+    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+  }
+
+  void onChangeActivityLevel(ActivityLevel activityLevel) {
+    final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
+      activityLevel: () => activityLevel,
+    );
+    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+  }
+
   void readUserImageGallary() async {
     emit(
       state.copyWith(readUserImageGallaryStatus: AsyncProcessingStatus.loading),
