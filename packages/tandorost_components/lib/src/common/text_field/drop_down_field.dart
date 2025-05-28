@@ -8,11 +8,13 @@ class DropDownField<E> extends StatelessWidget {
     this.label = '',
     this.value,
     this.items = const [],
+    this.errorText = '',
   });
   final ValueSetter<E?>? onChange;
   final String label;
   final E? value;
   final List<DropdownMenuItem<E>> items;
+  final String? errorText;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class DropDownField<E> extends StatelessWidget {
           vertical: 0,
           horizontal: context.sizeExtenstion.small,
         ),
+        errorText: errorText,
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<E>(

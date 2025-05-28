@@ -81,7 +81,7 @@ UserPhysicalProfile _$UserPhysicalProfileFromJson(
         '_id',
         'user_id',
         'gender',
-        'age',
+        'birthday',
         'height',
         'weight',
         'waist_circumference',
@@ -97,7 +97,7 @@ UserPhysicalProfile _$UserPhysicalProfileFromJson(
       id: $checkedConvert('_id', (v) => v as String),
       userId: $checkedConvert('user_id', (v) => v as String),
       gender: $checkedConvert('gender', (v) => $enumDecode(_$GenderEnumMap, v)),
-      age: $checkedConvert('age', (v) => (v as num).toInt()),
+      birthday: $checkedConvert('birthday', (v) => DateTime.parse(v as String)),
       height: $checkedConvert(
         'height',
         (v) =>

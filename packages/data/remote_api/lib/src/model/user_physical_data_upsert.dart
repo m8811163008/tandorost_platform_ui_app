@@ -4,11 +4,13 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:remote_api/src/model/activity_level.dart';
 import 'package:remote_api/src/model/gender.dart';
 
-part 'physical_data_upsert.g.dart';
+part 'user_physical_data_upsert.g.dart';
 
-@JsonSerializable(createFactory: false)
+// @JsonSerializable(createFactory: false) bug mentioned in https://github.com/google/json_serializable.dart/issues/1348
+@JsonSerializable()
 class UserPhysicalDataUpsert extends Equatable {
   const UserPhysicalDataUpsert({
+    this.activityLevel,
     this.gender,
     this.birthday,
     this.height,
@@ -19,11 +21,12 @@ class UserPhysicalDataUpsert extends Equatable {
     this.thighCircumference,
     this.calfMuscleCircumference,
     this.hipCircumference,
-    this.activityLevel,
   });
-  final Gender? gender;
-  final DateTime? birthday;
+
+  final ActivityLevel? activityLevel;
   final double? height;
+  final DateTime? birthday;
+  final Gender? gender;
   final double? weight;
   final double? waistCircumference;
   final double? armCircumference;
@@ -31,24 +34,9 @@ class UserPhysicalDataUpsert extends Equatable {
   final double? thighCircumference;
   final double? calfMuscleCircumference;
   final double? hipCircumference;
-  final ActivityLevel? activityLevel;
 
   Map<String, dynamic> toJson() => _$UserPhysicalDataUpsertToJson(this);
 
-  @override
-  List<Object?> get props => [
-    gender,
-    birthday,
-    height,
-    weight,
-    waistCircumference,
-    armCircumference,
-    chestCircumference,
-    thighCircumference,
-    calfMuscleCircumference,
-    hipCircumference,
-    activityLevel,
-  ];
   UserPhysicalDataUpsert copyWith({
     ValueGetter<Gender?>? gender,
     ValueGetter<DateTime?>? birthday,
@@ -91,4 +79,19 @@ class UserPhysicalDataUpsert extends Equatable {
           activityLevel != null ? activityLevel() : this.activityLevel,
     );
   }
+
+  @override
+  List<Object?> get props => [
+    activityLevel,
+    height,
+    birthday,
+    gender,
+    weight,
+    waistCircumference,
+    armCircumference,
+    chestCircumference,
+    thighCircumference,
+    calfMuscleCircumference,
+    hipCircumference,
+  ];
 }

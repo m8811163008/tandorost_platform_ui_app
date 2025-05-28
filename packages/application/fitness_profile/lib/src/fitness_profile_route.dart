@@ -23,7 +23,24 @@ class FitnessProfileRoute extends StatelessWidget {
             fitnessNutrition: RepositoryProvider.of<FitnessNutrition>(context),
           ),
       lazy: false,
-      child: const FitnessProfileView(),
+      child: AppScaffold(
+        appBar: AppBar(
+          actions: [AddNewMeasurementTextButton(), AddImageTextButton()],
+        ),
+        body: BlocProvider(
+          create:
+              (_) => FitnessProfileCubit(
+                imageRepository: RepositoryProvider.of<ImageRepository>(
+                  context,
+                ),
+                fitnessNutrition: RepositoryProvider.of<FitnessNutrition>(
+                  context,
+                ),
+              ),
+          lazy: false,
+          child: const FitnessProfileView(),
+        ),
+      ),
     );
   }
 }
@@ -33,46 +50,9 @@ class FitnessProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = FitnessData(
-      restingMetabolicRate: 10,
-      totalDailyEnergyExpenditure: 10,
-      bmi: 10,
-      bmiPrime: 10,
-      bmiLevel: BmiLevel.healthyWeight,
-    );
-    final point = DoubleDataPoint(
-      value: 170,
-      createDate: DateTime.now(),
-      dataPointId: 'dataPointId',
-    );
-    final profile = UserPhysicalProfile(
-      id: 'id',
-      userId: 'userId',
-      gender: Gender.female,
-      age: 10,
-      height: [point],
-      weight: [point],
-      waistCircumference: [point],
-      armCircumference: [point],
-      chestCircumference: [point],
-      thighCircumference: [point],
-      calfMuscleCircumference: [point],
-      hipCircumference: [point],
-      activityLevel: [
-        ActivityLevelDataPoint(
-          value: ActivityLevel.active,
-          createDate: DateTime.now(),
-          dataPointId: 'dataPointId',
-        ),
-      ],
-    );
     return SingleChildScrollView(
       child: Column(
-        children: [
-          ImageGallary(),
-          FitnessInfoConsumer(),
-          PhysicalDataChart(userPhysicalProfile: profile),
-        ],
+        children: [ImageGallary(), FitnessInfoConsumer(), PhysicalDataChart()],
       ),
     );
   }
@@ -133,17 +113,12 @@ class NoDataFound extends StatelessWidget {
           AppCardHeader(title: title),
           Center(
             child: Stack(
-              alignment: AlignmentDirectional.bottomCenter,
+              alignment: AlignmentDirectional.center,
               children: [
                 AppRoundedRectangleBorder(
                   child: ChartAnimation(size: Size.fromHeight(200)),
                 ),
-                Text(
-                  'Add new mesurement',
-                  style: context.textTheme.headlineSmall!.copyWith(
-                    backgroundColor: context.themeData.colorScheme.primary,
-                  ),
-                ),
+                AddNewMeasurementTextButton.filled(),
               ],
             ),
           ),
@@ -190,55 +165,68 @@ class AppState extends StatelessWidget {
 }
 
 class AddNewMeasurementTextButton extends StatelessWidget {
-  const AddNewMeasurementTextButton({super.key});
+  const AddNewMeasurementTextButton({super.key}) : _isFilled = false;
+  const AddNewMeasurementTextButton.filled({super.key}) : _isFilled = true;
+  final bool _isFilled;
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        showDialog(
-          context: context,
-          builder: (_) {
-            return BlocProvider.value(
-              value: context.read<FitnessProfileCubit>(),
-              child: AddNewMeasurementDialog(),
-            );
-          },
+    final label = Text('Add new measurement');
+    final onPress = () {
+      _onPress(context);
+    };
+    return _isFilled
+        ? ElevatedButton(onPressed: onPress, child: label)
+        : TextButton(onPressed: onPress, child: label);
+  }
+
+  void _onPress(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (_) {
+        return BlocProvider.value(
+          value: context.read<FitnessProfileCubit>(),
+          child: AddNewMeasurementDialog(),
         );
       },
-      child: Text('Add new measurement'),
     );
   }
 }
 
 class PhysicalDataChart extends StatelessWidget {
-  const PhysicalDataChart({super.key, required this.userPhysicalProfile});
-  final UserPhysicalProfile userPhysicalProfile;
+  const PhysicalDataChart({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AppCardHeader(title: 'Physical data chart'),
-
-          AppLineChart(
-            dataPoints: userPhysicalProfile.weight.sublist(
-              userPhysicalProfile.weight.length > 10
-                  ? userPhysicalProfile.weight.length - 10
-                  : 0,
-            ),
-          ),
-          AppLineChartInputChips(
-            chartTypes: [
-              ChartType.armCircumference,
-              ChartType.waistCircumference,
-              ChartType.weight,
+      child: BlocBuilder<FitnessProfileCubit, FitnessProfileState>(
+        builder: (context, state) {
+          final userPhysicalProfile = state.userPhysicalProfile;
+          if (userPhysicalProfile == null) {
+            return AppState.notFound();
+          }
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppCardHeader(title: 'Physical data chart'),
+              AppLineChart(
+                dataPoints: userPhysicalProfile.weight.sublist(
+                  userPhysicalProfile.weight.length > 10
+                      ? userPhysicalProfile.weight.length - 10
+                      : 0,
+                ),
+              ),
+              AppLineChartInputChips(
+                chartTypes: [
+                  ChartType.armCircumference,
+                  ChartType.waistCircumference,
+                  ChartType.weight,
+                ],
+              ),
+              // Placeholder(),
             ],
-          ),
-          // Placeholder(),
-        ],
+          );
+        },
       ),
     );
     // return BlocBuilder<ProfileCubit, ProfileState>(
@@ -261,212 +249,290 @@ class PhysicalDataChart extends StatelessWidget {
   }
 }
 
-class AddNewMeasurementDialog extends StatelessWidget {
+class AddNewMeasurementDialog extends StatefulWidget {
   const AddNewMeasurementDialog({super.key});
+
+  @override
+  State<AddNewMeasurementDialog> createState() =>
+      _AddNewMeasurementDialogState();
+}
+
+class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
+  bool isGenderError = false;
+  bool isActivityLevelError = false;
+  bool isBirthdayError = false;
+  bool isHeightError = false;
+  bool isWeightError = false;
+  bool get isValidForm =>
+      !isGenderError &&
+      !isActivityLevelError &&
+      !isBirthdayError &&
+      !isHeightError &&
+      !isWeightError;
+  void validate() {
+    final cubit = context.read<FitnessProfileCubit>();
+    final userPhysicalDataUpsert = cubit.state.userPhysicalDataUpsert;
+
+    setState(() {
+      isHeightError = userPhysicalDataUpsert.height == null;
+      isWeightError = userPhysicalDataUpsert.weight == null;
+      isGenderError = userPhysicalDataUpsert.gender == null;
+
+      isActivityLevelError = userPhysicalDataUpsert.activityLevel == null;
+      isBirthdayError = userPhysicalDataUpsert.birthday == null;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<FitnessProfileCubit>();
     final gap = SizedBox(height: context.sizeExtenstion.small);
-    return AppDialog(
-      title: 'Add new measurement',
-      contents: [
-        DropDownField<Gender>(
-          label: 'gender',
-          onChange: context.read<FitnessProfileCubit>().onChangeGender,
-          value: context.select<FitnessProfileCubit, Gender?>(
-            (cubit) => cubit.state.userPhysicalDataUpsert.gender,
+    final isRequiredFields = cubit.state.userPhysicalProfile == null;
+    return BlocListener<FitnessProfileCubit, FitnessProfileState>(
+      listenWhen:
+          (previous, current) =>
+              previous.updateUserPhysicalDataStatus !=
+              current.updateUserPhysicalDataStatus,
+      listener: (context, state) {
+        if (state.updateUserPhysicalDataStatus.isServerConnectionError) {
+          final content = context.l10n.networkError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.updateUserPhysicalDataStatus.isServerConnectionError) {
+          final content = context.l10n.internetConnectionError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.updateUserPhysicalDataStatus.isSuccess) {
+          Navigator.of(context).pop();
+          context.read<FitnessProfileCubit>().readFitnessData();
+        }
+      },
+      child: AppDialog(
+        title: 'Add new measurement',
+        contents: [
+          DropDownField<Gender>(
+            label: 'gender',
+            onChange: context.read<FitnessProfileCubit>().onChangeGender,
+            value: context.select<FitnessProfileCubit, Gender?>(
+              (cubit) => cubit.state.userPhysicalDataUpsert.gender,
+            ),
+            items:
+                Gender.values
+                    .sublist(0, Gender.values.length - 1)
+                    .map(
+                      (e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(context.l10n.physicalDataGender(e.name)),
+                      ),
+                    )
+                    .toList(),
+            errorText: isGenderError ? '' : null,
           ),
-          items:
-              Gender.values
-                  .sublist(0, Gender.values.length - 1)
-                  .map(
-                    (e) => DropdownMenuItem(
-                      value: e,
-                      child: Text(context.l10n.physicalDataGender(e.name)),
-                    ),
-                  )
-                  .toList(),
-        ),
-        gap,
-        RegullarTextField(
-          label: 'birthday',
-          readOnly: true,
-          initalValue: context.select<FitnessProfileCubit, String?>(
-            (cubit) =>
-                cubit.state.userPhysicalDataUpsert.birthday
-                    ?.toLocal()
-                    .toIso8601String(),
+          gap,
+          DropDownField<ActivityLevel>(
+            label: 'Activity Level',
+            onChange: context.read<FitnessProfileCubit>().onChangeActivityLevel,
+            value: context.select<FitnessProfileCubit, ActivityLevel?>(
+              (cubit) => cubit.state.userPhysicalDataUpsert.activityLevel,
+            ),
+            items:
+                ActivityLevel.values
+                    .sublist(0, ActivityLevel.values.length - 1)
+                    .map(
+                      (e) => DropdownMenuItem(
+                        value: e,
+                        child: Text(context.l10n.physicalActivityLevel(e.name)),
+                      ),
+                    )
+                    .toList(),
+            errorText: isActivityLevelError ? '' : null,
           ),
-          onTap: () async {
-            final locale = Localizations.localeOf(context);
-            late final DateTime? pickedDate;
-            if (locale.languageCode == 'fa') {
-              Jalali? picked = await showPersianDatePicker(
-                context: context,
-                initialDate: Jalali.fromDateTime(
-                  DateTime.now().subtract(Duration(days: 365 * 25)),
-                ),
-                firstDate: Jalali(1350),
-                lastDate: Jalali.fromDateTime(
-                  DateTime.now().subtract(Duration(days: 365 * 17)),
-                ),
+          gap,
+          RegullarTextField(
+            label: 'birthday',
+            readOnly: true,
+            errorMessage: isBirthdayError ? '' : null,
+            initalValue: context.select<FitnessProfileCubit, String?>(
+              (cubit) =>
+                  cubit.state.userPhysicalDataUpsert.birthday
+                      ?.toLocal()
+                      .toIso8601String(),
+            ),
+            onTap: () async {
+              final locale = Localizations.localeOf(context);
+              late final DateTime? pickedDate;
+              if (locale.languageCode == 'fa') {
+                Jalali? picked = await showPersianDatePicker(
+                  context: context,
+                  initialDate: Jalali.fromDateTime(
+                    DateTime.now().subtract(Duration(days: 365 * 25)),
+                  ),
+                  firstDate: Jalali(1350),
+                  lastDate: Jalali.fromDateTime(
+                    DateTime.now().subtract(Duration(days: 365 * 17)),
+                  ),
 
-                initialEntryMode: PersianDatePickerEntryMode.calendarOnly,
-                initialDatePickerMode: PersianDatePickerMode.year,
-              );
-              pickedDate = picked?.toDateTime();
-            } else {
-              pickedDate = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now().subtract(Duration(days: 365 * 25)),
-                firstDate: DateTime(1950),
-                // to limit the application to users who are at least 18 years old
-                lastDate: DateTime.now().subtract(Duration(days: 365 * 17)),
-              );
-            }
+                  initialEntryMode: PersianDatePickerEntryMode.calendarOnly,
+                  initialDatePickerMode: PersianDatePickerMode.year,
+                );
+                pickedDate = picked?.toDateTime();
+              } else {
+                pickedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now().subtract(
+                    Duration(days: 365 * 25),
+                  ),
+                  firstDate: DateTime(1950),
+                  // to limit the application to users who are at least 18 years old
+                  lastDate: DateTime.now().subtract(Duration(days: 365 * 17)),
+                );
+              }
 
-            if (pickedDate == null) {
-              return;
-            }
-            cubit.onChangeBirthDay(pickedDate);
-          },
-        ),
-        gap,
-        NumberTextField(
-          label: 'height',
-          onChange: (value) {
-            cubit.onChangeHeight(double.parse(value));
-          },
-          initalValue:
-              context
-                  .read<FitnessProfileCubit>()
-                  .state
-                  .userPhysicalDataUpsert
-                  .height
-                  .tryToString(),
-        ),
-        gap,
-        NumberTextField(
-          label: 'weight',
-          onChange: (value) {
-            cubit.onChangeWeight(double.parse(value));
-          },
-          initalValue:
-              context
-                  .read<FitnessProfileCubit>()
-                  .state
-                  .userPhysicalDataUpsert
-                  .weight
-                  .tryToString(),
-        ),
-        gap,
-        NumberTextField(
-          label: 'WaistCircumference',
-          onChange: (value) {
-            cubit.onChangeWaistCircumference(double.parse(value));
-          },
-          initalValue:
-              context
-                  .read<FitnessProfileCubit>()
-                  .state
-                  .userPhysicalDataUpsert
-                  .waistCircumference
-                  .tryToString(),
-        ),
-        gap,
-        NumberTextField(
-          label: 'ArmCircumference',
-          onChange: (value) {
-            cubit.onChangeArmCircumference(double.parse(value));
-          },
-          initalValue:
-              context
-                  .read<FitnessProfileCubit>()
-                  .state
-                  .userPhysicalDataUpsert
-                  .armCircumference
-                  .tryToString(),
-        ),
-        gap,
-        NumberTextField(
-          label: 'ChestCircumference',
-          onChange: (value) {
-            cubit.onChangeChestCircumference(double.parse(value));
-          },
-          initalValue:
-              context
-                  .read<FitnessProfileCubit>()
-                  .state
-                  .userPhysicalDataUpsert
-                  .chestCircumference
-                  .tryToString(),
-        ),
-        gap,
-        NumberTextField(
-          label: 'ThighCircumference',
-          onChange: (value) {
-            cubit.onChangeThighCircumference(double.parse(value));
-          },
-          initalValue:
-              context
-                  .read<FitnessProfileCubit>()
-                  .state
-                  .userPhysicalDataUpsert
-                  .thighCircumference
-                  .tryToString(),
-        ),
-        gap,
-        NumberTextField(
-          label: 'CalfMuscleCircumference',
-          onChange: (value) {
-            cubit.onChangeCalfMuscleCircumference(double.parse(value));
-          },
-          initalValue:
-              context
-                  .read<FitnessProfileCubit>()
-                  .state
-                  .userPhysicalDataUpsert
-                  .calfMuscleCircumference
-                  .tryToString(),
-        ),
-        gap,
-        NumberTextField(
-          label: 'HipCircumference',
-          onChange: (value) {
-            cubit.onChangeHipCircumference(double.parse(value));
-          },
-          initalValue:
-              context
-                  .read<FitnessProfileCubit>()
-                  .state
-                  .userPhysicalDataUpsert
-                  .hipCircumference
-                  .tryToString(),
-        ),
-        gap,
-        DropDownField<ActivityLevel>(
-          label: 'Activity Level',
-          onChange: context.read<FitnessProfileCubit>().onChangeActivityLevel,
-          value: context.select<FitnessProfileCubit, ActivityLevel?>(
-            (cubit) => cubit.state.userPhysicalDataUpsert.activityLevel,
+              if (pickedDate == null) {
+                return;
+              }
+              cubit.onChangeBirthDay(pickedDate);
+            },
           ),
-          items:
-              ActivityLevel.values
-                  .sublist(0, ActivityLevel.values.length - 1)
-                  .map(
-                    (e) => DropdownMenuItem(
-                      value: e,
-                      child: Text(context.l10n.physicalActivityLevel(e.name)),
-                    ),
-                  )
-                  .toList(),
+          gap,
+          NumberTextField(
+            label: 'height cm',
+            onChange: (value) {
+              cubit.onChangeHeight(double.tryParse(value));
+            },
+            initalValue:
+                context
+                    .read<FitnessProfileCubit>()
+                    .state
+                    .userPhysicalDataUpsert
+                    .height
+                    .tryToString(),
+            errorMessage: isHeightError ? '' : null,
+          ),
+          gap,
+          NumberTextField(
+            label: 'weight kg',
+            onChange: (value) {
+              cubit.onChangeWeight(double.tryParse(value));
+            },
+            initalValue:
+                context
+                    .read<FitnessProfileCubit>()
+                    .state
+                    .userPhysicalDataUpsert
+                    .weight
+                    .tryToString(),
+            errorMessage: isWeightError ? '' : null,
+          ),
+          gap,
+          NumberTextField(
+            label: 'WaistCircumference',
+            onChange: (value) {
+              cubit.onChangeWaistCircumference(double.tryParse(value));
+            },
+            initalValue:
+                context
+                    .read<FitnessProfileCubit>()
+                    .state
+                    .userPhysicalDataUpsert
+                    .waistCircumference
+                    .tryToString(),
+          ),
+          gap,
+          if (!isRequiredFields) ...[
+            NumberTextField(
+              label: 'ArmCircumference',
+              onChange: (value) {
+                cubit.onChangeArmCircumference(double.tryParse(value));
+              },
+              initalValue:
+                  context
+                      .read<FitnessProfileCubit>()
+                      .state
+                      .userPhysicalDataUpsert
+                      .armCircumference
+                      .tryToString(),
+            ),
+            gap,
+            NumberTextField(
+              label: 'ChestCircumference',
+              onChange: (value) {
+                cubit.onChangeChestCircumference(double.tryParse(value));
+              },
+              initalValue:
+                  context
+                      .read<FitnessProfileCubit>()
+                      .state
+                      .userPhysicalDataUpsert
+                      .chestCircumference
+                      .tryToString(),
+            ),
+            gap,
+            NumberTextField(
+              label: 'ThighCircumference',
+              onChange: (value) {
+                cubit.onChangeThighCircumference(double.tryParse(value));
+              },
+              initalValue:
+                  context
+                      .read<FitnessProfileCubit>()
+                      .state
+                      .userPhysicalDataUpsert
+                      .thighCircumference
+                      .tryToString(),
+            ),
+            gap,
+            NumberTextField(
+              label: 'CalfMuscleCircumference',
+              onChange: (value) {
+                cubit.onChangeCalfMuscleCircumference(double.tryParse(value));
+              },
+              initalValue:
+                  context
+                      .read<FitnessProfileCubit>()
+                      .state
+                      .userPhysicalDataUpsert
+                      .calfMuscleCircumference
+                      .tryToString(),
+            ),
+            gap,
+            NumberTextField(
+              label: 'HipCircumference',
+              onChange: (value) {
+                cubit.onChangeHipCircumference(double.tryParse(value));
+              },
+              initalValue:
+                  context
+                      .read<FitnessProfileCubit>()
+                      .state
+                      .userPhysicalDataUpsert
+                      .hipCircumference
+                      .tryToString(),
+            ),
+          ],
+        ],
+        fullscreen: true,
+        submitButton: BlocBuilder<FitnessProfileCubit, FitnessProfileState>(
+          builder: (context, state) {
+            return state.updateUserPhysicalDataStatus.isLoading
+                ? AppTextButton.loading(label: 'ok')
+                : AppTextButton(
+                  label: 'label',
+                  onTap: () {
+                    if (isRequiredFields) {
+                      validate();
+                    }
+                    if (isValidForm) {
+                      context
+                          .read<FitnessProfileCubit>()
+                          .updateUserPhysicalData();
+                    }
+                  },
+                );
+          },
         ),
-      ],
-      fullscreen: true,
-      submitButton: TextButton(
-        onPressed: context.read<FitnessProfileCubit>().updateUserPhysicalData,
-        child: Text('add new'),
       ),
     );
   }
@@ -488,8 +554,6 @@ class AppCardHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text('Physical data', style: context.textTheme.headlineMedium),
-        SizedBox(height: context.sizeExtenstion.small),
-        AddNewMeasurementTextButton(),
         SizedBox(height: context.sizeExtenstion.small),
       ],
     );
@@ -579,8 +643,6 @@ class ImageGallary extends StatelessWidget {
         children: [
           Text('Your image gallary', style: context.textTheme.headlineMedium),
           SizedBox(height: context.sizeExtenstion.small),
-          AddImageTextButton(),
-          SizedBox(height: context.sizeExtenstion.small),
           CarouselSliderBuilder(),
         ],
       ),
@@ -616,18 +678,13 @@ class CarouselSliderBuilder extends StatelessWidget {
       builder: (context, state) {
         if (state.filesDetail.isEmpty) {
           return Stack(
-            alignment: AlignmentDirectional.topCenter,
+            alignment: AlignmentDirectional.center,
             children: [
               AspectRatio(
                 aspectRatio: 16 / 9,
                 child: AppRoundedRectangleBorder(child: AddNewImageSelfie()),
               ),
-              Text(
-                'Add your new Image',
-                style: context.textTheme.headlineSmall!.copyWith(
-                  backgroundColor: context.themeData.colorScheme.primary,
-                ),
-              ),
+              AddImageTextButton.filled(),
             ],
           );
         }
@@ -673,78 +730,84 @@ class AppRoundedRectangleBorder extends StatelessWidget {
 }
 
 class AddImageTextButton extends StatelessWidget {
-  const AddImageTextButton({super.key});
+  const AddImageTextButton({super.key}) : isFilled = false;
+  const AddImageTextButton.filled({super.key}) : isFilled = true;
+  final bool isFilled;
 
   @override
   Widget build(BuildContext context) {
-    final naviagtor = Navigator.of(context);
-    return TextButton.icon(
-      onPressed: () async {
-        final result = await onEditImage(context);
-        if (result == null) return;
+    final label = Text('Add new image');
+    final onPressed = () {
+      onPress(context);
+    };
 
-        await naviagtor.push(
-          MaterialPageRoute(
-            builder:
-                (_) => BlocProvider.value(
-                  value: context.read<FitnessProfileCubit>(),
-                  child: Scaffold(
-                    // appBar: AppBar(title: Text('Edit Image')),
-                    body: Builder(
-                      builder: (context) {
-                        return BlocListener<
-                          FitnessProfileCubit,
-                          FitnessProfileState
-                        >(
-                          listenWhen:
-                              (previous, current) =>
-                                  previous.addUserImageStatus !=
-                                  current.addUserImageStatus,
-                          listener: (context, state) {
-                            if (state
-                                .addUserImageStatus
-                                .isServerConnectionError) {
-                              final content = context.l10n.networkError;
-                              ScaffoldMessenger.of(
-                                context,
-                              ).showSnackBar(SnackBar(content: Text(content)));
-                            } else if (state
-                                .addUserImageStatus
-                                .isServerConnectionError) {
-                              final content =
-                                  context.l10n.internetConnectionError;
-                              ScaffoldMessenger.of(
-                                context,
-                              ).showSnackBar(SnackBar(content: Text(content)));
-                            }
-                          },
-                          child: Center(
-                            child: SizedBox.fromSize(
-                              size: MediaQuery.of(context).size,
-                              child: ImageEditor(
-                                bytes: result.bytes,
-                                onComplete: (editedBytes) {
-                                  context
-                                      .read<FitnessProfileCubit>()
-                                      .onEditImageComplete(
-                                        editedBytes,
-                                        result.fileName,
-                                      );
-                                  Navigator.of(context).pop();
-                                },
-                              ),
-                            ),
-                          ),
-                        );
+    return isFilled
+        ? ElevatedButton(onPressed: onPressed, child: label)
+        : TextButton.icon(onPressed: onPressed, label: label);
+  }
+
+  void onPress(BuildContext context) async {
+    final naviagtor = Navigator.of(context);
+    final result = await onEditImage(context);
+
+    if (result == null) return;
+
+    await naviagtor.push(
+      MaterialPageRoute(
+        builder:
+            (_) => BlocProvider.value(
+              value: context.read<FitnessProfileCubit>(),
+              child: Scaffold(
+                // appBar: AppBar(title: Text('Edit Image')),
+                body: Builder(
+                  builder: (context) {
+                    return BlocListener<
+                      FitnessProfileCubit,
+                      FitnessProfileState
+                    >(
+                      listenWhen:
+                          (previous, current) =>
+                              previous.addUserImageStatus !=
+                              current.addUserImageStatus,
+                      listener: (context, state) {
+                        if (state.addUserImageStatus.isServerConnectionError) {
+                          final content = context.l10n.networkError;
+                          ScaffoldMessenger.of(
+                            context,
+                          ).showSnackBar(SnackBar(content: Text(content)));
+                        } else if (state
+                            .addUserImageStatus
+                            .isServerConnectionError) {
+                          final content = context.l10n.internetConnectionError;
+                          ScaffoldMessenger.of(
+                            context,
+                          ).showSnackBar(SnackBar(content: Text(content)));
+                        }
                       },
-                    ),
-                  ),
+                      child: Center(
+                        child: SizedBox.fromSize(
+                          size: MediaQuery.of(context).size,
+                          child: ImageEditor(
+                            bytes: result.bytes,
+                            onComplete: (editedBytes) {
+                              context
+                                  .read<FitnessProfileCubit>()
+                                  .onEditImageComplete(
+                                    editedBytes,
+                                    result.fileName,
+                                  );
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-            fullscreenDialog: true,
-          ),
-        );
-      },
-      label: Text('Add new image'),
+              ),
+            ),
+        fullscreenDialog: true,
+      ),
     );
   }
 

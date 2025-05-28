@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remote_api/src/model/model.dart';
@@ -6,6 +7,7 @@ part 'file_data.g.dart';
 
 @JsonSerializable()
 class FileData extends Equatable {
+
   @JsonKey(name: '_id')
   final String id;
   final String userId;
@@ -49,6 +51,31 @@ class FileData extends Equatable {
     processingStatus,
     rejectProcessingStatusDesc,
   ];
+  FileData copyWith({
+    String? id,
+    String? userId,
+    GallaryTag? tag,
+    String? fileName,
+    int? fileSize,
+    DateTime? uploadDate,
+    String? contentType,
+    String? fileUploadPath,
+    ProcessingStatus? processingStatus,
+    ValueGetter<ImageRejectionReason?>? rejectProcessingStatusDesc    
+  }) {
+    return FileData(
+          id: id ?? this.id,
+      userId: userId ?? this.userId,
+      tag: tag ?? this.tag,
+      fileName: fileName ?? this.fileName,
+      fileSize: fileSize ?? this.fileSize,
+      uploadDate: uploadDate ?? this.uploadDate,
+      contentType: contentType ?? this.contentType,
+      fileUploadPath: fileUploadPath ?? this.fileUploadPath,
+      processingStatus: processingStatus ?? this.processingStatus,
+      rejectProcessingStatusDesc: rejectProcessingStatusDesc != null ? rejectProcessingStatusDesc() : this.rejectProcessingStatusDesc
+    );
+  }
 }
 
 @JsonEnum()

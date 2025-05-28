@@ -16,6 +16,7 @@ class RegullarTextField extends StatelessWidget {
     this.readOnly = false,
     this.initalValue,
     this.onTap,
+    this.errorMessage,
   });
   final String label;
   final String? prefix;
@@ -27,6 +28,7 @@ class RegullarTextField extends StatelessWidget {
   final String? initalValue;
   final bool readOnly;
   final VoidCallback? onTap;
+  final String? errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +42,7 @@ class RegullarTextField extends StatelessWidget {
         labelText: label,
         prefixText: prefix,
         hintText: hintText,
+        errorText: errorMessage,
       ),
       obscureText: obscureText,
       maxLength: maxLength,

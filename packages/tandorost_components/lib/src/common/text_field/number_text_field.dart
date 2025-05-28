@@ -13,6 +13,7 @@ class NumberTextField extends StatelessWidget {
     this.validator,
     this.obscureText = false,
     this.initalValue,
+    this.errorMessage,
   });
   final String label;
   final String? prefix;
@@ -22,6 +23,7 @@ class NumberTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool obscureText;
   final String? initalValue;
+  final String? errorMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,7 @@ class NumberTextField extends StatelessWidget {
           labelText: label,
           prefixText: prefix,
           hintText: hintText,
+          errorText: errorMessage,
         ),
         obscureText: obscureText,
         textDirection: TextDirection.ltr,

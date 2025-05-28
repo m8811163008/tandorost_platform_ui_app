@@ -48,7 +48,7 @@ class UserPhysicalProfile extends Equatable {
   final String id;
   final String userId;
   final Gender gender;
-  final int age;
+  final DateTime birthday;
   final List<DoubleDataPoint> height;
   final List<DoubleDataPoint> weight;
   final List<DoubleDataPoint> waistCircumference;
@@ -63,7 +63,7 @@ class UserPhysicalProfile extends Equatable {
     required this.id,
     required this.userId,
     required this.gender,
-    required this.age,
+    required this.birthday,
     required this.height,
     required this.weight,
     required this.waistCircumference,
@@ -75,6 +75,7 @@ class UserPhysicalProfile extends Equatable {
     required this.activityLevel,
   });
 
+
   factory UserPhysicalProfile.fromJson(Map<String, dynamic> json) =>
       _$UserPhysicalProfileFromJson(json);
 
@@ -83,7 +84,7 @@ class UserPhysicalProfile extends Equatable {
     id,
     userId,
     gender,
-    age,
+    birthday,
     height,
     weight,
     waistCircumference,

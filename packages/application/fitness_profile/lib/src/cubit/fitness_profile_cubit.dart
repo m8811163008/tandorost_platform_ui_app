@@ -22,6 +22,7 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
   void _initialize() {
     readUserImageGallary();
     readFitnessData();
+    readUserPhysicalProfile();
   }
 
   final ImageRepository _imageRepository;
@@ -81,56 +82,56 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
   }
 
-  void onChangeHeight(double height) {
+  void onChangeHeight(double? height) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       height: () => height,
     );
     emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
   }
 
-  void onChangeWeight(double weight) {
+  void onChangeWeight(double? weight) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       weight: () => weight,
     );
     emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
   }
 
-  void onChangeWaistCircumference(double waistCircumference) {
+  void onChangeWaistCircumference(double? waistCircumference) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       waistCircumference: () => waistCircumference,
     );
     emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
   }
 
-  void onChangeArmCircumference(double armCircumference) {
+  void onChangeArmCircumference(double? armCircumference) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       armCircumference: () => armCircumference,
     );
     emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
   }
 
-  void onChangeChestCircumference(double chestCircumference) {
+  void onChangeChestCircumference(double? chestCircumference) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       chestCircumference: () => chestCircumference,
     );
     emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
   }
 
-  void onChangeThighCircumference(double thighCircumference) {
+  void onChangeThighCircumference(double? thighCircumference) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       thighCircumference: () => thighCircumference,
     );
     emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
   }
 
-  void onChangeCalfMuscleCircumference(double calfMuscleCircumference) {
+  void onChangeCalfMuscleCircumference(double? calfMuscleCircumference) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       calfMuscleCircumference: () => calfMuscleCircumference,
     );
     emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
   }
 
-  void onChangeHipCircumference(double hipCircumference) {
+  void onChangeHipCircumference(double? hipCircumference) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       hipCircumference: () => hipCircumference,
     );

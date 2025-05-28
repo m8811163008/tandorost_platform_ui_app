@@ -1,7 +1,7 @@
 export 'activity_level.dart';
 export 'address.dart';
 export 'audio_meme_type.dart';
-export 'physical_data_upsert.dart';
+export 'user_physical_data_upsert.dart';
 export 'carbohydrate_source.dart';
 export 'credential.dart';
 export 'exception/exception.dart';
