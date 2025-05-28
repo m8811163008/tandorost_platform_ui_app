@@ -1,0 +1,33 @@
+import 'package:fitness_profile_app/src/cubit/fitness_profile_cubit.dart';
+import 'package:fitness_profile_app/src/widgets/fitness_insight/fitness_insight.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class AddMeasurementButton extends StatelessWidget {
+  const AddMeasurementButton({super.key}) : _isFilled = false;
+  const AddMeasurementButton.filled({super.key}) : _isFilled = true;
+  final bool _isFilled;
+
+  @override
+  Widget build(BuildContext context) {
+    final label = Text('Add new measurement');
+    final onPress = () {
+      _onPress(context);
+    };
+    return _isFilled
+        ? ElevatedButton(onPressed: onPress, child: label)
+        : TextButton(onPressed: onPress, child: label);
+  }
+
+  void _onPress(BuildContext context) async {
+    await showDialog(
+      context: context,
+      builder: (_) {
+        return BlocProvider.value(
+          value: context.read<FitnessProfileCubit>(),
+          child: AddNewMeasurementDialog(),
+        );
+      },
+    );
+  }
+}

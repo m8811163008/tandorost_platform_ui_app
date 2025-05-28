@@ -179,7 +179,8 @@ class _AppLineChartState extends State<AppLineChart> {
               widget.dataPoints.last.value.toDouble(),
             );
           }),
-          isCurved: false,
+          isCurved: true,
+          // curveSmoothness: ,
           gradient: LinearGradient(colors: gradientColors),
           barWidth: 2,
           isStrokeCapRound: true,

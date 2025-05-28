@@ -258,10 +258,11 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
       chartType,
       {
         'weight': 'وزن',
+        'height': 'قد',
         'waistCircumference': 'دور کمر',
         'armCircumference': 'دور بازو',
         'chestCircumference': 'دور سینه',
-        'thightCircumference': 'دور ران',
+        'thighCircumference': 'دور ران',
         'calfMuscleCircumference': 'ماهیچه ساق پا',
         'hipCircumference': 'دور باسن',
         'activityLevel': 'سطح فعالیت',

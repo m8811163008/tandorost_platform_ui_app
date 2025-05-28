@@ -1,9 +1,10 @@
 enum ChartType {
   weight,
+  height,
   waistCircumference,
   armCircumference,
   chestCircumference,
-  thightCircumference,
+  thighCircumference,
   calfMuscleCircumference,
   hipCircumference,
   // Todo add activity level chart

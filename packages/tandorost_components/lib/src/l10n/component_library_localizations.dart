@@ -450,7 +450,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @profileChartTypeLabel.
   ///
   /// In fa, this message translates to:
-  /// **'{chartType, select, weight{وزن} waistCircumference{دور کمر} armCircumference{دور بازو} chestCircumference{دور سینه} thightCircumference{دور ران} calfMuscleCircumference{ماهیچه ساق پا} hipCircumference{دور باسن} activityLevel{سطح فعالیت} other{ترجمه تعریف نشده}}'**
+  /// **'{chartType, select, weight{وزن} height{قد} waistCircumference{دور کمر} armCircumference{دور بازو} chestCircumference{دور سینه} thighCircumference{دور ران} calfMuscleCircumference{ماهیچه ساق پا} hipCircumference{دور باسن} activityLevel{سطح فعالیت} other{ترجمه تعریف نشده}}'**
   String profileChartTypeLabel(String chartType);
 
   /// No description provided for @photoEditorRemove.

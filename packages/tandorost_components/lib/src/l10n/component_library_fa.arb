@@ -97,7 +97,7 @@
             "language_name": {}
         }
     },
-    "profileChartTypeLabel": "{chartType, select, weight{وزن} waistCircumference{دور کمر} armCircumference{دور بازو} chestCircumference{دور سینه} thightCircumference{دور ران} calfMuscleCircumference{ماهیچه ساق پا} hipCircumference{دور باسن} activityLevel{سطح فعالیت} other{ترجمه تعریف نشده}}",
+    "profileChartTypeLabel": "{chartType, select, weight{وزن} height{قد} waistCircumference{دور کمر} armCircumference{دور بازو} chestCircumference{دور سینه} thighCircumference{دور ران} calfMuscleCircumference{ماهیچه ساق پا} hipCircumference{دور باسن} activityLevel{سطح فعالیت} other{ترجمه تعریف نشده}}",
     "@profileChartTypeLabel": {
         "placeholders": {
             "chartType": {}

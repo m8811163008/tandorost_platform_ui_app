@@ -6,11 +6,11 @@ import 'package:tandorost_components/tandorost_components.dart';
 class AppLineChartInputChips extends StatelessWidget {
   const AppLineChartInputChips({
     super.key,
-    this.chartTypes = const [],
+    this.chartTypes = const {},
     this.selectedChartType,
     this.onSelected,
   });
-  final List<ChartType> chartTypes;
+  final Set<ChartType> chartTypes;
   final ChartType? selectedChartType;
   final ValueSetter<ChartType>? onSelected;
 

@@ -272,4 +272,8 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
       );
     }
   }
+
+  void onChangeChartType(ChartType chartType){
+    emit(state.copyWith(selectedChartType: chartType));
+  }
 }
