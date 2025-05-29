@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remote_api/remote_api.dart';
-import 'package:remote_api/src/model/change_weight_speed.dart';
 
 part 'user_profile.g.dart';
 

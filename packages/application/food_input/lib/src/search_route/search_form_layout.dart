@@ -109,6 +109,7 @@ class _FormLayoutState extends State<FormLayout> {
         if (value == null || value.isEmpty) {
           return context.l10n.emptyFormFieldValidationError;
         }
+        return null;
       },
     );
   }

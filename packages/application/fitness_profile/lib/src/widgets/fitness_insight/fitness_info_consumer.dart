@@ -1,6 +1,5 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:fitness_profile_app/src/cubit/fitness_profile_cubit.dart';
-import 'package:fitness_profile_app/src/widgets/fitness_insight/fitness_info.dart';
 import 'package:fitness_profile_app/src/widgets/fitness_insight/fitness_insight.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

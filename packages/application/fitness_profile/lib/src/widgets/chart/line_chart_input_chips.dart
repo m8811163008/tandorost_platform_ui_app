@@ -1,6 +1,5 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class AppLineChartInputChips extends StatelessWidget {

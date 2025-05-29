@@ -8,7 +8,6 @@ import 'package:profile_app/src/cubit/profile_cubit.dart';
 import 'package:profile_app/src/edit_dialog.dart';
 import 'package:profile_app/src/edit_language_button.dart';
 import 'package:profile_app/src/edit_name_button.dart';
-import 'package:tandorost_components/src/profile/language_setting.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class ProfileRoute extends StatelessWidget {

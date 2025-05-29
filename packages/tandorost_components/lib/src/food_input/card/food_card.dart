@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:domain_model/domain_model.dart';
-import 'package:tandorost_components/src/utility/build_context_l10n_extension.dart';
 import 'package:tandorost_components/tandorost_components.dart';
-import 'package:tandorost_theme/tandorost_theme.dart';
 
 class FoodResultCard extends StatelessWidget {
   const FoodResultCard({

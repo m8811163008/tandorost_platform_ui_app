@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tandorost_components/src/utility/build_context_l10n_extension.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class ChangeWeightSpeedInfoDialog extends StatelessWidget {

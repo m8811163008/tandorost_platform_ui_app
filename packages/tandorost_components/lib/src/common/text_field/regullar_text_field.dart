@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class RegullarTextField extends StatelessWidget {

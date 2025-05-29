@@ -2,7 +2,6 @@ import 'package:domain_model/domain_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fitness_profile_app/src/cubit/fitness_profile_cubit.dart';
 import 'package:fitness_profile_app/src/widgets/gallary/gallary.dart';
-import 'package:fitness_profile_app/src/widgets/gallary/image_editor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tandorost_components/tandorost_components.dart';

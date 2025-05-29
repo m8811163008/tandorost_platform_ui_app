@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:food_input_app/food_input.dart';
 import 'package:profile_app/profile.dart';
-import 'package:tandorost_components/tandorost_components.dart';
 
 class Navigation {
   static GoRouter goRouter(BuildContext context) {

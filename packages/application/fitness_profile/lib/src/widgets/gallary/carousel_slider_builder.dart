@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fitness_profile_app/src/cubit/fitness_profile_cubit.dart';
-import 'package:fitness_profile_app/src/widgets/gallary/add_new_image.dart';
 import 'package:fitness_profile_app/src/widgets/gallary/gallary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
