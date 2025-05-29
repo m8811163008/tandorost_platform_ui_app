@@ -209,6 +209,38 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     }
   }
 
+  void onDeleteDataPoint(String dataPointId) async {
+    emit(
+      state.copyWith(
+        deleteUserPhysicalDataPointStatus: AsyncProcessingStatus.loading,
+      ),
+    );
+    try {
+      await _fitnessNutrition.deleteUserPhysicalDataPoint(dataPointsId: dataPointId);
+      emit(
+        state.copyWith(
+          deleteUserPhysicalDataPointStatus: AsyncProcessingStatus.success,
+          
+        ),
+      );
+    } on InternetConnectionException {
+      emit(
+        state.copyWith(
+          deleteUserPhysicalDataPointStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      emit(
+        state.copyWith(
+          deleteUserPhysicalDataPointStatus:
+              AsyncProcessingStatus.serverConnectionError,
+        ),
+      );
+    }
+    
+  }
+
   void readUserImageGallary() async {
     emit(
       state.copyWith(readUserImageGallaryStatus: AsyncProcessingStatus.loading),

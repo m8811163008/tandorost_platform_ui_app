@@ -1046,6 +1046,18 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'نمودار پیشرفت شما'**
   String get fitnessProfilePhysicaDataChart;
+
+  /// No description provided for @fitnessProfileDeleteDataPointDialogLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'حذف اندازه'**
+  String get fitnessProfileDeleteDataPointDialogLabel;
+
+  /// No description provided for @fitnessProfileDeleteDataPointDialogDescription.
+  ///
+  /// In fa, this message translates to:
+  /// **'آیا از حذف این اندازه مطمئن هستید؟'**
+  String get fitnessProfileDeleteDataPointDialogDescription;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

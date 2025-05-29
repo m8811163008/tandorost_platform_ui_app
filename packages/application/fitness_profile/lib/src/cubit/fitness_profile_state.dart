@@ -11,6 +11,7 @@ class FitnessProfileState extends Equatable {
   final UserPhysicalDataUpsert userPhysicalDataUpsert;
 
   final AsyncProcessingStatus updateUserPhysicalDataStatus;
+  final AsyncProcessingStatus deleteUserPhysicalDataPointStatus;
 
   final AsyncProcessingStatus addUserImageStatus;
   final AsyncProcessingStatus readUserImageGallaryStatus;
@@ -27,6 +28,7 @@ class FitnessProfileState extends Equatable {
 
     this.userPhysicalProfile,
     this.updateUserPhysicalDataStatus = AsyncProcessingStatus.inital,
+    this.deleteUserPhysicalDataPointStatus = AsyncProcessingStatus.inital,
     this.addUserImageStatus = AsyncProcessingStatus.inital,
     this.readUserImageGallaryStatus = AsyncProcessingStatus.inital,
     this.readFitnessDataStatus = AsyncProcessingStatus.inital,
@@ -53,7 +55,9 @@ class FitnessProfileState extends Equatable {
   List<DoubleDataPoint> get chartDataPoints {
     final profile = userPhysicalProfile;
     final type = selectedChartType;
+
     if (profile == null) return [];
+
     switch (type) {
       case ChartType.weight:
         return profile.weight;
@@ -84,6 +88,7 @@ class FitnessProfileState extends Equatable {
     fitnessData,
     userPhysicalDataUpsert,
     updateUserPhysicalDataStatus,
+    deleteUserPhysicalDataPointStatus,
     userPhysicalProfile,
     readUserPhysicalProfileStatus,
     supportedChartTypes,
@@ -101,6 +106,7 @@ class FitnessProfileState extends Equatable {
 
     AsyncProcessingStatus? addUserImageStatus,
     AsyncProcessingStatus? readUserImageGallaryStatus,
+    AsyncProcessingStatus? deleteUserPhysicalDataPointStatus,
     AsyncProcessingStatus? readFitnessDataStatus,
     AsyncProcessingStatus? updateUserPhysicalDataStatus,
     AsyncProcessingStatus? readUserPhysicalProfileStatus,
@@ -118,6 +124,9 @@ class FitnessProfileState extends Equatable {
           readFitnessDataStatus ?? this.readFitnessDataStatus,
       readUserImageGallaryStatus:
           readUserImageGallaryStatus ?? this.readUserImageGallaryStatus,
+      deleteUserPhysicalDataPointStatus:
+          deleteUserPhysicalDataPointStatus ??
+          this.deleteUserPhysicalDataPointStatus,
       updateUserPhysicalDataStatus:
           updateUserPhysicalDataStatus ?? this.updateUserPhysicalDataStatus,
       readUserPhysicalProfileStatus:

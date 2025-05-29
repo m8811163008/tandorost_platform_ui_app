@@ -631,4 +631,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get fitnessProfilePhysicaDataChart => 'نمودار پیشرفت شما';
+
+  @override
+  String get fitnessProfileDeleteDataPointDialogLabel => 'حذف اندازه';
+
+  @override
+  String get fitnessProfileDeleteDataPointDialogDescription => 'آیا از حذف این اندازه مطمئن هستید؟';
 }

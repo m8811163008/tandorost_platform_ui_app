@@ -119,13 +119,16 @@ class _AppLineChartState extends State<AppLineChart> {
             );
 
             final dotData = FlDotData(
-              getDotPainter:
-                  (spot, percent, bar, index) => FlDotCirclePainter(
-                    // uncommend when enable long press to edit
-                    // radius: 64,
-                    color: context.themeData.colorScheme.inversePrimary
-                        .withAlpha(100),
+              getDotPainter: (spot, percent, bar, index) {
+                final canTap = index < widget.dataPoints.length;
+                return FlDotCirclePainter(
+                  // uncommend when enable long press to edit
+                  radius: canTap ? context.sizeExtenstion.medium : null,
+                  color: context.themeData.colorScheme.inversePrimary.withAlpha(
+                    100,
                   ),
+                );
+              },
             );
 
             return TouchedSpotIndicatorData(flLine, dotData);
@@ -186,7 +189,7 @@ class _AppLineChartState extends State<AppLineChart> {
             show: true,
             getDotPainter: (flSpot, percentage, barData, index) {
               return FlDotCirclePainter(
-                radius: 6,
+                radius: context.sizeExtenstion.small,
                 color: context.themeData.colorScheme.inversePrimary,
               );
             },

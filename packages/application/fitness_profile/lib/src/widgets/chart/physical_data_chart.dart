@@ -1,5 +1,8 @@
+import 'package:domain_model/domain_model.dart';
 import 'package:fitness_profile_app/src/cubit/fitness_profile_cubit.dart';
 import 'package:fitness_profile_app/src/widgets/chart/chart.dart';
+import 'package:fitness_profile_app/src/widgets/chart/delete_data_point_dialog.dart';
+import 'package:fitness_profile_app/src/widgets/fitness_insight/no_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -16,16 +19,49 @@ class PhysicalDataChart extends StatelessWidget {
           if (userPhysicalProfile == null) {
             return AppAsyncStatusCard.notFound();
           }
+          final dataPoints = state.chartDataPoints.sublist(
+            state.chartDataPoints.length > 10
+                ? state.chartDataPoints.length - 10
+                : 0,
+          );
+          // handle delete single data type
+          // Todo handle edit data point and delete
+          if (dataPoints.isEmpty) {
+            context.read<FitnessProfileCubit>().onChangeChartType(
+              ChartType.weight,
+            );
+            return NoDataFound(title: '');
+          }
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppCardHeader(title: context.l10n.fitnessProfilePhysicaDataChart),
               AppLineChart(
-                dataPoints: state.chartDataPoints.sublist(
-                  userPhysicalProfile.weight.length > 10
-                      ? userPhysicalProfile.weight.length - 10
-                      : 0,
-                ),
+                dataPoints: dataPoints,
+
+                onSpotLongPreesed: (index) async {
+                  if (index >= dataPoints.length) {
+                    return;
+                  }
+                  if (dataPoints.length == 1) {
+                    // prevent delete weight an height which is needed for calculating data profile
+                    if (state.selectedChartType.isHeight ||
+                        state.selectedChartType.isWeight) {
+                      return;
+                    }
+                  }
+
+                  final dataPoint = dataPoints[index];
+                  await showDialog(
+                    context: context,
+                    builder: (_) {
+                      return BlocProvider.value(
+                        value: context.read<FitnessProfileCubit>(),
+                        child: DeleteDataPointDialog(id: dataPoint.dataPointId),
+                      );
+                    },
+                  );
+                },
               ),
               AppLineChartInputChips(
                 chartTypes: state.supportedChartTypes,
