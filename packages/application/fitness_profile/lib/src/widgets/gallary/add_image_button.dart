@@ -21,7 +21,11 @@ class AddImageButton extends StatelessWidget {
 
     return isFilled
         ? ElevatedButton(onPressed: onPressed, child: label)
-        : TextButton.icon(onPressed: onPressed, label: label);
+        : TextButton.icon(
+          onPressed: onPressed,
+          label: label,
+          icon: Icon(Icons.image),
+        );
   }
 
   Future<FileDetail?> onPickImage(BuildContext context) async {

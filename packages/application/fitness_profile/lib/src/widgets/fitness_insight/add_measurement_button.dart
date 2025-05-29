@@ -16,7 +16,11 @@ class AddMeasurementButton extends StatelessWidget {
     };
     return _isFilled
         ? ElevatedButton(onPressed: onPress, child: label)
-        : TextButton(onPressed: onPress, child: label);
+        : TextButton.icon(
+          onPressed: onPress,
+          label: label,
+          icon: Icon(Icons.add),
+        );
   }
 
   void _onPress(BuildContext context) async {

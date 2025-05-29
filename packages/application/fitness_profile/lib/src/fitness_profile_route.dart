@@ -35,7 +35,36 @@ class FitnessProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        children: [ImageGallary(), FitnessInfoConsumer(), PhysicalDataChart()],
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Builder(
+            builder: (context) {
+              try {
+                return ImageGallary();
+              } catch (e, stack) {
+                return Text('ImageGallary error: $e');
+              }
+            },
+          ),
+          Builder(
+            builder: (context) {
+              try {
+                return FitnessInfoConsumer();
+              } catch (e, stack) {
+                return Text('FitnessInfoConsumer error: $e');
+              }
+            },
+          ),
+          Builder(
+            builder: (context) {
+              try {
+                return PhysicalDataChart();
+              } catch (e, stack) {
+                return Text('PhysicalDataChart error: $e');
+              }
+            },
+          ),
+        ],
       ),
     );
   }

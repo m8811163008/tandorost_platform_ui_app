@@ -18,9 +18,13 @@ class AppTheme {
         onPrimary: ThemeColor.charcoal.color,
         onSecondary: ThemeColor.white.color,
       ),
+
       textTheme: textTheme(locale),
       extensions: [sizeExtenstion],
-      appBarTheme: AppBarTheme(color: ThemeColor.white.color),
+      appBarTheme: AppBarTheme(
+        color: ThemeColor.white.color,
+        actionsPadding: EdgeInsets.symmetric(vertical: sizeExtenstion.small),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(),
         hintStyle: textTheme(

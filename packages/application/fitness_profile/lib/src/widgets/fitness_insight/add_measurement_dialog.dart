@@ -1,4 +1,3 @@
-
 import 'package:domain_model/domain_model.dart';
 import 'package:fitness_profile_app/src/cubit/fitness_profile_cubit.dart';
 import 'package:flutter/material.dart';
@@ -119,7 +118,7 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
             onTap: () async {
               final locale = Localizations.localeOf(context);
               late final DateTime? pickedDate;
-              if (locale.languageCode == 'fa') {
+              if (locale.languageCode == Language.persian.code) {
                 Jalali? picked = await showPersianDatePicker(
                   context: context,
                   initialDate: Jalali.fromDateTime(

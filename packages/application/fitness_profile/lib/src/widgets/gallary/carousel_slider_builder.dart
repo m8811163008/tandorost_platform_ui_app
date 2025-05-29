@@ -33,15 +33,24 @@ class CarouselSliderBuilder extends StatelessWidget {
           (previous, current) => previous.filesDetail != current.filesDetail,
       builder: (context, state) {
         if (state.filesDetail.isEmpty) {
-          return Stack(
-            alignment: AlignmentDirectional.bottomCenter,
-            children: [
-              AspectRatio(
-                aspectRatio: 16 / 9,
-                child: AppRoundedRectangleBorder(child: AddNewImageSelfie()),
-              ),
-              AddImageButton.filled(),
-            ],
+          return Center(
+            child: Stack(
+              alignment: AlignmentDirectional.bottomCenter,
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 3,
+                  child: AppRoundedRectangleBorder(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                        context.sizeExtenstion.small,
+                      ),
+                      child: AddNewImageSelfie(),
+                    ),
+                  ),
+                ),
+                AddImageButton.filled(),
+              ],
+            ),
           );
         }
         return CarouselSlider(

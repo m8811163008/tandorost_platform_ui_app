@@ -74,8 +74,16 @@ class _AppLineChartState extends State<AppLineChart> {
 
   Widget _buildBottomTitle(DateTime dateTime) {
     String twoDigits(int n) => n.toString().padLeft(2, '0');
-    final formattedDate =
-        '${dateTime.year}/${twoDigits(dateTime.month)}/${twoDigits(dateTime.day)}';
+    final locale = Localizations.localeOf(context);
+    late final String formattedDate;
+    if (locale.languageCode == Language.persian.code) {
+      final shamsiDate = Jalali.fromDateTime(dateTime);
+      formattedDate =
+          '${shamsiDate.year}/${twoDigits(shamsiDate.month)}/${twoDigits(shamsiDate.day)}';
+    } else {
+      formattedDate =
+          '${dateTime.year}/${twoDigits(dateTime.month)}/${twoDigits(dateTime.day)}';
+    }
 
     return RotatedBox(
       quarterTurns: 3,
@@ -179,8 +187,6 @@ class _AppLineChartState extends State<AppLineChart> {
               widget.dataPoints.last.value.toDouble(),
             );
           }),
-          isCurved: true,
-          // curveSmoothness: ,
           gradient: LinearGradient(colors: gradientColors),
           barWidth: 2,
           isStrokeCapRound: true,
@@ -193,15 +199,6 @@ class _AppLineChartState extends State<AppLineChart> {
               );
             },
           ),
-
-          // belowBarData: BarAreaData(
-          //   show: true,
-          //   gradient: LinearGradient(
-          //     colors: gradientColors
-          //         .map((color) => color.withOpacity(0.3))
-          //         .toList(),
-          //   ),
-          // ),
         ),
       ],
     );

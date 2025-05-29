@@ -10,7 +10,7 @@ class AppCardHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Physical data', style: context.textTheme.headlineMedium),
+        Text(title, style: context.textTheme.headlineSmall),
         SizedBox(height: context.sizeExtenstion.small),
       ],
     );
