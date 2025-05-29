@@ -14,6 +14,7 @@ class NumberTextField extends StatelessWidget {
     this.obscureText = false,
     this.initalValue,
     this.errorMessage,
+    this.suffix,
   });
   final String label;
   final String? prefix;
@@ -24,6 +25,7 @@ class NumberTextField extends StatelessWidget {
   final bool obscureText;
   final String? initalValue;
   final String? errorMessage;
+  final Widget? suffix;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,7 @@ class NumberTextField extends StatelessWidget {
           prefixText: prefix,
           hintText: hintText,
           errorText: errorMessage,
+          suffix: suffix,
         ),
         obscureText: obscureText,
         textDirection: TextDirection.ltr,

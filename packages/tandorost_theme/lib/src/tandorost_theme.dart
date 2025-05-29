@@ -30,6 +30,10 @@ class AppTheme {
         hintStyle: textTheme(
           locale,
         ).bodyMedium!.copyWith(color: ThemeColor.charcoal.color),
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: sizeExtenstion.medium,
+          vertical: sizeExtenstion.small,
+        ),
       ),
       cardTheme: CardThemeData(
         margin: EdgeInsets.symmetric(

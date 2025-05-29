@@ -6,6 +6,7 @@ class AppDialog extends StatelessWidget {
   const AppDialog({
     super.key,
     required this.title,
+    this.dialogHint,
     this.contents = const [],
     required this.submitButton,
     this.fullscreen = false,
@@ -14,6 +15,7 @@ class AppDialog extends StatelessWidget {
   final List<Widget> contents;
   final Widget submitButton;
   final bool fullscreen;
+  final Widget? dialogHint;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,13 @@ class AppDialog extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: context.textTheme.headlineMedium),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(title, style: context.textTheme.headlineSmall),
+                      if (dialogHint != null) dialogHint!,
+                    ],
+                  ),
                   SizedBox(height: 16.0),
                   ...contents,
                   SizedBox(height: 16.0),

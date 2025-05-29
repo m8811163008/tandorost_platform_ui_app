@@ -1,5 +1,7 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:fitness_profile_app/src/cubit/fitness_profile_cubit.dart';
+import 'package:fitness_profile_app/src/widgets/fitness_insight/add_mesurement_dialog_hint.dart';
+import 'package:fitness_profile_app/src/widgets/fitness_insight/waist_circumference_field_hint.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -43,6 +45,178 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
     final cubit = context.read<FitnessProfileCubit>();
     final gap = SizedBox(height: context.sizeExtenstion.small);
     final isRequiredFields = cubit.state.userPhysicalProfile == null;
+    final bodyShapeFields = [
+      NumberTextField(
+        label: 'ArmCircumference',
+        onChange: (value) {
+          cubit.onChangeArmCircumference(double.tryParse(value));
+        },
+        initalValue:
+            context
+                .read<FitnessProfileCubit>()
+                .state
+                .userPhysicalDataUpsert
+                .armCircumference
+                .tryToString(),
+      ),
+      gap,
+      NumberTextField(
+        label: 'ChestCircumference',
+        onChange: (value) {
+          cubit.onChangeChestCircumference(double.tryParse(value));
+        },
+        initalValue:
+            context
+                .read<FitnessProfileCubit>()
+                .state
+                .userPhysicalDataUpsert
+                .chestCircumference
+                .tryToString(),
+      ),
+      gap,
+      NumberTextField(
+        label: 'ThighCircumference',
+        onChange: (value) {
+          cubit.onChangeThighCircumference(double.tryParse(value));
+        },
+        initalValue:
+            context
+                .read<FitnessProfileCubit>()
+                .state
+                .userPhysicalDataUpsert
+                .thighCircumference
+                .tryToString(),
+      ),
+      gap,
+      NumberTextField(
+        label: 'CalfMuscleCircumference',
+        onChange: (value) {
+          cubit.onChangeCalfMuscleCircumference(double.tryParse(value));
+        },
+        initalValue:
+            context
+                .read<FitnessProfileCubit>()
+                .state
+                .userPhysicalDataUpsert
+                .calfMuscleCircumference
+                .tryToString(),
+      ),
+      gap,
+      NumberTextField(
+        label: 'HipCircumference',
+        onChange: (value) {
+          cubit.onChangeHipCircumference(double.tryParse(value));
+        },
+        initalValue:
+            context
+                .read<FitnessProfileCubit>()
+                .state
+                .userPhysicalDataUpsert
+                .hipCircumference
+                .tryToString(),
+      ),
+      gap,
+    ];
+    final demographicFields = [
+      DropDownField<Gender>(
+        label: 'gender',
+        onChange: context.read<FitnessProfileCubit>().onChangeGender,
+        value: context.select<FitnessProfileCubit, Gender?>(
+          (cubit) => cubit.state.userPhysicalDataUpsert.gender,
+        ),
+        items:
+            Gender.values
+                .sublist(0, Gender.values.length - 1)
+                .map(
+                  (e) => DropdownMenuItem(
+                    value: e,
+                    child: Text(context.l10n.physicalDataGender(e.name)),
+                  ),
+                )
+                .toList(),
+        errorText: isGenderError ? '' : null,
+      ),
+      gap,
+      DropDownField<ActivityLevel>(
+        label: 'Activity Level',
+        onChange: context.read<FitnessProfileCubit>().onChangeActivityLevel,
+        value: context.select<FitnessProfileCubit, ActivityLevel?>(
+          (cubit) => cubit.state.userPhysicalDataUpsert.activityLevel,
+        ),
+        items:
+            ActivityLevel.values
+                .sublist(0, ActivityLevel.values.length - 1)
+                .map(
+                  (e) => DropdownMenuItem(
+                    value: e,
+                    child: Text(context.l10n.physicalActivityLevel(e.name)),
+                  ),
+                )
+                .toList(),
+        errorText: isActivityLevelError ? '' : null,
+      ),
+      gap,
+      RegullarTextField(
+        label: 'birthday',
+        readOnly: true,
+        errorMessage: isBirthdayError ? '' : null,
+        initalValue: context.select<FitnessProfileCubit, String?>(
+          (cubit) =>
+              cubit.state.userPhysicalDataUpsert.birthday
+                  ?.toLocal()
+                  .toIso8601String(),
+        ),
+        onTap: () async {
+          final locale = Localizations.localeOf(context);
+          late final DateTime? pickedDate;
+          if (locale.languageCode == Language.persian.code) {
+            Jalali? picked = await showPersianDatePicker(
+              context: context,
+              initialDate: Jalali.fromDateTime(
+                DateTime.now().subtract(Duration(days: 365 * 25)),
+              ),
+              firstDate: Jalali(1350),
+              lastDate: Jalali.fromDateTime(
+                DateTime.now().subtract(Duration(days: 365 * 17)),
+              ),
+
+              initialEntryMode: PersianDatePickerEntryMode.calendarOnly,
+              initialDatePickerMode: PersianDatePickerMode.year,
+            );
+            pickedDate = picked?.toDateTime();
+          } else {
+            pickedDate = await showDatePicker(
+              context: context,
+              initialDate: DateTime.now().subtract(Duration(days: 365 * 25)),
+              firstDate: DateTime(1950),
+              // to limit the application to users who are at least 18 years old
+              lastDate: DateTime.now().subtract(Duration(days: 365 * 17)),
+            );
+          }
+
+          if (pickedDate == null) {
+            return;
+          }
+          cubit.onChangeBirthDay(pickedDate);
+        },
+      ),
+      gap,
+      NumberTextField(
+        label: 'height cm',
+        onChange: (value) {
+          cubit.onChangeHeight(double.tryParse(value));
+        },
+        initalValue:
+            context
+                .read<FitnessProfileCubit>()
+                .state
+                .userPhysicalDataUpsert
+                .height
+                .tryToString(),
+        errorMessage: isHeightError ? '' : null,
+      ),
+      gap,
+    ];
     return BlocListener<FitnessProfileCubit, FitnessProfileState>(
       listenWhen:
           (previous, current) =>
@@ -66,107 +240,11 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
       },
       child: AppDialog(
         title: 'Add new measurement',
+        dialogHint: HintButton(child: AddMesurementDialogHint()),
+
         contents: [
-          DropDownField<Gender>(
-            label: 'gender',
-            onChange: context.read<FitnessProfileCubit>().onChangeGender,
-            value: context.select<FitnessProfileCubit, Gender?>(
-              (cubit) => cubit.state.userPhysicalDataUpsert.gender,
-            ),
-            items:
-                Gender.values
-                    .sublist(0, Gender.values.length - 1)
-                    .map(
-                      (e) => DropdownMenuItem(
-                        value: e,
-                        child: Text(context.l10n.physicalDataGender(e.name)),
-                      ),
-                    )
-                    .toList(),
-            errorText: isGenderError ? '' : null,
-          ),
-          gap,
-          DropDownField<ActivityLevel>(
-            label: 'Activity Level',
-            onChange: context.read<FitnessProfileCubit>().onChangeActivityLevel,
-            value: context.select<FitnessProfileCubit, ActivityLevel?>(
-              (cubit) => cubit.state.userPhysicalDataUpsert.activityLevel,
-            ),
-            items:
-                ActivityLevel.values
-                    .sublist(0, ActivityLevel.values.length - 1)
-                    .map(
-                      (e) => DropdownMenuItem(
-                        value: e,
-                        child: Text(context.l10n.physicalActivityLevel(e.name)),
-                      ),
-                    )
-                    .toList(),
-            errorText: isActivityLevelError ? '' : null,
-          ),
-          gap,
-          RegullarTextField(
-            label: 'birthday',
-            readOnly: true,
-            errorMessage: isBirthdayError ? '' : null,
-            initalValue: context.select<FitnessProfileCubit, String?>(
-              (cubit) =>
-                  cubit.state.userPhysicalDataUpsert.birthday
-                      ?.toLocal()
-                      .toIso8601String(),
-            ),
-            onTap: () async {
-              final locale = Localizations.localeOf(context);
-              late final DateTime? pickedDate;
-              if (locale.languageCode == Language.persian.code) {
-                Jalali? picked = await showPersianDatePicker(
-                  context: context,
-                  initialDate: Jalali.fromDateTime(
-                    DateTime.now().subtract(Duration(days: 365 * 25)),
-                  ),
-                  firstDate: Jalali(1350),
-                  lastDate: Jalali.fromDateTime(
-                    DateTime.now().subtract(Duration(days: 365 * 17)),
-                  ),
+          if (isRequiredFields) ...demographicFields,
 
-                  initialEntryMode: PersianDatePickerEntryMode.calendarOnly,
-                  initialDatePickerMode: PersianDatePickerMode.year,
-                );
-                pickedDate = picked?.toDateTime();
-              } else {
-                pickedDate = await showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now().subtract(
-                    Duration(days: 365 * 25),
-                  ),
-                  firstDate: DateTime(1950),
-                  // to limit the application to users who are at least 18 years old
-                  lastDate: DateTime.now().subtract(Duration(days: 365 * 17)),
-                );
-              }
-
-              if (pickedDate == null) {
-                return;
-              }
-              cubit.onChangeBirthDay(pickedDate);
-            },
-          ),
-          gap,
-          NumberTextField(
-            label: 'height cm',
-            onChange: (value) {
-              cubit.onChangeHeight(double.tryParse(value));
-            },
-            initalValue:
-                context
-                    .read<FitnessProfileCubit>()
-                    .state
-                    .userPhysicalDataUpsert
-                    .height
-                    .tryToString(),
-            errorMessage: isHeightError ? '' : null,
-          ),
-          gap,
           NumberTextField(
             label: 'weight kg',
             onChange: (value) {
@@ -194,79 +272,10 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
                     .userPhysicalDataUpsert
                     .waistCircumference
                     .tryToString(),
+            suffix: HintButton(child: WaistCircumferenceFieldHint()),
           ),
           gap,
-          if (!isRequiredFields) ...[
-            NumberTextField(
-              label: 'ArmCircumference',
-              onChange: (value) {
-                cubit.onChangeArmCircumference(double.tryParse(value));
-              },
-              initalValue:
-                  context
-                      .read<FitnessProfileCubit>()
-                      .state
-                      .userPhysicalDataUpsert
-                      .armCircumference
-                      .tryToString(),
-            ),
-            gap,
-            NumberTextField(
-              label: 'ChestCircumference',
-              onChange: (value) {
-                cubit.onChangeChestCircumference(double.tryParse(value));
-              },
-              initalValue:
-                  context
-                      .read<FitnessProfileCubit>()
-                      .state
-                      .userPhysicalDataUpsert
-                      .chestCircumference
-                      .tryToString(),
-            ),
-            gap,
-            NumberTextField(
-              label: 'ThighCircumference',
-              onChange: (value) {
-                cubit.onChangeThighCircumference(double.tryParse(value));
-              },
-              initalValue:
-                  context
-                      .read<FitnessProfileCubit>()
-                      .state
-                      .userPhysicalDataUpsert
-                      .thighCircumference
-                      .tryToString(),
-            ),
-            gap,
-            NumberTextField(
-              label: 'CalfMuscleCircumference',
-              onChange: (value) {
-                cubit.onChangeCalfMuscleCircumference(double.tryParse(value));
-              },
-              initalValue:
-                  context
-                      .read<FitnessProfileCubit>()
-                      .state
-                      .userPhysicalDataUpsert
-                      .calfMuscleCircumference
-                      .tryToString(),
-            ),
-            gap,
-            NumberTextField(
-              label: 'HipCircumference',
-              onChange: (value) {
-                cubit.onChangeHipCircumference(double.tryParse(value));
-              },
-              initalValue:
-                  context
-                      .read<FitnessProfileCubit>()
-                      .state
-                      .userPhysicalDataUpsert
-                      .hipCircumference
-                      .tryToString(),
-            ),
-          ],
+          if (!isRequiredFields) ...[...bodyShapeFields, ...demographicFields],
         ],
         fullscreen: true,
         submitButton: BlocBuilder<FitnessProfileCubit, FitnessProfileState>(
@@ -289,6 +298,26 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
           },
         ),
       ),
+    );
+  }
+}
+
+class HintButton extends StatelessWidget {
+  const HintButton({super.key, required this.child});
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton.filledTonal(
+      onPressed: () {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return child;
+          },
+        );
+      },
+      icon: Icon(Icons.info),
     );
   }
 }
