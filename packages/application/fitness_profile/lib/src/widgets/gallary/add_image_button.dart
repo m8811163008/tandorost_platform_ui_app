@@ -14,7 +14,7 @@ class AddImageButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final label = Text('Add new image');
+    final label = Text(context.l10n.fitnessProfileAddImageButton);
     final onPressed = () {
       onPress(context);
     };

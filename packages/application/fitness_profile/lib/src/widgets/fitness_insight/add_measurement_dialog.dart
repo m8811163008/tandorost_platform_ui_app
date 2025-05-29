@@ -2,6 +2,7 @@ import 'package:domain_model/domain_model.dart';
 import 'package:fitness_profile_app/src/cubit/fitness_profile_cubit.dart';
 import 'package:fitness_profile_app/src/widgets/fitness_insight/add_mesurement_dialog_hint.dart';
 import 'package:fitness_profile_app/src/widgets/fitness_insight/waist_circumference_field_hint.dart';
+import 'package:fitness_profile_app/src/widgets/fitness_insight/waist_circumference_physical_data_hint.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -47,7 +48,7 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
     final isRequiredFields = cubit.state.userPhysicalProfile == null;
     final bodyShapeFields = [
       NumberTextField(
-        label: 'ArmCircumference',
+        label: context.l10n.fitnessProfileNewMeasurementDialogArmCircumference,
         onChange: (value) {
           cubit.onChangeArmCircumference(double.tryParse(value));
         },
@@ -61,7 +62,8 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
       ),
       gap,
       NumberTextField(
-        label: 'ChestCircumference',
+        label:
+            context.l10n.fitnessProfileNewMeasurementDialogChestCircumference,
         onChange: (value) {
           cubit.onChangeChestCircumference(double.tryParse(value));
         },
@@ -75,7 +77,8 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
       ),
       gap,
       NumberTextField(
-        label: 'ThighCircumference',
+        label:
+            context.l10n.fitnessProfileNewMeasurementDialogThighCircumference,
         onChange: (value) {
           cubit.onChangeThighCircumference(double.tryParse(value));
         },
@@ -89,7 +92,10 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
       ),
       gap,
       NumberTextField(
-        label: 'CalfMuscleCircumference',
+        label:
+            context
+                .l10n
+                .fitnessProfileNewMeasurementDialogCalfMuscleCircumference,
         onChange: (value) {
           cubit.onChangeCalfMuscleCircumference(double.tryParse(value));
         },
@@ -103,7 +109,7 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
       ),
       gap,
       NumberTextField(
-        label: 'HipCircumference',
+        label: context.l10n.fitnessProfileNewMeasurementDialogHipCircumference,
         onChange: (value) {
           cubit.onChangeHipCircumference(double.tryParse(value));
         },
@@ -119,7 +125,7 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
     ];
     final demographicFields = [
       DropDownField<Gender>(
-        label: 'gender',
+        label: context.l10n.fitnessProfileNewMeasurementDialogGender,
         onChange: context.read<FitnessProfileCubit>().onChangeGender,
         value: context.select<FitnessProfileCubit, Gender?>(
           (cubit) => cubit.state.userPhysicalDataUpsert.gender,
@@ -138,7 +144,7 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
       ),
       gap,
       DropDownField<ActivityLevel>(
-        label: 'Activity Level',
+        label: context.l10n.fitnessProfileNewMeasurementDialogActivityLevel,
         onChange: context.read<FitnessProfileCubit>().onChangeActivityLevel,
         value: context.select<FitnessProfileCubit, ActivityLevel?>(
           (cubit) => cubit.state.userPhysicalDataUpsert.activityLevel,
@@ -157,15 +163,16 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
       ),
       gap,
       RegullarTextField(
-        label: 'birthday',
+        label: context.l10n.fitnessProfileNewMeasurementBirthday,
         readOnly: true,
         errorMessage: isBirthdayError ? '' : null,
-        initalValue: context.select<FitnessProfileCubit, String?>(
-          (cubit) =>
-              cubit.state.userPhysicalDataUpsert.birthday
-                  ?.toLocal()
-                  .toIso8601String(),
-        ),
+        initalValue: context.select<FitnessProfileCubit, String?>((cubit) {
+          final birthDay = cubit.state.userPhysicalDataUpsert.birthday;
+          if (birthDay == null) {
+            return null;
+          }
+          return birthDay.formattedDate(context);
+        }),
         onTap: () async {
           final locale = Localizations.localeOf(context);
           late final DateTime? pickedDate;
@@ -202,7 +209,8 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
       ),
       gap,
       NumberTextField(
-        label: 'height cm',
+        label:
+            '${context.l10n.fitnessProfileNewMeasurementHeight} (${context.l10n.measurementUnitCM})',
         onChange: (value) {
           cubit.onChangeHeight(double.tryParse(value));
         },
@@ -239,14 +247,15 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
         }
       },
       child: AppDialog(
-        title: 'Add new measurement',
+        title: context.l10n.fitnessProfileNewMeasurementLabel,
         dialogHint: HintButton(child: AddMesurementDialogHint()),
 
         contents: [
           if (isRequiredFields) ...demographicFields,
 
           NumberTextField(
-            label: 'weight kg',
+            label:
+                '${context.l10n.fitnessProfileNewMeasurementWeight} (${context.l10n.measurementUnitKG})',
             onChange: (value) {
               cubit.onChangeWeight(double.tryParse(value));
             },
@@ -261,7 +270,8 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
           ),
           gap,
           NumberTextField(
-            label: 'WaistCircumference',
+            label:
+                '${context.l10n.fitnessProfileNewMeasurementDialogWaistCircumference} (${context.l10n.measurementUnitCM})',
             onChange: (value) {
               cubit.onChangeWaistCircumference(double.tryParse(value));
             },
@@ -280,10 +290,11 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
         fullscreen: true,
         submitButton: BlocBuilder<FitnessProfileCubit, FitnessProfileState>(
           builder: (context, state) {
+            final label = context.l10n.update;
             return state.updateUserPhysicalDataStatus.isLoading
-                ? AppTextButton.loading(label: 'ok')
+                ? AppTextButton.loading(label: label)
                 : AppTextButton(
-                  label: 'label',
+                  label: label,
                   onTap: () {
                     if (isRequiredFields) {
                       validate();

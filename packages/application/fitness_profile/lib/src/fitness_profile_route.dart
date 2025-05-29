@@ -39,29 +39,17 @@ class FitnessProfileView extends StatelessWidget {
         children: [
           Builder(
             builder: (context) {
-              try {
-                return ImageGallary();
-              } catch (e, stack) {
-                return Text('ImageGallary error: $e');
-              }
+              return ImageGallary();
             },
           ),
           Builder(
             builder: (context) {
-              try {
-                return FitnessInfoConsumer();
-              } catch (e, stack) {
-                return Text('FitnessInfoConsumer error: $e');
-              }
+              return FitnessInfoConsumer();
             },
           ),
           Builder(
             builder: (context) {
-              try {
-                return PhysicalDataChart();
-              } catch (e, stack) {
-                return Text('PhysicalDataChart error: $e');
-              }
+              return PhysicalDataChart();
             },
           ),
         ],

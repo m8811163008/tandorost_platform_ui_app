@@ -812,6 +812,240 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'{activityLevel, select, sedentary{غیرفعال و زیاد میشینم} fairyActive{تقریبا فعال، هر هفته یکی دوبار ورزش میکنم و پیاده روی میکنم} moderatelyActive{فعال، هر هفته دو سه روز ورزش میکنم} active{خیلی فعال، هر هفته بیش از 3 بار با شدت بالا ورزش میکنم} veryActive{روزی دوبار ورزش میکنم} other{ترجمه تعریف نشده}}'**
   String physicalActivityLevel(String activityLevel);
+
+  /// No description provided for @fitnessProfileImageGallaryTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'تصاویر پیشرفت شما'**
+  String get fitnessProfileImageGallaryTitle;
+
+  /// No description provided for @fitnessProfileAddImageButton.
+  ///
+  /// In fa, this message translates to:
+  /// **'افزودن تصویر جدید'**
+  String get fitnessProfileAddImageButton;
+
+  /// No description provided for @fitnessProfilePhysicalDataLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'اطلاعات فیزیکی شما'**
+  String get fitnessProfilePhysicalDataLabel;
+
+  /// No description provided for @fitnessProfileRestingMetabolicRate.
+  ///
+  /// In fa, this message translates to:
+  /// **'نرخ سوخت ساز در حالت استراحت'**
+  String get fitnessProfileRestingMetabolicRate;
+
+  /// No description provided for @fitnessProfileTotalDailyEnergyExpenditure.
+  ///
+  /// In fa, this message translates to:
+  /// **'کل انرژی مصرفی روزانه'**
+  String get fitnessProfileTotalDailyEnergyExpenditure;
+
+  /// No description provided for @fitnessProfileBodyMassIndex.
+  ///
+  /// In fa, this message translates to:
+  /// **'شاخص توده بدنی'**
+  String get fitnessProfileBodyMassIndex;
+
+  /// No description provided for @fitnessProfileBodyMassIndexPrime.
+  ///
+  /// In fa, this message translates to:
+  /// **'BMI Prime'**
+  String get fitnessProfileBodyMassIndexPrime;
+
+  /// No description provided for @fitnessProfileBodyMassIndexLevelLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'سطح شاخص توده بدنی'**
+  String get fitnessProfileBodyMassIndexLevelLabel;
+
+  /// No description provided for @fitnessProfileWaistCircumferenceToHeightRatio.
+  ///
+  /// In fa, this message translates to:
+  /// **'نسبت دور کمر به قد'**
+  String get fitnessProfileWaistCircumferenceToHeightRatio;
+
+  /// No description provided for @fitnessProfileIsWaistCircumferenceToHeightRatioSafe.
+  ///
+  /// In fa, this message translates to:
+  /// **'آیا نسبت دور کمر به قد ایمن است؟'**
+  String get fitnessProfileIsWaistCircumferenceToHeightRatioSafe;
+
+  /// No description provided for @fitnessProfileIsWaistCircumferenceSafeRange.
+  ///
+  /// In fa, this message translates to:
+  /// **'آیا دور کمر در محدوده ایمن است؟'**
+  String get fitnessProfileIsWaistCircumferenceSafeRange;
+
+  /// No description provided for @fitnessProfileYes.
+  ///
+  /// In fa, this message translates to:
+  /// **'بله'**
+  String get fitnessProfileYes;
+
+  /// No description provided for @fitnessProfileNo.
+  ///
+  /// In fa, this message translates to:
+  /// **'خیر'**
+  String get fitnessProfileNo;
+
+  /// No description provided for @fitnessProfileNA.
+  ///
+  /// In fa, this message translates to:
+  /// **'در دسترس نیست'**
+  String get fitnessProfileNA;
+
+  /// No description provided for @fitnessProfileBmiDescription.
+  ///
+  /// In fa, this message translates to:
+  /// **'شاخص توده بدنی شما {bmiValue} و در وضعیت {bmiDescriptive} هستید.'**
+  String fitnessProfileBmiDescription(double bmiValue, String bmiDescriptive);
+
+  /// No description provided for @fitnessProfileWaistCircumferencePhysicalDataHintLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'دور کمر و دیابت'**
+  String get fitnessProfileWaistCircumferencePhysicalDataHintLabel;
+
+  /// No description provided for @fitnessProfileWaistCircumferenceToHeightRatioDescription.
+  ///
+  /// In fa, this message translates to:
+  /// **'شاخص دور کمر به قد از شاخص توده بدنی برای ارزیابی خطرات مرتبط با سلامت دقیق‌تر است ، این نسبت هرچه به صفر نزدیک تر باشد وضعیت خطرات مرتبط با سلامتی برای شما کمتر میشود.'**
+  String get fitnessProfileWaistCircumferenceToHeightRatioDescription;
+
+  /// No description provided for @fitnessProfileWaistCircumferenceToHeightRatioAvailableDescription.
+  ///
+  /// In fa, this message translates to:
+  /// **'شاخص دور کمر به قد برای شما {ratio} است'**
+  String fitnessProfileWaistCircumferenceToHeightRatioAvailableDescription(double ratio);
+
+  /// No description provided for @fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription.
+  ///
+  /// In fa, this message translates to:
+  /// **'شاخص دور کمر به قد برای شما در دسترس نیست، لطفا دور کمر خود را در قسمت اندازه گیری جدید در صفحه قبل، اندازه و اضافه کنید'**
+  String get fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription;
+
+  /// No description provided for @fitnessProfileBmiWaistCircumferenceHealthDescription.
+  ///
+  /// In fa, this message translates to:
+  /// **'خطرات مرتبط با سلامتی شامل بیماری های قلبی عروقی، بیماری کیسه صفرا، فشار خون بالا و دیابت نوع 2 میباشد.'**
+  String get fitnessProfileBmiWaistCircumferenceHealthDescription;
+
+  /// No description provided for @fitnessProfileBmiStatus.
+  ///
+  /// In fa, this message translates to:
+  /// **'{bmiStatus, select, underweight{کمبود وزن} healthyWeight{عادی} overweight{اضافه وزن} obeseClassOne{چاقی کلاس 1} obeseClassTwo{چاقی کلاس 2} obeseClassThree{چاقی کلاس 3} other{ترجمه تعریف نشده}}'**
+  String fitnessProfileBmiStatus(String bmiStatus);
+
+  /// No description provided for @fitnessProfileWaistCircumferenceSafeRangeDescription.
+  ///
+  /// In fa, this message translates to:
+  /// **'محدوده سالم اندازه دور کمر بهتر است کمتر از 94 سانتی متر در آقایان و 80 سانتی متر در خانم‌ها باشد.این شاخص با احتمال ابتلا به دیابت نوع 2 در ارتباط است'**
+  String get fitnessProfileWaistCircumferenceSafeRangeDescription;
+
+  /// No description provided for @fitnessProfileWaistCircumferenceSafeRangeNotAvailableDescription.
+  ///
+  /// In fa, this message translates to:
+  /// **'شاخص محدوده مجاز دور کمر برای شما در دسترس نیست، لطفا دور کمر خود را در قسمت اندازه گیری جدید در صفحه قبل، اندازه و اضافه کنید'**
+  String get fitnessProfileWaistCircumferenceSafeRangeNotAvailableDescription;
+
+  /// No description provided for @fitnessProfileIsWaistCircumferenceSafeRangeDescription.
+  ///
+  /// In fa, this message translates to:
+  /// **'{isWaistCircumferenceSafeRange, select, true{دور کمر شما در محدوده مجاز می‌باشد} false{دور کمر شما از محدوده مجاز بیشتر است و احتمال ابتلا به دیابت نوع 2 در شما بیشتر است. لطفا چربی خود را سریع کاهش دهید} other{ترجمه تعریف نشده}}'**
+  String fitnessProfileIsWaistCircumferenceSafeRangeDescription(String isWaistCircumferenceSafeRange);
+
+  /// No description provided for @fitnessProfileNewMeasurementLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'اندازه‌گیری جدید'**
+  String get fitnessProfileNewMeasurementLabel;
+
+  /// No description provided for @fitnessProfileNewMeasurementDialogArmCircumference.
+  ///
+  /// In fa, this message translates to:
+  /// **'دور بازو'**
+  String get fitnessProfileNewMeasurementDialogArmCircumference;
+
+  /// No description provided for @fitnessProfileNewMeasurementDialogChestCircumference.
+  ///
+  /// In fa, this message translates to:
+  /// **'دور سینه'**
+  String get fitnessProfileNewMeasurementDialogChestCircumference;
+
+  /// No description provided for @fitnessProfileNewMeasurementDialogThighCircumference.
+  ///
+  /// In fa, this message translates to:
+  /// **'دور ران'**
+  String get fitnessProfileNewMeasurementDialogThighCircumference;
+
+  /// No description provided for @fitnessProfileNewMeasurementDialogCalfMuscleCircumference.
+  ///
+  /// In fa, this message translates to:
+  /// **'دور ماهیچه ساق پا'**
+  String get fitnessProfileNewMeasurementDialogCalfMuscleCircumference;
+
+  /// No description provided for @fitnessProfileNewMeasurementDialogHipCircumference.
+  ///
+  /// In fa, this message translates to:
+  /// **'دور باسن'**
+  String get fitnessProfileNewMeasurementDialogHipCircumference;
+
+  /// No description provided for @fitnessProfileNewMeasurementDialogWaistCircumference.
+  ///
+  /// In fa, this message translates to:
+  /// **'دور کمر'**
+  String get fitnessProfileNewMeasurementDialogWaistCircumference;
+
+  /// No description provided for @fitnessProfileNewMeasurementDialogGender.
+  ///
+  /// In fa, this message translates to:
+  /// **'جنسیت'**
+  String get fitnessProfileNewMeasurementDialogGender;
+
+  /// No description provided for @fitnessProfileNewMeasurementDialogActivityLevel.
+  ///
+  /// In fa, this message translates to:
+  /// **'سطح فعالیت'**
+  String get fitnessProfileNewMeasurementDialogActivityLevel;
+
+  /// No description provided for @fitnessProfileNewMeasurementBirthday.
+  ///
+  /// In fa, this message translates to:
+  /// **'تاریخ تولد'**
+  String get fitnessProfileNewMeasurementBirthday;
+
+  /// No description provided for @fitnessProfileNewMeasurementHeight.
+  ///
+  /// In fa, this message translates to:
+  /// **'قد'**
+  String get fitnessProfileNewMeasurementHeight;
+
+  /// No description provided for @fitnessProfileNewMeasurementWeight.
+  ///
+  /// In fa, this message translates to:
+  /// **'وزن'**
+  String get fitnessProfileNewMeasurementWeight;
+
+  /// No description provided for @measurementUnitCM.
+  ///
+  /// In fa, this message translates to:
+  /// **'سانتی‌متر'**
+  String get measurementUnitCM;
+
+  /// No description provided for @measurementUnitKG.
+  ///
+  /// In fa, this message translates to:
+  /// **'کیلوگرم'**
+  String get measurementUnitKG;
+
+  /// No description provided for @fitnessProfilePhysicaDataChart.
+  ///
+  /// In fa, this message translates to:
+  /// **'نمودار پیشرفت شما'**
+  String get fitnessProfilePhysicaDataChart;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

@@ -186,5 +186,84 @@
         "placeholders": {
             "activityLevel": {}
         }
-    }
+    },
+    "fitnessProfileImageGallaryTitle": "تصاویر پیشرفت شما",
+    "fitnessProfileAddImageButton": "افزودن تصویر جدید",
+    "fitnessProfilePhysicalDataLabel": "اطلاعات فیزیکی شما",
+    "fitnessProfileRestingMetabolicRate": "نرخ سوخت ساز در حالت استراحت",
+    "fitnessProfileTotalDailyEnergyExpenditure": "کل انرژی مصرفی روزانه",
+    "fitnessProfileBodyMassIndex": "شاخص توده بدنی",
+    "fitnessProfileBodyMassIndexPrime": "BMI Prime",
+    "fitnessProfileBodyMassIndexLevelLabel": "سطح شاخص توده بدنی",
+    "fitnessProfileWaistCircumferenceToHeightRatio": "نسبت دور کمر به قد",
+    "fitnessProfileIsWaistCircumferenceToHeightRatioSafe": "آیا نسبت دور کمر به قد ایمن است؟",
+    "fitnessProfileIsWaistCircumferenceSafeRange": "آیا دور کمر در محدوده ایمن است؟",
+    "fitnessProfileYes": "بله",
+    "fitnessProfileNo": "خیر",
+    "fitnessProfileNA": "در دسترس نیست",
+    "fitnessProfileBodyMassIndexLevelLabel": "سطح شاخص توده بدنی",
+    "fitnessProfileBmiDescription": "شاخص توده بدنی شما {bmiValue} و در وضعیت {bmiDescriptive} هستید.",
+    "@fitnessProfileBmiDescription": {
+        "placeholders": {
+            "bmiValue": {
+                "type": "double",
+                "format": "decimalPatternDigits",
+                "optionalParameters": {
+                    "decimalDigits": 1
+                }
+            },
+            "bmiDescriptive": {
+                "type": "String"
+            }
+        }
+    },
+    "fitnessProfileWaistCircumferencePhysicalDataHintLabel": "دور کمر و دیابت",
+    "fitnessProfileWaistCircumferenceToHeightRatioDescription": "شاخص دور کمر به قد از شاخص توده بدنی برای ارزیابی خطرات مرتبط با سلامت دقیق‌تر است ، این نسبت هرچه به صفر نزدیک تر باشد وضعیت خطرات مرتبط با سلامتی برای شما کمتر میشود.",
+    "fitnessProfileWaistCircumferenceToHeightRatioAvailableDescription": "شاخص دور کمر به قد برای شما {ratio} است",
+    "@fitnessProfileWaistCircumferenceToHeightRatioAvailableDescription": {
+        "placeholders": {
+            "ratio": {
+                "type": "double",
+                "format": "decimalPatternDigits",
+                "optionalParameters": {
+                    "decimalDigits": 1
+                }
+            }
+        }
+    },
+    "fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription": "شاخص دور کمر به قد برای شما در دسترس نیست، لطفا دور کمر خود را در قسمت اندازه گیری جدید در صفحه قبل، اندازه و اضافه کنید",
+    "fitnessProfileBmiWaistCircumferenceHealthDescription": "خطرات مرتبط با سلامتی شامل بیماری های قلبی عروقی، بیماری کیسه صفرا، فشار خون بالا و دیابت نوع 2 میباشد.",
+    "fitnessProfileBmiStatus": "{bmiStatus, select, underweight{کمبود وزن} healthyWeight{عادی} overweight{اضافه وزن} obeseClassOne{چاقی کلاس 1} obeseClassTwo{چاقی کلاس 2} obeseClassThree{چاقی کلاس 3} other{ترجمه تعریف نشده}}",
+    "@fitnessProfileBmiStatus": {
+        "placeholders": {
+            "bmiStatus": {
+                "type": "String"
+            }
+        }
+    },
+    "fitnessProfileWaistCircumferenceSafeRangeDescription": "محدوده سالم اندازه دور کمر بهتر است کمتر از 94 سانتی متر در آقایان و 80 سانتی متر در خانم‌ها باشد.این شاخص با احتمال ابتلا به دیابت نوع 2 در ارتباط است",
+    "fitnessProfileWaistCircumferenceSafeRangeNotAvailableDescription": "شاخص محدوده مجاز دور کمر برای شما در دسترس نیست، لطفا دور کمر خود را در قسمت اندازه گیری جدید در صفحه قبل، اندازه و اضافه کنید",
+    "fitnessProfileIsWaistCircumferenceSafeRangeDescription": "{isWaistCircumferenceSafeRange, select, true{دور کمر شما در محدوده مجاز می‌باشد} false{دور کمر شما از محدوده مجاز بیشتر است و احتمال ابتلا به دیابت نوع 2 در شما بیشتر است. لطفا چربی خود را سریع کاهش دهید} other{ترجمه تعریف نشده}}",
+    "@fitnessProfileIsWaistCircumferenceSafeRangeDescription": {
+        "placeholders": {
+            "isWaistCircumferenceSafeRange": {
+                "type": "String"
+            }
+        }
+    },
+    "fitnessProfileNewMeasurementLabel": "اندازه‌گیری جدید",
+    "fitnessProfileNewMeasurementDialogArmCircumference": "دور بازو",
+    "fitnessProfileNewMeasurementDialogChestCircumference": "دور سینه",
+    "fitnessProfileNewMeasurementDialogThighCircumference": "دور ران",
+    "fitnessProfileNewMeasurementDialogCalfMuscleCircumference": "دور ماهیچه ساق پا",
+    "fitnessProfileNewMeasurementDialogHipCircumference": "دور باسن",
+    "fitnessProfileNewMeasurementDialogWaistCircumference": "دور کمر",
+    "fitnessProfileNewMeasurementDialogGender": "جنسیت",
+    "fitnessProfileNewMeasurementDialogActivityLevel": "سطح فعالیت",
+    "fitnessProfileNewMeasurementBirthday": "تاریخ تولد",
+    "fitnessProfileNewMeasurementHeight": "قد",
+    "fitnessProfileNewMeasurementWeight": "وزن",
+    "measurementUnitCM": "سانتی‌متر",
+    "measurementUnitKG": "کیلوگرم",
+    "fitnessProfilePhysicaDataChart": "نمودار پیشرفت شما"
 }

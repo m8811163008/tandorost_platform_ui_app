@@ -474,4 +474,161 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get fitnessProfileImageGallaryTitle => 'تصاویر پیشرفت شما';
+
+  @override
+  String get fitnessProfileAddImageButton => 'افزودن تصویر جدید';
+
+  @override
+  String get fitnessProfilePhysicalDataLabel => 'اطلاعات فیزیکی شما';
+
+  @override
+  String get fitnessProfileRestingMetabolicRate => 'نرخ سوخت ساز در حالت استراحت';
+
+  @override
+  String get fitnessProfileTotalDailyEnergyExpenditure => 'کل انرژی مصرفی روزانه';
+
+  @override
+  String get fitnessProfileBodyMassIndex => 'شاخص توده بدنی';
+
+  @override
+  String get fitnessProfileBodyMassIndexPrime => 'BMI Prime';
+
+  @override
+  String get fitnessProfileBodyMassIndexLevelLabel => 'سطح شاخص توده بدنی';
+
+  @override
+  String get fitnessProfileWaistCircumferenceToHeightRatio => 'نسبت دور کمر به قد';
+
+  @override
+  String get fitnessProfileIsWaistCircumferenceToHeightRatioSafe => 'آیا نسبت دور کمر به قد ایمن است؟';
+
+  @override
+  String get fitnessProfileIsWaistCircumferenceSafeRange => 'آیا دور کمر در محدوده ایمن است؟';
+
+  @override
+  String get fitnessProfileYes => 'بله';
+
+  @override
+  String get fitnessProfileNo => 'خیر';
+
+  @override
+  String get fitnessProfileNA => 'در دسترس نیست';
+
+  @override
+  String fitnessProfileBmiDescription(double bmiValue, String bmiDescriptive) {
+    final intl.NumberFormat bmiValueNumberFormat = intl.NumberFormat.decimalPatternDigits(
+      locale: localeName,
+      decimalDigits: 1
+    );
+    final String bmiValueString = bmiValueNumberFormat.format(bmiValue);
+
+    return 'شاخص توده بدنی شما $bmiValueString و در وضعیت $bmiDescriptive هستید.';
+  }
+
+  @override
+  String get fitnessProfileWaistCircumferencePhysicalDataHintLabel => 'دور کمر و دیابت';
+
+  @override
+  String get fitnessProfileWaistCircumferenceToHeightRatioDescription => 'شاخص دور کمر به قد از شاخص توده بدنی برای ارزیابی خطرات مرتبط با سلامت دقیق‌تر است ، این نسبت هرچه به صفر نزدیک تر باشد وضعیت خطرات مرتبط با سلامتی برای شما کمتر میشود.';
+
+  @override
+  String fitnessProfileWaistCircumferenceToHeightRatioAvailableDescription(double ratio) {
+    final intl.NumberFormat ratioNumberFormat = intl.NumberFormat.decimalPatternDigits(
+      locale: localeName,
+      decimalDigits: 1
+    );
+    final String ratioString = ratioNumberFormat.format(ratio);
+
+    return 'شاخص دور کمر به قد برای شما $ratioString است';
+  }
+
+  @override
+  String get fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription => 'شاخص دور کمر به قد برای شما در دسترس نیست، لطفا دور کمر خود را در قسمت اندازه گیری جدید در صفحه قبل، اندازه و اضافه کنید';
+
+  @override
+  String get fitnessProfileBmiWaistCircumferenceHealthDescription => 'خطرات مرتبط با سلامتی شامل بیماری های قلبی عروقی، بیماری کیسه صفرا، فشار خون بالا و دیابت نوع 2 میباشد.';
+
+  @override
+  String fitnessProfileBmiStatus(String bmiStatus) {
+    String _temp0 = intl.Intl.selectLogic(
+      bmiStatus,
+      {
+        'underweight': 'کمبود وزن',
+        'healthyWeight': 'عادی',
+        'overweight': 'اضافه وزن',
+        'obeseClassOne': 'چاقی کلاس 1',
+        'obeseClassTwo': 'چاقی کلاس 2',
+        'obeseClassThree': 'چاقی کلاس 3',
+        'other': 'ترجمه تعریف نشده',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fitnessProfileWaistCircumferenceSafeRangeDescription => 'محدوده سالم اندازه دور کمر بهتر است کمتر از 94 سانتی متر در آقایان و 80 سانتی متر در خانم‌ها باشد.این شاخص با احتمال ابتلا به دیابت نوع 2 در ارتباط است';
+
+  @override
+  String get fitnessProfileWaistCircumferenceSafeRangeNotAvailableDescription => 'شاخص محدوده مجاز دور کمر برای شما در دسترس نیست، لطفا دور کمر خود را در قسمت اندازه گیری جدید در صفحه قبل، اندازه و اضافه کنید';
+
+  @override
+  String fitnessProfileIsWaistCircumferenceSafeRangeDescription(String isWaistCircumferenceSafeRange) {
+    String _temp0 = intl.Intl.selectLogic(
+      isWaistCircumferenceSafeRange,
+      {
+        'true': 'دور کمر شما در محدوده مجاز می‌باشد',
+        'false': 'دور کمر شما از محدوده مجاز بیشتر است و احتمال ابتلا به دیابت نوع 2 در شما بیشتر است. لطفا چربی خود را سریع کاهش دهید',
+        'other': 'ترجمه تعریف نشده',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fitnessProfileNewMeasurementLabel => 'اندازه‌گیری جدید';
+
+  @override
+  String get fitnessProfileNewMeasurementDialogArmCircumference => 'دور بازو';
+
+  @override
+  String get fitnessProfileNewMeasurementDialogChestCircumference => 'دور سینه';
+
+  @override
+  String get fitnessProfileNewMeasurementDialogThighCircumference => 'دور ران';
+
+  @override
+  String get fitnessProfileNewMeasurementDialogCalfMuscleCircumference => 'دور ماهیچه ساق پا';
+
+  @override
+  String get fitnessProfileNewMeasurementDialogHipCircumference => 'دور باسن';
+
+  @override
+  String get fitnessProfileNewMeasurementDialogWaistCircumference => 'دور کمر';
+
+  @override
+  String get fitnessProfileNewMeasurementDialogGender => 'جنسیت';
+
+  @override
+  String get fitnessProfileNewMeasurementDialogActivityLevel => 'سطح فعالیت';
+
+  @override
+  String get fitnessProfileNewMeasurementBirthday => 'تاریخ تولد';
+
+  @override
+  String get fitnessProfileNewMeasurementHeight => 'قد';
+
+  @override
+  String get fitnessProfileNewMeasurementWeight => 'وزن';
+
+  @override
+  String get measurementUnitCM => 'سانتی‌متر';
+
+  @override
+  String get measurementUnitKG => 'کیلوگرم';
+
+  @override
+  String get fitnessProfilePhysicaDataChart => 'نمودار پیشرفت شما';
 }

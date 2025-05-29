@@ -41,7 +41,7 @@ class FitnessInfoConsumer extends StatelessWidget {
               AppAsyncStatusCard.internetConnectionError(),
             AsyncProcessingStatus.success =>
               state.fitnessData == null
-                  ? NoDataFound(title: 'Physical data')
+                  ? NoDataFound(title: context.l10n.fitnessProfilePhysicalDataLabel)
                   : FitnessInfo(fitnessData: state.fitnessData!),
           },
     );

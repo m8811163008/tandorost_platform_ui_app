@@ -11,6 +11,7 @@ class AppLineChart extends StatefulWidget {
   final List<DoubleDataPoint> dataPoints;
 
   /// this value set the index of x like 0,1.
+  /// TODO add delete data point
   final ValueSetter<int>? onSpotLongPreesed;
 
   @override
@@ -73,21 +74,12 @@ class _AppLineChartState extends State<AppLineChart> {
   }
 
   Widget _buildBottomTitle(DateTime dateTime) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    final locale = Localizations.localeOf(context);
-    late final String formattedDate;
-    if (locale.languageCode == Language.persian.code) {
-      final shamsiDate = Jalali.fromDateTime(dateTime);
-      formattedDate =
-          '${shamsiDate.year}/${twoDigits(shamsiDate.month)}/${twoDigits(shamsiDate.day)}';
-    } else {
-      formattedDate =
-          '${dateTime.year}/${twoDigits(dateTime.month)}/${twoDigits(dateTime.day)}';
-    }
-
     return RotatedBox(
       quarterTurns: 3,
-      child: Text(formattedDate, style: context.themeData.textTheme.labelSmall),
+      child: Text(
+        dateTime.formattedDate(context),
+        style: context.themeData.textTheme.labelSmall,
+      ),
     );
   }
 

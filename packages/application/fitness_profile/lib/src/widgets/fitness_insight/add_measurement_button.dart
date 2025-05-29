@@ -2,6 +2,7 @@ import 'package:fitness_profile_app/src/cubit/fitness_profile_cubit.dart';
 import 'package:fitness_profile_app/src/widgets/fitness_insight/fitness_insight.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tandorost_components/tandorost_components.dart';
 
 class AddMeasurementButton extends StatelessWidget {
   const AddMeasurementButton({super.key}) : _isFilled = false;
@@ -10,7 +11,7 @@ class AddMeasurementButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final label = Text('Add new measurement');
+    final label = Text(context.l10n.fitnessProfileNewMeasurementLabel);
     final onPress = () {
       _onPress(context);
     };

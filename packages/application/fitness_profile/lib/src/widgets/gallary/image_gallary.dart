@@ -11,7 +11,7 @@ class ImageGallary extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppCardHeader(title: 'Your image gallary'),
+          AppCardHeader(title: context.l10n.fitnessProfileImageGallaryTitle),
           CarouselSliderBuilder(),
         ],
       ),

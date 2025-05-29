@@ -29,28 +29,22 @@ class NumberTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: TextFormField(
-        controller: TextEditingController(text: initalValue),
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        keyboardType: TextInputType.number,
-        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-        decoration: InputDecoration(
-          labelText: label,
-          prefixText: prefix,
-          hintText: hintText,
-          errorText: errorMessage,
-          suffix: suffix,
-        ),
-        obscureText: obscureText,
-        textDirection: TextDirection.ltr,
-        maxLength: maxLength,
-        textAlign: TextAlign.left,
-        onChanged: onChange,
-
-        validator: validator,
+    return TextFormField(
+      controller: TextEditingController(text: initalValue),
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      keyboardType: TextInputType.number,
+      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      decoration: InputDecoration(
+        labelText: label,
+        prefixText: prefix,
+        hintText: hintText,
+        errorText: errorMessage,
+        suffix: suffix,
       ),
+      obscureText: obscureText,
+      maxLength: maxLength,
+      onChanged: onChange,
+      validator: validator,
     );
   }
 }
