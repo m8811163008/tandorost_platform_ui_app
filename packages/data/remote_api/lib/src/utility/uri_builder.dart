@@ -55,12 +55,12 @@ class UriBuilder {
     );
   }
 
-  static Uri readFoodsNutritions(DateTime startDate, DateTime endDate) {
+  static Uri readFoodsNutritions(DateTime date1, DateTime date2) {
     return baseUri.replace(
       path: '$basePath/foods_nutrition/read_foods_nutritions/',
       queryParameters: {
-        'start_date': startDate.toIso8601String(),
-        'end_date': endDate.toIso8601String(),
+        'date_1': date1.toIso8601String(),
+        'date_2': date2.toIso8601String(),
       },
     );
   }

@@ -5,8 +5,8 @@ class FoodReport {
 
   FoodReport({required this.remoteApi});
 
-  Future<List<Food>> readFoodsNutrition(DateTime startDate, DateTime endDate) =>
-      remoteApi.readFoodsNutrition(startDate, endDate);
+  Future<List<Food>> readFoodsNutrition(DateTime date1, DateTime date2) =>
+      remoteApi.readFoodsNutrition(date1, date2);
 
   Future<Food> updateFoodsNutritions(Food food) =>
       remoteApi.updateFoodsNutritions(food);

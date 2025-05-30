@@ -34,7 +34,11 @@ class FoodReportRoute extends StatelessWidget {
 }
 
 class FoodReportScreen extends StatefulWidget {
-  const FoodReportScreen({super.key, this.goToFoodInputRoute, this.goToFitnessProfileRoute});
+  const FoodReportScreen({
+    super.key,
+    this.goToFoodInputRoute,
+    this.goToFitnessProfileRoute,
+  });
   final VoidCallback? goToFoodInputRoute;
   final VoidCallback? goToFitnessProfileRoute;
 
@@ -70,6 +74,7 @@ class _FoodReportScreenState extends State<FoodReportScreen>
   @override
   Widget build(BuildContext context) {
     final gap = SizedBox(width: context.sizeExtenstion.small);
+    final foodListConsumer = FoodListConsumer();
 
     return BlocBuilder<FoodReportCubit, FoodReportState>(
       buildWhen:
@@ -139,7 +144,10 @@ class _FoodReportScreenState extends State<FoodReportScreen>
           ),
           body: TabBarView(
             controller: _controller,
-            children: <Widget>[FoodReportView(), FoodReportView()],
+            children: <Widget>[
+              FoodReportView(foodListConsumer: foodListConsumer),
+              FoodReportView(foodListConsumer: foodListConsumer),
+            ],
           ),
         );
       },
@@ -148,19 +156,20 @@ class _FoodReportScreenState extends State<FoodReportScreen>
 }
 
 class FoodReportView extends StatelessWidget {
-  const FoodReportView({super.key});
+  const FoodReportView({super.key, required this.foodListConsumer});
+  final FoodListConsumer foodListConsumer;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(children: [FoodReportStaticsConsumer(), FoodListBuilder()]),
+      child: Column(children: [FoodReportStaticsConsumer(), foodListConsumer]),
     );
   }
 }
 
 class FoodReportStaticsConsumer extends StatelessWidget {
   const FoodReportStaticsConsumer({super.key, this.goToFitnessProfileRoute});
-    final VoidCallback? goToFitnessProfileRoute;
+  final VoidCallback? goToFitnessProfileRoute;
 
   @override
   Widget build(BuildContext context) {
@@ -190,7 +199,10 @@ class FoodReportStaticsConsumer extends StatelessWidget {
                 content: Text('Add measurement sized'),
                 leading: Icon(Icons.agriculture_outlined),
                 actions: <Widget>[
-                  TextButton(onPressed: goToFitnessProfileRoute, child: Text('Go to ')),
+                  TextButton(
+                    onPressed: goToFitnessProfileRoute,
+                    child: Text('Go to '),
+                  ),
                   TextButton(
                     onPressed: () {
                       messenger.hideCurrentMaterialBanner();
@@ -334,7 +346,7 @@ class UserFoodRequirementRow extends StatelessWidget {
           ],
         ),
         SizedBox(height: context.sizeExtenstion.small),
-        LinearProgressIndicator(value: progressValue),
+        LinearProgressIndicator(value: progressValue, color: color),
       ],
     );
   }
@@ -356,42 +368,75 @@ class FoodSuggestionChips extends StatelessWidget {
   }
 }
 
-class FoodListBuilder extends StatelessWidget {
-  const FoodListBuilder({super.key});
+class FoodListConsumer extends StatelessWidget {
+  const FoodListConsumer({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      child: ListView.separated(
-        shrinkWrap: true,
-        itemCount: 2,
-        itemBuilder: (context, index) {
-          return FoodTile(
-            food: Food(
-              id: 'id',
-              userId: 'userId',
-              upsertDate: DateTime.now(),
-              userLanguage: Language.arabic,
-              userNativeLanguageFoodName: 'foodName',
-              translatedToEnglishFoodName: 'foodName',
-              unitOfMeasurementNativeLanguage: 'piece',
-              translatedToEnglishUnitOfMeasurement: 'piece',
-              calculatedCalorie: 200,
-              quantityOfUnitOfMeasurement: 2,
-              carbohydrateSource:
-                  CarbohydrateSourceLD.fruitsOrNonStarchyVegetables,
-              macroNutrition: MacroNutrition(
-                fat: 10,
-                carbohydrate: 20,
-                protein: 30,
-              ),
-            ),
-          );
+      child: BlocConsumer<FoodReportCubit, FoodReportState>(
+        listenWhen:
+            (previous, current) =>
+                previous.readFoodsNutritionStatus !=
+                current.readFoodsNutritionStatus,
+        listener: (context, state) {
+          if (state.readNutritionRequirementsStatus.isServerConnectionError) {
+            final content = context.l10n.networkError;
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(content)));
+          } else if (state
+              .readNutritionRequirementsStatus
+              .isServerConnectionError) {
+            final content = context.l10n.internetConnectionError;
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(content)));
+          }
         },
-        separatorBuilder: (context, index) {
-          return SizedBox(height: context.sizeExtenstion.small);
+        buildWhen:
+            (previous, current) =>
+                previous.readFoodsNutritionStatus !=
+                current.readFoodsNutritionStatus,
+        builder: (context, state) {
+          return switch (state.readFoodsNutritionStatus) {
+            AsyncProcessingStatus.inital => AppAsyncStatusCard.inital(),
+            AsyncProcessingStatus.loading => AppAsyncStatusCard.loading(),
+            AsyncProcessingStatus.serverConnectionError =>
+              AppAsyncStatusCard.serverError(),
+            AsyncProcessingStatus.internetConnectionError =>
+              AppAsyncStatusCard.internetConnectionError(),
+            AsyncProcessingStatus.success => SuccessStatusFoodsList(
+              foods: state.foods.reversed.toList(),
+            ),
+          };
         },
       ),
+    );
+  }
+}
+
+class SuccessStatusFoodsList extends StatelessWidget {
+  const SuccessStatusFoodsList({super.key, this.foods = const []});
+  final List<Food> foods;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        AppCardHeader(title: 'foods list'),
+        ListView.separated(
+          shrinkWrap: true,
+          itemCount: foods.length,
+          itemBuilder: (context, index) {
+            return FoodTile(food: foods[index]);
+          },
+          separatorBuilder: (context, index) {
+            return SizedBox(height: context.sizeExtenstion.small);
+          },
+        ),
+      ],
     );
   }
 }
@@ -402,6 +447,7 @@ class FoodTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textGap = TextSpan(text: ' ');
     return ListTile(
       isThreeLine: true,
       style: ListTileStyle.list,
@@ -409,17 +455,26 @@ class FoodTile extends StatelessWidget {
         macroNutrition: food.macroNutrition,
         carbohydrateSourceLD: food.carbohydrateSource,
       ),
+
+      selected: context.select(
+        (FoodReportCubit cubit) => cubit.state.selectedFoods.contains(food),
+      ),
+      onTap: () {
+        context.read<FoodReportCubit>().onSelectedFoodsChange(food);
+      },
       title: Text.rich(
         TextSpan(
           children: [
-            TextSpan(text: context.l10n.foodName),
             TextSpan(text: food.quantityOfUnitOfMeasurement.toStringAsFixed(0)),
+            textGap,
             TextSpan(text: food.unitOfMeasurementNativeLanguage),
+            textGap,
             TextSpan(text: food.userNativeLanguageFoodName),
           ],
         ),
       ),
       subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -428,7 +483,10 @@ class FoodTile extends StatelessWidget {
                 TextSpan(
                   children: [
                     TextSpan(text: context.l10n.calculatedCalorie),
+                    textGap,
                     TextSpan(text: food.calculatedCalorie.toStringAsFixed(1)),
+                    textGap,
+                    TextSpan(text: context.l10n.measurementUnitCalorie),
                   ],
                 ),
               ),
@@ -436,7 +494,9 @@ class FoodTile extends StatelessWidget {
                 TextSpan(
                   children: [
                     TextSpan(text: context.l10n.fat),
+                    textGap,
                     TextSpan(text: food.macroNutrition.fat.toStringAsFixed(0)),
+                    textGap,
                     TextSpan(text: context.l10n.measurementUnitGram),
                   ],
                 ),
@@ -450,9 +510,11 @@ class FoodTile extends StatelessWidget {
                 TextSpan(
                   children: [
                     TextSpan(text: context.l10n.protein),
+                    textGap,
                     TextSpan(
                       text: food.macroNutrition.protein.toStringAsFixed(0),
                     ),
+                    textGap,
                     TextSpan(text: context.l10n.measurementUnitGram),
                   ],
                 ),
@@ -461,31 +523,25 @@ class FoodTile extends StatelessWidget {
                 TextSpan(
                   children: [
                     TextSpan(text: context.l10n.carbohydrate),
+                    textGap,
                     TextSpan(
                       text: food.macroNutrition.carbohydrate.toStringAsFixed(0),
                     ),
+                    textGap,
                     TextSpan(text: context.l10n.measurementUnitGram),
-                    WidgetSpan(
-                      child: Icon(
-                        Icons.center_focus_weak,
-                        color:
-                            food
-                                    .carbohydrateSource
-                                    .isFruitsOrNonStarchyVegetables
-                                ? context.colorExtenstion.carbsFruitsVeggies
-                                : context.colorExtenstion.carbsOther,
-                      ),
-                    ),
                   ],
                 ),
               ),
             ],
           ),
+          SizedBox(height: context.sizeExtenstion.small),
           Text.rich(
             TextSpan(
+              style: context.textTheme.labelSmall,
               children: [
                 TextSpan(text: context.l10n.upsertDate),
-                TextSpan(text: food.upsertDate.toIso8601String()),
+                textGap,
+                TextSpan(text: food.upsertDate.formattedDateTime(context)),
               ],
             ),
           ),

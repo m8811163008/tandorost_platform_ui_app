@@ -308,8 +308,8 @@ class RemoteApiBase implements RemoteApi {
   }
 
   Future<List<Food>> readFoodsNutrition(
-    DateTime startDate,
-    DateTime endDate,
+    DateTime date1,
+    DateTime date2,
   ) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
@@ -318,7 +318,7 @@ class RemoteApiBase implements RemoteApi {
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
-    final uri = UriBuilder.readFoodsNutritions(startDate, endDate);
+    final uri = UriBuilder.readFoodsNutritions(date1, date2);
     final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
 
     return res!.map((e) => Food.fromJson(e)).toList();

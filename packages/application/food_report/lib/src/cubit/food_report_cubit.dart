@@ -149,9 +149,9 @@ class FoodReportCubit extends Cubit<FoodReportState> {
   }
 
   void onSelectedFoodsChange(Food food) {
-    final slectedFoods = state.selectedFoods;
+    final slectedFoods = List<Food>.from(state.selectedFoods);
     final isFoodSelectedBefore = slectedFoods.contains(food);
-    if (isFoodSelectedBefore) {
+    if (!isFoodSelectedBefore) {
       slectedFoods.add(food);
     } else {
       slectedFoods.remove(food);

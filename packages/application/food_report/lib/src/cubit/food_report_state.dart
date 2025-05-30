@@ -89,6 +89,7 @@ class FoodReportState extends Equatable {
     updateFoodsNutritionsStatus,
     deleteFoodsNutritionsStatus,
     readNutritionRequirementsStatus,
+    selectedFoods,
     selectedTab,
   ];
 }
