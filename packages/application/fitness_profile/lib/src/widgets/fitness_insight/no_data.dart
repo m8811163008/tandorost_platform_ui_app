@@ -20,7 +20,7 @@ class NoDataFound extends StatelessWidget {
                 AppRoundedRectangleBorder(
                   child: ChartAnimation(size: Size.fromHeight(200)),
                 ),
-                AddMeasurementButton.filled(),
+                ElevatedButton(onPressed: (){}, child: Text('add measurement'))
               ],
             ),
           ),

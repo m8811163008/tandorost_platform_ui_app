@@ -3,11 +3,14 @@
     "foodName": "نام غذا",
     "fat": "چربی",
     "carbohydrate": "کربوهیدرات",
+    "carbohydrateFruitsOrNonStarchyVegetables": "کربوهیدرات میوه و سبزی",
+    "carbohydrateOthers": "کربوهیدرات غنی",
     "protein": "پروتئین",
     "id": "شناسه",
     "upsertDate": "تاریخ ثبت/بروزرسانی",
     "unitOfMeasurement": "واحد اندازه‌گیری",
     "calculatedCalorie": "کالری محاسبه شده",
+    "foodEnergy": "انرژی",
     "quantityOfUnitOfMeasurement": "تعداد واحد اندازه‌گیری",
     "carbohydrateSource": "منبع کربوهیدرات",
     "carbohydrateSourceValue": "{source, select, fruitsOrNonStarchyVegetables{میوه و سبزی} others{کربوهیدرات غنی} other{ترجمه تعریف نشده}}",
@@ -269,5 +272,7 @@
     "measurementUnitCalorie": "کیلوکالری",
     "fitnessProfilePhysicaDataChart": "نمودار پیشرفت شما",
     "fitnessProfileDeleteDataPointDialogLabel": "حذف اندازه",
-    "fitnessProfileDeleteDataPointDialogDescription": "آیا از حذف این اندازه مطمئن هستید؟"
+    "fitnessProfileDeleteDataPointDialogDescription": "آیا از حذف این اندازه مطمئن هستید؟",
+    "foodReportUserFoodRequirementFrom": "از",
+    "foodReportUserFoodRequirementNA": "N/A"
 }

@@ -152,7 +152,10 @@ class Navigation {
         GoRoute(
           path: foodReportRoute,
           builder: (context, state) {
-            return FoodReportRoute();
+            return FoodReportRoute(
+              goToFoodInputRoute: () => context.go(searchRoute),
+              goToFitnessProfileRoute: () => context.go(fitnessProfileRoute),
+            );
           },
         ),
       ],

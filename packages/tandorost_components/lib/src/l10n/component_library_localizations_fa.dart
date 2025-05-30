@@ -18,6 +18,12 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get carbohydrate => 'کربوهیدرات';
 
   @override
+  String get carbohydrateFruitsOrNonStarchyVegetables => 'کربوهیدرات میوه و سبزی';
+
+  @override
+  String get carbohydrateOthers => 'کربوهیدرات غنی';
+
+  @override
   String get protein => 'پروتئین';
 
   @override
@@ -31,6 +37,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get calculatedCalorie => 'کالری محاسبه شده';
+
+  @override
+  String get foodEnergy => 'انرژی';
 
   @override
   String get quantityOfUnitOfMeasurement => 'تعداد واحد اندازه‌گیری';
@@ -643,4 +652,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get fitnessProfileDeleteDataPointDialogDescription => 'آیا از حذف این اندازه مطمئن هستید؟';
+
+  @override
+  String get foodReportUserFoodRequirementFrom => 'از';
+
+  @override
+  String get foodReportUserFoodRequirementNA => 'N/A';
 }

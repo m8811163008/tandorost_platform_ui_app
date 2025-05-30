@@ -42,7 +42,10 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
         } else if (state.updateFoodsNutritionsStatus.isSuccess) {
-          // fetch foods list
+          final cubit = context.read<FoodReportCubit>();
+          cubit.resetSelectedFoods();
+          cubit.readFoodsNutrition();
+          cubit.readNutritionRequirements();
           Navigator.of(context).pop();
         }
       },

@@ -57,40 +57,60 @@ class FoodReportCubit extends Cubit<FoodReportState> {
   }
 
   void updateFoodsNutritions(Food food) async {
-    emit(state.copyWith(updateFoodsNutritionsStatus: AsyncProcessingStatus.loading));
+    emit(
+      state.copyWith(
+        updateFoodsNutritionsStatus: AsyncProcessingStatus.loading,
+      ),
+    );
     try {
       await _foodReport.updateFoodsNutritions(food);
-      emit(state.copyWith(updateFoodsNutritionsStatus: AsyncProcessingStatus.success));
+      emit(
+        state.copyWith(
+          updateFoodsNutritionsStatus: AsyncProcessingStatus.success,
+        ),
+      );
     } on InternetConnectionException {
       emit(
         state.copyWith(
-          updateFoodsNutritionsStatus: AsyncProcessingStatus.internetConnectionError,
+          updateFoodsNutritionsStatus:
+              AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
       emit(
         state.copyWith(
-          updateFoodsNutritionsStatus: AsyncProcessingStatus.serverConnectionError,
+          updateFoodsNutritionsStatus:
+              AsyncProcessingStatus.serverConnectionError,
         ),
       );
     }
   }
 
   void deleteFoodsNutritions(List<String> foodIds) async {
-    emit(state.copyWith(deleteFoodsNutritionsStatus: AsyncProcessingStatus.loading));
+    emit(
+      state.copyWith(
+        deleteFoodsNutritionsStatus: AsyncProcessingStatus.loading,
+      ),
+    );
     try {
       await _foodReport.deleteFoodsNutritions(foodIds);
-      emit(state.copyWith(deleteFoodsNutritionsStatus: AsyncProcessingStatus.success));
+      emit(
+        state.copyWith(
+          deleteFoodsNutritionsStatus: AsyncProcessingStatus.success,
+        ),
+      );
     } on InternetConnectionException {
       emit(
         state.copyWith(
-          deleteFoodsNutritionsStatus: AsyncProcessingStatus.internetConnectionError,
+          deleteFoodsNutritionsStatus:
+              AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
       emit(
         state.copyWith(
-          deleteFoodsNutritionsStatus: AsyncProcessingStatus.serverConnectionError,
+          deleteFoodsNutritionsStatus:
+              AsyncProcessingStatus.serverConnectionError,
         ),
       );
     }
@@ -126,5 +146,24 @@ class FoodReportCubit extends Cubit<FoodReportState> {
         ),
       );
     }
+  }
+
+  void onSelectedFoodsChange(Food food) {
+    final slectedFoods = state.selectedFoods;
+    final isFoodSelectedBefore = slectedFoods.contains(food);
+    if (isFoodSelectedBefore) {
+      slectedFoods.add(food);
+    } else {
+      slectedFoods.remove(food);
+    }
+    emit(state.copyWith(selectedFoods: slectedFoods));
+  }
+
+  void resetSelectedFoods() {
+    emit(state.copyWith(selectedFoods: []));
+  }
+
+  void onChangeTab(SelectedTab selectedTab) {
+    emit(state.copyWith(selectedTab: selectedTab));
   }
 }

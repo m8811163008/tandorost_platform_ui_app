@@ -111,6 +111,18 @@ abstract class ComponentLibraryLocalizations {
   /// **'کربوهیدرات'**
   String get carbohydrate;
 
+  /// No description provided for @carbohydrateFruitsOrNonStarchyVegetables.
+  ///
+  /// In fa, this message translates to:
+  /// **'کربوهیدرات میوه و سبزی'**
+  String get carbohydrateFruitsOrNonStarchyVegetables;
+
+  /// No description provided for @carbohydrateOthers.
+  ///
+  /// In fa, this message translates to:
+  /// **'کربوهیدرات غنی'**
+  String get carbohydrateOthers;
+
   /// No description provided for @protein.
   ///
   /// In fa, this message translates to:
@@ -140,6 +152,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'کالری محاسبه شده'**
   String get calculatedCalorie;
+
+  /// No description provided for @foodEnergy.
+  ///
+  /// In fa, this message translates to:
+  /// **'انرژی'**
+  String get foodEnergy;
 
   /// No description provided for @quantityOfUnitOfMeasurement.
   ///
@@ -1070,6 +1088,18 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'آیا از حذف این اندازه مطمئن هستید؟'**
   String get fitnessProfileDeleteDataPointDialogDescription;
+
+  /// No description provided for @foodReportUserFoodRequirementFrom.
+  ///
+  /// In fa, this message translates to:
+  /// **'از'**
+  String get foodReportUserFoodRequirementFrom;
+
+  /// No description provided for @foodReportUserFoodRequirementNA.
+  ///
+  /// In fa, this message translates to:
+  /// **'N/A'**
+  String get foodReportUserFoodRequirementNA;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {
