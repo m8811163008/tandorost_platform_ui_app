@@ -46,6 +46,12 @@ class AppTheme {
       progressIndicatorTheme: ProgressIndicatorThemeData(
         borderRadius: BorderRadius.circular(sizeExtenstion.large),
       ),
+      listTileTheme: ListTileThemeData(
+        tileColor: ThemeColor.white.color,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(sizeExtenstion.small),
+        ),
+      ),
     );
   }
 

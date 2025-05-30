@@ -1,7 +1,7 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:food_input_app/src/result_route/cubit/result_cubit.dart';
+import 'package:food_report_app/src/cubit/food_report_cubit.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class EditFoodDialog extends StatefulWidget {
@@ -25,22 +25,24 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
   Widget build(BuildContext context) {
     final gap = SizedBox(height: context.sizeExtenstion.small);
 
-    return BlocListener<ResultCubit, ResultState>(
+    return BlocListener<FoodReportCubit, FoodReportState>(
       listenWhen:
           (previous, current) =>
-              previous.updatingStatus != current.updatingStatus,
+              previous.updateFoodsNutritionsStatus !=
+              current.updateFoodsNutritionsStatus,
       listener: (context, state) {
-        if (state.updatingStatus.isServerConnectionError) {
+        if (state.updateFoodsNutritionsStatus.isServerConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.updatingStatus.isServerConnectionError) {
+        } else if (state.updateFoodsNutritionsStatus.isServerConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.updatingStatus.isSuccess) {
+        } else if (state.updateFoodsNutritionsStatus.isSuccess) {
+          // fetch foods list
           Navigator.of(context).pop();
         }
       },
@@ -156,18 +158,21 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
               },
             ),
           ],
-          submitButton: BlocBuilder<ResultCubit, ResultState>(
+          submitButton: BlocBuilder<FoodReportCubit, FoodReportState>(
             buildWhen:
                 (previous, current) =>
-                    previous.updatingStatus != current.updatingStatus,
+                    previous.updateFoodsNutritionsStatus !=
+                    current.updateFoodsNutritionsStatus,
             builder: (context, state) {
-              return state.updatingStatus.isLoading
+              return state.updateFoodsNutritionsStatus.isLoading
                   ? AppTextButton.loading(label: context.l10n.update)
                   : AppTextButton(
                     label: context.l10n.update,
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
-                        context.read<ResultCubit>().updateFood(updatedFood);
+                        context.read<FoodReportCubit>().updateFoodsNutritions(
+                          updatedFood,
+                        );
                       }
                     },
                   );

@@ -13,6 +13,7 @@ class FoodReportRoute extends StatelessWidget {
   static const String name = 'food_report';
   @override
   Widget build(BuildContext context) {
+    final gap = SizedBox(width: context.sizeExtenstion.small);
     return BlocProvider(
       create:
           (_) => FoodReportCubit(
@@ -25,6 +26,16 @@ class FoodReportRoute extends StatelessWidget {
         length: 2,
         child: AppScaffold(
           appBar: AppBar(
+            actions: [
+              IconButton.outlined(onPressed: () {}, icon: Icon(Icons.add)),
+              gap,
+              IconButton.filledTonal(onPressed: () {}, icon: Icon(Icons.edit)),
+              gap,
+              IconButton.filledTonal(
+                onPressed: () {},
+                icon: Icon(Icons.delete),
+              ),
+            ],
             bottom: const TabBar(
               tabs: <Widget>[
                 Tab(icon: Icon(Icons.monitor_heart), text: 'Rest day'),
@@ -72,6 +83,7 @@ class FoodReportStatics extends StatelessWidget {
     final gap = SizedBox(height: context.sizeExtenstion.small);
     return AppCard(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppCardHeader(title: 'Foods statics'),
           UserFoodRequirementRow(currentValue: 10, total: 100),
@@ -141,7 +153,9 @@ class FoodListBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      child: ListView.builder(
+      child: ListView.separated(
+        shrinkWrap: true,
+        itemCount: 2,
         itemBuilder: (context, index) {
           return FoodTile(
             food: Food(
@@ -165,6 +179,9 @@ class FoodListBuilder extends StatelessWidget {
             ),
           );
         },
+        separatorBuilder: (context, index) {
+          return SizedBox(height: context.sizeExtenstion.small);
+        },
       ),
     );
   }
@@ -178,7 +195,8 @@ class FoodTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       isThreeLine: true,
-      trailing: MacroNutitionsPieChart(
+      style: ListTileStyle.list,
+      leading: MacroNutitionsPieChart(
         macroNutrition: food.macroNutrition,
         carbohydrateSourceLD: food.carbohydrateSource,
       ),
@@ -254,29 +272,13 @@ class FoodTile extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(text: context.l10n.upsertDate),
-                    TextSpan(text: food.upsertDate.toIso8601String()),
-                  ],
-                ),
-              ),
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(text: context.l10n.carbohydrate),
-                    TextSpan(
-                      text: food.macroNutrition.carbohydrate.toStringAsFixed(0),
-                    ),
-                    TextSpan(text: context.l10n.measurementUnitGram),
-                  ],
-                ),
-              ),
-            ],
+          Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(text: context.l10n.upsertDate),
+                TextSpan(text: food.upsertDate.toIso8601String()),
+              ],
+            ),
           ),
         ],
       ),
