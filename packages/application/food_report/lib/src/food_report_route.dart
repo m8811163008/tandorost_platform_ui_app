@@ -24,7 +24,10 @@ class FoodReportRoute extends StatelessWidget {
             fitnessNutrition: RepositoryProvider.of<FitnessNutrition>(context),
           ),
       lazy: false,
-      child: FoodReportScreen(goToFoodInputRoute: goToFoodInputRoute),
+      child: FoodReportScreen(
+        goToFoodInputRoute: goToFoodInputRoute,
+        goToFitnessProfileRoute: goToFitnessProfileRoute,
+      ),
     );
   }
 }

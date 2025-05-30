@@ -1,3 +1,4 @@
+import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_report_app/src/cubit/food_report_cubit.dart';
@@ -35,20 +36,27 @@ class _FoodReportScreenState extends State<FoodReportScreen>
 
   @override
   void dispose() {
+    _controller.removeListener(_onChangeTab);
     _controller.dispose();
     super.dispose();
   }
 
-  void _onChangeTab() {
-    context.read<FoodReportCubit>().onChangeTab(
-      SelectedTab.values[_controller.index],
-    );
+  void _onChangeTab() async {
+    if (!_controller.indexIsChanging) {
+      context.read<FoodReportCubit>().onChangeTab(
+        SelectedTab.values[_controller.index],
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final gap = SizedBox(width: context.sizeExtenstion.small);
     final foodListConsumer = FoodListConsumer();
+    final foodReportView = FoodReportView(
+      foodListConsumer: foodListConsumer,
+      goToFitnessProfileRoute: widget.goToFitnessProfileRoute,
+    );
 
     return BlocBuilder<FoodReportCubit, FoodReportState>(
       buildWhen:
@@ -68,19 +76,7 @@ class _FoodReportScreenState extends State<FoodReportScreen>
               IconButton.filledTonal(
                 onPressed:
                     canEdit
-                        ? () {
-                          showDialog(
-                            context: context,
-                            builder: (_) {
-                              return BlocProvider.value(
-                                value: context.read<FoodReportCubit>(),
-                                child: EditFoodDialog(
-                                  food: state.selectedFoods.single,
-                                ),
-                              );
-                            },
-                          );
-                        }
+                        ? () => _showEditDialog(state.selectedFoods.single)
                         : null,
                 icon: Icon(Icons.edit),
               ),
@@ -88,22 +84,7 @@ class _FoodReportScreenState extends State<FoodReportScreen>
               IconButton.filledTonal(
                 onPressed:
                     canDelete
-                        ? () {
-                          showDialog(
-                            context: context,
-                            builder: (_) {
-                              return BlocProvider.value(
-                                value: context.read<FoodReportCubit>(),
-                                child: DeleteFoodDialog(
-                                  foodsId:
-                                      state.selectedFoods
-                                          .map((e) => e.id)
-                                          .toList(),
-                                ),
-                              );
-                            },
-                          );
-                        }
+                        ? () => _showDeleteDialog(state.selectedFoods)
                         : null,
                 icon: Icon(Icons.delete),
               ),
@@ -118,10 +99,33 @@ class _FoodReportScreenState extends State<FoodReportScreen>
           ),
           body: TabBarView(
             controller: _controller,
-            children: <Widget>[
-              FoodReportView(foodListConsumer: foodListConsumer),
-              FoodReportView(foodListConsumer: foodListConsumer),
-            ],
+            children: <Widget>[foodReportView, foodReportView],
+          ),
+        );
+      },
+    );
+  }
+
+  void _showEditDialog(Food food) async {
+    await showDialog(
+      context: context,
+      builder: (_) {
+        return BlocProvider.value(
+          value: context.read<FoodReportCubit>(),
+          child: EditFoodDialog(food: food),
+        );
+      },
+    );
+  }
+
+  void _showDeleteDialog(List<Food> selectedFoods) async {
+    await showDialog(
+      context: context,
+      builder: (_) {
+        return BlocProvider.value(
+          value: context.read<FoodReportCubit>(),
+          child: DeleteFoodDialog(
+            foodsId: selectedFoods.map((e) => e.id).toList(),
           ),
         );
       },

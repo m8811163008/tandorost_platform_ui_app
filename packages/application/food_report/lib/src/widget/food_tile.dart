@@ -29,7 +29,7 @@ class FoodTile extends StatelessWidget {
       title: Text.rich(
         TextSpan(
           children: [
-            TextSpan(text: food.quantityOfUnitOfMeasurement.toStringAsFixed(0)),
+            TextSpan(text: food.quantityOfUnitOfMeasurement.toString()),
             textGap,
             TextSpan(text: food.unitOfMeasurementNativeLanguage),
             textGap,
@@ -43,58 +43,34 @@ class FoodTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(text: context.l10n.calculatedCalorie),
-                    textGap,
-                    TextSpan(text: food.calculatedCalorie.toStringAsFixed(1)),
-                    textGap,
-                    TextSpan(text: context.l10n.measurementUnitCalorie),
-                  ],
-                ),
+              _buildMacroText(
+                context,
+                context.l10n.calculatedCalorie,
+                food.calculatedCalorie.toString(),
+                context.l10n.measurementUnitCalorie,
               ),
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(text: context.l10n.fat),
-                    textGap,
-                    TextSpan(text: food.macroNutrition.fat.toStringAsFixed(0)),
-                    textGap,
-                    TextSpan(text: context.l10n.measurementUnitGram),
-                  ],
-                ),
+              _buildMacroText(
+                context,
+                context.l10n.fat,
+                food.macroNutrition.fat.toString(),
+                context.l10n.measurementUnitGram,
               ),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(text: context.l10n.protein),
-                    textGap,
-                    TextSpan(
-                      text: food.macroNutrition.protein.toStringAsFixed(0),
-                    ),
-                    textGap,
-                    TextSpan(text: context.l10n.measurementUnitGram),
-                  ],
-                ),
+              _buildMacroText(
+                context,
+                context.l10n.protein,
+                food.macroNutrition.protein.toString(),
+                context.l10n.measurementUnitGram,
               ),
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(text: context.l10n.carbohydrate),
-                    textGap,
-                    TextSpan(
-                      text: food.macroNutrition.carbohydrate.toStringAsFixed(0),
-                    ),
-                    textGap,
-                    TextSpan(text: context.l10n.measurementUnitGram),
-                  ],
-                ),
+              _buildMacroText(
+                context,
+                context.l10n.carbohydrate,
+                food.macroNutrition.carbohydrate.toString(),
+                context.l10n.measurementUnitGram,
               ),
             ],
           ),
@@ -109,6 +85,21 @@ class FoodTile extends StatelessWidget {
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Text _buildMacroText(context, String label, String value, String unit) {
+    final textGap = TextSpan(text: ' ');
+    return Text.rich(
+      TextSpan(
+        children: [
+          TextSpan(text: label),
+          textGap,
+          TextSpan(text: value),
+          textGap,
+          TextSpan(text: unit),
         ],
       ),
     );

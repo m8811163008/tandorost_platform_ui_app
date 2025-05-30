@@ -1,5 +1,3 @@
-
-
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,25 +31,7 @@ class FoodReportStaticsConsumer extends StatelessWidget {
           ).showSnackBar(SnackBar(content: Text(content)));
         } else if (state.readFoodsNutritionStatus.isSuccess) {
           if (state.nutritionRequirements == null) {
-            final messenger = ScaffoldMessenger.of(context);
-            messenger.showMaterialBanner(
-              MaterialBanner(
-                content: Text('Add measurement sized'),
-                leading: Icon(Icons.agriculture_outlined),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: goToFitnessProfileRoute,
-                    child: Text('Go to '),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      messenger.hideCurrentMaterialBanner();
-                    },
-                    child: Text('Dismiss'),
-                  ),
-                ],
-              ),
-            );
+            _showBanner(context);
           }
         }
       },
@@ -79,6 +59,31 @@ class FoodReportStaticsConsumer extends StatelessWidget {
           ),
         };
       },
+    );
+  }
+
+  void _showBanner(BuildContext context) {
+    final messenger = ScaffoldMessenger.of(context);
+    messenger.showMaterialBanner(
+      MaterialBanner(
+        content: Text('Add measurement sized'),
+        leading: Icon(Icons.agriculture_outlined),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              messenger.hideCurrentMaterialBanner();
+              goToFitnessProfileRoute?.call();
+            },
+            child: Text('Go to '),
+          ),
+          TextButton(
+            onPressed: () {
+              messenger.hideCurrentMaterialBanner();
+            },
+            child: Text(context.l10n.cancle),
+          ),
+        ],
+      ),
     );
   }
 }

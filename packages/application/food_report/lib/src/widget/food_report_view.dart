@@ -3,13 +3,25 @@ import 'package:food_report_app/src/widget/food_list_consumer.dart';
 import 'package:food_report_app/src/widget/food_report_consumer.dart';
 
 class FoodReportView extends StatelessWidget {
-  const FoodReportView({super.key, required this.foodListConsumer});
+  const FoodReportView({
+    super.key,
+    required this.foodListConsumer,
+    this.goToFitnessProfileRoute,
+  });
   final FoodListConsumer foodListConsumer;
+  final VoidCallback? goToFitnessProfileRoute;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(children: [FoodReportStaticsConsumer(), foodListConsumer]),
+      child: Column(
+        children: [
+          FoodReportStaticsConsumer(
+            goToFitnessProfileRoute: goToFitnessProfileRoute,
+          ),
+          foodListConsumer,
+        ],
+      ),
     );
   }
 }
