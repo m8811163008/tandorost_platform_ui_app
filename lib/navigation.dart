@@ -3,6 +3,7 @@ import 'package:authentication_app/authentication.dart';
 import 'package:fitness_profile_app/fitness_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_report_app/food_report.dart';
 import 'package:go_router/go_router.dart';
 import 'package:food_input_app/food_input.dart';
 import 'package:profile_app/profile.dart';
@@ -17,8 +18,10 @@ class Navigation {
     final verificationRoute = '/${RegisterVerifyPhoneNumberRoute.name}';
     final profileRoute = '/${ProfileRoute.name}';
     final fitnessProfileRoute = '/${FitnessProfileRoute.name}';
+    final foodReportRoute = '/${FoodReportRoute.name}';
+
     return GoRouter(
-      initialLocation: fitnessProfileRoute,
+      initialLocation: foodReportRoute,
       routes: [
         GoRoute(
           path: searchRoute,
@@ -144,6 +147,12 @@ class Navigation {
           path: fitnessProfileRoute,
           builder: (context, state) {
             return FitnessProfileRoute();
+          },
+        ),
+        GoRoute(
+          path: foodReportRoute,
+          builder: (context, state) {
+            return FoodReportRoute();
           },
         ),
       ],

@@ -2,6 +2,7 @@ name: food_report_app
 description: "A new Flutter package project."
 version: 0.0.1
 homepage:
+publish_to: none
 
 environment:
   sdk: ^3.7.2
@@ -10,6 +11,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  tandorost_components:
+    path: ../../tandorost_components
+  domain_model:
+    path: ../../domain_model
+  fitness_nutrition:
+    path: ../../repositories/fitness_nutrition
+  food_report:
+    path: ../../repositories/food_report
+  flutter_bloc: ^9.1.1
 
 dev_dependencies:
   flutter_test:
