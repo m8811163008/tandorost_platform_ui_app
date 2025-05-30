@@ -15,6 +15,7 @@ class RegullarTextField extends StatelessWidget {
     this.initalValue,
     this.onTap,
     this.errorMessage,
+    this.textAlign = TextAlign.start
   });
   final String label;
   final String? prefix;
@@ -27,6 +28,7 @@ class RegullarTextField extends StatelessWidget {
   final bool readOnly;
   final VoidCallback? onTap;
   final String? errorMessage;
+  final TextAlign textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class RegullarTextField extends StatelessWidget {
       ),
       obscureText: obscureText,
       maxLength: maxLength,
-      textAlign: TextAlign.left,
+      textAlign: textAlign,
       onChanged: onChange,
       validator: (value) {
         if (value == null || value.isEmpty) {

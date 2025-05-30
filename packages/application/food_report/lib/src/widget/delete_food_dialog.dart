@@ -10,10 +10,8 @@ class DeleteFoodDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppDialog(
-      title: 'context.l10n.fitnessProfileDeleteDataPointDialogLabel',
-      contents: [
-        Text('context.l10n.fitnessProfileDeleteDataPointDialogDescription'),
-      ],
+      title: 'delete selected food',
+      contents: [Text('delete food?')],
       submitButton: BlocConsumer<FoodReportCubit, FoodReportState>(
         listenWhen:
             (previous, current) =>
@@ -33,10 +31,10 @@ class DeleteFoodDialog extends StatelessWidget {
               context,
             ).showSnackBar(SnackBar(content: Text(content)));
           } else if (state.deleteFoodsNutritionsStatus.isSuccess) {
+            context.read<FoodReportCubit>().readFoodsNutrition();
+            context.read<FoodReportCubit>().readNutritionRequirements();
+            context.read<FoodReportCubit>().resetSelectedFoods();
             Navigator.of(context).pop();
-            // fetch data
-            // context.read<FitnessProfileCubit>().readFitnessData();
-            // context.read<FitnessProfileCubit>().readUserPhysicalProfile();
           }
         },
         buildWhen:

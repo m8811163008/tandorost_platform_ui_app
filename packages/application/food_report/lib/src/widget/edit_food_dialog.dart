@@ -159,6 +159,7 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
                   setState(() {});
                 }
               },
+              errorText: null,
             ),
           ],
           submitButton: BlocBuilder<FoodReportCubit, FoodReportState>(
@@ -189,20 +190,46 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
   Widget _buildDateTextField() {
     return TextField(
       controller: TextEditingController(
-        text: updatedFood.upsertDate.toLocal().toIso8601String(),
+        text: updatedFood.upsertDate.formattedDateTime(context),
       ),
       decoration: InputDecoration(label: Text(context.l10n.upsertDate)),
       readOnly: false,
       onTap: () async {
-        final DateTime? pickedDate = await showDatePicker(
+        final locale = Localizations.localeOf(context);
+        late final DateTime? pickedDate;
+        if (locale.languageCode == Language.persian.code) {
+          Jalali? picked = await showPersianDatePicker(
+            context: context,
+            initialDate: Jalali.fromDateTime(updatedFood.upsertDate),
+            firstDate: Jalali.fromDateTime(
+              updatedFood.upsertDate.subtract(Duration(days: 5)),
+            ),
+            lastDate: Jalali.fromDateTime(
+              updatedFood.upsertDate.add(Duration(days: 5)),
+            ),
+            initialEntryMode: PersianDatePickerEntryMode.calendarOnly,
+            initialDatePickerMode: PersianDatePickerMode.day,
+          );
+          pickedDate = picked?.toDateTime();
+        } else {
+          pickedDate = await showDatePicker(
+            context: context,
+            initialDate: updatedFood.upsertDate,
+            firstDate: updatedFood.upsertDate.subtract(Duration(days: 5)),
+            lastDate: updatedFood.upsertDate.add(Duration(days: 5)),
+          );
+        }
+        if (!mounted) {
+          return;
+        }
+        final pickedTime = await showTimePicker(
           context: context,
-          firstDate: updatedFood.upsertDate.subtract(Duration(days: 5)),
-          lastDate: updatedFood.upsertDate.add(Duration(days: 5)),
-          initialDate: updatedFood.upsertDate,
+          initialTime: TimeOfDay.fromDateTime(updatedFood.upsertDate),
         );
+
         final updatedDateTime = pickedDate?.copyWith(
-          hour: updatedFood.upsertDate.hour,
-          minute: updatedFood.upsertDate.minute,
+          hour: pickedTime?.hour ?? updatedFood.upsertDate.hour,
+          minute: pickedTime?.minute ?? updatedFood.upsertDate.minute,
           second: updatedFood.upsertDate.second,
         );
         updatedFood = updatedFood.copyWith(upsertDate: updatedDateTime);

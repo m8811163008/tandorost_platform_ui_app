@@ -15,7 +15,7 @@ class MacroNutitionsPieChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox.square(
-      dimension: context.sizeExtenstion.extraLarge,
+      dimension: context.sizeExtenstion.xExtraLarge,
       child: PieChart(
         chartType: ChartType.ring,
         dataMap: {
@@ -23,7 +23,7 @@ class MacroNutitionsPieChart extends StatelessWidget {
           context.l10n.fat: macroNutrition.fat.toDouble(),
           context.l10n.carbohydrate: macroNutrition.carbohydrate.toDouble(),
         },
-        ringStrokeWidth: context.sizeExtenstion.medium,
+        ringStrokeWidth: context.sizeExtenstion.large,
         chartValuesOptions: const ChartValuesOptions(showChartValues: false),
         animationDuration: Duration.zero,
         legendOptions: const LegendOptions(showLegends: false),
