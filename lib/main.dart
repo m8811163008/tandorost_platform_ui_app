@@ -3,6 +3,7 @@ import 'package:fitness_nutrition/fitness_nutrition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_input/food_input.dart';
+import 'package:food_report/food_report.dart';
 import 'package:local_storage/local_storage.dart';
 import 'package:profile/profile.dart';
 import 'package:remote_api/remote_api.dart';
@@ -62,6 +63,7 @@ class DependencyManager extends StatelessWidget {
           );
           final imageRepository = ImageRepository(remoteApi: remoteApi);
           final fitnessNutrition = FitnessNutrition(remoteApi: remoteApi);
+          final foodReport = FoodReport(remoteApi: remoteApi);
 
           return MultiRepositoryProvider(
             providers: [
@@ -74,6 +76,7 @@ class DependencyManager extends StatelessWidget {
               RepositoryProvider(create: (_) => authenticationRep, lazy: true),
               RepositoryProvider(create: (_) => imageRepository, lazy: true),
               RepositoryProvider(create: (_) => fitnessNutrition, lazy: true),
+              RepositoryProvider(create: (_) => foodReport, lazy: true),
             ],
             child: TandorostPlatform(),
           );

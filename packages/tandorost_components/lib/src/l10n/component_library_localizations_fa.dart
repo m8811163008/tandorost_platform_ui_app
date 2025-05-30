@@ -630,6 +630,12 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get measurementUnitKG => 'کیلوگرم';
 
   @override
+  String get measurementUnitGram => 'گرم';
+
+  @override
+  String get measurementUnitCalorie => 'کیلوکالری';
+
+  @override
   String get fitnessProfilePhysicaDataChart => 'نمودار پیشرفت شما';
 
   @override

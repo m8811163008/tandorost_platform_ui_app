@@ -117,6 +117,7 @@ class MacroNutrition extends Equatable {
       protein: protein ?? this.protein,
     );
   }
+  int get total => fat + carbohydrate + protein;
 
   MacroNutrition({
     required this.fat,

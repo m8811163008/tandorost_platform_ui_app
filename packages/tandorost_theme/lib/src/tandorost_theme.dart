@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tandorost_theme/src/color_extension.dart';
 import 'package:tandorost_theme/src/size_extension.dart';
 import 'package:tandorost_theme/src/theme_color.dart';
 
@@ -9,6 +10,7 @@ class AppTheme {
 
   ThemeData get lightTheme {
     final sizeExtenstion = SizeExtenstion();
+    final colorExtenstion = ColorExtenstion();
     return ThemeData.light(useMaterial3: true).copyWith(
       colorScheme: ColorScheme.fromSeed(
         seedColor: ThemeColor.pictonBlue.color,
@@ -20,7 +22,7 @@ class AppTheme {
       ),
 
       textTheme: textTheme(locale),
-      extensions: [sizeExtenstion],
+      extensions: [sizeExtenstion, colorExtenstion],
       appBarTheme: AppBarTheme(
         color: ThemeColor.white.color,
         actionsPadding: EdgeInsets.symmetric(vertical: sizeExtenstion.small),
@@ -40,6 +42,9 @@ class AppTheme {
           horizontal: sizeExtenstion.medium,
           vertical: sizeExtenstion.small,
         ),
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        borderRadius: BorderRadius.circular(sizeExtenstion.large),
       ),
     );
   }

@@ -265,6 +265,8 @@
     "fitnessProfileNewMeasurementWeight": "وزن",
     "measurementUnitCM": "سانتی‌متر",
     "measurementUnitKG": "کیلوگرم",
+    "measurementUnitGram": "گرم",
+    "measurementUnitCalorie": "کیلوکالری",
     "fitnessProfilePhysicaDataChart": "نمودار پیشرفت شما",
     "fitnessProfileDeleteDataPointDialogLabel": "حذف اندازه",
     "fitnessProfileDeleteDataPointDialogDescription": "آیا از حذف این اندازه مطمئن هستید؟"

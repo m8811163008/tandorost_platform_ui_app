@@ -20,7 +20,7 @@ dependencies:
   food_report:
     path: ../../repositories/food_report
   flutter_bloc: ^9.1.1
-
+  pie_chart: ^5.4.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

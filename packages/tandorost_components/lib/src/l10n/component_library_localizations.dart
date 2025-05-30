@@ -1041,6 +1041,18 @@ abstract class ComponentLibraryLocalizations {
   /// **'کیلوگرم'**
   String get measurementUnitKG;
 
+  /// No description provided for @measurementUnitGram.
+  ///
+  /// In fa, this message translates to:
+  /// **'گرم'**
+  String get measurementUnitGram;
+
+  /// No description provided for @measurementUnitCalorie.
+  ///
+  /// In fa, this message translates to:
+  /// **'کیلوکالری'**
+  String get measurementUnitCalorie;
+
   /// No description provided for @fitnessProfilePhysicaDataChart.
   ///
   /// In fa, this message translates to:
