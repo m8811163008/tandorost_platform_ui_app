@@ -7,34 +7,44 @@ import 'package:food_report_app/food_report.dart';
 import 'package:go_router/go_router.dart';
 import 'package:food_input_app/food_input.dart';
 import 'package:profile_app/profile.dart';
+import 'package:tandorost_platform_ui_app/routes.dart';
 
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
-    final loginRoute = '/${LoginRoute.name}';
-    final registerRoute = '/${RegisterRoute.name}';
-    final searchRoute = '/${SearchRoute.name}';
-    final resultRoute = '/${ResultRoute.name}';
-    final forgotPassRoute = '/${ForgotPasswordRoute.name}';
-    final verificationRoute = '/${RegisterVerifyPhoneNumberRoute.name}';
-    final profileRoute = '/${ProfileRoute.name}';
-    final fitnessProfileRoute = '/${FitnessProfileRoute.name}';
-    final foodReportRoute = '/${FoodReportRoute.name}';
-
     return GoRouter(
-      initialLocation: foodReportRoute,
+      initialLocation: BottomNavigationRoutes.routes[0]!.path,
       routes: [
         GoRoute(
-          path: searchRoute,
-          builder: (context, state) {
+          path: RoutesNames.searchRoute.path,
+          builder: (_, state) {
             return SearchRoute(
-              goToResultRoute: () => context.go('$searchRoute$resultRoute'),
+              goToResultRoute:
+                  () => context.go(
+                    '${RoutesNames.searchRoute.path}${RoutesNames.resultRoute.path}',
+                  ),
+              onBottomNavigationChanged: (index) {
+                _onBottomNavigationChanged(context, index);
+              },
+              onDrawerNavigationChanged: (index) {
+                _onDrawerNavigationChanged(context, index);
+              },
+              bottomNavigationIndex: _bottomNavigationIndex(state),
+              drawerNavigationIndex: _drawerNavigationIndex(state),
             );
           },
           routes: [
             GoRoute(
-              path: resultRoute,
+              path: RoutesNames.resultRoute.path,
               builder: (_, state) {
-                return const ResultRoute();
+                return ResultRoute(
+                  onBottomNavigationChanged: (index) {
+                    context.go(BottomNavigationRoutes.routes[index]!.path);
+                  },
+                  bottomNavigationIndex:
+                      BottomNavigationRoutes.routes.entries
+                          .singleWhere((entry) => entry.value == state.fullPath)
+                          .key,
+                );
               },
             ),
           ],
@@ -51,21 +61,24 @@ class Navigation {
           },
           routes: [
             GoRoute(
-              path: registerRoute,
+              path: RoutesNames.registerRoute.path,
               builder: (context, state) {
                 return RegisterRoute(
-                  goToHomeRoute: () {},
-                  goToLoginRoute: () => context.go(loginRoute),
+                  goToHomeRoute: () => _goToHomeRoute(context),
+                  goToLoginRoute: () => context.go(RoutesNames.loginRoute.path),
                   goToVerificationRoute:
-                      () => context.go('$registerRoute$verificationRoute'),
+                      () => context.go(
+                        '${RoutesNames.registerRoute.path}${RoutesNames.verificationRoute.path}',
+                      ),
                 );
               },
               routes: [
                 GoRoute(
-                  path: verificationRoute,
+                  path: RoutesNames.verificationRoute.path,
                   builder: (context, state) {
                     return RegisterVerifyPhoneNumberRoute(
-                      goToLoginRoute: () => context.go(loginRoute),
+                      goToLoginRoute:
+                          () => context.go(RoutesNames.loginRoute.path),
                     );
                   },
                 ),
@@ -85,18 +98,15 @@ class Navigation {
           },
           routes: [
             GoRoute(
-              path: loginRoute,
+              path: RoutesNames.loginRoute.path,
               builder: (context, state) {
                 return LoginRoute(
                   goToForgotPasswordRoute: () {
-                    context.go(forgotPassRoute);
+                    context.go(RoutesNames.forgotPassRoute.path);
                   },
-                  goToHomeRoute: () {
-                    // Todo nav to home for all routes
-                    context.go('$loginRoute$forgotPassRoute');
-                  },
+                  goToHomeRoute: () => _goToHomeRoute(context),
                   goToRegisterRoute: () {
-                    context.go(registerRoute);
+                    context.go(RoutesNames.registerRoute.path);
                   },
                 );
               },
@@ -115,21 +125,25 @@ class Navigation {
           },
           routes: [
             GoRoute(
-              path: forgotPassRoute,
+              path: RoutesNames.forgotPassRoute.path,
               builder: (context, state) {
                 return ForgotPasswordRoute(
-                  goToLoginRoute: () => context.go(loginRoute),
+                  goToLoginRoute: () => context.go(RoutesNames.loginRoute.path),
                   goToVerificationRoute:
-                      () => context.go('$forgotPassRoute$verificationRoute'),
-                  goToRegisterRoute: () => context.go(registerRoute),
+                      () => context.go(
+                        '${RoutesNames.forgotPassRoute.path}${RoutesNames.verificationRoute.path}',
+                      ),
+                  goToRegisterRoute:
+                      () => context.go(RoutesNames.registerRoute.path),
                 );
               },
               routes: [
                 GoRoute(
-                  path: verificationRoute,
+                  path: RoutesNames.verificationRoute.path,
                   builder: (context, state) {
                     return ForgotPasswordVerifyPhoneNumberRoute(
-                      goToLoginRoute: () => context.go(loginRoute),
+                      goToLoginRoute:
+                          () => context.go(RoutesNames.loginRoute.path),
                     );
                   },
                 ),
@@ -138,27 +152,78 @@ class Navigation {
           ],
         ),
         GoRoute(
-          path: profileRoute,
+          path: RoutesNames.profileRoute.path,
           builder: (context, state) {
-            return ProfileRoute();
+            return ProfileRoute(
+              onBottomNavigationChanged: (index) {
+                _onBottomNavigationChanged(context, index);
+              },
+              onDrawerNavigationChanged: (index) {
+                _onDrawerNavigationChanged(context, index);
+              },
+              bottomNavigationIndex: _bottomNavigationIndex(state),
+              drawerNavigationIndex: _drawerNavigationIndex(state),
+            );
           },
         ),
         GoRoute(
-          path: fitnessProfileRoute,
+          path: RoutesNames.fitnessProfileRoute.path,
           builder: (context, state) {
-            return FitnessProfileRoute();
+            return FitnessProfileRoute(
+              onBottomNavigationChanged: (index) {
+                _onBottomNavigationChanged(context, index);
+              },
+              onDrawerNavigationChanged: (index) {
+                _onDrawerNavigationChanged(context, index);
+              },
+              bottomNavigationIndex: _bottomNavigationIndex(state),
+              drawerNavigationIndex: _drawerNavigationIndex(state),
+            );
           },
         ),
         GoRoute(
-          path: foodReportRoute,
+          path: RoutesNames.foodReportRoute.path,
           builder: (context, state) {
             return FoodReportRoute(
-              goToFoodInputRoute: () => context.go(searchRoute),
-              goToFitnessProfileRoute: () => context.go(fitnessProfileRoute),
+              goToFoodInputRoute: () => context.go(RoutesNames.searchRoute.path),
+              goToFitnessProfileRoute: () => context.go(RoutesNames.fitnessProfileRoute.path),
+                            onBottomNavigationChanged: (index) {
+                _onBottomNavigationChanged(context, index);
+              },
+              onDrawerNavigationChanged: (index) {
+                _onDrawerNavigationChanged(context, index);
+              },
+              bottomNavigationIndex: _bottomNavigationIndex(state),
+              drawerNavigationIndex: _drawerNavigationIndex(state),
             );
           },
         ),
       ],
     );
+  }
+
+  static void _goToHomeRoute(BuildContext context) {
+    final currentBottomNavigationRoute = BottomNavigationRoutes.routes[0]!.path;
+    context.go(currentBottomNavigationRoute);
+  }
+
+  static void _onBottomNavigationChanged(BuildContext context, int index) {
+    context.go(BottomNavigationRoutes.routes[index]!.path);
+  }
+
+  static void _onDrawerNavigationChanged(BuildContext context, int index) {
+    context.go(DrawerNavigationRoutes.routes[index]!.path);
+  }
+
+  static int _bottomNavigationIndex(GoRouterState state) {
+    return BottomNavigationRoutes.routes.entries
+        .singleWhere((entry) => entry.value == state.fullPath)
+        .key;
+  }
+
+  static int _drawerNavigationIndex(GoRouterState state) {
+    return DrawerNavigationRoutes.routes.entries
+        .singleWhere((entry) => entry.value == state.fullPath)
+        .key;
   }
 }

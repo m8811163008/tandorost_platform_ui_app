@@ -7,9 +7,21 @@ import 'package:profile/profile.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class SearchRoute extends StatelessWidget {
-  const SearchRoute({super.key, this.goToResultRoute});
+  const SearchRoute({
+    super.key,
+    this.goToResultRoute,
+    this.onBottomNavigationChanged,
+    required this.bottomNavigationIndex,
+    this.onDrawerNavigationChanged,
+    required this.drawerNavigationIndex,
+  });
   static const String name = 'search-route';
   final VoidCallback? goToResultRoute;
+  final ValueChanged<int>? onBottomNavigationChanged;
+
+  final int bottomNavigationIndex;
+  final ValueChanged<int>? onDrawerNavigationChanged;
+    final int drawerNavigationIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -25,27 +37,14 @@ class SearchRoute extends StatelessWidget {
       child: AppScaffold(
         appBar: AppBar(),
         drawer: NavigationDrawer(
-          onDestinationSelected: (index) {},
-          selectedIndex: 0,
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-              accountName: Text('data'),
-              accountEmail: Text('data'),
-              currentAccountPicture: Text('data'),
-            ),
-
-            NavigationDrawerDestination(
-              label: Text('destination.label'),
-              icon: Icon(Icons.add),
-            ),
-          ],
+          onDestinationSelected: onDrawerNavigationChanged,
+          selectedIndex: drawerNavigationIndex,
+          children: AppNavigationDrawer.children,
         ),
         bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'a'),
-            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'a'),
-            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'a'),
-          ],
+          onTap: onBottomNavigationChanged,
+          currentIndex: bottomNavigationIndex,
+          items: AppBottomNavigation.items,
         ),
         body: SearchBody(onSeachFoodSuccess: goToResultRoute),
       ),

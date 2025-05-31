@@ -9,7 +9,17 @@ import 'package:image_repository/image_repository.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class FitnessProfileRoute extends StatelessWidget {
-  const FitnessProfileRoute({super.key});
+  const FitnessProfileRoute({
+    super.key,
+    this.onBottomNavigationChanged,
+    required this.bottomNavigationIndex,
+    this.onDrawerNavigationChanged,
+    required this.drawerNavigationIndex,
+  });
+  final ValueChanged<int>? onBottomNavigationChanged;
+  final int bottomNavigationIndex;
+  final ValueChanged<int>? onDrawerNavigationChanged;
+  final int drawerNavigationIndex;
   static const String name = 'fitness-profile';
   @override
   Widget build(BuildContext context) {
@@ -23,6 +33,16 @@ class FitnessProfileRoute extends StatelessWidget {
       child: AppScaffold(
         appBar: AppBar(actions: [AddMeasurementButton(), AddImageButton()]),
         body: FitnessProfileView(),
+        drawer: NavigationDrawer(
+          onDestinationSelected: onDrawerNavigationChanged,
+          selectedIndex: drawerNavigationIndex,
+          children: AppNavigationDrawer.children,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: onBottomNavigationChanged,
+          currentIndex: bottomNavigationIndex,
+          items: AppBottomNavigation.items,
+        ),
       ),
     );
   }

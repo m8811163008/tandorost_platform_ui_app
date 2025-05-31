@@ -7,6 +7,7 @@ export 'src/common/text_field/text_field.dart';
 export 'src/common/card/card.dart';
 export 'src/common/container/image_profile.dart';
 export 'src/common/extension/date_extension.dart';
+export 'src/common/navigation/navigation.dart';
 // l10n
 export 'src/l10n/component_library_localizations.dart';
 export 'src/utility/build_context_l10n_extension.dart';

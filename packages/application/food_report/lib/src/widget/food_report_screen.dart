@@ -13,9 +13,17 @@ class FoodReportScreen extends StatefulWidget {
     super.key,
     this.goToFoodInputRoute,
     this.goToFitnessProfileRoute,
+    this.onBottomNavigationChanged,
+    required this.bottomNavigationIndex,
+    this.onDrawerNavigationChanged,
+    required this.drawerNavigationIndex,
   });
   final VoidCallback? goToFoodInputRoute;
   final VoidCallback? goToFitnessProfileRoute;
+  final ValueChanged<int>? onBottomNavigationChanged;
+  final int bottomNavigationIndex;
+  final ValueChanged<int>? onDrawerNavigationChanged;
+  final int drawerNavigationIndex;
 
   @override
   State<FoodReportScreen> createState() => _FoodReportScreenState();
@@ -66,6 +74,16 @@ class _FoodReportScreenState extends State<FoodReportScreen>
         final canEdit = state.selectedFoods.length == 1;
         final canDelete = state.selectedFoods.isNotEmpty;
         return AppScaffold(
+          drawer: NavigationDrawer(
+            onDestinationSelected: widget.onDrawerNavigationChanged,
+            selectedIndex: widget.drawerNavigationIndex,
+            children: AppNavigationDrawer.children,
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            onTap: widget.onBottomNavigationChanged,
+            currentIndex: widget.bottomNavigationIndex,
+            items: AppBottomNavigation.items,
+          ),
           appBar: AppBar(
             actions: [
               IconButton.outlined(
@@ -92,8 +110,14 @@ class _FoodReportScreenState extends State<FoodReportScreen>
             bottom: TabBar(
               controller: _controller,
               tabs: <Widget>[
-                Tab(icon: Icon(Icons.monitor_heart), text: context.l10n.foodReportTabLabelRestDay),
-                Tab(icon: Icon(Icons.sports), text: context.l10n.foodReportTabLabelTrainingDay),
+                Tab(
+                  icon: Icon(Icons.monitor_heart),
+                  text: context.l10n.foodReportTabLabelRestDay,
+                ),
+                Tab(
+                  icon: Icon(Icons.sports),
+                  text: context.l10n.foodReportTabLabelTrainingDay,
+                ),
               ],
             ),
           ),

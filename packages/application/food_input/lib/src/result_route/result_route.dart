@@ -6,8 +6,14 @@ import 'package:food_input_app/src/result_route/result_body.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class ResultRoute extends StatelessWidget {
-  const ResultRoute({super.key});
+  const ResultRoute({
+    super.key,
+    this.onBottomNavigationChanged,
+    required this.bottomNavigationIndex,
+  });
   static const String name = 'result-route';
+  final ValueChanged<int>? onBottomNavigationChanged;
+  final int bottomNavigationIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +28,8 @@ class ResultRoute extends StatelessWidget {
         appBar: AppBar(),
 
         bottomNavigationBar: BottomNavigationBar(
+          onTap: onBottomNavigationChanged,
+          currentIndex: bottomNavigationIndex,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.add), label: 'a'),
             BottomNavigationBarItem(icon: Icon(Icons.add), label: 'a'),

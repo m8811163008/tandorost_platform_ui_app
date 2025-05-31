@@ -11,10 +11,18 @@ class FoodReportRoute extends StatelessWidget {
     super.key,
     this.goToFoodInputRoute,
     this.goToFitnessProfileRoute,
+    this.onBottomNavigationChanged,
+    required this.bottomNavigationIndex,
+    this.onDrawerNavigationChanged,
+    required this.drawerNavigationIndex,
   });
   static const String name = 'food-report';
   final VoidCallback? goToFoodInputRoute;
   final VoidCallback? goToFitnessProfileRoute;
+  final ValueChanged<int>? onBottomNavigationChanged;
+  final int bottomNavigationIndex;
+  final ValueChanged<int>? onDrawerNavigationChanged;
+  final int drawerNavigationIndex;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -27,6 +35,10 @@ class FoodReportRoute extends StatelessWidget {
       child: FoodReportScreen(
         goToFoodInputRoute: goToFoodInputRoute,
         goToFitnessProfileRoute: goToFitnessProfileRoute,
+        bottomNavigationIndex: bottomNavigationIndex,
+        drawerNavigationIndex: drawerNavigationIndex,
+        onBottomNavigationChanged: onBottomNavigationChanged,
+        onDrawerNavigationChanged: onDrawerNavigationChanged,
       ),
     );
   }

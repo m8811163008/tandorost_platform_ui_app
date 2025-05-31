@@ -11,8 +11,18 @@ import 'package:profile_app/src/edit_name_button.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class ProfileRoute extends StatelessWidget {
-  const ProfileRoute({super.key});
+  const ProfileRoute({
+    super.key,
+    this.onBottomNavigationChanged,
+    required this.bottomNavigationIndex,
+    this.onDrawerNavigationChanged,
+    required this.drawerNavigationIndex,
+  });
   static const String name = 'profile';
+  final ValueChanged<int>? onBottomNavigationChanged;
+  final int bottomNavigationIndex;
+  final ValueChanged<int>? onDrawerNavigationChanged;
+  final int drawerNavigationIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +32,20 @@ class ProfileRoute extends StatelessWidget {
             RepositoryProvider.of<ProfileRepository>(context),
             RepositoryProvider.of<ImageRepository>(context),
           ),
-      child: AppScaffold(appBar: AppBar(), body: ProfileView()),
+      child: AppScaffold(
+        appBar: AppBar(),
+        body: ProfileView(),
+        drawer: NavigationDrawer(
+          onDestinationSelected: onDrawerNavigationChanged,
+          selectedIndex: drawerNavigationIndex,
+          children: AppNavigationDrawer.children,
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: onBottomNavigationChanged,
+          currentIndex: bottomNavigationIndex,
+          items: AppBottomNavigation.items,
+        ),
+      ),
     );
   }
 }
