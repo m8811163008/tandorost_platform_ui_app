@@ -100,11 +100,13 @@ class _RegisterFormState extends State<RegisterForm> {
             onChange: (value) {
               context.read<RegisterCubit>().onChangePhoneNumber('09$value');
             },
+            textDirection: TextDirection.ltr,
           ),
 
           SizedBox(height: context.sizeExtenstion.small),
           PasswordTextField(
             onChange: context.read<RegisterCubit>().onChangePinCode,
+            textDirection: TextDirection.ltr,
           ),
 
           SizedBox(height: context.sizeExtenstion.large),

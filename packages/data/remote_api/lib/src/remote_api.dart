@@ -11,13 +11,12 @@ abstract interface class RemoteApi {
   ///
   /// - [get_user_language]: A function that retrieves the user's language.
   /// - [get_access_token]: A function that retrieves the access token.
-  factory RemoteApi({
-    required Future<Language> Function() get_user_language,
-    required Future<String> Function() get_access_token,
-  }) => RemoteApiBase(
-    get_user_language: get_user_language,
-    get_access_token: get_access_token,
-  );
+  factory RemoteApi() {
+    return RemoteApiBase();
+  }
+
+  late final Stream<Language> userLanguageProvider;
+  late final Future<Token?> Function() accessTokenProvider;
 
   Stream<AuthenticationStatus> get authenticationStatusStream;
 

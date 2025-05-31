@@ -31,7 +31,7 @@ class AuthenticationRepository {
     await localStorage.upsert(StorageKey.token, token.toJson());
   }
 
-  Future<Token?> getToken() async {
+  Future<Token?> accessTokenProvider() async {
     final tokenMap = await localStorage.read(StorageKey.token);
     if (tokenMap == null) {
       return null;

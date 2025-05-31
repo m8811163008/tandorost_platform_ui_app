@@ -28,6 +28,7 @@ class _VerifyFormForgotPasswordState extends State<VerifyFormForgotPassword> {
           VerificationCodeTextField(
             onChanged:
                 context.read<ForgotPasswordCubit>().onChangeVerificationCode,
+            textDirection: TextDirection.ltr,
           ),
 
           SizedBox(height: context.sizeExtenstion.large),

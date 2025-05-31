@@ -108,10 +108,12 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                 '09$value',
               );
             },
+            textDirection: TextDirection.ltr,
           ),
           SizedBox(height: context.sizeExtenstion.small),
           PasswordTextField(
             onChange: context.read<ForgotPasswordCubit>().onChangePinCode,
+            textDirection: TextDirection.ltr,
           ),
 
           SizedBox(height: context.sizeExtenstion.large),

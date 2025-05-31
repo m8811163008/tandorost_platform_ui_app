@@ -34,13 +34,7 @@ class DependencyManager extends StatelessWidget {
         if (snapshot.hasData) {
           final nonSecureStorage = snapshot.data![0];
 
-          final remoteApi = RemoteApi(
-            get_user_language: () => Future.value(Language.english),
-            get_access_token:
-                () => Future.value(
-                  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiIzZmQxY2Q1MS1jZDA0LTRkZjUtOTBjOC0yMWU2NDM1ODc2NmYiLCJleHAiOjE3NDg2ODgwNjB9.ofox9TCcWn6UeO7ZuRXsdt0rjWWE_aIiAJ3UGcUKQmo',
-                ),
-          );
+          final remoteApi = RemoteApi();
 
           AndroidOptions _getAndroidOptions() =>
               const AndroidOptions(encryptedSharedPreferences: true);
@@ -50,19 +44,21 @@ class DependencyManager extends StatelessWidget {
             flutterSecureStorage: storage,
             sharedPreferences: nonSecureStorage,
           );
-
+          late final authenticationRep = AuthenticationRepository(
+            remoteApi: remoteApi,
+            localStorage: localStorage,
+          );
           final foodInputRep = FoodInputRepository(remoteApi: remoteApi);
           final profileRep = ProfileRepository(
             remoteApi: remoteApi,
             localStorage: localStorage,
           );
-          final authenticationRep = AuthenticationRepository(
-            remoteApi: remoteApi,
-            localStorage: localStorage,
-          );
+
           final imageRepository = ImageRepository(remoteApi: remoteApi);
           final fitnessNutrition = FitnessNutrition(remoteApi: remoteApi);
           final foodReport = FoodReport(remoteApi: remoteApi);
+          remoteApi.accessTokenProvider = authenticationRep.accessTokenProvider;
+          remoteApi.userLanguageProvider = profileRep.userLanguage.asBroadcastStream();
 
           return MultiRepositoryProvider(
             providers: [

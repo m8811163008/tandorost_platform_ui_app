@@ -3,15 +3,18 @@
 import 'dart:async';
 
 import 'package:http_interceptor/http_interceptor.dart';
+import 'package:remote_api/remote_api.dart';
 
 class AccessTokenInterceptor implements InterceptorContract {
-  final Future<String> Function() get_user_token;
+  final Future<Token?> Function() accessTokenProvider;
 
-  AccessTokenInterceptor(this.get_user_token);
+  AccessTokenInterceptor(this.accessTokenProvider);
   @override
   Future<BaseRequest> interceptRequest({required BaseRequest request}) async {
-    final token = await get_user_token();
-    request.headers['Authorization'] = 'Bearer $token';
+    final token = await accessTokenProvider();
+    if (token != null) {
+      request.headers['Authorization'] = 'Bearer ${token.accessToken}';
+    }
     return request;
   }
 

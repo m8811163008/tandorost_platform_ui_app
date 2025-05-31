@@ -27,6 +27,7 @@ class _VerifyFormRegisterState extends State<VerifyFormRegister> {
 
           VerificationCodeTextField(
             onChanged: context.read<RegisterCubit>().onChangeVerificationCode,
+            textDirection: TextDirection.ltr,
           ),
           SizedBox(height: context.sizeExtenstion.large),
           BlocBuilder<RegisterCubit, RegisterState>(

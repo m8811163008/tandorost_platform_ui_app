@@ -12,36 +12,34 @@ import 'package:remote_api/src/utility/utility.dart';
 typedef JsonMap = Map<String, dynamic>;
 
 class RemoteApiBase implements RemoteApi {
-  RemoteApiBase({
-    required this.get_user_language,
-    required this.get_access_token,
-  });
-  // Todo handle Unauthorized
-  Future<Language> Function() get_user_language;
-  Future<String> Function() get_access_token;
+  RemoteApiBase();
+
+  late final Stream<Language> userLanguageProvider;
+  
+  late final Future<Token?> Function() accessTokenProvider;
+
   StreamController<AuthenticationStatus> _controller =
       StreamController.broadcast();
-      AuthenticationStatus? _lastEmittedAuthValue;
+  AuthenticationStatus? _lastEmittedAuthValue;
   static const _detail = 'detail';
 
   Stream<AuthenticationStatus> get authenticationStatusStream async* {
     // _controller.add(AuthenticationStatus.authorized);
-    if(_lastEmittedAuthValue != null){
+    if (_lastEmittedAuthValue != null) {
       yield _lastEmittedAuthValue!;
-    }else{
+    } else {
       _lastEmittedAuthValue = await _controller.stream.first;
     }
 
     yield* _controller.stream.asBroadcastStream();
   }
 
-
   Future<String> sendVerificationCode({
     required VerificationCodeRequest verificationCodeRequest,
   }) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
+        CommonInterceptor(userLanguageProvider),
         ContentTypeInterceptor(
           requestContentType: ContentType.applicationXWwwFormUrlencoded,
         ),
@@ -60,7 +58,7 @@ class RemoteApiBase implements RemoteApi {
   Future<String> register({required RegisterRequest registerRequest}) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
+        CommonInterceptor(userLanguageProvider),
         ContentTypeInterceptor(
           requestContentType: ContentType.applicationXWwwFormUrlencoded,
         ),
@@ -78,7 +76,7 @@ class RemoteApiBase implements RemoteApi {
   }) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
+        CommonInterceptor(userLanguageProvider),
         ContentTypeInterceptor(
           requestContentType: ContentType.applicationXWwwFormUrlencoded,
         ),
@@ -94,7 +92,7 @@ class RemoteApiBase implements RemoteApi {
   Future<Token> authenticate({required Credential credential}) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
+        CommonInterceptor(userLanguageProvider),
         ContentTypeInterceptor(
           requestContentType: ContentType.applicationXWwwFormUrlencoded,
         ),
@@ -110,8 +108,8 @@ class RemoteApiBase implements RemoteApi {
   Future<UserProfile> userProfile() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
-        AccessTokenInterceptor(get_access_token),
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
       ],
     );
     final uri = UriBuilder.userProfile();
@@ -123,9 +121,9 @@ class RemoteApiBase implements RemoteApi {
   Future<UserProfile> updateProfile(UserProfile updatedProfile) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
+        CommonInterceptor(userLanguageProvider),
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
-        AccessTokenInterceptor(get_access_token),
+        AccessTokenInterceptor(accessTokenProvider),
       ],
     );
     final uri = UriBuilder.updateProfile();
@@ -139,8 +137,8 @@ class RemoteApiBase implements RemoteApi {
   Future<UserPhysicalProfile?> readUserPhysicalProfile() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
-        AccessTokenInterceptor(get_access_token),
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
       ],
     );
     final uri = UriBuilder.readUserPhysicalData();
@@ -154,8 +152,8 @@ class RemoteApiBase implements RemoteApi {
   }) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
-        AccessTokenInterceptor(get_access_token),
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
@@ -168,8 +166,8 @@ class RemoteApiBase implements RemoteApi {
   ) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
-        AccessTokenInterceptor(get_access_token),
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
@@ -190,8 +188,8 @@ class RemoteApiBase implements RemoteApi {
   ) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
-        AccessTokenInterceptor(get_access_token),
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
       ],
     );
     final uri = UriBuilder.readUserImageGallary(gallaryTags);
@@ -202,8 +200,8 @@ class RemoteApiBase implements RemoteApi {
   Future<List<FileData>> readUserProfileImage() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
-        AccessTokenInterceptor(get_access_token),
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
       ],
     );
     final uri = UriBuilder.readUserProfileImage();
@@ -214,8 +212,8 @@ class RemoteApiBase implements RemoteApi {
   Future<FileDetail> readImage(FileData fileData) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
-        AccessTokenInterceptor(get_access_token),
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
       ],
     );
     final uri = UriBuilder.readImage(fileData.fileUploadPath);
@@ -229,8 +227,8 @@ class RemoteApiBase implements RemoteApi {
   ) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
-        AccessTokenInterceptor(get_access_token),
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
@@ -246,8 +244,8 @@ class RemoteApiBase implements RemoteApi {
     final uri = UriBuilder.addUsersImages();
     final request = http.MultipartRequest('POST', uri);
 
-    final token = await get_access_token();
-    final language = await get_user_language();
+    final token = await accessTokenProvider();
+    final language = await userLanguageProvider.asBroadcastStream().first;
 
     request.headers.addAll({
       'Authorization': 'Bearer $token',
@@ -309,8 +307,8 @@ class RemoteApiBase implements RemoteApi {
   Future<List<Food>> readFoodsNutritionsByText(String prompt) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
-        AccessTokenInterceptor(get_access_token),
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
@@ -325,8 +323,8 @@ class RemoteApiBase implements RemoteApi {
   Future<List<Food>> readFoodsNutrition(DateTime date1, DateTime date2) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
-        AccessTokenInterceptor(get_access_token),
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
@@ -339,8 +337,8 @@ class RemoteApiBase implements RemoteApi {
   Future<Food> updateFoodsNutritions(Food food) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
-        AccessTokenInterceptor(get_access_token),
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
@@ -355,8 +353,8 @@ class RemoteApiBase implements RemoteApi {
   Future<void> deleteFoodsNutritions(List<String> foodIds) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
-        AccessTokenInterceptor(get_access_token),
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
@@ -370,8 +368,8 @@ class RemoteApiBase implements RemoteApi {
   }) async {
     final uri = UriBuilder.readFoodsNutritionsByVoice();
     final request = http.MultipartRequest('POST', uri);
-    final token = await get_access_token();
-    final language = await get_user_language();
+    final token = await accessTokenProvider();
+    final language = await userLanguageProvider.asBroadcastStream().first;
 
     request.headers.addAll({
       'Authorization': 'Bearer $token',
@@ -432,8 +430,8 @@ class RemoteApiBase implements RemoteApi {
   Future<FitnessData?> readFitnessData() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
-        AccessTokenInterceptor(get_access_token),
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
@@ -447,8 +445,8 @@ class RemoteApiBase implements RemoteApi {
   Future<NutritionRequirements?> readNutritionRequirements() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
-        CommonInterceptor(get_user_language),
-        AccessTokenInterceptor(get_access_token),
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );

@@ -12,7 +12,7 @@ class ProfileRepository {
     : _controller = BehaviorSubject.seeded(Language.persian);
 
   Stream<Language> get userLanguage async* {
-    yield* _controller.stream.asBroadcastStream();
+    yield* _controller.stream;
   }
 
   Future<Language> get userSpokenLanguage async {

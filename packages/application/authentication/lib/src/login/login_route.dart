@@ -104,10 +104,12 @@ class _LoginFormState extends State<LoginForm> {
             onChange: (value) {
               context.read<LoginCubit>().onChangePhoneNumber('09$value');
             },
+            textDirection: TextDirection.ltr,
           ),
           SizedBox(height: context.sizeExtenstion.small),
           PasswordTextField(
             onChange: context.read<LoginCubit>().onChangePinCode,
+            textDirection: TextDirection.ltr,
           ),
 
           SizedBox(height: context.sizeExtenstion.large),
