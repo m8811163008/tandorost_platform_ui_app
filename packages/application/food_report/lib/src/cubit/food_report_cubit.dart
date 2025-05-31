@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:bloc/bloc.dart';
+
 import 'package:domain_model/domain_model.dart';
-import 'package:equatable/equatable.dart';
 import 'package:fitness_nutrition/fitness_nutrition.dart';
 import 'package:flutter/material.dart';
 import 'package:food_report/food_report.dart';
+import 'package:tandorost_components/tandorost_components.dart';
 
 part 'food_report_state.dart';
 

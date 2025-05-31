@@ -19,7 +19,6 @@ dependencies:
     path: ../../repositories/profile
   authentication:
     path: ../../repositories/authentication 
-  flutter_bloc: ^9.1.1
 
 dev_dependencies:
   flutter_test:

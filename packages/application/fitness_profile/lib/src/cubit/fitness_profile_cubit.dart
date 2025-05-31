@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:bloc/bloc.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:fitness_nutrition/fitness_nutrition.dart';
 import 'package:image_repository/image_repository.dart';
+import 'package:tandorost_components/tandorost_components.dart';
 
 part 'fitness_profile_state.dart';
 

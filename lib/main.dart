@@ -78,11 +78,36 @@ class DependencyManager extends StatelessWidget {
               RepositoryProvider(create: (_) => fitnessNutrition, lazy: true),
               RepositoryProvider(create: (_) => foodReport, lazy: true),
             ],
-            child: TandorostPlatform(),
+            child: TandorostBlocProviders(),
           );
         }
         return SizedBox();
       },
+    );
+  }
+}
+
+class TandorostBlocProviders extends StatelessWidget {
+  const TandorostBlocProviders({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create:
+              (context) => UserAccountCubit(
+                imageRepository: RepositoryProvider.of<ImageRepository>(
+                  context,
+                ),
+                profileRepository: RepositoryProvider.of<ProfileRepository>(
+                  context,
+                ),
+              ),
+          lazy: false,
+        ),
+      ],
+      child: TandorostPlatform(),
     );
   }
 }

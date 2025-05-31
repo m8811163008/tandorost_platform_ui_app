@@ -3,8 +3,9 @@ import 'dart:io';
 import 'package:authentication/authentication.dart';
 
 import 'package:domain_model/domain_model.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
+
+import 'package:tandorost_components/tandorost_components.dart';
 
 part 'forgot_password_state.dart';
 

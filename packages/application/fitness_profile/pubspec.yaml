@@ -19,7 +19,6 @@ dependencies:
     path: ../../repositories/fitness_nutrition
   image_repository:
     path: ../../repositories/image_repository
-  flutter_bloc: ^9.1.1
   carousel_slider: ^5.0.0
   pro_image_editor: ^9.9.3
   fl_chart: ^1.0.0
