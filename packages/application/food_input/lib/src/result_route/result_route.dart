@@ -29,11 +29,7 @@ class ResultRoute extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
           onTap: onBottomNavigationChanged,
           currentIndex: bottomNavigationIndex,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'a'),
-            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'a'),
-            BottomNavigationBarItem(icon: Icon(Icons.add), label: 'a'),
-          ],
+          items: AppNavigation.bottomNavigationItems(context),
         ),
         body: BlocProvider(
           create:

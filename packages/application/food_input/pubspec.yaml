@@ -15,7 +15,7 @@ dependencies:
     path: ../../tandorost_components
   domain_model:
     path: ../../domain_model
-  food_input : 
+  food_input: 
     path: ../../repositories/food_input
   profile:
     path: ../../repositories/profile

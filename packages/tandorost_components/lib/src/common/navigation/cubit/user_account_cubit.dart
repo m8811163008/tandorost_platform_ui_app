@@ -14,9 +14,15 @@ class UserAccountCubit extends Cubit<UserAccountState> {
     required ProfileRepository profileRepository,
   }) : _imageRepository = imageRepository,
        _profileRepository = profileRepository,
-       super(UserAccountState());
+       super(UserAccountState()){
+        _initialize();
+       }
   final ImageRepository _imageRepository;
   final ProfileRepository _profileRepository;
+  void _initialize(){
+    readUserProfileImage();
+    readUserProfile();
+  }
 
   void readUserProfileImage() async {
     emit(

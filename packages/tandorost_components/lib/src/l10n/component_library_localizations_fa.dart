@@ -702,4 +702,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get wellcomeMessage => 'سلام';
 }

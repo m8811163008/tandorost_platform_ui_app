@@ -8,7 +8,9 @@ class AppNavigation {
     return [
       UserAccountsDrawerHeader(
         accountName: Text(
-          'Hi ${context.select((UserAccountCubit cubit) => cubit.state.userProfile?.fullName ?? '')}',
+          '${context.l10n.wellcomeMessage} ${context.select((UserAccountCubit cubit) {
+            return cubit.state.userProfile?.fullName ?? '';
+          })}',
         ),
         accountEmail: Text(
           '${context.select((UserAccountCubit cubit) => cubit.state.userProfile?.phoneNumber ?? '')} ',
@@ -24,10 +26,7 @@ class AppNavigation {
               backgroundImage:
                   imageProfile != null ? MemoryImage(imageProfile.bytes) : null,
               radius: context.sizeExtenstion.xExtraLarge,
-              child: Material(
-                color: context.themeData.colorScheme.secondary,
-                child: Icon(Icons.person),
-              ),
+              child: imageProfile == null ? Icon(Icons.person) : null,
             );
           },
         ),

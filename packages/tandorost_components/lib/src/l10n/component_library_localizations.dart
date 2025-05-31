@@ -1154,6 +1154,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'{routesNames, select, loginRoute{ورود} registerRoute{ثبت نام} searchRoute{جستجو} resultRoute{نتیجه} forgotPassRoute{فراموشی رمز عبور} verificationRoute{تایید شماره} profileRoute{پروفایل} fitnessProfileRoute{تناسب اندام} foodReportRoute{گزارش تغذیه} other{ترجمه تعریف نشده}}'**
   String appRoutesName(String routesNames);
+
+  /// No description provided for @wellcomeMessage.
+  ///
+  /// In fa, this message translates to:
+  /// **'سلام'**
+  String get wellcomeMessage;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

@@ -52,6 +52,22 @@ class AppTheme {
           borderRadius: BorderRadius.circular(sizeExtenstion.small),
         ),
       ),
+      // Calm theme: soft, muted colors
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: ThemeColor.white.color,
+        selectedItemColor: ThemeColor.pictonBlue.color.withAlpha(
+          160,
+        ), // calm blue
+        unselectedItemColor: ThemeColor.oxfordBlue.color.withAlpha(
+          128,
+        ), // muted blue
+        selectedIconTheme: IconThemeData(color: ThemeColor.pictonBlue.color),
+        unselectedIconTheme: IconThemeData(
+          color: ThemeColor.oxfordBlue.color.withAlpha(128),
+        ),
+        showUnselectedLabels: true,
+        type: BottomNavigationBarType.fixed,
+      ),
     );
   }
 

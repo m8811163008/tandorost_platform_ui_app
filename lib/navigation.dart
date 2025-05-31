@@ -10,16 +10,14 @@ import 'package:food_input_app/food_input.dart';
 import 'package:profile_app/profile.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
-
-
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: BottomNavigationRoutes.routes[0]!.path,
+      initialLocation: RoutesNames.searchRoute.path,
       routes: [
         GoRoute(
           path: RoutesNames.searchRoute.path,
-          builder: (_, state) {
+          builder: (context, state) {
             return SearchRoute(
               goToResultRoute:
                   () => context.go(
@@ -39,7 +37,7 @@ class Navigation {
           routes: [
             GoRoute(
               path: RoutesNames.resultRoute.path,
-              builder: (_, state) {
+              builder: (context, state) {
                 return ResultRoute(
                   onBottomNavigationChanged: (index) {
                     _onBottomNavigationChanged(context, index);
@@ -219,14 +217,22 @@ class Navigation {
   }
 
   static int _bottomNavigationIndex(GoRouterState state) {
-    return BottomNavigationRoutes.routes.entries
-        .singleWhere((entry) => entry.value == state.fullPath)
-        .key;
+    try {
+      return BottomNavigationRoutes.routes.entries
+          .singleWhere((entry) => entry.value.path == state.fullPath)
+          .key;
+    } catch (e) {
+      return 0;
+    }
   }
 
   static int _drawerNavigationIndex(GoRouterState state) {
-    return DrawerNavigationRoutes.routes.entries
-        .singleWhere((entry) => entry.value == state.fullPath)
-        .key;
+    try {
+      return DrawerNavigationRoutes.routes.entries
+          .singleWhere((entry) => entry.value.path == state.fullPath)
+          .key;
+    } catch (e) {
+      return 0;
+    }
   }
 }

@@ -70,9 +70,13 @@ class ProfileView extends StatelessWidget {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.updatingProfileStatus.isSuccess) {
+          context.read<UserAccountCubit>().readUserProfile();
         }
       },
-      child: Column(children: [ProfileCard(), SettingCard()]),
+      child: SingleChildScrollView(
+        child: Column(children: [ProfileCard(), SettingCard()]),
+      ),
     );
   }
 }
@@ -116,7 +120,30 @@ class ProfileCard extends StatelessWidget {
                   ],
                 ),
               ),
-              BlocBuilder<ProfileCubit, ProfileState>(
+              BlocConsumer<ProfileCubit, ProfileState>(
+                listenWhen:
+                    (previous, current) =>
+                        previous.uploadingImageProfileStatus !=
+                        current.uploadingImageProfileStatus,
+                listener: (context, state) {
+                  if (state
+                      .uploadingImageProfileStatus
+                      .isServerConnectionError) {
+                    final content = context.l10n.networkError;
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text(content)));
+                  } else if (state
+                      .uploadingImageProfileStatus
+                      .isServerConnectionError) {
+                    final content = context.l10n.internetConnectionError;
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text(content)));
+                  } else if (state.uploadingImageProfileStatus.isSuccess) {
+                    context.read<UserAccountCubit>().readUserProfileImage();
+                  }
+                },
                 buildWhen:
                     (previous, current) =>
                         previous.uploadingImageProfileStatus !=
