@@ -19,7 +19,22 @@ class RemoteApiBase implements RemoteApi {
   // Todo handle Unauthorized
   Future<Language> Function() get_user_language;
   Future<String> Function() get_access_token;
+  StreamController<AuthenticationStatus> _controller =
+      StreamController.broadcast();
+      AuthenticationStatus? _lastEmittedAuthValue;
   static const _detail = 'detail';
+
+  Stream<AuthenticationStatus> get authenticationStatusStream async* {
+    // _controller.add(AuthenticationStatus.authorized);
+    if(_lastEmittedAuthValue != null){
+      yield _lastEmittedAuthValue!;
+    }else{
+      _lastEmittedAuthValue = await _controller.stream.first;
+    }
+
+    yield* _controller.stream.asBroadcastStream();
+  }
+
 
   Future<String> sendVerificationCode({
     required VerificationCodeRequest verificationCodeRequest,
@@ -307,10 +322,7 @@ class RemoteApiBase implements RemoteApi {
     return res!.map((e) => Food.fromJson(e)).toList();
   }
 
-  Future<List<Food>> readFoodsNutrition(
-    DateTime date1,
-    DateTime date2,
-  ) async {
+  Future<List<Food>> readFoodsNutrition(DateTime date1, DateTime date2) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         CommonInterceptor(get_user_language),
@@ -450,7 +462,8 @@ class RemoteApiBase implements RemoteApi {
     try {
       final res = await request();
       if (res.statusCode == 401) {
-        throw UnauthorizedException();
+        _controller.add(AuthenticationStatus.unauthorized);
+        throw HttpException('');
       } else if (res.statusCode == 204 || res.statusCode == 404) {
         return null;
       } else {

@@ -10,6 +10,8 @@ class AuthenticationRepository {
     required this.remoteApi,
     required this.localStorage,
   });
+  Stream<AuthenticationStatus> get authenticationStatusStream =>
+      remoteApi.authenticationStatusStream;
 
   Future<String> sendVerificationCode({
     required VerificationCodeRequest verificationCodeRequest,

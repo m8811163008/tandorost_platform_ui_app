@@ -20,6 +20,7 @@ class VerificationCodeTextField extends StatelessWidget {
         }
         return null;
       },
+      textDirection: TextDirection.ltr,
     );
   }
 }

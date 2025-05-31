@@ -21,6 +21,7 @@ class PhoneNumberTextField extends StatelessWidget {
         }
         return null;
       },
+      textDirection: TextDirection.ltr,
     );
   }
 }

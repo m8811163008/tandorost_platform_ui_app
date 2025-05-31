@@ -14,6 +14,7 @@ class NumberTextField extends StatelessWidget {
     this.initalValue,
     this.errorMessage,
     this.suffix,
+    this.textDirection,
   });
   final String label;
   final String? prefix;
@@ -25,6 +26,7 @@ class NumberTextField extends StatelessWidget {
   final String? initalValue;
   final String? errorMessage;
   final Widget? suffix;
+  final TextDirection? textDirection;
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +46,7 @@ class NumberTextField extends StatelessWidget {
       maxLength: maxLength,
       onChanged: onChange,
       validator: validator,
+      textDirection: textDirection,
     );
   }
 }

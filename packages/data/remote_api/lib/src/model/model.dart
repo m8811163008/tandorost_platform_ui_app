@@ -26,3 +26,4 @@ export 'nutrition_requirements.dart';
 export 'fitness_data.dart';
 export 'async_processing_status.dart';
 export 'change_weight_speed.dart';
+export 'authentication_status.dart';

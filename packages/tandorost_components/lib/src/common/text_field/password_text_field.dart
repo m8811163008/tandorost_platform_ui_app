@@ -21,6 +21,7 @@ class PasswordTextField extends StatelessWidget {
         }
         return null;
       },
+      textDirection: TextDirection.ltr,
     );
   }
 }

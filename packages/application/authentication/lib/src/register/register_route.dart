@@ -109,37 +109,24 @@ class _RegisterFormState extends State<RegisterForm> {
           ),
 
           SizedBox(height: context.sizeExtenstion.large),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BlocBuilder<RegisterCubit, RegisterState>(
-                buildWhen:
-                    (previous, current) =>
-                        previous.verificationStatus !=
-                        current.verificationStatus,
-                builder: (context, state) {
-                  return state.verificationStatus.isLoading
-                      ? AppOutLineButton.loading(
-                        label: context.l10n.verifyRouteOutlineLabel,
-                      )
-                      : AppOutLineButton(
-                        label: context.l10n.verifyRouteOutlineLabel,
-                        onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            context
-                                .read<RegisterCubit>()
-                                .sendVerificationCode();
-                          }
-                        },
-                      );
-                },
-              ),
-              SizedBox(width: context.sizeExtenstion.small),
-              TextButton(
-                onPressed: widget.goToHomeRoute,
-                child: Text(context.l10n.outlineLabelBackToHome),
-              ),
-            ],
+          BlocBuilder<RegisterCubit, RegisterState>(
+            buildWhen:
+                (previous, current) =>
+                    previous.verificationStatus != current.verificationStatus,
+            builder: (context, state) {
+              return state.verificationStatus.isLoading
+                  ? AppOutLineButton.loading(
+                    label: context.l10n.verifyRouteOutlineLabel,
+                  )
+                  : AppOutLineButton(
+                    label: context.l10n.verifyRouteOutlineLabel,
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        context.read<RegisterCubit>().sendVerificationCode();
+                      }
+                    },
+                  );
+            },
           ),
 
           SizedBox(height: context.sizeExtenstion.large),

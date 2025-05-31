@@ -19,6 +19,8 @@ abstract interface class RemoteApi {
     get_access_token: get_access_token,
   );
 
+  Stream<AuthenticationStatus> get authenticationStatusStream;
+
   /// Sends a verification code to the user.
   ///
   /// - [verificationCodeRequest]: The request object containing the necessary

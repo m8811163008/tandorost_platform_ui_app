@@ -112,34 +112,24 @@ class _LoginFormState extends State<LoginForm> {
           ),
 
           SizedBox(height: context.sizeExtenstion.large),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BlocBuilder<LoginCubit, LoginState>(
-                buildWhen:
-                    (previous, current) =>
-                        previous.loginStatus != current.loginStatus,
-                builder: (context, state) {
-                  return state.loginStatus.isLoading
-                      ? AppOutLineButton.loading(
-                        label: context.l10n.textButtonLabelLogin,
-                      )
-                      : AppOutLineButton(
-                        label: context.l10n.textButtonLabelLogin,
-                        onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            context.read<LoginCubit>().login();
-                          }
-                        },
-                      );
-                },
-              ),
-              SizedBox(width: context.sizeExtenstion.small),
-              TextButton(
-                onPressed: widget.goToHomeRoute?.call,
-                child: Text(context.l10n.outlineLabelBackToHome),
-              ),
-            ],
+          BlocBuilder<LoginCubit, LoginState>(
+            buildWhen:
+                (previous, current) =>
+                    previous.loginStatus != current.loginStatus,
+            builder: (context, state) {
+              return state.loginStatus.isLoading
+                  ? AppOutLineButton.loading(
+                    label: context.l10n.textButtonLabelLogin,
+                  )
+                  : AppOutLineButton(
+                    label: context.l10n.textButtonLabelLogin,
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        context.read<LoginCubit>().login();
+                      }
+                    },
+                  );
+            },
           ),
           SizedBox(height: context.sizeExtenstion.large),
           Row(
