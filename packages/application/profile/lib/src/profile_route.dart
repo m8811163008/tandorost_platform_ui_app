@@ -1,7 +1,6 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_repository/image_repository.dart';
 import 'package:profile/profile.dart';
 import 'package:profile_app/src/cubit/profile_cubit.dart';

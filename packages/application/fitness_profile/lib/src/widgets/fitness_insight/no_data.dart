@@ -1,4 +1,3 @@
-import 'package:fitness_profile_app/src/widgets/fitness_insight/fitness_insight.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 

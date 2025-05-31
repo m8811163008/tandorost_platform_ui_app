@@ -3,7 +3,6 @@ import 'package:fitness_profile_app/src/cubit/fitness_profile_cubit.dart';
 import 'package:fitness_profile_app/src/widgets/fitness_insight/add_mesurement_dialog_hint.dart';
 import 'package:fitness_profile_app/src/widgets/fitness_insight/waist_circumference_field_hint.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class AddNewMeasurementDialog extends StatefulWidget {

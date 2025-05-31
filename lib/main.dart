@@ -1,7 +1,6 @@
 import 'package:authentication/authentication.dart';
 import 'package:fitness_nutrition/fitness_nutrition.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_input/food_input.dart';
 import 'package:food_report/food_report.dart';
 import 'package:local_storage/local_storage.dart';

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_input_app/src/result_route/cubit/result_cubit.dart';
 import 'package:food_input_app/src/result_route/delete_food_dialog.dart';
 import 'package:food_input_app/src/result_route/edit_food_dialog.dart';

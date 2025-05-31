@@ -1,6 +1,5 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_report_app/src/cubit/food_report_cubit.dart';
 import 'package:food_report_app/src/widget/delete_food_dialog.dart';
 import 'package:food_report_app/src/widget/edit_food_dialog.dart';

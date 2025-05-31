@@ -1,12 +1,9 @@
-import 'dart:async';
 
 import 'package:authentication/authentication.dart';
 import 'package:authentication_app/authentication.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:fitness_profile_app/fitness_profile.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_report_app/food_report.dart';
 import 'package:go_router/go_router.dart';
 import 'package:food_input_app/food_input.dart';

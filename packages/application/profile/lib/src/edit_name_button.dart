@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:profile_app/src/cubit/profile_cubit.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 

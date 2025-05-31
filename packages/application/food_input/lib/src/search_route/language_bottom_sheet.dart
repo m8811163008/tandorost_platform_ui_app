@@ -1,6 +1,5 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 

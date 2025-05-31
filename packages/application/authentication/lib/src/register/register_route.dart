@@ -1,6 +1,5 @@
 import 'package:authentication_app/src/register/cubit/register_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class RegisterRoute extends StatelessWidget {
