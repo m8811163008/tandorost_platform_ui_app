@@ -15,13 +15,12 @@ class SearchRoute extends StatelessWidget {
     this.onDrawerNavigationChanged,
     required this.drawerNavigationIndex,
   });
-  static const String name = 'search-route';
   final VoidCallback? goToResultRoute;
   final ValueChanged<int>? onBottomNavigationChanged;
 
   final int bottomNavigationIndex;
   final ValueChanged<int>? onDrawerNavigationChanged;
-    final int drawerNavigationIndex;
+  final int drawerNavigationIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +38,12 @@ class SearchRoute extends StatelessWidget {
         drawer: NavigationDrawer(
           onDestinationSelected: onDrawerNavigationChanged,
           selectedIndex: drawerNavigationIndex,
-          children: AppNavigationDrawer.children,
+          children: AppNavigation.getDrawerChildren(context),
         ),
         bottomNavigationBar: BottomNavigationBar(
           onTap: onBottomNavigationChanged,
           currentIndex: bottomNavigationIndex,
-          items: AppBottomNavigation.items,
+          items: AppNavigation.bottomNavigationItems(context),
         ),
         body: SearchBody(onSeachFoodSuccess: goToResultRoute),
       ),

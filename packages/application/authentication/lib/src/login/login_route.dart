@@ -10,7 +10,6 @@ class LoginRoute extends StatelessWidget {
     this.goToForgotPasswordRoute,
     this.goToHomeRoute,
   });
-  static const String name = 'login';
 
   final VoidCallback? goToRegisterRoute;
   final VoidCallback? goToForgotPasswordRoute;

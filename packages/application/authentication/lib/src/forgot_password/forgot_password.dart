@@ -10,7 +10,6 @@ class ForgotPasswordRoute extends StatelessWidget {
     this.goToVerificationRoute,
     this.goToRegisterRoute,
   });
-  static const String name = 'forgot-password';
 
   final VoidCallback? goToLoginRoute;
   final VoidCallback? goToVerificationRoute;

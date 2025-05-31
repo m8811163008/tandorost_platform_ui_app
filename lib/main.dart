@@ -7,9 +7,9 @@ import 'package:food_report/food_report.dart';
 import 'package:local_storage/local_storage.dart';
 import 'package:profile/profile.dart';
 import 'package:remote_api/remote_api.dart';
-import 'package:tandorost_platform_ui_app/navigation.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 import 'package:image_repository/image_repository.dart';
+import 'package:tandorost_platform_ui_app/navigation.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

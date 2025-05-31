@@ -6,7 +6,7 @@ import 'package:tandorost_components/tandorost_components.dart';
 
 class RegisterVerifyPhoneNumberRoute extends StatelessWidget {
   const RegisterVerifyPhoneNumberRoute({super.key, this.goToLoginRoute});
-  static const String name = 'register-verify-phone-number';
+
   final VoidCallback? goToLoginRoute;
 
   @override

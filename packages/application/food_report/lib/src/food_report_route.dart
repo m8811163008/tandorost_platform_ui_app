@@ -16,7 +16,7 @@ class FoodReportRoute extends StatelessWidget {
     this.onDrawerNavigationChanged,
     required this.drawerNavigationIndex,
   });
-  static const String name = 'food-report';
+
   final VoidCallback? goToFoodInputRoute;
   final VoidCallback? goToFitnessProfileRoute;
   final ValueChanged<int>? onBottomNavigationChanged;

@@ -77,12 +77,12 @@ class _FoodReportScreenState extends State<FoodReportScreen>
           drawer: NavigationDrawer(
             onDestinationSelected: widget.onDrawerNavigationChanged,
             selectedIndex: widget.drawerNavigationIndex,
-            children: AppNavigationDrawer.children,
+            children: AppNavigation.getDrawerChildren(context),
           ),
           bottomNavigationBar: BottomNavigationBar(
             onTap: widget.onBottomNavigationChanged,
             currentIndex: widget.bottomNavigationIndex,
-            items: AppBottomNavigation.items,
+            items: AppNavigation.bottomNavigationItems(context),
           ),
           appBar: AppBar(
             actions: [

@@ -1,5 +1,6 @@
 import 'package:authentication/authentication.dart';
 import 'package:authentication_app/authentication.dart';
+import 'package:domain_model/domain_model.dart';
 import 'package:fitness_profile_app/fitness_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,7 +8,8 @@ import 'package:food_report_app/food_report.dart';
 import 'package:go_router/go_router.dart';
 import 'package:food_input_app/food_input.dart';
 import 'package:profile_app/profile.dart';
-import 'package:tandorost_platform_ui_app/routes.dart';
+
+
 
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
@@ -25,10 +27,11 @@ class Navigation {
               onBottomNavigationChanged: (index) {
                 _onBottomNavigationChanged(context, index);
               },
+              bottomNavigationIndex: _bottomNavigationIndex(state),
               onDrawerNavigationChanged: (index) {
                 _onDrawerNavigationChanged(context, index);
               },
-              bottomNavigationIndex: _bottomNavigationIndex(state),
+
               drawerNavigationIndex: _drawerNavigationIndex(state),
             );
           },
@@ -38,12 +41,9 @@ class Navigation {
               builder: (_, state) {
                 return ResultRoute(
                   onBottomNavigationChanged: (index) {
-                    context.go(BottomNavigationRoutes.routes[index]!.path);
+                    _onBottomNavigationChanged(context, index);
                   },
-                  bottomNavigationIndex:
-                      BottomNavigationRoutes.routes.entries
-                          .singleWhere((entry) => entry.value == state.fullPath)
-                          .key,
+                  bottomNavigationIndex: _bottomNavigationIndex(state),
                 );
               },
             ),
@@ -185,9 +185,11 @@ class Navigation {
           path: RoutesNames.foodReportRoute.path,
           builder: (context, state) {
             return FoodReportRoute(
-              goToFoodInputRoute: () => context.go(RoutesNames.searchRoute.path),
-              goToFitnessProfileRoute: () => context.go(RoutesNames.fitnessProfileRoute.path),
-                            onBottomNavigationChanged: (index) {
+              goToFoodInputRoute:
+                  () => context.go(RoutesNames.searchRoute.path),
+              goToFitnessProfileRoute:
+                  () => context.go(RoutesNames.fitnessProfileRoute.path),
+              onBottomNavigationChanged: (index) {
                 _onBottomNavigationChanged(context, index);
               },
               onDrawerNavigationChanged: (index) {

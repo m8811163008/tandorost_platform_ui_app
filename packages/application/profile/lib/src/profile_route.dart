@@ -18,7 +18,7 @@ class ProfileRoute extends StatelessWidget {
     this.onDrawerNavigationChanged,
     required this.drawerNavigationIndex,
   });
-  static const String name = 'profile';
+
   final ValueChanged<int>? onBottomNavigationChanged;
   final int bottomNavigationIndex;
   final ValueChanged<int>? onDrawerNavigationChanged;
@@ -38,12 +38,12 @@ class ProfileRoute extends StatelessWidget {
         drawer: NavigationDrawer(
           onDestinationSelected: onDrawerNavigationChanged,
           selectedIndex: drawerNavigationIndex,
-          children: AppNavigationDrawer.children,
+          children: AppNavigation.getDrawerChildren(context),
         ),
         bottomNavigationBar: BottomNavigationBar(
           onTap: onBottomNavigationChanged,
           currentIndex: bottomNavigationIndex,
-          items: AppBottomNavigation.items,
+          items: AppNavigation.bottomNavigationItems(context),
         ),
       ),
     );

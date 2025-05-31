@@ -282,5 +282,13 @@
     "foodReportDeleteDialogTitle": "حذف غذا",
     "foodReportDeleteDialogContent": "آیا این غذا حذف شود؟",
     "foodReportFoodsListLabel": "‌لیست خوراکی‌ها",
-    "foodReportUserFoodRequirementNA": "N/A"
+    "foodReportUserFoodRequirementNA": "N/A",
+    "appRoutesName": "{routesNames, select, loginRoute{ورود} registerRoute{ثبت نام} searchRoute{جستجو} resultRoute{نتیجه} forgotPassRoute{فراموشی رمز عبور} verificationRoute{تایید شماره} profileRoute{پروفایل} fitnessProfileRoute{تناسب اندام} foodReportRoute{گزارش تغذیه} other{ترجمه تعریف نشده}}",
+    "@appRoutesName": {
+        "placeholders": {
+            "routesNames": {
+                "type": "String"
+            }
+        }
+    }
 }

@@ -11,7 +11,6 @@ class ResultRoute extends StatelessWidget {
     this.onBottomNavigationChanged,
     required this.bottomNavigationIndex,
   });
-  static const String name = 'result-route';
   final ValueChanged<int>? onBottomNavigationChanged;
   final int bottomNavigationIndex;
 

@@ -10,7 +10,6 @@ class RegisterRoute extends StatelessWidget {
     this.goToVerificationRoute,
     this.goToHomeRoute,
   });
-  static const String name = 'register';
 
   final VoidCallback? goToLoginRoute;
   final VoidCallback? goToVerificationRoute;

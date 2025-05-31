@@ -20,7 +20,6 @@ class FitnessProfileRoute extends StatelessWidget {
   final int bottomNavigationIndex;
   final ValueChanged<int>? onDrawerNavigationChanged;
   final int drawerNavigationIndex;
-  static const String name = 'fitness-profile';
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -36,12 +35,12 @@ class FitnessProfileRoute extends StatelessWidget {
         drawer: NavigationDrawer(
           onDestinationSelected: onDrawerNavigationChanged,
           selectedIndex: drawerNavigationIndex,
-          children: AppNavigationDrawer.children,
+          children: AppNavigation.getDrawerChildren(context),
         ),
         bottomNavigationBar: BottomNavigationBar(
           onTap: onBottomNavigationChanged,
           currentIndex: bottomNavigationIndex,
-          items: AppBottomNavigation.items,
+          items: AppNavigation.bottomNavigationItems(context),
         ),
       ),
     );

@@ -682,4 +682,24 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get foodReportUserFoodRequirementNA => 'N/A';
+
+  @override
+  String appRoutesName(String routesNames) {
+    String _temp0 = intl.Intl.selectLogic(
+      routesNames,
+      {
+        'loginRoute': 'ورود',
+        'registerRoute': 'ثبت نام',
+        'searchRoute': 'جستجو',
+        'resultRoute': 'نتیجه',
+        'forgotPassRoute': 'فراموشی رمز عبور',
+        'verificationRoute': 'تایید شماره',
+        'profileRoute': 'پروفایل',
+        'fitnessProfileRoute': 'تناسب اندام',
+        'foodReportRoute': 'گزارش تغذیه',
+        'other': 'ترجمه تعریف نشده',
+      },
+    );
+    return '$_temp0';
+  }
 }
