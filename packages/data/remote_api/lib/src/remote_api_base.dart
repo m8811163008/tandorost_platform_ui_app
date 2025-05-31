@@ -8,29 +8,24 @@ import 'package:remote_api/src/interceptor/interceptor.dart';
 import 'package:remote_api/src/model/model.dart';
 import 'package:remote_api/src/remote_api.dart';
 import 'package:remote_api/src/utility/utility.dart';
+import 'package:rxdart/rxdart.dart';
 
 typedef JsonMap = Map<String, dynamic>;
 
 class RemoteApiBase implements RemoteApi {
   RemoteApiBase();
 
-  late final Stream<Language> userLanguageProvider;
-  
+  late final Future<Language> Function() userLanguageProvider;
+
   late final Future<Token?> Function() accessTokenProvider;
 
-  StreamController<AuthenticationStatus> _controller =
-      StreamController.broadcast();
-  AuthenticationStatus? _lastEmittedAuthValue;
+  BehaviorSubject<AuthenticationStatus> _controller = BehaviorSubject.seeded(
+    AuthenticationStatus.unknown,
+  );
   static const _detail = 'detail';
 
   Stream<AuthenticationStatus> get authenticationStatusStream async* {
     // _controller.add(AuthenticationStatus.authorized);
-    if (_lastEmittedAuthValue != null) {
-      yield _lastEmittedAuthValue!;
-    } else {
-      _lastEmittedAuthValue = await _controller.stream.first;
-    }
-
     yield* _controller.stream.asBroadcastStream();
   }
 
@@ -102,6 +97,10 @@ class RemoteApiBase implements RemoteApi {
     final res = await _handleRequest<JsonMap>(
       () => interceptedHttp.post(uri, body: credential.toJson()),
     );
+    if (await _controller.stream.first != AuthenticationStatus.authorized) {
+      _controller.add(AuthenticationStatus.authorized);
+    }
+
     return Token.fromJson(res!);
   }
 
@@ -245,10 +244,10 @@ class RemoteApiBase implements RemoteApi {
     final request = http.MultipartRequest('POST', uri);
 
     final token = await accessTokenProvider();
-    final language = await userLanguageProvider.asBroadcastStream().first;
+    final language = await userLanguageProvider();
 
     request.headers.addAll({
-      'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer ${token?.accessToken}',
       HttpHeaders.acceptLanguageHeader: language.name,
       HttpHeaders.contentTypeHeader: 'multipart/form-data',
     });
@@ -271,6 +270,10 @@ class RemoteApiBase implements RemoteApi {
 
       final jsonResponseString = await response.stream.bytesToString();
       final jsonResponse = json.decode(jsonResponseString);
+      if (response.statusCode == 401) {
+        await _handleAuauthorize();
+        throw HttpException('');
+      }
 
       if (response.statusCode != 200) {
         assert(jsonResponse is JsonMap);
@@ -369,10 +372,10 @@ class RemoteApiBase implements RemoteApi {
     final uri = UriBuilder.readFoodsNutritionsByVoice();
     final request = http.MultipartRequest('POST', uri);
     final token = await accessTokenProvider();
-    final language = await userLanguageProvider.asBroadcastStream().first;
+    final language = await userLanguageProvider();
 
     request.headers.addAll({
-      'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer ${token?.accessToken}',
       HttpHeaders.acceptLanguageHeader: language.name,
       HttpHeaders.contentTypeHeader: 'multipart/form-data',
     });
@@ -393,9 +396,14 @@ class RemoteApiBase implements RemoteApi {
 
       final jsonResponseString = await response.stream.bytesToString();
       final jsonResponse = json.decode(jsonResponseString);
+            if (response.statusCode == 401) {
+        await _handleAuauthorize();
+        throw HttpException('');
+      }
 
       if (response.statusCode != 200) {
         assert(jsonResponse is JsonMap);
+
         final response = ApiErrorResponse.fromJson(
           (jsonResponse as JsonMap)[_detail],
         );
@@ -460,7 +468,8 @@ class RemoteApiBase implements RemoteApi {
     try {
       final res = await request();
       if (res.statusCode == 401) {
-        _controller.add(AuthenticationStatus.unauthorized);
+        await _handleAuauthorize();
+
         throw HttpException('');
       } else if (res.statusCode == 204 || res.statusCode == 404) {
         return null;
@@ -496,6 +505,12 @@ class RemoteApiBase implements RemoteApi {
     } catch (e) {
       print(e);
       throw HttpException(e.toString());
+    }
+  }
+
+  Future<void> _handleAuauthorize() async {
+    if (await _controller.stream.first != AuthenticationStatus.unauthorized) {
+      _controller.add(AuthenticationStatus.unauthorized);
     }
   }
 }

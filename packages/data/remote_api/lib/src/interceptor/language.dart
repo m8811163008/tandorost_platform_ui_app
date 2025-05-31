@@ -8,7 +8,7 @@ import 'package:remote_api/src/model/header_content_type.dart';
 import 'package:remote_api/src/model/language.dart';
 
 class CommonInterceptor implements InterceptorContract {
-  final Stream<Language> userLanguageProvider;
+  final Future<Language> Function() userLanguageProvider;
   final ContentType acceptHeader;
 
   CommonInterceptor(
@@ -18,9 +18,10 @@ class CommonInterceptor implements InterceptorContract {
 
   @override
   Future<BaseRequest> interceptRequest({required BaseRequest request}) async {
-    final language = await userLanguageProvider.first;
+    final language = await userLanguageProvider();
     request.headers[HttpHeaders.acceptLanguageHeader] = language.name;
     request.headers[HttpHeaders.acceptHeader] = acceptHeader.value;
+
     return request;
   }
 

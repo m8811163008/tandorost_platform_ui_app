@@ -58,7 +58,7 @@ class DependencyManager extends StatelessWidget {
           final fitnessNutrition = FitnessNutrition(remoteApi: remoteApi);
           final foodReport = FoodReport(remoteApi: remoteApi);
           remoteApi.accessTokenProvider = authenticationRep.accessTokenProvider;
-          remoteApi.userLanguageProvider = profileRep.userLanguage.asBroadcastStream();
+          remoteApi.userLanguageProvider = profileRep.userLanguage;
 
           return MultiRepositoryProvider(
             providers: [

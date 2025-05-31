@@ -1,3 +1,4 @@
+import 'dart:async';
 
 import 'package:authentication/authentication.dart';
 import 'package:authentication_app/authentication.dart';
@@ -64,7 +65,8 @@ class Navigation {
               builder: (context, state) {
                 return RegisterRoute(
                   goToHomeRoute: () => _goToHomeRoute(context),
-                  goToLoginRoute: () => context.go(RoutesNames.loginRoute.path),
+                  goToLoginRoute:
+                      () => context.go(RoutesNames.searchRoute.path),
                   goToVerificationRoute:
                       () => context.go(
                         '${RoutesNames.registerRoute.path}${RoutesNames.verificationRoute.path}',
@@ -218,8 +220,14 @@ class Navigation {
         if (!authStatus.isAuthorized && !isAuthRoute) {
           return RoutesNames.loginRoute.path;
         }
-        return null;
+        return fullPath;
       },
+      refreshListenable: RedirectListenable(
+        authenticationStream:
+            RepositoryProvider.of<AuthenticationRepository>(
+              context,
+            ).authenticationStatusStream,
+      ),
     );
   }
 
@@ -254,5 +262,21 @@ class Navigation {
     } catch (e) {
       return 0;
     }
+  }
+}
+
+class RedirectListenable extends ChangeNotifier {
+  final Stream<AuthenticationStatus> authenticationStream;
+  late final StreamSubscription<AuthenticationStatus> subscription;
+
+  RedirectListenable({required this.authenticationStream}) {
+    subscription = authenticationStream.listen((event) {
+      notifyListeners();
+    });
+  }
+  @override
+  void dispose() {
+    subscription.cancel();
+    super.dispose();
   }
 }

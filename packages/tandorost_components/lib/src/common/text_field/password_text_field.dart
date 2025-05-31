@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class PasswordTextField extends StatelessWidget {
-  const PasswordTextField({super.key, this.onChange, this.textDirection});
+  const PasswordTextField({
+    super.key,
+    this.onChange,
+    this.textDirection,
+    this.autofillHints,
+  });
   final ValueSetter<String>? onChange;
   final TextDirection? textDirection;
+  final Iterable<String>? autofillHints;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +31,7 @@ class PasswordTextField extends StatelessWidget {
           return null;
         },
         textDirection: TextDirection.ltr,
+        autofillHints: autofillHints,
       ),
     );
   }

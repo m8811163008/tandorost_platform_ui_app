@@ -15,7 +15,7 @@ abstract interface class RemoteApi {
     return RemoteApiBase();
   }
 
-  late final Stream<Language> userLanguageProvider;
+  late final Future<Language> Function() userLanguageProvider;
   late final Future<Token?> Function() accessTokenProvider;
 
   Stream<AuthenticationStatus> get authenticationStatusStream;

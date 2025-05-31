@@ -15,6 +15,7 @@ class NumberTextField extends StatelessWidget {
     this.errorMessage,
     this.suffix,
     this.textDirection,
+    this.autofillHints,
   });
   final String label;
   final String? prefix;
@@ -27,10 +28,12 @@ class NumberTextField extends StatelessWidget {
   final String? errorMessage;
   final Widget? suffix;
   final TextDirection? textDirection;
+  final Iterable<String>? autofillHints;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofillHints: autofillHints,
       controller: TextEditingController(text: initalValue),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: TextInputType.number,

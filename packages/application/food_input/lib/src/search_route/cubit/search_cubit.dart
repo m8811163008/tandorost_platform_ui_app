@@ -96,7 +96,7 @@ class SearchCubit extends Cubit<SearchState> {
 
   Future<void> onReadFoodsNutritionsByVoice(FileDetail fileDetail) async {
     try {
-      final userLanguage = await profileRepository.userLanguage.first;
+      final userLanguage = await profileRepository.userLanguage();
       await foodInputRepository.readFoodsNutritionsByVoice(
         prompt: fileDetail,
         userSpokenLanguage: state.userSpokenLanguage ?? userLanguage,

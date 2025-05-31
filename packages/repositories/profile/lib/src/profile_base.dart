@@ -11,9 +11,7 @@ class ProfileRepository {
   ProfileRepository({required this.remoteApi, required this.localStorage})
     : _controller = BehaviorSubject.seeded(Language.persian);
 
-  Stream<Language> get userLanguage async* {
-    yield* _controller.stream;
-  }
+  Future<Language>  userLanguage() => _controller.first;
 
   Future<Language> get userSpokenLanguage async {
     final language = await localStorage.read(StorageKey.userspokenLanguage);

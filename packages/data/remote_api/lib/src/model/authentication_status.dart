@@ -1,6 +1,7 @@
 enum AuthenticationStatus {
   authorized,
-  unauthorized;
+  unauthorized,
+  unknown;
 
   bool get isAuthorized => this == AuthenticationStatus.authorized;
 }
