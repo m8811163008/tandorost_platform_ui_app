@@ -657,5 +657,29 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get foodReportUserFoodRequirementFrom => 'از';
 
   @override
+  String get foodReportTabLabelRestDay => 'روز استراحت';
+
+  @override
+  String get foodReportTabLabelTrainingDay => 'روز تمرین';
+
+  @override
+  String get foodReportBannerContent => 'مشخصات تغذیه شما دردسترس نیست. لطفا مشخصات خود را در صفحه تناسب اندام کامل کنید';
+
+  @override
+  String get foodReportBannerGotoLabel => 'رفتن به صفحه تناسب اندام';
+
+  @override
+  String get foodReportFoodsStatics => 'وضعیت خوراک امروز';
+
+  @override
+  String get foodReportDeleteDialogTitle => 'حذف غذا';
+
+  @override
+  String get foodReportDeleteDialogContent => 'آیا این غذا حذف شود؟';
+
+  @override
+  String get foodReportFoodsListLabel => '‌لیست خوراکی‌ها';
+
+  @override
   String get foodReportUserFoodRequirementNA => 'N/A';
 }

@@ -10,8 +10,8 @@ class DeleteFoodDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppDialog(
-      title: 'delete selected food',
-      contents: [Text('delete food?')],
+      title: context.l10n.foodReportDeleteDialogTitle,
+      contents: [Text(context.l10n.foodReportDeleteDialogContent)],
       submitButton: BlocConsumer<FoodReportCubit, FoodReportState>(
         listenWhen:
             (previous, current) =>

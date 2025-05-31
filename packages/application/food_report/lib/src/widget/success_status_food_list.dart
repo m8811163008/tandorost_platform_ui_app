@@ -12,8 +12,9 @@ class SuccessStatusFoodsList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppCardHeader(title: 'foods list'),
+        AppCardHeader(title: context.l10n.foodReportFoodsListLabel),
         ListView.separated(
+          reverse: true,
           shrinkWrap: true,
           itemCount: foods.length,
           itemBuilder: (context, index) {

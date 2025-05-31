@@ -66,7 +66,7 @@ class FoodReportStaticsConsumer extends StatelessWidget {
     final messenger = ScaffoldMessenger.of(context);
     messenger.showMaterialBanner(
       MaterialBanner(
-        content: Text('Add measurement sized'),
+        content: Text(context.l10n.foodReportBannerContent),
         leading: Icon(Icons.agriculture_outlined),
         actions: <Widget>[
           TextButton(
@@ -74,7 +74,7 @@ class FoodReportStaticsConsumer extends StatelessWidget {
               messenger.hideCurrentMaterialBanner();
               goToFitnessProfileRoute?.call();
             },
-            child: Text('Go to '),
+            child: Text(context.l10n.foodReportBannerGotoLabel),
           ),
           TextButton(
             onPressed: () {

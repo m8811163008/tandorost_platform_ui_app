@@ -12,7 +12,7 @@ class FoodReportRoute extends StatelessWidget {
     this.goToFoodInputRoute,
     this.goToFitnessProfileRoute,
   });
-  static const String name = 'food_report';
+  static const String name = 'food-report';
   final VoidCallback? goToFoodInputRoute;
   final VoidCallback? goToFitnessProfileRoute;
   @override

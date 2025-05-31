@@ -274,5 +274,13 @@
     "fitnessProfileDeleteDataPointDialogLabel": "حذف اندازه",
     "fitnessProfileDeleteDataPointDialogDescription": "آیا از حذف این اندازه مطمئن هستید؟",
     "foodReportUserFoodRequirementFrom": "از",
+    "foodReportTabLabelRestDay": "روز استراحت",
+    "foodReportTabLabelTrainingDay": "روز تمرین",
+    "foodReportBannerContent": "مشخصات تغذیه شما دردسترس نیست. لطفا مشخصات خود را در صفحه تناسب اندام کامل کنید",
+    "foodReportBannerGotoLabel": "رفتن به صفحه تناسب اندام",
+    "foodReportFoodsStatics": "وضعیت خوراک امروز",
+    "foodReportDeleteDialogTitle": "حذف غذا",
+    "foodReportDeleteDialogContent": "آیا این غذا حذف شود؟",
+    "foodReportFoodsListLabel": "‌لیست خوراکی‌ها",
     "foodReportUserFoodRequirementNA": "N/A"
 }

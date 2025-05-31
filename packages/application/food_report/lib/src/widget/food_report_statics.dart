@@ -20,7 +20,7 @@ class FoodReportStatics extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppCardHeader(title: 'Foods statics'),
+          AppCardHeader(title: context.l10n.foodReportFoodsStatics),
           UserFoodRequirementRow(
             currentValue: totalMacroNutrition.calorie,
             total: nutritionRequirement?.effectiveTotalDailyEnergyExpenditure,

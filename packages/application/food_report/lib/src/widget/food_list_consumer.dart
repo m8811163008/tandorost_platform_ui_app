@@ -1,4 +1,3 @@
-
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,7 +44,7 @@ class FoodListConsumer extends StatelessWidget {
             AsyncProcessingStatus.internetConnectionError =>
               AppAsyncStatusCard.internetConnectionError(),
             AsyncProcessingStatus.success => SuccessStatusFoodsList(
-              foods: state.foods.reversed.toList(),
+              foods: state.foods,
             ),
           };
         },

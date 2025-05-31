@@ -1,4 +1,3 @@
-
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,29 +58,24 @@ class LanguageBottomSheetForm extends StatelessWidget {
                 (previous, current) =>
                     previous.userSpokenLanguage != current.userSpokenLanguage,
             builder: (context, state) {
-              return Expanded(
-                child: ListView(
+              return Flexible(
+                child: ListView.separated(
                   shrinkWrap: true,
-                  children:
-                      Language.values
-                          .map(
-                            (language) => RadioListTile(
-                              value: language,
-                              groupValue: state.userSpokenLanguage,
-                              onChanged:
-                                  context.read<SearchCubit>().onChangeLanguage,
-                              title: Text(
-                                language.name,
-                                textAlign: TextAlign.left,
-                              ),
-                              subtitle: Text(
-                                language.code,
-                                textAlign: TextAlign.left,
-                              ),
-                              visualDensity: VisualDensity.compact,
-                            ),
-                          )
-                          .toList(),
+                  itemCount: Language.values.length,
+                  itemBuilder: (context, index) {
+                    final language = Language.values[index];
+                    return RadioListTile(
+                      value: language,
+                      groupValue: state.userSpokenLanguage,
+                      onChanged: context.read<SearchCubit>().onChangeLanguage,
+                      title: Text(language.name, textAlign: TextAlign.left),
+                      subtitle: Text(language.code, textAlign: TextAlign.left),
+                      visualDensity: VisualDensity.compact,
+                    );
+                  },
+                  separatorBuilder:
+                      (context, index) =>
+                          SizedBox(height: context.sizeExtenstion.small),
                 ),
               );
             },

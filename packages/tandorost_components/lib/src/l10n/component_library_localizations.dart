@@ -1095,6 +1095,54 @@ abstract class ComponentLibraryLocalizations {
   /// **'از'**
   String get foodReportUserFoodRequirementFrom;
 
+  /// No description provided for @foodReportTabLabelRestDay.
+  ///
+  /// In fa, this message translates to:
+  /// **'روز استراحت'**
+  String get foodReportTabLabelRestDay;
+
+  /// No description provided for @foodReportTabLabelTrainingDay.
+  ///
+  /// In fa, this message translates to:
+  /// **'روز تمرین'**
+  String get foodReportTabLabelTrainingDay;
+
+  /// No description provided for @foodReportBannerContent.
+  ///
+  /// In fa, this message translates to:
+  /// **'مشخصات تغذیه شما دردسترس نیست. لطفا مشخصات خود را در صفحه تناسب اندام کامل کنید'**
+  String get foodReportBannerContent;
+
+  /// No description provided for @foodReportBannerGotoLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'رفتن به صفحه تناسب اندام'**
+  String get foodReportBannerGotoLabel;
+
+  /// No description provided for @foodReportFoodsStatics.
+  ///
+  /// In fa, this message translates to:
+  /// **'وضعیت خوراک امروز'**
+  String get foodReportFoodsStatics;
+
+  /// No description provided for @foodReportDeleteDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'حذف غذا'**
+  String get foodReportDeleteDialogTitle;
+
+  /// No description provided for @foodReportDeleteDialogContent.
+  ///
+  /// In fa, this message translates to:
+  /// **'آیا این غذا حذف شود؟'**
+  String get foodReportDeleteDialogContent;
+
+  /// No description provided for @foodReportFoodsListLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'‌لیست خوراکی‌ها'**
+  String get foodReportFoodsListLabel;
+
   /// No description provided for @foodReportUserFoodRequirementNA.
   ///
   /// In fa, this message translates to:

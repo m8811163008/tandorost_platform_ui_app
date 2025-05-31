@@ -92,8 +92,8 @@ class _FoodReportScreenState extends State<FoodReportScreen>
             bottom: TabBar(
               controller: _controller,
               tabs: <Widget>[
-                Tab(icon: Icon(Icons.monitor_heart), text: 'Rest day'),
-                Tab(icon: Icon(Icons.sports), text: 'Excersice day'),
+                Tab(icon: Icon(Icons.monitor_heart), text: context.l10n.foodReportTabLabelRestDay),
+                Tab(icon: Icon(Icons.sports), text: context.l10n.foodReportTabLabelTrainingDay),
               ],
             ),
           ),
