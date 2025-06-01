@@ -396,7 +396,7 @@ class RemoteApiBase implements RemoteApi {
 
       final jsonResponseString = await response.stream.bytesToString();
       final jsonResponse = json.decode(jsonResponseString);
-            if (response.statusCode == 401) {
+      if (response.statusCode == 401) {
         await _handleAuauthorize();
         throw HttpException('');
       }
@@ -462,6 +462,39 @@ class RemoteApiBase implements RemoteApi {
     final res = await _handleRequest<JsonMap>(() => interceptedHttp.get(uri));
     if (res == null) return null;
     return NutritionRequirements.fromJson(res);
+  }
+
+  Future<List<SubscriptionPayment>> readSubscriptionPayments() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.readSubscriptions();
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => SubscriptionPayment.fromJson(e)).toList();
+  }
+
+  Future<SubscriptionPayment> createSubscriptionPayments(
+    SubscriptionPayment subscriptionPayment,
+  ) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.createSubscriptionPayment();
+    final res = await _handleRequest<JsonMap>(
+      () => interceptedHttp.post(
+        uri,
+        body: json.encode(subscriptionPayment.toJson()),
+      ),
+    );
+    return SubscriptionPayment.fromJson(res!);
   }
 
   Future<E?> _handleRequest<E>(Future<Response> Function() request) async {

@@ -113,4 +113,11 @@ class UriBuilder {
       queryParameters: {'data_point_id': dataPointsId},
     );
   }
+
+  static Uri readSubscriptions() {
+    return baseUri.replace(path: '$basePath/payment/read_subscriptions/');
+  }
+  static Uri createSubscriptionPayment() {
+    return baseUri.replace(path: '$basePath/payment/create_subscription_payment/');
+  }
 }

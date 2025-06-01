@@ -170,4 +170,15 @@ abstract interface class RemoteApi {
   ///
   /// Returns a [NutritionRequirements] object containing the nutritional information.
   Future<NutritionRequirements?> readNutritionRequirements();
+
+  /// Retrieves a list of all subscription payments.
+  ///
+  /// Returns a [Future] that completes with a [List] of [SubscriptionPayment] objects.
+  Future<List<SubscriptionPayment>> readSubscriptionPayments();
+
+  /// Creates a new subscription payment.
+  ///
+  /// Takes a [SubscriptionPayment] object as input and returns a [Future]
+  /// that completes with the created [SubscriptionPayment].
+  Future<SubscriptionPayment> createSubscriptionPayments(SubscriptionPayment subscriptionPayment);
 }
