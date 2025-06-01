@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:food_input/food_input.dart';
 import 'package:food_report/food_report.dart';
 import 'package:local_storage/local_storage.dart';
+import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
 import 'package:remote_api/remote_api.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -19,65 +20,61 @@ void main() async {
   //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiIxMjBjZmY1Mi03YTVjLTRhOTYtOWJjMC1mZjQ1MTVjYTkwZmEiLCJleHAiOjE3NDcxNDYwMTl9.cbFxpHvjqsql-i5LP9No6MXbsOvI0ukOnAMl93lWwys',
   //       ),
   // );
+  final sharePref = await SharedPreferences.getInstance();
 
-  runApp(DependencyManager());
+  runApp(DependencyManager(sharedPreferences: sharePref));
 }
 
 class DependencyManager extends StatelessWidget {
-  const DependencyManager({super.key});
+  const DependencyManager({super.key, required this.sharedPreferences});
+  final SharedPreferences sharedPreferences;
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: Future.wait([SharedPreferences.getInstance()]),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final nonSecureStorage = snapshot.data![0];
+    final nonSecureStorage = sharedPreferences;
 
-          final remoteApi = RemoteApi();
+    final remoteApi = RemoteApi();
 
-          AndroidOptions _getAndroidOptions() =>
-              const AndroidOptions(encryptedSharedPreferences: true);
+    AndroidOptions _getAndroidOptions() =>
+        const AndroidOptions(encryptedSharedPreferences: true);
 
-          final storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
-          final localStorage = LocalStorage(
-            flutterSecureStorage: storage,
-            sharedPreferences: nonSecureStorage,
-          );
-          late final authenticationRep = AuthenticationRepository(
-            remoteApi: remoteApi,
-            localStorage: localStorage,
-          );
-          final foodInputRep = FoodInputRepository(remoteApi: remoteApi);
-          final profileRep = ProfileRepository(
-            remoteApi: remoteApi,
-            localStorage: localStorage,
-          );
+    final storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
+    final localStorage = LocalStorage(
+      flutterSecureStorage: storage,
+      sharedPreferences: nonSecureStorage,
+    );
+    late final authenticationRep = AuthenticationRepository(
+      remoteApi: remoteApi,
+      localStorage: localStorage,
+    );
+    final foodInputRep = FoodInputRepository(remoteApi: remoteApi);
+    final profileRep = ProfileRepository(
+      remoteApi: remoteApi,
+      localStorage: localStorage,
+    );
+    final paymentRep = PaymentRepository(remoteApi: remoteApi);
 
-          final imageRepository = ImageRepository(remoteApi: remoteApi);
-          final fitnessNutrition = FitnessNutrition(remoteApi: remoteApi);
-          final foodReport = FoodReport(remoteApi: remoteApi);
-          remoteApi.accessTokenProvider = authenticationRep.accessTokenProvider;
-          remoteApi.userLanguageProvider = profileRep.userLanguage;
+    final imageRepository = ImageRepository(remoteApi: remoteApi);
+    final fitnessNutrition = FitnessNutrition(remoteApi: remoteApi);
+    final foodReport = FoodReport(remoteApi: remoteApi);
+    remoteApi.accessTokenProvider = authenticationRep.accessTokenProvider;
+    remoteApi.userLanguageProvider = profileRep.userLanguage;
 
-          return MultiRepositoryProvider(
-            providers: [
-              RepositoryProvider(
-                create: (_) => foodInputRep,
-                dispose: (value) async => await value.dispose(),
-                lazy: true,
-              ),
-              RepositoryProvider(create: (_) => profileRep, lazy: true),
-              RepositoryProvider(create: (_) => authenticationRep, lazy: true),
-              RepositoryProvider(create: (_) => imageRepository, lazy: true),
-              RepositoryProvider(create: (_) => fitnessNutrition, lazy: true),
-              RepositoryProvider(create: (_) => foodReport, lazy: true),
-            ],
-            child: TandorostBlocProviders(),
-          );
-        }
-        return SizedBox();
-      },
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (_) => foodInputRep,
+          dispose: (value) async => await value.dispose(),
+          lazy: true,
+        ),
+        RepositoryProvider(create: (_) => profileRep, lazy: true),
+        RepositoryProvider(create: (_) => authenticationRep, lazy: true),
+        RepositoryProvider(create: (_) => imageRepository, lazy: true),
+        RepositoryProvider(create: (_) => fitnessNutrition, lazy: true),
+        RepositoryProvider(create: (_) => foodReport, lazy: true),
+        RepositoryProvider(create: (_) => paymentRep, lazy: true),
+      ],
+      child: TandorostBlocProviders(),
     );
   }
 }
@@ -118,7 +115,6 @@ class TandorostPlatform extends StatelessWidget {
       localizationsDelegates: const [
         PersianMaterialLocalizations.delegate,
         PersianCupertinoLocalizations.delegate,
-
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

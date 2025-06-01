@@ -7,6 +7,7 @@ class SearchState extends Equatable {
   final AsyncProcessingStatus searchFoodsByTextInputStatus;
   final AsyncProcessingStatus searchFoodsByVoiceInputStatus;
   final Language? userSpokenLanguage;
+  final bool canRequestForFoodNutrition;
 
   const SearchState({
     this.foodName = '',
@@ -14,6 +15,7 @@ class SearchState extends Equatable {
     this.searchFoodsByVoiceInputStatus = AsyncProcessingStatus.inital,
     this.voiceData,
     this.userSpokenLanguage,
+    this.canRequestForFoodNutrition = true,
   });
 
   @override
@@ -22,7 +24,8 @@ class SearchState extends Equatable {
     voiceData,
     searchFoodsByTextInputStatus,
     userSpokenLanguage,
-    searchFoodsByVoiceInputStatus
+    searchFoodsByVoiceInputStatus,
+    canRequestForFoodNutrition,
   ];
   SearchState copyWith({
     String? foodName,
@@ -30,6 +33,7 @@ class SearchState extends Equatable {
     ValueGetter<FileData?>? voiceData,
     AsyncProcessingStatus? searchFoodsByTextInputStatus,
     AsyncProcessingStatus? searchFoodsByVoiceInputStatus,
+    bool? canRequestForFoodNutrition,
   }) {
     return SearchState(
       userSpokenLanguage: userSpokenLanguage ?? this.userSpokenLanguage,
@@ -39,6 +43,8 @@ class SearchState extends Equatable {
           searchFoodsByTextInputStatus ?? this.searchFoodsByTextInputStatus,
       searchFoodsByVoiceInputStatus:
           searchFoodsByVoiceInputStatus ?? this.searchFoodsByVoiceInputStatus,
+      canRequestForFoodNutrition:
+          canRequestForFoodNutrition ?? this.canRequestForFoodNutrition,
     );
   }
 }

@@ -15,6 +15,14 @@ class SearchBody extends StatelessWidget {
     final cubit = context.read<SearchCubit>();
     return MultiBlocListener(
       listeners: [
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
+                  !current.canRequestForFoodNutrition,
+          listener: (context, state) async {
+            // show purchase dialog 
+          },
+        ),
         // handle routing
         BlocListener<SearchCubit, SearchState>(
           listenWhen:

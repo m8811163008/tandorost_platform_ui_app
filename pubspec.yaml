@@ -48,6 +48,8 @@ dependencies:
     path: packages/repositories/food_report
   image_repository:
     path: packages/repositories/image_repository
+  payment_repository:
+    path: packages/repositories/payment_repository
   profile:
     path: packages/repositories/profile
   # Common

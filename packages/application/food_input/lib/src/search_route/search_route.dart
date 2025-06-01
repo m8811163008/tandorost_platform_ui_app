@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_input/food_input.dart';
 import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
 import 'package:food_input_app/src/search_route/search_body.dart';
+import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
@@ -30,6 +31,7 @@ class SearchRoute extends StatelessWidget {
             context,
           ),
           profileRepository: RepositoryProvider.of<ProfileRepository>(context),
+          paymentRepository: RepositoryProvider.of<PaymentRepository>(context),
         );
       },
       child: AppScaffold(

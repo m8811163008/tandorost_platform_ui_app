@@ -5,20 +5,23 @@ import 'package:rxdart/rxdart.dart';
 class PaymentRepository {
   final RemoteApi _remoteApi;
   PaymentRepository({required RemoteApi remoteApi})
-    : _controller = BehaviorSubject.seeded([]),
+    : _subscriptionController = BehaviorSubject.seeded([]),
+
       _remoteApi = remoteApi {
     _initalize();
   }
   _initalize() async {
     final subscriptions = await _remoteApi.readSubscriptionPayments();
-    _controller.add(subscriptions);
+
+    _subscriptionController.add(subscriptions);
   }
 
-  final BehaviorSubject<List<SubscriptionPayment>> _controller;
+  final BehaviorSubject<List<SubscriptionPayment>> _subscriptionController;
 
-  Future<List<SubscriptionPayment>> readSubscriptionPayments() async {
-    return _controller.asBroadcastStream().first;
-  }
+  Future<List<SubscriptionPayment>> readSubscriptionPayments() =>
+      _subscriptionController.asBroadcastStream().first;
+
+  Future<UserFoodCount> _readUserFoodCount() => _remoteApi.readUserFoodCount();
 
   Future<bool> get canRequestForFoodNutrition async {
     final subscriptions = await readSubscriptionPayments();
@@ -33,6 +36,4 @@ class PaymentRepository {
   Future<void> createSubscriptionPayments(
     SubscriptionPayment subscriptionPayment,
   ) => _remoteApi.createSubscriptionPayments(subscriptionPayment);
-
-  Future<UserFoodCount> _readUserFoodCount() => _remoteApi.readUserFoodCount();
 }

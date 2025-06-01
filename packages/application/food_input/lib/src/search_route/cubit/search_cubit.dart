@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_input/food_input.dart';
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
 import 'package:record/record.dart';
 
@@ -14,6 +15,7 @@ class SearchCubit extends Cubit<SearchState> {
   SearchCubit({
     required this.foodInputRepository,
     required this.profileRepository,
+    required this.paymentRepository,
   }) : recorder = AudioRecorder(),
        super(SearchState()) {
     _init();
@@ -42,6 +44,7 @@ class SearchCubit extends Cubit<SearchState> {
 
   final FoodInputRepository foodInputRepository;
   final ProfileRepository profileRepository;
+  final PaymentRepository paymentRepository;
   final AudioRecorder recorder;
 
   Future<bool> get isPremissionAllowed => recorder.hasPermission();
@@ -72,6 +75,10 @@ class SearchCubit extends Cubit<SearchState> {
   void onSearchByVoicePressedUp() async {
     final out = await recorder.stop();
     if (out == null) {
+      return;
+    }
+    if (!await paymentRepository.canRequestForFoodNutrition) {
+      emit(state.copyWith(canRequestForFoodNutrition: false));
       return;
     }
     emit(
@@ -124,6 +131,10 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   void readFoodsNutritionsByText() async {
+    if (!await paymentRepository.canRequestForFoodNutrition) {
+      emit(state.copyWith(canRequestForFoodNutrition: false));
+      return;
+    }
     emit(
       state.copyWith(
         searchFoodsByTextInputStatus: AsyncProcessingStatus.loading,

@@ -19,6 +19,8 @@ dependencies:
     path: ../../repositories/food_input
   profile:
     path: ../../repositories/profile
+  payment_repository:
+    path: ../../repositories/payment_repository
   record: ^6.0.0
   image_picker_platform_interface: ^2.10.1
   path_provider: ^2.1.5
