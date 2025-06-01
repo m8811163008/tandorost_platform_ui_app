@@ -32,6 +32,7 @@ class LocalStorage {
   }
 
   Future<void> delete(String key) async {
+    //Todo fix
     await secureStorage.delete(key);
   }
 }
