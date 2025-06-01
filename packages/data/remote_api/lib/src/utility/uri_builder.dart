@@ -117,7 +117,14 @@ class UriBuilder {
   static Uri readSubscriptions() {
     return baseUri.replace(path: '$basePath/payment/read_subscriptions/');
   }
+
   static Uri createSubscriptionPayment() {
-    return baseUri.replace(path: '$basePath/payment/create_subscription_payment/');
+    return baseUri.replace(
+      path: '$basePath/payment/create_subscription_payment/',
+    );
+  }
+
+  static Uri readUserFoodCount() {
+    return baseUri.replace(path: '$basePath/payment/read_user_food_count/');
   }
 }

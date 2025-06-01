@@ -6,6 +6,7 @@ import 'package:http_interceptor/http_interceptor.dart';
 import 'package:http_interceptor/http_interceptor.dart' as http;
 import 'package:remote_api/src/interceptor/interceptor.dart';
 import 'package:remote_api/src/model/model.dart';
+import 'package:remote_api/src/model/user_food_count.dart';
 import 'package:remote_api/src/remote_api.dart';
 import 'package:remote_api/src/utility/utility.dart';
 import 'package:rxdart/rxdart.dart';
@@ -496,6 +497,18 @@ class RemoteApiBase implements RemoteApi {
     );
     return SubscriptionPayment.fromJson(res!);
   }
+    Future<UserFoodCount> readUserFoodCount(){
+      final interceptedHttp = InterceptedHttp.build(
+        interceptors: [
+          CommonInterceptor(userLanguageProvider),
+          AccessTokenInterceptor(accessTokenProvider),
+          ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+        ],
+      );
+      final uri = UriBuilder.readUserFoodCount();
+      return _handleRequest<JsonMap>(() => interceptedHttp.get(uri))
+          .then((res) => UserFoodCount.fromJson(res!));
+    }
 
   Future<E?> _handleRequest<E>(Future<Response> Function() request) async {
     try {

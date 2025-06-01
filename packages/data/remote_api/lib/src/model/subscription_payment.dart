@@ -30,6 +30,14 @@ class SubscriptionPayment {
     this.updatedAt,
   });
 
+  bool get isActive {
+    if (subscriptionType == SubscriptionType.freeTier) {
+      return true;
+    }
+    final expireDate = purchaseDate.add(subscriptionType.duration);
+    return DateTime.now().isBefore(expireDate);
+  }
+
   factory SubscriptionPayment.fromJson(Map<String, dynamic> json) =>
       _$SubscriptionPaymentFromJson(json);
 

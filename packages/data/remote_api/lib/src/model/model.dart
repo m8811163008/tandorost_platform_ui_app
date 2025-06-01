@@ -31,3 +31,4 @@ export 'currency.dart';
 export 'subscription_type.dart';
 export 'payment_method.dart';
 export 'subscription_payment.dart';
+export 'user_food_count.dart';

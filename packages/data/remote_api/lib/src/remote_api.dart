@@ -1,4 +1,5 @@
 import 'package:remote_api/remote_api.dart';
+import 'package:remote_api/src/model/user_food_count.dart';
 import 'remote_api_base.dart';
 
 /// An abstract interface class for interacting with a remote API.
@@ -181,4 +182,12 @@ abstract interface class RemoteApi {
   /// Takes a [SubscriptionPayment] object as input and returns a [Future]
   /// that completes with the created [SubscriptionPayment].
   Future<SubscriptionPayment> createSubscriptionPayments(SubscriptionPayment subscriptionPayment);
+
+  /// Retrieves the food count information for the current user.
+  ///
+  /// Returns a [Future] that completes with a [UserFoodCount] object containing
+  /// the user's food count data.
+  ///
+  /// Throws an exception if the operation fails.
+  Future<UserFoodCount> readUserFoodCount();
 }
