@@ -1,3 +1,4 @@
+import 'package:domain_model/domain_model.dart';
 import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
 import 'package:food_input_app/src/search_route/language_bottom_sheet.dart';
 
@@ -15,6 +16,59 @@ class SearchBody extends StatelessWidget {
     final cubit = context.read<SearchCubit>();
     return MultiBlocListener(
       listeners: [
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
+                  previous.coffeBazzarConnectionStatus !=
+                  current.coffeBazzarConnectionStatus,
+          listener: (context, state) async {
+            if (state.coffeBazzarConnectionStatus.isServerConnectionError) {
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.exceptionDetail!)));
+            } else if (state.canRequestForFoodNutritionStatus.isSuccess) {
+              context.read<SearchCubit>().onCafeBazzarSubscribe();
+            }
+          },
+        ),
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
+                  previous.onCafeBazzarSubscribeStatus !=
+                  current.onCafeBazzarSubscribeStatus,
+          listener: (context, state) async {
+            if (state.onCafeBazzarSubscribeStatus.isServerConnectionError) {
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.exceptionDetail!)));
+            } else if (state.onCafeBazzarSubscribeStatus.isSuccess) {
+              context.read<SearchCubit>().onCreateSubscriptionPayments();
+            }
+          },
+        ),
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
+                  previous.onCreateSubscriptionPaymentsStatus !=
+                  current.onCreateSubscriptionPaymentsStatus,
+          listener: (context, state) async {
+            if (state
+                .canRequestForFoodNutritionStatus
+                .isServerConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state
+                .canRequestForFoodNutritionStatus
+                .isServerConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            }
+          },
+        ),
         BlocListener<SearchCubit, SearchState>(
           listenWhen:
               (previous, current) =>
@@ -39,10 +93,34 @@ class SearchBody extends StatelessWidget {
                 state.canRequestForFoodNutritionStatus.isSuccess) {
               await showDialog(
                 context: context,
-                builder: (context) {
-                  return PaymentDialog();
+                builder: (_) {
+                  return BlocProvider.value(
+                    value: context.read<SearchCubit>(),
+                    child: PaymentDialogBuilder(),
+                  );
                 },
               );
+            }
+          },
+        ),
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
+                  previous.readCoffeBazzarPaymentStatus !=
+                  current.readCoffeBazzarPaymentStatus,
+          listener: (context, state) async {
+            if (state.readCoffeBazzarPaymentStatus.isServerConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state
+                .readCoffeBazzarPaymentStatus
+                .isServerConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
             }
           },
         ),
@@ -139,6 +217,46 @@ class SearchBody extends StatelessWidget {
           SizedBox(height: context.sizeExtenstion.extraLarge),
         ],
       ),
+    );
+  }
+}
+
+class PaymentDialogBuilder extends StatelessWidget {
+  const PaymentDialogBuilder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return PaymentDialog(
+      submitButtonPlanMonthly:
+          context.select(
+                (SearchCubit cubit) =>
+                    cubit.state.coffeBazzarConnectionStatus.isLoading,
+              )
+              ? AppOutLineButton.loading(label: 'one')
+              : AppOutLineButton(
+                label: 'one',
+                onTap: () {
+                  context.read<SearchCubit>().onConnectToCofeBazzar();
+                  context.read<SearchCubit>().onChangeSelectedSubscriptionType(
+                    SubscriptionType.oneMonth,
+                  );
+                },
+              ),
+      submitButtonPlanQuarterly:
+          context.select(
+                (SearchCubit cubit) =>
+                    cubit.state.coffeBazzarConnectionStatus.isLoading,
+              )
+              ? AppOutLineButton.loading(label: 'three')
+              : AppOutLineButton(
+                label: 'three',
+                onTap: () {
+                  context.read<SearchCubit>().onConnectToCofeBazzar();
+                  context.read<SearchCubit>().onChangeSelectedSubscriptionType(
+                    SubscriptionType.threeMonth,
+                  );
+                },
+              ),
     );
   }
 }

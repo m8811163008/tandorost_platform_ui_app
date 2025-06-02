@@ -17,5 +17,5 @@ class CafeBazzarPaymentInfo {
   });
 
   factory CafeBazzarPaymentInfo.fromJson(Map<String, dynamic> json) =>
-      _$CafeBazzarPaymentFromJson(json);
+      _$CafeBazzarPaymentInfoFromJson(json);
 }

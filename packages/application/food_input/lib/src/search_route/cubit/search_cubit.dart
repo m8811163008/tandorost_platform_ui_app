@@ -1,14 +1,16 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:food_input/food_input.dart';
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
 import 'package:record/record.dart';
-
+import 'package:tandorost_components/tandorost_components.dart';
+import 'package:flutter_poolakey/flutter_poolakey.dart';
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
@@ -40,6 +42,7 @@ class SearchCubit extends Cubit<SearchState> {
   void _init() async {
     final language = await profileRepository.userSpokenLanguage;
     emit(state.copyWith(userSpokenLanguage: () => language));
+    await onReadCoffeBazzarPayment();
   }
 
   final FoodInputRepository foodInputRepository;
@@ -196,7 +199,7 @@ class SearchCubit extends Cubit<SearchState> {
     }
   }
 
-  void onReadCoffeBazzarPayment() async {
+  Future<void> onReadCoffeBazzarPayment() async {
     emit(
       state.copyWith(
         readCoffeBazzarPaymentStatus: AsyncProcessingStatus.loading,
@@ -223,6 +226,149 @@ class SearchCubit extends Cubit<SearchState> {
         state.copyWith(
           readCoffeBazzarPaymentStatus:
               AsyncProcessingStatus.serverConnectionError,
+        ),
+      );
+    }
+  }
+
+  void onConnectToCofeBazzar() async {
+    if (state.cafeBazzarPaymentInfo == null) return;
+    emit(
+      state.copyWith(
+        coffeBazzarConnectionStatus: AsyncProcessingStatus.loading,
+      ),
+    );
+    try {
+      await FlutterPoolakey.connect(
+        state.cafeBazzarPaymentInfo!.caffeBazzarRsa,
+        onDisconnected: () async => onConnectToCofeBazzar(),
+      );
+      emit(
+        state.copyWith(
+          coffeBazzarConnectionStatus: AsyncProcessingStatus.success,
+        ),
+      );
+    } on Exception catch (e) {
+      emit(
+        state.copyWith(
+          coffeBazzarConnectionStatus:
+              AsyncProcessingStatus.serverConnectionError,
+          exceptionDetail: () => e.toString(),
+        ),
+      );
+    }
+  }
+  void onChangeSelectedSubscriptionType(SubscriptionType subscriptionType){
+    emit(state.copyWith(selectedSubscriptionType: subscriptionType));
+  }
+
+  void onCafeBazzarSubscribe() async {
+    assert(state.skuDetails.isNotEmpty);
+    if (state.cafeBazzarPaymentInfo == null) return;
+    emit(
+      state.copyWith(
+        onCafeBazzarSubscribeStatus: AsyncProcessingStatus.loading,
+      ),
+    );
+    try {
+      final sku =
+          state.selectedSubscriptionType! == SubscriptionType.oneMonth
+              ? state
+                  .cafeBazzarPaymentInfo!
+                  .caffeBazzarSubscriptionPlanOneMonthSdk
+              : state
+                  .cafeBazzarPaymentInfo!
+                  .caffeBazzarSubscriptionPlanThreeMonthSdk;
+      final purchaseInfo = await FlutterPoolakey.subscribe(
+        sku,
+        payload: json.encode(state.userProfile!.toJson()),
+      );
+      final skuDetails = state.skuDetails.singleWhere(
+        (skuDetail) => skuDetail.sku == sku,
+      );
+      final subscriptionPayment = SubscriptionPayment(
+        userId: state.userProfile!.id,
+        paidAmount: double.parse(skuDetails.price),
+        discountAmount: 0,
+        currency: Currency.irRial,
+        paymentMethod: PaymentMethod.inPaymentCafeBazzar,
+        purchaseDate: DateTime.fromMillisecondsSinceEpoch(
+          purchaseInfo.purchaseTime,
+        ),
+        subscriptionType: state.selectedSubscriptionType!,
+      );
+
+      emit(
+        state.copyWith(
+          onCafeBazzarSubscribeStatus: AsyncProcessingStatus.success,
+          purchaseInfo: () => purchaseInfo,
+          subscriptionPayment: subscriptionPayment,
+        ),
+      );
+    } on Exception catch (e) {
+      emit(
+        state.copyWith(
+          onCafeBazzarSubscribeStatus:
+              AsyncProcessingStatus.serverConnectionError,
+          exceptionDetail: () => e.toString(),
+        ),
+      );
+    }
+  }
+
+  void onCreateSubscriptionPayments() async {
+    if (state.subscriptionPayment == null) return;
+    emit(
+      state.copyWith(
+        onCreateSubscriptionPaymentsStatus: AsyncProcessingStatus.loading,
+      ),
+    );
+    try {
+      await paymentRepository.createSubscriptionPayments(
+        state.subscriptionPayment!,
+      );
+      emit(
+        state.copyWith(
+          onCreateSubscriptionPaymentsStatus: AsyncProcessingStatus.success,
+        ),
+      );
+    } on Exception catch (e) {
+      emit(
+        state.copyWith(
+          onCreateSubscriptionPaymentsStatus:
+              AsyncProcessingStatus.serverConnectionError,
+          exceptionDetail: () => e.toString(),
+        ),
+      );
+    }
+  }
+
+  void onReadCafeBazzarSkus() async {
+    if (state.userProfile == null ||
+        state.purchaseInfo == null ||
+        state.cafeBazzarPaymentInfo == null) {
+      return;
+    }
+    emit(
+      state.copyWith(onReadCafeBazzarSkusStatus: AsyncProcessingStatus.loading),
+    );
+    try {
+      final skus = await FlutterPoolakey.getSubscriptionSkuDetails([
+        state.cafeBazzarPaymentInfo!.caffeBazzarSubscriptionPlanOneMonthSdk,
+        state.cafeBazzarPaymentInfo!.caffeBazzarSubscriptionPlanThreeMonthSdk,
+      ]);
+      emit(
+        state.copyWith(
+          skuDetails: skus,
+          onReadCafeBazzarSkusStatus: AsyncProcessingStatus.success,
+        ),
+      );
+    } on Exception catch (e) {
+      emit(
+        state.copyWith(
+          onReadCafeBazzarSkusStatus:
+              AsyncProcessingStatus.serverConnectionError,
+          exceptionDetail: () => e.toString(),
         ),
       );
     }

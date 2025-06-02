@@ -31,7 +31,7 @@ class PaymentRepository {
     return subscriptions.any(
       (subscription) =>
           subscription.isActive &&
-          foodCount.count <= subscription.userAiRequestLimitFoods,
+          foodCount.count <= subscription.userAiRequestLimitFoods!,
     );
   }
 
