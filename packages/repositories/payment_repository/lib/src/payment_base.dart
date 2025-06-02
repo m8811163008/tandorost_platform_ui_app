@@ -22,6 +22,9 @@ class PaymentRepository {
 
   Future<UserFoodCount> _readUserFoodCount() => _remoteApi.readUserFoodCount();
 
+  Future<CafeBazzarPaymentInfo> readCoffeBazzarPayment() =>
+      _remoteApi.readCoffeBazzarPayment();
+
   Future<bool> get canRequestForFoodNutrition async {
     final subscriptions = await readSubscriptionPayments();
     final foodCount = await _readUserFoodCount();

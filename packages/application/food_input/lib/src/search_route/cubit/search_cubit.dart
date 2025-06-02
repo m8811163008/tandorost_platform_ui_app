@@ -39,7 +39,7 @@ class SearchCubit extends Cubit<SearchState> {
 
   void _init() async {
     final language = await profileRepository.userSpokenLanguage;
-    emit(state.copyWith(userSpokenLanguage: language));
+    emit(state.copyWith(userSpokenLanguage: () => language));
   }
 
   final FoodInputRepository foodInputRepository;
@@ -68,7 +68,7 @@ class SearchCubit extends Cubit<SearchState> {
   void onChangeLanguage(Language? language) async {
     if (language != null) {
       await profileRepository.upsertUserSpokenLanguage(language);
-      emit(state.copyWith(userSpokenLanguage: language));
+      emit(state.copyWith(userSpokenLanguage: () => language));
     }
   }
 
@@ -190,6 +190,38 @@ class SearchCubit extends Cubit<SearchState> {
       emit(
         state.copyWith(
           canRequestForFoodNutritionStatus:
+              AsyncProcessingStatus.serverConnectionError,
+        ),
+      );
+    }
+  }
+
+  void onReadCoffeBazzarPayment() async {
+    emit(
+      state.copyWith(
+        readCoffeBazzarPaymentStatus: AsyncProcessingStatus.loading,
+      ),
+    );
+    try {
+      final cafeBazzarPaymentInfo =
+          await paymentRepository.readCoffeBazzarPayment();
+      emit(
+        state.copyWith(
+          cafeBazzarPaymentInfo: () => cafeBazzarPaymentInfo,
+          readCoffeBazzarPaymentStatus: AsyncProcessingStatus.success,
+        ),
+      );
+    } on InternetConnectionException {
+      emit(
+        state.copyWith(
+          readCoffeBazzarPaymentStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      emit(
+        state.copyWith(
+          readCoffeBazzarPaymentStatus:
               AsyncProcessingStatus.serverConnectionError,
         ),
       );

@@ -4,17 +4,23 @@ part of 'search_cubit.dart';
 class SearchState extends Equatable {
   final String foodName;
   final FileData? voiceData;
+    final CafeBazzarPaymentInfo? cafeBazzarPaymentInfo;
   final AsyncProcessingStatus searchFoodsByTextInputStatus;
   final AsyncProcessingStatus searchFoodsByVoiceInputStatus;
   final AsyncProcessingStatus canRequestForFoodNutritionStatus;
+  final AsyncProcessingStatus readCoffeBazzarPaymentStatus;
   final Language? userSpokenLanguage;
   final bool canRequestForFoodNutrition;
 
+
   const SearchState({
     this.foodName = '',
+    
     this.searchFoodsByTextInputStatus = AsyncProcessingStatus.inital,
     this.searchFoodsByVoiceInputStatus = AsyncProcessingStatus.inital,
     this.canRequestForFoodNutritionStatus= AsyncProcessingStatus.inital,
+    this.readCoffeBazzarPaymentStatus= AsyncProcessingStatus.inital,
+    this.cafeBazzarPaymentInfo,
     this.voiceData,
     this.userSpokenLanguage,
     this.canRequestForFoodNutrition = false,
@@ -29,20 +35,25 @@ class SearchState extends Equatable {
     searchFoodsByVoiceInputStatus,
     canRequestForFoodNutrition,
     canRequestForFoodNutritionStatus,
+    cafeBazzarPaymentInfo,
+    readCoffeBazzarPaymentStatus
   ];
   SearchState copyWith({
     String? foodName,
-    Language? userSpokenLanguage,
+    ValueGetter<Language?>? userSpokenLanguage,
+    ValueGetter<CafeBazzarPaymentInfo?>? cafeBazzarPaymentInfo,
     ValueGetter<FileData?>? voiceData,
     AsyncProcessingStatus? searchFoodsByTextInputStatus,
     AsyncProcessingStatus? searchFoodsByVoiceInputStatus,
     AsyncProcessingStatus? canRequestForFoodNutritionStatus,
+    AsyncProcessingStatus? readCoffeBazzarPaymentStatus,
     bool? canRequestForFoodNutrition,
   }) {
     return SearchState(
-      userSpokenLanguage: userSpokenLanguage ?? this.userSpokenLanguage,
       foodName: foodName ?? this.foodName,
       voiceData: voiceData != null ? voiceData() : this.voiceData,
+      userSpokenLanguage: userSpokenLanguage != null ? userSpokenLanguage() : this.userSpokenLanguage,
+      cafeBazzarPaymentInfo: cafeBazzarPaymentInfo != null ? cafeBazzarPaymentInfo() : this.cafeBazzarPaymentInfo,
       searchFoodsByTextInputStatus:
           searchFoodsByTextInputStatus ?? this.searchFoodsByTextInputStatus,
       searchFoodsByVoiceInputStatus:

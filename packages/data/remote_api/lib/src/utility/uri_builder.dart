@@ -118,6 +118,10 @@ class UriBuilder {
     return baseUri.replace(path: '$basePath/payment/read_subscriptions/');
   }
 
+  static Uri readCoffeBazzarPayment() {
+    return baseUri.replace(path: '$basePath/payment/cafe_bazzar_payment_info/');
+  }
+
   static Uri createSubscriptionPayment() {
     return baseUri.replace(
       path: '$basePath/payment/create_subscription_payment/',

@@ -478,6 +478,19 @@ class RemoteApiBase implements RemoteApi {
     return res!.map((e) => SubscriptionPayment.fromJson(e)).toList();
   }
 
+  Future<CafeBazzarPaymentInfo> readCoffeBazzarPayment() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.readCoffeBazzarPayment();
+    final res = await _handleRequest<JsonMap>(() => interceptedHttp.get(uri));
+    return CafeBazzarPaymentInfo.fromJson(res!);
+  }
+
   Future<SubscriptionPayment> createSubscriptionPayments(
     SubscriptionPayment subscriptionPayment,
   ) async {
@@ -497,18 +510,20 @@ class RemoteApiBase implements RemoteApi {
     );
     return SubscriptionPayment.fromJson(res!);
   }
-    Future<UserFoodCount> readUserFoodCount(){
-      final interceptedHttp = InterceptedHttp.build(
-        interceptors: [
-          CommonInterceptor(userLanguageProvider),
-          AccessTokenInterceptor(accessTokenProvider),
-          ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
-        ],
-      );
-      final uri = UriBuilder.readUserFoodCount();
-      return _handleRequest<JsonMap>(() => interceptedHttp.get(uri))
-          .then((res) => UserFoodCount.fromJson(res!));
-    }
+
+  Future<UserFoodCount> readUserFoodCount() {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.readUserFoodCount();
+    return _handleRequest<JsonMap>(
+      () => interceptedHttp.get(uri),
+    ).then((res) => UserFoodCount.fromJson(res!));
+  }
 
   Future<E?> _handleRequest<E>(Future<Response> Function() request) async {
     try {
