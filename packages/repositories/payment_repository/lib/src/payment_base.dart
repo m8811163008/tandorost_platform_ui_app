@@ -7,19 +7,18 @@ class PaymentRepository {
   PaymentRepository({required RemoteApi remoteApi})
     : _subscriptionController = BehaviorSubject.seeded([]),
 
-      _remoteApi = remoteApi {
-    _initalize();
-  }
-  _initalize() async {
-    final subscriptions = await _remoteApi.readSubscriptionPayments();
-
-    _subscriptionController.add(subscriptions);
-  }
+      _remoteApi = remoteApi;
 
   final BehaviorSubject<List<SubscriptionPayment>> _subscriptionController;
 
-  Future<List<SubscriptionPayment>> readSubscriptionPayments() =>
-      _subscriptionController.asBroadcastStream().first;
+  Future<List<SubscriptionPayment>> readSubscriptionPayments() async {
+    var subscriptions = _subscriptionController.value;
+    if (subscriptions.isEmpty) {
+      subscriptions = await _remoteApi.readSubscriptionPayments();
+      _subscriptionController.add(subscriptions);
+    }
+    return _subscriptionController.value;
+  }
 
   Future<UserFoodCount> _readUserFoodCount() => _remoteApi.readUserFoodCount();
 

@@ -1,6 +1,7 @@
 export 'src/common/animations/animations.dart';
 
 export 'src/common/diaog/app_diaog.dart';
+export 'src/common/diaog/payment_dialog.dart';
 export 'src/common/layout/app_scaffold.dart';
 export 'src/common/button/button.dart';
 export 'src/common/text_field/text_field.dart';

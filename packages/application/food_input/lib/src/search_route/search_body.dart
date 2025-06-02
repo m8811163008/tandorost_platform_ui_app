@@ -18,9 +18,32 @@ class SearchBody extends StatelessWidget {
         BlocListener<SearchCubit, SearchState>(
           listenWhen:
               (previous, current) =>
-                  !current.canRequestForFoodNutrition,
+                  previous.canRequestForFoodNutritionStatus !=
+                  current.canRequestForFoodNutritionStatus,
           listener: (context, state) async {
-            // show purchase dialog 
+            if (state
+                .canRequestForFoodNutritionStatus
+                .isServerConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state
+                .canRequestForFoodNutritionStatus
+                .isServerConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (!state.canRequestForFoodNutrition &&
+                state.canRequestForFoodNutritionStatus.isSuccess) {
+              await showDialog(
+                context: context,
+                builder: (context) {
+                  return PaymentDialog();
+                },
+              );
+            }
           },
         ),
         // handle routing

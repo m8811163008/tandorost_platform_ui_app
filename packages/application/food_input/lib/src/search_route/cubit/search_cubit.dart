@@ -77,10 +77,10 @@ class SearchCubit extends Cubit<SearchState> {
     if (out == null) {
       return;
     }
-    if (!await paymentRepository.canRequestForFoodNutrition) {
-      emit(state.copyWith(canRequestForFoodNutrition: false));
+    if (!state.canRequestForFoodNutrition) {
       return;
     }
+
     emit(
       state.copyWith(
         searchFoodsByVoiceInputStatus: AsyncProcessingStatus.loading,
@@ -131,8 +131,8 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   void readFoodsNutritionsByText() async {
-    if (!await paymentRepository.canRequestForFoodNutrition) {
-      emit(state.copyWith(canRequestForFoodNutrition: false));
+    await _canRequestForFoodNutrition();
+    if (!state.canRequestForFoodNutrition) {
       return;
     }
     emit(
@@ -158,6 +158,38 @@ class SearchCubit extends Cubit<SearchState> {
       emit(
         state.copyWith(
           searchFoodsByTextInputStatus:
+              AsyncProcessingStatus.serverConnectionError,
+        ),
+      );
+    }
+  }
+
+  Future<void> _canRequestForFoodNutrition() async {
+    emit(
+      state.copyWith(
+        canRequestForFoodNutritionStatus: AsyncProcessingStatus.loading,
+      ),
+    );
+    try {
+      final canRequestForFoodNutrition =
+          await paymentRepository.canRequestForFoodNutrition;
+      emit(
+        state.copyWith(
+          canRequestForFoodNutrition: canRequestForFoodNutrition,
+          canRequestForFoodNutritionStatus: AsyncProcessingStatus.success,
+        ),
+      );
+    } on InternetConnectionException {
+      emit(
+        state.copyWith(
+          canRequestForFoodNutritionStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      emit(
+        state.copyWith(
+          canRequestForFoodNutritionStatus:
               AsyncProcessingStatus.serverConnectionError,
         ),
       );

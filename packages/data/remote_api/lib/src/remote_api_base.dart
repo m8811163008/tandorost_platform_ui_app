@@ -21,7 +21,7 @@ class RemoteApiBase implements RemoteApi {
   late final Future<Token?> Function() accessTokenProvider;
 
   BehaviorSubject<AuthenticationStatus> _controller = BehaviorSubject.seeded(
-    AuthenticationStatus.unknown,
+    AuthenticationStatus.authorized,
   );
   static const _detail = 'detail';
 
