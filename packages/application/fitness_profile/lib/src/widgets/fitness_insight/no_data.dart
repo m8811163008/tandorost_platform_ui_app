@@ -16,10 +16,11 @@ class NoDataFound extends StatelessWidget {
             child: Stack(
               alignment: AlignmentDirectional.bottomCenter,
               children: [
-                AppRoundedRectangleBorder(
-                  child: ChartAnimation(size: Size.fromHeight(200)),
+                AppRoundedRectangleBorder(child: ChartAnimation()),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Text('add measurement'),
                 ),
-                ElevatedButton(onPressed: (){}, child: Text('add measurement'))
               ],
             ),
           ),

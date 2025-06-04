@@ -7,7 +7,7 @@ class AddNewImageSelfie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/images/fitness_selfie.jpg',
+      'assets/images/fitness_selfie.png',
       package: packageName,
     );
   }

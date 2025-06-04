@@ -13,19 +13,21 @@ class RegisterCubit extends Cubit<RegisterState> {
   final AuthenticationRepository _authenticationRepository;
 
   void onChangePhoneNumber(String value) {
-    emit(state.copyWith(phoneNumber: value));
+    _enhancedEmit(state.copyWith(phoneNumber: value));
   }
 
   void onChangePinCode(String value) {
-    emit(state.copyWith(password: value));
+    _enhancedEmit(state.copyWith(password: value));
   }
 
   void onChangeVerificationCode(String value) {
-    emit(state.copyWith(verificationCode: value));
+    _enhancedEmit(state.copyWith(verificationCode: value));
   }
 
   void sendVerificationCode() async {
-    emit(state.copyWith(verificationStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(verificationStatus: AsyncProcessingStatus.loading),
+    );
     try {
       final request = VerificationCodeRequest(
         phoneNumber: state.phoneNumber,
@@ -34,15 +36,17 @@ class RegisterCubit extends Cubit<RegisterState> {
       await _authenticationRepository.sendVerificationCode(
         verificationCodeRequest: request,
       );
-      emit(state.copyWith(verificationStatus: AsyncProcessingStatus.success));
+      _enhancedEmit(
+        state.copyWith(verificationStatus: AsyncProcessingStatus.success),
+      );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           verificationStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException catch (e) {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           verificationStatus: AsyncProcessingStatus.serverConnectionError,
           exception: e.message,
@@ -52,7 +56,9 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
   void onRegister() async {
-    emit(state.copyWith(registerStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(registerStatus: AsyncProcessingStatus.loading),
+    );
     try {
       final registerReques = RegisterRequest(
         userName: state.phoneNumber,
@@ -60,20 +66,28 @@ class RegisterCubit extends Cubit<RegisterState> {
         verificationCode: state.verificationCode,
       );
       await _authenticationRepository.register(registerRequest: registerReques);
-      emit(state.copyWith(registerStatus: AsyncProcessingStatus.success));
+      _enhancedEmit(
+        state.copyWith(registerStatus: AsyncProcessingStatus.success),
+      );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           registerStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException catch (e) {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           registerStatus: AsyncProcessingStatus.serverConnectionError,
           exception: e.message,
         ),
       );
+    }
+  }
+
+  void _enhancedEmit(RegisterState state) {
+    if (!isClosed) {
+      emit(state);
     }
   }
 }

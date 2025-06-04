@@ -33,7 +33,9 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
       gallaryTag: GallaryTag.defaultTag,
       imageGallaryFiles: [fileDetail],
     );
-    emit(state.copyWith(addUserImageStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(addUserImageStatus: AsyncProcessingStatus.loading),
+    );
 
     try {
       final userImagesDetail = await _imageRepository.addUserImages(userImage);
@@ -45,7 +47,7 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
       // update state
       final List<FileDetail> filesDetail = List.from(state.filesDetail);
       filesDetail.add(fetchImageDetail);
-      emit(
+      _enhancedEmit(
         state.copyWith(
           addUserImageStatus: AsyncProcessingStatus.success,
           filesData: userImagesDetail,
@@ -53,13 +55,13 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
         ),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           addUserImageStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           addUserImageStatus: AsyncProcessingStatus.serverConnectionError,
         ),
@@ -71,81 +73,103 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       gender: () => gender,
     );
-    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+    _enhancedEmit(
+      state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile),
+    );
   }
 
   void onChangeBirthDay(DateTime birthday) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       birthday: () => birthday,
     );
-    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+    _enhancedEmit(
+      state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile),
+    );
   }
 
   void onChangeHeight(double? height) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       height: () => height,
     );
-    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+    _enhancedEmit(
+      state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile),
+    );
   }
 
   void onChangeWeight(double? weight) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       weight: () => weight,
     );
-    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+    _enhancedEmit(
+      state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile),
+    );
   }
 
   void onChangeWaistCircumference(double? waistCircumference) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       waistCircumference: () => waistCircumference,
     );
-    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+    _enhancedEmit(
+      state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile),
+    );
   }
 
   void onChangeArmCircumference(double? armCircumference) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       armCircumference: () => armCircumference,
     );
-    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+    _enhancedEmit(
+      state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile),
+    );
   }
 
   void onChangeChestCircumference(double? chestCircumference) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       chestCircumference: () => chestCircumference,
     );
-    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+    _enhancedEmit(
+      state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile),
+    );
   }
 
   void onChangeThighCircumference(double? thighCircumference) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       thighCircumference: () => thighCircumference,
     );
-    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+    _enhancedEmit(
+      state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile),
+    );
   }
 
   void onChangeCalfMuscleCircumference(double? calfMuscleCircumference) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       calfMuscleCircumference: () => calfMuscleCircumference,
     );
-    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+    _enhancedEmit(
+      state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile),
+    );
   }
 
   void onChangeHipCircumference(double? hipCircumference) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       hipCircumference: () => hipCircumference,
     );
-    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+    _enhancedEmit(
+      state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile),
+    );
   }
 
   void onChangeActivityLevel(ActivityLevel? activityLevel) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
       activityLevel: () => activityLevel,
     );
-    emit(state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile));
+    _enhancedEmit(
+      state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile),
+    );
   }
 
   void readUserPhysicalProfile() async {
-    emit(
+    _enhancedEmit(
       state.copyWith(
         readUserPhysicalProfileStatus: AsyncProcessingStatus.loading,
       ),
@@ -153,21 +177,21 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     try {
       final userPhysicalProfile =
           await _fitnessNutrition.readUserPhysicalProfile();
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readUserPhysicalProfileStatus: AsyncProcessingStatus.success,
           userPhysicalProfile: userPhysicalProfile,
         ),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readUserPhysicalProfileStatus:
               AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readUserPhysicalProfileStatus:
               AsyncProcessingStatus.serverConnectionError,
@@ -177,7 +201,7 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
   }
 
   void updateUserPhysicalData() async {
-    emit(
+    _enhancedEmit(
       state.copyWith(
         updateUserPhysicalDataStatus: AsyncProcessingStatus.loading,
       ),
@@ -185,21 +209,21 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     try {
       final userPhysicalProfile = await _fitnessNutrition
           .updateUserPhysicalData(state.userPhysicalDataUpsert);
-      emit(
+      _enhancedEmit(
         state.copyWith(
           updateUserPhysicalDataStatus: AsyncProcessingStatus.success,
           userPhysicalProfile: userPhysicalProfile,
         ),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           updateUserPhysicalDataStatus:
               AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           updateUserPhysicalDataStatus:
               AsyncProcessingStatus.serverConnectionError,
@@ -209,39 +233,39 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
   }
 
   void onDeleteDataPoint(String dataPointId) async {
-    emit(
+    _enhancedEmit(
       state.copyWith(
         deleteUserPhysicalDataPointStatus: AsyncProcessingStatus.loading,
       ),
     );
     try {
-      await _fitnessNutrition.deleteUserPhysicalDataPoint(dataPointsId: dataPointId);
-      emit(
+      await _fitnessNutrition.deleteUserPhysicalDataPoint(
+        dataPointsId: dataPointId,
+      );
+      _enhancedEmit(
         state.copyWith(
           deleteUserPhysicalDataPointStatus: AsyncProcessingStatus.success,
-          
         ),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           deleteUserPhysicalDataPointStatus:
               AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           deleteUserPhysicalDataPointStatus:
               AsyncProcessingStatus.serverConnectionError,
         ),
       );
     }
-    
   }
 
   void readUserImageGallary() async {
-    emit(
+    _enhancedEmit(
       state.copyWith(readUserImageGallaryStatus: AsyncProcessingStatus.loading),
     );
 
@@ -254,7 +278,7 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
         final result = await _imageRepository.readImage(imageDetail);
         filesDetail.add(result);
       }
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readUserImageGallaryStatus: AsyncProcessingStatus.success,
           filesData: userImagesDetail,
@@ -262,14 +286,14 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
         ),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readUserImageGallaryStatus:
               AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readUserImageGallaryStatus:
               AsyncProcessingStatus.serverConnectionError,
@@ -279,24 +303,26 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
   }
 
   void readFitnessData() async {
-    emit(state.copyWith(readFitnessDataStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(readFitnessDataStatus: AsyncProcessingStatus.loading),
+    );
 
     try {
       final fitnessData = await _fitnessNutrition.readFitnessData();
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readFitnessDataStatus: AsyncProcessingStatus.success,
           fitnessData: fitnessData,
         ),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readFitnessDataStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readFitnessDataStatus: AsyncProcessingStatus.serverConnectionError,
         ),
@@ -304,7 +330,13 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     }
   }
 
-  void onChangeChartType(ChartType chartType){
-    emit(state.copyWith(selectedChartType: chartType));
+  void onChangeChartType(ChartType chartType) {
+    _enhancedEmit(state.copyWith(selectedChartType: chartType));
+  }
+
+  void _enhancedEmit(FitnessProfileState state) {
+    if (!isClosed) {
+      emit(state);
+    }
   }
 }

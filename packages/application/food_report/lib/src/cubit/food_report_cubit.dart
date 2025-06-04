@@ -24,12 +24,6 @@ class FoodReportCubit extends Cubit<FoodReportState> {
     readNutritionRequirements();
   }
 
-  @override
-  Future<void> close() {
-    // TODO: implement close
-    return super.close();
-  }
-
   void readFoodsNutrition() async {
     _enhancedEmit(
       state.copyWith(readFoodsNutritionStatus: AsyncProcessingStatus.loading),

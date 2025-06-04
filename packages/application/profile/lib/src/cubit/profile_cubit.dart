@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_repository/image_repository.dart';
@@ -20,7 +19,9 @@ class ProfileCubit extends Cubit<ProfileState> {
   final ImageRepository _imageRepository;
 
   void readImageProfile() async {
-    emit(state.copyWith(readProfileImageStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(readProfileImageStatus: AsyncProcessingStatus.loading),
+    );
     try {
       final profileImage = await _imageRepository.readUserProfileImage();
       FileDetail? actualImage;
@@ -28,20 +29,20 @@ class ProfileCubit extends Cubit<ProfileState> {
         actualImage = await _imageRepository.readImage(profileImage.last);
       }
 
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readProfileImageStatus: AsyncProcessingStatus.success,
           profileImage: actualImage,
         ),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readProfileImageStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readProfileImageStatus: AsyncProcessingStatus.serverConnectionError,
         ),
@@ -50,7 +51,9 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void updateImageProfile(FileDetail profileImage) async {
-    emit(state.copyWith(updatingProfileStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(updatingProfileStatus: AsyncProcessingStatus.loading),
+    );
     try {
       final userImage = UserImage(
         gallaryTag: GallaryTag.profileImage,
@@ -63,20 +66,20 @@ class ProfileCubit extends Cubit<ProfileState> {
         updatedProfileImage.last,
       );
 
-      emit(
+      _enhancedEmit(
         state.copyWith(
           updatingProfileStatus: AsyncProcessingStatus.success,
           profileImage: actualImage,
         ),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           updatingProfileStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           updatingProfileStatus: AsyncProcessingStatus.serverConnectionError,
         ),
@@ -85,10 +88,12 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void readProfile() async {
-    emit(state.copyWith(readProfileStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(readProfileStatus: AsyncProcessingStatus.loading),
+    );
     try {
       final profile = await _profile.userProfile();
-      emit(
+      _enhancedEmit(
         state.copyWith(
           name: profile.fullName,
           phoneNumber: profile.phoneNumber,
@@ -98,15 +103,17 @@ class ProfileCubit extends Cubit<ProfileState> {
           language: profile.language,
         ),
       );
-      emit(state.copyWith(readProfileStatus: AsyncProcessingStatus.success));
+      _enhancedEmit(
+        state.copyWith(readProfileStatus: AsyncProcessingStatus.success),
+      );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readProfileStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readProfileStatus: AsyncProcessingStatus.serverConnectionError,
         ),
@@ -115,7 +122,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void onChangeName(String name) async {
-    emit(state.copyWith(name: name));
+    _enhancedEmit(state.copyWith(name: name));
   }
 
   void updateName() async {
@@ -124,7 +131,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   void onChangeWeightSpeed(ChangeWeightSpeed speed) async {
     await updateProfile(state.userProfile!.copyWith(changeWeightSpeed: speed));
-    emit(state.copyWith(changeWeightSpeed: speed));
+    _enhancedEmit(state.copyWith(changeWeightSpeed: speed));
   }
 
   void onChangeIsFasting(bool isTimeRestrictedEating) async {
@@ -133,11 +140,13 @@ class ProfileCubit extends Cubit<ProfileState> {
         isTimeRestrictedEating: isTimeRestrictedEating,
       ),
     );
-    emit(state.copyWith(isTimeRestrictedEating: isTimeRestrictedEating));
+    _enhancedEmit(
+      state.copyWith(isTimeRestrictedEating: isTimeRestrictedEating),
+    );
   }
 
   void onChangeLanguage(Language? language) async {
-    emit(state.copyWith(language: language));
+    _enhancedEmit(state.copyWith(language: language));
   }
 
   void updateLanguage() async {
@@ -146,25 +155,33 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   Future<void> updateProfile(UserProfile updatedProfile) async {
     if (state.userProfile == null) return;
-    emit(state.copyWith(updatingProfileStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(updatingProfileStatus: AsyncProcessingStatus.loading),
+    );
     try {
       final profile = await _profile.updateProfile(updatedProfile);
-      emit(state.copyWith(userProfile: profile));
-      emit(
+      _enhancedEmit(state.copyWith(userProfile: profile));
+      _enhancedEmit(
         state.copyWith(updatingProfileStatus: AsyncProcessingStatus.success),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           updatingProfileStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           updatingProfileStatus: AsyncProcessingStatus.serverConnectionError,
         ),
       );
+    }
+  }
+
+  void _enhancedEmit(ProfileState state) {
+    if (!isClosed) {
+      emit(state);
     }
   }
 }
