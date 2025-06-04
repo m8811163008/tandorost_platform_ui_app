@@ -705,4 +705,20 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get wellcomeMessage => 'سلام';
+
+  @override
+  String appAsyncCardStatusText(String asyncStatus) {
+    String _temp0 = intl.Intl.selectLogic(
+      asyncStatus,
+      {
+        'inital': 'بدون داده',
+        'loading': 'درحال بارگیری',
+        'serverConnectionError': 'خطای سرور ، دوباره تلاش کنید',
+        'internetConnectionError': 'خطای اینترنت. اینترنت خود را وصل کنید',
+        'success': 'داده ای برای نمایش دادن نیست',
+        'other': 'ترجمه تعریف نشده',
+      },
+    );
+    return '$_temp0';
+  }
 }

@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-@JsonEnum()
+@JsonEnum(fieldRename: FieldRename.snake)
 enum SubscriptionType { freeTier, oneMonth, threeMonth }
 
 extension SubscriptionTypeX on SubscriptionType {

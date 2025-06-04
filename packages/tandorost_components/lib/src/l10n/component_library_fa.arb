@@ -291,5 +291,13 @@
             }
         }
     },
-    "wellcomeMessage" : "سلام"
+    "wellcomeMessage": "سلام",
+    "appAsyncCardStatusText": "{asyncStatus, select, inital{بدون داده} loading{درحال بارگیری} serverConnectionError{خطای سرور ، دوباره تلاش کنید} internetConnectionError{خطای اینترنت. اینترنت خود را وصل کنید} success{داده ای برای نمایش دادن نیست} other{ترجمه تعریف نشده}}",
+    "@appAsyncCardStatusText": {
+        "placeholders": {
+            "asyncStatus": {
+                "type": "String"
+            }
+        }
+    }
 }

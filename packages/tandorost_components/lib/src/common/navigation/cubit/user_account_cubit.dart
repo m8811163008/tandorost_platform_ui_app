@@ -14,12 +14,12 @@ class UserAccountCubit extends Cubit<UserAccountState> {
     required ProfileRepository profileRepository,
   }) : _imageRepository = imageRepository,
        _profileRepository = profileRepository,
-       super(UserAccountState()){
-        _initialize();
-       }
+       super(UserAccountState()) {
+    _initialize();
+  }
   final ImageRepository _imageRepository;
   final ProfileRepository _profileRepository;
-  void _initialize(){
+  void _initialize() {
     readUserProfileImage();
     readUserProfile();
   }
@@ -30,10 +30,16 @@ class UserAccountCubit extends Cubit<UserAccountState> {
     );
     try {
       final profileImages = await _imageRepository.readUserProfileImage();
-      final profileImage = await _imageRepository.readImage(profileImages.last);
       emit(
         state.copyWith(
           readUserProfileImageStatus: AsyncProcessingStatus.success,
+        ),
+      );
+      if (profileImages.isEmpty) return;
+
+      final profileImage = await _imageRepository.readImage(profileImages.last);
+      emit(
+        state.copyWith(
           profileImage: () => profileImage,
         ),
       );

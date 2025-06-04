@@ -1,4 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
 
-@JsonEnum()
-enum PaymentMethod { inPaymentCafeBazzar, tandorostWebsite }
+@JsonEnum(fieldRename: FieldRename.snake)
+enum PaymentMethod { inAppPaymentCafeBazzar, tandorostWebsite }

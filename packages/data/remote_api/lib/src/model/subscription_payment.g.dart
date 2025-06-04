@@ -16,6 +16,7 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
           allowedKeys: const [
             'id',
             'user_id',
+            'cafe_bazzar_order_id',
             'paid_amount',
             'discount_amount',
             'currency',
@@ -55,7 +56,11 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
           ),
           userAiRequestLimitFoods: $checkedConvert(
             'user_ai_request_limit_foods',
-            (v) => (v as num).toInt(),
+            (v) => (v as num?)?.toInt(),
+          ),
+          cafeBazzarOrderId: $checkedConvert(
+            'cafe_bazzar_order_id',
+            (v) => v as String?,
           ),
           updatedAt: $checkedConvert(
             'updated_at',
@@ -72,6 +77,7 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
         'purchaseDate': 'purchase_date',
         'subscriptionType': 'subscription_type',
         'userAiRequestLimitFoods': 'user_ai_request_limit_foods',
+        'cafeBazzarOrderId': 'cafe_bazzar_order_id',
         'updatedAt': 'updated_at',
       },
     );
@@ -81,6 +87,8 @@ Map<String, dynamic> _$SubscriptionPaymentToJson(
 ) => <String, dynamic>{
   if (instance.id case final value?) 'id': value,
   'user_id': instance.userId,
+  if (instance.cafeBazzarOrderId case final value?)
+    'cafe_bazzar_order_id': value,
   'paid_amount': instance.paidAmount,
   'discount_amount': instance.discountAmount,
   'currency': _$CurrencyEnumMap[instance.currency]!,
@@ -91,15 +99,15 @@ Map<String, dynamic> _$SubscriptionPaymentToJson(
     'updated_at': value,
 };
 
-const _$CurrencyEnumMap = {Currency.irRial: 'irRial'};
+const _$CurrencyEnumMap = {Currency.irRial: 'ir_rial'};
 
 const _$PaymentMethodEnumMap = {
-  PaymentMethod.inPaymentCafeBazzar: 'inPaymentCafeBazzar',
-  PaymentMethod.tandorostWebsite: 'tandorostWebsite',
+  PaymentMethod.inAppPaymentCafeBazzar: 'in_app_payment_cafe_bazzar',
+  PaymentMethod.tandorostWebsite: 'tandorost_website',
 };
 
 const _$SubscriptionTypeEnumMap = {
-  SubscriptionType.freeTier: 'freeTier',
-  SubscriptionType.oneMonth: 'oneMonth',
-  SubscriptionType.threeMonth: 'threeMonth',
+  SubscriptionType.freeTier: 'free_tier',
+  SubscriptionType.oneMonth: 'one_month',
+  SubscriptionType.threeMonth: 'three_month',
 };

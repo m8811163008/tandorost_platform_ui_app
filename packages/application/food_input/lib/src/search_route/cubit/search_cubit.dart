@@ -50,7 +50,12 @@ class SearchCubit extends Cubit<SearchState> {
   final PaymentRepository paymentRepository;
   final AudioRecorder recorder;
 
-  Future<bool> get isPremissionAllowed => recorder.hasPermission();
+  Future<bool> get isPremissionAllowed async {
+    if (state.onCafeBazzarSubscribeStatus.isSuccess) {
+      return await recorder.hasPermission();
+    }
+    return false;
+  }
 
   void onSearchByVoicePressedDown() async {
     // To fix first time getting permission.
@@ -200,6 +205,7 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   Future<void> onReadCoffeBazzarPayment() async {
+    if(isClosed) return;
     emit(
       state.copyWith(
         readCoffeBazzarPaymentStatus: AsyncProcessingStatus.loading,
@@ -258,7 +264,8 @@ class SearchCubit extends Cubit<SearchState> {
       );
     }
   }
-  void onChangeSelectedSubscriptionType(SubscriptionType subscriptionType){
+
+  void onChangeSelectedSubscriptionType(SubscriptionType subscriptionType) {
     emit(state.copyWith(selectedSubscriptionType: subscriptionType));
   }
 
@@ -291,7 +298,7 @@ class SearchCubit extends Cubit<SearchState> {
         paidAmount: double.parse(skuDetails.price),
         discountAmount: 0,
         currency: Currency.irRial,
-        paymentMethod: PaymentMethod.inPaymentCafeBazzar,
+        paymentMethod: PaymentMethod.inAppPaymentCafeBazzar,
         purchaseDate: DateTime.fromMillisecondsSinceEpoch(
           purchaseInfo.purchaseTime,
         ),

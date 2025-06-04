@@ -10,12 +10,12 @@ class ResultBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final count =
-        width >= 768
-            ? width > 1024
-                ? 4
-                : 3
-            : 2;
+    final count = switch (width) {
+      >= 1024 => 4,
+      >= 768 => 3,
+      > 425 => 2,
+      _ => 1,
+    };
     return BlocBuilder<ResultCubit, ResultState>(
       buildWhen:
           (previous, current) =>

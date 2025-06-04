@@ -1160,6 +1160,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'سلام'**
   String get wellcomeMessage;
+
+  /// No description provided for @appAsyncCardStatusText.
+  ///
+  /// In fa, this message translates to:
+  /// **'{asyncStatus, select, inital{بدون داده} loading{درحال بارگیری} serverConnectionError{خطای سرور ، دوباره تلاش کنید} internetConnectionError{خطای اینترنت. اینترنت خود را وصل کنید} success{داده ای برای نمایش دادن نیست} other{ترجمه تعریف نشده}}'**
+  String appAsyncCardStatusText(String asyncStatus);
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {
