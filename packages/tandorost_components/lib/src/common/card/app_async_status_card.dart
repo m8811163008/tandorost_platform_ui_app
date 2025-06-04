@@ -22,7 +22,7 @@ class AppAsyncStatusCard extends StatelessWidget {
         child: Builder(
           builder:
               (context) => switch (_status) {
-                AsyncProcessingStatus.loading => const LoadingLottie(),
+                AsyncProcessingStatus.loading => CircularProgressIndicator(),
                 _ => Text(context.l10n.appAsyncCardStatusText(_status.name)),
               },
         ),

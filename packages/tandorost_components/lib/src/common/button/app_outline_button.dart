@@ -17,7 +17,7 @@ class AppOutLineButton extends StatelessWidget {
         ? OutlinedButton.icon(
           onPressed: onTap,
           label: Text(label),
-          icon: LoadingLottie(size: context.sizeExtenstion.appButton),
+          icon: Transform.scale(scale: 0.7, child: CircularProgressIndicator()),
         )
         : OutlinedButton(onPressed: onTap, child: Text(label));
   }

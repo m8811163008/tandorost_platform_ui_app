@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:tandorost_theme/src/color_extension.dart';
 import 'package:tandorost_theme/src/size_extension.dart';
@@ -5,13 +7,31 @@ import 'package:tandorost_theme/src/theme_color.dart';
 
 class AppTheme {
   final Locale locale;
+  final double screenWidth;
 
-  AppTheme({required this.locale});
+  AppTheme({required this.locale, required this.screenWidth});
 
   ThemeData get lightTheme {
     final sizeExtenstion = SizeExtenstion();
     final colorExtenstion = ColorExtenstion();
     return ThemeData.light(useMaterial3: true).copyWith(
+      visualDensity: screenWidth.visualDensity,
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(visualDensity: screenWidth.visualDensity),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          visualDensity: screenWidth.visualDensity,
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          visualDensity: screenWidth.visualDensity,
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(visualDensity: screenWidth.visualDensity),
+      ),
       colorScheme: ColorScheme.fromSeed(
         seedColor: ThemeColor.pictonBlue.color,
         primary: ThemeColor.pictonBlue.color,
@@ -21,7 +41,7 @@ class AppTheme {
         onSecondary: ThemeColor.white.color,
       ),
 
-      textTheme: textTheme(locale),
+      textTheme: textTheme(locale, screenWidth),
       extensions: [sizeExtenstion, colorExtenstion],
       appBarTheme: AppBarTheme(
         color: ThemeColor.white.color,
@@ -31,6 +51,7 @@ class AppTheme {
         border: OutlineInputBorder(),
         hintStyle: textTheme(
           locale,
+          screenWidth,
         ).bodyMedium!.copyWith(color: ThemeColor.charcoal.color),
         contentPadding: EdgeInsets.symmetric(
           horizontal: sizeExtenstion.medium,
@@ -71,18 +92,68 @@ class AppTheme {
     );
   }
 
-  TextTheme textTheme(Locale locale) {
+  final TextTheme baseTextTheme =
+      Typography.material2021(platform: TargetPlatform.android).dense;
+  TextTheme textTheme(Locale locale, double screenWidth) {
     final themeData = ThemeData.light(useMaterial3: true);
     if (locale.languageCode == 'fa') {
-      return themeData.textTheme.apply(
+      return Typography.dense2021.apply(
         fontFamily: 'IranSansFaNum',
         package: 'tandorost_theme',
+        fontSizeFactor: screenWidth.textFactor,
+        fontSizeDelta: 0,
+        bodyColor: Colors.black,
+        displayColor: Colors.black,
+        decorationColor: Colors.black,
       );
     } else {
-      return themeData.textTheme.apply(
+      return Typography.dense2021.apply(
         fontFamily: 'IranSansEnNum',
         package: 'tandorost_theme',
+        fontSizeFactor: screenWidth.textFactor,
+        fontSizeDelta: 0,
+        bodyColor: Colors.black,
+        displayColor: Colors.black,
+        decorationColor: Colors.black,
       );
+    }
+  }
+}
+
+enum ScreenSize { small, medium, large, extraLarge }
+
+extension ScreenSizeFromWidth on num {
+  ScreenSize get screenSize {
+    if (this < 425) return ScreenSize.small;
+    if (this < 768) return ScreenSize.medium;
+    if (this < 1024) return ScreenSize.large;
+
+    return ScreenSize.extraLarge;
+  }
+
+  double get textFactor {
+    switch (screenSize) {
+      case ScreenSize.small:
+        return 0.85;
+      case ScreenSize.medium:
+        return 1.0;
+      case ScreenSize.large:
+        return 1.15;
+      case ScreenSize.extraLarge:
+        return 1.3;
+    }
+  }
+
+  VisualDensity get visualDensity {
+    switch (screenSize) {
+      case ScreenSize.small:
+        return VisualDensity.compact;
+      case ScreenSize.medium:
+        return VisualDensity.standard;
+      case ScreenSize.large:
+        return VisualDensity.comfortable;
+      case ScreenSize.extraLarge:
+        return VisualDensity.adaptivePlatformDensity;
     }
   }
 }

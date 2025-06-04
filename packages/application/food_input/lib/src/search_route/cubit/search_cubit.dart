@@ -30,7 +30,7 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   void resetStatus() {
-    emit(
+    _enhancedEmit(
       state.copyWith(
         searchFoodsByTextInputStatus: AsyncProcessingStatus.inital,
         searchFoodsByVoiceInputStatus: AsyncProcessingStatus.inital,
@@ -41,7 +41,7 @@ class SearchCubit extends Cubit<SearchState> {
 
   void _init() async {
     final language = await profileRepository.userSpokenLanguage;
-    emit(state.copyWith(userSpokenLanguage: () => language));
+    _enhancedEmit(state.copyWith(userSpokenLanguage: () => language));
     await onReadCoffeBazzarPayment();
   }
 
@@ -70,13 +70,13 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   void onFoodSearchChanged(String value) {
-    emit(state.copyWith(foodName: value));
+    _enhancedEmit(state.copyWith(foodName: value));
   }
 
   void onChangeLanguage(Language? language) async {
     if (language != null) {
       await profileRepository.upsertUserSpokenLanguage(language);
-      emit(state.copyWith(userSpokenLanguage: () => language));
+      _enhancedEmit(state.copyWith(userSpokenLanguage: () => language));
     }
   }
 
@@ -89,7 +89,7 @@ class SearchCubit extends Cubit<SearchState> {
       return;
     }
 
-    emit(
+    _enhancedEmit(
       state.copyWith(
         searchFoodsByVoiceInputStatus: AsyncProcessingStatus.loading,
       ),
@@ -116,20 +116,20 @@ class SearchCubit extends Cubit<SearchState> {
         prompt: fileDetail,
         userSpokenLanguage: state.userSpokenLanguage ?? userLanguage,
       );
-      emit(
+      _enhancedEmit(
         state.copyWith(
           searchFoodsByVoiceInputStatus: AsyncProcessingStatus.success,
         ),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           searchFoodsByVoiceInputStatus:
               AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           searchFoodsByVoiceInputStatus:
               AsyncProcessingStatus.serverConnectionError,
@@ -143,27 +143,27 @@ class SearchCubit extends Cubit<SearchState> {
     if (!state.canRequestForFoodNutrition) {
       return;
     }
-    emit(
+    _enhancedEmit(
       state.copyWith(
         searchFoodsByTextInputStatus: AsyncProcessingStatus.loading,
       ),
     );
     try {
       await foodInputRepository.readFoodsNutritionsByText(state.foodName);
-      emit(
+      _enhancedEmit(
         state.copyWith(
           searchFoodsByTextInputStatus: AsyncProcessingStatus.success,
         ),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           searchFoodsByTextInputStatus:
               AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           searchFoodsByTextInputStatus:
               AsyncProcessingStatus.serverConnectionError,
@@ -173,7 +173,7 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   Future<void> _canRequestForFoodNutrition() async {
-    emit(
+    _enhancedEmit(
       state.copyWith(
         canRequestForFoodNutritionStatus: AsyncProcessingStatus.loading,
       ),
@@ -181,21 +181,21 @@ class SearchCubit extends Cubit<SearchState> {
     try {
       final canRequestForFoodNutrition =
           await paymentRepository.canRequestForFoodNutrition;
-      emit(
+      _enhancedEmit(
         state.copyWith(
           canRequestForFoodNutrition: canRequestForFoodNutrition,
           canRequestForFoodNutritionStatus: AsyncProcessingStatus.success,
         ),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           canRequestForFoodNutritionStatus:
               AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           canRequestForFoodNutritionStatus:
               AsyncProcessingStatus.serverConnectionError,
@@ -205,8 +205,8 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   Future<void> onReadCoffeBazzarPayment() async {
-    if(isClosed) return;
-    emit(
+    if (isClosed) return;
+    _enhancedEmit(
       state.copyWith(
         readCoffeBazzarPaymentStatus: AsyncProcessingStatus.loading,
       ),
@@ -214,21 +214,21 @@ class SearchCubit extends Cubit<SearchState> {
     try {
       final cafeBazzarPaymentInfo =
           await paymentRepository.readCoffeBazzarPayment();
-      emit(
+      _enhancedEmit(
         state.copyWith(
           cafeBazzarPaymentInfo: () => cafeBazzarPaymentInfo,
           readCoffeBazzarPaymentStatus: AsyncProcessingStatus.success,
         ),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readCoffeBazzarPaymentStatus:
               AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readCoffeBazzarPaymentStatus:
               AsyncProcessingStatus.serverConnectionError,
@@ -239,7 +239,7 @@ class SearchCubit extends Cubit<SearchState> {
 
   void onConnectToCofeBazzar() async {
     if (state.cafeBazzarPaymentInfo == null) return;
-    emit(
+    _enhancedEmit(
       state.copyWith(
         coffeBazzarConnectionStatus: AsyncProcessingStatus.loading,
       ),
@@ -249,13 +249,13 @@ class SearchCubit extends Cubit<SearchState> {
         state.cafeBazzarPaymentInfo!.caffeBazzarRsa,
         onDisconnected: () async => onConnectToCofeBazzar(),
       );
-      emit(
+      _enhancedEmit(
         state.copyWith(
           coffeBazzarConnectionStatus: AsyncProcessingStatus.success,
         ),
       );
     } on Exception catch (e) {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           coffeBazzarConnectionStatus:
               AsyncProcessingStatus.serverConnectionError,
@@ -266,13 +266,13 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   void onChangeSelectedSubscriptionType(SubscriptionType subscriptionType) {
-    emit(state.copyWith(selectedSubscriptionType: subscriptionType));
+    _enhancedEmit(state.copyWith(selectedSubscriptionType: subscriptionType));
   }
 
   void onCafeBazzarSubscribe() async {
     assert(state.skuDetails.isNotEmpty);
     if (state.cafeBazzarPaymentInfo == null) return;
-    emit(
+    _enhancedEmit(
       state.copyWith(
         onCafeBazzarSubscribeStatus: AsyncProcessingStatus.loading,
       ),
@@ -305,7 +305,7 @@ class SearchCubit extends Cubit<SearchState> {
         subscriptionType: state.selectedSubscriptionType!,
       );
 
-      emit(
+      _enhancedEmit(
         state.copyWith(
           onCafeBazzarSubscribeStatus: AsyncProcessingStatus.success,
           purchaseInfo: () => purchaseInfo,
@@ -313,7 +313,7 @@ class SearchCubit extends Cubit<SearchState> {
         ),
       );
     } on Exception catch (e) {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           onCafeBazzarSubscribeStatus:
               AsyncProcessingStatus.serverConnectionError,
@@ -325,7 +325,7 @@ class SearchCubit extends Cubit<SearchState> {
 
   void onCreateSubscriptionPayments() async {
     if (state.subscriptionPayment == null) return;
-    emit(
+    _enhancedEmit(
       state.copyWith(
         onCreateSubscriptionPaymentsStatus: AsyncProcessingStatus.loading,
       ),
@@ -334,13 +334,13 @@ class SearchCubit extends Cubit<SearchState> {
       await paymentRepository.createSubscriptionPayments(
         state.subscriptionPayment!,
       );
-      emit(
+      _enhancedEmit(
         state.copyWith(
           onCreateSubscriptionPaymentsStatus: AsyncProcessingStatus.success,
         ),
       );
     } on Exception catch (e) {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           onCreateSubscriptionPaymentsStatus:
               AsyncProcessingStatus.serverConnectionError,
@@ -356,7 +356,7 @@ class SearchCubit extends Cubit<SearchState> {
         state.cafeBazzarPaymentInfo == null) {
       return;
     }
-    emit(
+    _enhancedEmit(
       state.copyWith(onReadCafeBazzarSkusStatus: AsyncProcessingStatus.loading),
     );
     try {
@@ -364,20 +364,26 @@ class SearchCubit extends Cubit<SearchState> {
         state.cafeBazzarPaymentInfo!.caffeBazzarSubscriptionPlanOneMonthSdk,
         state.cafeBazzarPaymentInfo!.caffeBazzarSubscriptionPlanThreeMonthSdk,
       ]);
-      emit(
+      _enhancedEmit(
         state.copyWith(
           skuDetails: skus,
           onReadCafeBazzarSkusStatus: AsyncProcessingStatus.success,
         ),
       );
     } on Exception catch (e) {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           onReadCafeBazzarSkusStatus:
               AsyncProcessingStatus.serverConnectionError,
           exceptionDetail: () => e.toString(),
         ),
       );
+    }
+  }
+
+  void _enhancedEmit(SearchState state) {
+    if (!isClosed) {
+      emit(state);
     }
   }
 }

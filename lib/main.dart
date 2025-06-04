@@ -111,19 +111,27 @@ class TandorostPlatform extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      theme: AppTheme(locale: Locale('fa')).lightTheme,
-      routerConfig: Navigation.goRouter(context),
-      localizationsDelegates: const [
-        PersianMaterialLocalizations.delegate,
-        PersianCupertinoLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        ComponentLibraryLocalizations.delegate,
-      ],
-      supportedLocales: const [Locale("fa", "IR")],
-      locale: const Locale("fa", "IR"),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return MaterialApp.router(
+          theme:
+              AppTheme(
+                locale: const Locale('fa'),
+                screenWidth: constraints.maxWidth,
+              ).lightTheme,
+          routerConfig: Navigation.goRouter(context),
+          localizationsDelegates: const [
+            PersianMaterialLocalizations.delegate,
+            PersianCupertinoLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            ComponentLibraryLocalizations.delegate,
+          ],
+          supportedLocales: const [Locale("fa", "IR")],
+          locale: const Locale("fa", "IR"),
+        );
+      },
     );
   }
 }

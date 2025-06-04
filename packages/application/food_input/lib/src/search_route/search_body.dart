@@ -162,11 +162,11 @@ class SearchBody extends StatelessWidget {
           },
         ),
       ],
-
-      child: Column(
-        children: [
-          Spacer(),
-          Row(
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Padding(
+          padding: EdgeInsets.only(bottom: context.sizeExtenstion.medium),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -181,32 +181,43 @@ class SearchBody extends StatelessWidget {
                 },
                 icon: Icon(Icons.keyboard),
               ),
-              FutureBuilder(
-                future: context.read<SearchCubit>().isPremissionAllowed,
-                builder: (context, snapshot) {
-                  final chatButton = AIChatButton(
-                    onLongPressStart:
-                        context.read<SearchCubit>().onSearchByVoicePressedDown,
-                    onLongPressUp:
-                        context.read<SearchCubit>().onSearchByVoicePressedUp,
-                  );
-                  bool isAllowed = snapshot.data ?? false;
-                  bool isLoading = context.select<SearchCubit, bool>(
-                    (cubit) =>
-                        cubit.state.searchFoodsByVoiceInputStatus.isLoading,
-                  );
-                  return IgnorePointer(
-                    ignoring: !isAllowed || isLoading,
-                    child: chatButton,
-                  );
-                },
+              Flexible(
+                child: FutureBuilder(
+                  future: context.read<SearchCubit>().isPremissionAllowed,
+                  builder: (context, snapshot) {
+                    final chatButton = AIChatButton(
+                      onLongPressStart:
+                          context
+                              .read<SearchCubit>()
+                              .onSearchByVoicePressedDown,
+                      onLongPressUp:
+                          context.read<SearchCubit>().onSearchByVoicePressedUp,
+                    );
+                    bool isAllowed = snapshot.data ?? false;
+                    bool isLoading = context.select<SearchCubit, bool>(
+                      (cubit) =>
+                          cubit.state.searchFoodsByVoiceInputStatus.isLoading,
+                    );
+                    return IgnorePointer(
+                      ignoring: !isAllowed || isLoading,
+                      child: chatButton,
+                    );
+                  },
+                ),
               ),
               IconButton.filledTonal(
                 onPressed: () {
-                  showBottomSheet(
+                  showModalBottomSheet(
                     context: context,
+                    isScrollControlled: true,
                     builder: (_) {
-                      return LanguageBottomSheet();
+                      return FractionallySizedBox(
+                        heightFactor: 1,
+                        child: BlocProvider.value(
+                          value: context.read<SearchCubit>(),
+                          child: LanguageBottomSheet(),
+                        ),
+                      );
                     },
                   );
                 },
@@ -214,8 +225,7 @@ class SearchBody extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: context.sizeExtenstion.extraLarge),
-        ],
+        ),
       ),
     );
   }

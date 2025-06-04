@@ -22,6 +22,12 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet>
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BottomSheet(
       animationController: _controller,
@@ -47,18 +53,20 @@ class LanguageBottomSheetForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // TODO fix layout bug show scroll content behind the text
           Text(
             context.l10n.selectLanguageBottomSheetHeading,
             style: context.textTheme.headlineMedium,
           ),
           Divider(),
-          BlocBuilder<SearchCubit, SearchState>(
-            buildWhen:
-                (previous, current) =>
-                    previous.userSpokenLanguage != current.userSpokenLanguage,
-            builder: (context, state) {
-              return Flexible(
-                child: ListView.separated(
+
+          Flexible(
+            child: BlocBuilder<SearchCubit, SearchState>(
+              buildWhen:
+                  (previous, current) =>
+                      previous.userSpokenLanguage != current.userSpokenLanguage,
+              builder: (context, state) {
+                return ListView.separated(
                   shrinkWrap: true,
                   itemCount: Language.values.length,
                   itemBuilder: (context, index) {
@@ -75,9 +83,9 @@ class LanguageBottomSheetForm extends StatelessWidget {
                   separatorBuilder:
                       (context, index) =>
                           SizedBox(height: context.sizeExtenstion.small),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ],
       ),

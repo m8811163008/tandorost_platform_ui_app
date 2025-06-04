@@ -46,7 +46,10 @@ class SearchRoute extends StatelessWidget {
           currentIndex: bottomNavigationIndex,
           items: AppNavigation.bottomNavigationItems(context),
         ),
-        body: SearchBody(onSeachFoodSuccess: goToResultRoute),
+        body: Padding(
+          padding:  EdgeInsets.symmetric(horizontal: context.sizeExtenstion.small),
+          child: SearchBody(onSeachFoodSuccess: goToResultRoute),
+        ),
       ),
     );
   }

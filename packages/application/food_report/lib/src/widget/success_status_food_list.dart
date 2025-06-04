@@ -9,22 +9,24 @@ class SuccessStatusFoodsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        AppCardHeader(title: context.l10n.foodReportFoodsListLabel),
-        ListView.separated(
-          reverse: true,
-          shrinkWrap: true,
-          itemCount: foods.length,
-          itemBuilder: (context, index) {
-            return FoodTile(food: foods[index]);
-          },
-          separatorBuilder: (context, index) {
-            return SizedBox(height: context.sizeExtenstion.small);
-          },
-        ),
-      ],
+    return AppCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AppCardHeader(title: context.l10n.foodReportFoodsListLabel),
+          ListView.separated(
+            reverse: true,
+            shrinkWrap: true,
+            itemCount: foods.length,
+            itemBuilder: (context, index) {
+              return FoodTile(food: foods[index]);
+            },
+            separatorBuilder: (context, index) {
+              return SizedBox(height: context.sizeExtenstion.small);
+            },
+          ),
+        ],
+      ),
     );
   }
 }
