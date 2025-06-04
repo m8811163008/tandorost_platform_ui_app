@@ -22,6 +22,12 @@ class _SearchFoodBottomSheetState extends State<SearchFoodBottomSheet>
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BottomSheet(
       animationController: _controller,
@@ -30,7 +36,7 @@ class _SearchFoodBottomSheetState extends State<SearchFoodBottomSheet>
       onClosing: Navigator.of(context).pop,
       constraints: BoxConstraints.tightFor(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height / 2,
+        height: MediaQuery.of(context).size.height,
       ),
       builder: (context) => SearchFoodBottomSheetForm(),
     );

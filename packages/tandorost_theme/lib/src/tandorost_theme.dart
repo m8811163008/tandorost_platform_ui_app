@@ -88,6 +88,7 @@ class AppTheme {
         ),
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
+        
       ),
     );
   }

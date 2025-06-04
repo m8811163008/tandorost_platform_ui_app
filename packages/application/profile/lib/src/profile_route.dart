@@ -94,31 +94,9 @@ class ProfileCard extends StatelessWidget {
             style: context.textTheme.headlineMedium,
           ),
           SizedBox(height: context.sizeExtenstion.medium),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.end,
             children: [
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    NameRichText(
-                      name: context.select(
-                        (ProfileCubit cubit) => cubit.state.name,
-                      ),
-                      editNameButton: EditDialog(dialog: EditNameDialog()),
-                    ),
-                    SizedBox(height: context.sizeExtenstion.small),
-                    PhoneNumberRichText(
-                      phoneNumber: context
-                          .select<ProfileCubit, String>(
-                            (cubit) => cubit.state.phoneNumber,
-                          )
-                          .replaceFirst('0', '98'),
-                    ),
-                  ],
-                ),
-              ),
               BlocConsumer<ProfileCubit, ProfileState>(
                 listenWhen:
                     (previous, current) =>
@@ -158,6 +136,27 @@ class ProfileCard extends StatelessWidget {
                     isUploading: state.uploadingImageProfileStatus.isLoading,
                   );
                 },
+              ),
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    NameRichText(
+                      name: context.select(
+                        (ProfileCubit cubit) => cubit.state.name,
+                      ),
+                      editNameButton: EditDialog(dialog: EditNameDialog()),
+                    ),
+                    SizedBox(height: context.sizeExtenstion.small),
+                    PhoneNumberRichText(
+                      phoneNumber: context
+                          .select<ProfileCubit, String>(
+                            (cubit) => cubit.state.phoneNumber,
+                          )
+                          .replaceFirst('0', '98'),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

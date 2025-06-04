@@ -9,6 +9,7 @@ class AddNewImageSelfie extends StatelessWidget {
     return Image.asset(
       'assets/images/fitness_selfie.png',
       package: packageName,
+      fit: BoxFit.cover,
     );
   }
 }

@@ -55,21 +55,9 @@ class FitnessProfileView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Builder(
-            builder: (context) {
-              return ImageGallary();
-            },
-          ),
-          Builder(
-            builder: (context) {
-              return FitnessInfoConsumer();
-            },
-          ),
-          Builder(
-            builder: (context) {
-              return PhysicalDataChart();
-            },
-          ),
+           ImageGallary(),
+          FitnessInfoConsumer(),
+          PhysicalDataChart(),
         ],
       ),
     );

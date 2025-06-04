@@ -2,8 +2,8 @@ import 'package:flutter/widgets.dart';
 import 'package:tandorost_components/src/common/animations/circle_clipper.dart';
 import 'package:tandorost_components/src/common/package_name.dart';
 
-class ChartAnimation extends StatelessWidget {
-  const ChartAnimation({super.key});
+class EmptyChartImage extends StatelessWidget {
+  const EmptyChartImage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -171,11 +171,17 @@ class SearchBody extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               IconButton.filledTonal(
-                onPressed: () {
-                  showBottomSheet(
+                onPressed: () async {
+                  await showModalBottomSheet(
                     context: context,
                     builder: (_) {
-                      return SearchFoodBottomSheet();
+                      return FractionallySizedBox(
+                        heightFactor: 1,
+                        child: BlocProvider.value(
+                          value: context.read<SearchCubit>(),
+                          child: SearchFoodBottomSheet(),
+                        ),
+                      );
                     },
                   );
                 },
@@ -206,8 +212,8 @@ class SearchBody extends StatelessWidget {
                 ),
               ),
               IconButton.filledTonal(
-                onPressed: () {
-                  showModalBottomSheet(
+                onPressed: () async {
+                  await showModalBottomSheet(
                     context: context,
                     isScrollControlled: true,
                     builder: (_) {

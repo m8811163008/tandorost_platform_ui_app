@@ -1,3 +1,4 @@
+import 'package:fitness_profile_app/src/widgets/fitness_insight/add_measurement_button.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
@@ -16,11 +17,19 @@ class NoDataFound extends StatelessWidget {
             child: Stack(
               alignment: AlignmentDirectional.bottomCenter,
               children: [
-                AppRoundedRectangleBorder(child: ChartAnimation()),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text('add measurement'),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 3,
+                  child: AppRoundedRectangleBorder(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(
+                        context.sizeExtenstion.small,
+                      ),
+                      child: EmptyChartImage(),
+                    ),
+                  ),
                 ),
+
+                AddMeasurementButton(),
               ],
             ),
           ),

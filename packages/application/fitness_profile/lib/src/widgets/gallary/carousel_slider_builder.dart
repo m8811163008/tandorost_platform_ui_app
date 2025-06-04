@@ -35,14 +35,19 @@ class CarouselSliderBuilder extends StatelessWidget {
             child: Stack(
               alignment: AlignmentDirectional.bottomCenter,
               children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 3,
-                  child: AppRoundedRectangleBorder(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(
-                        context.sizeExtenstion.small,
+                Padding(
+                  padding: EdgeInsets.only(
+                    bottom: context.sizeExtenstion.medium,
+                  ),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height / 3,
+                    child: AppRoundedRectangleBorder(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                          context.sizeExtenstion.small,
+                        ),
+                        child: AddNewImageSelfie(),
                       ),
-                      child: AddNewImageSelfie(),
                     ),
                   ),
                 ),
