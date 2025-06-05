@@ -17,14 +17,12 @@ class DeleteFoodDialog extends StatelessWidget {
                 previous.deleteFoodsNutritionsStatus !=
                 current.deleteFoodsNutritionsStatus,
         listener: (context, state) {
-          if (state.deleteFoodsNutritionsStatus.isServerConnectionError) {
+          if (state.deleteFoodsNutritionsStatus.isConnectionError) {
             final content = context.l10n.networkError;
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(SnackBar(content: Text(content)));
-          } else if (state
-              .deleteFoodsNutritionsStatus
-              .isServerConnectionError) {
+          } else if (state.deleteFoodsNutritionsStatus.isConnectionError) {
             final content = context.l10n.internetConnectionError;
             ScaffoldMessenger.of(
               context,

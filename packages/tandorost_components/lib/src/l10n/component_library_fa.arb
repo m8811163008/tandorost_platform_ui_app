@@ -299,5 +299,7 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "bazzarNotFound" : "کافه بازار نصب نشده است. کافه بازار را نصب کنید",
+    "bazzarSuccessfulPayment" : "اشتراک با موفقیت اضافه شد"
 }

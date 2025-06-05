@@ -14,12 +14,12 @@ class FitnessInfoConsumer extends StatelessWidget {
           (previous, current) =>
               previous.readFitnessDataStatus != current.readFitnessDataStatus,
       listener: (context, state) {
-        if (state.readUserImageGallaryStatus.isServerConnectionError) {
+        if (state.readUserImageGallaryStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.readUserImageGallaryStatus.isServerConnectionError) {
+        } else if (state.readUserImageGallaryStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,
@@ -33,13 +33,15 @@ class FitnessInfoConsumer extends StatelessWidget {
           (context, state) => switch (state.readFitnessDataStatus) {
             AsyncProcessingStatus.inital => AppAsyncStatusCard.inital(),
             AsyncProcessingStatus.loading => AppAsyncStatusCard.loading(),
-            AsyncProcessingStatus.serverConnectionError =>
+            AsyncProcessingStatus.connectionError =>
               AppAsyncStatusCard.serverError(),
             AsyncProcessingStatus.internetConnectionError =>
               AppAsyncStatusCard.internetConnectionError(),
             AsyncProcessingStatus.success =>
               state.fitnessData == null
-                  ? NoDataFound(title: context.l10n.fitnessProfilePhysicalDataLabel)
+                  ? NoDataFound(
+                    title: context.l10n.fitnessProfilePhysicalDataLabel,
+                  )
                   : FitnessInfo(fitnessData: state.fitnessData!),
           },
     );

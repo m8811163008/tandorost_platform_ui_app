@@ -48,7 +48,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     } on HttpException catch (e) {
       _enhancedEmit(
         state.copyWith(
-          verificationStatus: AsyncProcessingStatus.serverConnectionError,
+          verificationStatus: AsyncProcessingStatus.connectionError,
           exception: e.message,
         ),
       );
@@ -78,7 +78,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     } on HttpException catch (e) {
       _enhancedEmit(
         state.copyWith(
-          registerStatus: AsyncProcessingStatus.serverConnectionError,
+          registerStatus: AsyncProcessingStatus.connectionError,
           exception: e.message,
         ),
       );

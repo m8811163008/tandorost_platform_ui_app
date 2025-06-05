@@ -22,12 +22,15 @@ class SearchBody extends StatelessWidget {
                   previous.coffeBazzarConnectionStatus !=
                   current.coffeBazzarConnectionStatus,
           listener: (context, state) async {
-            if (state.coffeBazzarConnectionStatus.isServerConnectionError) {
+            final content = context.l10n.bazzarNotFound;
+            if (state.coffeBazzarConnectionStatus.isConnectionError) {
+              Navigator.of(context).pop();
               ScaffoldMessenger.of(
                 context,
-              ).showSnackBar(SnackBar(content: Text(state.exceptionDetail!)));
-            } else if (state.canRequestForFoodNutritionStatus.isSuccess) {
-              context.read<SearchCubit>().onCafeBazzarSubscribe();
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.coffeBazzarConnectionStatus.isSuccess) {
+              context.read<SearchCubit>().onReadCafeBazzarSkus();
+              context.read<SearchCubit>().onReadUserProfile();
             }
           },
         ),
@@ -37,7 +40,7 @@ class SearchBody extends StatelessWidget {
                   previous.onCafeBazzarSubscribeStatus !=
                   current.onCafeBazzarSubscribeStatus,
           listener: (context, state) async {
-            if (state.onCafeBazzarSubscribeStatus.isServerConnectionError) {
+            if (state.onCafeBazzarSubscribeStatus.isConnectionError) {
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(state.exceptionDetail!)));
@@ -52,17 +55,88 @@ class SearchBody extends StatelessWidget {
                   previous.onCreateSubscriptionPaymentsStatus !=
                   current.onCreateSubscriptionPaymentsStatus,
           listener: (context, state) async {
-            if (state
-                .canRequestForFoodNutritionStatus
-                .isServerConnectionError) {
+            if (state.canRequestForFoodNutritionStatus.isConnectionError) {
               final content = context.l10n.networkError;
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
             } else if (state
                 .canRequestForFoodNutritionStatus
-                .isServerConnectionError) {
+                .isConnectionError) {
               final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            }
+          },
+        ),
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
+                  previous.onReadUserProfileStatus !=
+                  current.onReadUserProfileStatus,
+          listener: (context, state) async {
+            if (state.onReadUserProfileStatus.isConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.onReadUserProfileStatus.isConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            }
+          },
+        ),
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
+                  previous.onReadCafeBazzarSkusStatus !=
+                  current.onReadCafeBazzarSkusStatus,
+          listener: (context, state) async {
+            if (state.onReadCafeBazzarSkusStatus.isConnectionError) {
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.exceptionDetail!)));
+            } else if (state.onReadCafeBazzarSkusStatus.isSuccess) {
+              context.read<SearchCubit>().onCafeBazzarSubscribe();
+            }
+          },
+        ),
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
+                  previous.onCafeBazzarSubscribeStatus !=
+                  current.onCafeBazzarSubscribeStatus,
+          listener: (context, state) async {
+            if (state.onCafeBazzarSubscribeStatus.isConnectionError) {
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.exceptionDetail!)));
+            } else if (state.onCafeBazzarSubscribeStatus.isSuccess) {
+              context.read<SearchCubit>().onCreateSubscriptionPayments();
+            }
+          },
+        ),
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
+                  previous.onCreateSubscriptionPaymentsStatus !=
+                  current.onCreateSubscriptionPaymentsStatus,
+          listener: (context, state) async {
+            if (state.onReadUserProfileStatus.isConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.onReadUserProfileStatus.isConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            }else if (state.onReadUserProfileStatus.isSuccess){
+              final content = context.l10n.bazzarSuccessfulPayment;
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
@@ -75,22 +149,30 @@ class SearchBody extends StatelessWidget {
                   previous.canRequestForFoodNutritionStatus !=
                   current.canRequestForFoodNutritionStatus,
           listener: (context, state) async {
-            if (state
-                .canRequestForFoodNutritionStatus
-                .isServerConnectionError) {
+            if (state.canRequestForFoodNutritionStatus.isConnectionError) {
               final content = context.l10n.networkError;
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
             } else if (state
                 .canRequestForFoodNutritionStatus
-                .isServerConnectionError) {
+                .isConnectionError) {
               final content = context.l10n.internetConnectionError;
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
-            } else if (!state.canRequestForFoodNutrition &&
-                state.canRequestForFoodNutritionStatus.isSuccess) {
+            }
+          },
+        ),
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
+                  previous.canRequestForFoodNutrition !=
+                      current.canRequestForFoodNutrition ||
+                  previous.canRequestForFoodNutritionStatus !=
+                      current.canRequestForFoodNutritionStatus,
+          listener: (context, state) async {
+            if (!state.canRequestForFoodNutrition) {
               await showDialog(
                 context: context,
                 builder: (_) {
@@ -109,14 +191,12 @@ class SearchBody extends StatelessWidget {
                   previous.readCoffeBazzarPaymentStatus !=
                   current.readCoffeBazzarPaymentStatus,
           listener: (context, state) async {
-            if (state.readCoffeBazzarPaymentStatus.isServerConnectionError) {
+            if (state.readCoffeBazzarPaymentStatus.isConnectionError) {
               final content = context.l10n.networkError;
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
-            } else if (state
-                .readCoffeBazzarPaymentStatus
-                .isServerConnectionError) {
+            } else if (state.readCoffeBazzarPaymentStatus.isConnectionError) {
               final content = context.l10n.internetConnectionError;
               ScaffoldMessenger.of(
                 context,
@@ -146,14 +226,12 @@ class SearchBody extends StatelessWidget {
                   previous.searchFoodsByVoiceInputStatus !=
                   current.searchFoodsByVoiceInputStatus,
           listener: (context, state) {
-            if (state.searchFoodsByVoiceInputStatus.isServerConnectionError) {
+            if (state.searchFoodsByVoiceInputStatus.isConnectionError) {
               final content = context.l10n.networkError;
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
-            } else if (state
-                .searchFoodsByVoiceInputStatus
-                .isServerConnectionError) {
+            } else if (state.searchFoodsByVoiceInputStatus.isConnectionError) {
               final content = context.l10n.internetConnectionError;
               ScaffoldMessenger.of(
                 context,
@@ -193,29 +271,45 @@ class SearchBody extends StatelessWidget {
                   buildWhen:
                       (previous, current) =>
                           previous.isRecorderPermissionAllowed !=
-                          current.isRecorderPermissionAllowed,
+                              current.isRecorderPermissionAllowed ||
+                          previous.canRequestForFoodNutrition !=
+                              current.canRequestForFoodNutrition,
                   builder: (context, state) {
                     final chatButton = AIChatButton(
-                      // onLongPressStart: () {
-                      //   if (state.isRecorderPermissionAllowed) {
-                      //     context
-                      //         .read<SearchCubit>()
-                      //         .onSearchByVoicePressedDown();
-                      //   } else {
-                      //     context.read<SearchCubit>().onRequestRecorderPremission();
-                      //   }
-                      // },
+                      onLongPressStart: () async {
+                        if (state.isRecorderPermissionAllowed) {
+                          if (state.canRequestForFoodNutrition) {
+                            context
+                                .read<SearchCubit>()
+                                .onSearchByVoicePressedDown();
+                          } else {
+                            await showDialog(
+                              context: context,
+                              builder: (_) {
+                                return BlocProvider.value(
+                                  value: context.read<SearchCubit>(),
+                                  child: PaymentDialogBuilder(),
+                                );
+                              },
+                            );
+                          }
+                        } else {
+                          context
+                              .read<SearchCubit>()
+                              .onRequestRecorderPremission();
+                        }
+                      },
 
-                      // onLongPressUp:
-                      //     context.read<SearchCubit>().onSearchByVoicePressedUp,
+                      onLongPressUp:
+                          context.read<SearchCubit>().onSearchByVoicePressedUp,
                     );
-                    bool isAllowed = state.isRecorderPermissionAllowed;
+
                     bool isLoading = context.select<SearchCubit, bool>(
                       (cubit) =>
                           cubit.state.searchFoodsByVoiceInputStatus.isLoading,
                     );
                     return IgnorePointer(
-                      ignoring: !isAllowed || isLoading,
+                      ignoring: isLoading,
                       child: chatButton,
                     );
                   },
@@ -249,40 +343,15 @@ class SearchBody extends StatelessWidget {
 
 class PaymentDialogBuilder extends StatelessWidget {
   const PaymentDialogBuilder({super.key});
-
   @override
   Widget build(BuildContext context) {
     return PaymentDialog(
-      submitButtonPlanMonthly:
-          context.select(
-                (SearchCubit cubit) =>
-                    cubit.state.coffeBazzarConnectionStatus.isLoading,
-              )
-              ? AppOutLineButton.loading(label: 'one')
-              : AppOutLineButton(
-                label: 'one',
-                onTap: () {
-                  context.read<SearchCubit>().onConnectToCofeBazzar();
-                  context.read<SearchCubit>().onChangeSelectedSubscriptionType(
-                    SubscriptionType.oneMonth,
-                  );
-                },
-              ),
-      submitButtonPlanQuarterly:
-          context.select(
-                (SearchCubit cubit) =>
-                    cubit.state.coffeBazzarConnectionStatus.isLoading,
-              )
-              ? AppOutLineButton.loading(label: 'three')
-              : AppOutLineButton(
-                label: 'three',
-                onTap: () {
-                  context.read<SearchCubit>().onConnectToCofeBazzar();
-                  context.read<SearchCubit>().onChangeSelectedSubscriptionType(
-                    SubscriptionType.threeMonth,
-                  );
-                },
-              ),
+      onPlanTap: (planType) {
+        context.read<SearchCubit>().onChangeSelectedSubscriptionType(
+          SubscriptionType.oneMonth,
+        );
+        context.read<SearchCubit>().onConnectToCofeBazzar();
+      },
     );
   }
 }

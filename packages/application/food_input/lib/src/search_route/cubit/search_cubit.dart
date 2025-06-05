@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 
 import 'package:food_input/food_input.dart';
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
@@ -33,6 +34,7 @@ class SearchCubit extends Cubit<SearchState> {
     _enhancedEmit(
       state.copyWith(
         searchFoodsByTextInputStatus: AsyncProcessingStatus.inital,
+
         searchFoodsByVoiceInputStatus: AsyncProcessingStatus.inital,
         foodName: '',
       ),
@@ -43,7 +45,8 @@ class SearchCubit extends Cubit<SearchState> {
     final language = await profileRepository.userSpokenLanguage;
     _enhancedEmit(state.copyWith(userSpokenLanguage: () => language));
     await onRequestRecorderPremission();
-    await onReadCoffeBazzarPayment();
+    await _canRequestForFoodNutrition();
+    await onReadCoffeBazzarPaymentInfo();
   }
 
   final FoodInputRepository foodInputRepository;
@@ -56,9 +59,16 @@ class SearchCubit extends Cubit<SearchState> {
     _enhancedEmit(state.copyWith(isRecorderPermissionAllowed: result));
   }
 
+  // Paymet process
+  // _canRequestForFoodNutrition if !state.canRequestForFoodNutrition
+  // onConnectToCofeBazzar
+  // onReadCafeBazzarSkus
+  // onReadUserProfile
+  // onCafeBazzarSubscribe
+  // onCreateSubscriptionPayments
   void onSearchByVoicePressedDown() async {
     // To fix first time getting permission.
-    if (state.isRecorderPermissionAllowed) {
+    if (state.isRecorderPermissionAllowed && state.canRequestForFoodNutrition) {
       String path = '';
       if (!kIsWeb) {
         final tempDir = await getTemporaryDirectory();
@@ -84,9 +94,6 @@ class SearchCubit extends Cubit<SearchState> {
     if (out == null) {
       return;
     }
-    if (!state.canRequestForFoodNutrition) {
-      return;
-    }
 
     _enhancedEmit(
       state.copyWith(
@@ -105,6 +112,10 @@ class SearchCubit extends Cubit<SearchState> {
       fileName: 'user_voice_foods.wav',
       bytes: bytes,
     );
+    await _canRequestForFoodNutrition();
+    if (!state.canRequestForFoodNutrition) {
+      return;
+    }
     await onReadFoodsNutritionsByVoice(fileDetail);
   }
 
@@ -130,8 +141,7 @@ class SearchCubit extends Cubit<SearchState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          searchFoodsByVoiceInputStatus:
-              AsyncProcessingStatus.serverConnectionError,
+          searchFoodsByVoiceInputStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -164,8 +174,7 @@ class SearchCubit extends Cubit<SearchState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          searchFoodsByTextInputStatus:
-              AsyncProcessingStatus.serverConnectionError,
+          searchFoodsByTextInputStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -197,13 +206,13 @@ class SearchCubit extends Cubit<SearchState> {
       _enhancedEmit(
         state.copyWith(
           canRequestForFoodNutritionStatus:
-              AsyncProcessingStatus.serverConnectionError,
+              AsyncProcessingStatus.connectionError,
         ),
       );
     }
   }
 
-  Future<void> onReadCoffeBazzarPayment() async {
+  Future<void> onReadCoffeBazzarPaymentInfo() async {
     if (isClosed) return;
     _enhancedEmit(
       state.copyWith(
@@ -229,8 +238,7 @@ class SearchCubit extends Cubit<SearchState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          readCoffeBazzarPaymentStatus:
-              AsyncProcessingStatus.serverConnectionError,
+          readCoffeBazzarPaymentStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -253,14 +261,14 @@ class SearchCubit extends Cubit<SearchState> {
           coffeBazzarConnectionStatus: AsyncProcessingStatus.success,
         ),
       );
-    } on Exception catch (e) {
-      _enhancedEmit(
-        state.copyWith(
-          coffeBazzarConnectionStatus:
-              AsyncProcessingStatus.serverConnectionError,
-          exceptionDetail: () => e.toString(),
-        ),
-      );
+    } on PlatformException catch (e) {
+      if (e.message?.contains('BazaarNotFoundException') ?? false) {
+        _enhancedEmit(
+          state.copyWith(
+            coffeBazzarConnectionStatus: AsyncProcessingStatus.connectionError,
+          ),
+        );
+      }
     }
   }
 
@@ -270,7 +278,11 @@ class SearchCubit extends Cubit<SearchState> {
 
   void onCafeBazzarSubscribe() async {
     assert(state.skuDetails.isNotEmpty);
-    if (state.cafeBazzarPaymentInfo == null) return;
+    if (state.cafeBazzarPaymentInfo == null ||
+        state.skuDetails.isEmpty ||
+        state.userProfile == null) {
+      return;
+    }
     _enhancedEmit(
       state.copyWith(
         onCafeBazzarSubscribeStatus: AsyncProcessingStatus.loading,
@@ -289,12 +301,12 @@ class SearchCubit extends Cubit<SearchState> {
         sku,
         payload: json.encode(state.userProfile!.toJson()),
       );
-      final skuDetails = state.skuDetails.singleWhere(
+      final skuDetail = state.skuDetails.singleWhere(
         (skuDetail) => skuDetail.sku == sku,
       );
       final subscriptionPayment = SubscriptionPayment(
         userId: state.userProfile!.id,
-        paidAmount: double.parse(skuDetails.price),
+        paidAmount: double.parse(skuDetail.price),
         discountAmount: 0,
         currency: Currency.irRial,
         paymentMethod: PaymentMethod.inAppPaymentCafeBazzar,
@@ -314,8 +326,7 @@ class SearchCubit extends Cubit<SearchState> {
     } on Exception catch (e) {
       _enhancedEmit(
         state.copyWith(
-          onCafeBazzarSubscribeStatus:
-              AsyncProcessingStatus.serverConnectionError,
+          onCafeBazzarSubscribeStatus: AsyncProcessingStatus.connectionError,
           exceptionDetail: () => e.toString(),
         ),
       );
@@ -342,17 +353,43 @@ class SearchCubit extends Cubit<SearchState> {
       _enhancedEmit(
         state.copyWith(
           onCreateSubscriptionPaymentsStatus:
-              AsyncProcessingStatus.serverConnectionError,
+              AsyncProcessingStatus.connectionError,
           exceptionDetail: () => e.toString(),
         ),
       );
     }
   }
 
+  void onReadUserProfile() async {
+    _enhancedEmit(
+      state.copyWith(onReadUserProfileStatus: AsyncProcessingStatus.loading),
+    );
+    try {
+      final profile = await profileRepository.userProfile();
+      _enhancedEmit(
+        state.copyWith(
+          onReadUserProfileStatus: AsyncProcessingStatus.success,
+          userProfile: () => profile,
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          onReadUserProfileStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          onReadUserProfileStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
   void onReadCafeBazzarSkus() async {
-    if (state.userProfile == null ||
-        state.purchaseInfo == null ||
-        state.cafeBazzarPaymentInfo == null) {
+    if (state.cafeBazzarPaymentInfo == null) {
       return;
     }
     _enhancedEmit(
@@ -372,8 +409,7 @@ class SearchCubit extends Cubit<SearchState> {
     } on Exception catch (e) {
       _enhancedEmit(
         state.copyWith(
-          onReadCafeBazzarSkusStatus:
-              AsyncProcessingStatus.serverConnectionError,
+          onReadCafeBazzarSkusStatus: AsyncProcessingStatus.connectionError,
           exceptionDetail: () => e.toString(),
         ),
       );

@@ -13,6 +13,7 @@ class SearchState extends Equatable {
   final AsyncProcessingStatus onCreateSubscriptionPaymentsStatus;
   final AsyncProcessingStatus onCafeBazzarSubscribeStatus;
   final AsyncProcessingStatus onReadCafeBazzarSkusStatus;
+  final AsyncProcessingStatus onReadUserProfileStatus;
   final List<SkuDetails> skuDetails;
   final SubscriptionPayment? subscriptionPayment;
   final bool isRecorderPermissionAllowed;
@@ -35,6 +36,7 @@ class SearchState extends Equatable {
     this.onCreateSubscriptionPaymentsStatus = AsyncProcessingStatus.inital,
     this.onCafeBazzarSubscribeStatus = AsyncProcessingStatus.inital,
     this.onReadCafeBazzarSkusStatus = AsyncProcessingStatus.inital,
+    this.onReadUserProfileStatus = AsyncProcessingStatus.inital,
     this.skuDetails = const [],
     this.cafeBazzarPaymentInfo,
     this.voiceData,
@@ -44,8 +46,8 @@ class SearchState extends Equatable {
     this.purchaseInfo,
     this.exceptionDetail,
     this.subscriptionPayment,
-this.isRecorderPermissionAllowed = false,
-    this.canRequestForFoodNutrition = false,
+    this.isRecorderPermissionAllowed = false,
+    this.canRequestForFoodNutrition = true,
   });
 
   @override
@@ -61,11 +63,12 @@ this.isRecorderPermissionAllowed = false,
     readCoffeBazzarPaymentStatus,
     coffeBazzarConnectionStatus,
     onCreateSubscriptionPaymentsStatus,
+    onReadUserProfileStatus,
     onCafeBazzarSubscribeStatus,
     purchaseInfo,
     userProfile,
     exceptionDetail,
-    isRecorderPermissionAllowed ,
+    isRecorderPermissionAllowed,
     onReadCafeBazzarSkusStatus,
     skuDetails,
     subscriptionPayment,
@@ -86,16 +89,18 @@ this.isRecorderPermissionAllowed = false,
     AsyncProcessingStatus? onCreateSubscriptionPaymentsStatus,
     AsyncProcessingStatus? onCafeBazzarSubscribeStatus,
     AsyncProcessingStatus? onReadCafeBazzarSkusStatus,
+    AsyncProcessingStatus? onReadUserProfileStatus,
     List<SkuDetails>? skuDetails,
     bool? canRequestForFoodNutrition,
-    bool? isRecorderPermissionAllowed ,
+    bool? isRecorderPermissionAllowed,
     SubscriptionPayment? subscriptionPayment,
     ValueGetter<String?>? exceptionDetail,
     SubscriptionType? selectedSubscriptionType,
   }) {
     return SearchState(
       foodName: foodName ?? this.foodName,
-      selectedSubscriptionType: selectedSubscriptionType ?? this.selectedSubscriptionType,
+      selectedSubscriptionType:
+          selectedSubscriptionType ?? this.selectedSubscriptionType,
       voiceData: voiceData != null ? voiceData() : this.voiceData,
       purchaseInfo: purchaseInfo != null ? purchaseInfo() : this.purchaseInfo,
       userProfile: userProfile != null ? userProfile() : this.userProfile,
@@ -119,8 +124,11 @@ this.isRecorderPermissionAllowed = false,
           canRequestForFoodNutrition ?? this.canRequestForFoodNutrition,
       onReadCafeBazzarSkusStatus:
           onReadCafeBazzarSkusStatus ?? this.onReadCafeBazzarSkusStatus,
+      onReadUserProfileStatus:
+          onReadUserProfileStatus ?? this.onReadUserProfileStatus,
       skuDetails: skuDetails ?? this.skuDetails,
-      isRecorderPermissionAllowed : isRecorderPermissionAllowed ?? this.isRecorderPermissionAllowed,
+      isRecorderPermissionAllowed:
+          isRecorderPermissionAllowed ?? this.isRecorderPermissionAllowed,
       canRequestForFoodNutritionStatus:
           canRequestForFoodNutritionStatus ??
           this.canRequestForFoodNutritionStatus,

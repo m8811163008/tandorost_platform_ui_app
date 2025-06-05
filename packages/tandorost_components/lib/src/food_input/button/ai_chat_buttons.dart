@@ -5,7 +5,8 @@ import 'package:tandorost_components/tandorost_components.dart';
 
 class AIChatButton extends StatefulWidget {
   const AIChatButton({super.key, this.onLongPressStart, this.onLongPressUp});
-  final VoidCallback? onLongPressStart, onLongPressUp;
+  final VoidCallback? onLongPressUp, onLongPressStart;
+  // final Function({VoidCallback? onCancleLongPress})? onLongPressStart;
 
   @override
   State<AIChatButton> createState() => _AIChatButtonState();
@@ -25,7 +26,6 @@ class _AIChatButtonState extends State<AIChatButton> {
 
   @override
   void dispose() {
-    // _controller.dispose();
     _timer.cancel();
     super.dispose();
   }
@@ -38,9 +38,14 @@ class _AIChatButtonState extends State<AIChatButton> {
 
         _timer = Timer(_conversationDuration, () {});
 
-        widget.onLongPressStart?.call();
         setState(() {
           _crossFadeState = CrossFadeState.showSecond;
+        });
+        widget.onLongPressStart?.call();
+      },
+      onLongPressCancel: () {
+        setState(() {
+          _crossFadeState = CrossFadeState.showFirst;
         });
       },
       onLongPressUp: () {
@@ -60,10 +65,11 @@ class _AIChatButtonState extends State<AIChatButton> {
         setState(() {
           _crossFadeState = CrossFadeState.showFirst;
         });
+        widget.onLongPressUp?.call();
       },
       child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 1000),
-        reverseDuration: const Duration(milliseconds: 700),
+        duration: const Duration(milliseconds: 1400),
+        reverseDuration: const Duration(milliseconds: 800),
         switchInCurve: Curves.easeIn,
         switchOutCurve: Curves.easeOut,
         child:

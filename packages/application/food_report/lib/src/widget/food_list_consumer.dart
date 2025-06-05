@@ -15,14 +15,12 @@ class FoodListConsumer extends StatelessWidget {
               previous.readFoodsNutritionStatus !=
               current.readFoodsNutritionStatus,
       listener: (context, state) {
-        if (state.readNutritionRequirementsStatus.isServerConnectionError) {
+        if (state.readNutritionRequirementsStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state
-            .readNutritionRequirementsStatus
-            .isServerConnectionError) {
+        } else if (state.readNutritionRequirementsStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,
@@ -37,7 +35,7 @@ class FoodListConsumer extends StatelessWidget {
         return switch (state.readFoodsNutritionStatus) {
           AsyncProcessingStatus.inital => AppAsyncStatusCard.inital(),
           AsyncProcessingStatus.loading => AppAsyncStatusCard.loading(),
-          AsyncProcessingStatus.serverConnectionError =>
+          AsyncProcessingStatus.connectionError =>
             AppAsyncStatusCard.serverError(),
           AsyncProcessingStatus.internetConnectionError =>
             AppAsyncStatusCard.internetConnectionError(),

@@ -8,7 +8,7 @@ class AppAsyncStatusCard extends StatelessWidget {
   const AppAsyncStatusCard.loading({super.key})
     : _status = AsyncProcessingStatus.loading;
   const AppAsyncStatusCard.serverError({super.key})
-    : _status = AsyncProcessingStatus.serverConnectionError;
+    : _status = AsyncProcessingStatus.connectionError;
   const AppAsyncStatusCard.internetConnectionError({super.key})
     : _status = AsyncProcessingStatus.internetConnectionError;
   const AppAsyncStatusCard.notFound({super.key})

@@ -33,12 +33,12 @@ class VerifyPhoneListener extends StatelessWidget {
           (previous, current) =>
               previous.registerStatus != current.registerStatus,
       listener: (context, state) {
-        if (state.registerStatus.isServerConnectionError) {
+        if (state.registerStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.exception ?? content)));
-        } else if (state.registerStatus.isServerConnectionError) {
+        } else if (state.registerStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,

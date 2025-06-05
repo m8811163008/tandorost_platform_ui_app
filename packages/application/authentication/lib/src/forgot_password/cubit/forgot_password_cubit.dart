@@ -26,7 +26,9 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
   }
 
   void sendVerificationCode() async {
-    _enhancedEmit(state.copyWith(verificationStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(verificationStatus: AsyncProcessingStatus.loading),
+    );
     try {
       final request = VerificationCodeRequest(
         phoneNumber: state.phoneNumber,
@@ -35,7 +37,9 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
       await _authenticationRepository.sendVerificationCode(
         verificationCodeRequest: request,
       );
-      _enhancedEmit(state.copyWith(verificationStatus: AsyncProcessingStatus.success));
+      _enhancedEmit(
+        state.copyWith(verificationStatus: AsyncProcessingStatus.success),
+      );
     } on InternetConnectionException {
       _enhancedEmit(
         state.copyWith(
@@ -45,7 +49,7 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
     } on HttpException catch (e) {
       _enhancedEmit(
         state.copyWith(
-          verificationStatus: AsyncProcessingStatus.serverConnectionError,
+          verificationStatus: AsyncProcessingStatus.connectionError,
           exception: e.message,
         ),
       );
@@ -53,7 +57,9 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
   }
 
   void onForgotPassword() async {
-    _enhancedEmit(state.copyWith(forgotPasswordStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(forgotPasswordStatus: AsyncProcessingStatus.loading),
+    );
     try {
       final forgotPasswordRequest = ForgotPasswordRequest(
         userName: state.phoneNumber,
@@ -63,7 +69,9 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
       await _authenticationRepository.forgotPassword(
         forgotPasswordRequest: forgotPasswordRequest,
       );
-      _enhancedEmit(state.copyWith(forgotPasswordStatus: AsyncProcessingStatus.success));
+      _enhancedEmit(
+        state.copyWith(forgotPasswordStatus: AsyncProcessingStatus.success),
+      );
     } on InternetConnectionException {
       _enhancedEmit(
         state.copyWith(
@@ -73,7 +81,7 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
     } on HttpException catch (e) {
       _enhancedEmit(
         state.copyWith(
-          forgotPasswordStatus: AsyncProcessingStatus.serverConnectionError,
+          forgotPasswordStatus: AsyncProcessingStatus.connectionError,
           exception: e.message,
         ),
       );

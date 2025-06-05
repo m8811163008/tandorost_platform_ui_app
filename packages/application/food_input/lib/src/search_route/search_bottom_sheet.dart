@@ -54,12 +54,12 @@ class SearchFoodBottomSheetForm extends StatelessWidget {
               previous.searchFoodsByTextInputStatus !=
               current.searchFoodsByTextInputStatus,
       listener: (context, state) {
-        if (state.searchFoodsByTextInputStatus.isServerConnectionError) {
+        if (state.searchFoodsByTextInputStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.searchFoodsByTextInputStatus.isServerConnectionError) {
+        } else if (state.searchFoodsByTextInputStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,

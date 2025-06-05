@@ -1,55 +1,54 @@
+import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
-import 'package:tandorost_components/src/common/layout/payment_background.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class PaymentDialog extends StatelessWidget {
-  const PaymentDialog({
-    super.key,
-    this.submitButtonPlanMonthly,
-    this.submitButtonPlanQuarterly,
-  });
-  final Widget? submitButtonPlanMonthly;
-  final Widget? submitButtonPlanQuarterly;
+  const PaymentDialog({super.key, this.onPlanTap});
+  final ValueSetter<SubscriptionType>? onPlanTap;
 
   @override
   Widget build(BuildContext context) {
-    return Dialog(
+    return Dialog.fullscreen(
       child: SingleChildScrollView(
         child: DecoratedBox(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(context.sizeExtenstion.medium),
+            image: DecorationImage(
+              image: PaymentBackground(),
+              fit: BoxFit.cover,
+            ),
           ),
-          child: Stack(
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 2 / 3,
-                width: double.infinity,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(
-                    context.sizeExtenstion.medium,
-                  ),
-
-                  child: PaymentBackground(),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(context.sizeExtenstion.medium),
-                child: Column(
+          child: Padding(
+            padding: EdgeInsets.all(context.sizeExtenstion.medium),
+            child: Column(
+              children: [
+                Text('Payment plans', style: context.textTheme.headlineMedium),
+                Wrap(
                   children: [
-                    Text(
-                      'Payment plans',
-                      style: context.textTheme.headlineMedium,
+                    PaymentCard(
+                      submitButton: AppOutLineButton(
+                        label: 'one',
+                        onTap: () {
+                          onPlanTap?.call(SubscriptionType.oneMonth);
+                        },
+                      ),
                     ),
-                    Wrap(
-                      children: [
-                        PaymentCard(submitButton: submitButtonPlanMonthly),
-                        PaymentCard(submitButton: submitButtonPlanQuarterly),
-                      ],
+                    PaymentCard(
+                      submitButton: AppOutLineButton(
+                        label: 'three',
+                        onTap: () {
+                          onPlanTap?.call(SubscriptionType.threeMonth);
+                        },
+                      ),
                     ),
                   ],
                 ),
-              ),
-            ],
+                SizedBox(height: context.sizeExtenstion.small),
+                TextButton(
+                  onPressed: Navigator.of(context).pop,
+                  child: Text(context.l10n.cancle),
+                ),
+              ],
+            ),
           ),
         ),
       ),

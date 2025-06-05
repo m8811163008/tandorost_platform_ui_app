@@ -40,9 +40,7 @@ class ResultCubit extends Cubit<ResultState> {
       );
     } on HttpException {
       _enhancedEmit(
-        state.copyWith(
-          updatingStatus: AsyncProcessingStatus.serverConnectionError,
-        ),
+        state.copyWith(updatingStatus: AsyncProcessingStatus.connectionError),
       );
     }
   }
@@ -64,9 +62,7 @@ class ResultCubit extends Cubit<ResultState> {
       );
     } on HttpException {
       _enhancedEmit(
-        state.copyWith(
-          deletingStatus: AsyncProcessingStatus.serverConnectionError,
-        ),
+        state.copyWith(deletingStatus: AsyncProcessingStatus.connectionError),
       );
     }
   }

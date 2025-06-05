@@ -33,12 +33,12 @@ class ForgotPasswordVerifyListener extends StatelessWidget {
           (previous, current) =>
               previous.forgotPasswordStatus != current.forgotPasswordStatus,
       listener: (context, state) {
-        if (state.forgotPasswordStatus.isServerConnectionError) {
+        if (state.forgotPasswordStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.exception ?? content)));
-        } else if (state.forgotPasswordStatus.isServerConnectionError) {
+        } else if (state.forgotPasswordStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,

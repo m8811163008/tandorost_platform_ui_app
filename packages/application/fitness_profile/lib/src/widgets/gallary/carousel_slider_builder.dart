@@ -15,12 +15,12 @@ class CarouselSliderBuilder extends StatelessWidget {
               previous.readUserImageGallaryStatus !=
               current.readUserImageGallaryStatus,
       listener: (context, state) {
-        if (state.readUserImageGallaryStatus.isServerConnectionError) {
+        if (state.readUserImageGallaryStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.readUserImageGallaryStatus.isServerConnectionError) {
+        } else if (state.readUserImageGallaryStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,

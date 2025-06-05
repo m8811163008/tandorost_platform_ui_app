@@ -6,6 +6,7 @@ part of 'user_physical_data_upsert.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+// ignore: unused_element
 UserPhysicalDataUpsert _$UserPhysicalDataUpsertFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate(

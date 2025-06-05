@@ -38,11 +38,7 @@ class UserAccountCubit extends Cubit<UserAccountState> {
       if (profileImages.isEmpty) return;
 
       final profileImage = await _imageRepository.readImage(profileImages.last);
-      emit(
-        state.copyWith(
-          profileImage: () => profileImage,
-        ),
-      );
+      emit(state.copyWith(profileImage: () => profileImage));
     } on InternetConnectionException {
       emit(
         state.copyWith(
@@ -53,8 +49,7 @@ class UserAccountCubit extends Cubit<UserAccountState> {
     } on HttpException {
       emit(
         state.copyWith(
-          readUserProfileImageStatus:
-              AsyncProcessingStatus.serverConnectionError,
+          readUserProfileImageStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -79,7 +74,7 @@ class UserAccountCubit extends Cubit<UserAccountState> {
     } on HttpException {
       emit(
         state.copyWith(
-          readUserProfileStatus: AsyncProcessingStatus.serverConnectionError,
+          readUserProfileStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }

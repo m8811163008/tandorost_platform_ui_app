@@ -52,12 +52,12 @@ class RegisterListener extends StatelessWidget {
           (previous, current) =>
               previous.verificationStatus != current.verificationStatus,
       listener: (context, state) {
-        if (state.verificationStatus.isServerConnectionError) {
+        if (state.verificationStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.exception ?? content)));
-        } else if (state.verificationStatus.isServerConnectionError) {
+        } else if (state.verificationStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,

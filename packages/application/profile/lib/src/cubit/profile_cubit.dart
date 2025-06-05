@@ -44,7 +44,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          readProfileImageStatus: AsyncProcessingStatus.serverConnectionError,
+          readProfileImageStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -81,7 +81,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          updatingProfileStatus: AsyncProcessingStatus.serverConnectionError,
+          updatingProfileStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -115,7 +115,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          readProfileStatus: AsyncProcessingStatus.serverConnectionError,
+          readProfileStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -173,7 +173,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          updatingProfileStatus: AsyncProcessingStatus.serverConnectionError,
+          updatingProfileStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }

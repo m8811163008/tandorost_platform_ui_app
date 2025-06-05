@@ -229,12 +229,12 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
               previous.updateUserPhysicalDataStatus !=
               current.updateUserPhysicalDataStatus,
       listener: (context, state) {
-        if (state.updateUserPhysicalDataStatus.isServerConnectionError) {
+        if (state.updateUserPhysicalDataStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.updateUserPhysicalDataStatus.isServerConnectionError) {
+        } else if (state.updateUserPhysicalDataStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,

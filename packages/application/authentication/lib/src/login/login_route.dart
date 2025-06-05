@@ -49,12 +49,12 @@ class LoginListener extends StatelessWidget {
       listenWhen:
           (previous, current) => previous.loginStatus != current.loginStatus,
       listener: (context, state) {
-        if (state.loginStatus.isServerConnectionError) {
+        if (state.loginStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.exception ?? content)));
-        } else if (state.loginStatus.isServerConnectionError) {
+        } else if (state.loginStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,

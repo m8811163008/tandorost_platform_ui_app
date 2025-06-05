@@ -38,7 +38,7 @@ class LoginCubit extends Cubit<LoginState> {
     } on HttpException catch (e) {
       _enhancedEmit(
         state.copyWith(
-          loginStatus: AsyncProcessingStatus.serverConnectionError,
+          loginStatus: AsyncProcessingStatus.connectionError,
           exception: e.message,
         ),
       );

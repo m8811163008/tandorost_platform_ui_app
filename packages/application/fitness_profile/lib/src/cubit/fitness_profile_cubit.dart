@@ -63,7 +63,7 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          addUserImageStatus: AsyncProcessingStatus.serverConnectionError,
+          addUserImageStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -193,8 +193,7 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          readUserPhysicalProfileStatus:
-              AsyncProcessingStatus.serverConnectionError,
+          readUserPhysicalProfileStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -225,8 +224,7 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          updateUserPhysicalDataStatus:
-              AsyncProcessingStatus.serverConnectionError,
+          updateUserPhysicalDataStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -258,7 +256,7 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
       _enhancedEmit(
         state.copyWith(
           deleteUserPhysicalDataPointStatus:
-              AsyncProcessingStatus.serverConnectionError,
+              AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -295,8 +293,7 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          readUserImageGallaryStatus:
-              AsyncProcessingStatus.serverConnectionError,
+          readUserImageGallaryStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -324,7 +321,7 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          readFitnessDataStatus: AsyncProcessingStatus.serverConnectionError,
+          readFitnessDataStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }

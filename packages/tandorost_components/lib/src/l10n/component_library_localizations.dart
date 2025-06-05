@@ -1166,6 +1166,18 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'{asyncStatus, select, inital{بدون داده} loading{درحال بارگیری} serverConnectionError{خطای سرور ، دوباره تلاش کنید} internetConnectionError{خطای اینترنت. اینترنت خود را وصل کنید} success{داده ای برای نمایش دادن نیست} other{ترجمه تعریف نشده}}'**
   String appAsyncCardStatusText(String asyncStatus);
+
+  /// No description provided for @bazzarNotFound.
+  ///
+  /// In fa, this message translates to:
+  /// **'کافه بازار نصب نشده است. کافه بازار را نصب کنید'**
+  String get bazzarNotFound;
+
+  /// No description provided for @bazzarSuccessfulPayment.
+  ///
+  /// In fa, this message translates to:
+  /// **'اشتراک با موفقیت اضافه شد'**
+  String get bazzarSuccessfulPayment;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

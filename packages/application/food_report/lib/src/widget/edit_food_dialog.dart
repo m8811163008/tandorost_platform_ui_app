@@ -30,12 +30,12 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
               previous.updateFoodsNutritionsStatus !=
               current.updateFoodsNutritionsStatus,
       listener: (context, state) {
-        if (state.updateFoodsNutritionsStatus.isServerConnectionError) {
+        if (state.updateFoodsNutritionsStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.updateFoodsNutritionsStatus.isServerConnectionError) {
+        } else if (state.updateFoodsNutritionsStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,

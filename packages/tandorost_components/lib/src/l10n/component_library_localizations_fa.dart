@@ -721,4 +721,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get bazzarNotFound => 'کافه بازار نصب نشده است. کافه بازار را نصب کنید';
+
+  @override
+  String get bazzarSuccessfulPayment => 'اشتراک با موفقیت اضافه شد';
 }

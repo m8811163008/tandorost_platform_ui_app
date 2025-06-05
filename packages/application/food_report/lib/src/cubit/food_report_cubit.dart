@@ -49,7 +49,7 @@ class FoodReportCubit extends Cubit<FoodReportState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          readFoodsNutritionStatus: AsyncProcessingStatus.serverConnectionError,
+          readFoodsNutritionStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -78,8 +78,7 @@ class FoodReportCubit extends Cubit<FoodReportState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          updateFoodsNutritionsStatus:
-              AsyncProcessingStatus.serverConnectionError,
+          updateFoodsNutritionsStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -108,8 +107,7 @@ class FoodReportCubit extends Cubit<FoodReportState> {
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          deleteFoodsNutritionsStatus:
-              AsyncProcessingStatus.serverConnectionError,
+          deleteFoodsNutritionsStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -141,7 +139,7 @@ class FoodReportCubit extends Cubit<FoodReportState> {
       _enhancedEmit(
         state.copyWith(
           readNutritionRequirementsStatus:
-              AsyncProcessingStatus.serverConnectionError,
+              AsyncProcessingStatus.connectionError,
         ),
       );
     }
