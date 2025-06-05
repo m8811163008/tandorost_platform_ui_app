@@ -13,15 +13,13 @@ class FoodReportView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          FoodReportStaticsConsumer(
-            goToFitnessProfileRoute: goToFitnessProfileRoute,
-          ),
-          foodListConsumer,
-        ],
-      ),
+    return ListView(
+      children: [
+        FoodReportStaticsConsumer(
+          goToFitnessProfileRoute: goToFitnessProfileRoute,
+        ),
+        foodListConsumer,
+      ],
     );
   }
 }

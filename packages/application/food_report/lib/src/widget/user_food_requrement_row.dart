@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
@@ -23,8 +22,9 @@ class UserFoodRequirementRow extends StatelessWidget {
     final progressValue = value > 1.0 ? 1.0 : value;
     final isExceed = value > 1.0;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
+        Wrap(
           children: [
             Material(
               shape: CircleBorder(),

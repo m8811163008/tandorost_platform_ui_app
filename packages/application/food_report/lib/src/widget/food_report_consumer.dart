@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:food_report_app/src/cubit/food_report_cubit.dart';
@@ -67,6 +69,11 @@ class FoodReportStaticsConsumer extends StatelessWidget {
       MaterialBanner(
         content: Text(context.l10n.foodReportBannerContent),
         leading: Icon(Icons.agriculture_outlined),
+        onVisible: () {
+          Timer(Duration(seconds: 5), () {
+            messenger.hideCurrentMaterialBanner();
+          });
+        },
         actions: <Widget>[
           TextButton(
             onPressed: () {

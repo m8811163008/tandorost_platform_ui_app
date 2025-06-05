@@ -17,14 +17,19 @@ class NoDataFound extends StatelessWidget {
             child: Stack(
               alignment: AlignmentDirectional.bottomCenter,
               children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 3,
-                  child: AppRoundedRectangleBorder(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(
-                        context.sizeExtenstion.small,
+                Padding(
+                  padding: EdgeInsets.only(
+                    bottom: context.sizeExtenstion.medium,
+                  ),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height / 3,
+                    child: AppRoundedRectangleBorder(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                          context.sizeExtenstion.small,
+                        ),
+                        child: EmptyChartImage(),
                       ),
-                      child: EmptyChartImage(),
                     ),
                   ),
                 ),

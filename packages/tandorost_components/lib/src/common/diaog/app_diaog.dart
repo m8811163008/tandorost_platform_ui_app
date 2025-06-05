@@ -49,8 +49,8 @@ class AppDialog extends StatelessWidget {
             ),
           ),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+          Wrap(
+            alignment: WrapAlignment.end,
             children: [
               TextButton(
                 onPressed: Navigator.of(context).pop,

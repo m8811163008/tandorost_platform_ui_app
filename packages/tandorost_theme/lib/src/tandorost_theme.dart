@@ -90,6 +90,10 @@ class AppTheme {
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
       ),
+      tabBarTheme: TabBarThemeData(
+        textScaler: TextScaler.linear(screenWidth.textFactor),
+      ),
+      
     );
   }
 

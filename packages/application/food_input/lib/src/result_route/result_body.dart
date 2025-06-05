@@ -16,6 +16,12 @@ class ResultBody extends StatelessWidget {
       > 425 => 2,
       _ => 1,
     };
+    final aspectRatio = switch (width) {
+      >= 1024 => 1.2,
+      >= 768 => 1.0,
+      > 425 => 0.7,
+      _ => 0.6,
+    };
     return BlocBuilder<ResultCubit, ResultState>(
       buildWhen:
           (previous, current) =>
@@ -25,7 +31,7 @@ class ResultBody extends StatelessWidget {
         return GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: count,
-            childAspectRatio: 0.7,
+            childAspectRatio: aspectRatio,
           ),
           itemCount: state.foods.length,
           padding: EdgeInsets.all(context.sizeExtenstion.medium),

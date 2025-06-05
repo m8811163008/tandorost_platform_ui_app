@@ -14,16 +14,18 @@ class SuccessStatusFoodsList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppCardHeader(title: context.l10n.foodReportFoodsListLabel),
-          ListView.separated(
-            reverse: true,
-            shrinkWrap: true,
-            itemCount: foods.length,
-            itemBuilder: (context, index) {
-              return FoodTile(food: foods[index]);
-            },
-            separatorBuilder: (context, index) {
-              return SizedBox(height: context.sizeExtenstion.small);
-            },
+          // todo use custom scrool view with slivers for performance
+          ...List.generate(
+            foods.length,
+            (index) => Padding(
+              padding: EdgeInsets.only(
+                bottom:
+                    index == foods.length - 1
+                        ? 0
+                        : context.sizeExtenstion.small,
+              ),
+              child: FoodTile(food: foods[index]),
+            ),
           ),
         ],
       ),
