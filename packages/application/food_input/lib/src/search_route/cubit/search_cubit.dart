@@ -42,6 +42,7 @@ class SearchCubit extends Cubit<SearchState> {
   void _init() async {
     final language = await profileRepository.userSpokenLanguage;
     _enhancedEmit(state.copyWith(userSpokenLanguage: () => language));
+    await onRequestRecorderPremission();
     await onReadCoffeBazzarPayment();
   }
 
@@ -50,16 +51,14 @@ class SearchCubit extends Cubit<SearchState> {
   final PaymentRepository paymentRepository;
   final AudioRecorder recorder;
 
-  Future<bool> get isPremissionAllowed async {
-    if (state.onCafeBazzarSubscribeStatus.isSuccess) {
-      return await recorder.hasPermission();
-    }
-    return false;
+  Future<void> onRequestRecorderPremission() async {
+    final result = await recorder.hasPermission();
+    _enhancedEmit(state.copyWith(isRecorderPermissionAllowed: result));
   }
 
   void onSearchByVoicePressedDown() async {
     // To fix first time getting permission.
-    if (await isPremissionAllowed) {
+    if (state.isRecorderPermissionAllowed) {
       String path = '';
       if (!kIsWeb) {
         final tempDir = await getTemporaryDirectory();

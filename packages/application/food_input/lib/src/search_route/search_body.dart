@@ -189,18 +189,27 @@ class SearchBody extends StatelessWidget {
                 icon: Icon(Icons.keyboard),
               ),
               Flexible(
-                child: FutureBuilder(
-                  future: context.read<SearchCubit>().isPremissionAllowed,
-                  builder: (context, snapshot) {
+                child: BlocBuilder<SearchCubit, SearchState>(
+                  buildWhen:
+                      (previous, current) =>
+                          previous.isRecorderPermissionAllowed !=
+                          current.isRecorderPermissionAllowed,
+                  builder: (context, state) {
                     final chatButton = AIChatButton(
-                      onLongPressStart:
-                          context
-                              .read<SearchCubit>()
-                              .onSearchByVoicePressedDown,
-                      onLongPressUp:
-                          context.read<SearchCubit>().onSearchByVoicePressedUp,
+                      // onLongPressStart: () {
+                      //   if (state.isRecorderPermissionAllowed) {
+                      //     context
+                      //         .read<SearchCubit>()
+                      //         .onSearchByVoicePressedDown();
+                      //   } else {
+                      //     context.read<SearchCubit>().onRequestRecorderPremission();
+                      //   }
+                      // },
+
+                      // onLongPressUp:
+                      //     context.read<SearchCubit>().onSearchByVoicePressedUp,
                     );
-                    bool isAllowed = snapshot.data ?? false;
+                    bool isAllowed = state.isRecorderPermissionAllowed;
                     bool isLoading = context.select<SearchCubit, bool>(
                       (cubit) =>
                           cubit.state.searchFoodsByVoiceInputStatus.isLoading,

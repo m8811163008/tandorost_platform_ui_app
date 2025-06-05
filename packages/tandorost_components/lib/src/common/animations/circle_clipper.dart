@@ -18,7 +18,9 @@ class AnimationClipper extends StatelessWidget {
       clipper: isCircle ? CircleClipper() : null,
       child: SizedBox.fromSize(
         size: size,
-        child: AnimationVideoPlayer(path: path),
+        child: AnimationVideoPlayer(
+          
+          path: path),
       ),
     );
   }

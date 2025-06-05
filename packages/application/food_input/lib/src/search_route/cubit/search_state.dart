@@ -15,6 +15,7 @@ class SearchState extends Equatable {
   final AsyncProcessingStatus onReadCafeBazzarSkusStatus;
   final List<SkuDetails> skuDetails;
   final SubscriptionPayment? subscriptionPayment;
+  final bool isRecorderPermissionAllowed;
 
   final Language? userSpokenLanguage;
   final bool canRequestForFoodNutrition;
@@ -43,7 +44,7 @@ class SearchState extends Equatable {
     this.purchaseInfo,
     this.exceptionDetail,
     this.subscriptionPayment,
-
+this.isRecorderPermissionAllowed = false,
     this.canRequestForFoodNutrition = false,
   });
 
@@ -64,6 +65,7 @@ class SearchState extends Equatable {
     purchaseInfo,
     userProfile,
     exceptionDetail,
+    isRecorderPermissionAllowed ,
     onReadCafeBazzarSkusStatus,
     skuDetails,
     subscriptionPayment,
@@ -86,6 +88,7 @@ class SearchState extends Equatable {
     AsyncProcessingStatus? onReadCafeBazzarSkusStatus,
     List<SkuDetails>? skuDetails,
     bool? canRequestForFoodNutrition,
+    bool? isRecorderPermissionAllowed ,
     SubscriptionPayment? subscriptionPayment,
     ValueGetter<String?>? exceptionDetail,
     SubscriptionType? selectedSubscriptionType,
@@ -117,6 +120,7 @@ class SearchState extends Equatable {
       onReadCafeBazzarSkusStatus:
           onReadCafeBazzarSkusStatus ?? this.onReadCafeBazzarSkusStatus,
       skuDetails: skuDetails ?? this.skuDetails,
+      isRecorderPermissionAllowed : isRecorderPermissionAllowed ?? this.isRecorderPermissionAllowed,
       canRequestForFoodNutritionStatus:
           canRequestForFoodNutritionStatus ??
           this.canRequestForFoodNutritionStatus,

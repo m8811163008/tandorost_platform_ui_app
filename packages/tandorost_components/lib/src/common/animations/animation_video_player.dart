@@ -12,20 +12,41 @@ class AnimationVideoPlayer extends StatefulWidget {
 }
 
 class _AnimationVideoPlayerState extends State<AnimationVideoPlayer> {
-  late final VideoPlayerController _controller;
+  late VideoPlayerController _controller;
+  late Future<void> _initializeVideoPlayerFuture;
+
   @override
   void initState() {
     super.initState();
-    _controller =
-        VideoPlayerController.asset(widget.path, package: packageName)
-          ..initialize()
-          ..play()
-          ..setLooping(true)
-          ..setVolume(0);
+    _controller = VideoPlayerController.asset(
+      widget.path,
+      package: packageName,
+    );
+    _initializeVideoPlayerFuture = _controller.initialize().then((_) {
+      _controller.setLooping(true);
+      _controller.setVolume(0);
+      _controller.play();
+      setState(() {}); // Ensure widget rebuilds after initialization
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return VideoPlayer(_controller);
+    return FutureBuilder(
+      future: _initializeVideoPlayerFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return VideoPlayer(_controller);
+        } else {
+          return const SizedBox(); // Or a loading indicator
+        }
+      },
+    );
   }
 }
