@@ -174,6 +174,7 @@ class SearchBody extends StatelessWidget {
                 onPressed: () async {
                   await showModalBottomSheet(
                     context: context,
+                    isScrollControlled: true,
                     builder: (_) {
                       return FractionallySizedBox(
                         heightFactor: 1,

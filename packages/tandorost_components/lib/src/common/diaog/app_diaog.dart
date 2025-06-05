@@ -9,19 +9,16 @@ class AppDialog extends StatelessWidget {
     this.dialogHint,
     this.contents = const [],
     required this.submitButton,
-    this.fullscreen = false,
   });
   final String title;
   final List<Widget> contents;
   final Widget submitButton;
-  final bool fullscreen;
+
   final Widget? dialogHint;
 
   @override
   Widget build(BuildContext context) {
-    return fullscreen
-        ? Dialog.fullscreen(child: buildChild(context))
-        : Dialog(child: buildChild(context));
+    return Dialog.fullscreen(child: buildChild(context));
   }
 
   Widget buildChild(BuildContext context) {

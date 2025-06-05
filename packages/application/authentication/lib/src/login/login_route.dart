@@ -17,15 +17,16 @@ class LoginRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      appBar: AppBar(),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: context.sizeExtenstion.extraLarge,
-        ),
-        child: LoginListener(
-          goToRegisterRoute: goToRegisterRoute,
-          goToForgotPasswordRoute: goToForgotPasswordRoute,
-          goToHomeRoute: goToHomeRoute,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: context.sizeExtenstion.extraLarge,
+          ),
+          child: LoginListener(
+            goToRegisterRoute: goToRegisterRoute,
+            goToForgotPasswordRoute: goToForgotPasswordRoute,
+            goToHomeRoute: goToHomeRoute,
+          ),
         ),
       ),
     );
@@ -95,6 +96,7 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          AppLogo(size: context.sizeExtenstion.chatButton),
           Text(
             context.l10n.loginRouteLabel,
             style: context.textTheme.headlineLarge,
@@ -105,13 +107,13 @@ class _LoginFormState extends State<LoginForm> {
               context.read<LoginCubit>().onChangePhoneNumber('09$value');
             },
             textDirection: TextDirection.ltr,
-            autofillHints: [AutofillHints.newUsername, AutofillHints.username]
+            autofillHints: [AutofillHints.newUsername, AutofillHints.username],
           ),
           SizedBox(height: context.sizeExtenstion.small),
           PasswordTextField(
             onChange: context.read<LoginCubit>().onChangePinCode,
             textDirection: TextDirection.ltr,
-            autofillHints : [AutofillHints.password]
+            autofillHints: [AutofillHints.password],
           ),
 
           SizedBox(height: context.sizeExtenstion.large),
@@ -135,8 +137,8 @@ class _LoginFormState extends State<LoginForm> {
             },
           ),
           SizedBox(height: context.sizeExtenstion.large),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               TextButton(
                 onPressed: widget.goToRegisterRoute?.call,

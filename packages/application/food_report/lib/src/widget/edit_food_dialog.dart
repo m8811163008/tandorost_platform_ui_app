@@ -51,7 +51,6 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
       child: Form(
         key: _formKey,
         child: AppDialog(
-          fullscreen: true,
           title: context.l10n.update,
           contents: [
             _buildDateTextField(),

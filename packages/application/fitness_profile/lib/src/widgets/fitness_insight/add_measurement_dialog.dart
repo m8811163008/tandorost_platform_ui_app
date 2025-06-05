@@ -285,7 +285,7 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
           gap,
           if (!isRequiredFields) ...[...bodyShapeFields, ...demographicFields],
         ],
-        fullscreen: true,
+
         submitButton: BlocBuilder<FitnessProfileCubit, FitnessProfileState>(
           builder: (context, state) {
             final label = context.l10n.update;

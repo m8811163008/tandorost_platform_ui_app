@@ -49,6 +49,7 @@ class AppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(),
+        isDense: screenWidth.isDense,
         hintStyle: textTheme(
           locale,
           screenWidth,
@@ -88,7 +89,6 @@ class AppTheme {
         ),
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
-        
       ),
     );
   }
@@ -103,9 +103,9 @@ class AppTheme {
         package: 'tandorost_theme',
         fontSizeFactor: screenWidth.textFactor,
         fontSizeDelta: 0,
-        bodyColor: Colors.black,
-        displayColor: Colors.black,
-        decorationColor: Colors.black,
+        bodyColor: ThemeColor.oxfordBlue.color,
+        displayColor: ThemeColor.oxfordBlue.color,
+        decorationColor: ThemeColor.oxfordBlue.color,
       );
     } else {
       return Typography.dense2021.apply(
@@ -113,9 +113,9 @@ class AppTheme {
         package: 'tandorost_theme',
         fontSizeFactor: screenWidth.textFactor,
         fontSizeDelta: 0,
-        bodyColor: Colors.black,
-        displayColor: Colors.black,
-        decorationColor: Colors.black,
+        bodyColor: ThemeColor.oxfordBlue.color,
+        displayColor: ThemeColor.oxfordBlue.color,
+        decorationColor: ThemeColor.oxfordBlue.color,
       );
     }
   }
@@ -155,6 +155,17 @@ extension ScreenSizeFromWidth on num {
         return VisualDensity.comfortable;
       case ScreenSize.extraLarge:
         return VisualDensity.adaptivePlatformDensity;
+    }
+  }
+
+  bool get isDense {
+    switch (screenSize) {
+      case ScreenSize.small:
+        return true;
+      case ScreenSize.medium:
+      case ScreenSize.large:
+      case ScreenSize.extraLarge:
+        return false;
     }
   }
 }

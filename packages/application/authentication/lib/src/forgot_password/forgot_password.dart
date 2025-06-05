@@ -139,8 +139,9 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
             },
           ),
           SizedBox(height: context.sizeExtenstion.large),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Wrap(
+            
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               TextButton(
                 onPressed: widget.goToRegisterRoute,

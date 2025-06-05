@@ -137,26 +137,24 @@ class ProfileCard extends StatelessWidget {
                   );
                 },
               ),
-              Flexible(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    NameRichText(
-                      name: context.select(
-                        (ProfileCubit cubit) => cubit.state.name,
-                      ),
-                      editNameButton: EditDialog(dialog: EditNameDialog()),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  NameRichText(
+                    name: context.select(
+                      (ProfileCubit cubit) => cubit.state.name,
                     ),
-                    SizedBox(height: context.sizeExtenstion.small),
-                    PhoneNumberRichText(
-                      phoneNumber: context
-                          .select<ProfileCubit, String>(
-                            (cubit) => cubit.state.phoneNumber,
-                          )
-                          .replaceFirst('0', '98'),
-                    ),
-                  ],
-                ),
+                    editNameButton: EditDialog(dialog: EditNameDialog()),
+                  ),
+                  SizedBox(height: context.sizeExtenstion.small),
+                  PhoneNumberRichText(
+                    phoneNumber: context
+                        .select<ProfileCubit, String>(
+                          (cubit) => cubit.state.phoneNumber,
+                        )
+                        .replaceFirst('0', '98'),
+                  ),
+                ],
               ),
             ],
           ),

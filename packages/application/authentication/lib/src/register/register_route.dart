@@ -18,14 +18,16 @@ class RegisterRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppScaffold(
       appBar: AppBar(),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: context.sizeExtenstion.extraLarge,
-        ),
-        child: RegisterListener(
-          goToVerificationRoute: goToVerificationRoute,
-          goToLoginRoute: goToLoginRoute,
-          goToHomeRoute: goToHomeRoute,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: context.sizeExtenstion.extraLarge,
+          ),
+          child: RegisterListener(
+            goToVerificationRoute: goToVerificationRoute,
+            goToLoginRoute: goToLoginRoute,
+            goToHomeRoute: goToHomeRoute,
+          ),
         ),
       ),
     );
