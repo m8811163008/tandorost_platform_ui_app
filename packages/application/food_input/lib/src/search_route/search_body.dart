@@ -19,39 +19,6 @@ class SearchBody extends StatelessWidget {
         BlocListener<SearchCubit, SearchState>(
           listenWhen:
               (previous, current) =>
-                  previous.coffeBazzarConnectionStatus !=
-                  current.coffeBazzarConnectionStatus,
-          listener: (context, state) async {
-            final content = context.l10n.bazzarNotFound;
-            if (state.coffeBazzarConnectionStatus.isConnectionError) {
-              Navigator.of(context).pop();
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(content)));
-            } else if (state.coffeBazzarConnectionStatus.isSuccess) {
-              context.read<SearchCubit>().onReadCafeBazzarSkus();
-              context.read<SearchCubit>().onReadUserProfile();
-            }
-          },
-        ),
-        BlocListener<SearchCubit, SearchState>(
-          listenWhen:
-              (previous, current) =>
-                  previous.onCafeBazzarSubscribeStatus !=
-                  current.onCafeBazzarSubscribeStatus,
-          listener: (context, state) async {
-            if (state.onCafeBazzarSubscribeStatus.isConnectionError) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(state.exceptionDetail!)));
-            } else if (state.onCafeBazzarSubscribeStatus.isSuccess) {
-              context.read<SearchCubit>().onCreateSubscriptionPayments();
-            }
-          },
-        ),
-        BlocListener<SearchCubit, SearchState>(
-          listenWhen:
-              (previous, current) =>
                   previous.onCreateSubscriptionPaymentsStatus !=
                   current.onCreateSubscriptionPaymentsStatus,
           listener: (context, state) async {
@@ -86,6 +53,25 @@ class SearchBody extends StatelessWidget {
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.onReadUserProfileStatus.isSuccess) {
+              context.read<SearchCubit>().onCafeBazzarSubscribe();
+            }
+          },
+        ),
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
+                  previous.coffeBazzarConnectionStatus !=
+                  current.coffeBazzarConnectionStatus,
+          listener: (context, state) async {
+            final content = context.l10n.bazzarNotFound;
+            if (state.coffeBazzarConnectionStatus.isConnectionError) {
+              Navigator.of(context).pop();
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.coffeBazzarConnectionStatus.isSuccess) {
+              context.read<SearchCubit>().onReadUserProfile();
             }
           },
         ),
@@ -99,11 +85,10 @@ class SearchBody extends StatelessWidget {
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(state.exceptionDetail!)));
-            } else if (state.onReadCafeBazzarSkusStatus.isSuccess) {
-              context.read<SearchCubit>().onCafeBazzarSubscribe();
             }
           },
         ),
+
         BlocListener<SearchCubit, SearchState>(
           listenWhen:
               (previous, current) =>
@@ -111,14 +96,30 @@ class SearchBody extends StatelessWidget {
                   current.onCafeBazzarSubscribeStatus,
           listener: (context, state) async {
             if (state.onCafeBazzarSubscribeStatus.isConnectionError) {
+              Navigator.of(context).pop();
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(state.exceptionDetail!)));
             } else if (state.onCafeBazzarSubscribeStatus.isSuccess) {
+              context.read<SearchCubit>().onReadCafeBazzarSkus();
+            }
+          },
+        ),
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
+                  previous.onReadUserProfileStatus !=
+                      current.onReadUserProfileStatus ||
+                  previous.onReadCafeBazzarSkusStatus !=
+                      current.onReadCafeBazzarSkusStatus,
+          listener: (context, state) async {
+            if (state.onReadUserProfileStatus.isSuccess &&
+                state.onReadCafeBazzarSkusStatus.isSuccess) {
               context.read<SearchCubit>().onCreateSubscriptionPayments();
             }
           },
         ),
+
         BlocListener<SearchCubit, SearchState>(
           listenWhen:
               (previous, current) =>
@@ -135,7 +136,7 @@ class SearchBody extends StatelessWidget {
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
-            }else if (state.onReadUserProfileStatus.isSuccess){
+            } else if (state.onReadUserProfileStatus.isSuccess) {
               final content = context.l10n.bazzarSuccessfulPayment;
               ScaffoldMessenger.of(
                 context,

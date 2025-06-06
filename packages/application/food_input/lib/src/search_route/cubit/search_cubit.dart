@@ -62,9 +62,11 @@ class SearchCubit extends Cubit<SearchState> {
   // Paymet process
   // _canRequestForFoodNutrition if !state.canRequestForFoodNutrition
   // onConnectToCofeBazzar
-  // onReadCafeBazzarSkus
   // onReadUserProfile
   // onCafeBazzarSubscribe
+  // onReadCafeBazzarSkus
+  // onCreateSubscriptionPayments
+
   // onCreateSubscriptionPayments
   void onSearchByVoicePressedDown() async {
     // To fix first time getting permission.
@@ -252,7 +254,7 @@ class SearchCubit extends Cubit<SearchState> {
       ),
     );
     try {
-      await FlutterPoolakey.connect(
+      final res = await FlutterPoolakey.connect(
         state.cafeBazzarPaymentInfo!.caffeBazzarRsa,
         onDisconnected: () async => onConnectToCofeBazzar(),
       );
@@ -277,12 +279,6 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   void onCafeBazzarSubscribe() async {
-    assert(state.skuDetails.isNotEmpty);
-    if (state.cafeBazzarPaymentInfo == null ||
-        state.skuDetails.isEmpty ||
-        state.userProfile == null) {
-      return;
-    }
     _enhancedEmit(
       state.copyWith(
         onCafeBazzarSubscribeStatus: AsyncProcessingStatus.loading,
@@ -301,26 +297,11 @@ class SearchCubit extends Cubit<SearchState> {
         sku,
         payload: json.encode(state.userProfile!.toJson()),
       );
-      final skuDetail = state.skuDetails.singleWhere(
-        (skuDetail) => skuDetail.sku == sku,
-      );
-      final subscriptionPayment = SubscriptionPayment(
-        userId: state.userProfile!.id,
-        paidAmount: double.parse(skuDetail.price),
-        discountAmount: 0,
-        currency: Currency.irRial,
-        paymentMethod: PaymentMethod.inAppPaymentCafeBazzar,
-        purchaseDate: DateTime.fromMillisecondsSinceEpoch(
-          purchaseInfo.purchaseTime,
-        ),
-        subscriptionType: state.selectedSubscriptionType!,
-      );
 
       _enhancedEmit(
         state.copyWith(
           onCafeBazzarSubscribeStatus: AsyncProcessingStatus.success,
           purchaseInfo: () => purchaseInfo,
-          subscriptionPayment: subscriptionPayment,
         ),
       );
     } on Exception catch (e) {
@@ -334,16 +315,41 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   void onCreateSubscriptionPayments() async {
+    if (state.cafeBazzarPaymentInfo == null ||
+        state.skuDetails.isEmpty ||
+        state.userProfile == null) {
+      return;
+    }
     if (state.subscriptionPayment == null) return;
+    final sku =
+        state.selectedSubscriptionType! == SubscriptionType.oneMonth
+            ? state
+                .cafeBazzarPaymentInfo!
+                .caffeBazzarSubscriptionPlanOneMonthSdk
+            : state
+                .cafeBazzarPaymentInfo!
+                .caffeBazzarSubscriptionPlanThreeMonthSdk;
+    final skuDetail = state.skuDetails.singleWhere(
+      (skuDetail) => skuDetail.sku == sku,
+    );
+    final subscriptionPayment = SubscriptionPayment(
+      userId: state.userProfile!.id,
+      paidAmount: double.parse(skuDetail.price),
+      discountAmount: 0,
+      currency: Currency.irRial,
+      paymentMethod: PaymentMethod.inAppPaymentCafeBazzar,
+      purchaseDate: DateTime.fromMillisecondsSinceEpoch(
+        state.purchaseInfo!.purchaseTime,
+      ),
+      subscriptionType: state.selectedSubscriptionType!,
+    );
     _enhancedEmit(
       state.copyWith(
         onCreateSubscriptionPaymentsStatus: AsyncProcessingStatus.loading,
       ),
     );
     try {
-      await paymentRepository.createSubscriptionPayments(
-        state.subscriptionPayment!,
-      );
+      await paymentRepository.createSubscriptionPayments(subscriptionPayment);
       _enhancedEmit(
         state.copyWith(
           onCreateSubscriptionPaymentsStatus: AsyncProcessingStatus.success,

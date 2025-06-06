@@ -28,12 +28,12 @@ class PaymentRepository {
   Future<bool> get canRequestForFoodNutrition async {
     final subscriptions = await readSubscriptionPayments();
     final foodCount = await _readUserFoodCount();
-    return false;
-    // return subscriptions.any(
-    //   (subscription) =>
-    //       subscription.isActive &&
-    //       foodCount.count <= subscription.userAiRequestLimitFoods!,
-    // );
+
+    return subscriptions.any(
+      (subscription) =>
+          subscription.isActive &&
+          foodCount.count <= subscription.userAiRequestLimitFoods!,
+    );
   }
 
   Future<void> createSubscriptionPayments(
