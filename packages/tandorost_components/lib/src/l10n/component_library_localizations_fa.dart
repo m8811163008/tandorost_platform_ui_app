@@ -727,4 +727,34 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get bazzarSuccessfulPayment => 'اشتراک با موفقیت اضافه شد';
+
+  @override
+  String get addMeasurementDialogHintTitle => 'شکل بدن';
+
+  @override
+  String get addMeasurementDialogHintText1 => 'بخاطر پیشگیری از وسواس فکری بیش از هفته‌ای یکبار خود را وزن نکنید.';
+
+  @override
+  String get addMeasurementDialogHintText2 => 'اندازه گیری شکل بدن نسبت به اندازه گیری وزن بیشتر باعث انگیزه تناسب اندام میشود.';
+
+  @override
+  String get addMeasurementDialogHintText3 => 'با اندازه گیری شکل بدن متوجه میشوید توزیع کاهش چربی در بدن چه شکلی داشته';
+
+  @override
+  String get addMeasurementDialogHintText4 => 'زمان اندازه گیری ماهیچه سرد باشد.';
+
+  @override
+  String get addMeasurementDialogHintText5 => 'حداکثر انقباض یا قطر ماهیچه را اندازه بگیرید.';
+
+  @override
+  String get addMeasurementDialogHintText6 => 'روش اندازه گیری دور کمر به توصیه سازمان بهداشت جهانی و فدراسیون بین المللی دیابت ';
+
+  @override
+  String get addMeasurementDialogHintText6Bold => 'بین پایین ترین دنده ها و ستیغ تهیگاهی ';
+
+  @override
+  String get addMeasurementDialogHintText7 => 'است.';
+
+  @override
+  String get addMeasurementDialogHintText8 => 'بالاتر از ناف باشد و پوست زیر متر جمع نشود';
 }

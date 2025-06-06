@@ -55,6 +55,7 @@ class FoodReportStaticsConsumer extends StatelessWidget {
                 state.selectedTab.isRestDay
                     ? state.nutritionRequirements?.restDay
                     : state.nutritionRequirements?.trainingDay,
+            selectedTab: state.selectedTab,
           ),
         };
       },

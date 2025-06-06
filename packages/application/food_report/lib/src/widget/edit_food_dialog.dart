@@ -206,8 +206,11 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
             lastDate: Jalali.fromDateTime(
               updatedFood.upsertDate.add(Duration(days: 5)),
             ),
-            initialEntryMode: PersianDatePickerEntryMode.input,
+            initialEntryMode: PersianDatePickerEntryMode.calendar,
             initialDatePickerMode: PersianDatePickerMode.day,
+            builder: (context, child) {
+              return SingleChildScrollView(child: child!);
+            },
           );
           pickedDate = picked?.toDateTime();
         } else {
@@ -216,8 +219,11 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
             initialDate: updatedFood.upsertDate,
             firstDate: updatedFood.upsertDate.subtract(Duration(days: 5)),
             lastDate: updatedFood.upsertDate.add(Duration(days: 5)),
-            initialEntryMode: DatePickerEntryMode.input,
+            initialEntryMode: DatePickerEntryMode.calendar,
             initialDatePickerMode: DatePickerMode.day,
+            builder: (context, child) {
+              return SingleChildScrollView(child: child!);
+            },
           );
         }
         if (!mounted) {

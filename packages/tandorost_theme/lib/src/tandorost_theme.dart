@@ -93,7 +93,6 @@ class AppTheme {
       tabBarTheme: TabBarThemeData(
         textScaler: TextScaler.linear(screenWidth.textFactor),
       ),
-      
     );
   }
 

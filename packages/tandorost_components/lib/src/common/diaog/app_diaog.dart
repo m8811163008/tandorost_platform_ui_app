@@ -8,11 +8,11 @@ class AppDialog extends StatelessWidget {
     required this.title,
     this.dialogHint,
     this.contents = const [],
-    required this.submitButton,
+    this.submitButton,
   });
   final String title;
   final List<Widget> contents;
-  final Widget submitButton;
+  final Widget? submitButton;
 
   final Widget? dialogHint;
 
@@ -34,8 +34,8 @@ class AppDialog extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.start,
                     children: [
                       Text(title, style: context.textTheme.headlineSmall),
                       if (dialogHint != null) dialogHint!,
@@ -57,7 +57,7 @@ class AppDialog extends StatelessWidget {
                 child: Text(context.l10n.cancle),
               ),
               SizedBox(width: 8),
-              submitButton,
+              if (submitButton != null) submitButton!,
             ],
           ),
         ],

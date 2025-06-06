@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class RegullarTextField extends StatelessWidget {
@@ -15,7 +16,8 @@ class RegullarTextField extends StatelessWidget {
     this.initalValue,
     this.onTap,
     this.errorMessage,
-    this.textAlign = TextAlign.start
+    this.textAlign = TextAlign.start,
+    this.formatters = const [],
   });
   final String label;
   final String? prefix;
@@ -29,6 +31,7 @@ class RegullarTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final String? errorMessage;
   final TextAlign textAlign;
+  final List<TextInputFormatter> formatters;
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +51,7 @@ class RegullarTextField extends StatelessWidget {
       maxLength: maxLength,
       textAlign: textAlign,
       onChanged: onChange,
+      inputFormatters: formatters,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return context.l10n.emptyFormFieldValidationError;

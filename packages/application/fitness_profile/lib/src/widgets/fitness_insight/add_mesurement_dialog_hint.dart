@@ -7,52 +7,36 @@ class AddMesurementDialogHint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SimpleDialog(
-      titlePadding:  EdgeInsets.all(context.sizeExtenstion.medium),
-      contentPadding:  EdgeInsets.only(
-        left: context.sizeExtenstion.medium,
-        right: context.sizeExtenstion.medium,
-        bottom: context.sizeExtenstion.medium,
-      ),
-      title: const Text('شکل بدن'),
-      children: [
-        const Text(
-          'بخاطر پیشگیری از وسواس فکری بیش از هفته‌ای یکبار خود را وزن نکنید.',
-        ),
-        const Text(
-          'اندازه گیری شکل بدن نسبت به اندازه گیری وزن بیشتر باعث انگیزه تناسب اندام میشود.',
-        ),
-        const Text(
-          'با اندازه گیری شکل بدن متوجه میشوید توزیع کاهش چربی در بدن چه شکلی داشته',
-        ),
+    return AppDialog(
+      title: context.l10n.addMeasurementDialogHintTitle,
+      contents: [
+        Text(context.l10n.addMeasurementDialogHintText1),
+        Text(context.l10n.addMeasurementDialogHintText2),
+        Text(context.l10n.addMeasurementDialogHintText3),
+    
         SizedBox(height: context.sizeExtenstion.medium),
         const AddMesurementDialogHintImage(),
         SizedBox(height: context.sizeExtenstion.medium),
-        Text(
-          'زمان اندازه گیری ماهیچه سرد باشد.',
-          style: context.themeData.textTheme.bodyMedium!.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const Text('حداکثر انقباض یا قطر ماهیچه را اندازه بگیرید.'),
+        Text(context.l10n.addMeasurementDialogHintText4),
+        Text(context.l10n.addMeasurementDialogHintText5),
+    
         const Divider(),
         Text.rich(
           TextSpan(
-            text:
-                'روش اندازه گیری دور کمر به توصیه سازمان بهداشت جهانی و فدراسیون بین المللی دیابت ',
+            text: context.l10n.addMeasurementDialogHintText6,
             children: [
               TextSpan(
-                text: 'بین پایین ترین دنده ها و ستیغ تهیگاهی ',
+                text: context.l10n.addMeasurementDialogHintText6Bold,
                 style: context.themeData.textTheme.bodyMedium!.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const TextSpan(text: 'است. '),
+              TextSpan(text: context.l10n.addMeasurementDialogHintText7),
             ],
           ),
         ),
         SizedBox(height: context.sizeExtenstion.medium),
-        const Text('بالاتر از ناف باشد و پوست زیر متر جمع نشود'),
+        Text(context.l10n.addMeasurementDialogHintText8),
       ],
     );
   }

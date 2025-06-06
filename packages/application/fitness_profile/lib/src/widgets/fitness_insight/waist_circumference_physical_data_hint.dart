@@ -34,15 +34,9 @@ class WaistCircumferencePhysicalDataHint extends StatelessWidget {
                   fitnessData.isWaistCircumferenceSafeRange!.toString(),
                 );
 
-    return SimpleDialog(
-      titlePadding: EdgeInsets.all(context.sizeExtenstion.medium),
-      contentPadding: EdgeInsets.only(
-        left: context.sizeExtenstion.medium,
-        right: context.sizeExtenstion.medium,
-        bottom: context.sizeExtenstion.medium,
-      ),
-      title:  Text(context.l10n.fitnessProfileWaistCircumferencePhysicalDataHintLabel),
-      children: [
+    return AppDialog(
+      title: context.l10n.fitnessProfileWaistCircumferencePhysicalDataHintLabel,
+      contents: [
         Text(
           context.l10n.fitnessProfileBmiDescription(
             fitnessData.bmi,

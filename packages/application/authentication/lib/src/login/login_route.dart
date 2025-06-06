@@ -96,12 +96,12 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AppLogo(size: context.sizeExtenstion.chatButton),
+          AppLogo(size: context.sizeExtenstion.logoImage),
           Text(
             context.l10n.loginRouteLabel,
             style: context.textTheme.headlineLarge,
           ),
-          SizedBox(height: context.sizeExtenstion.extraLarge),
+          SizedBox(height: context.sizeExtenstion.medium),
           PhoneNumberTextField(
             onChange: (value) {
               context.read<LoginCubit>().onChangePhoneNumber('09$value');
@@ -116,7 +116,7 @@ class _LoginFormState extends State<LoginForm> {
             autofillHints: [AutofillHints.password],
           ),
 
-          SizedBox(height: context.sizeExtenstion.large),
+          SizedBox(height: context.sizeExtenstion.small),
           BlocBuilder<LoginCubit, LoginState>(
             buildWhen:
                 (previous, current) =>
@@ -136,7 +136,7 @@ class _LoginFormState extends State<LoginForm> {
                   );
             },
           ),
-          SizedBox(height: context.sizeExtenstion.large),
+          SizedBox(height: context.sizeExtenstion.medium),
           Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [

@@ -6,18 +6,9 @@ class ChangeWeightSpeedInfoDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SimpleDialog(
-      contentPadding: EdgeInsets.fromLTRB(
-        context.sizeExtenstion.medium,
-        12.0,
-        context.sizeExtenstion.medium,
-        context.sizeExtenstion.medium,
-      ),
-      title: Text(
-        context.l10n.changeWeightSpeedLabel,
-        style: context.textTheme.headlineMedium,
-      ),
-      children: [
+    return AppDialog(
+      title: context.l10n.changeWeightSpeedLabel,
+      contents: [
         Text(context.l10n.changeWeightSpeedInfoConstantSpeed),
         SizedBox(height: context.sizeExtenstion.small),
         Text(context.l10n.changeWeightSpeedInfoSlowAndEasySpeed),

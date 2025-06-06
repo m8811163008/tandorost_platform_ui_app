@@ -15,8 +15,8 @@ class FitnessInfo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Wrap(
+            crossAxisAlignment: WrapCrossAlignment.start,
             children: [
               AppCardHeader(
                 title: context.l10n.fitnessProfilePhysicalDataLabel,
@@ -91,8 +91,8 @@ class FitnessInfo extends StatelessWidget {
   }
 
   Widget _buildFitnessData(BuildContext context, String label, String value) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.start,
       children: [
         Text(label),
         SizedBox(width: context.sizeExtenstion.small),

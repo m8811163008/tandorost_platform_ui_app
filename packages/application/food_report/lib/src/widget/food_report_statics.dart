@@ -1,5 +1,6 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
+import 'package:food_report_app/src/cubit/food_report_cubit.dart';
 import 'package:food_report_app/src/widget/food_suggestion_chips.dart';
 import 'package:food_report_app/src/widget/user_food_requrement_row.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -9,9 +10,11 @@ class FoodReportStatics extends StatelessWidget {
     super.key,
     this.nutritionRequirement,
     required this.totalMacroNutrition,
+    required this.selectedTab,
   });
   final NutritionRequirement? nutritionRequirement;
   final TotalMacroNutrition totalMacroNutrition;
+  final SelectedTab selectedTab;
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +67,7 @@ class FoodReportStatics extends StatelessWidget {
             color: context.colorExtenstion.carbsFruitsVeggies,
           ),
           gap,
+          if(nutritionRequirement != null)
           FoodSuggestionChips(),
         ],
       ),

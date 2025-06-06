@@ -1178,6 +1178,66 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'اشتراک با موفقیت اضافه شد'**
   String get bazzarSuccessfulPayment;
+
+  /// No description provided for @addMeasurementDialogHintTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'شکل بدن'**
+  String get addMeasurementDialogHintTitle;
+
+  /// No description provided for @addMeasurementDialogHintText1.
+  ///
+  /// In fa, this message translates to:
+  /// **'بخاطر پیشگیری از وسواس فکری بیش از هفته‌ای یکبار خود را وزن نکنید.'**
+  String get addMeasurementDialogHintText1;
+
+  /// No description provided for @addMeasurementDialogHintText2.
+  ///
+  /// In fa, this message translates to:
+  /// **'اندازه گیری شکل بدن نسبت به اندازه گیری وزن بیشتر باعث انگیزه تناسب اندام میشود.'**
+  String get addMeasurementDialogHintText2;
+
+  /// No description provided for @addMeasurementDialogHintText3.
+  ///
+  /// In fa, this message translates to:
+  /// **'با اندازه گیری شکل بدن متوجه میشوید توزیع کاهش چربی در بدن چه شکلی داشته'**
+  String get addMeasurementDialogHintText3;
+
+  /// No description provided for @addMeasurementDialogHintText4.
+  ///
+  /// In fa, this message translates to:
+  /// **'زمان اندازه گیری ماهیچه سرد باشد.'**
+  String get addMeasurementDialogHintText4;
+
+  /// No description provided for @addMeasurementDialogHintText5.
+  ///
+  /// In fa, this message translates to:
+  /// **'حداکثر انقباض یا قطر ماهیچه را اندازه بگیرید.'**
+  String get addMeasurementDialogHintText5;
+
+  /// No description provided for @addMeasurementDialogHintText6.
+  ///
+  /// In fa, this message translates to:
+  /// **'روش اندازه گیری دور کمر به توصیه سازمان بهداشت جهانی و فدراسیون بین المللی دیابت '**
+  String get addMeasurementDialogHintText6;
+
+  /// No description provided for @addMeasurementDialogHintText6Bold.
+  ///
+  /// In fa, this message translates to:
+  /// **'بین پایین ترین دنده ها و ستیغ تهیگاهی '**
+  String get addMeasurementDialogHintText6Bold;
+
+  /// No description provided for @addMeasurementDialogHintText7.
+  ///
+  /// In fa, this message translates to:
+  /// **'است.'**
+  String get addMeasurementDialogHintText7;
+
+  /// No description provided for @addMeasurementDialogHintText8.
+  ///
+  /// In fa, this message translates to:
+  /// **'بالاتر از ناف باشد و پوست زیر متر جمع نشود'**
+  String get addMeasurementDialogHintText8;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

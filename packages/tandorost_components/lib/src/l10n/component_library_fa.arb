@@ -300,6 +300,16 @@
             }
         }
     },
-    "bazzarNotFound" : "کافه بازار نصب نشده است. کافه بازار را نصب کنید",
-    "bazzarSuccessfulPayment" : "اشتراک با موفقیت اضافه شد"
+    "bazzarNotFound": "کافه بازار نصب نشده است. کافه بازار را نصب کنید",
+    "bazzarSuccessfulPayment": "اشتراک با موفقیت اضافه شد",
+    "addMeasurementDialogHintTitle": "شکل بدن",
+    "addMeasurementDialogHintText1": "بخاطر پیشگیری از وسواس فکری بیش از هفته‌ای یکبار خود را وزن نکنید.",
+    "addMeasurementDialogHintText2": "اندازه گیری شکل بدن نسبت به اندازه گیری وزن بیشتر باعث انگیزه تناسب اندام میشود.",
+    "addMeasurementDialogHintText3": "با اندازه گیری شکل بدن متوجه میشوید توزیع کاهش چربی در بدن چه شکلی داشته",
+    "addMeasurementDialogHintText4": "زمان اندازه گیری ماهیچه سرد باشد.",
+    "addMeasurementDialogHintText5": "حداکثر انقباض یا قطر ماهیچه را اندازه بگیرید.",
+    "addMeasurementDialogHintText6": "روش اندازه گیری دور کمر به توصیه سازمان بهداشت جهانی و فدراسیون بین المللی دیابت ",
+    "addMeasurementDialogHintText6Bold": "بین پایین ترین دنده ها و ستیغ تهیگاهی ",
+    "addMeasurementDialogHintText7": "است.",
+    "addMeasurementDialogHintText8": "بالاتر از ناف باشد و پوست زیر متر جمع نشود"
 }

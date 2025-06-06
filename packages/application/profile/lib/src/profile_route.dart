@@ -166,6 +166,7 @@ class ProfileCard extends StatelessWidget {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['png', 'jpg', 'jpeg'],
+      withData: true,
     );
     if (result != null) {
       final singleResult = result.files.single;
