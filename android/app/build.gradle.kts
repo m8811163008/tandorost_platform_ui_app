@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "ir.tandorost_life.tandorost"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -34,7 +34,7 @@ android {
         create("release") {
             keyAlias = "upload"
             keyPassword = "tandorost_dev"
-            storeFile = file("../../build/app/outputs/bundle/release/tandorost.jks")
+            storeFile = file("../../key_store/tandorost.jks")
             storePassword = "tandorost_dev"
         }
     }
