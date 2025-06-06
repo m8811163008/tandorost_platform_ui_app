@@ -9,6 +9,12 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   ComponentLibraryLocalizationsFa([String locale = 'fa']) : super(locale);
 
   @override
+  String get drawerSupportText1 => 'محتویات برنامه متعلق به تیم توسعه دهنده تندرست می‌باشد.';
+
+  @override
+  String get drawerSupportText2 => 'شماره پشتیبانی 09212805230';
+
+  @override
   String get foodName => 'نام غذا';
 
   @override
@@ -757,4 +763,124 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get addMeasurementDialogHintText8 => 'بالاتر از ناف باشد و پوست زیر متر جمع نشود';
+
+  @override
+  String get foodRequerementDialogGeneralRecommendationTitle => 'کلی';
+
+  @override
+  String get foodRequerementDialogGeneralRecommendationVitaminTitle => 'ویتامین و مواد معدنی';
+
+  @override
+  String get foodRequerementDialogGeneralRecommendationVitaminText2 => 'با مصرف میوه و سبزی با رنگ هاب مختلف در روز استراحت معمولا نیاز به ویتامین و مواد معدنی تامین میشود و برای تشخصی کمبود ویتامین و مواد معدنی به پزشک مراجعه کنید.';
+
+  @override
+  String get foodRequerementDialogGeneralRecommendationVitaminText3 => 'در صبح میزان هرمون هپسیدین در کمترین مقدار هست و آهن بهتر هست در صبح خورده بشه مثل املت اسفناج یا جگر که جذب را حداکثر میکند.';
+
+  @override
+  String get foodRequerementDialogGeneralRecommendationVitaminText4 => 'مصرف آهن برای انتقال اکسیژن در خون و مایچه مهم هست (هموگلوبین و میوگلوبین) . بعد از تمرین بخاطر اثر التهاب ، سطح هرمون تنظیم آهن یعنی هپسیدین به مدت 3 تا 6 ساعت بعد تمرین زیاد میشه و جذب آهن کاهش پیدا میکند و آهن در این مدت کمتر از صبح جذب میشود.';
+
+  @override
+  String get foodRequerementDialogGeneralRecommendationVitaminText5 => 'غذاهای غنی از آهن عبارتند از گوشت و کله پاچه، ساردین، ماهی تن، غلات سبوس دار، زرده تخم مرغ، لوبیا، عدس، سبزیجات برگ سبز، زردآلو خشک، آجیل و دانه ها. ';
+
+  @override
+  String get foodRequerementDialogGeneralRecommendationVitaminText6 => 'جذب آهن با مصرف ویتامین سی مانند پرتقال افزایش پیدا میکنه';
+
+  @override
+  String get foodRequerementDialogGeneralRecommendationVitaminText7 => 'آهن و زینک و کلسیم دارای سیستم جذب و انتقال یکسان هستند پس مصرف زیاد آهن باعث کاهش جذب زینک و کلسیم میشه پس اگر صبح مواد غذایی شامل آهن میخورید سعی کنید مواد غذایی شامل کلسیم مثل شیر یا مواد غذایی شامل زینک مثل گوشت قرمز یا غلات کامل را با آن نخورید.';
+
+  @override
+  String get foodRequerementDialogGeneralRecommendationProperSleepTitle => 'خواب';
+
+  @override
+  String get foodRequerementDialogGeneralRecommendationProperSleepText1 => 'خواب کم و شب بیداری باعث افزایش کورتیزل و پرخوری میشود. در نتیجه خوردن قند و چربی زیادتر از نیاز روزانه تان، به شکل چربی و وزن اضافه در بدن جمع میشود .';
+
+  @override
+  String get foodRequerementDialogGeneralRecommendationProperSleepText2 => 'اگر میخواهید صبح زودتر بیدار شوید، شب 7 تا 8 ساعت زودتر بخواب بروید';
+
+  @override
+  String get foodRequerementDialogGeneralRecommendationStressTitle => 'استرس';
+
+  @override
+  String get foodRequerementDialogGeneralRecommendationStressText1 => 'استرس روزمره و کاری باعث افزایش هورمون کورتیزل و اضطراب میشود و پاسخ طبیعی و ساده معمولا خوردن قند و چربی و نمک زیاد برای افزایش هورمون دوپامین جهت خنثی کردن اضطراب و استرس است. ';
+
+  @override
+  String get foodRequerementDialogGeneralRecommendationStressText2 => 'در حالت استرس ،میتوانید نفس عمیق بکشید و آب بخورید و ریشه مسئله را پیدا و حل کنید.';
+
+  @override
+  String get foodRequerementDialogHydrationTitle => 'آب';
+
+  @override
+  String get foodRequerementDialogHydrationRestDayText1 => 'نوشیدن ۵۰۰ میلی‌لیتر آب نیم ساعت قبل از هر وعده غذایی همراه با رژیم کم‌کالری می‌تواند به کاهش وزن بیشتر در افراد میانسال و مسن دارای اضافه وزن یا چاقی کمک کند. این کار ساده و بی‌خطر است، اما برای افراد با نارسایی قلبی یا مشکلات شدید کلیوی توصیه نمی‌شود.';
+
+  @override
+  String get foodRequerementDialogHydrationRestDayText2 => 'نوشیدن آب همراه غذا، به ویژه غذاهای جامد مانند برنج و نان، می‌تواند به فرآیند هضم کمک کند؛ زیرا آب به نرم شدن غذا و عملکرد بهتر آنزیم‌های گوارشی یاری می‌رساند.';
+
+  @override
+  String get foodRequerementDialogHydrationRestDayText3 => 'معده یک عضو ماهیچه‌ای با قابلیت انقباض و انبساط است و نوشیدن آب همراه با غذا یا سایر مواد غذایی باعث بزرگ شدن دائمی آن نمی‌شود؛ معده پس از تخلیه، به اندازه طبیعی خود بازمی‌گردد';
+
+  @override
+  String get foodRequerementDialogHydrationRestDayText4 => 'معده یک عضو ماهیچه‌ای با قابلیت انقباض و انبساط است و نوشیدن آب همراه با غذا یا سایر مواد غذایی باعث بزرگ شدن دائمی آن نمی‌شود؛ معده پس از تخلیه، به اندازه طبیعی خود بازمی‌گردد';
+
+  @override
+  String foodRequerementDialogHydrationRestDayText5(double waterVolume) {
+    final intl.NumberFormat waterVolumeNumberFormat = intl.NumberFormat.decimalPatternDigits(
+      locale: localeName,
+      decimalDigits: 1
+    );
+    final String waterVolumeString = waterVolumeNumberFormat.format(waterVolume);
+
+    return 'اگر در منطقه معتدل آب و هوایی زندگی میکنید خوردن حداقل $waterVolumeString لیتر آب برای شما نیاز است مهم نیست آب از دمنوش و چای و قهوه یا آب میوه یا نوشیدنی انرژی باشد. هرچه محیط گرم تر باشد آب بیشتری نیاز دارید و برعکس.';
+  }
+
+  @override
+  String get foodRequerementDialogHydrationTrainingDayText1 => 'کم‌آبی بدن باعث استرس قلبی‌عروقی می‌شود و دمای مرکزی بدن را افزایش می‌دهد.';
+
+  @override
+  String get foodRequerementDialogHydrationTrainingDayText2 => 'پس از تمرین، آب را در چند نوبت و همراه با کمی نمک یا طعم‌دهنده بنوشید تا حجم خون به‌یکباره افزایش نیابد و بدن دچار کم‌آبی نشود؛ مصرف آب خالی می‌تواند احساس تشنگی را کاهش دهد و باعث ادرار بیشتر شود، در نتیجه ممکن است پیش از رفع کامل تشنگی نوشیدن آب را متوقف کنید.';
+
+  @override
+  String foodRequerementDialogHydrationTrainingDayText3(int fiveTimeWeight, int tenTimeWeight) {
+    return 'با توجه به وزن شما، نوشیدن $fiveTimeWeight تا $tenTimeWeight میلی‌لیتر آب ۲ تا ۴ ساعت قبل از تمرین توصیه می‌شود. اگر ادرار نکردید یا رنگ ادرار تیره بود، باید آب بیشتری بنوشید.';
+  }
+
+  @override
+  String get foodRequerementDialogHydrationTrainingDayText4 => 'پس از ورزش، توصیه می‌شود ۱.۲۵ تا ۱.۵ برابر حجم مایعی که در طول تمرین از دست داده‌اید مصرف کنید.';
+
+  @override
+  String get foodRequerementDialogHydrationTrainingDayText5 => 'در فعالیت‌های سبک یا متوسط زیر ۴۵ دقیقه، آب کافی است. در تمرینات شدیدتر و طولانی‌تر (بیش از ۶۰ تا ۹۰ دقیقه)، نوشیدنی ورزشی با ۴۰ تا ۸۰ گرم کربوهیدرات در هر لیتر توصیه می‌شود. برای تمرینات ۱ تا ۲.۵ ساعت، مصرف ۳۰ تا ۶۰ گرم کربوهیدرات در ساعت و برای تمرینات شدیدتر بیش از ۲.۵ ساعت، تا ۹۰ گرم کربوهیدرات در ساعت (ترکیبی) پیشنهاد می‌شود.';
+
+  @override
+  String get foodRequerementDialogHydrationTrainingDayText6 => 'سدیم در نوشیدنی ورزشی باعث افزایش میل به نوشیدن، حفظ آب بدن و خوش‌طعم‌تر شدن نوشیدنی می‌شود. کربوهیدرات به جذب بهتر آب و تأمین انرژی کمک می‌کند. نوشیدنی‌های انرژی‌زا حاوی کافئین می‌توانند عملکرد هوازی و بی‌هوازی را بهبود دهند.';
+
+  @override
+  String get foodRequerementDialogHydrationTrainingDayText7 => 'نوشیدنی‌های ورزشی، نوشابه‌های گازدار و آبمیوه‌ها می‌توانند به دلیل اسیدیته بالا باعث فرسایش مینای دندان شوند؛ این اثر در حین ورزش به دلیل کاهش بزاق تشدید می‌شود.';
+
+  @override
+  String get foodRequerementDialogHydrationTrainingDayText8 => 'برای محافظت از دندان‌ها: از بطری با نی یا نازل استفاده کنید، آب را به طور متناوب بنوشید و از نوشیدن مداوم یا چرخاندن نوشیدنی در دهان خودداری کنید.';
+
+  @override
+  String get foodRequerementDialogHydrationTrainingDayText9 => 'برای بررسی وضعیت آب بدن خود، به رنگ ادرار در ابتدای صبح توجه کنید. ادرار رقیق و کم‌رنگ نشان‌دهنده آب رسانی مناسب است، در حالی که رنگ تیره و حجم کم می‌تواند به معنای کم‌آبی بدن باشد که نیازمند نوشیدن آب بیشتر، به خصوص قبل از تمرین، است.';
+
+  @override
+  String get foodRequerementDialogHydrationTrainingDayText10 => 'کم ابی یا هایپوهیدراشن به روزهای قبل و تمرین های قبلی بستگی داره و کم آبی امروز روی تمرین فردا تاثیر میگذارد.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateRestDayText1 => 'قند و شکر که اغلب از نیشکر یا چغندر قند فرآوری می‌شوند، نوعی کربوهیدرات هستند. مصرف نوشیدنی‌های حاوی قند افزوده می‌تواند به پوسیدگی دندان منجر شود. این نوع قندها معمولاً در غذاهای فرآوری شده‌ای مانند شکلات، بیسکویت (که اغلب چربی بالایی دارند) یا چیپس (که نمک زیادی دارند) یافت می‌شوند. این دسته از غذاهای فرآوری شده انرژی زیادی دارند اما از نظر مواد مغذی و فیبر فقیر هستند و حجم کمی نسبت به انرژی خود دارند که می‌تواند منجر به احساس گرسنگی زودهنگام شود و دریافت انرژی بیش از نیاز بدن شما بگردد.';
+
+  @override
+  String foodRequerementDialogCarbohydrateRestDayText2(int fivePercentCalorie, int sugarCubeCount) {
+    return 'توصیه می‌شود حداکثر 5 درصد از انرژی روزانه شما، معادل حدود $fivePercentCalorie کیلوکالری، از قندهای افزوده تأمین شود. این مقدار شکر برای شما تقریباً معادل $sugarCubeCount حبه قند است که شامل قند موجود در غذاهای فرآوری‌شده، شربت‌ها، آبمیوه‌ها و عسل می‌شود و قندهای طبیعی موجود در شیر، سبزیجات و میوه‌ها را در بر نمی‌گیرد.';
+  }
+
+  @override
+  String get foodRequerementDialogCarbohydrateRestDayText3 => 'کربوهیدرات اصلی موجود در میوه‌ها، فروکتوز است. مصرف زیاد فروکتوز در افراد کم‌تحرک می‌تواند باعث افزایش تری‌گلیسیرید و چربی خون شود. با این حال، اگر فعالیت بدنی منظمی دارید، تأثیر آن بر چربی خون معمولاً ناچیز است.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateRestDayText4 => 'حتی در صورت کم‌تحرکی، توصیه می‌شود روزانه حداقل 2 تا 3 واحد میوه مصرف کنید؛ زیرا میوه‌ها منبع عالی آب برای هیدراسیون بدن، فیبر برای تقویت سیستم ایمنی و ترکیبات فیتوشیمیایی برای مقابله با التهاب و اکسیدان‌ها هستند.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateRestDayText5 => 'در هر وعده غذایی، تلاش کنید تا با تنوع بخشیدن به رنگ میوه‌ها و سبزیجات (سبز، قرمز، بنفش، زرد، سفید و نارنجی)، یک رنگین‌کمان از رنگ‌ها را در بشقاب خود داشته باشید. هر رنگ، حاوی مجموعه‌ای منحصربه‌فرد از مواد مغذی ساخته شده از نور خورشید (ترکیبات گیاهی مفید) است که بسیاری از آن‌ها به عنوان آنتی‌اکسیدان عمل کرده و به محافظت از سلول‌ها در برابر آسیب و کاهش التهاب پس از ورزش کمک می‌کنند.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateRestDayText6 => 'در روزهای استراحت، با مصرف بیشتر میوه‌ها و سبزیجات، نیازهای ویتامینی و فیبر بدن را تأمین کنید؛ در روزهای تمرین نیز، برای تأمین انرژی مورد نیاز عضلات، بر مصرف کربوهیدرات‌های پیچیده و غنی تمرکز داشته باشید.';
 }

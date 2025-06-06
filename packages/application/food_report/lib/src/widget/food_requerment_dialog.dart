@@ -9,3 +9,11 @@ class FoodRequrementDialog extends StatelessWidget {
     return AppDialog(title: 'Carbs', contents: [Text('data')]);
   }
 }
+class GeneralRequrementDialog extends StatelessWidget {
+  const GeneralRequrementDialog({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppDialog(title: 'Carbs', contents: [Text('data')]);
+  }
+}

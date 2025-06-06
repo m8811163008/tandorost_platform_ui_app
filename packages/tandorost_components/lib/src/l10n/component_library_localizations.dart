@@ -93,6 +93,18 @@ abstract class ComponentLibraryLocalizations {
     Locale('fa')
   ];
 
+  /// No description provided for @drawerSupportText1.
+  ///
+  /// In fa, this message translates to:
+  /// **'محتویات برنامه متعلق به تیم توسعه دهنده تندرست می‌باشد.'**
+  String get drawerSupportText1;
+
+  /// No description provided for @drawerSupportText2.
+  ///
+  /// In fa, this message translates to:
+  /// **'شماره پشتیبانی 09212805230'**
+  String get drawerSupportText2;
+
   /// No description provided for @foodName.
   ///
   /// In fa, this message translates to:
@@ -1238,6 +1250,222 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'بالاتر از ناف باشد و پوست زیر متر جمع نشود'**
   String get addMeasurementDialogHintText8;
+
+  /// No description provided for @foodRequerementDialogGeneralRecommendationTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'کلی'**
+  String get foodRequerementDialogGeneralRecommendationTitle;
+
+  /// No description provided for @foodRequerementDialogGeneralRecommendationVitaminTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'ویتامین و مواد معدنی'**
+  String get foodRequerementDialogGeneralRecommendationVitaminTitle;
+
+  /// No description provided for @foodRequerementDialogGeneralRecommendationVitaminText2.
+  ///
+  /// In fa, this message translates to:
+  /// **'با مصرف میوه و سبزی با رنگ هاب مختلف در روز استراحت معمولا نیاز به ویتامین و مواد معدنی تامین میشود و برای تشخصی کمبود ویتامین و مواد معدنی به پزشک مراجعه کنید.'**
+  String get foodRequerementDialogGeneralRecommendationVitaminText2;
+
+  /// No description provided for @foodRequerementDialogGeneralRecommendationVitaminText3.
+  ///
+  /// In fa, this message translates to:
+  /// **'در صبح میزان هرمون هپسیدین در کمترین مقدار هست و آهن بهتر هست در صبح خورده بشه مثل املت اسفناج یا جگر که جذب را حداکثر میکند.'**
+  String get foodRequerementDialogGeneralRecommendationVitaminText3;
+
+  /// No description provided for @foodRequerementDialogGeneralRecommendationVitaminText4.
+  ///
+  /// In fa, this message translates to:
+  /// **'مصرف آهن برای انتقال اکسیژن در خون و مایچه مهم هست (هموگلوبین و میوگلوبین) . بعد از تمرین بخاطر اثر التهاب ، سطح هرمون تنظیم آهن یعنی هپسیدین به مدت 3 تا 6 ساعت بعد تمرین زیاد میشه و جذب آهن کاهش پیدا میکند و آهن در این مدت کمتر از صبح جذب میشود.'**
+  String get foodRequerementDialogGeneralRecommendationVitaminText4;
+
+  /// No description provided for @foodRequerementDialogGeneralRecommendationVitaminText5.
+  ///
+  /// In fa, this message translates to:
+  /// **'غذاهای غنی از آهن عبارتند از گوشت و کله پاچه، ساردین، ماهی تن، غلات سبوس دار، زرده تخم مرغ، لوبیا، عدس، سبزیجات برگ سبز، زردآلو خشک، آجیل و دانه ها. '**
+  String get foodRequerementDialogGeneralRecommendationVitaminText5;
+
+  /// No description provided for @foodRequerementDialogGeneralRecommendationVitaminText6.
+  ///
+  /// In fa, this message translates to:
+  /// **'جذب آهن با مصرف ویتامین سی مانند پرتقال افزایش پیدا میکنه'**
+  String get foodRequerementDialogGeneralRecommendationVitaminText6;
+
+  /// No description provided for @foodRequerementDialogGeneralRecommendationVitaminText7.
+  ///
+  /// In fa, this message translates to:
+  /// **'آهن و زینک و کلسیم دارای سیستم جذب و انتقال یکسان هستند پس مصرف زیاد آهن باعث کاهش جذب زینک و کلسیم میشه پس اگر صبح مواد غذایی شامل آهن میخورید سعی کنید مواد غذایی شامل کلسیم مثل شیر یا مواد غذایی شامل زینک مثل گوشت قرمز یا غلات کامل را با آن نخورید.'**
+  String get foodRequerementDialogGeneralRecommendationVitaminText7;
+
+  /// No description provided for @foodRequerementDialogGeneralRecommendationProperSleepTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'خواب'**
+  String get foodRequerementDialogGeneralRecommendationProperSleepTitle;
+
+  /// No description provided for @foodRequerementDialogGeneralRecommendationProperSleepText1.
+  ///
+  /// In fa, this message translates to:
+  /// **'خواب کم و شب بیداری باعث افزایش کورتیزل و پرخوری میشود. در نتیجه خوردن قند و چربی زیادتر از نیاز روزانه تان، به شکل چربی و وزن اضافه در بدن جمع میشود .'**
+  String get foodRequerementDialogGeneralRecommendationProperSleepText1;
+
+  /// No description provided for @foodRequerementDialogGeneralRecommendationProperSleepText2.
+  ///
+  /// In fa, this message translates to:
+  /// **'اگر میخواهید صبح زودتر بیدار شوید، شب 7 تا 8 ساعت زودتر بخواب بروید'**
+  String get foodRequerementDialogGeneralRecommendationProperSleepText2;
+
+  /// No description provided for @foodRequerementDialogGeneralRecommendationStressTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'استرس'**
+  String get foodRequerementDialogGeneralRecommendationStressTitle;
+
+  /// No description provided for @foodRequerementDialogGeneralRecommendationStressText1.
+  ///
+  /// In fa, this message translates to:
+  /// **'استرس روزمره و کاری باعث افزایش هورمون کورتیزل و اضطراب میشود و پاسخ طبیعی و ساده معمولا خوردن قند و چربی و نمک زیاد برای افزایش هورمون دوپامین جهت خنثی کردن اضطراب و استرس است. '**
+  String get foodRequerementDialogGeneralRecommendationStressText1;
+
+  /// No description provided for @foodRequerementDialogGeneralRecommendationStressText2.
+  ///
+  /// In fa, this message translates to:
+  /// **'در حالت استرس ،میتوانید نفس عمیق بکشید و آب بخورید و ریشه مسئله را پیدا و حل کنید.'**
+  String get foodRequerementDialogGeneralRecommendationStressText2;
+
+  /// No description provided for @foodRequerementDialogHydrationTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'آب'**
+  String get foodRequerementDialogHydrationTitle;
+
+  /// No description provided for @foodRequerementDialogHydrationRestDayText1.
+  ///
+  /// In fa, this message translates to:
+  /// **'نوشیدن ۵۰۰ میلی‌لیتر آب نیم ساعت قبل از هر وعده غذایی همراه با رژیم کم‌کالری می‌تواند به کاهش وزن بیشتر در افراد میانسال و مسن دارای اضافه وزن یا چاقی کمک کند. این کار ساده و بی‌خطر است، اما برای افراد با نارسایی قلبی یا مشکلات شدید کلیوی توصیه نمی‌شود.'**
+  String get foodRequerementDialogHydrationRestDayText1;
+
+  /// No description provided for @foodRequerementDialogHydrationRestDayText2.
+  ///
+  /// In fa, this message translates to:
+  /// **'نوشیدن آب همراه غذا، به ویژه غذاهای جامد مانند برنج و نان، می‌تواند به فرآیند هضم کمک کند؛ زیرا آب به نرم شدن غذا و عملکرد بهتر آنزیم‌های گوارشی یاری می‌رساند.'**
+  String get foodRequerementDialogHydrationRestDayText2;
+
+  /// No description provided for @foodRequerementDialogHydrationRestDayText3.
+  ///
+  /// In fa, this message translates to:
+  /// **'معده یک عضو ماهیچه‌ای با قابلیت انقباض و انبساط است و نوشیدن آب همراه با غذا یا سایر مواد غذایی باعث بزرگ شدن دائمی آن نمی‌شود؛ معده پس از تخلیه، به اندازه طبیعی خود بازمی‌گردد'**
+  String get foodRequerementDialogHydrationRestDayText3;
+
+  /// No description provided for @foodRequerementDialogHydrationRestDayText4.
+  ///
+  /// In fa, this message translates to:
+  /// **'معده یک عضو ماهیچه‌ای با قابلیت انقباض و انبساط است و نوشیدن آب همراه با غذا یا سایر مواد غذایی باعث بزرگ شدن دائمی آن نمی‌شود؛ معده پس از تخلیه، به اندازه طبیعی خود بازمی‌گردد'**
+  String get foodRequerementDialogHydrationRestDayText4;
+
+  /// No description provided for @foodRequerementDialogHydrationRestDayText5.
+  ///
+  /// In fa, this message translates to:
+  /// **'اگر در منطقه معتدل آب و هوایی زندگی میکنید خوردن حداقل {waterVolume} لیتر آب برای شما نیاز است مهم نیست آب از دمنوش و چای و قهوه یا آب میوه یا نوشیدنی انرژی باشد. هرچه محیط گرم تر باشد آب بیشتری نیاز دارید و برعکس.'**
+  String foodRequerementDialogHydrationRestDayText5(double waterVolume);
+
+  /// No description provided for @foodRequerementDialogHydrationTrainingDayText1.
+  ///
+  /// In fa, this message translates to:
+  /// **'کم‌آبی بدن باعث استرس قلبی‌عروقی می‌شود و دمای مرکزی بدن را افزایش می‌دهد.'**
+  String get foodRequerementDialogHydrationTrainingDayText1;
+
+  /// No description provided for @foodRequerementDialogHydrationTrainingDayText2.
+  ///
+  /// In fa, this message translates to:
+  /// **'پس از تمرین، آب را در چند نوبت و همراه با کمی نمک یا طعم‌دهنده بنوشید تا حجم خون به‌یکباره افزایش نیابد و بدن دچار کم‌آبی نشود؛ مصرف آب خالی می‌تواند احساس تشنگی را کاهش دهد و باعث ادرار بیشتر شود، در نتیجه ممکن است پیش از رفع کامل تشنگی نوشیدن آب را متوقف کنید.'**
+  String get foodRequerementDialogHydrationTrainingDayText2;
+
+  /// No description provided for @foodRequerementDialogHydrationTrainingDayText3.
+  ///
+  /// In fa, this message translates to:
+  /// **'با توجه به وزن شما، نوشیدن {fiveTimeWeight} تا {tenTimeWeight} میلی‌لیتر آب ۲ تا ۴ ساعت قبل از تمرین توصیه می‌شود. اگر ادرار نکردید یا رنگ ادرار تیره بود، باید آب بیشتری بنوشید.'**
+  String foodRequerementDialogHydrationTrainingDayText3(int fiveTimeWeight, int tenTimeWeight);
+
+  /// No description provided for @foodRequerementDialogHydrationTrainingDayText4.
+  ///
+  /// In fa, this message translates to:
+  /// **'پس از ورزش، توصیه می‌شود ۱.۲۵ تا ۱.۵ برابر حجم مایعی که در طول تمرین از دست داده‌اید مصرف کنید.'**
+  String get foodRequerementDialogHydrationTrainingDayText4;
+
+  /// No description provided for @foodRequerementDialogHydrationTrainingDayText5.
+  ///
+  /// In fa, this message translates to:
+  /// **'در فعالیت‌های سبک یا متوسط زیر ۴۵ دقیقه، آب کافی است. در تمرینات شدیدتر و طولانی‌تر (بیش از ۶۰ تا ۹۰ دقیقه)، نوشیدنی ورزشی با ۴۰ تا ۸۰ گرم کربوهیدرات در هر لیتر توصیه می‌شود. برای تمرینات ۱ تا ۲.۵ ساعت، مصرف ۳۰ تا ۶۰ گرم کربوهیدرات در ساعت و برای تمرینات شدیدتر بیش از ۲.۵ ساعت، تا ۹۰ گرم کربوهیدرات در ساعت (ترکیبی) پیشنهاد می‌شود.'**
+  String get foodRequerementDialogHydrationTrainingDayText5;
+
+  /// No description provided for @foodRequerementDialogHydrationTrainingDayText6.
+  ///
+  /// In fa, this message translates to:
+  /// **'سدیم در نوشیدنی ورزشی باعث افزایش میل به نوشیدن، حفظ آب بدن و خوش‌طعم‌تر شدن نوشیدنی می‌شود. کربوهیدرات به جذب بهتر آب و تأمین انرژی کمک می‌کند. نوشیدنی‌های انرژی‌زا حاوی کافئین می‌توانند عملکرد هوازی و بی‌هوازی را بهبود دهند.'**
+  String get foodRequerementDialogHydrationTrainingDayText6;
+
+  /// No description provided for @foodRequerementDialogHydrationTrainingDayText7.
+  ///
+  /// In fa, this message translates to:
+  /// **'نوشیدنی‌های ورزشی، نوشابه‌های گازدار و آبمیوه‌ها می‌توانند به دلیل اسیدیته بالا باعث فرسایش مینای دندان شوند؛ این اثر در حین ورزش به دلیل کاهش بزاق تشدید می‌شود.'**
+  String get foodRequerementDialogHydrationTrainingDayText7;
+
+  /// No description provided for @foodRequerementDialogHydrationTrainingDayText8.
+  ///
+  /// In fa, this message translates to:
+  /// **'برای محافظت از دندان‌ها: از بطری با نی یا نازل استفاده کنید، آب را به طور متناوب بنوشید و از نوشیدن مداوم یا چرخاندن نوشیدنی در دهان خودداری کنید.'**
+  String get foodRequerementDialogHydrationTrainingDayText8;
+
+  /// No description provided for @foodRequerementDialogHydrationTrainingDayText9.
+  ///
+  /// In fa, this message translates to:
+  /// **'برای بررسی وضعیت آب بدن خود، به رنگ ادرار در ابتدای صبح توجه کنید. ادرار رقیق و کم‌رنگ نشان‌دهنده آب رسانی مناسب است، در حالی که رنگ تیره و حجم کم می‌تواند به معنای کم‌آبی بدن باشد که نیازمند نوشیدن آب بیشتر، به خصوص قبل از تمرین، است.'**
+  String get foodRequerementDialogHydrationTrainingDayText9;
+
+  /// No description provided for @foodRequerementDialogHydrationTrainingDayText10.
+  ///
+  /// In fa, this message translates to:
+  /// **'کم ابی یا هایپوهیدراشن به روزهای قبل و تمرین های قبلی بستگی داره و کم آبی امروز روی تمرین فردا تاثیر میگذارد.'**
+  String get foodRequerementDialogHydrationTrainingDayText10;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateRestDayText1.
+  ///
+  /// In fa, this message translates to:
+  /// **'قند و شکر که اغلب از نیشکر یا چغندر قند فرآوری می‌شوند، نوعی کربوهیدرات هستند. مصرف نوشیدنی‌های حاوی قند افزوده می‌تواند به پوسیدگی دندان منجر شود. این نوع قندها معمولاً در غذاهای فرآوری شده‌ای مانند شکلات، بیسکویت (که اغلب چربی بالایی دارند) یا چیپس (که نمک زیادی دارند) یافت می‌شوند. این دسته از غذاهای فرآوری شده انرژی زیادی دارند اما از نظر مواد مغذی و فیبر فقیر هستند و حجم کمی نسبت به انرژی خود دارند که می‌تواند منجر به احساس گرسنگی زودهنگام شود و دریافت انرژی بیش از نیاز بدن شما بگردد.'**
+  String get foodRequerementDialogCarbohydrateRestDayText1;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateRestDayText2.
+  ///
+  /// In fa, this message translates to:
+  /// **'توصیه می‌شود حداکثر 5 درصد از انرژی روزانه شما، معادل حدود {fivePercentCalorie} کیلوکالری، از قندهای افزوده تأمین شود. این مقدار شکر برای شما تقریباً معادل {sugarCubeCount} حبه قند است که شامل قند موجود در غذاهای فرآوری‌شده، شربت‌ها، آبمیوه‌ها و عسل می‌شود و قندهای طبیعی موجود در شیر، سبزیجات و میوه‌ها را در بر نمی‌گیرد.'**
+  String foodRequerementDialogCarbohydrateRestDayText2(int fivePercentCalorie, int sugarCubeCount);
+
+  /// No description provided for @foodRequerementDialogCarbohydrateRestDayText3.
+  ///
+  /// In fa, this message translates to:
+  /// **'کربوهیدرات اصلی موجود در میوه‌ها، فروکتوز است. مصرف زیاد فروکتوز در افراد کم‌تحرک می‌تواند باعث افزایش تری‌گلیسیرید و چربی خون شود. با این حال، اگر فعالیت بدنی منظمی دارید، تأثیر آن بر چربی خون معمولاً ناچیز است.'**
+  String get foodRequerementDialogCarbohydrateRestDayText3;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateRestDayText4.
+  ///
+  /// In fa, this message translates to:
+  /// **'حتی در صورت کم‌تحرکی، توصیه می‌شود روزانه حداقل 2 تا 3 واحد میوه مصرف کنید؛ زیرا میوه‌ها منبع عالی آب برای هیدراسیون بدن، فیبر برای تقویت سیستم ایمنی و ترکیبات فیتوشیمیایی برای مقابله با التهاب و اکسیدان‌ها هستند.'**
+  String get foodRequerementDialogCarbohydrateRestDayText4;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateRestDayText5.
+  ///
+  /// In fa, this message translates to:
+  /// **'در هر وعده غذایی، تلاش کنید تا با تنوع بخشیدن به رنگ میوه‌ها و سبزیجات (سبز، قرمز، بنفش، زرد، سفید و نارنجی)، یک رنگین‌کمان از رنگ‌ها را در بشقاب خود داشته باشید. هر رنگ، حاوی مجموعه‌ای منحصربه‌فرد از مواد مغذی ساخته شده از نور خورشید (ترکیبات گیاهی مفید) است که بسیاری از آن‌ها به عنوان آنتی‌اکسیدان عمل کرده و به محافظت از سلول‌ها در برابر آسیب و کاهش التهاب پس از ورزش کمک می‌کنند.'**
+  String get foodRequerementDialogCarbohydrateRestDayText5;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateRestDayText6.
+  ///
+  /// In fa, this message translates to:
+  /// **'در روزهای استراحت، با مصرف بیشتر میوه‌ها و سبزیجات، نیازهای ویتامینی و فیبر بدن را تأمین کنید؛ در روزهای تمرین نیز، برای تأمین انرژی مورد نیاز عضلات، بر مصرف کربوهیدرات‌های پیچیده و غنی تمرکز داشته باشید.'**
+  String get foodRequerementDialogCarbohydrateRestDayText6;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

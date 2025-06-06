@@ -1,4 +1,4 @@
-package com.example.tandorost_platform_ui_app
+package ir.tandorost_life.tandorost
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -41,6 +41,10 @@ class AppNavigation {
           icon: Icon(DrawerNavigationRoutes.icons[index]),
         ),
       ),
+      SizedBox(height : context.sizeExtenstion.medium),
+      Text(context.l10n.drawerSupportText1),
+      SizedBox(height : context.sizeExtenstion.small),
+      Text(context.l10n.drawerSupportText2),
     ];
   }
 

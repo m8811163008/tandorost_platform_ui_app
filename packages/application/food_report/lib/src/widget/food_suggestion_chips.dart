@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:food_report_app/src/cubit/food_report_cubit.dart';
 import 'package:food_report_app/src/widget/food_requerment_dialog.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class FoodSuggestionChips extends StatelessWidget {
-  const FoodSuggestionChips({super.key});
+  const FoodSuggestionChips({super.key, required this.selectedTab});
+  final SelectedTab selectedTab;
 
   @override
   Widget build(BuildContext context) {

@@ -67,8 +67,8 @@ class FoodReportStatics extends StatelessWidget {
             color: context.colorExtenstion.carbsFruitsVeggies,
           ),
           gap,
-          if(nutritionRequirement != null)
-          FoodSuggestionChips(),
+          if (nutritionRequirement != null)
+            FoodSuggestionChips(selectedTab: selectedTab),
         ],
       ),
     );
