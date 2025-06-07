@@ -470,5 +470,53 @@
     "foodRequerementDialogFatRestDayText8": "چربی منبع مهمی از انرژی برای ورزش است. نسبت مصرف چربی و کربوهیدرات در بدن به شدت و مدت زمان فعالیت، سطح آمادگی جسمانی و رژیم غذایی قبل از ورزش بستگی دارد.",
     "foodRequerementDialogFatRestDayText9": "سطح بالای کلسترول LDL یکی از عوامل اصلی بیماری‌های قلبی عروقی است. جایگزین کردن بخشی از چربی‌های اشباع با چربی‌های غیراشباع به کاهش کلسترول LDL و کاهش خطر بیماری قلبی کمک می‌کند.",
     "foodRequerementDialogFatRestDayText10": "اسیدهای چرب امگا ۳ باعث کاهش التهاب و کاهش خطر بیماری‌های قلبی عروقی و سایر بیماری‌های مزمن می‌شوند.",
-    "foodRequerementDialogFatRestDayText11": "مصرف مکمل امگا ۳ می‌تواند به بهبود سازگاری عضلات، متابولیسم انرژی، ریکاوری عضلات و پیشگیری از آسیب کمک کند."
+    "foodRequerementDialogFatRestDayText11": "مصرف مکمل امگا ۳ می‌تواند به بهبود سازگاری عضلات، متابولیسم انرژی، ریکاوری عضلات و پیشگیری از آسیب کمک کند.",
+    "vo2maxCalculatorText1": "در طول تمرینات با شدت کم، چربی سوخت اصلی است، در حالی که کربوهیدرات سوخت اصلی در تمرینات با شدت بالا است.",
+    "vo2maxCalculatorText2": "با این حال، اکسیداسیون کل چربی بر حسب گرم با افزایش شدت ورزش از کم به زیاد افزایش می‌یابد، حتی اگر درصد سهم چربی کاهش یابد. این به این دلیل است که کل انرژی مصرفی افزایش می‌یابد، یعنی کالری بیشتری در دقیقه می‌سوزانید.",
+    "vo2maxCalculatorText3": "به طور متوسط، بالاترین نرخ اکسیداسیون چربی (\"fat max\") در ۶۲-۶۳٪ VO2max رخ می‌دهد.",
+    "vo2maxCalculatorText4": "هر چه شدت تمرین بیشتر باشد، سرعت شکسته شدن گلیکوژن ماهیچه بیشتر می‌شود.",
+    "vo2maxCalculatorText5": "برای محاسبه مقدار بهینه و بهترین سرعت برای حداکثر چربی‌سوزی ابتدا تست کوپر را اجرا می‌کنیم و سپس مقدار بهینه مسافتی که باید با سرعت تقریباً ثابت در زمان کاردیو راه بروید را محاسبه می‌کنیم.",
+    "vo2maxCalculatorText6": "به مدت ۱۲ دقیقه روی تردمیل یا زمین صاف حداکثر مسافتی که می‌توانید، بدوید و سپس مسافت را به متر برای محاسبه VO2max در زیر وارد کنید.",
+    "vo2maxCalculatorLabelText": "مسافت طی شده به متر",
+    "vo2maxCalculatorHintText": "مسافت طی شده در ۱۲ دقیقه به متر",
+    "vo2maxCalculatorVo2maxRate": "مقدار VO2max شما {vo2max} می‌باشد",
+    "@vo2maxCalculatorVo2maxRate": {
+        "placeholders": {
+            "vo2max": {
+                "type": "double",
+                "format": "decimalPatternDigits",
+                "optionalParameters": {
+                    "decimalDigits": 2
+                }
+            }
+        }
+    },
+    "vo2maxCalculatorVo2maxEfficientDistance": "مسافت بهینه شما در 62 درصد VO2max در هر دقیقه {maxDistanceInMeterInOneMinues} متر میباشد",
+    "@vo2maxCalculatorVo2maxEfficientDistance": {
+        "placeholders": {
+            "maxDistanceInMeterInOneMinues": {
+                "type": "double",
+                "format": "decimalPatternDigits",
+                "optionalParameters": {
+                    "decimalDigits": 1
+                }
+            }
+        }
+    },
+    "vo2maxCalculatorVo2maxRecommandation": "برای حداکثر کردن سرعت چربی سوزی بعد از تمرین مقاومتی بین 15 تا 30 دقیقه تمرین هوازی انجام دهید",
+    "vo2maxCalculatorVo2maxDistance": "در {minutes} دقیقه مسافت {distance} متر را با سرعت متوسط طی کنید",
+    "@vo2maxCalculatorVo2maxDistance": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            },
+            "distance": {
+                "type": "double",
+                "format": "decimalPatternDigits",
+                "optionalParameters": {
+                    "decimalDigits": 2
+                }
+            }
+        }
+    }
 }

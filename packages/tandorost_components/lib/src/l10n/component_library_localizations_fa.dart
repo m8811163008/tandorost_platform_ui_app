@@ -885,26 +885,223 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get foodRequerementDialogCarbohydrateRestDayText6 => 'در روزهای استراحت، با مصرف بیشتر میوه‌ها و سبزیجات، نیازهای ویتامینی و فیبر بدن را تأمین کنید؛ در روزهای تمرین نیز، برای تأمین انرژی مورد نیاز عضلات، بر مصرف کربوهیدرات‌های پیچیده و غنی تمرکز داشته باشید.';
 
   @override
-  String get foodRequerementDialogCarbohydrateTrainingDayText1 => '';
+  String foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText1(int weight, int carbohydrate, int protein) {
+    return 'زمان و مقدار مصرف کربوهیدرات پیش از تمرین با یکدیگر مرتبط هستند. به طور کلی، می‌توانید ۱ تا ۴ گرم کربوهیدرات به ازای هر کیلوگرم وزن بدن، از ۱ تا ۴ ساعت پیش از شروع تمرین مصرف کنید. برای نمونه، با وزن $weight کیلوگرم، اگر ۲ ساعت تا آغاز تمرین باقی مانده است، می‌توانید $carbohydrate گرم کربوهیدرات به همراه $protein گرم پروتئین با کیفیت میل کنید.';
+  }
 
   @override
-  String get foodRequerementDialogCarbohydrateTrainingDayText2 => '';
+  String get foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText2 => 'مصرف کربوهیدرات ۱ تا ۴ ساعت پیش از تمرین به افزایش ذخیره گلیکوژن و بهبود عملکرد تمرین کمک می‌کند. خوردن کربوهیدرات تا ۲ ساعت قبل از تمرین، زمان کافی برای هضم و جذب آن را فراهم می‌سازد.';
 
   @override
-  String get foodRequerementDialogCarbohydrateTrainingDayText3 => '';
+  String get foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText3 => 'در صورتی که وعده غذایی خود را نزدیک به زمان تمرین میل کنید، ممکن است دچار سوهاضمه و ناراحتی معده شوید؛ زیرا هنگام تمرین، جریان خون از معده به سمت عضلات هدایت می‌شود تا اکسیژن را به عضلات برساند.';
 
   @override
-  String get foodRequerementDialogCarbohydrateTrainingDayText4 => '';
+  String get foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText4 => 'اگر پیش از تمرین دچار ناراحتی معده یا سوهاضمه شدید، توصیه می‌شود دو ساعت پیش از شروع تمرین یک میان‌وعده سبک و ساده با کربوهیدرات با شاخص گلیسمی بالا مانند موز یا سایر میوه‌های تازه یا خشک و یک مشت آجیل میل کنید. همچنین می‌توانید نان و کره مغزیجات (مانند کره پسته یا بادام‌زمینی) یا فرنی و جودوسر با شیر (اوتمیل) مصرف نمایید.';
 
   @override
-  String get foodRequerementDialogCarbohydrateTrainingDayText5 => '';
+  String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText1 => 'تا پیش از ۴۵ دقیقه تمرین، به جز آب نیازی به مصرف ماده غذایی دیگری نیست؛ زیرا در این مدت، احتمال تخلیه ذخایر گلیکوژن پایین است.';
 
   @override
-  String get foodRequerementDialogCarbohydrateTrainingDayText6 => '';
+  String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText2 => 'برای تمرین‌های ۴۵ تا ۷۵ دقیقه‌ای، می‌توانید کربوهیدرات شیرین را بمکید یا بچشید تا هم پیام خستگی به مغز کاهش یابد و هم در صورت دشواری خوردن هنگام تمرین، از مشکلات گوارشی جلوگیری شود.';
 
   @override
-  String get foodRequerementDialogCarbohydrateTrainingDayText7 => '';
+  String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText3 => 'در تمرین‌های بیش از یک ساعت، می‌توانید به ازای هر ساعت، ۳۰ تا ۶۰ گرم کربوهیدرات بسته به شدت تمرین مصرف کنید. بدن قادر نیست بیش از ۱ گرم گلوکز در دقیقه را در عضله با اکسیژن ترکیب کند؛ مصرف بیش از ۶۰ گرم کربوهیدرات در ساعت ممکن است مشکلات گوارشی ایجاد کند و سود بیشتری نخواهد داشت.';
 
   @override
-  String get foodRequerementDialogCarbohydrateTrainingDayText8 => '';
+  String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText4 => 'حدود ۱۵ تا ۲۰ دقیقه طول می‌کشد تا کربوهیدرات مصرف‌شده به عضلات برسد؛ بنابراین، میان‌وعده تمرینی را پیش از شروع خستگی میل کنید. معمولاً هر ۲۰ تا ۳۰ دقیقه در طول تمرین می‌توانید کربوهیدرات مصرف نمایید.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText5 => 'سه نمونه از میان‌وعده‌های مناسب تمرین شامل یک عدد موز، دو عدد خرما یا یک عدد انبه است که هرکدام حدود ۳۰ گرم کربوهیدرات دارند. در صورت شدت بالای تمرین، می‌توانید تا دو برابر این مقدار مصرف کنید.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText1 => 'گلیکوژن مصرف‌شده در طول تمرین باید برای تمرین‌های روزهای بعد جبران شود؛ در غیر این صورت، عملکرد تمرینات بعدی کاهش می‌یابد.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText2 => 'در دو ساعت پس از تمرین، ذخیره‌سازی گلیکوژن تا ۱۵۰ درصد بیشتر از حالت عادی انجام می‌شود.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText3 => 'در دو ساعت ابتدایی پس از تمرین، جذب گلوکز بیشتر است؛ زیرا هم میزان گلوکز خون افزایش یافته و هم نفوذپذیری غشای سلولی برای دریافت گلوکز نسبت به حالت عادی بیشتر می‌شود.';
+
+  @override
+  String foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText4(int carbohydrateValu1, int carbohydrateValu2) {
+    return 'تا چهار ساعت پس از تمرین، می‌توانید به ازای هر کیلوگرم وزن بدن، ۱ تا ۱.۲ گرم کربوهیدرات در هر ساعت مصرف کنید که معادل $carbohydrateValu1 تا $carbohydrateValu2 گرم کربوهیدرات در هر ساعت است. این مقدار، حداکثر میزان کربوهیدراتی است که دستگاه گوارش می‌تواند در هر ساعت هضم کند.';
+  }
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText5 => 'توصیه می‌شود کربوهیدرات را همراه با پروتئین با کیفیت (حاوی لوسین) برای حداکثرسازی عضله‌سازی و تأمین گلیکوژن مصرف کنید.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText6 => 'مصرف پروتئین همراه با کربوهیدرات باعث ترشح بیشتر انسولین نسبت به مصرف تنها کربوهیدرات می‌شود. افزایش انسولین، جذب گلوکز و آمینواسیدهای پروتئین توسط سلول‌های عضلانی را افزایش داده و سطح کورتیزول را کاهش می‌دهد؛ در نتیجه، ترکیب پروتئین برای ساخت عضله بیشتر خواهد شد.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText7 => 'وجود پروتئین در وعده غذایی پس از تمرین، به ساخت و ترمیم پروتئین عضلات کمک می‌کند و موجب کاهش تجزیه پروتئین و افزایش ذخیره پروتئین در عضلات برای بازسازی پس از تمرین می‌شود.';
+
+  @override
+  String foodRequerementDialogProteinRestDayText1(int proteinPerMeal) {
+    return 'سعی کنید هر 3 ساعت در 5 وعده و هر وعده به مقدار مساوی و منظم حدود $proteinPerMeal گرم در هر وعده پروتئین بخورید*. پروتئین باعث سیری طولانی مدت تر نسبت به کربوهیدرات میشود و در کنار غلات سبوس دار و حبوبات فیبر دار باعث سیری و کاهش اشتها در روز میشود . 30 درصد از پروتئین را از منبع شیر و محصولات لبنی تامین کنید که همزمان غنی از کلسیم هستند.';
+  }
+
+  @override
+  String get foodRequerementDialogProteinRestDayText2 => 'تمام پروتئین های حیوانی مانند شیر و گوشت با کیفیت هستند. اگر 9 آمینو اسید ضروری در ماده غذایی تقریبا به اندازه نیاز بدن باشد به آنها پروتئین با کیفیت بالا میگیم، به همین خاطر بین مواد غذایی گیاهی ، سویا(شیر و ماست سویا) ، گندم سیاه، دانه کینوا، دانه چیا و دانه کنف یا شاهدانه غذای گیاهی شامل پروتئین با کیفیت بالا هستند.';
+
+  @override
+  String get foodRequerementDialogProteinRestDayText3 => 'همچنین لوبیا، عدس، نخود، غلات و آجیل ها شامل برخی آمینو اسید های ضروری هستند که میتوانید با خوردن ترکیبی ازین مواد غذایی نیاز بدن به امینو اسید های ضروری را در 24 ساعت تامین کنید.برای مثال خوردن لوبیا و برنج و آجیل هر 9 آمینو اسید ضروری را تامین میکنند.';
+
+  @override
+  String foodRequerementDialogProteinRestDayText4(double proteinPerBodyWeight) {
+    final intl.NumberFormat proteinPerBodyWeightNumberFormat = intl.NumberFormat.decimalPatternDigits(
+      locale: localeName,
+      decimalDigits: 1
+    );
+    final String proteinPerBodyWeightString = proteinPerBodyWeightNumberFormat.format(proteinPerBodyWeight);
+
+    return 'پروتئین با مقدار جذب بیشتر از روده بزرگ و امتیاز بیشتر DIAAS : شیر و تخم مرغ و سویا و محصولات سویا و نخود  وعدس سبز و لوبیا سیاه و بادام زمینی و برنج سفید هستند. شما روزانه به $proteinPerBodyWeightString گرم پروتئین به ازای هر کیلو از وزن بدنتون نیاز دارید تا با توجه به سطح فعالیت هفتگی و سرعت کاهش وزن عضله‌های خود را حفظ و افزایش دهید.';
+  }
+
+  @override
+  String get foodRequerementDialogProteinRestDayText5 => '*مبتدیان مقدار پروتئین بیشتری نسبت به ورزشکار حرفه ای نیاز دارند ( تا 3 هفته اول 40 درصد بیشتر از افراد حرفه ای هست)';
+
+  @override
+  String get foodRequerementDialogProteinRestDayText6 => 'اگر به اندازه کافی پروتئین بخورید میتوانید بدون ورزش و با حداقل کاهش ماهیچه ، چربی کم کنید.';
+
+  @override
+  String get foodRequerementDialogProteinRestDayText7 => 'برای سرعت بیشتر کاهش چربی و تناسب اندام و همچنین افزایش ماهیچه میتوانید ورزش پرورش اندام یا دیگر ورزش ها مانند بوکس یا شنا را انجام دهید';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText1 => 'مصرف غذای پروتئینی همراه با تمرین مقاومتی به ساخت ماهیچه کمک می‌کند. افزایش حجم ماهیچه باعث بالا رفتن نرخ سوخت‌وساز، کاهش سریع‌تر وزن، افزایش اعتماد به نفس و بهبود تناسب اندام می‌شود.';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText2 => 'برای ساخت ماهیچه، مصرف پروتئین با کیفیت حاوی لوسین که سریع هضم و جذب می‌شود ضروری است. برای حداکثر عضله‌سازی باید آستانه لوسین (۲ تا ۳ گرم در هر وعده) تأمین شود.';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText3 => 'مواد غذایی زیر حاوی ۲ تا ۳ گرم لوسین هستند و مصرف آن‌ها بعد از تمرین همراه با کربوهیدرات برای حداکثر عضله‌سازی توصیه می‌شود:';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText3SampleLucine1 => '۶۰۰ میلی‌لیتر شیر کامل';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText3SampleLucine2 => '۸۵ گرم پنیر چدار';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText3SampleLucine3 => '۴۵۰ گرم ماست ساده';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText3SampleLucine4 => '۴ عدد تخم‌مرغ (یک زرده و ۴ سفیده توصیه می‌شود)';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText3SampleLucine5 => '۸۵ گرم گوشت قرمز یا گوشت پرنده';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText3SampleLucine6 => '۱۰۰ گرم ماهی';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText3SampleLucine7 => '۱۷ گرم پودر پروتئین وی';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText3SampleLucine8 => '۴۰۰ گرم لوبیا یا عدس پخته‌شده';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText4 => 'شیر حاوی آب، پروتئین، کربوهیدرات و مواد مغذی است و گزینه‌ای عالی برای ریکاوری عضلات بعد از تمرین محسوب می‌شود؛ زیرا به تأمین ذخیره گلیکوژن، ساخت ماهیچه و آب‌رسانی بدن کمک می‌کند. نوع شیر (کم‌چرب، پرچرب، شیر قهوه، شیر کاکائو یا طعم‌دار) تفاوتی ندارد.';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText5 => 'برای ریکاوری و عضله‌سازی در پایان شب، مواد غذایی حاوی کازئین مانند شیر، ماست یا مکمل مصرف کنید. پروتئین باعث احساس سیری طولانی‌تر و خواب عمیق‌تر می‌شود.';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText6 => 'پروتئین‌ها از آمینواسیدها ساخته شده‌اند. یازده نوع آمینواسید در بدن ساخته می‌شوند (آمینواسیدهای غیرضروری) و نه نوع دیگر باید از طریق رژیم غذایی تأمین شوند (آمینواسیدهای ضروری).';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDayText7 => 'پروتئین‌ها به طور مداوم در بدن تجزیه می‌شوند (تجزیه پروتئین عضله) و آمینواسیدها نیز به طور مداوم در ساخت پروتئین‌ها به کار می‌روند (سنتز پروتئین عضله).';
+
+  @override
+  String get foodRequerementDialogFatRestDayText1 => 'مقدار مصرف چربی بر اساس توصیه سازمان‌های بهداشت جهانی، رژیم مدیترانه‌ای و سبک آشپزی ایرانی، حدود ۳۵ درصد انرژی روزانه است. کاهش مصرف چربی به کاهش وزن، کاهش شاخص توده بدنی و دور کمر و افزایش اعتماد به نفس کمک می‌کند. بیشترین میزان چربی‌سوزی بدن شما در محدوده ۶۲ تا ۶۳ درصد VO2max رخ می‌دهد.';
+
+  @override
+  String get foodRequerementDialogFatRestDayText2 => 'چربی بیشترین مقدار انرژی را در بین مواد غذایی دارد و مصرف زیاد آن به‌راحتی اتفاق می‌افتد. برای مثال، انرژی یک قاشق غذاخوری روغن معادل ۹ کیلوکالری ضربدر ۱۵ گرم یا ۱۳۵ کیلوکالری است؛ بنابراین به مقدار روغن مصرفی خود دقت کنید.';
+
+  @override
+  String get foodRequerementDialogFatRestDayText3 => '۳۵ درصد انرژی روزانه باید از چربی‌ها تأمین شود که شامل سه بخش زیر است:';
+
+  @override
+  String get foodRequerementDialogFatRestDayText4 => '۱۰ درصد چربی اشباع (معمولاً جامد یا نیمه‌جامد در دمای اتاق): روغن‌های گیاهی مانند پالم، نارگیل و کاکائو و همچنین چربی‌های حیوانی مانند دنبه، چربی بین بافت ماهیچه و گوشت، کره و موارد مشابه.';
+
+  @override
+  String get foodRequerementDialogFatRestDayText5 => 'چربی‌های موجود در محصولات لبنی به دلیل ساختار مولکولی خاص چربی شیر، کلسترول خون را افزایش نمی‌دهند و خطر بیماری قلبی عروقی ندارند. همچنین بخشی از چربی غیراشباع آن به دلیل ترکیب با کلسیم جذب بدن نمی‌شود.';
+
+  @override
+  String get foodRequerementDialogFatRestDayText6 => 'حداکثر ۱۲ درصد چربی غیراشباع تک‌زنجیره‌ای (معمولاً مایع در دمای اتاق): روغن زیتون، روغن کلزا، روغن آفتابگردان، بادام‌زمینی، روغن فندق و بادام، آووکادو، زیتون، آجیل و دانه‌ها.';
+
+  @override
+  String get foodRequerementDialogFatRestDayText7 => 'حداقل ۱۳ درصد چربی غیراشباع چندزنجیره‌ای (معمولاً مایع در دمای اتاق): امگا ۳ نوع EPA و DHA عمدتاً در ماهی‌های چرب مانند قزل‌آلا، سالمون و خال‌مخالی و به مقدار کمتر در ماهی تن وجود دارد. حداقل هفته‌ای یک بار ماهی چرب مصرف کنید. روغن کلزا با نسبت ۲ به ۱ امگا ۶ به امگا ۳ و نقطه دود ۱۷۰ درجه سانتی‌گراد برای پخت‌وپز مناسب است.';
+
+  @override
+  String get foodRequerementDialogFatRestDayText8 => 'چربی منبع مهمی از انرژی برای ورزش است. نسبت مصرف چربی و کربوهیدرات در بدن به شدت و مدت زمان فعالیت، سطح آمادگی جسمانی و رژیم غذایی قبل از ورزش بستگی دارد.';
+
+  @override
+  String get foodRequerementDialogFatRestDayText9 => 'سطح بالای کلسترول LDL یکی از عوامل اصلی بیماری‌های قلبی عروقی است. جایگزین کردن بخشی از چربی‌های اشباع با چربی‌های غیراشباع به کاهش کلسترول LDL و کاهش خطر بیماری قلبی کمک می‌کند.';
+
+  @override
+  String get foodRequerementDialogFatRestDayText10 => 'اسیدهای چرب امگا ۳ باعث کاهش التهاب و کاهش خطر بیماری‌های قلبی عروقی و سایر بیماری‌های مزمن می‌شوند.';
+
+  @override
+  String get foodRequerementDialogFatRestDayText11 => 'مصرف مکمل امگا ۳ می‌تواند به بهبود سازگاری عضلات، متابولیسم انرژی، ریکاوری عضلات و پیشگیری از آسیب کمک کند.';
+
+  @override
+  String get vo2maxCalculatorText1 => 'در طول تمرینات با شدت کم، چربی سوخت اصلی است، در حالی که کربوهیدرات سوخت اصلی در تمرینات با شدت بالا است.';
+
+  @override
+  String get vo2maxCalculatorText2 => 'با این حال، اکسیداسیون کل چربی بر حسب گرم با افزایش شدت ورزش از کم به زیاد افزایش می‌یابد، حتی اگر درصد سهم چربی کاهش یابد. این به این دلیل است که کل انرژی مصرفی افزایش می‌یابد، یعنی کالری بیشتری در دقیقه می‌سوزانید.';
+
+  @override
+  String get vo2maxCalculatorText3 => 'به طور متوسط، بالاترین نرخ اکسیداسیون چربی (\"fat max\") در ۶۲-۶۳٪ VO2max رخ می‌دهد.';
+
+  @override
+  String get vo2maxCalculatorText4 => 'هر چه شدت تمرین بیشتر باشد، سرعت شکسته شدن گلیکوژن ماهیچه بیشتر می‌شود.';
+
+  @override
+  String get vo2maxCalculatorText5 => 'برای محاسبه مقدار بهینه و بهترین سرعت برای حداکثر چربی‌سوزی ابتدا تست کوپر را اجرا می‌کنیم و سپس مقدار بهینه مسافتی که باید با سرعت تقریباً ثابت در زمان کاردیو راه بروید را محاسبه می‌کنیم.';
+
+  @override
+  String get vo2maxCalculatorText6 => 'به مدت ۱۲ دقیقه روی تردمیل یا زمین صاف حداکثر مسافتی که می‌توانید، بدوید و سپس مسافت را به متر برای محاسبه VO2max در زیر وارد کنید.';
+
+  @override
+  String get vo2maxCalculatorLabelText => 'مسافت طی شده به متر';
+
+  @override
+  String get vo2maxCalculatorHintText => 'مسافت طی شده در ۱۲ دقیقه به متر';
+
+  @override
+  String vo2maxCalculatorVo2maxRate(double vo2max) {
+    final intl.NumberFormat vo2maxNumberFormat = intl.NumberFormat.decimalPatternDigits(
+      locale: localeName,
+      decimalDigits: 2
+    );
+    final String vo2maxString = vo2maxNumberFormat.format(vo2max);
+
+    return 'مقدار VO2max شما $vo2maxString می‌باشد';
+  }
+
+  @override
+  String vo2maxCalculatorVo2maxEfficientDistance(double maxDistanceInMeterInOneMinues) {
+    final intl.NumberFormat maxDistanceInMeterInOneMinuesNumberFormat = intl.NumberFormat.decimalPatternDigits(
+      locale: localeName,
+      decimalDigits: 1
+    );
+    final String maxDistanceInMeterInOneMinuesString = maxDistanceInMeterInOneMinuesNumberFormat.format(maxDistanceInMeterInOneMinues);
+
+    return 'مسافت بهینه شما در 62 درصد VO2max در هر دقیقه $maxDistanceInMeterInOneMinuesString متر میباشد';
+  }
+
+  @override
+  String get vo2maxCalculatorVo2maxRecommandation => 'برای حداکثر کردن سرعت چربی سوزی بعد از تمرین مقاومتی بین 15 تا 30 دقیقه تمرین هوازی انجام دهید';
+
+  @override
+  String vo2maxCalculatorVo2maxDistance(int minutes, double distance) {
+    final intl.NumberFormat distanceNumberFormat = intl.NumberFormat.decimalPatternDigits(
+      locale: localeName,
+      decimalDigits: 2
+    );
+    final String distanceString = distanceNumberFormat.format(distance);
+
+    return 'در $minutes دقیقه مسافت $distanceString متر را با سرعت متوسط طی کنید';
+  }
 }
