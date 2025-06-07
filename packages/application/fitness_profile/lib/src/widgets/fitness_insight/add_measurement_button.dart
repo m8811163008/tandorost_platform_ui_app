@@ -11,9 +11,9 @@ class AddMeasurementButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final label = Text(context.l10n.fitnessProfileNewMeasurementLabel);
-    final onPress = () {
+    onPress() {
       _onPress(context);
-    };
+    }
     return _isFilled
         ? ElevatedButton(onPressed: onPress, child: label)
         : TextButton.icon(

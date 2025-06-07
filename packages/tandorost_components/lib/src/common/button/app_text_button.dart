@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tandorost_components/tandorost_components.dart';
 
 class AppTextButton extends StatelessWidget {
   const AppTextButton({super.key, this.onTap, required this.label})

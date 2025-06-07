@@ -1,28 +1,49 @@
+import 'dart:developer';
+
 import 'package:authentication/authentication.dart';
 import 'package:fitness_nutrition/fitness_nutrition.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food_input/food_input.dart';
 import 'package:food_report/food_report.dart';
 import 'package:local_storage/local_storage.dart';
 import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
 import 'package:remote_api/remote_api.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:tandorost/navigation.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 import 'package:image_repository/image_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // final remote_api = RemoteApi(
-  //   get_user_language: () => Future.value(Language.english),
-  //   get_access_token:
-  //       () => Future.value(
-  //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiIxMjBjZmY1Mi03YTVjLTRhOTYtOWJjMC1mZjQ1MTVjYTkwZmEiLCJleHAiOjE3NDcxNDYwMTl9.cbFxpHvjqsql-i5LP9No6MXbsOvI0ukOnAMl93lWwys',
-  //       ),
-  // );
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   final sharePref = await SharedPreferences.getInstance();
-
-  runApp(DependencyManager(sharedPreferences: sharePref));
+  FlutterError.onError = (FlutterErrorDetails details) async {
+    await Sentry.captureException(details.exception, stackTrace: details.stack);
+    log(
+      'error in ${details.library}',
+      stackTrace: details.stack,
+      error: details.exception,
+    );
+  };
+  await SentryFlutter.init(
+    (options) {
+      options.dsn =
+          'https://1d10de0455222c0ba27560b4f0071ff3@o4504084043530240.ingest.us.sentry.io/4506958323253248';
+      options.tracesSampleRate = 1.0;
+    },
+    appRunner:
+        () => runApp(
+          DefaultAssetBundle(
+            bundle: SentryAssetBundle(),
+            child: DependencyManager(sharedPreferences: sharePref),
+          ),
+        ),
+  );
 }
 
 class DependencyManager extends StatelessWidget {

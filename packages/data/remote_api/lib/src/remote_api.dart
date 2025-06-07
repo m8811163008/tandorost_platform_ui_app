@@ -1,5 +1,4 @@
 import 'package:remote_api/remote_api.dart';
-import 'package:remote_api/src/model/user_food_count.dart';
 import 'remote_api_base.dart';
 
 /// An abstract interface class for interacting with a remote API.

@@ -347,6 +347,6 @@ class HintButton extends StatelessWidget {
 
 extension on double? {
   String tryToString() {
-    return this == null ? '' : this.toString();
+    return this == null ? '' : toString();
   }
 }

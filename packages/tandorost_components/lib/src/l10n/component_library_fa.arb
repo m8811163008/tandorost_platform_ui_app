@@ -380,5 +380,13 @@
     "foodRequerementDialogCarbohydrateRestDayText3": "کربوهیدرات اصلی موجود در میوه‌ها، فروکتوز است. مصرف زیاد فروکتوز در افراد کم‌تحرک می‌تواند باعث افزایش تری‌گلیسیرید و چربی خون شود. با این حال، اگر فعالیت بدنی منظمی دارید، تأثیر آن بر چربی خون معمولاً ناچیز است.",
     "foodRequerementDialogCarbohydrateRestDayText4": "حتی در صورت کم‌تحرکی، توصیه می‌شود روزانه حداقل 2 تا 3 واحد میوه مصرف کنید؛ زیرا میوه‌ها منبع عالی آب برای هیدراسیون بدن، فیبر برای تقویت سیستم ایمنی و ترکیبات فیتوشیمیایی برای مقابله با التهاب و اکسیدان‌ها هستند.",
     "foodRequerementDialogCarbohydrateRestDayText5": "در هر وعده غذایی، تلاش کنید تا با تنوع بخشیدن به رنگ میوه‌ها و سبزیجات (سبز، قرمز، بنفش، زرد، سفید و نارنجی)، یک رنگین‌کمان از رنگ‌ها را در بشقاب خود داشته باشید. هر رنگ، حاوی مجموعه‌ای منحصربه‌فرد از مواد مغذی ساخته شده از نور خورشید (ترکیبات گیاهی مفید) است که بسیاری از آن‌ها به عنوان آنتی‌اکسیدان عمل کرده و به محافظت از سلول‌ها در برابر آسیب و کاهش التهاب پس از ورزش کمک می‌کنند.",
-    "foodRequerementDialogCarbohydrateRestDayText6": "در روزهای استراحت، با مصرف بیشتر میوه‌ها و سبزیجات، نیازهای ویتامینی و فیبر بدن را تأمین کنید؛ در روزهای تمرین نیز، برای تأمین انرژی مورد نیاز عضلات، بر مصرف کربوهیدرات‌های پیچیده و غنی تمرکز داشته باشید."
+    "foodRequerementDialogCarbohydrateRestDayText6": "در روزهای استراحت، با مصرف بیشتر میوه‌ها و سبزیجات، نیازهای ویتامینی و فیبر بدن را تأمین کنید؛ در روزهای تمرین نیز، برای تأمین انرژی مورد نیاز عضلات، بر مصرف کربوهیدرات‌های پیچیده و غنی تمرکز داشته باشید.",
+    "foodRequerementDialogCarbohydrateTrainingDayText1": "",
+    "foodRequerementDialogCarbohydrateTrainingDayText2": "",
+    "foodRequerementDialogCarbohydrateTrainingDayText3": "",
+    "foodRequerementDialogCarbohydrateTrainingDayText4": "",
+    "foodRequerementDialogCarbohydrateTrainingDayText5": "",
+    "foodRequerementDialogCarbohydrateTrainingDayText6": "",
+    "foodRequerementDialogCarbohydrateTrainingDayText7": "",
+    "foodRequerementDialogCarbohydrateTrainingDayText8": ""
 }

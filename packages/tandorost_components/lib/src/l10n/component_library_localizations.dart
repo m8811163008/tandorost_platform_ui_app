@@ -1466,6 +1466,54 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'در روزهای استراحت، با مصرف بیشتر میوه‌ها و سبزیجات، نیازهای ویتامینی و فیبر بدن را تأمین کنید؛ در روزهای تمرین نیز، برای تأمین انرژی مورد نیاز عضلات، بر مصرف کربوهیدرات‌های پیچیده و غنی تمرکز داشته باشید.'**
   String get foodRequerementDialogCarbohydrateRestDayText6;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayText1.
+  ///
+  /// In fa, this message translates to:
+  /// **''**
+  String get foodRequerementDialogCarbohydrateTrainingDayText1;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayText2.
+  ///
+  /// In fa, this message translates to:
+  /// **''**
+  String get foodRequerementDialogCarbohydrateTrainingDayText2;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayText3.
+  ///
+  /// In fa, this message translates to:
+  /// **''**
+  String get foodRequerementDialogCarbohydrateTrainingDayText3;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayText4.
+  ///
+  /// In fa, this message translates to:
+  /// **''**
+  String get foodRequerementDialogCarbohydrateTrainingDayText4;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayText5.
+  ///
+  /// In fa, this message translates to:
+  /// **''**
+  String get foodRequerementDialogCarbohydrateTrainingDayText5;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayText6.
+  ///
+  /// In fa, this message translates to:
+  /// **''**
+  String get foodRequerementDialogCarbohydrateTrainingDayText6;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayText7.
+  ///
+  /// In fa, this message translates to:
+  /// **''**
+  String get foodRequerementDialogCarbohydrateTrainingDayText7;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayText8.
+  ///
+  /// In fa, this message translates to:
+  /// **''**
+  String get foodRequerementDialogCarbohydrateTrainingDayText8;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

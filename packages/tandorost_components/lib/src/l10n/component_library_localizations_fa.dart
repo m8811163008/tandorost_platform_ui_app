@@ -883,4 +883,28 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get foodRequerementDialogCarbohydrateRestDayText6 => 'در روزهای استراحت، با مصرف بیشتر میوه‌ها و سبزیجات، نیازهای ویتامینی و فیبر بدن را تأمین کنید؛ در روزهای تمرین نیز، برای تأمین انرژی مورد نیاز عضلات، بر مصرف کربوهیدرات‌های پیچیده و غنی تمرکز داشته باشید.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayText1 => '';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayText2 => '';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayText3 => '';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayText4 => '';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayText5 => '';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayText6 => '';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayText7 => '';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayText8 => '';
 }

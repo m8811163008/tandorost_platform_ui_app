@@ -9,12 +9,14 @@ import 'package:food_report_app/food_report.dart';
 import 'package:go_router/go_router.dart';
 import 'package:food_input_app/food_input.dart';
 import 'package:profile_app/profile.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
     return GoRouter(
       initialLocation: RoutesNames.searchRoute.path,
+      observers: [SentryNavigatorObserver()],
       routes: [
         GoRoute(
           path: RoutesNames.searchRoute.path,
