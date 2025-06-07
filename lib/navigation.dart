@@ -33,7 +33,6 @@ class Navigation {
               onDrawerNavigationChanged: (index) {
                 _onDrawerNavigationChanged(context, index);
               },
-
               drawerNavigationIndex: _drawerNavigationIndex(state),
             );
           },

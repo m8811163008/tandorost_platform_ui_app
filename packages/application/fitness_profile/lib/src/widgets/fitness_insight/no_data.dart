@@ -33,8 +33,7 @@ class NoDataFound extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                AddMeasurementButton(),
+                AddMeasurementButton.filled(),
               ],
             ),
           ),

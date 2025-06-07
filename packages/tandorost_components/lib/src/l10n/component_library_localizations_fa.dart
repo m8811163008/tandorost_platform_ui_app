@@ -9,10 +9,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   ComponentLibraryLocalizationsFa([String locale = 'fa']) : super(locale);
 
   @override
-  String get drawerSupportText1 => 'محتویات برنامه متعلق به تیم توسعه دهنده تندرست می‌باشد.';
+  String get drawerSupportText1 => 'شماره پشتیبانی 09212805230';
 
   @override
-  String get drawerSupportText2 => 'شماره پشتیبانی 09212805230';
+  String get drawerSupportText2 => 'محتویات برنامه متعلق به تیم توسعه دهنده تندرست می‌باشد.';
 
   @override
   String get foodName => 'نام غذا';

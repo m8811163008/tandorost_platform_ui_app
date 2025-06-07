@@ -15,7 +15,10 @@ class MacroNutitionsPieChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox.square(
-      dimension: context.sizeExtenstion.xExtraLarge,
+      dimension:
+          context.themeData.visualDensity == VisualDensity.compact
+              ? context.sizeExtenstion.large
+              : context.sizeExtenstion.xExtraLarge,
       child: PieChart(
         chartType: ChartType.ring,
         dataMap: {

@@ -9,6 +9,7 @@ class ImageRepository {
       remoteApi.readUserImageGallary(gallaryTags);
   Future<List<FileData>> readUserProfileImage() =>
       remoteApi.readUserProfileImage();
+  // TODO add behavior subject for drawer
 
   Future<FileDetail> readImage(FileData fileData) =>
       remoteApi.readImage(fileData);

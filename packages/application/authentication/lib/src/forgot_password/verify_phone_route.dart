@@ -13,11 +13,13 @@ class ForgotPasswordVerifyPhoneNumberRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppScaffold(
       appBar: AppBar(),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: context.sizeExtenstion.extraLarge,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: context.sizeExtenstion.extraLarge,
+          ),
+          child: ForgotPasswordVerifyListener(goToLoginRoute: goToLoginRoute),
         ),
-        child: ForgotPasswordVerifyListener(goToLoginRoute: goToLoginRoute),
       ),
     );
   }

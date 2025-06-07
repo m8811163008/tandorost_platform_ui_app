@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:tandorost_theme/src/color_extension.dart';
 import 'package:tandorost_theme/src/size_extension.dart';
@@ -52,7 +51,7 @@ class AppTheme {
         hintStyle: textTheme(
           locale,
           screenWidth,
-        ).bodyMedium!.copyWith(color: ThemeColor.charcoal.color),
+        ).titleMedium!.copyWith(color: ThemeColor.charcoal.color),
         contentPadding: EdgeInsets.symmetric(
           horizontal: sizeExtenstion.medium,
           vertical: sizeExtenstion.small,
@@ -105,9 +104,9 @@ class AppTheme {
         package: 'tandorost_theme',
         fontSizeFactor: screenWidth.textFactor,
         fontSizeDelta: 0,
-        bodyColor: ThemeColor.oxfordBlue.color,
-        displayColor: ThemeColor.oxfordBlue.color,
-        decorationColor: ThemeColor.oxfordBlue.color,
+        bodyColor: ThemeColor.charcoal.color,
+        displayColor: ThemeColor.charcoal.color,
+        decorationColor: ThemeColor.charcoal.color,
       );
     } else {
       return Typography.dense2021.apply(
@@ -115,9 +114,9 @@ class AppTheme {
         package: 'tandorost_theme',
         fontSizeFactor: screenWidth.textFactor,
         fontSizeDelta: 0,
-        bodyColor: ThemeColor.oxfordBlue.color,
-        displayColor: ThemeColor.oxfordBlue.color,
-        decorationColor: ThemeColor.oxfordBlue.color,
+        bodyColor: ThemeColor.charcoal.color,
+        displayColor: ThemeColor.charcoal.color,
+        decorationColor: ThemeColor.charcoal.color,
       );
     }
   }

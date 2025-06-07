@@ -96,13 +96,13 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @drawerSupportText1.
   ///
   /// In fa, this message translates to:
-  /// **'محتویات برنامه متعلق به تیم توسعه دهنده تندرست می‌باشد.'**
+  /// **'شماره پشتیبانی 09212805230'**
   String get drawerSupportText1;
 
   /// No description provided for @drawerSupportText2.
   ///
   /// In fa, this message translates to:
-  /// **'شماره پشتیبانی 09212805230'**
+  /// **'محتویات برنامه متعلق به تیم توسعه دهنده تندرست می‌باشد.'**
   String get drawerSupportText2;
 
   /// No description provided for @foodName.

@@ -18,14 +18,16 @@ class ForgotPasswordRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppScaffold(
       appBar: AppBar(),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: context.sizeExtenstion.extraLarge,
-        ),
-        child: ForgotPasswordListener(
-          goToLoginRoute: goToLoginRoute,
-          goToVerificationRoute: goToVerificationRoute,
-          goToRegisterRoute: goToRegisterRoute,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: context.sizeExtenstion.extraLarge,
+          ),
+          child: ForgotPasswordListener(
+            goToLoginRoute: goToLoginRoute,
+            goToVerificationRoute: goToVerificationRoute,
+            goToRegisterRoute: goToRegisterRoute,
+          ),
         ),
       ),
     );

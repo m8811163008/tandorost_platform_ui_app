@@ -1,7 +1,7 @@
 {
     "@@locale": "fa",
-    "drawerSupportText1": "محتویات برنامه متعلق به تیم توسعه دهنده تندرست می‌باشد.",
-    "drawerSupportText2": "شماره پشتیبانی 09212805230",
+    "drawerSupportText1": "شماره پشتیبانی 09212805230",
+    "drawerSupportText2": "محتویات برنامه متعلق به تیم توسعه دهنده تندرست می‌باشد.",
     "foodName": "نام غذا",
     "fat": "چربی",
     "carbohydrate": "کربوهیدرات",
@@ -381,12 +381,94 @@
     "foodRequerementDialogCarbohydrateRestDayText4": "حتی در صورت کم‌تحرکی، توصیه می‌شود روزانه حداقل 2 تا 3 واحد میوه مصرف کنید؛ زیرا میوه‌ها منبع عالی آب برای هیدراسیون بدن، فیبر برای تقویت سیستم ایمنی و ترکیبات فیتوشیمیایی برای مقابله با التهاب و اکسیدان‌ها هستند.",
     "foodRequerementDialogCarbohydrateRestDayText5": "در هر وعده غذایی، تلاش کنید تا با تنوع بخشیدن به رنگ میوه‌ها و سبزیجات (سبز، قرمز، بنفش، زرد، سفید و نارنجی)، یک رنگین‌کمان از رنگ‌ها را در بشقاب خود داشته باشید. هر رنگ، حاوی مجموعه‌ای منحصربه‌فرد از مواد مغذی ساخته شده از نور خورشید (ترکیبات گیاهی مفید) است که بسیاری از آن‌ها به عنوان آنتی‌اکسیدان عمل کرده و به محافظت از سلول‌ها در برابر آسیب و کاهش التهاب پس از ورزش کمک می‌کنند.",
     "foodRequerementDialogCarbohydrateRestDayText6": "در روزهای استراحت، با مصرف بیشتر میوه‌ها و سبزیجات، نیازهای ویتامینی و فیبر بدن را تأمین کنید؛ در روزهای تمرین نیز، برای تأمین انرژی مورد نیاز عضلات، بر مصرف کربوهیدرات‌های پیچیده و غنی تمرکز داشته باشید.",
-    "foodRequerementDialogCarbohydrateTrainingDayText1": "",
-    "foodRequerementDialogCarbohydrateTrainingDayText2": "",
-    "foodRequerementDialogCarbohydrateTrainingDayText3": "",
-    "foodRequerementDialogCarbohydrateTrainingDayText4": "",
-    "foodRequerementDialogCarbohydrateTrainingDayText5": "",
-    "foodRequerementDialogCarbohydrateTrainingDayText6": "",
-    "foodRequerementDialogCarbohydrateTrainingDayText7": "",
-    "foodRequerementDialogCarbohydrateTrainingDayText8": ""
+    "foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText1": "زمان و مقدار مصرف کربوهیدرات پیش از تمرین با یکدیگر مرتبط هستند. به طور کلی، می‌توانید ۱ تا ۴ گرم کربوهیدرات به ازای هر کیلوگرم وزن بدن، از ۱ تا ۴ ساعت پیش از شروع تمرین مصرف کنید. برای نمونه، با وزن {weight} کیلوگرم، اگر ۲ ساعت تا آغاز تمرین باقی مانده است، می‌توانید {carbohydrate} گرم کربوهیدرات به همراه {protein} گرم پروتئین با کیفیت میل کنید.",
+    "@foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText1": {
+        "placeholders": {
+            "weight": {
+                "type": "int"
+            },
+            "carbohydrate": {
+                "type": "int"
+            },
+            "protein": {
+                "type": "int"
+            }
+        }
+    },
+    "foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText2": "مصرف کربوهیدرات ۱ تا ۴ ساعت پیش از تمرین به افزایش ذخیره گلیکوژن و بهبود عملکرد تمرین کمک می‌کند. خوردن کربوهیدرات تا ۲ ساعت قبل از تمرین، زمان کافی برای هضم و جذب آن را فراهم می‌سازد.",
+    "foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText3": "در صورتی که وعده غذایی خود را نزدیک به زمان تمرین میل کنید، ممکن است دچار سوهاضمه و ناراحتی معده شوید؛ زیرا هنگام تمرین، جریان خون از معده به سمت عضلات هدایت می‌شود تا اکسیژن را به عضلات برساند.",
+    "foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText4": "اگر پیش از تمرین دچار ناراحتی معده یا سوهاضمه شدید، توصیه می‌شود دو ساعت پیش از شروع تمرین یک میان‌وعده سبک و ساده با کربوهیدرات با شاخص گلیسمی بالا مانند موز یا سایر میوه‌های تازه یا خشک و یک مشت آجیل میل کنید. همچنین می‌توانید نان و کره مغزیجات (مانند کره پسته یا بادام‌زمینی) یا فرنی و جودوسر با شیر (اوتمیل) مصرف نمایید.",
+    "foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText1": "تا پیش از ۴۵ دقیقه تمرین، به جز آب نیازی به مصرف ماده غذایی دیگری نیست؛ زیرا در این مدت، احتمال تخلیه ذخایر گلیکوژن پایین است.",
+    "foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText2": "برای تمرین‌های ۴۵ تا ۷۵ دقیقه‌ای، می‌توانید کربوهیدرات شیرین را بمکید یا بچشید تا هم پیام خستگی به مغز کاهش یابد و هم در صورت دشواری خوردن هنگام تمرین، از مشکلات گوارشی جلوگیری شود.",
+    "foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText3": "در تمرین‌های بیش از یک ساعت، می‌توانید به ازای هر ساعت، ۳۰ تا ۶۰ گرم کربوهیدرات بسته به شدت تمرین مصرف کنید. بدن قادر نیست بیش از ۱ گرم گلوکز در دقیقه را در عضله با اکسیژن ترکیب کند؛ مصرف بیش از ۶۰ گرم کربوهیدرات در ساعت ممکن است مشکلات گوارشی ایجاد کند و سود بیشتری نخواهد داشت.",
+    "foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText4": "حدود ۱۵ تا ۲۰ دقیقه طول می‌کشد تا کربوهیدرات مصرف‌شده به عضلات برسد؛ بنابراین، میان‌وعده تمرینی را پیش از شروع خستگی میل کنید. معمولاً هر ۲۰ تا ۳۰ دقیقه در طول تمرین می‌توانید کربوهیدرات مصرف نمایید.",
+    "foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText5": "سه نمونه از میان‌وعده‌های مناسب تمرین شامل یک عدد موز، دو عدد خرما یا یک عدد انبه است که هرکدام حدود ۳۰ گرم کربوهیدرات دارند. در صورت شدت بالای تمرین، می‌توانید تا دو برابر این مقدار مصرف کنید.",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText1": "گلیکوژن مصرف‌شده در طول تمرین باید برای تمرین‌های روزهای بعد جبران شود؛ در غیر این صورت، عملکرد تمرینات بعدی کاهش می‌یابد.",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText2": "در دو ساعت پس از تمرین، ذخیره‌سازی گلیکوژن تا ۱۵۰ درصد بیشتر از حالت عادی انجام می‌شود.",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText3": "در دو ساعت ابتدایی پس از تمرین، جذب گلوکز بیشتر است؛ زیرا هم میزان گلوکز خون افزایش یافته و هم نفوذپذیری غشای سلولی برای دریافت گلوکز نسبت به حالت عادی بیشتر می‌شود.",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText4": "تا چهار ساعت پس از تمرین، می‌توانید به ازای هر کیلوگرم وزن بدن، ۱ تا ۱.۲ گرم کربوهیدرات در هر ساعت مصرف کنید که معادل {carbohydrateValu1} تا {carbohydrateValu2} گرم کربوهیدرات در هر ساعت است. این مقدار، حداکثر میزان کربوهیدراتی است که دستگاه گوارش می‌تواند در هر ساعت هضم کند.",
+    "@foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText4": {
+        "placeholders": {
+            "carbohydrateValu1": {
+                "type": "int"
+            },
+            "carbohydrateValu2": {
+                "type": "int"
+            }
+        }
+    },
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText5": "توصیه می‌شود کربوهیدرات را همراه با پروتئین با کیفیت (حاوی لوسین) برای حداکثرسازی عضله‌سازی و تأمین گلیکوژن مصرف کنید.",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText6": "مصرف پروتئین همراه با کربوهیدرات باعث ترشح بیشتر انسولین نسبت به مصرف تنها کربوهیدرات می‌شود. افزایش انسولین، جذب گلوکز و آمینواسیدهای پروتئین توسط سلول‌های عضلانی را افزایش داده و سطح کورتیزول را کاهش می‌دهد؛ در نتیجه، ترکیب پروتئین برای ساخت عضله بیشتر خواهد شد.",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText7": "وجود پروتئین در وعده غذایی پس از تمرین، به ساخت و ترمیم پروتئین عضلات کمک می‌کند و موجب کاهش تجزیه پروتئین و افزایش ذخیره پروتئین در عضلات برای بازسازی پس از تمرین می‌شود.",
+    "foodRequerementDialogProteinRestDayText1": "سعی کنید هر 3 ساعت در 5 وعده و هر وعده به مقدار مساوی و منظم حدود {proteinPerMeal} گرم در هر وعده پروتئین بخورید*. پروتئین باعث سیری طولانی مدت تر نسبت به کربوهیدرات میشود و در کنار غلات سبوس دار و حبوبات فیبر دار باعث سیری و کاهش اشتها در روز میشود . 30 درصد از پروتئین را از منبع شیر و محصولات لبنی تامین کنید که همزمان غنی از کلسیم هستند.",
+    "@foodRequerementDialogProteinRestDayText1": {
+        "placeholders": {
+            "proteinPerMeal": {
+                "type": "int"
+            }
+        }
+    },
+    "foodRequerementDialogProteinRestDayText2": "تمام پروتئین های حیوانی مانند شیر و گوشت با کیفیت هستند. اگر 9 آمینو اسید ضروری در ماده غذایی تقریبا به اندازه نیاز بدن باشد به آنها پروتئین با کیفیت بالا میگیم، به همین خاطر بین مواد غذایی گیاهی ، سویا(شیر و ماست سویا) ، گندم سیاه، دانه کینوا، دانه چیا و دانه کنف یا شاهدانه غذای گیاهی شامل پروتئین با کیفیت بالا هستند.",
+    "foodRequerementDialogProteinRestDayText3": "همچنین لوبیا، عدس، نخود، غلات و آجیل ها شامل برخی آمینو اسید های ضروری هستند که میتوانید با خوردن ترکیبی ازین مواد غذایی نیاز بدن به امینو اسید های ضروری را در 24 ساعت تامین کنید.برای مثال خوردن لوبیا و برنج و آجیل هر 9 آمینو اسید ضروری را تامین میکنند.",
+    "foodRequerementDialogProteinRestDayText4": "پروتئین با مقدار جذب بیشتر از روده بزرگ و امتیاز بیشتر DIAAS : شیر و تخم مرغ و سویا و محصولات سویا و نخود  وعدس سبز و لوبیا سیاه و بادام زمینی و برنج سفید هستند. شما روزانه به {proteinPerBodyWeight} گرم پروتئین به ازای هر کیلو از وزن بدنتون نیاز دارید تا با توجه به سطح فعالیت هفتگی و سرعت کاهش وزن عضله‌های خود را حفظ و افزایش دهید.",
+    "@foodRequerementDialogProteinRestDayText4": {
+        "placeholders": {
+            "proteinPerBodyWeight": {
+                "type": "double",
+                "format": "decimalPatternDigits",
+                "optionalParameters": {
+                    "decimalDigits": 1
+                }
+            }
+        }
+    },
+    "foodRequerementDialogProteinRestDayText5": "*مبتدیان مقدار پروتئین بیشتری نسبت به ورزشکار حرفه ای نیاز دارند ( تا 3 هفته اول 40 درصد بیشتر از افراد حرفه ای هست)",
+    "foodRequerementDialogProteinRestDayText6": "اگر به اندازه کافی پروتئین بخورید میتوانید بدون ورزش و با حداقل کاهش ماهیچه ، چربی کم کنید.",
+    "foodRequerementDialogProteinRestDayText7": "برای سرعت بیشتر کاهش چربی و تناسب اندام و همچنین افزایش ماهیچه میتوانید ورزش پرورش اندام یا دیگر ورزش ها مانند بوکس یا شنا را انجام دهید",
+    "foodRequerementDialogProteinTrainingDayText1": "مصرف غذای پروتئینی همراه با تمرین مقاومتی به ساخت ماهیچه کمک می‌کند. افزایش حجم ماهیچه باعث بالا رفتن نرخ سوخت‌وساز، کاهش سریع‌تر وزن، افزایش اعتماد به نفس و بهبود تناسب اندام می‌شود.",
+    "foodRequerementDialogProteinTrainingDayText2": "برای ساخت ماهیچه، مصرف پروتئین با کیفیت حاوی لوسین که سریع هضم و جذب می‌شود ضروری است. برای حداکثر عضله‌سازی باید آستانه لوسین (۲ تا ۳ گرم در هر وعده) تأمین شود.",
+    "foodRequerementDialogProteinTrainingDayText3": "مواد غذایی زیر حاوی ۲ تا ۳ گرم لوسین هستند و مصرف آن‌ها بعد از تمرین همراه با کربوهیدرات برای حداکثر عضله‌سازی توصیه می‌شود:",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine1": "۶۰۰ میلی‌لیتر شیر کامل",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine2": "۸۵ گرم پنیر چدار",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine3": "۴۵۰ گرم ماست ساده",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine4": "۴ عدد تخم‌مرغ (یک زرده و ۴ سفیده توصیه می‌شود)",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine5": "۸۵ گرم گوشت قرمز یا گوشت پرنده",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine6": "۱۰۰ گرم ماهی",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine7": "۱۷ گرم پودر پروتئین وی",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine8": "۴۰۰ گرم لوبیا یا عدس پخته‌شده",
+    "foodRequerementDialogProteinTrainingDayText4": "شیر حاوی آب، پروتئین، کربوهیدرات و مواد مغذی است و گزینه‌ای عالی برای ریکاوری عضلات بعد از تمرین محسوب می‌شود؛ زیرا به تأمین ذخیره گلیکوژن، ساخت ماهیچه و آب‌رسانی بدن کمک می‌کند. نوع شیر (کم‌چرب، پرچرب، شیر قهوه، شیر کاکائو یا طعم‌دار) تفاوتی ندارد.",
+    "foodRequerementDialogProteinTrainingDayText5": "برای ریکاوری و عضله‌سازی در پایان شب، مواد غذایی حاوی کازئین مانند شیر، ماست یا مکمل مصرف کنید. پروتئین باعث احساس سیری طولانی‌تر و خواب عمیق‌تر می‌شود.",
+    "foodRequerementDialogProteinTrainingDayText6": "پروتئین‌ها از آمینواسیدها ساخته شده‌اند. یازده نوع آمینواسید در بدن ساخته می‌شوند (آمینواسیدهای غیرضروری) و نه نوع دیگر باید از طریق رژیم غذایی تأمین شوند (آمینواسیدهای ضروری).",
+    "foodRequerementDialogProteinTrainingDayText7": "پروتئین‌ها به طور مداوم در بدن تجزیه می‌شوند (تجزیه پروتئین عضله) و آمینواسیدها نیز به طور مداوم در ساخت پروتئین‌ها به کار می‌روند (سنتز پروتئین عضله).",
+    "foodRequerementDialogFatRestDayText1": "مقدار مصرف چربی بر اساس توصیه سازمان‌های بهداشت جهانی، رژیم مدیترانه‌ای و سبک آشپزی ایرانی، حدود ۳۵ درصد انرژی روزانه است. کاهش مصرف چربی به کاهش وزن، کاهش شاخص توده بدنی و دور کمر و افزایش اعتماد به نفس کمک می‌کند. بیشترین میزان چربی‌سوزی بدن شما در محدوده ۶۲ تا ۶۳ درصد VO2max رخ می‌دهد.",
+    "foodRequerementDialogFatRestDayText2": "چربی بیشترین مقدار انرژی را در بین مواد غذایی دارد و مصرف زیاد آن به‌راحتی اتفاق می‌افتد. برای مثال، انرژی یک قاشق غذاخوری روغن معادل ۹ کیلوکالری ضربدر ۱۵ گرم یا ۱۳۵ کیلوکالری است؛ بنابراین به مقدار روغن مصرفی خود دقت کنید.",
+    "foodRequerementDialogFatRestDayText3": "۳۵ درصد انرژی روزانه باید از چربی‌ها تأمین شود که شامل سه بخش زیر است:",
+    "foodRequerementDialogFatRestDayText4": "۱۰ درصد چربی اشباع (معمولاً جامد یا نیمه‌جامد در دمای اتاق): روغن‌های گیاهی مانند پالم، نارگیل و کاکائو و همچنین چربی‌های حیوانی مانند دنبه، چربی بین بافت ماهیچه و گوشت، کره و موارد مشابه.",
+    "foodRequerementDialogFatRestDayText5": "چربی‌های موجود در محصولات لبنی به دلیل ساختار مولکولی خاص چربی شیر، کلسترول خون را افزایش نمی‌دهند و خطر بیماری قلبی عروقی ندارند. همچنین بخشی از چربی غیراشباع آن به دلیل ترکیب با کلسیم جذب بدن نمی‌شود.",
+    "foodRequerementDialogFatRestDayText6": "حداکثر ۱۲ درصد چربی غیراشباع تک‌زنجیره‌ای (معمولاً مایع در دمای اتاق): روغن زیتون، روغن کلزا، روغن آفتابگردان، بادام‌زمینی، روغن فندق و بادام، آووکادو، زیتون، آجیل و دانه‌ها.",
+    "foodRequerementDialogFatRestDayText7": "حداقل ۱۳ درصد چربی غیراشباع چندزنجیره‌ای (معمولاً مایع در دمای اتاق): امگا ۳ نوع EPA و DHA عمدتاً در ماهی‌های چرب مانند قزل‌آلا، سالمون و خال‌مخالی و به مقدار کمتر در ماهی تن وجود دارد. حداقل هفته‌ای یک بار ماهی چرب مصرف کنید. روغن کلزا با نسبت ۲ به ۱ امگا ۶ به امگا ۳ و نقطه دود ۱۷۰ درجه سانتی‌گراد برای پخت‌وپز مناسب است.",
+    "foodRequerementDialogFatRestDayText8": "چربی منبع مهمی از انرژی برای ورزش است. نسبت مصرف چربی و کربوهیدرات در بدن به شدت و مدت زمان فعالیت، سطح آمادگی جسمانی و رژیم غذایی قبل از ورزش بستگی دارد.",
+    "foodRequerementDialogFatRestDayText9": "سطح بالای کلسترول LDL یکی از عوامل اصلی بیماری‌های قلبی عروقی است. جایگزین کردن بخشی از چربی‌های اشباع با چربی‌های غیراشباع به کاهش کلسترول LDL و کاهش خطر بیماری قلبی کمک می‌کند.",
+    "foodRequerementDialogFatRestDayText10": "اسیدهای چرب امگا ۳ باعث کاهش التهاب و کاهش خطر بیماری‌های قلبی عروقی و سایر بیماری‌های مزمن می‌شوند.",
+    "foodRequerementDialogFatRestDayText11": "مصرف مکمل امگا ۳ می‌تواند به بهبود سازگاری عضلات، متابولیسم انرژی، ریکاوری عضلات و پیشگیری از آسیب کمک کند."
 }

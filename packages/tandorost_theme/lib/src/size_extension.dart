@@ -31,7 +31,7 @@ class SizeExtenstion extends ThemeExtension<SizeExtenstion> {
     this.profileRadius = 56,
     this.foodTilePieChartDimension = 80,
     this.chatButton = const Size.square(176),
-    this.logoImage = const Size.square(8 * 13),
+    this.logoImage = const Size.square(64),
     this.appButton = const Size.square(24),
   });
 

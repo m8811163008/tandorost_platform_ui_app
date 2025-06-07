@@ -20,7 +20,7 @@ class ResultBody extends StatelessWidget {
       >= 1024 => 1.2,
       >= 768 => 1.0,
       > 425 => 0.7,
-      _ => 0.6,
+      _ => 0.55,
     };
     return BlocBuilder<ResultCubit, ResultState>(
       buildWhen:

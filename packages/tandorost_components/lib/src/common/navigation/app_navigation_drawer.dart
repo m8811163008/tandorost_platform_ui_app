@@ -41,10 +41,21 @@ class AppNavigation {
           icon: Icon(DrawerNavigationRoutes.icons[index]),
         ),
       ),
-      SizedBox(height : context.sizeExtenstion.medium),
-      Text(context.l10n.drawerSupportText1),
-      SizedBox(height : context.sizeExtenstion.small),
-      Text(context.l10n.drawerSupportText2),
+      Padding(
+        padding: EdgeInsetsDirectional.only(
+          start: context.sizeExtenstion.large,
+          bottom: context.sizeExtenstion.small,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: context.sizeExtenstion.medium),
+            Text(context.l10n.drawerSupportText1),
+            SizedBox(height: context.sizeExtenstion.small),
+            Text(context.l10n.drawerSupportText2),
+          ],
+        ),
+      ),
     ];
   }
 

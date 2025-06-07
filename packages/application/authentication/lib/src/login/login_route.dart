@@ -96,10 +96,15 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AppLogo(size: context.sizeExtenstion.logoImage),
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: context.sizeExtenstion.medium,
+            ),
+            child: AppLogo(size: context.sizeExtenstion.logoImage),
+          ),
           Text(
             context.l10n.loginRouteLabel,
-            style: context.textTheme.headlineLarge,
+            style: context.textTheme.headlineSmall,
           ),
           SizedBox(height: context.sizeExtenstion.medium),
           PhoneNumberTextField(
@@ -137,19 +142,21 @@ class _LoginFormState extends State<LoginForm> {
             },
           ),
           SizedBox(height: context.sizeExtenstion.medium),
-          Wrap(
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: [
-              TextButton(
-                onPressed: widget.goToRegisterRoute?.call,
-                child: Text(context.l10n.registerLabel),
-              ),
-              SizedBox(width: context.sizeExtenstion.small),
-              TextButton(
-                onPressed: widget.goToForgotPasswordRoute?.call,
-                child: Text(context.l10n.forgotPasswordLabel),
-              ),
-            ],
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: Wrap(
+              children: [
+                TextButton(
+                  onPressed: widget.goToRegisterRoute?.call,
+                  child: Text(context.l10n.registerLabel),
+                ),
+                SizedBox(width: context.sizeExtenstion.small),
+                TextButton(
+                  onPressed: widget.goToForgotPasswordRoute?.call,
+                  child: Text(context.l10n.forgotPasswordLabel),
+                ),
+              ],
+            ),
           ),
         ],
       ),
