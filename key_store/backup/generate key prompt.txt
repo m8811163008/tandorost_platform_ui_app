@@ -30,7 +30,7 @@ java -jar C:\projects\tandorost_platform_ui_app\key_store\bundletool-all-1.16.0.
 
 
 // bazzar
-java -jar C:/projects/tandorost/build/app/outputs/bundle/release/bundlesigner-0.1.13.jar genbin  --bundle app-release.aab --bin bazzar --v2-signing-enabled true --v3-signing-enabled false --ks tandorost.jks -v
-java -jar bundlesigner-0.1.13.jar genbin  --bundle app-release.aab --bin bazzar --v2-signing-enabled true --v3-signing-enabled false --ks tandorost.jks -v
+java -jar C:\projects\tandorost_platform_ui_app\key_store\bundlesigner-0.1.13_2.jar genbin  --bundle app-release.aab --bin bazzar --v2-signing-enabled true --v3-signing-enabled false --ks tandorost.jks -v
+
 
 build/app/outputs/bundle/release/bundletool-all-1.16.0.jar
