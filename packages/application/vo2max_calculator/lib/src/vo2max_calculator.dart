@@ -58,109 +58,107 @@ class _Vo2maxCalculatorCardState extends State<Vo2maxCalculatorCard> {
   }
 
   Widget _buildEnergyCard(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+    return Padding(
+      padding: EdgeInsets.all(context.sizeExtenstion.medium),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              context.l10n.vo2maxCalculatorText1,
+              textAlign: TextAlign.justify,
+            ),
+            Text(
+              context.l10n.vo2maxCalculatorText2,
+              textAlign: TextAlign.justify,
+            ),
+            Text(
+              context.l10n.vo2maxCalculatorText3,
+              textAlign: TextAlign.justify,
+            ),
+            SizedBox(height: context.sizeExtenstion.medium),
+            FuelMixtureImage(),
+            SizedBox(height: context.sizeExtenstion.medium),
+            Text(
+              context.l10n.vo2maxCalculatorText4,
+              textAlign: TextAlign.justify,
+            ),
+            Divider(),
+            Text(
+              context.l10n.vo2maxCalculatorText5,
+              textAlign: TextAlign.justify,
+            ),
+            SizedBox(height: context.sizeExtenstion.medium),
+            Text(
+              context.l10n.vo2maxCalculatorText6,
+              textAlign: TextAlign.justify,
+            ),
+            SizedBox(height: context.sizeExtenstion.medium),
+            TextField(
+              decoration: InputDecoration(
+                labelText: context.l10n.vo2maxCalculatorLabelText,
+                hintText: context.l10n.vo2maxCalculatorHintText,
+              ),
+              onChanged: (value) {
+                setState(() {
+                  vo2max = (22.351 * (int.parse(value) / 1000)) - 11.288;
+                  // in 12 minues
+                  maxDistanceInMeterInOneMinues =
+                      ((0.62 * vo2max) + 11.288) * 1000 / (22.351 * 12);
+                });
+              },
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              textInputAction: TextInputAction.done,
+            ),
+            if (vo2max != 0) ...[
+              SizedBox(height: context.sizeExtenstion.medium),
               Text(
-                context.l10n.vo2maxCalculatorText1,
+                context.l10n.vo2maxCalculatorVo2maxRate(vo2max),
                 textAlign: TextAlign.justify,
               ),
               Text(
-                context.l10n.vo2maxCalculatorText2,
-                textAlign: TextAlign.justify,
-              ),
-              Text(
-                context.l10n.vo2maxCalculatorText3,
+                context.l10n.vo2maxCalculatorVo2maxEfficientDistance(
+                  maxDistanceInMeterInOneMinues,
+                ),
                 textAlign: TextAlign.justify,
               ),
               SizedBox(height: context.sizeExtenstion.medium),
-              FuelMixtureImage(),
-              SizedBox(height: context.sizeExtenstion.medium),
               Text(
-                context.l10n.vo2maxCalculatorText4,
-                textAlign: TextAlign.justify,
-              ),
-              Divider(),
-              Text(
-                context.l10n.vo2maxCalculatorText5,
+                context.l10n.vo2maxCalculatorVo2maxRecommandation,
                 textAlign: TextAlign.justify,
               ),
               SizedBox(height: context.sizeExtenstion.medium),
               Text(
-                context.l10n.vo2maxCalculatorText6,
-                textAlign: TextAlign.justify,
-              ),
-              SizedBox(height: context.sizeExtenstion.medium),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: context.l10n.vo2maxCalculatorLabelText,
-                  hintText: context.l10n.vo2maxCalculatorHintText,
+                context.l10n.vo2maxCalculatorVo2maxDistance(
+                  15,
+                  maxDistanceInMeterInOneMinues * 15,
                 ),
-                onChanged: (value) {
-                  setState(() {
-                    vo2max = (22.351 * (int.parse(value) / 1000)) - 11.288;
-                    // in 12 minues
-                    maxDistanceInMeterInOneMinues =
-                        ((0.62 * vo2max) + 11.288) * 1000 / (22.351 * 12);
-                  });
-                },
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
-                textInputAction: TextInputAction.done,
-              ),
-              if (vo2max != 0) ...[
-                SizedBox(height: context.sizeExtenstion.medium),
-                Text(
-                  context.l10n.vo2maxCalculatorVo2maxRate(vo2max),
-                  textAlign: TextAlign.justify,
-                ),
-                Text(
-                  context.l10n.vo2maxCalculatorVo2maxEfficientDistance(
-                    maxDistanceInMeterInOneMinues,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-                SizedBox(height: context.sizeExtenstion.medium),
-                Text(
-                  context.l10n.vo2maxCalculatorVo2maxRecommandation,
-                  textAlign: TextAlign.justify,
-                ),
-                SizedBox(height: context.sizeExtenstion.medium),
-                Text(
-                  context.l10n.vo2maxCalculatorVo2maxDistance(
-                    15,
-                    maxDistanceInMeterInOneMinues * 15,
-                  ),
 
-                  textAlign: TextAlign.justify,
+                textAlign: TextAlign.justify,
+              ),
+              Text(
+                context.l10n.vo2maxCalculatorVo2maxDistance(
+                  20,
+                  maxDistanceInMeterInOneMinues * 20,
                 ),
-                Text(
-                  context.l10n.vo2maxCalculatorVo2maxDistance(
-                    20,
-                    maxDistanceInMeterInOneMinues * 20,
-                  ),
-                  textAlign: TextAlign.justify,
+                textAlign: TextAlign.justify,
+              ),
+              Text(
+                context.l10n.vo2maxCalculatorVo2maxDistance(
+                  25,
+                  maxDistanceInMeterInOneMinues * 25,
                 ),
-                Text(
-                  context.l10n.vo2maxCalculatorVo2maxDistance(
-                    25,
-                    maxDistanceInMeterInOneMinues * 25,
-                  ),
-                  textAlign: TextAlign.justify,
+                textAlign: TextAlign.justify,
+              ),
+              Text(
+                context.l10n.vo2maxCalculatorVo2maxDistance(
+                  30,
+                  maxDistanceInMeterInOneMinues * 30,
                 ),
-                Text(
-                  context.l10n.vo2maxCalculatorVo2maxDistance(
-                    30,
-                    maxDistanceInMeterInOneMinues * 30,
-                  ),
-                  textAlign: TextAlign.justify,
-                ),
-              ],
+                textAlign: TextAlign.justify,
+              ),
             ],
-          ),
+          ],
         ),
       ),
     );

@@ -72,6 +72,8 @@ dependencies:
     path: packages/application/introduction
   profile_app:
     path: packages/application/profile
+  vo2max_calculator:
+    path: packages/application/vo2max_calculator
   
 
 dev_dependencies:

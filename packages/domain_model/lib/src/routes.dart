@@ -7,7 +7,8 @@ enum RoutesNames {
   verificationRoute('/verify-phone-number'),
   profileRoute('/profile'),
   fitnessProfileRoute('/fitness-profile'),
-  foodReportRoute('/food-report');
+  foodReportRoute('/food-report'),
+  vo2maxCalculator('/vo2max-calculator');
 
   final String path;
   const RoutesNames(this.path);

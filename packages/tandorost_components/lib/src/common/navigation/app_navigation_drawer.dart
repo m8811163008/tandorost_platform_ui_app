@@ -80,14 +80,16 @@ abstract class DrawerNavigationRoutes {
     1: RoutesNames.foodReportRoute,
     2: RoutesNames.fitnessProfileRoute,
     3: RoutesNames.profileRoute,
-    4: RoutesNames.loginRoute,
+    4: RoutesNames.vo2maxCalculator,
+    5: RoutesNames.loginRoute,
   };
   static const Map<int, IconData> icons = {
     0: Icons.search,
     1: Icons.report,
     2: Icons.fitness_center,
     3: Icons.account_box,
-    4: Icons.login,
+    4: Icons.health_and_safety,
+    5: Icons.login,
   };
 }
 

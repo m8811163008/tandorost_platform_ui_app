@@ -11,6 +11,7 @@ import 'package:food_input_app/food_input.dart';
 import 'package:profile_app/profile.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:tandorost_components/tandorost_components.dart';
+import 'package:vo2max_calculator/vo2max_calculator.dart';
 
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
@@ -191,6 +192,21 @@ class Navigation {
                   () => context.go(RoutesNames.searchRoute.path),
               goToFitnessProfileRoute:
                   () => context.go(RoutesNames.fitnessProfileRoute.path),
+              onBottomNavigationChanged: (index) {
+                _onBottomNavigationChanged(context, index);
+              },
+              onDrawerNavigationChanged: (index) {
+                _onDrawerNavigationChanged(context, index);
+              },
+              bottomNavigationIndex: _bottomNavigationIndex(state),
+              drawerNavigationIndex: _drawerNavigationIndex(state),
+            );
+          },
+        ),
+        GoRoute(
+          path: RoutesNames.vo2maxCalculator.path,
+          builder: (context, state) {
+            return Vo2maxCalculatorRoute(
               onBottomNavigationChanged: (index) {
                 _onBottomNavigationChanged(context, index);
               },

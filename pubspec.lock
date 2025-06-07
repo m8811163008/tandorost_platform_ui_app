@@ -1128,6 +1128,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "14.3.1"
+  vo2max_calculator:
+    dependency: "direct main"
+    description:
+      path: "packages/application/vo2max_calculator"
+      relative: true
+    source: path
+    version: "0.0.1"
   watcher:
     dependency: transitive
     description:

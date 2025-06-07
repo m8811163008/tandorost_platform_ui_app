@@ -701,8 +701,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
         'forgotPassRoute': 'فراموشی رمز عبور',
         'verificationRoute': 'تایید شماره',
         'profileRoute': 'پروفایل',
-        'fitnessProfileRoute': 'تناسب اندام',
+        'fitnessProfileRoute': 'ترکیب بدن | تناسب اندام',
         'foodReportRoute': 'گزارش تغذیه',
+        'vo2maxCalculator': 'هوازی | حداکثر کاهش چربی',
         'other': 'ترجمه تعریف نشده',
       },
     );
