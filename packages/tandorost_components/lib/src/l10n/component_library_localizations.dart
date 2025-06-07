@@ -1832,6 +1832,66 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'در {minutes} دقیقه مسافت {distance} متر را با سرعت متوسط طی کنید'**
   String vo2maxCalculatorVo2maxDistance(int minutes, double distance);
+
+  /// No description provided for @timeRestrictedText1.
+  ///
+  /// In fa, this message translates to:
+  /// **'فستینگ یا غذا خوردن با محدودیت زمانی، نوعی روزه‌داری متناوب است که شامل یک بازه روزه‌داری ۱۲ تا ۱۶ ساعته و یک بازه غذا خوردن ۸ تا ۱۲ ساعته در روز می‌شود.'**
+  String get timeRestrictedText1;
+
+  /// No description provided for @timeRestrictedText2.
+  ///
+  /// In fa, this message translates to:
+  /// **'تنظیم وعده‌های غذایی بر اساس ریتم شبانه‌روزی (ساعت زیستی بدن) به بهبود عملکرد بدن، سلامت و کاهش وزن کمک می‌کند.'**
+  String get timeRestrictedText2;
+
+  /// No description provided for @timeRestrictedText3.
+  ///
+  /// In fa, this message translates to:
+  /// **'مطالعات نشان داده‌اند که اختلال در ریتم شبانه‌روزی می‌تواند بر هورمون‌های کنترل‌کننده اشتها، مصرف انرژی و قند خون اثر منفی بگذارد.'**
+  String get timeRestrictedText3;
+
+  /// No description provided for @timeRestrictedText4.
+  ///
+  /// In fa, this message translates to:
+  /// **'خوردن از ساعت ۸ صبح تا ۲ ظهر می‌تواند مفید باشد و اشتها و مصرف غذا را کاهش دهد.'**
+  String get timeRestrictedText4;
+
+  /// No description provided for @timeRestrictedText5.
+  ///
+  /// In fa, this message translates to:
+  /// **'یک مطالعه نشان داده است که غذا خوردن در یک بازه ۶ ساعته پیش از ساعت ۳ بعدازظهر، گرسنگی و عوامل خطر دیابت نوع ۲ را در مردان مبتلا به پیش‌دیابت کاهش داده است.'**
+  String get timeRestrictedText5;
+
+  /// No description provided for @timeRestrictedText6.
+  ///
+  /// In fa, this message translates to:
+  /// **'در فستینگ، به دلیل محدودیت زمانی غذا خوردن، احتمال دریافت کالری کمتر و کاهش وزن وجود دارد و همچنین با تنظیم وعده‌ها بر اساس ساعت زیستی بدن، از دیر خوردن شام جلوگیری می‌شود.'**
+  String get timeRestrictedText6;
+
+  /// No description provided for @timeRestrictedText7.
+  ///
+  /// In fa, this message translates to:
+  /// **'بیشتر مطالعات فستینگ روی حیوانات انجام شده و شواهد انسانی محدود است؛ تنها تعداد کمی از مطالعات، کاهش وزن را در انسان‌ها نشان داده‌اند.'**
+  String get timeRestrictedText7;
+
+  /// No description provided for @timeRestrictedText8.
+  ///
+  /// In fa, this message translates to:
+  /// **'در بازه غذا خوردن، مطابق نیاز انرژی و درشت‌مغذی‌های خود رژیم بگیرید.'**
+  String get timeRestrictedText8;
+
+  /// No description provided for @timeRestrictedText9.
+  ///
+  /// In fa, this message translates to:
+  /// **'فستینگ‌های رایج شامل ۱۲ ساعت روزه‌داری و ۱۲ ساعت غذا خوردن است و می‌توانید تا ۱۶ ساعت روزه‌داری را افزایش دهید.'**
+  String get timeRestrictedText9;
+
+  /// No description provided for @timeRestrictedText10.
+  ///
+  /// In fa, this message translates to:
+  /// **'نوشیدن مایعات مانند آب و دمنوش در تمام طول شبانه‌روز مجاز است.'**
+  String get timeRestrictedText10;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {
