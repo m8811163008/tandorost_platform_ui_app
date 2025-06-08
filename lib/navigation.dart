@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:food_report_app/food_report.dart';
 import 'package:go_router/go_router.dart';
 import 'package:food_input_app/food_input.dart';
+import 'package:introduction_app/introduction.dart';
+import 'package:profile/profile.dart';
 import 'package:profile_app/profile.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -218,9 +220,26 @@ class Navigation {
             );
           },
         ),
+        GoRoute(
+          path: RoutesNames.introductionRoute.path,
+          builder: (context, state) {
+            return IntroductionRoute(
+              onDoneIntroduction:
+                  () => context.go(RoutesNames.searchRoute.path),
+            );
+          },
+        ),
       ],
 
       redirect: (_, state) async {
+        final isVisitedIntroductionRoute =
+            await RepositoryProvider.of<ProfileRepository>(
+              context,
+            ).isVisitedIntroductionRoute;
+        if (!isVisitedIntroductionRoute) {
+          return RoutesNames.introductionRoute.path;
+        }
+
         final authStatus =
             await RepositoryProvider.of<AuthenticationRepository>(
               context,

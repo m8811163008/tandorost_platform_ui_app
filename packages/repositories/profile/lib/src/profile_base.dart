@@ -11,7 +11,7 @@ class ProfileRepository {
   ProfileRepository({required this.remoteApi, required this.localStorage})
     : _controller = BehaviorSubject.seeded(Language.persian);
 
-  Future<Language>  userLanguage() => _controller.first;
+  Future<Language> userLanguage() => _controller.first;
 
   Future<Language> get userSpokenLanguage async {
     final language = await localStorage.read(StorageKey.userspokenLanguage);
@@ -39,5 +39,17 @@ class ProfileRepository {
     final profile = await remoteApi.updateProfile(updatedProfile);
     _controller.add(profile.language);
     return profile;
+  }
+
+  Future<void> visitedIntroductionRoute() async {
+    await localStorage.upsert(StorageKey.visitedIntroductionRoute, {
+      StorageKey.visitedIntroductionRoute: true,
+    });
+  }
+
+  Future<bool> get isVisitedIntroductionRoute async {
+    final result = await localStorage.read(StorageKey.visitedIntroductionRoute);
+    if (result == null) return false;
+    return result[StorageKey.visitedIntroductionRoute];
   }
 }

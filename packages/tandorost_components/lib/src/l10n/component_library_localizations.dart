@@ -1892,6 +1892,66 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'نوشیدن مایعات مانند آب و دمنوش در تمام طول شبانه‌روز مجاز است.'**
   String get timeRestrictedText10;
+
+  /// No description provided for @introductionSkipText.
+  ///
+  /// In fa, this message translates to:
+  /// **'بعدا میبینم'**
+  String get introductionSkipText;
+
+  /// No description provided for @introductionDoneText.
+  ///
+  /// In fa, this message translates to:
+  /// **'دیدم'**
+  String get introductionDoneText;
+
+  /// No description provided for @introductionNextText.
+  ///
+  /// In fa, this message translates to:
+  /// **'جلو'**
+  String get introductionNextText;
+
+  /// No description provided for @introductionSingleIntroScreen1TitleText.
+  ///
+  /// In fa, this message translates to:
+  /// **'لاغری سریع'**
+  String get introductionSingleIntroScreen1TitleText;
+
+  /// No description provided for @introductionSingleIntroScreen1DescriptionText.
+  ///
+  /// In fa, this message translates to:
+  /// **'سریع‌ترین روش لاغری بدون دارو در جهان'**
+  String get introductionSingleIntroScreen1DescriptionText;
+
+  /// No description provided for @introductionSingleIntroScreen1BannerText.
+  ///
+  /// In fa, this message translates to:
+  /// **'سریع'**
+  String get introductionSingleIntroScreen1BannerText;
+
+  /// No description provided for @introductionSingleIntroScreen2TitleText.
+  ///
+  /// In fa, this message translates to:
+  /// **'تناسب اندام'**
+  String get introductionSingleIntroScreen2TitleText;
+
+  /// No description provided for @introductionSingleIntroScreen2DescriptionText.
+  ///
+  /// In fa, this message translates to:
+  /// **'کاهش چربی و جذابیت هیکل شما'**
+  String get introductionSingleIntroScreen2DescriptionText;
+
+  /// No description provided for @introductionSingleIntroScreen3TitleText.
+  ///
+  /// In fa, this message translates to:
+  /// **'پشتیبانی'**
+  String get introductionSingleIntroScreen3TitleText;
+
+  /// No description provided for @introductionSingleIntroScreen3DescriptionText.
+  ///
+  /// In fa, this message translates to:
+  /// **'پشتیبانی از سفره ایرانی'**
+  String get introductionSingleIntroScreen3DescriptionText;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

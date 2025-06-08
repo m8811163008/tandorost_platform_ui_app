@@ -1135,4 +1135,34 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get timeRestrictedText10 => 'نوشیدن مایعات مانند آب و دمنوش در تمام طول شبانه‌روز مجاز است.';
+
+  @override
+  String get introductionSkipText => 'بعدا میبینم';
+
+  @override
+  String get introductionDoneText => 'دیدم';
+
+  @override
+  String get introductionNextText => 'جلو';
+
+  @override
+  String get introductionSingleIntroScreen1TitleText => 'لاغری سریع';
+
+  @override
+  String get introductionSingleIntroScreen1DescriptionText => 'سریع‌ترین روش لاغری بدون دارو در جهان';
+
+  @override
+  String get introductionSingleIntroScreen1BannerText => 'سریع';
+
+  @override
+  String get introductionSingleIntroScreen2TitleText => 'تناسب اندام';
+
+  @override
+  String get introductionSingleIntroScreen2DescriptionText => 'کاهش چربی و جذابیت هیکل شما';
+
+  @override
+  String get introductionSingleIntroScreen3TitleText => 'پشتیبانی';
+
+  @override
+  String get introductionSingleIntroScreen3DescriptionText => 'پشتیبانی از سفره ایرانی';
 }

@@ -528,5 +528,16 @@
     "timeRestrictedText7": "بیشتر مطالعات فستینگ روی حیوانات انجام شده و شواهد انسانی محدود است؛ تنها تعداد کمی از مطالعات، کاهش وزن را در انسان‌ها نشان داده‌اند.",
     "timeRestrictedText8": "در بازه غذا خوردن، مطابق نیاز انرژی و درشت‌مغذی‌های خود رژیم بگیرید.",
     "timeRestrictedText9": "فستینگ‌های رایج شامل ۱۲ ساعت روزه‌داری و ۱۲ ساعت غذا خوردن است و می‌توانید تا ۱۶ ساعت روزه‌داری را افزایش دهید.",
-    "timeRestrictedText10": "نوشیدن مایعات مانند آب و دمنوش در تمام طول شبانه‌روز مجاز است."
+    "timeRestrictedText10": "نوشیدن مایعات مانند آب و دمنوش در تمام طول شبانه‌روز مجاز است.",
+    "introductionSkipText" : "بعدا میبینم",
+    "introductionDoneText" : "دیدم",
+    "introductionNextText" : "جلو",
+    "introductionSingleIntroScreen1TitleText" : "لاغری سریع",
+    "introductionSingleIntroScreen1DescriptionText" : "سریع‌ترین روش لاغری بدون دارو در جهان",
+    "introductionSingleIntroScreen1BannerText" : "سریع",
+    "introductionSingleIntroScreen2TitleText" : "تناسب اندام",
+    "introductionSingleIntroScreen2DescriptionText" : "کاهش چربی و جذابیت هیکل شما",
+    "introductionSingleIntroScreen3TitleText" : "پشتیبانی",
+    "introductionSingleIntroScreen3DescriptionText" : "پشتیبانی از سفره ایرانی"
+
 }
