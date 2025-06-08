@@ -9,41 +9,209 @@ class FoodSuggestionChips extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final gap = SizedBox(width: context.sizeExtenstion.small);
-    return Row(
+    return ListView(
+      scrollDirection: Axis.horizontal,
       children: [
-        //rest
-        ActionChip.elevated(
-          label: Text(
-            context.l10n.foodRequerementDialogGeneralRecommendationTitle,
-          ),
-          onPressed: () async {
-            await showDialog(
-              context: context,
-              builder: (context) {
-                return GeneralRequrementDialog();
-              },
-            );
-          },
-        ),
-        gap,
-        //rest
-        ActionChip.elevated(
-          label: Text(
-            context.l10n.foodRequerementDialogHydrationTitle,
-          ),
-          onPressed: () async {
-            await showDialog(
-              context: context,
-              builder: (context) {
-                return WaterRequrementDialogRestDay();
-              },
-            );
-          },
-        ),
-        //rest
+        if (selectedTab.isRestDay) ..._buildRestDay(context),
+        if (!selectedTab.isRestDay) ..._buildTrainingDay(context),
       ],
     );
+  }
+
+  List<Widget> _buildRestDay(BuildContext context) {
+    final gap = SizedBox(width: context.sizeExtenstion.small);
+    final age = context.read<FoodReportCubit>().state.userPhysicalProfile?.age;
+    return [
+      //rest
+      //fat
+      ActionChip.elevated(
+        label: Text(context.l10n.fat),
+        onPressed: () async {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return FatRequrementDialogRestDay();
+            },
+          );
+        },
+      ),
+      gap,
+      //protein
+      ActionChip.elevated(
+        label: Text(context.l10n.protein),
+        onPressed: () async {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return ProteinRequrementDialogRestDay();
+            },
+          );
+        },
+      ),
+      gap,
+      //carbs
+      ActionChip.elevated(
+        label: Text(context.l10n.carbohydrate),
+        onPressed: () async {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return CarbRequrementDialogRestDay();
+            },
+          );
+        },
+      ),
+      //water
+      gap,
+      ActionChip.elevated(
+        label: Text(context.l10n.foodRequerementDialogHydrationTrainingTitle),
+        onPressed: () async {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return WaterRequrementDialogRestDay();
+            },
+          );
+        },
+      ),
+      //vitamins and mineral
+      ActionChip.elevated(
+        label: Text(
+          context.l10n.foodRequerementDialogGeneralRecommendationTitle,
+        ),
+        onPressed: () async {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return GeneralRequrementDialog();
+            },
+          );
+        },
+      ),
+      if (age != null ? age >= 50 : false)
+        ActionChip.elevated(
+          label: Text(context.l10n.timeRestrictedEatingLabel),
+          onPressed: () async {
+            await showDialog(
+              context: context,
+              builder: (context) {
+                return FoodRequerementDialogAgeRelatedFoodConsidarationRestDay();
+              },
+            );
+          },
+        ),
+      if (context
+              .read<FoodReportCubit>()
+              .state
+              .userProfile
+              ?.isTimeRestrictedEating ??
+          false)
+        ActionChip.elevated(
+          label: Text(context.l10n.timeRestrictedEatingLabel),
+          onPressed: () async {
+            await showDialog(
+              context: context,
+              builder: (context) {
+                return TimeRestrictedDialogRestDay();
+              },
+            );
+          },
+        ),
+    ];
+  }
+
+  List<Widget> _buildTrainingDay(BuildContext context) {
+    final gap = SizedBox(width: context.sizeExtenstion.small);
+    final age = context.read<FoodReportCubit>().state.userPhysicalProfile?.age;
+    return [
+      //training
+      //carb
+      ActionChip.elevated(
+        label: Text(
+          context
+              .l10n
+              .foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceTitle,
+        ),
+        onPressed: () async {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return CarbRequrementDialogTrainingDayBeforeExcercise();
+            },
+          );
+        },
+      ),
+      gap,
+      ActionChip.elevated(
+        label: Text(
+          context
+              .l10n
+              .foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceTitle,
+        ),
+        onPressed: () async {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return CarbRequrementDialogTrainingDayDuringExcercise();
+            },
+          );
+        },
+      ),
+      gap,
+      ActionChip.elevated(
+        label: Text(
+          context
+              .l10n
+              .foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceTitle,
+        ),
+        onPressed: () async {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return CarbRequrementDialogTrainingDayAfterExcercise();
+            },
+          );
+        },
+      ),
+      //protein
+      gap,
+      ActionChip.elevated(
+        label: Text(context.l10n.protein),
+        onPressed: () async {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return ProteinRequrementDialogTrainingDay();
+            },
+          );
+        },
+      ),
+      //water
+      gap,
+      ActionChip.elevated(
+        label: Text(context.l10n.foodRequerementDialogHydrationTrainingTitle),
+        onPressed: () async {
+          await showDialog(
+            context: context,
+            builder: (context) {
+              return WaterRequrementDialogTrainingDay();
+            },
+          );
+        },
+      ),
+      if (age != null ? age >= 50 : false)
+        ActionChip.elevated(
+          label: Text(context.l10n.timeRestrictedEatingLabel),
+          onPressed: () async {
+            await showDialog(
+              context: context,
+              builder: (context) {
+                return FoodRequerementDialogAgeRelatedFoodConsidarationRestDay();
+              },
+            );
+          },
+        ),
+    ];
   }
 }
 

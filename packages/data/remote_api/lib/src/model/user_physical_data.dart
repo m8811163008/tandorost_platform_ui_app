@@ -75,6 +75,15 @@ class UserPhysicalProfile extends Equatable {
     required this.activityLevel,
   });
 
+  int get age {
+    final now = DateTime.now();
+    int years = now.year - birthday.year;
+    if (now.month < birthday.month ||
+        (now.month == birthday.month && now.day < birthday.day)) {
+      years--;
+    }
+    return years;
+  }
 
   factory UserPhysicalProfile.fromJson(Map<String, dynamic> json) =>
       _$UserPhysicalProfileFromJson(json);

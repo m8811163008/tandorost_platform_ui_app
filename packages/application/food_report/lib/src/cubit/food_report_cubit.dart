@@ -26,6 +26,7 @@ class FoodReportCubit extends Cubit<FoodReportState> {
   void _initialize() async {
     readFoodsNutrition();
     readNutritionRequirements();
+    readProfile();
   }
 
   void readFoodsNutrition() async {

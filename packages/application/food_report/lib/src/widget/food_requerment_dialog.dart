@@ -511,3 +511,191 @@ class TimeRestrictedDialogRestDay extends StatelessWidget {
     );
   }
 }
+
+class FoodRequerementDialogAgeRelatedFoodConsidarationRestDay
+    extends StatelessWidget {
+  const FoodRequerementDialogAgeRelatedFoodConsidarationRestDay({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppDialog(
+      title: context.l10n.foodRequerementDialogHydrationTitle,
+      contents: [
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText1,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText2,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText3,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText4,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText5,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText6,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText7,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText8,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText9,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText10,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText11,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText12,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText13,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText14,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText15,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText16,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText17,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText18,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText19,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText20,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText21,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText22,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText23,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText24,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText25,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationRestDayText26,
+        ),
+      ],
+    );
+  }
+}
+
+class FoodRequerementDialogAgeRelatedFoodConsidarationTraningDay
+    extends StatelessWidget {
+  const FoodRequerementDialogAgeRelatedFoodConsidarationTraningDay({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppDialog(
+      title: context.l10n.foodRequerementDialogHydrationTitle,
+      contents: [
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText1,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText2,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText3,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText4,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText5,
+        ),
+        Text(
+          context
+              .l10n
+              .foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText6,
+        ),
+      ],
+    );
+  }
+}

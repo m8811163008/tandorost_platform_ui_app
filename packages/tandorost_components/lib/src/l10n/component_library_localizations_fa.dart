@@ -766,7 +766,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get addMeasurementDialogHintText8 => 'بالاتر از ناف باشد و پوست زیر متر جمع نشود';
 
   @override
-  String get foodRequerementDialogGeneralRecommendationTitle => 'کلی';
+  String get foodRequerementDialogGeneralRecommendationTitle => 'ویتامین و موادمعدنی';
 
   @override
   String get foodRequerementDialogGeneralRecommendationVitaminTitle => 'ویتامین و مواد معدنی';
@@ -834,6 +834,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   }
 
   @override
+  String get foodRequerementDialogHydrationTrainingTitle => 'آب‌رسانی';
+
+  @override
   String get foodRequerementDialogHydrationTrainingDayText1 => 'کم‌آبی بدن باعث استرس قلبی‌عروقی می‌شود و دمای مرکزی بدن را افزایش می‌دهد.';
 
   @override
@@ -886,6 +889,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get foodRequerementDialogCarbohydrateRestDayText6 => 'در روزهای استراحت، با مصرف بیشتر میوه‌ها و سبزیجات، نیازهای ویتامینی و فیبر بدن را تأمین کنید؛ در روزهای تمرین نیز، برای تأمین انرژی مورد نیاز عضلات، بر مصرف کربوهیدرات‌های پیچیده و غنی تمرکز داشته باشید.';
 
   @override
+  String get foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceTitle => 'کربوهیدرات قبل از ورزش';
+
+  @override
   String foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText1(int weight, int carbohydrate, int protein) {
     return 'زمان و مقدار مصرف کربوهیدرات پیش از تمرین با یکدیگر مرتبط هستند. به طور کلی، می‌توانید ۱ تا ۴ گرم کربوهیدرات به ازای هر کیلوگرم وزن بدن، از ۱ تا ۴ ساعت پیش از شروع تمرین مصرف کنید. برای نمونه، با وزن $weight کیلوگرم، اگر ۲ ساعت تا آغاز تمرین باقی مانده است، می‌توانید $carbohydrate گرم کربوهیدرات به همراه $protein گرم پروتئین با کیفیت میل کنید.';
   }
@@ -898,6 +904,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText4 => 'اگر پیش از تمرین دچار ناراحتی معده یا سوهاضمه شدید، توصیه می‌شود دو ساعت پیش از شروع تمرین یک میان‌وعده سبک و ساده با کربوهیدرات با شاخص گلیسمی بالا مانند موز یا سایر میوه‌های تازه یا خشک و یک مشت آجیل میل کنید. همچنین می‌توانید نان و کره مغزیجات (مانند کره پسته یا بادام‌زمینی) یا فرنی و جودوسر با شیر (اوتمیل) مصرف نمایید.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceTitle => 'کربوهیدرات هنگام ورزش';
 
   @override
   String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText1 => 'تا پیش از ۴۵ دقیقه تمرین، به جز آب نیازی به مصرف ماده غذایی دیگری نیست؛ زیرا در این مدت، احتمال تخلیه ذخایر گلیکوژن پایین است.';
@@ -913,6 +922,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText5 => 'سه نمونه از میان‌وعده‌های مناسب تمرین شامل یک عدد موز، دو عدد خرما یا یک عدد انبه است که هرکدام حدود ۳۰ گرم کربوهیدرات دارند. در صورت شدت بالای تمرین، می‌توانید تا دو برابر این مقدار مصرف کنید.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceTitle => 'کربوهیدرات بعد از ورزش';
 
   @override
   String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText1 => 'گلیکوژن مصرف‌شده در طول تمرین باید برای تمرین‌های روزهای بعد جبران شود؛ در غیر این صورت، عملکرد تمرینات بعدی کاهش می‌یابد.';
@@ -1165,4 +1177,103 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get introductionSingleIntroScreen3DescriptionText => 'پشتیبانی از سفره ایرانی';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationTitle => 'تغذیه بزرگسالان';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText1 => 'با افزایش سن، عملکرد ورزشی به‌تدریج کاهش می‌یابد؛ این کاهش معمولاً از دهه ۲۰ یا ۳۰ زندگی آغاز می‌شود و هر دهه حدود ۷٪ کمتر می‌شود. علت اصلی این کاهش، افت عملکرد قلب، ریه، کاهش توده و قدرت عضلات و استخوان‌هاست. زنان بیشتر از مردان دچار این تغییرات می‌شوند. کاهش هورمون‌های رشد، تستوسترون و استروژن نقش مهمی دارد و باعث افزایش چربی بدن و کاهش عضله می‌شود.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText2 => 'توده استخوانی از میانه دهه ۳۰ کاهش می‌یابد و خطر پوکی استخوان و شکستگی در زنان بالای ۵۰ سال و مردان بالای ۶۰ سال افزایش می‌یابد. انعطاف‌پذیری بدن نیز کمتر شده و ریکاوری و بهبود آسیب‌ها زمان بیشتری می‌برد. برای کاهش آسیب، تمرینات کم‌برخورد و خواب کافی توصیه می‌شود.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText3 => 'در زنان، کاهش عملکرد ورزشی زودتر از مردان و معمولاً از ۵۵ تا ۶۰ سالگی آغاز می‌شود، در حالی که در مردان این کاهش از ۷۰ تا ۷۵ سالگی شروع می‌شود. علت اصلی این تفاوت، تغییرات هورمونی دوران پیش‌یائسگی و یائسگی است که باعث کاهش توده عضلانی، افزایش چربی زیرپوستی و احشایی و تغییر توزیع چربی به سمت شکم می‌شود. این تغییرات خطر بیماری‌های قلبی، دیابت نوع ۲ و پوکی استخوان را افزایش می‌دهد.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText4 => 'دوران پیش‌یائسگی معمولاً از ۴۵ سالگی آغاز می‌شود و با کاهش هورمون‌های استروژن و پروژسترون همراه است. این تغییرات باعث کاهش توده عضلانی، افزایش چربی شکمی، کاهش تراکم استخوان و کاهش حساسیت به انسولین می‌شود. همچنین، علائمی مانند گرگرفتگی، تغییرات خلقی و اختلال خواب شایع است.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText5 => 'یائسگی به خودی خود باعث افزایش وزن نمی‌شود، اما نحوه ذخیره و توزیع چربی بدن را تغییر می‌دهد و چربی بیشتر در ناحیه شکم تجمع می‌یابد. علائمی مانند خستگی و کم‌خوابی می‌تواند منجر به انتخاب‌های غذایی ناسالم و کاهش فعالیت بدنی شود. هورمون‌درمانی جایگزین (HRT) می‌تواند به کاهش تجمع چربی شکمی و حفظ توده عضلانی کمک کند، اما اگر کالری دریافتی بیش از نیاز باشد، افزایش وزن رخ می‌دهد.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText6 => 'کاهش توده عضلانی و عملکرد با افزایش سن اجتناب‌ناپذیر نیست. با انجام منظم تمرینات مقاومتی و هوازی، تغذیه مناسب و ریکاوری کافی می‌توان بسیاری از اثرات منفی پیری را کاهش داد یا حتی معکوس کرد. گرم‌کردن پویا و ریکاوری فعال برای پیشگیری از آسیب و حفظ انعطاف‌پذیری اهمیت دارد.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText7 => 'تمرینات مقاومتی حداقل دو بار در هفته می‌تواند از سارکوپنی (کاهش عضله) جلوگیری کند و حتی باعث افزایش توده عضلانی و قدرت شود. این تمرینات سطح هورمون‌های رشد و تستوسترون را افزایش داده و به بهبود ترکیب بدن، تراکم استخوان و کنترل قند خون کمک می‌کند.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText8 => 'تمرینات هوازی با شدت بالا (HIIT) نسبت به تمرینات هوازی ملایم، تأثیر بیشتری در بهبود ظرفیت هوازی (VO2max)، کنترل قند خون و کاهش چربی بدن دارند. با این حال، تمرینات هوازی با شدت متوسط نیز برای حفظ سلامت قلب و عروق مفید هستند.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText9 => 'ریکاوری برای ورزشکاران مسن اهمیت بیشتری دارد. پس از تمرینات شدید یا مقاومتی، زمان ریکاوری باید افزایش یابد. همچنین، استفاده از دوره‌های تمرینی کوتاه‌تر (مثلاً دو هفته تمرین و یک هفته ریکاوری) و ریکاوری فعال مانند پیاده‌روی یا شنا در روزهای استراحت توصیه می‌شود.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText10 => 'ورزش‌های مکمل مانند وزنه‌برداری و یوگا به حفظ توده عضلانی و انعطاف‌پذیری کمک می‌کنند و خطر آسیب‌های ناشی از استفاده بیش از حد را کاهش می‌دهند. خواب کافی و عادات خواب سالم برای ریکاوری و عملکرد بهتر ضروری است.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText11 => 'با افزایش سن، پاسخ عضلات به پروتئین و ورزش کمتر می‌شود و پدیده‌ای به نام مقاومت آنابولیک رخ می‌دهد. این موضوع باعث کاهش ساخت عضله و افزایش خطر کاهش توده عضلانی می‌شود. برای پیشگیری، مصرف پروتئین کافی و انجام منظم تمرین مقاومتی ضروری است.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText12 => 'افراد بالای ۶۵ سال برای حفظ عضله و پیشگیری از سارکوپنی به پروتئین بیشتری نسبت به جوانان نیاز دارند. مقدار توصیه‌شده برای افراد غیرفعال ۱ تا ۱.۲ گرم به ازای هر کیلوگرم وزن بدن و برای افراد فعال ۱.۲ تا ۱.۵ گرم است. مصرف پروتئین در وعده‌های مساوی در طول روز مؤثرتر از مصرف یک‌باره آن است.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText13 => 'مصرف ۴۰ گرم پروتئین یا ۰.۴ گرم به ازای هر کیلوگرم وزن بدن در هر وعده، بیشترین تحریک ساخت عضله را در سالمندان ایجاد می‌کند. این مقدار بیشتر از نیاز جوانان است. مصرف پروتئین بلافاصله بعد از تمرین، ساخت عضله را افزایش می‌دهد.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText14 => 'مصرف پروتئین با کیفیت بالا شامل تمام آمینواسیدهای ضروری (مانند شیر، لبنیات، تخم‌مرغ، گوشت، ماهی، سویا، کینوا و دانه‌ها) اهمیت دارد. گیاه‌خواران باید ترکیبی از منابع گیاهی مانند حبوبات و غلات مصرف کنند تا همه آمینواسیدهای ضروری تأمین شود.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText15 => 'مصرف میان‌وعده پروتئینی قبل از خواب (مانند شیر، ماست یونانی یا نوشیدنی حاوی پروتئین) می‌تواند ساخت عضله را در سالمندان افزایش دهد و اثر تمرین مقاومتی را تقویت کند.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText16 => 'با افزایش سن، توانایی ذخیره و استفاده از کربوهیدرات به صورت گلیکوژن در کبد و عضلات حفظ می‌شود و نیاز کربوهیدراتی افراد مسن مشابه جوانان است. اما با کاهش فعالیت بدنی و مصرف انرژی روزانه، مقدار کربوهیدرات مورد نیاز ممکن است کمتر شود.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText17 => 'مقدار کربوهیدرات مصرفی باید متناسب با حجم و شدت تمرین و وزن بدن باشد. هرچه وزن و حجم تمرین بیشتر باشد، نیاز به کربوهیدرات نیز بیشتر است. عضلات سالمندان نسبت به آسیب ناشی از تمرینات اکسنتریک (مانند پایین آوردن وزنه یا دویدن سرازیری) حساس‌تر هستند و ترمیم آن‌ها زمان بیشتری می‌برد.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText18 => 'برای ریکاوری بهتر پس از تمرین، به‌ویژه اگر کمتر از ۸ ساعت تا تمرین بعدی زمان دارید، مصرف ۱ تا ۱.۲ گرم کربوهیدرات به ازای هر کیلوگرم وزن بدن در هر ساعت طی ۴ ساعت اول توصیه می‌شود. افزودن پروتئین به وعده پس از تمرین به ترمیم عضله و ذخیره گلیکوژن کمک می‌کند.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText19 => 'رژیم کم‌کربوهیدرات برای کاهش وزن در ورزشکاران مسن مزیت خاصی نسبت به سایر رژیم‌ها ندارد و مهم‌ترین عامل کاهش وزن، ایجاد کسری کالری و تداوم رژیم است. محدودیت شدید کربوهیدرات می‌تواند عملکرد ورزشی را در تمرینات با شدت متوسط و بالا کاهش دهد.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText20 => 'مطالعات کمی روی ورزشکاران زن و سالمند درباره رژیم کم‌کربوهیدرات انجام شده و شواهدی مبنی بر بهبود عملکرد وجود ندارد. زنان به طور طبیعی توانایی بالایی در اکسیداسیون چربی دارند و محدودیت کربوهیدرات برای آن‌ها سودی ندارد.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText21 => 'دوره‌بندی مصرف کربوهیدرات (مصرف کمتر در تمرینات سبک و بیشتر در تمرینات شدید) می‌تواند برای ورزشکاران حرفه‌ای مفید باشد و به سازگاری بهتر بدن با تمرینات کمک کند.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText22 => 'با افزایش سن، احساس تشنگی و میزان تعریق کاهش می‌یابد و عملکرد کلیه‌ها نیز ضعیف‌تر می‌شود؛ بنابراین سالمندان بیشتر در معرض کم‌آبی بدن قرار دارند. توصیه می‌شود در ۲۴ ساعت قبل از تمرین آب کافی بنوشید و ۲ تا ۴ ساعت قبل از ورزش، به ازای هر کیلوگرم وزن بدن ۵ تا ۱۰ میلی‌لیتر آب مصرف کنید. در طول تمرین، بهتر است طبق برنامه آب بنوشید و فقط به احساس تشنگی اکتفا نکنید.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText23 => 'برای پیشگیری از کم‌آبی و پرآبی، مصرف ۴۰۰ تا ۸۰۰ میلی‌لیتر آب در هر ساعت تمرین توصیه می‌شود. پس از تمرین، به ازای هر کیلوگرم وزنی که از دست داده‌اید، ۱.۲ تا ۱.۵ لیتر آب بنوشید. وزن‌کشی قبل و بعد از تمرین به شما کمک می‌کند میزان آب مورد نیاز را بهتر تنظیم کنید.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText24 => 'مکمل امگا ۳ می‌تواند به کاهش التهاب و پیشگیری از کاهش عضله در سالمندان کمک کند. مصرف روزانه ۴۵۰ تا ۹۰۰ میلی‌گرم امگا ۳ یا دو وعده ماهی (یک وعده ماهی چرب) در هفته توصیه می‌شود. منابع خوب امگا ۳ شامل ماهی‌های چرب، بذر کتان، تخم کدو، گردو و دانه چیا هستند.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText25 => 'مصرف مکمل کراتین همراه با تمرین مقاومتی باعث افزایش قدرت، توده عضلانی و عملکرد بدنی سالمندان می‌شود. دوز معمول ۵ گرم در روز است و کراتین مونوهیدرات بهترین و مطمئن‌ترین نوع آن است.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationRestDayText26 => 'ویتامین D برای سلامت استخوان، عضله، سیستم ایمنی و عملکرد قلب و مغز ضروری است. با افزایش سن، کمبود ویتامین D شایع‌تر می‌شود. منابع غذایی محدودند (تخم‌مرغ، جگر، ماهی چرب، لبنیات غنی‌شده)، بنابراین مصرف مکمل روزانه ۱۰ میکروگرم (۴۰۰ واحد) برای سالمندان توصیه می‌شود. در صورت کمبود شدید، دوز بالاتر طبق نظر پزشک مصرف شود.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText1 => 'قدرت و توان عضلانی با افزایش سن سریع‌تر کاهش می‌یابد، مگر اینکه تمرینات مقاومتی (وزنه یا کششی) به برنامه ورزشی اضافه شود. کاهش توده عضله قلب نیز باعث افت عملکرد قلب و ریه می‌شود.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText2 => 'در افراد کم‌تحرک، حجم ضربه‌ای قلب، حداکثر ضربان قلب و توانایی استفاده از اکسیژن (VO2max) از میانه دهه ۲۰ هر دهه حدود ۱۰٪ کاهش می‌یابد. این کاهش باعث افت استقامت و عملکرد ورزشی می‌شود. ریکاوری بعد از تمرینات سخت طولانی‌تر شده و احتمال آسیب‌های مزمن بیشتر می‌شود؛ بنابراین باید شدت و حجم تمرینات را با افزایش سن تنظیم و به ریکاوری توجه بیشتری کرد.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText3 => 'در دوران پیش‌یائسگی و یائسگی، کاهش هورمون‌های زنانه باعث کاهش ساخت عضله و افزایش تجزیه عضلات می‌شود. همچنین، حساسیت بدن به ورزش و پروتئین کمتر می‌شود و ریکاوری کندتر خواهد بود. برای حفظ سلامت عضلات و استخوان‌ها، انجام تمرینات مقاومتی و مصرف پروتئین کافی اهمیت بیشتری دارد.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText4 => 'تمرینات مقاومتی با تکرار کم و وزنه سنگین باعث افزایش قدرت، توده عضلانی، تراکم استخوان و کارایی متابولیک می‌شود. در زنان یائسه، این تمرینات به بهبود ترکیب بدن، کاهش چربی شکمی و کنترل قند خون کمک می‌کند.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText5 => 'تمرینات هوازی با شدت بالا (HIIT) و تمرینات تناوبی بیشترین تأثیر را در افزایش VO2max و بهبود سلامت قلب دارند. نسبت ۲ به ۱ (۲۰ ثانیه فعالیت، ۱۰ ثانیه استراحت) برای بهبود سیستم قلبی-عروقی مؤثر است. ترکیب انواع تمرینات و شدت‌ها بهترین نتیجه را دارد.';
+
+  @override
+  String get foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText6 => 'افراد فعال در سنین بالا می‌توانند سطح آمادگی جسمانی بالاتری نسبت به افراد کم‌تحرک جوان داشته باشند. تمرین منظم هوازی و مقاومتی باعث حفظ قدرت، استقامت و ظرفیت هوازی می‌شود و روند افت عملکرد با افزایش سن را به تأخیر می‌اندازد.';
 }

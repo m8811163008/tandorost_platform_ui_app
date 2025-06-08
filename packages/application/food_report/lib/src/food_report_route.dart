@@ -5,6 +5,7 @@ import 'package:food_report/food_report.dart';
 import 'package:food_report_app/src/cubit/food_report_cubit.dart';
 
 import 'package:food_report_app/src/widget/food_report_screen.dart';
+import 'package:profile/profile.dart';
 
 class FoodReportRoute extends StatelessWidget {
   const FoodReportRoute({
@@ -30,6 +31,7 @@ class FoodReportRoute extends StatelessWidget {
           (_) => FoodReportCubit(
             foodReport: RepositoryProvider.of<FoodReport>(context),
             fitnessNutrition: RepositoryProvider.of<FitnessNutrition>(context),
+            profileRepository: RepositoryProvider.of<ProfileRepository>(context)
           ),
       lazy: false,
       child: FoodReportScreen(
