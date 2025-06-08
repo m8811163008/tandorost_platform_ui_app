@@ -8,18 +8,26 @@ class FoodReportState extends Equatable {
     this.updateFoodsNutritionsStatus = AsyncProcessingStatus.inital,
     this.deleteFoodsNutritionsStatus = AsyncProcessingStatus.inital,
     this.readNutritionRequirementsStatus = AsyncProcessingStatus.inital,
+    this.readProfileStatus = AsyncProcessingStatus.inital,
+    this.readUserPhysicalProfileStatus = AsyncProcessingStatus.inital,
     this.selectedTab = SelectedTab.restDay,
     this.nutritionRequirements,
+    this.userProfile,
+    this.userPhysicalProfile,
   });
 
   final List<Food> foods;
   final List<Food> selectedFoods;
   final NutritionRequirements? nutritionRequirements;
+  final UserProfile? userProfile;
+  final UserPhysicalProfile? userPhysicalProfile;
   final SelectedTab selectedTab;
 
   final AsyncProcessingStatus readFoodsNutritionStatus;
   final AsyncProcessingStatus updateFoodsNutritionsStatus;
   final AsyncProcessingStatus deleteFoodsNutritionsStatus;
+  final AsyncProcessingStatus readProfileStatus;
+  final AsyncProcessingStatus readUserPhysicalProfileStatus;
 
   final AsyncProcessingStatus readNutritionRequirementsStatus;
 
@@ -54,17 +62,23 @@ class FoodReportState extends Equatable {
   FoodReportState copyWith({
     List<Food>? foods,
     List<Food>? selectedFoods,
+    UserProfile? userProfile,
+    UserPhysicalProfile? userPhysicalProfile,
     ValueGetter<NutritionRequirements?>? nutritionRequirements,
     AsyncProcessingStatus? readFoodsNutritionStatus,
     AsyncProcessingStatus? updateFoodsNutritionsStatus,
     AsyncProcessingStatus? deleteFoodsNutritionsStatus,
     AsyncProcessingStatus? readNutritionRequirementsStatus,
+    AsyncProcessingStatus? readProfileStatus,
+    AsyncProcessingStatus? readUserPhysicalProfileStatus,
     SelectedTab? selectedTab,
   }) {
     return FoodReportState(
       foods: foods ?? this.foods,
       selectedFoods: selectedFoods ?? this.selectedFoods,
+      userProfile: userProfile ?? this.userProfile,
       selectedTab: selectedTab ?? this.selectedTab,
+      userPhysicalProfile: userPhysicalProfile ?? this.userPhysicalProfile,
       nutritionRequirements:
           nutritionRequirements != null
               ? nutritionRequirements()
@@ -75,6 +89,9 @@ class FoodReportState extends Equatable {
           updateFoodsNutritionsStatus ?? this.updateFoodsNutritionsStatus,
       deleteFoodsNutritionsStatus:
           deleteFoodsNutritionsStatus ?? this.deleteFoodsNutritionsStatus,
+      readProfileStatus: readProfileStatus ?? this.readProfileStatus,
+      readUserPhysicalProfileStatus:
+          readUserPhysicalProfileStatus ?? this.readUserPhysicalProfileStatus,
       readNutritionRequirementsStatus:
           readNutritionRequirementsStatus ??
           this.readNutritionRequirementsStatus,
@@ -91,6 +108,10 @@ class FoodReportState extends Equatable {
     readNutritionRequirementsStatus,
     selectedFoods,
     selectedTab,
+    readProfileStatus,
+    userProfile,
+    userPhysicalProfile,
+    readUserPhysicalProfileStatus,
   ];
 }
 

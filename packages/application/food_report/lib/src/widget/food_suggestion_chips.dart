@@ -12,19 +12,36 @@ class FoodSuggestionChips extends StatelessWidget {
     final gap = SizedBox(width: context.sizeExtenstion.small);
     return Row(
       children: [
+        //rest
         ActionChip.elevated(
-          label: Text('carbs'),
+          label: Text(
+            context.l10n.foodRequerementDialogGeneralRecommendationTitle,
+          ),
           onPressed: () async {
             await showDialog(
               context: context,
               builder: (context) {
-                return FoodRequrementDialog();
+                return GeneralRequrementDialog();
               },
             );
           },
         ),
         gap,
-        ActionChip.elevated(label: Text('fats'), onPressed: () {}),
+        //rest
+        ActionChip.elevated(
+          label: Text(
+            context.l10n.foodRequerementDialogHydrationTitle,
+          ),
+          onPressed: () async {
+            await showDialog(
+              context: context,
+              builder: (context) {
+                return WaterRequrementDialogRestDay();
+              },
+            );
+          },
+        ),
+        //rest
       ],
     );
   }

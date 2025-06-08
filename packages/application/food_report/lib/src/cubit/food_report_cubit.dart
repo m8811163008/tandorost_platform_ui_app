@@ -4,6 +4,7 @@ import 'package:domain_model/domain_model.dart';
 import 'package:fitness_nutrition/fitness_nutrition.dart';
 import 'package:flutter/material.dart' hide State;
 import 'package:food_report/food_report.dart';
+import 'package:profile/profile.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 part 'food_report_state.dart';
@@ -12,13 +13,16 @@ class FoodReportCubit extends Cubit<FoodReportState> {
   FoodReportCubit({
     required FoodReport foodReport,
     required FitnessNutrition fitnessNutrition,
+    required ProfileRepository profileRepository,
   }) : _foodReport = foodReport,
        _fitnessNutrition = fitnessNutrition,
+       _profileRepository = profileRepository,
        super(FoodReportState()) {
     _initialize();
   }
   final FoodReport _foodReport;
   final FitnessNutrition _fitnessNutrition;
+  final ProfileRepository _profileRepository;
   void _initialize() async {
     readFoodsNutrition();
     readNutritionRequirements();
@@ -140,6 +144,60 @@ class FoodReportCubit extends Cubit<FoodReportState> {
         state.copyWith(
           readNutritionRequirementsStatus:
               AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
+  void readProfile() async {
+    _enhancedEmit(
+      state.copyWith(readProfileStatus: AsyncProcessingStatus.loading),
+    );
+    try {
+      final userProfile = await _profileRepository.userProfile();
+      _enhancedEmit(
+        state.copyWith(
+          readProfileStatus: AsyncProcessingStatus.success,
+          userProfile: userProfile,
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          readProfileStatus: AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          readProfileStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
+  void readProfile() async {
+    _enhancedEmit(
+      state.copyWith(readProfileStatus: AsyncProcessingStatus.loading),
+    );
+    try {
+      final userProfile = await _profileRepository.userProfile();
+      _enhancedEmit(
+        state.copyWith(
+          readProfileStatus: AsyncProcessingStatus.success,
+          userProfile: userProfile,
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          readProfileStatus: AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          readProfileStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }

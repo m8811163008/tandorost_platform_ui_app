@@ -19,6 +19,8 @@ dependencies:
     path: ../../repositories/fitness_nutrition
   food_report:
     path: ../../repositories/food_report
+  profile:
+    path: ../../repositories/profile
   pie_chart: ^5.4.0
 dev_dependencies:
   flutter_test:
