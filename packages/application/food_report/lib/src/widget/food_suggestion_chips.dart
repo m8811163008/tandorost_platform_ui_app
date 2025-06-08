@@ -9,18 +9,29 @@ class FoodSuggestionChips extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      scrollDirection: Axis.horizontal,
-      children: [
-        if (selectedTab.isRestDay) ..._buildRestDay(context),
-        if (!selectedTab.isRestDay) ..._buildTrainingDay(context),
-      ],
+    return SizedBox(
+      height: context.sizeExtenstion.xExtraLarge,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+
+        children: [
+          if (selectedTab.isRestDay) ..._buildRestDay(context),
+          if (!selectedTab.isRestDay) ..._buildTrainingDay(context),
+        ],
+      ),
     );
   }
 
   List<Widget> _buildRestDay(BuildContext context) {
     final gap = SizedBox(width: context.sizeExtenstion.small);
-    final age = context.read<FoodReportCubit>().state.userPhysicalProfile?.age;
+    final age = context.select((FoodReportCubit cubit) {
+      return cubit.state.userPhysicalProfile?.age;
+    });
+    final isTimeRestricted =
+        context.select((FoodReportCubit cubit) {
+          return cubit.state.userProfile?.isTimeRestrictedEating;
+        }) ??
+        false;
     return [
       //rest
       //fat
@@ -29,7 +40,7 @@ class FoodSuggestionChips extends StatelessWidget {
         onPressed: () async {
           await showDialog(
             context: context,
-            builder: (context) {
+            builder: (_) {
               return FatRequrementDialogRestDay();
             },
           );
@@ -42,8 +53,11 @@ class FoodSuggestionChips extends StatelessWidget {
         onPressed: () async {
           await showDialog(
             context: context,
-            builder: (context) {
-              return ProteinRequrementDialogRestDay();
+            builder: (_) {
+              return BlocProvider.value(
+                value: context.read<FoodReportCubit>(),
+                child: ProteinRequrementDialogRestDay(),
+              );
             },
           );
         },
@@ -55,8 +69,11 @@ class FoodSuggestionChips extends StatelessWidget {
         onPressed: () async {
           await showDialog(
             context: context,
-            builder: (context) {
-              return CarbRequrementDialogRestDay();
+            builder: (_) {
+              return BlocProvider.value(
+                value: context.read<FoodReportCubit>(),
+                child: CarbRequrementDialogRestDay(),
+              );
             },
           );
         },
@@ -68,13 +85,17 @@ class FoodSuggestionChips extends StatelessWidget {
         onPressed: () async {
           await showDialog(
             context: context,
-            builder: (context) {
-              return WaterRequrementDialogRestDay();
+            builder: (_) {
+              return BlocProvider.value(
+                value: context.read<FoodReportCubit>(),
+                child: WaterRequrementDialogRestDay(),
+              );
             },
           );
         },
       ),
       //vitamins and mineral
+      gap,
       ActionChip.elevated(
         label: Text(
           context.l10n.foodRequerementDialogGeneralRecommendationTitle,
@@ -82,36 +103,36 @@ class FoodSuggestionChips extends StatelessWidget {
         onPressed: () async {
           await showDialog(
             context: context,
-            builder: (context) {
+            builder: (_) {
               return GeneralRequrementDialog();
             },
           );
         },
       ),
-      if (age != null ? age >= 50 : false)
+      gap,
+      if (age != null ? age >= 50 : false) ...[
         ActionChip.elevated(
-          label: Text(context.l10n.timeRestrictedEatingLabel),
+          label: Text(
+            context.l10n.foodRequerementDialogAgeRelatedFoodConsidarationTitle,
+          ),
           onPressed: () async {
             await showDialog(
               context: context,
-              builder: (context) {
+              builder: (_) {
                 return FoodRequerementDialogAgeRelatedFoodConsidarationRestDay();
               },
             );
           },
         ),
-      if (context
-              .read<FoodReportCubit>()
-              .state
-              .userProfile
-              ?.isTimeRestrictedEating ??
-          false)
+        gap,
+      ],
+      if (isTimeRestricted)
         ActionChip.elevated(
           label: Text(context.l10n.timeRestrictedEatingLabel),
           onPressed: () async {
             await showDialog(
               context: context,
-              builder: (context) {
+              builder: (_) {
                 return TimeRestrictedDialogRestDay();
               },
             );
@@ -122,7 +143,9 @@ class FoodSuggestionChips extends StatelessWidget {
 
   List<Widget> _buildTrainingDay(BuildContext context) {
     final gap = SizedBox(width: context.sizeExtenstion.small);
-    final age = context.read<FoodReportCubit>().state.userPhysicalProfile?.age;
+    final age = context.select((FoodReportCubit cubit) {
+      return cubit.state.userPhysicalProfile?.age;
+    });
     return [
       //training
       //carb
@@ -135,8 +158,11 @@ class FoodSuggestionChips extends StatelessWidget {
         onPressed: () async {
           await showDialog(
             context: context,
-            builder: (context) {
-              return CarbRequrementDialogTrainingDayBeforeExcercise();
+            builder: (_) {
+              return BlocProvider.value(
+                value: context.read<FoodReportCubit>(),
+                child: CarbRequrementDialogTrainingDayBeforeExcercise(),
+              );
             },
           );
         },
@@ -151,7 +177,7 @@ class FoodSuggestionChips extends StatelessWidget {
         onPressed: () async {
           await showDialog(
             context: context,
-            builder: (context) {
+            builder: (_) {
               return CarbRequrementDialogTrainingDayDuringExcercise();
             },
           );
@@ -167,8 +193,11 @@ class FoodSuggestionChips extends StatelessWidget {
         onPressed: () async {
           await showDialog(
             context: context,
-            builder: (context) {
-              return CarbRequrementDialogTrainingDayAfterExcercise();
+            builder: (_) {
+              return BlocProvider.value(
+                value: context.read<FoodReportCubit>(),
+                child: CarbRequrementDialogTrainingDayAfterExcercise(),
+              );
             },
           );
         },
@@ -180,7 +209,7 @@ class FoodSuggestionChips extends StatelessWidget {
         onPressed: () async {
           await showDialog(
             context: context,
-            builder: (context) {
+            builder: (_) {
               return ProteinRequrementDialogTrainingDay();
             },
           );
@@ -193,24 +222,31 @@ class FoodSuggestionChips extends StatelessWidget {
         onPressed: () async {
           await showDialog(
             context: context,
-            builder: (context) {
-              return WaterRequrementDialogTrainingDay();
+            builder: (_) {
+              return BlocProvider.value(
+                value: context.read<FoodReportCubit>(),
+                child: WaterRequrementDialogTrainingDay(),
+              );
             },
           );
         },
       ),
-      if (age != null ? age >= 50 : false)
+      if (age != null ? age >= 50 : false) ...[
+        gap,
         ActionChip.elevated(
-          label: Text(context.l10n.timeRestrictedEatingLabel),
+          label: Text(
+            context.l10n.foodRequerementDialogAgeRelatedFoodConsidarationTitle,
+          ),
           onPressed: () async {
             await showDialog(
               context: context,
-              builder: (context) {
-                return FoodRequerementDialogAgeRelatedFoodConsidarationRestDay();
+              builder: (_) {
+                return FoodRequerementDialogAgeRelatedFoodConsidarationTraningDay();
               },
             );
           },
         ),
+      ],
     ];
   }
 }
@@ -245,7 +281,7 @@ class _FoodInstructionBottomSheetState extends State<FoodInstructionBottomSheet>
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
       ),
-      builder: (context) => FoodInstructionBottomSheetContent(),
+      builder: (_) => FoodInstructionBottomSheetContent(),
     );
   }
 }

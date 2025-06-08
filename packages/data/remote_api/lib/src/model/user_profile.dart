@@ -31,7 +31,8 @@ class UserProfile extends Equatable {
       fullName: fullName ?? this.fullName,
       language: language ?? this.language,
       changeWeightSpeed: changeWeightSpeed ?? this.changeWeightSpeed,
-      isTimeRestrictedEating: isTimeRestrictedEating ?? this.isTimeRestrictedEating,
+      isTimeRestrictedEating:
+          isTimeRestrictedEating ?? this.isTimeRestrictedEating,
     );
   }
 

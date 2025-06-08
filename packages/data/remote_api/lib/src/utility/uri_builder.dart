@@ -1,12 +1,12 @@
 import 'package:remote_api/remote_api.dart';
 
 class UriBuilder {
-  static final baseUri = Uri(
-    scheme: 'https',
-    host: 'tandorost-a.ir',
-    // port: 8001,
-  );
-  // static final baseUri = Uri(scheme: 'http', host: '127.0.0.1', port: 8001);
+  static final baseUri = Uri(scheme: 'https', host: 'tandorost-a.ir');
+  // static final baseUri = Uri(
+  //   scheme: 'http',
+  //   host: '192.168.128.85',
+  //   port: 8001,
+  // );
   static final basePath = '/api/v1';
   static Uri authSendVerificationCode(VerificationType verificationType) {
     return baseUri.replace(

@@ -294,7 +294,7 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
         initialDate: Jalali.fromDateTime(
           DateTime.now().subtract(Duration(days: 365 * 25)),
         ),
-        firstDate: Jalali(1350),
+        firstDate: Jalali(1330),
         lastDate: Jalali.fromDateTime(
           DateTime.now().subtract(Duration(days: 365 * 17)),
         ),
@@ -309,7 +309,7 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
       pickedDate = await showDatePicker(
         context: context,
         initialDate: DateTime.now().subtract(Duration(days: 365 * 25)),
-        firstDate: DateTime(1950),
+        firstDate: DateTime(1930),
         builder: (context, child) {
           return SingleChildScrollView(child: child!);
         },

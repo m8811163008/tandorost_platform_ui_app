@@ -19,7 +19,7 @@ class CommonInterceptor implements InterceptorContract {
   @override
   Future<BaseRequest> interceptRequest({required BaseRequest request}) async {
     final language = await userLanguageProvider();
-    request.headers[HttpHeaders.acceptLanguageHeader] = language.name;
+    request.headers[HttpHeaders.acceptLanguageHeader] = language.code;
     request.headers[HttpHeaders.acceptHeader] = acceptHeader.value;
 
     return request;

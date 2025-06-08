@@ -11,7 +11,7 @@ class IntroductionRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedIntroduction(
       isFullScreen: true,
-      footerBgColor: context.themeData.colorScheme.primaryFixedDim,
+      footerBgColor: context.themeData.colorScheme.secondary,
       slides: pages(context),
       indicatorType: IndicatorType.circle,
       footerRadius: context.sizeExtenstion.medium,

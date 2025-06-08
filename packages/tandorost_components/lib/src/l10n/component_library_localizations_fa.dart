@@ -1170,7 +1170,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get introductionSingleIntroScreen2TitleText => 'تناسب اندام';
 
   @override
-  String get introductionSingleIntroScreen2DescriptionText => 'کاهش چربی و جذابیت هیکل شما';
+  String get introductionSingleIntroScreen2DescriptionText => 'کاهش چربی و جذابیت اندام شما';
 
   @override
   String get introductionSingleIntroScreen3TitleText => 'پشتیبانی';

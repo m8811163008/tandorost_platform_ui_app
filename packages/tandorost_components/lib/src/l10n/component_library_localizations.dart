@@ -1962,7 +1962,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @introductionSingleIntroScreen2DescriptionText.
   ///
   /// In fa, this message translates to:
-  /// **'کاهش چربی و جذابیت هیکل شما'**
+  /// **'کاهش چربی و جذابیت اندام شما'**
   String get introductionSingleIntroScreen2DescriptionText;
 
   /// No description provided for @introductionSingleIntroScreen3TitleText.

@@ -210,14 +210,15 @@ class SettingCard extends StatelessWidget {
             ),
             onChanged: context.read<ProfileCubit>().onChangeIsFasting,
           ),
-          Divider(height: context.sizeExtenstion.medium),
-          LanguageSetting(
-            value: context.select((ProfileCubit cubit) => cubit.state.language),
-            onChangeLanguageDialog: BlocProvider.value(
-              value: context.read<ProfileCubit>(),
-              child: ChangeLanguageDialog(),
-            ),
-          ),
+          // TODO Add language suport
+          // Divider(height: context.sizeExtenstion.medium),
+          // LanguageSetting(
+          //   value: context.select((ProfileCubit cubit) => cubit.state.language),
+          //   onChangeLanguageDialog: BlocProvider.value(
+          //     value: context.read<ProfileCubit>(),
+          //     child: ChangeLanguageDialog(),
+          //   ),
+          // ),
         ],
       ),
     );

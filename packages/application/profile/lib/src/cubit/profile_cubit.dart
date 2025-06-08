@@ -143,6 +143,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     _enhancedEmit(
       state.copyWith(isTimeRestrictedEating: isTimeRestrictedEating),
     );
+    
   }
 
   void onChangeLanguage(Language? language) async {

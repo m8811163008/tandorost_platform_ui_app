@@ -1,48 +1,5 @@
 part of 'register_cubit.dart';
 
-//       SizedBox(height: context.sizeExtenstion.small),
-//       TextField(decoration: InputDecoration(labelText: 'birthday')),
-//       SizedBox(height: context.sizeExtenstion.small),
-//       TextField(
-//         decoration: InputDecoration(labelText: 'waist circumfrences'),
-//       ),
-//       SizedBox(height: context.sizeExtenstion.small),
-//       TextField(decoration: InputDecoration(labelText: 'Height')),
-//       SizedBox(height: context.sizeExtenstion.small),
-//       TextField(decoration: InputDecoration(labelText: 'Weight')),
-//       SizedBox(height: context.sizeExtenstion.small),
-//       TextField(decoration: InputDecoration(labelText: 'activityLevel')),
-
-//         final DateTime birthday;
-// final TextInput height;
-// final TextInput weight;
-// final Gender gender;
-// final ActivityLevel activityLevel;
-// final TextInput? waistCircumferences;
-
-// void onChangeBirthday(DateTime birthday) {
-//   emit(state.copyWith(birthday: birthday));
-// }
-
-// void onChangeHeight(String value) {
-//   emit(state.copyWith(height: TextInput.dirty(value)));
-// }
-
-// void onChangeWeight(String value) {
-//   emit(state.copyWith(weight: TextInput.dirty(value)));
-// }
-
-// void onChangeWaistCircumferences(String value) {
-//   emit(state.copyWith(waistCircumferences: TextInput.dirty(value)));
-// }
-
-// void onChangeActivityLevel(ActivityLevel activityLevel) {
-//   emit(state.copyWith(activityLevel: activityLevel));
-// }
-
-// void onChangeGender(Gender gender) {
-//   emit(state.copyWith(gender: gender));
-// }
 @immutable
 class RegisterState extends Equatable {
   final String phoneNumber;
@@ -60,7 +17,7 @@ class RegisterState extends Equatable {
     this.verificationCode = '',
     this.registerStatus = AsyncProcessingStatus.inital,
     this.verificationStatus = AsyncProcessingStatus.inital,
-    this.exception
+    this.exception,
   });
 
   RegisterState copyWith({
@@ -69,7 +26,7 @@ class RegisterState extends Equatable {
     AsyncProcessingStatus? registerStatus,
     String? verificationCode,
     AsyncProcessingStatus? verificationStatus,
-    String? exception
+    String? exception,
   }) {
     return RegisterState(
       phoneNumber: phoneNumber ?? this.phoneNumber,
@@ -77,7 +34,7 @@ class RegisterState extends Equatable {
       registerStatus: registerStatus ?? this.registerStatus,
       verificationCode: verificationCode ?? this.verificationCode,
       verificationStatus: verificationStatus ?? this.verificationStatus,
-      exception : exception ?? this.exception
+      exception: exception ?? this.exception,
     );
   }
 
@@ -85,7 +42,7 @@ class RegisterState extends Equatable {
   List<Object?> get props => [
     phoneNumber,
     password,
-exception,
+    exception,
     registerStatus,
     verificationCode,
     verificationStatus,
