@@ -2174,6 +2174,18 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'افراد فعال در سنین بالا می‌توانند سطح آمادگی جسمانی بالاتری نسبت به افراد کم‌تحرک جوان داشته باشند. تمرین منظم هوازی و مقاومتی باعث حفظ قدرت، استقامت و ظرفیت هوازی می‌شود و روند افت عملکرد با افزایش سن را به تأخیر می‌اندازد.'**
   String get foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText6;
+
+  /// No description provided for @foodInputChatButtonLoadingText1.
+  ///
+  /// In fa, this message translates to:
+  /// **'در حال پردازش...'**
+  String get foodInputChatButtonLoadingText1;
+
+  /// No description provided for @foodInputChatButtonLoadingText2.
+  ///
+  /// In fa, this message translates to:
+  /// **'لطفاً منتظر بمانید'**
+  String get foodInputChatButtonLoadingText2;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

@@ -1276,4 +1276,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText6 => 'افراد فعال در سنین بالا می‌توانند سطح آمادگی جسمانی بالاتری نسبت به افراد کم‌تحرک جوان داشته باشند. تمرین منظم هوازی و مقاومتی باعث حفظ قدرت، استقامت و ظرفیت هوازی می‌شود و روند افت عملکرد با افزایش سن را به تأخیر می‌اندازد.';
+
+  @override
+  String get foodInputChatButtonLoadingText1 => 'در حال پردازش...';
+
+  @override
+  String get foodInputChatButtonLoadingText2 => 'لطفاً منتظر بمانید';
 }
