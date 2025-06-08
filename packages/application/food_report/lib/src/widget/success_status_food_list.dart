@@ -16,6 +16,7 @@ class SuccessStatusFoodsList extends StatelessWidget {
           AppCardHeader(title: context.l10n.foodReportFoodsListLabel),
           // todo use custom scrool view with slivers for performance
           ...List.generate(
+            
             foods.length,
             (index) => Padding(
               padding: EdgeInsets.only(

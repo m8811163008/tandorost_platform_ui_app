@@ -40,7 +40,7 @@ class FoodListConsumer extends StatelessWidget {
           AsyncProcessingStatus.internetConnectionError =>
             AppAsyncStatusCard.internetConnectionError(),
           AsyncProcessingStatus.success => SuccessStatusFoodsList(
-            foods: state.foods,
+            foods: state.foods.reversed.toList(),
           ),
         };
       },
