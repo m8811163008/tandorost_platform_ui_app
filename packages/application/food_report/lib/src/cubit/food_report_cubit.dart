@@ -176,28 +176,32 @@ class FoodReportCubit extends Cubit<FoodReportState> {
     }
   }
 
-  void readProfile() async {
+  void readPhysicalProfile() async {
     _enhancedEmit(
-      state.copyWith(readProfileStatus: AsyncProcessingStatus.loading),
+      state.copyWith(
+        readUserPhysicalProfileStatus: AsyncProcessingStatus.loading,
+      ),
     );
     try {
-      final userProfile = await _profileRepository.userProfile();
+      final userPhysicalProfile =
+          await _fitnessNutrition.readUserPhysicalProfile();
       _enhancedEmit(
         state.copyWith(
-          readProfileStatus: AsyncProcessingStatus.success,
-          userProfile: userProfile,
+          readUserPhysicalProfileStatus: AsyncProcessingStatus.success,
+          userPhysicalProfile: userPhysicalProfile,
         ),
       );
     } on InternetConnectionException {
       _enhancedEmit(
         state.copyWith(
-          readProfileStatus: AsyncProcessingStatus.internetConnectionError,
+          readUserPhysicalProfileStatus:
+              AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          readProfileStatus: AsyncProcessingStatus.connectionError,
+          readUserPhysicalProfileStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }

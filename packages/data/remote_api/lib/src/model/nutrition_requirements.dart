@@ -18,6 +18,9 @@ class NutritionRequirement {
     required this.effectiveTotalDailyEnergyExpenditure,
   });
 
+  int get carbohydrateTotal =>
+      carbohydrateFruitsOrNonStarchyVegetables + carbohydrateOther;
+
   factory NutritionRequirement.fromJson(Map<String, dynamic> json) =>
       _$NutritionRequirementFromJson(json);
 }
