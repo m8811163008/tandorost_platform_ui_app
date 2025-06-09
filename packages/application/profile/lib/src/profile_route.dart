@@ -2,11 +2,12 @@ import 'package:domain_model/domain_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_repository/image_repository.dart';
+import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
 import 'package:profile_app/src/cubit/profile_cubit.dart';
 import 'package:profile_app/src/edit_dialog.dart';
-import 'package:profile_app/src/edit_language_button.dart';
 import 'package:profile_app/src/edit_name_button.dart';
+import 'package:profile_app/src/transactions.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class ProfileRoute extends StatelessWidget {
@@ -30,6 +31,7 @@ class ProfileRoute extends StatelessWidget {
           (context) => ProfileCubit(
             RepositoryProvider.of<ProfileRepository>(context),
             RepositoryProvider.of<ImageRepository>(context),
+            RepositoryProvider.of<PaymentRepository>(context),
           ),
       child: AppScaffold(
         appBar: AppBar(),
@@ -87,7 +89,7 @@ class ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppCard(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
             context.l10n.personalInfoSettingLabel,
@@ -96,45 +98,9 @@ class ProfileCard extends StatelessWidget {
           SizedBox(height: context.sizeExtenstion.medium),
           Wrap(
             crossAxisAlignment: WrapCrossAlignment.end,
+            spacing: context.sizeExtenstion.medium,
             children: [
-              BlocConsumer<ProfileCubit, ProfileState>(
-                listenWhen:
-                    (previous, current) =>
-                        previous.uploadingImageProfileStatus !=
-                        current.uploadingImageProfileStatus,
-                listener: (context, state) {
-                  if (state.uploadingImageProfileStatus.isConnectionError) {
-                    final content = context.l10n.networkError;
-                    ScaffoldMessenger.of(
-                      context,
-                    ).showSnackBar(SnackBar(content: Text(content)));
-                  } else if (state
-                      .uploadingImageProfileStatus
-                      .isConnectionError) {
-                    final content = context.l10n.internetConnectionError;
-                    ScaffoldMessenger.of(
-                      context,
-                    ).showSnackBar(SnackBar(content: Text(content)));
-                  } else if (state.uploadingImageProfileStatus.isSuccess) {
-                    context.read<UserAccountCubit>().readUserProfileImage();
-                  }
-                },
-                buildWhen:
-                    (previous, current) =>
-                        previous.uploadingImageProfileStatus !=
-                        current.uploadingImageProfileStatus,
-                builder: (context, state) {
-                  return ImageProfile(
-                    imageProfile: context.select(
-                      (ProfileCubit cubit) => cubit.state.profileImage,
-                    ),
-                    onEditPressed: () async {
-                      await onEditImage(context);
-                    },
-                    isUploading: state.uploadingImageProfileStatus.isLoading,
-                  );
-                },
-              ),
+              ImageProfileConsumer(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -152,12 +118,77 @@ class ProfileCard extends StatelessWidget {
                         )
                         .replaceFirst('0', '98'),
                   ),
+                  SizedBox(height: context.sizeExtenstion.small),
+                  Align(
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: TextButton.icon(
+                      onPressed: () {
+                        context.read<ProfileCubit>().readSubscriptions();
+                        showDialog(
+                          context: context,
+                          builder:
+                              (_) => BlocProvider.value(
+                                value: context.read<ProfileCubit>(),
+                                child: Transactions(),
+                              ),
+                        );
+                      },
+                      label: Text(
+                        context.l10n.profileRouteTansactionDialogTitle,
+                      ),
+                      icon: Icon(Icons.wallet),
+                    ),
+                  ),
                 ],
               ),
             ],
           ),
         ],
       ),
+    );
+  }
+}
+
+class ImageProfileConsumer extends StatelessWidget {
+  const ImageProfileConsumer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<ProfileCubit, ProfileState>(
+      listenWhen:
+          (previous, current) =>
+              previous.uploadingImageProfileStatus !=
+              current.uploadingImageProfileStatus,
+      listener: (context, state) {
+        if (state.uploadingImageProfileStatus.isConnectionError) {
+          final content = context.l10n.networkError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.uploadingImageProfileStatus.isConnectionError) {
+          final content = context.l10n.internetConnectionError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.uploadingImageProfileStatus.isSuccess) {
+          context.read<UserAccountCubit>().readUserProfileImage();
+        }
+      },
+      buildWhen:
+          (previous, current) =>
+              previous.uploadingImageProfileStatus !=
+              current.uploadingImageProfileStatus,
+      builder: (context, state) {
+        return ImageProfile(
+          imageProfile: context.select(
+            (ProfileCubit cubit) => cubit.state.profileImage,
+          ),
+          onEditPressed: () async {
+            await onEditImage(context);
+          },
+          isUploading: state.uploadingImageProfileStatus.isLoading,
+        );
+      },
     );
   }
 

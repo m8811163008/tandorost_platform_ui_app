@@ -909,17 +909,17 @@ abstract class ComponentLibraryLocalizations {
   /// **'آیا دور کمر در محدوده ایمن است؟'**
   String get fitnessProfileIsWaistCircumferenceSafeRange;
 
-  /// No description provided for @fitnessProfileYes.
+  /// No description provided for @yes.
   ///
   /// In fa, this message translates to:
   /// **'بله'**
-  String get fitnessProfileYes;
+  String get yes;
 
-  /// No description provided for @fitnessProfileNo.
+  /// No description provided for @no.
   ///
   /// In fa, this message translates to:
   /// **'خیر'**
-  String get fitnessProfileNo;
+  String get no;
 
   /// No description provided for @fitnessProfileNA.
   ///
@@ -1188,8 +1188,14 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @bazzarSuccessfulPayment.
   ///
   /// In fa, this message translates to:
-  /// **'اشتراک با موفقیت اضافه شد'**
+  /// **'اشتراک با موفقیت اضافه شد.برای اضافه کردن غذا اشتراک را تمدید نمایید'**
   String get bazzarSuccessfulPayment;
+
+  /// No description provided for @bazzarFailPayment.
+  ///
+  /// In fa, this message translates to:
+  /// **'فرآیند تمدید اشتراک لغو شد'**
+  String get bazzarFailPayment;
 
   /// No description provided for @addMeasurementDialogHintTitle.
   ///
@@ -1836,7 +1842,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @vo2maxCalculatorVo2maxRate.
   ///
   /// In fa, this message translates to:
-  /// **'مقدار VO2max شما {vo2max} می‌باشد'**
+  /// **'مقدار VO2max شما {vo2max} میلی‌لیتر اکسیژن به ازای هر کیلوگرم وزن بدن در دقیقه (mL/kg/min) می‌باشد'**
   String vo2maxCalculatorVo2maxRate(double vo2max);
 
   /// No description provided for @vo2maxCalculatorVo2maxEfficientDistance.
@@ -1855,7 +1861,7 @@ abstract class ComponentLibraryLocalizations {
   ///
   /// In fa, this message translates to:
   /// **'در {minutes} دقیقه مسافت {distance} متر را با سرعت متوسط طی کنید'**
-  String vo2maxCalculatorVo2maxDistance(int minutes, double distance);
+  String vo2maxCalculatorVo2maxDistance(int minutes, int distance);
 
   /// No description provided for @timeRestrictedText1.
   ///
@@ -2186,6 +2192,234 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'لطفاً منتظر بمانید'**
   String get foodInputChatButtonLoadingText2;
+
+  /// No description provided for @privacyDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'حریم خصوصی'**
+  String get privacyDialogTitle;
+
+  /// No description provided for @privacyDialogSubtitle1.
+  ///
+  /// In fa, this message translates to:
+  /// **'چگونه از اطلاعات شما حراست میکنیم؟'**
+  String get privacyDialogSubtitle1;
+
+  /// No description provided for @privacyDialogSubtitle2.
+  ///
+  /// In fa, this message translates to:
+  /// **'چه اطلاعاتی از شما دریافت می‌شود؟'**
+  String get privacyDialogSubtitle2;
+
+  /// No description provided for @privacyDialogSubtitle3.
+  ///
+  /// In fa, this message translates to:
+  /// **'چگونه از اطلاعات شما محافظت می‌شود؟'**
+  String get privacyDialogSubtitle3;
+
+  /// No description provided for @privacyDialogSubtitle4.
+  ///
+  /// In fa, this message translates to:
+  /// **'چه استفاده‌ای اطلاعات شما خواهد شد؟'**
+  String get privacyDialogSubtitle4;
+
+  /// No description provided for @privacyDialogSubtitle5.
+  ///
+  /// In fa, this message translates to:
+  /// **'چه کسانی به اطلاعات شما دسترسی دارند؟'**
+  String get privacyDialogSubtitle5;
+
+  /// No description provided for @privacyDialogText1.
+  ///
+  /// In fa, this message translates to:
+  /// **'امروزه با گسترش جریان اطلاعات و استفاده روزمره کاربران از اینترنت و وسایل ارتباطی، حریم خصوصی کاربران به یکی از جدی‌ترین دغدغه‌ها تبدیل شده‌است. نگرانی بسیاری از مشتریان، محفوظ ماندن اطلاعات شخصی همچنین شماره موبایل، نام و نام خانوادگی و ایمیل است که برای ثبت نام و لاگین شدن به ما می‌سپارند. باید گفت ما نیز اهمیت این موضوع را درک می‌کنیم و حریم خصوصی کاربران برای ما اهمیت بسیاری دارد. در ذیل سیاست حفظ حریم خصوصی و محرمانگی اطلاعات کاربران را ملاحظه خواهیدکرد.'**
+  String get privacyDialogText1;
+
+  /// No description provided for @privacyDialogText2.
+  ///
+  /// In fa, this message translates to:
+  /// **'برای ثبت نام در اپلیکشین تندرست لازم است تا اطلاعاتی مانند نام، تلفن همراه، تاریخ تولد و قد و وزن و اندازه ترکیب بدنی خود را در اختیار ما قرار دهید. دریافت مشخصات فردی شما نیز صرفاً برای ثبت نام در سایت، محاسبات تغذیه شما مانند انرژی مورد نیاز روزانه، ارسال اعلان‌های مهم و باخبر کردن شما از رویدادها و تخفیف‌های ویژه، استفاده از خدمات تندرست است.'**
+  String get privacyDialogText2;
+
+  /// No description provided for @privacyDialogText3.
+  ///
+  /// In fa, this message translates to:
+  /// **'با وجود این‌که امنیت به صورت نسبی تعریف شده است اما در طراحی اپلیکیشن تندرست سعی شده که از بالاترین سطوح امنیتی سخت‌افزاری و نرم‌افزاری در نظر گرفته شود. در زمان ثبت نام، درخواست کد اعتبار، دریافت داده های کاربر، گزارشات و غیره، تمامی در خواست‌ها و خدمات بر روی سرورهای ایمن ما ذخیره و توسط فایروال‌های مستحکم محافظت خواهند شد. اطلاعات شخصی شما نیز به صورت رمزنگاری‌شده در بستر امن HTTPS به وب‌سایت ما منتقل و برای تعاملات بعدی نگهداری خواهند شد.'**
+  String get privacyDialogText3;
+
+  /// No description provided for @privacyDialogText4.
+  ///
+  /// In fa, this message translates to:
+  /// **'چه از نظر قانونی چه از نظر اخلاقی ما موظف به صیانت از اطلاعات و پرونده‌های شما هستیم. اطلاعات شخصی شما نیز صرفاً جهت تعاملات بعدی به صورت ایمن در پایگاه داده نگهداری می‌شوند تا در درخواست‌های آینده بتوانید به راحتی از نرم افزار استفاده کنید . ایمیل‌ها و پیام‌های تبلیغاتی بی مورد را برای کاربران‌مان ارسال نخواهیم کرد.'**
+  String get privacyDialogText4;
+
+  /// No description provided for @privacyDialogText5.
+  ///
+  /// In fa, this message translates to:
+  /// **'برای ارائه پشتیبانی بهتر و خدمات با کیفیت‌تر بخش پشتیبانی به برخی از اطلاعات شما دسترسی دارند. تمامی اطلاعات شخصی شما نزد ما محفوظ خواهد ماند و در اختیار افراد یا سازمان‌های دیگری قرار نخواهد گرفت. بدیهی است که مراجع قانونی با ارائه حکم دادگاه قادرند به این اطلاعات دسترسی داشته باشند. به طور کلی ما موظفیم از اطلاعات شما حفاظت و حراست نماییم.'**
+  String get privacyDialogText5;
+
+  /// No description provided for @privacyDialogText6.
+  ///
+  /// In fa, this message translates to:
+  /// **'امیدواریم بهترین استفاده را از نرم افزار تندرست داشته باشید'**
+  String get privacyDialogText6;
+
+  /// No description provided for @aiChatButtonTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'دکمه را نگه دارید'**
+  String get aiChatButtonTitle;
+
+  /// No description provided for @aiChatButtonSubTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'نام غذایی که خوردید بگویید'**
+  String get aiChatButtonSubTitle;
+
+  /// No description provided for @paymentDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'دسترسی امکانات'**
+  String get paymentDialogTitle;
+
+  /// No description provided for @paymentDialogOneMonth.
+  ///
+  /// In fa, this message translates to:
+  /// **'نقره‌ای'**
+  String get paymentDialogOneMonth;
+
+  /// No description provided for @paymentDialogThreeMonth.
+  ///
+  /// In fa, this message translates to:
+  /// **'طلایی'**
+  String get paymentDialogThreeMonth;
+
+  /// No description provided for @paymentDialogText1.
+  ///
+  /// In fa, this message translates to:
+  /// **'سلامت و تندرستی'**
+  String get paymentDialogText1;
+
+  /// No description provided for @paymentDialogText2.
+  ///
+  /// In fa, this message translates to:
+  /// **'پیشگیری از بیماری مرتبط با چاقی'**
+  String get paymentDialogText2;
+
+  /// No description provided for @paymentDialogText3.
+  ///
+  /// In fa, this message translates to:
+  /// **'سریع‌ترین روش لاغری'**
+  String get paymentDialogText3;
+
+  /// No description provided for @paymentDialogText4.
+  ///
+  /// In fa, this message translates to:
+  /// **'دسترسی به ثبت انواع غذا'**
+  String get paymentDialogText4;
+
+  /// No description provided for @paymentDialogOneMonthText5.
+  ///
+  /// In fa, this message translates to:
+  /// **'یک ماه یا 600 عدد غذا'**
+  String get paymentDialogOneMonthText5;
+
+  /// No description provided for @paymentDialogThreeMonthText5.
+  ///
+  /// In fa, this message translates to:
+  /// **'سه ماه یا 1800 عدد غذا'**
+  String get paymentDialogThreeMonthText5;
+
+  /// No description provided for @paymentDialogText6.
+  ///
+  /// In fa, this message translates to:
+  /// **'مطابق سفره ایرانی'**
+  String get paymentDialogText6;
+
+  /// No description provided for @paymentDialogText7.
+  ///
+  /// In fa, this message translates to:
+  /// **'همراه با پشتیبانی'**
+  String get paymentDialogText7;
+
+  /// No description provided for @paymentDialogSubmitButtonLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'ادامه'**
+  String get paymentDialogSubmitButtonLabel;
+
+  /// No description provided for @profileRouteTansactionDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'لیست تراکنش‌ها'**
+  String get profileRouteTansactionDialogTitle;
+
+  /// No description provided for @profileRouteTansactionListTileID.
+  ///
+  /// In fa, this message translates to:
+  /// **'شناسه'**
+  String get profileRouteTansactionListTileID;
+
+  /// No description provided for @profileRouteTansactionListTilePaidAmount.
+  ///
+  /// In fa, this message translates to:
+  /// **'مبلغ پرداختی'**
+  String get profileRouteTansactionListTilePaidAmount;
+
+  /// No description provided for @profileRouteTansactionListTilePaymentMethod.
+  ///
+  /// In fa, this message translates to:
+  /// **'روش پرداخت'**
+  String get profileRouteTansactionListTilePaymentMethod;
+
+  /// No description provided for @profileRouteTansactionListTilePurchaseDate.
+  ///
+  /// In fa, this message translates to:
+  /// **'تاریخ خرید'**
+  String get profileRouteTansactionListTilePurchaseDate;
+
+  /// No description provided for @profileRouteTansactionListTileExpireDate.
+  ///
+  /// In fa, this message translates to:
+  /// **'تاریخ اتمام'**
+  String get profileRouteTansactionListTileExpireDate;
+
+  /// No description provided for @profileRouteTansactionListTileUpdatedAt.
+  ///
+  /// In fa, this message translates to:
+  /// **'تاریخ بروزرسانی'**
+  String get profileRouteTansactionListTileUpdatedAt;
+
+  /// No description provided for @profileRouteTansactionListTileSubscriptionType.
+  ///
+  /// In fa, this message translates to:
+  /// **'نوع اشتراک'**
+  String get profileRouteTansactionListTileSubscriptionType;
+
+  /// No description provided for @profileRouteTansactionListTileCafeBazzarOrderID.
+  ///
+  /// In fa, this message translates to:
+  /// **'شناسه کافه بازار'**
+  String get profileRouteTansactionListTileCafeBazzarOrderID;
+
+  /// No description provided for @profileRouteTansactionListTileFoodRequestLimit.
+  ///
+  /// In fa, this message translates to:
+  /// **'تعداد غذای قابل ثبت'**
+  String get profileRouteTansactionListTileFoodRequestLimit;
+
+  /// No description provided for @profileRouteTansactionListTileNumberOfRequestedFoods.
+  ///
+  /// In fa, this message translates to:
+  /// **'تعداد غذای ثبت شده'**
+  String get profileRouteTansactionListTileNumberOfRequestedFoods;
+
+  /// No description provided for @profileRouteTansactionListTileActive.
+  ///
+  /// In fa, this message translates to:
+  /// **'فعال'**
+  String get profileRouteTansactionListTileActive;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

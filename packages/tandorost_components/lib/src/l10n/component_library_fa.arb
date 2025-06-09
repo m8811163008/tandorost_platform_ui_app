@@ -144,7 +144,7 @@
     "photoEditorRatio": "نسبت",
     "photoEditorBack": "بازگشت",
     "photoEditorDone": "انجام شد",
-    "photoEditorCancel": "لغو",
+    "photoEditorCancel": "بازگشت",
     "photoEditorUndo": "برگرداندن",
     "photoEditorRedo": "دوباره انجام دادن",
     "photoEditorSmallScreenMoreTooltip": "بیشتر",
@@ -203,8 +203,8 @@
     "fitnessProfileWaistCircumferenceToHeightRatio": "نسبت دور کمر به قد",
     "fitnessProfileIsWaistCircumferenceToHeightRatioSafe": "آیا نسبت دور کمر به قد ایمن است؟",
     "fitnessProfileIsWaistCircumferenceSafeRange": "آیا دور کمر در محدوده ایمن است؟",
-    "fitnessProfileYes": "بله",
-    "fitnessProfileNo": "خیر",
+    "yes": "بله",
+    "no": "خیر",
     "fitnessProfileNA": "در دسترس نیست",
     "fitnessProfileBodyMassIndexLevelLabel": "سطح شاخص توده بدنی",
     "fitnessProfileBmiDescription": "شاخص توده بدنی شما {bmiValue} و در وضعیت {bmiDescriptive} هستید.",
@@ -303,7 +303,8 @@
         }
     },
     "bazzarNotFound": "کافه بازار نصب نشده است. کافه بازار را نصب کنید",
-    "bazzarSuccessfulPayment": "اشتراک با موفقیت اضافه شد",
+    "bazzarSuccessfulPayment": "اشتراک با موفقیت اضافه شد.برای اضافه کردن غذا اشتراک را تمدید نمایید",
+    "bazzarFailPayment": "فرآیند تمدید اشتراک لغو شد",
     "addMeasurementDialogHintTitle": "شکل بدن",
     "addMeasurementDialogHintText1": "بخاطر پیشگیری از وسواس فکری بیش از هفته‌ای یکبار خود را وزن نکنید.",
     "addMeasurementDialogHintText2": "اندازه گیری شکل بدن نسبت به اندازه گیری وزن بیشتر باعث انگیزه تناسب اندام میشود.",
@@ -483,7 +484,7 @@
     "vo2maxCalculatorText6": "به مدت ۱۲ دقیقه روی تردمیل یا زمین صاف حداکثر مسافتی که می‌توانید، بدوید و سپس مسافت را به متر برای محاسبه VO2max در زیر وارد کنید.",
     "vo2maxCalculatorLabelText": "مسافت طی شده به متر",
     "vo2maxCalculatorHintText": "مسافت طی شده در ۱۲ دقیقه به متر",
-    "vo2maxCalculatorVo2maxRate": "مقدار VO2max شما {vo2max} می‌باشد",
+    "vo2maxCalculatorVo2maxRate": "مقدار VO2max شما {vo2max} میلی‌لیتر اکسیژن به ازای هر کیلوگرم وزن بدن در دقیقه (mL/kg/min) می‌باشد",
     "@vo2maxCalculatorVo2maxRate": {
         "placeholders": {
             "vo2max": {
@@ -515,11 +516,7 @@
                 "type": "int"
             },
             "distance": {
-                "type": "double",
-                "format": "decimalPatternDigits",
-                "optionalParameters": {
-                    "decimalDigits": 2
-                }
+                "type": "int"
             }
         }
     },
@@ -577,5 +574,43 @@
     "foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText5": "تمرینات هوازی با شدت بالا (HIIT) و تمرینات تناوبی بیشترین تأثیر را در افزایش VO2max و بهبود سلامت قلب دارند. نسبت ۲ به ۱ (۲۰ ثانیه فعالیت، ۱۰ ثانیه استراحت) برای بهبود سیستم قلبی-عروقی مؤثر است. ترکیب انواع تمرینات و شدت‌ها بهترین نتیجه را دارد.",
     "foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText6": "افراد فعال در سنین بالا می‌توانند سطح آمادگی جسمانی بالاتری نسبت به افراد کم‌تحرک جوان داشته باشند. تمرین منظم هوازی و مقاومتی باعث حفظ قدرت، استقامت و ظرفیت هوازی می‌شود و روند افت عملکرد با افزایش سن را به تأخیر می‌اندازد.",
     "foodInputChatButtonLoadingText1": "در حال پردازش...",
-    "foodInputChatButtonLoadingText2": "لطفاً منتظر بمانید"
+    "foodInputChatButtonLoadingText2": "لطفاً منتظر بمانید",
+    "privacyDialogTitle": "حریم خصوصی",
+    "privacyDialogSubtitle1": "چگونه از اطلاعات شما حراست میکنیم؟",
+    "privacyDialogSubtitle2": "چه اطلاعاتی از شما دریافت می‌شود؟",
+    "privacyDialogSubtitle3": "چگونه از اطلاعات شما محافظت می‌شود؟",
+    "privacyDialogSubtitle4": "چه استفاده‌ای اطلاعات شما خواهد شد؟",
+    "privacyDialogSubtitle5": "چه کسانی به اطلاعات شما دسترسی دارند؟",
+    "privacyDialogText1": "امروزه با گسترش جریان اطلاعات و استفاده روزمره کاربران از اینترنت و وسایل ارتباطی، حریم خصوصی کاربران به یکی از جدی‌ترین دغدغه‌ها تبدیل شده‌است. نگرانی بسیاری از مشتریان، محفوظ ماندن اطلاعات شخصی همچنین شماره موبایل، نام و نام خانوادگی و ایمیل است که برای ثبت نام و لاگین شدن به ما می‌سپارند. باید گفت ما نیز اهمیت این موضوع را درک می‌کنیم و حریم خصوصی کاربران برای ما اهمیت بسیاری دارد. در ذیل سیاست حفظ حریم خصوصی و محرمانگی اطلاعات کاربران را ملاحظه خواهیدکرد.",
+    "privacyDialogText2": "برای ثبت نام در اپلیکشین تندرست لازم است تا اطلاعاتی مانند نام، تلفن همراه، تاریخ تولد و قد و وزن و اندازه ترکیب بدنی خود را در اختیار ما قرار دهید. دریافت مشخصات فردی شما نیز صرفاً برای ثبت نام در سایت، محاسبات تغذیه شما مانند انرژی مورد نیاز روزانه، ارسال اعلان‌های مهم و باخبر کردن شما از رویدادها و تخفیف‌های ویژه، استفاده از خدمات تندرست است.",
+    "privacyDialogText3": "با وجود این‌که امنیت به صورت نسبی تعریف شده است اما در طراحی اپلیکیشن تندرست سعی شده که از بالاترین سطوح امنیتی سخت‌افزاری و نرم‌افزاری در نظر گرفته شود. در زمان ثبت نام، درخواست کد اعتبار، دریافت داده های کاربر، گزارشات و غیره، تمامی در خواست‌ها و خدمات بر روی سرورهای ایمن ما ذخیره و توسط فایروال‌های مستحکم محافظت خواهند شد. اطلاعات شخصی شما نیز به صورت رمزنگاری‌شده در بستر امن HTTPS به وب‌سایت ما منتقل و برای تعاملات بعدی نگهداری خواهند شد.",
+    "privacyDialogText4": "چه از نظر قانونی چه از نظر اخلاقی ما موظف به صیانت از اطلاعات و پرونده‌های شما هستیم. اطلاعات شخصی شما نیز صرفاً جهت تعاملات بعدی به صورت ایمن در پایگاه داده نگهداری می‌شوند تا در درخواست‌های آینده بتوانید به راحتی از نرم افزار استفاده کنید . ایمیل‌ها و پیام‌های تبلیغاتی بی مورد را برای کاربران‌مان ارسال نخواهیم کرد.",
+    "privacyDialogText5": "برای ارائه پشتیبانی بهتر و خدمات با کیفیت‌تر بخش پشتیبانی به برخی از اطلاعات شما دسترسی دارند. تمامی اطلاعات شخصی شما نزد ما محفوظ خواهد ماند و در اختیار افراد یا سازمان‌های دیگری قرار نخواهد گرفت. بدیهی است که مراجع قانونی با ارائه حکم دادگاه قادرند به این اطلاعات دسترسی داشته باشند. به طور کلی ما موظفیم از اطلاعات شما حفاظت و حراست نماییم.",
+    "privacyDialogText6": "امیدواریم بهترین استفاده را از نرم افزار تندرست داشته باشید",
+    "aiChatButtonTitle": "دکمه را نگه دارید",
+    "aiChatButtonSubTitle": "نام غذایی که خوردید بگویید",
+    "paymentDialogTitle": "دسترسی امکانات",
+    "paymentDialogOneMonth": "نقره‌ای",
+    "paymentDialogThreeMonth": "طلایی",
+    "paymentDialogText1": "سلامت و تندرستی",
+    "paymentDialogText2": "پیشگیری از بیماری مرتبط با چاقی",
+    "paymentDialogText3": "سریع‌ترین روش لاغری",
+    "paymentDialogText4": "دسترسی به ثبت انواع غذا",
+    "paymentDialogOneMonthText5": "یک ماه یا 600 عدد غذا",
+    "paymentDialogThreeMonthText5": "سه ماه یا 1800 عدد غذا",
+    "paymentDialogText6": "مطابق سفره ایرانی",
+    "paymentDialogText7": "همراه با پشتیبانی",
+    "paymentDialogSubmitButtonLabel": "ادامه",
+    "profileRouteTansactionDialogTitle": "لیست تراکنش‌ها",
+    "profileRouteTansactionListTileID": "شناسه",
+    "profileRouteTansactionListTilePaidAmount": "مبلغ پرداختی",
+    "profileRouteTansactionListTilePaymentMethod": "روش پرداخت",
+    "profileRouteTansactionListTilePurchaseDate": "تاریخ خرید",
+    "profileRouteTansactionListTileExpireDate": "تاریخ اتمام",
+    "profileRouteTansactionListTileUpdatedAt": "تاریخ بروزرسانی",
+    "profileRouteTansactionListTileSubscriptionType": "نوع اشتراک",
+    "profileRouteTansactionListTileCafeBazzarOrderID": "شناسه کافه بازار",
+    "profileRouteTansactionListTileFoodRequestLimit": "تعداد غذای قابل ثبت",
+    "profileRouteTansactionListTileNumberOfRequestedFoods": "تعداد غذای ثبت شده",
+    "profileRouteTansactionListTileActive": "فعال"
 }

@@ -97,9 +97,13 @@ class SearchBody extends StatelessWidget {
           listener: (context, state) async {
             if (state.onCafeBazzarSubscribeStatus.isConnectionError) {
               Navigator.of(context).pop();
+              final message =
+                  state.exceptionDetail?.contains('PURCHASE_CANCELLED') == true
+                      ? context.l10n.bazzarFailPayment
+                      : state.exceptionDetail ?? '';
               ScaffoldMessenger.of(
                 context,
-              ).showSnackBar(SnackBar(content: Text(state.exceptionDetail!)));
+              ).showSnackBar(SnackBar(content: Text(message)));
             } else if (state.onCafeBazzarSubscribeStatus.isSuccess) {
               context.read<SearchCubit>().onReadCafeBazzarSkus();
             }
@@ -126,17 +130,20 @@ class SearchBody extends StatelessWidget {
                   previous.onCreateSubscriptionPaymentsStatus !=
                   current.onCreateSubscriptionPaymentsStatus,
           listener: (context, state) async {
-            if (state.onReadUserProfileStatus.isConnectionError) {
+            if (state.onCreateSubscriptionPaymentsStatus.isConnectionError) {
               final content = context.l10n.networkError;
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
-            } else if (state.onReadUserProfileStatus.isConnectionError) {
+            } else if (state
+                .onCreateSubscriptionPaymentsStatus
+                .isConnectionError) {
               final content = context.l10n.internetConnectionError;
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
-            } else if (state.onReadUserProfileStatus.isSuccess) {
+            } else if (state.onCreateSubscriptionPaymentsStatus.isSuccess) {
+              Navigator.of(context).pop();
               final content = context.l10n.bazzarSuccessfulPayment;
               ScaffoldMessenger.of(
                 context,
@@ -310,7 +317,36 @@ class SearchBody extends StatelessWidget {
                           cubit.state.searchFoodsByVoiceInputStatus.isLoading,
                     );
                     return !isLoading
-                        ? chatButton
+                        ? Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            chatButton,
+                            SizedBox.fromSize(
+                              size: context.sizeExtenstion.chatButton,
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      context.l10n.aiChatButtonTitle,
+                                      style:
+                                          context
+                                              .themeData
+                                              .textTheme
+                                              .bodyMedium,
+                                    ),
+                                    Text(
+                                      context.l10n.aiChatButtonSubTitle,
+                                      style:
+                                          context.themeData.textTheme.bodySmall,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
                         : Stack(
                           alignment: Alignment.center,
                           children: [
@@ -410,9 +446,7 @@ class PaymentDialogBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return PaymentDialog(
       onPlanTap: (planType) {
-        context.read<SearchCubit>().onChangeSelectedSubscriptionType(
-          SubscriptionType.oneMonth,
-        );
+        context.read<SearchCubit>().onChangeSelectedSubscriptionType(planType);
         context.read<SearchCubit>().onConnectToCofeBazzar();
       },
     );

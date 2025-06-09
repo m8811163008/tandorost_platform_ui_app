@@ -19,6 +19,8 @@ dependencies:
     path: ../../repositories/profile
   image_repository:
     path: ../../repositories/image_repository
+  payment_repository:
+    path: ../../repositories/payment_repository
   file_picker: ^10.1.9
 dev_dependencies:
   flutter_test:

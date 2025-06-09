@@ -12,6 +12,8 @@ class ProfileState extends Equatable {
     this.uploadingImageProfileStatus = AsyncProcessingStatus.inital,
     this.readProfileImageStatus = AsyncProcessingStatus.inital,
     this.readProfileStatus = AsyncProcessingStatus.inital,
+    this.readSubscriptionStatus = AsyncProcessingStatus.inital,
+    this.subscriptions = const [],
     this.userProfile,
     this.profileImage,
   });
@@ -25,8 +27,10 @@ class ProfileState extends Equatable {
   final AsyncProcessingStatus readProfileStatus;
   final AsyncProcessingStatus readProfileImageStatus;
   final AsyncProcessingStatus uploadingImageProfileStatus;
+  final AsyncProcessingStatus readSubscriptionStatus;
   final UserProfile? userProfile;
   final FileDetail? profileImage;
+  final List<SubscriptionPayment> subscriptions;
 
   ProfileState copyWith({
     ChangeWeightSpeed? changeWeightSpeed,
@@ -38,6 +42,8 @@ class ProfileState extends Equatable {
     AsyncProcessingStatus? readProfileStatus,
     AsyncProcessingStatus? readProfileImageStatus,
     AsyncProcessingStatus? uploadingImageProfileStatus,
+    AsyncProcessingStatus? readSubscriptionStatus,
+    List<SubscriptionPayment>? subscriptions,
     UserProfile? userProfile,
     FileDetail? profileImage,
   }) {
@@ -57,6 +63,9 @@ class ProfileState extends Equatable {
           readProfileImageStatus ?? this.readProfileImageStatus,
       userProfile: userProfile ?? this.userProfile,
       profileImage: profileImage ?? this.profileImage,
+      subscriptions: subscriptions ?? this.subscriptions,
+      readSubscriptionStatus:
+          readSubscriptionStatus ?? this.readSubscriptionStatus,
     );
   }
 
@@ -73,5 +82,7 @@ class ProfileState extends Equatable {
     uploadingImageProfileStatus,
     userProfile,
     profileImage,
+    subscriptions,
+    readSubscriptionStatus,
   ];
 }

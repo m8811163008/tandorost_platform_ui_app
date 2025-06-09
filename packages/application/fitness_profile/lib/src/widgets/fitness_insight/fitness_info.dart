@@ -71,8 +71,8 @@ class FitnessInfo extends StatelessWidget {
             fitnessData.isWaistCircumferenceToHeightRatioSafe == null
                 ? context.l10n.fitnessProfileNA
                 : (fitnessData.isWaistCircumferenceToHeightRatioSafe!
-                    ? context.l10n.fitnessProfileYes
-                    : context.l10n.fitnessProfileNo),
+                    ? context.l10n.yes
+                    : context.l10n.no),
           ),
           gap,
           _buildFitnessData(
@@ -81,8 +81,8 @@ class FitnessInfo extends StatelessWidget {
             fitnessData.isWaistCircumferenceSafeRange == null
                 ? context.l10n.fitnessProfileNA
                 : (fitnessData.isWaistCircumferenceSafeRange!
-                    ? context.l10n.fitnessProfileYes
-                    : context.l10n.fitnessProfileNo),
+                    ? context.l10n.yes
+                    : context.l10n.no),
           ),
           // TODO add is weight lose is safe?
         ],

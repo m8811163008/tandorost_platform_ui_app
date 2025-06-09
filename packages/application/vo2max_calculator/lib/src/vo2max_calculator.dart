@@ -131,7 +131,7 @@ class _Vo2maxCalculatorCardState extends State<Vo2maxCalculatorCard> {
               Text(
                 context.l10n.vo2maxCalculatorVo2maxDistance(
                   15,
-                  maxDistanceInMeterInOneMinues * 15,
+                  maxDistanceInMeterInOneMinues.toInt() * 15,
                 ),
 
                 textAlign: TextAlign.justify,
@@ -139,21 +139,21 @@ class _Vo2maxCalculatorCardState extends State<Vo2maxCalculatorCard> {
               Text(
                 context.l10n.vo2maxCalculatorVo2maxDistance(
                   20,
-                  maxDistanceInMeterInOneMinues * 20,
+                  maxDistanceInMeterInOneMinues.toInt() * 20,
                 ),
                 textAlign: TextAlign.justify,
               ),
               Text(
                 context.l10n.vo2maxCalculatorVo2maxDistance(
                   25,
-                  maxDistanceInMeterInOneMinues * 25,
+                  maxDistanceInMeterInOneMinues.toInt() * 25,
                 ),
                 textAlign: TextAlign.justify,
               ),
               Text(
                 context.l10n.vo2maxCalculatorVo2maxDistance(
                   30,
-                  maxDistanceInMeterInOneMinues * 30,
+                  maxDistanceInMeterInOneMinues.toInt() * 30,
                 ),
                 textAlign: TextAlign.justify,
               ),

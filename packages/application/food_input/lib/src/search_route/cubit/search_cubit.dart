@@ -320,7 +320,7 @@ class SearchCubit extends Cubit<SearchState> {
         state.userProfile == null) {
       return;
     }
-    if (state.subscriptionPayment == null) return;
+
     final sku =
         state.selectedSubscriptionType! == SubscriptionType.oneMonth
             ? state
@@ -334,7 +334,7 @@ class SearchCubit extends Cubit<SearchState> {
     );
     final subscriptionPayment = SubscriptionPayment(
       userId: state.userProfile!.id,
-      paidAmount: double.parse(skuDetail.price),
+      paidAmount: '۳,۱۱۰,۰۰۰ ریال'.toRialDouble(),
       discountAmount: 0,
       currency: Currency.irRial,
       paymentMethod: PaymentMethod.inAppPaymentCafeBazzar,
@@ -426,5 +426,25 @@ class SearchCubit extends Cubit<SearchState> {
     if (!isClosed) {
       emit(state);
     }
+  }
+}
+
+extension PersianRialParser on String {
+  /// Parses a Persian Rial price string like '۳,۱۱۰,۰۰۰ ریال' and returns the double value.
+  /// Example: '۳,۱۱۰,۰۰۰ ریال' => 3110000.0
+  double toRialDouble() {
+    // Remove 'ریال' and whitespace
+    String cleaned = replaceAll('ریال', '').replaceAll(' ', '');
+    // Remove commas
+    cleaned = cleaned.replaceAll(',', '');
+    // Convert Persian digits to English digits
+    const persian = '۰۱۲۳۴۵۶۷۸۹';
+    const english = '0123456789';
+    StringBuffer buffer = StringBuffer();
+    for (var ch in cleaned.split('')) {
+      int idx = persian.indexOf(ch);
+      buffer.write(idx == -1 ? ch : english[idx]);
+    }
+    return double.tryParse(buffer.toString()) ?? 0.0;
   }
 }

@@ -501,11 +501,10 @@ class RemoteApiBase implements RemoteApi {
       ],
     );
     final uri = UriBuilder.createSubscriptionPayment();
+    final subscriptionPaymentJson = subscriptionPayment.toJson();
     final res = await _handleRequest<JsonMap>(
-      () => interceptedHttp.post(
-        uri,
-        body: json.encode(subscriptionPayment.toJson()),
-      ),
+      () =>
+          interceptedHttp.post(uri, body: json.encode(subscriptionPaymentJson)),
     );
     return SubscriptionPayment.fromJson(res!);
   }

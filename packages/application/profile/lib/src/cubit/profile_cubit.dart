@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_repository/image_repository.dart';
+import 'package:payment_repository/payment.dart';
 
 import 'package:profile/profile.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -11,12 +12,14 @@ import 'package:tandorost_components/tandorost_components.dart';
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  ProfileCubit(this._profile, this._imageRepository) : super(ProfileState()) {
+  ProfileCubit(this._profile, this._imageRepository, this._paymentRepository)
+    : super(ProfileState()) {
     readProfile();
     readImageProfile();
   }
   final ProfileRepository _profile;
   final ImageRepository _imageRepository;
+  final PaymentRepository _paymentRepository;
 
   void readImageProfile() async {
     _enhancedEmit(
@@ -45,6 +48,34 @@ class ProfileCubit extends Cubit<ProfileState> {
       _enhancedEmit(
         state.copyWith(
           readProfileImageStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
+  void readSubscriptions() async {
+    _enhancedEmit(
+      state.copyWith(readSubscriptionStatus: AsyncProcessingStatus.loading),
+    );
+    try {
+      final subscriptions = await _paymentRepository.readSubscriptionPayments();
+
+      _enhancedEmit(
+        state.copyWith(
+          readSubscriptionStatus: AsyncProcessingStatus.success,
+          subscriptions: subscriptions,
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          readSubscriptionStatus: AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          readSubscriptionStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
@@ -143,7 +174,6 @@ class ProfileCubit extends Cubit<ProfileState> {
     _enhancedEmit(
       state.copyWith(isTimeRestrictedEating: isTimeRestrictedEating),
     );
-    
   }
 
   void onChangeLanguage(Language? language) async {

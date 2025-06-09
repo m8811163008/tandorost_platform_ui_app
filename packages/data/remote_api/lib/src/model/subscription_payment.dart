@@ -17,13 +17,18 @@ class SubscriptionPayment {
   final DateTime? updatedAt;
   @JsonKey(includeToJson: false)
   final int? userAiRequestLimitFoods;
+  @JsonKey(includeToJson: false)
+  final int userAiRequestedFoods;
+  @JsonKey(includeToJson: false)
+  final bool isActive;
+
+  DateTime get expireDate => purchaseDate.add(subscriptionType.duration);
 
   SubscriptionPayment({
     this.id,
     required this.userId,
     required this.paidAmount,
     required this.discountAmount,
-
     required this.currency,
     required this.paymentMethod,
     required this.purchaseDate,
@@ -31,15 +36,9 @@ class SubscriptionPayment {
     this.userAiRequestLimitFoods,
     this.cafeBazzarOrderId,
     this.updatedAt,
+    this.isActive = false,
+    this.userAiRequestedFoods = 0,
   });
-
-  bool get isActive {
-    if (subscriptionType == SubscriptionType.freeTier) {
-      return true;
-    }
-    final expireDate = purchaseDate.add(subscriptionType.duration);
-    return DateTime.now().isBefore(expireDate);
-  }
 
   factory SubscriptionPayment.fromJson(Map<String, dynamic> json) =>
       _$SubscriptionPaymentFromJson(json);

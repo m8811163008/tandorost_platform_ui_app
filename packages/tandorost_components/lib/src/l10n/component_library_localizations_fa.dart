@@ -524,10 +524,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get fitnessProfileIsWaistCircumferenceSafeRange => 'آیا دور کمر در محدوده ایمن است؟';
 
   @override
-  String get fitnessProfileYes => 'بله';
+  String get yes => 'بله';
 
   @override
-  String get fitnessProfileNo => 'خیر';
+  String get no => 'خیر';
 
   @override
   String get fitnessProfileNA => 'در دسترس نیست';
@@ -733,7 +733,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get bazzarNotFound => 'کافه بازار نصب نشده است. کافه بازار را نصب کنید';
 
   @override
-  String get bazzarSuccessfulPayment => 'اشتراک با موفقیت اضافه شد';
+  String get bazzarSuccessfulPayment => 'اشتراک با موفقیت اضافه شد.برای اضافه کردن غذا اشتراک را تمدید نمایید';
+
+  @override
+  String get bazzarFailPayment => 'فرآیند تمدید اشتراک لغو شد';
 
   @override
   String get addMeasurementDialogHintTitle => 'شکل بدن';
@@ -1090,7 +1093,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
     );
     final String vo2maxString = vo2maxNumberFormat.format(vo2max);
 
-    return 'مقدار VO2max شما $vo2maxString می‌باشد';
+    return 'مقدار VO2max شما $vo2maxString میلی‌لیتر اکسیژن به ازای هر کیلوگرم وزن بدن در دقیقه (mL/kg/min) می‌باشد';
   }
 
   @override
@@ -1108,14 +1111,8 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get vo2maxCalculatorVo2maxRecommandation => 'برای حداکثر کردن سرعت چربی سوزی بعد از تمرین مقاومتی بین 15 تا 30 دقیقه تمرین هوازی انجام دهید';
 
   @override
-  String vo2maxCalculatorVo2maxDistance(int minutes, double distance) {
-    final intl.NumberFormat distanceNumberFormat = intl.NumberFormat.decimalPatternDigits(
-      locale: localeName,
-      decimalDigits: 2
-    );
-    final String distanceString = distanceNumberFormat.format(distance);
-
-    return 'در $minutes دقیقه مسافت $distanceString متر را با سرعت متوسط طی کنید';
+  String vo2maxCalculatorVo2maxDistance(int minutes, int distance) {
+    return 'در $minutes دقیقه مسافت $distance متر را با سرعت متوسط طی کنید';
   }
 
   @override
@@ -1282,4 +1279,118 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get foodInputChatButtonLoadingText2 => 'لطفاً منتظر بمانید';
+
+  @override
+  String get privacyDialogTitle => 'حریم خصوصی';
+
+  @override
+  String get privacyDialogSubtitle1 => 'چگونه از اطلاعات شما حراست میکنیم؟';
+
+  @override
+  String get privacyDialogSubtitle2 => 'چه اطلاعاتی از شما دریافت می‌شود؟';
+
+  @override
+  String get privacyDialogSubtitle3 => 'چگونه از اطلاعات شما محافظت می‌شود؟';
+
+  @override
+  String get privacyDialogSubtitle4 => 'چه استفاده‌ای اطلاعات شما خواهد شد؟';
+
+  @override
+  String get privacyDialogSubtitle5 => 'چه کسانی به اطلاعات شما دسترسی دارند؟';
+
+  @override
+  String get privacyDialogText1 => 'امروزه با گسترش جریان اطلاعات و استفاده روزمره کاربران از اینترنت و وسایل ارتباطی، حریم خصوصی کاربران به یکی از جدی‌ترین دغدغه‌ها تبدیل شده‌است. نگرانی بسیاری از مشتریان، محفوظ ماندن اطلاعات شخصی همچنین شماره موبایل، نام و نام خانوادگی و ایمیل است که برای ثبت نام و لاگین شدن به ما می‌سپارند. باید گفت ما نیز اهمیت این موضوع را درک می‌کنیم و حریم خصوصی کاربران برای ما اهمیت بسیاری دارد. در ذیل سیاست حفظ حریم خصوصی و محرمانگی اطلاعات کاربران را ملاحظه خواهیدکرد.';
+
+  @override
+  String get privacyDialogText2 => 'برای ثبت نام در اپلیکشین تندرست لازم است تا اطلاعاتی مانند نام، تلفن همراه، تاریخ تولد و قد و وزن و اندازه ترکیب بدنی خود را در اختیار ما قرار دهید. دریافت مشخصات فردی شما نیز صرفاً برای ثبت نام در سایت، محاسبات تغذیه شما مانند انرژی مورد نیاز روزانه، ارسال اعلان‌های مهم و باخبر کردن شما از رویدادها و تخفیف‌های ویژه، استفاده از خدمات تندرست است.';
+
+  @override
+  String get privacyDialogText3 => 'با وجود این‌که امنیت به صورت نسبی تعریف شده است اما در طراحی اپلیکیشن تندرست سعی شده که از بالاترین سطوح امنیتی سخت‌افزاری و نرم‌افزاری در نظر گرفته شود. در زمان ثبت نام، درخواست کد اعتبار، دریافت داده های کاربر، گزارشات و غیره، تمامی در خواست‌ها و خدمات بر روی سرورهای ایمن ما ذخیره و توسط فایروال‌های مستحکم محافظت خواهند شد. اطلاعات شخصی شما نیز به صورت رمزنگاری‌شده در بستر امن HTTPS به وب‌سایت ما منتقل و برای تعاملات بعدی نگهداری خواهند شد.';
+
+  @override
+  String get privacyDialogText4 => 'چه از نظر قانونی چه از نظر اخلاقی ما موظف به صیانت از اطلاعات و پرونده‌های شما هستیم. اطلاعات شخصی شما نیز صرفاً جهت تعاملات بعدی به صورت ایمن در پایگاه داده نگهداری می‌شوند تا در درخواست‌های آینده بتوانید به راحتی از نرم افزار استفاده کنید . ایمیل‌ها و پیام‌های تبلیغاتی بی مورد را برای کاربران‌مان ارسال نخواهیم کرد.';
+
+  @override
+  String get privacyDialogText5 => 'برای ارائه پشتیبانی بهتر و خدمات با کیفیت‌تر بخش پشتیبانی به برخی از اطلاعات شما دسترسی دارند. تمامی اطلاعات شخصی شما نزد ما محفوظ خواهد ماند و در اختیار افراد یا سازمان‌های دیگری قرار نخواهد گرفت. بدیهی است که مراجع قانونی با ارائه حکم دادگاه قادرند به این اطلاعات دسترسی داشته باشند. به طور کلی ما موظفیم از اطلاعات شما حفاظت و حراست نماییم.';
+
+  @override
+  String get privacyDialogText6 => 'امیدواریم بهترین استفاده را از نرم افزار تندرست داشته باشید';
+
+  @override
+  String get aiChatButtonTitle => 'دکمه را نگه دارید';
+
+  @override
+  String get aiChatButtonSubTitle => 'نام غذایی که خوردید بگویید';
+
+  @override
+  String get paymentDialogTitle => 'دسترسی امکانات';
+
+  @override
+  String get paymentDialogOneMonth => 'نقره‌ای';
+
+  @override
+  String get paymentDialogThreeMonth => 'طلایی';
+
+  @override
+  String get paymentDialogText1 => 'سلامت و تندرستی';
+
+  @override
+  String get paymentDialogText2 => 'پیشگیری از بیماری مرتبط با چاقی';
+
+  @override
+  String get paymentDialogText3 => 'سریع‌ترین روش لاغری';
+
+  @override
+  String get paymentDialogText4 => 'دسترسی به ثبت انواع غذا';
+
+  @override
+  String get paymentDialogOneMonthText5 => 'یک ماه یا 600 عدد غذا';
+
+  @override
+  String get paymentDialogThreeMonthText5 => 'سه ماه یا 1800 عدد غذا';
+
+  @override
+  String get paymentDialogText6 => 'مطابق سفره ایرانی';
+
+  @override
+  String get paymentDialogText7 => 'همراه با پشتیبانی';
+
+  @override
+  String get paymentDialogSubmitButtonLabel => 'ادامه';
+
+  @override
+  String get profileRouteTansactionDialogTitle => 'لیست تراکنش‌ها';
+
+  @override
+  String get profileRouteTansactionListTileID => 'شناسه';
+
+  @override
+  String get profileRouteTansactionListTilePaidAmount => 'مبلغ پرداختی';
+
+  @override
+  String get profileRouteTansactionListTilePaymentMethod => 'روش پرداخت';
+
+  @override
+  String get profileRouteTansactionListTilePurchaseDate => 'تاریخ خرید';
+
+  @override
+  String get profileRouteTansactionListTileExpireDate => 'تاریخ اتمام';
+
+  @override
+  String get profileRouteTansactionListTileUpdatedAt => 'تاریخ بروزرسانی';
+
+  @override
+  String get profileRouteTansactionListTileSubscriptionType => 'نوع اشتراک';
+
+  @override
+  String get profileRouteTansactionListTileCafeBazzarOrderID => 'شناسه کافه بازار';
+
+  @override
+  String get profileRouteTansactionListTileFoodRequestLimit => 'تعداد غذای قابل ثبت';
+
+  @override
+  String get profileRouteTansactionListTileNumberOfRequestedFoods => 'تعداد غذای ثبت شده';
+
+  @override
+  String get profileRouteTansactionListTileActive => 'فعال';
 }

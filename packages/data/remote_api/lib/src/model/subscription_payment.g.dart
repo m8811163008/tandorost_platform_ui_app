@@ -25,6 +25,8 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
             'subscription_type',
             'updated_at',
             'user_ai_request_limit_foods',
+            'user_ai_requested_foods',
+            'is_active',
           ],
         );
         final val = SubscriptionPayment(
@@ -66,6 +68,11 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
             'updated_at',
             (v) => v == null ? null : DateTime.parse(v as String),
           ),
+          isActive: $checkedConvert('is_active', (v) => v as bool? ?? false),
+          userAiRequestedFoods: $checkedConvert(
+            'user_ai_requested_foods',
+            (v) => (v as num?)?.toInt() ?? 0,
+          ),
         );
         return val;
       },
@@ -79,6 +86,8 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
         'userAiRequestLimitFoods': 'user_ai_request_limit_foods',
         'cafeBazzarOrderId': 'cafe_bazzar_order_id',
         'updatedAt': 'updated_at',
+        'isActive': 'is_active',
+        'userAiRequestedFoods': 'user_ai_requested_foods',
       },
     );
 

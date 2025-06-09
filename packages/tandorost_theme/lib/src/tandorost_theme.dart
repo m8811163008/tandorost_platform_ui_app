@@ -43,7 +43,7 @@ class AppTheme {
       extensions: [sizeExtenstion, colorExtenstion],
       appBarTheme: AppBarTheme(
         color: ThemeColor.white.color,
-        actionsPadding: EdgeInsets.symmetric(vertical: sizeExtenstion.small),
+        actionsPadding: EdgeInsets.symmetric(vertical: sizeExtenstion.medium),
       ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(),

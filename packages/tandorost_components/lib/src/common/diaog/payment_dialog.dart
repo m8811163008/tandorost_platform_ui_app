@@ -21,22 +21,29 @@ class PaymentDialog extends StatelessWidget {
             padding: EdgeInsets.all(context.sizeExtenstion.medium),
             child: Column(
               children: [
-                Text('Payment plans', style: context.textTheme.headlineMedium),
+                Text(
+                  context.l10n.paymentDialogTitle,
+                  style: context.textTheme.headlineMedium,
+                ),
                 Wrap(
                   children: [
                     PaymentCard(
+                      title: context.l10n.paymentDialogThreeMonth,
+                      limit: context.l10n.paymentDialogThreeMonthText5,
                       submitButton: AppOutLineButton(
-                        label: 'one',
+                        label: context.l10n.paymentDialogSubmitButtonLabel,
                         onTap: () {
-                          onPlanTap?.call(SubscriptionType.oneMonth);
+                          onPlanTap?.call(SubscriptionType.threeMonth);
                         },
                       ),
                     ),
                     PaymentCard(
+                      title: context.l10n.paymentDialogOneMonth,
+                      limit: context.l10n.paymentDialogOneMonthText5,
                       submitButton: AppOutLineButton(
-                        label: 'three',
+                        label: context.l10n.paymentDialogSubmitButtonLabel,
                         onTap: () {
-                          onPlanTap?.call(SubscriptionType.threeMonth);
+                          onPlanTap?.call(SubscriptionType.oneMonth);
                         },
                       ),
                     ),
@@ -57,23 +64,34 @@ class PaymentDialog extends StatelessWidget {
 }
 
 class PaymentCard extends StatelessWidget {
-  const PaymentCard({super.key, this.submitButton});
+  const PaymentCard({
+    super.key,
+    this.submitButton,
+    this.title = '',
+    this.limit = '',
+  });
   final Widget? submitButton;
+  final String title, limit;
 
   @override
   Widget build(BuildContext context) {
     return AppCard(
       child: Column(
         children: [
-          Text('plan name', style: context.textTheme.headlineSmall),
+          Text(title, style: context.textTheme.headlineSmall),
           Divider(),
-          Text('137', style: context.textTheme.titleMedium),
-          Text('ماهانه'),
+          Text(
+            context.l10n.paymentDialogText1,
+            style: context.textTheme.titleMedium,
+          ),
           SizedBox(height: context.sizeExtenstion.small),
-          PaymentCardRow(text: 'انتخاب یک بهترین'),
-          PaymentCardRow(text: 'یک از بهترین'),
-          PaymentCardRow(text: 'کاهش وزن سریع'),
-          PaymentCardRow(text: 'دقیق ترین روش کاهش'),
+          Text(context.l10n.paymentDialogText2),
+          SizedBox(height: context.sizeExtenstion.small),
+          PaymentCardRow(text: limit),
+          PaymentCardRow(text: context.l10n.paymentDialogText6),
+          PaymentCardRow(text: context.l10n.paymentDialogText7),
+          PaymentCardRow(text: context.l10n.paymentDialogText3),
+          PaymentCardRow(text: context.l10n.paymentDialogText4),
           SizedBox(height: context.sizeExtenstion.medium),
           if (submitButton != null) submitButton!,
         ],
@@ -91,7 +109,7 @@ class PaymentCardRow extends StatelessWidget {
     return Row(
       children: [
         Icon(Icons.check, color: context.themeData.colorScheme.primary),
-        Text('label'),
+        Text(text),
       ],
     );
   }

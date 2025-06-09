@@ -1,4 +1,5 @@
 import 'package:authentication_app/src/register/cubit/register_cubit.dart';
+import 'package:authentication_app/src/register/privacy_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
@@ -133,9 +134,24 @@ class _RegisterFormState extends State<RegisterForm> {
           ),
 
           SizedBox(height: context.sizeExtenstion.large),
-          TextButton(
-            onPressed: widget.goToLoginRoute,
-            child: Text(context.l10n.textButtonLabelLogin),
+          Wrap(
+            children: [
+              TextButton(
+                onPressed: widget.goToLoginRoute,
+                child: Text(context.l10n.textButtonLabelLogin),
+              ),
+              TextButton(
+                onPressed: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return PrivacyDialog();
+                    },
+                  );
+                },
+                child: Text(context.l10n.privacyDialogTitle),
+              ),
+            ],
           ),
         ],
       ),

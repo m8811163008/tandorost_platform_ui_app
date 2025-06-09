@@ -81,7 +81,7 @@ class WaterRequrementDialogRestDay extends StatelessWidget {
     );
 
     return AppDialog(
-      title: context.l10n.foodRequerementDialogHydrationTitle,
+      title: context.l10n.foodRequerementDialogHydrationTrainingTitle,
       contents: [
         Text(context.l10n.foodRequerementDialogHydrationRestDayText1),
         Text(context.l10n.foodRequerementDialogHydrationRestDayText2),
@@ -112,7 +112,7 @@ class WaterRequrementDialogTrainingDay extends StatelessWidget {
     );
 
     return AppDialog(
-      title: context.l10n.foodRequerementDialogHydrationTitle,
+      title: context.l10n.foodRequerementDialogHydrationTrainingTitle,
       contents: [
         Text(context.l10n.foodRequerementDialogHydrationTrainingDayText1),
         Text(context.l10n.foodRequerementDialogHydrationTrainingDayText2),
@@ -149,7 +149,7 @@ class CarbRequrementDialogRestDay extends StatelessWidget {
     );
 
     return AppDialog(
-      title: context.l10n.foodRequerementDialogHydrationTitle,
+      title: context.l10n.carbohydrate,
       contents: [
         Text(context.l10n.foodRequerementDialogCarbohydrateRestDayText1),
         Text(
@@ -186,7 +186,10 @@ class CarbRequrementDialogTrainingDayBeforeExcercise extends StatelessWidget {
     );
 
     return AppDialog(
-      title: context.l10n.foodRequerementDialogHydrationTitle,
+      title:
+          context
+              .l10n
+              .foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceTitle,
       contents: [
         Text(
           context.l10n
@@ -222,7 +225,10 @@ class CarbRequrementDialogTrainingDayDuringExcercise extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppDialog(
-      title: context.l10n.foodRequerementDialogHydrationTitle,
+      title:
+          context
+              .l10n
+              .foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceTitle,
       contents: [
         Text(
           context
@@ -264,7 +270,10 @@ class CarbRequrementDialogTrainingDayAfterExcercise extends StatelessWidget {
           cubit.state.userPhysicalProfile?.weight.last.value,
     );
     return AppDialog(
-      title: context.l10n.foodRequerementDialogHydrationTitle,
+      title:
+          context
+              .l10n
+              .foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceTitle,
       contents: [
         Text(
           context
@@ -329,7 +338,7 @@ class ProteinRequrementDialogRestDay extends StatelessWidget {
             : protein / weight;
 
     return AppDialog(
-      title: context.l10n.foodRequerementDialogHydrationTitle,
+      title: context.l10n.protein,
       contents: [
         Text(
           context.l10n.foodRequerementDialogProteinRestDayText1(proteinPerMeal),
@@ -355,7 +364,7 @@ class ProteinRequrementDialogTrainingDay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppDialog(
-      title: context.l10n.foodRequerementDialogHydrationTitle,
+      title: context.l10n.protein,
       contents: [
         Text(context.l10n.foodRequerementDialogProteinTrainingDayText1),
         Text(context.l10n.foodRequerementDialogProteinTrainingDayText2),
@@ -471,7 +480,7 @@ class FatRequrementDialogRestDay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppDialog(
-      title: context.l10n.foodRequerementDialogHydrationTitle,
+      title: context.l10n.fat,
       contents: [
         Text(context.l10n.foodRequerementDialogFatRestDayText1),
         Text(context.l10n.foodRequerementDialogFatRestDayText2),
@@ -495,7 +504,7 @@ class TimeRestrictedDialogRestDay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppDialog(
-      title: context.l10n.foodRequerementDialogHydrationTitle,
+      title: context.l10n.timeRestrictedEatingLabel,
       contents: [
         Text(context.l10n.timeRestrictedText1),
         Text(context.l10n.timeRestrictedText2),
@@ -519,7 +528,7 @@ class FoodRequerementDialogAgeRelatedFoodConsidarationRestDay
   @override
   Widget build(BuildContext context) {
     return AppDialog(
-      title: context.l10n.foodRequerementDialogHydrationTitle,
+      title: context.l10n.foodRequerementDialogAgeRelatedFoodConsidarationTitle,
       contents: [
         Text(
           context
@@ -663,7 +672,7 @@ class FoodRequerementDialogAgeRelatedFoodConsidarationTraningDay
   @override
   Widget build(BuildContext context) {
     return AppDialog(
-      title: context.l10n.foodRequerementDialogHydrationTitle,
+      title: context.l10n.foodRequerementDialogAgeRelatedFoodConsidarationTitle,
       contents: [
         Text(
           context
