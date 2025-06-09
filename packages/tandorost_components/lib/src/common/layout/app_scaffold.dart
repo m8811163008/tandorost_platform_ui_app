@@ -27,7 +27,6 @@ class AppScaffold extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: appBar,
       body: body,
-
       floatingActionButton: fab,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: RoundedBottomNavigationBar(

@@ -18,7 +18,7 @@ class FoodReportStatics extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final gap = SizedBox(height: context.sizeExtenstion.small);
+    final gap = SizedBox(height: context.sizeExtenstion.extraLarge);
     return AppCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,6 +69,7 @@ class FoodReportStatics extends StatelessWidget {
           gap,
           if (nutritionRequirement != null)
             FoodSuggestionChips(selectedTab: selectedTab),
+          gap,
         ],
       ),
     );

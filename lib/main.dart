@@ -127,34 +127,41 @@ class TandorostBlocProviders extends StatelessWidget {
   }
 }
 
-class TandorostPlatform extends StatelessWidget {
+class TandorostPlatform extends StatefulWidget {
   const TandorostPlatform({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final dpr = MediaQuery.of(context).devicePixelRatio;
+  State<TandorostPlatform> createState() => _TandorostPlatformState();
+}
 
-        return MaterialApp.router(
-          theme:
-              AppTheme(
-                locale: const Locale('fa'),
-                screenWidth: constraints.maxWidth * dpr,
-              ).lightTheme,
-          routerConfig: Navigation.goRouter(context),
-          localizationsDelegates: const [
-            PersianMaterialLocalizations.delegate,
-            PersianCupertinoLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            ComponentLibraryLocalizations.delegate,
-          ],
-          supportedLocales: const [Locale("fa", "IR")],
-          locale: const Locale("fa", "IR"),
-        );
-      },
+class _TandorostPlatformState extends State<TandorostPlatform> {
+  MediaQueryData? _mediaQueryData = null;
+  late final double dpr;
+  late final double width;
+  @override
+  Widget build(BuildContext context) {
+    if (_mediaQueryData == null) {
+      _mediaQueryData = MediaQuery.of(context);
+      dpr = _mediaQueryData!.devicePixelRatio;
+      width = _mediaQueryData!.size.width;
+    }
+    return MaterialApp.router(
+      theme:
+          AppTheme(
+            locale: const Locale('fa'),
+            screenWidth: dpr * width,
+          ).lightTheme,
+      routerConfig: Navigation.goRouter(context),
+      localizationsDelegates: const [
+        PersianMaterialLocalizations.delegate,
+        PersianCupertinoLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        ComponentLibraryLocalizations.delegate,
+      ],
+      supportedLocales: const [Locale("fa", "IR")],
+      locale: const Locale("fa", "IR"),
     );
   }
 }

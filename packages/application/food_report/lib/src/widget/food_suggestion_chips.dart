@@ -10,7 +10,7 @@ class FoodSuggestionChips extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.sizeExtenstion.xExtraLarge,
+      height: context.sizeExtenstion.xxExtraLarge,
       child: ListView(
         scrollDirection: Axis.horizontal,
 

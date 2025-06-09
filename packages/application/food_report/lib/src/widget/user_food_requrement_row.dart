@@ -25,6 +25,7 @@ class UserFoodRequirementRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Wrap(
+          crossAxisAlignment: WrapCrossAlignment.end,
           children: [
             Material(
               shape: CircleBorder(),
@@ -35,8 +36,13 @@ class UserFoodRequirementRow extends StatelessWidget {
             Text(
               '$macroNutritionLabel $currentValue ${context.l10n.foodReportUserFoodRequirementFrom} ${total ?? context.l10n.foodReportUserFoodRequirementNA} $unitOfmeasurement',
             ),
+            SizedBox(width: context.sizeExtenstion.small),
             if (isExceed)
-              Icon(Icons.warning, color: context.themeData.colorScheme.error),
+              Icon(
+                Icons.warning_amber_rounded,
+                color: context.themeData.colorScheme.error,
+                size: context.sizeExtenstion.extraLarge,
+              ),
           ],
         ),
         SizedBox(height: context.sizeExtenstion.small),

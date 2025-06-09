@@ -12,13 +12,13 @@ class ColorExtenstion extends ThemeExtension<ColorExtenstion> {
     this.energy = const Color(0xff2e0549), // russianViolet
     this.fat = const Color(0xff631490), // tekhelet
     this.carbsFruitsVeggies = const Color.fromARGB(
-      206,
-      15,
-      172,
+      255,
       1,
+      141,
+      118,
     ), // mediumSlateBlue
-    this.carbsOther = const Color.fromARGB(255, 83, 45, 0), // black
-    this.protein = const Color.fromARGB(255, 194, 8, 54), // seasalt
+    this.carbsOther = const Color(0xFF532D00), // black
+    this.protein = const Color(0xFFC20836), // seasalt
   });
 
   @override
