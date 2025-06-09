@@ -2274,13 +2274,13 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @aiChatButtonTitle.
   ///
   /// In fa, this message translates to:
-  /// **'دکمه را نگه دارید'**
+  /// **'دکمه را نگه دارید و نام غذاهایی که خوردید بگویید'**
   String get aiChatButtonTitle;
 
   /// No description provided for @aiChatButtonSubTitle.
   ///
   /// In fa, this message translates to:
-  /// **'نام غذایی که خوردید بگویید'**
+  /// **'یا کیبرد را لمس کنید و نام غذاهایی که خوردید تایپ کنید.'**
   String get aiChatButtonSubTitle;
 
   /// No description provided for @paymentDialogTitle.
@@ -2426,6 +2426,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'فعال'**
   String get profileRouteTansactionListTileActive;
+
+  /// No description provided for @searchRouteMicrophonePermissionMessage.
+  ///
+  /// In fa, this message translates to:
+  /// **'لطفا برای گفتن غذاها دسترسی میکرفن دستگاه را بدهید'**
+  String get searchRouteMicrophonePermissionMessage;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

@@ -588,8 +588,8 @@
     "privacyDialogText4": "چه از نظر قانونی چه از نظر اخلاقی ما موظف به صیانت از اطلاعات و پرونده‌های شما هستیم. اطلاعات شخصی شما نیز صرفاً جهت تعاملات بعدی به صورت ایمن در پایگاه داده نگهداری می‌شوند تا در درخواست‌های آینده بتوانید به راحتی از نرم افزار استفاده کنید . ایمیل‌ها و پیام‌های تبلیغاتی بی مورد را برای کاربران‌مان ارسال نخواهیم کرد.",
     "privacyDialogText5": "برای ارائه پشتیبانی بهتر و خدمات با کیفیت‌تر بخش پشتیبانی به برخی از اطلاعات شما دسترسی دارند. تمامی اطلاعات شخصی شما نزد ما محفوظ خواهد ماند و در اختیار افراد یا سازمان‌های دیگری قرار نخواهد گرفت. بدیهی است که مراجع قانونی با ارائه حکم دادگاه قادرند به این اطلاعات دسترسی داشته باشند. به طور کلی ما موظفیم از اطلاعات شما حفاظت و حراست نماییم.",
     "privacyDialogText6": "امیدواریم بهترین استفاده را از نرم افزار تندرست داشته باشید",
-    "aiChatButtonTitle": "دکمه را نگه دارید",
-    "aiChatButtonSubTitle": "نام غذایی که خوردید بگویید",
+    "aiChatButtonTitle": "دکمه را نگه دارید و نام غذاهایی که خوردید بگویید",
+    "aiChatButtonSubTitle": "یا کیبرد را لمس کنید و نام غذاهایی که خوردید تایپ کنید.",
     "paymentDialogTitle": "دسترسی امکانات",
     "paymentDialogOneMonth": "نقره‌ای",
     "paymentDialogThreeMonth": "طلایی",
@@ -613,5 +613,6 @@
     "profileRouteTansactionListTileCafeBazzarOrderID": "شناسه کافه بازار",
     "profileRouteTansactionListTileFoodRequestLimit": "تعداد غذای قابل ثبت",
     "profileRouteTansactionListTileNumberOfRequestedFoods": "تعداد غذای ثبت شده",
-    "profileRouteTansactionListTileActive": "فعال"
+    "profileRouteTansactionListTileActive": "فعال",
+    "searchRouteMicrophonePermissionMessage": "لطفا برای گفتن غذاها دسترسی میکرفن دستگاه را بدهید"
 }

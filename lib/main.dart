@@ -134,11 +134,13 @@ class TandorostPlatform extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
+        final dpr = MediaQuery.of(context).devicePixelRatio;
+
         return MaterialApp.router(
           theme:
               AppTheme(
                 locale: const Locale('fa'),
-                screenWidth: constraints.maxWidth,
+                screenWidth: constraints.maxWidth * dpr,
               ).lightTheme,
           routerConfig: Navigation.goRouter(context),
           localizationsDelegates: const [

@@ -37,46 +37,39 @@ class _FormLayoutState extends State<FormLayout> {
               style: context.textTheme.headlineMedium,
             ),
             Divider(),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _buildTextField(),
-                  BlocConsumer<SearchCubit, SearchState>(
-                    listenWhen:
-                        (previous, current) =>
-                            previous.searchFoodsByTextInputStatus !=
-                            current.searchFoodsByTextInputStatus,
-                    listener: (context, state) {
-                      if (state.searchFoodsByTextInputStatus.isSuccess) {
-                        Navigator.of(context).pop();
+            SizedBox(height: context.sizeExtenstion.medium),
+            _buildTextField(),
+            SizedBox(height: context.sizeExtenstion.small),
+            BlocConsumer<SearchCubit, SearchState>(
+              listenWhen:
+                  (previous, current) =>
+                      previous.searchFoodsByTextInputStatus !=
+                      current.searchFoodsByTextInputStatus,
+              listener: (context, state) {
+                if (state.searchFoodsByTextInputStatus.isSuccess) {
+                  Navigator.of(context).pop();
+                }
+              },
+              buildWhen:
+                  (previous, current) =>
+                      previous.searchFoodsByTextInputStatus !=
+                      current.searchFoodsByTextInputStatus,
+              builder: (context, state) {
+                if (state.searchFoodsByTextInputStatus.isLoading) {
+                  return AppOutLineButton.loading(
+                    label: context.l10n.searchFoodBottomSheetButtonLabel,
+                  );
+                } else {
+                  return AppOutLineButton(
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        context.read<SearchCubit>().readFoodsNutritionsByText();
                       }
                     },
-                    buildWhen:
-                        (previous, current) =>
-                            previous.searchFoodsByTextInputStatus !=
-                            current.searchFoodsByTextInputStatus,
-                    builder: (context, state) {
-                      if (state.searchFoodsByTextInputStatus.isLoading) {
-                        return AppOutLineButton.loading(
-                          label: context.l10n.searchFoodBottomSheetButtonLabel,
-                        );
-                      } else {
-                        return AppOutLineButton(
-                          onTap: () {
-                            if (_formKey.currentState!.validate()) {
-                              context
-                                  .read<SearchCubit>()
-                                  .readFoodsNutritionsByText();
-                            }
-                          },
-                          label: context.l10n.searchFoodBottomSheetButtonLabel,
-                        );
-                      }
-                    },
-                  ),
-                ],
-              ),
+                    label: context.l10n.searchFoodBottomSheetButtonLabel,
+                  );
+                }
+              },
             ),
           ],
         ),

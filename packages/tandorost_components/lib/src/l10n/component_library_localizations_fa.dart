@@ -1320,10 +1320,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get privacyDialogText6 => 'امیدواریم بهترین استفاده را از نرم افزار تندرست داشته باشید';
 
   @override
-  String get aiChatButtonTitle => 'دکمه را نگه دارید';
+  String get aiChatButtonTitle => 'دکمه را نگه دارید و نام غذاهایی که خوردید بگویید';
 
   @override
-  String get aiChatButtonSubTitle => 'نام غذایی که خوردید بگویید';
+  String get aiChatButtonSubTitle => 'یا کیبرد را لمس کنید و نام غذاهایی که خوردید تایپ کنید.';
 
   @override
   String get paymentDialogTitle => 'دسترسی امکانات';
@@ -1396,4 +1396,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get profileRouteTansactionListTileActive => 'فعال';
+
+  @override
+  String get searchRouteMicrophonePermissionMessage => 'لطفا برای گفتن غذاها دسترسی میکرفن دستگاه را بدهید';
 }

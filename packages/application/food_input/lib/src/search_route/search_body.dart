@@ -252,218 +252,186 @@ class SearchBody extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         child: Padding(
           padding: EdgeInsets.only(bottom: context.sizeExtenstion.medium),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              IconButton.filledTonal(
-                onPressed: () async {
-                  await showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (_) {
-                      return FractionallySizedBox(
-                        heightFactor: 1,
-                        child: BlocProvider.value(
-                          value: context.read<SearchCubit>(),
-                          child: SearchFoodBottomSheet(),
-                        ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  IconButton.filledTonal(
+                    onPressed: () async {
+                      await showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (_) {
+                          return FractionallySizedBox(
+                            heightFactor: 1,
+                            child: BlocProvider.value(
+                              value: context.read<SearchCubit>(),
+                              child: SearchFoodBottomSheet(),
+                            ),
+                          );
+                        },
                       );
                     },
-                  );
-                },
-                icon: Icon(Icons.keyboard),
-              ),
-              Flexible(
-                child: BlocBuilder<SearchCubit, SearchState>(
-                  buildWhen:
-                      (previous, current) =>
-                          previous.isRecorderPermissionAllowed !=
-                              current.isRecorderPermissionAllowed ||
-                          previous.canRequestForFoodNutrition !=
-                              current.canRequestForFoodNutrition,
-                  builder: (context, state) {
-                    final chatButton = AIChatButton(
-                      onLongPressStart: () async {
-                        if (state.isRecorderPermissionAllowed) {
-                          if (state.canRequestForFoodNutrition) {
-                            context
-                                .read<SearchCubit>()
-                                .onSearchByVoicePressedDown();
-                          } else {
-                            await showDialog(
-                              context: context,
-                              builder: (_) {
-                                return BlocProvider.value(
-                                  value: context.read<SearchCubit>(),
-                                  child: PaymentDialogBuilder(),
-                                );
-                              },
-                            );
-                          }
-                        } else {
-                          context
-                              .read<SearchCubit>()
-                              .onRequestRecorderPremission();
-                        }
-                      },
-
-                      onLongPressUp:
-                          context.read<SearchCubit>().onSearchByVoicePressedUp,
-                    );
-
-                    bool isLoading = context.select<SearchCubit, bool>(
-                      (cubit) =>
-                          cubit.state.searchFoodsByVoiceInputStatus.isLoading,
-                    );
-                    return !isLoading
-                        ? Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            chatButton,
-                            GestureDetector(
-                              onLongPressStart: (_) async {
-                                if (state.isRecorderPermissionAllowed) {
-                                  if (state.canRequestForFoodNutrition) {
-                                    context
-                                        .read<SearchCubit>()
-                                        .onSearchByVoicePressedDown();
-                                  } else {
-                                    await showDialog(
-                                      context: context,
-                                      builder: (_) {
-                                        return BlocProvider.value(
-                                          value: context.read<SearchCubit>(),
-                                          child: PaymentDialogBuilder(),
-                                        );
-                                      },
+                    icon: Icon(Icons.keyboard),
+                  ),
+                  Flexible(
+                    child: BlocBuilder<SearchCubit, SearchState>(
+                      buildWhen:
+                          (previous, current) =>
+                              previous.isRecorderPermissionAllowed !=
+                                  current.isRecorderPermissionAllowed ||
+                              previous.canRequestForFoodNutrition !=
+                                  current.canRequestForFoodNutrition,
+                      builder: (context, state) {
+                        final chatButton = AIChatButton(
+                          onLongPressStart: () async {
+                            if (state.isRecorderPermissionAllowed) {
+                              if (state.canRequestForFoodNutrition) {
+                                context
+                                    .read<SearchCubit>()
+                                    .onSearchByVoicePressedDown();
+                              } else {
+                                await showDialog(
+                                  context: context,
+                                  builder: (_) {
+                                    return BlocProvider.value(
+                                      value: context.read<SearchCubit>(),
+                                      child: PaymentDialogBuilder(),
                                     );
-                                  }
-                                } else {
+                                  },
+                                );
+                              }
+                            } else {
+                              final content =
                                   context
-                                      .read<SearchCubit>()
-                                      .onRequestRecorderPremission();
-                                }
-                              },
-                              onLongPressUp:
-                                  context
-                                      .read<SearchCubit>()
-                                      .onSearchByVoicePressedUp,
-                              child: SizedBox.fromSize(
-                                size: context.sizeExtenstion.chatButton,
-                                child: Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        context.l10n.aiChatButtonTitle,
-                                        style:
-                                            context
-                                                .themeData
-                                                .textTheme
-                                                .bodyMedium,
-                                      ),
-                                      Text(
-                                        context.l10n.aiChatButtonSubTitle,
-                                        style:
-                                            context
-                                                .themeData
-                                                .textTheme
-                                                .bodySmall,
-                                      ),
-                                    ],
-                                  ),
+                                      .l10n
+                                      .searchRouteMicrophonePermissionMessage;
+                              ScaffoldMessenger.of(
+                                context,
+                              ).showSnackBar(SnackBar(content: Text(content)));
+                              await Future.delayed(Duration(seconds: 2));
+                              if (context.mounted) {
+                                context
+                                    .read<SearchCubit>()
+                                    .onRequestRecorderPremission();
+                              }
+                            }
+                          },
+
+                          onLongPressUp:
+                              context
+                                  .read<SearchCubit>()
+                                  .onSearchByVoicePressedUp,
+                        );
+
+                        bool isLoading =
+                            cubit.state.searchFoodsByVoiceInputStatus.isLoading;
+                        return !isLoading
+                            ? chatButton
+                            : Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                IgnorePointer(
+                                  ignoring: true,
+                                  child: chatButton,
                                 ),
-                              ),
-                            ),
-                          ],
-                        )
-                        : Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            IgnorePointer(ignoring: true, child: chatButton),
-                            Material(
-                              color: context.themeData.colorScheme.primary
-                                  .withAlpha(50),
-                              shape: const CircleBorder(),
-                              child: SizedBox.fromSize(
-                                size: context.sizeExtenstion.chatButton,
-                                child: Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        context
-                                            .l10n
-                                            .foodInputChatButtonLoadingText1,
-                                        style:
+                                Material(
+                                  color: context.themeData.colorScheme.primary
+                                      .withAlpha(50),
+                                  shape: const CircleBorder(),
+                                  child: SizedBox.fromSize(
+                                    size: context.sizeExtenstion.chatButton,
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
                                             context
-                                                .themeData
-                                                .textTheme
-                                                .bodyMedium,
-                                      ),
-                                      Text(
-                                        context
-                                            .l10n
-                                            .foodInputChatButtonLoadingText2,
-                                        style:
-                                            context
-                                                .themeData
-                                                .textTheme
-                                                .bodySmall,
-                                      ),
-                                      SizedBox(
-                                        height:
-                                            context.sizeExtenstion.extraSmall,
-                                      ),
-                                      SizedBox(
-                                        width:
-                                            context
-                                                .sizeExtenstion
-                                                .chatButton
-                                                .width /
-                                            3,
-                                        child: LinearProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
+                                                .l10n
+                                                .foodInputChatButtonLoadingText1,
+                                            style:
                                                 context
                                                     .themeData
-                                                    .colorScheme
-                                                    .primary,
-                                              ),
-                                        ),
+                                                    .textTheme
+                                                    .bodyMedium,
+                                          ),
+                                          Text(
+                                            context
+                                                .l10n
+                                                .foodInputChatButtonLoadingText2,
+                                            style:
+                                                context
+                                                    .themeData
+                                                    .textTheme
+                                                    .bodySmall,
+                                          ),
+                                          SizedBox(
+                                            height:
+                                                context
+                                                    .sizeExtenstion
+                                                    .extraSmall,
+                                          ),
+                                          SizedBox(
+                                            width:
+                                                context
+                                                    .sizeExtenstion
+                                                    .chatButton
+                                                    .width /
+                                                3,
+                                            child: LinearProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                    context
+                                                        .themeData
+                                                        .colorScheme
+                                                        .primary,
+                                                  ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
+                            );
+                      },
+                    ),
+                  ),
+                  IconButton.filledTonal(
+                    onPressed: () async {
+                      await showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (_) {
+                          return FractionallySizedBox(
+                            heightFactor: 1,
+                            child: BlocProvider.value(
+                              value: context.read<SearchCubit>(),
+                              child: LanguageBottomSheet(),
                             ),
-                          ],
-                        );
-                  },
-                ),
-              ),
-              IconButton.filledTonal(
-                onPressed: () async {
-                  await showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (_) {
-                      return FractionallySizedBox(
-                        heightFactor: 1,
-                        child: BlocProvider.value(
-                          value: context.read<SearchCubit>(),
-                          child: LanguageBottomSheet(),
-                        ),
+                          );
+                        },
                       );
                     },
-                  );
-                },
-                icon: Icon(Icons.language),
+                    icon: Icon(Icons.language),
+                  ),
+                ],
+              ),
+              SizedBox(height: context.sizeExtenstion.medium),
+              Text(
+                context.l10n.aiChatButtonTitle,
+                style: context.textTheme.bodySmall,
+              ),
+              Text(
+                context.l10n.aiChatButtonSubTitle,
+                style: context.textTheme.bodySmall,
               ),
             ],
           ),

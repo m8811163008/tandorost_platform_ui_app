@@ -43,7 +43,7 @@ class AppTheme {
       extensions: [sizeExtenstion, colorExtenstion],
       appBarTheme: AppBarTheme(
         color: ThemeColor.white.color,
-        actionsPadding: EdgeInsets.symmetric(vertical: sizeExtenstion.medium),
+        actionsPadding: EdgeInsets.symmetric(horizontal: sizeExtenstion.medium),
       ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(),
@@ -126,6 +126,7 @@ enum ScreenSize { small, medium, large, extraLarge }
 
 extension ScreenSizeFromWidth on num {
   ScreenSize get screenSize {
+    
     if (this < 425) return ScreenSize.small;
     if (this < 768) return ScreenSize.medium;
     if (this < 1024) return ScreenSize.large;

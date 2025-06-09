@@ -3,9 +3,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
+
+
+
 class AIChatButton extends StatefulWidget {
   const AIChatButton({super.key, this.onLongPressStart, this.onLongPressUp});
   final VoidCallback? onLongPressUp, onLongPressStart;
+  
   // final Function({VoidCallback? onCancleLongPress})? onLongPressStart;
 
   @override

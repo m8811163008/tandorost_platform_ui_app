@@ -9,7 +9,6 @@ class IntroductionRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return AnimatedIntroduction(
       isFullScreen: true,
       footerBgColor: context.themeData.colorScheme.secondary,
@@ -25,8 +24,15 @@ class IntroductionRoute extends StatelessWidget {
       footerPadding: EdgeInsets.all(context.sizeExtenstion.medium),
       topHeightForFooter: MediaQuery.of(context).size.height / 2,
       skipText: '',
-      doneText: context.l10n.introductionDoneText,
-      nextText: context.l10n.introductionNextText,
+
+      nextWidget: Padding(
+        padding: EdgeInsets.symmetric(horizontal: context.sizeExtenstion.small),
+        child: Text(context.l10n.introductionNextText),
+      ),
+      doneWidget: Padding(
+        padding: EdgeInsets.symmetric(horizontal: context.sizeExtenstion.small),
+        child: Text(context.l10n.introductionDoneText),
+      ),
     );
   }
 
