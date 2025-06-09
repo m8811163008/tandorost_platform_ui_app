@@ -72,6 +72,7 @@
     "forgotPasswordLabel": "فراموشی رمز عبور",
     "phoneNumberTextFieldLabel": "شماره تلفن همراه",
     "passwordTextFieldLabel": "رمز عبور",
+    "newPasswordTextFieldLabel": "رمز عبور جدید",
     "verificationCodeTextFieldLabel": "کد پیامک شده",
     "dialogTitleChangeApplicationLanguage": "تغییر زبان نرم افزار",
     "dialogTitleChangeName": "تغییرنام",

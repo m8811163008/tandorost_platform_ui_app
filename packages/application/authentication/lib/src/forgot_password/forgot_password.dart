@@ -116,6 +116,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
           PasswordTextField(
             onChange: context.read<ForgotPasswordCubit>().onChangePinCode,
             textDirection: TextDirection.ltr,
+            isForgotPasswordField: true,
           ),
 
           SizedBox(height: context.sizeExtenstion.large),

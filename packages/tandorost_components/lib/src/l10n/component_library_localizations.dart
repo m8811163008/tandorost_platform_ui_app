@@ -357,6 +357,12 @@ abstract class ComponentLibraryLocalizations {
   /// **'رمز عبور'**
   String get passwordTextFieldLabel;
 
+  /// No description provided for @newPasswordTextFieldLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'رمز عبور جدید'**
+  String get newPasswordTextFieldLabel;
+
   /// No description provided for @verificationCodeTextFieldLabel.
   ///
   /// In fa, this message translates to:

@@ -7,17 +7,22 @@ class PasswordTextField extends StatelessWidget {
     this.onChange,
     this.textDirection,
     this.autofillHints,
+    this.isForgotPasswordField = false,
   });
   final ValueSetter<String>? onChange;
   final TextDirection? textDirection;
   final Iterable<String>? autofillHints;
+  final bool isForgotPasswordField;
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: textDirection ?? Directionality.of(context),
       child: NumberTextField(
-        label: context.l10n.passwordTextFieldLabel,
+        label:
+            isForgotPasswordField
+                ? context.l10n.newPasswordTextFieldLabel
+                : context.l10n.passwordTextFieldLabel,
         hintText: '1234',
         maxLength: 4,
         obscureText: true,

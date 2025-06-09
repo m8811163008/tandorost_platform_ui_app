@@ -157,6 +157,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get passwordTextFieldLabel => 'رمز عبور';
 
   @override
+  String get newPasswordTextFieldLabel => 'رمز عبور جدید';
+
+  @override
   String get verificationCodeTextFieldLabel => 'کد پیامک شده';
 
   @override

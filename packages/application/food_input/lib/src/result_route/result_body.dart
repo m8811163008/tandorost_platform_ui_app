@@ -22,7 +22,16 @@ class ResultBody extends StatelessWidget {
       > 425 => 0.7,
       _ => 0.55,
     };
-    return BlocBuilder<ResultCubit, ResultState>(
+    return BlocConsumer<ResultCubit, ResultState>(
+      listenWhen:
+          (previous, current) =>
+              previous.foods != current.foods ||
+              previous.deletingStatus != current.deletingStatus,
+      listener: (context, state) {
+        if (state.foods.isEmpty) {
+          Navigator.of(context).pop();
+        }
+      },
       buildWhen:
           (previous, current) =>
               previous.foods != current.foods ||

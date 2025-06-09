@@ -321,27 +321,60 @@ class SearchBody extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             chatButton,
-                            SizedBox.fromSize(
-                              size: context.sizeExtenstion.chatButton,
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      context.l10n.aiChatButtonTitle,
-                                      style:
-                                          context
-                                              .themeData
-                                              .textTheme
-                                              .bodyMedium,
-                                    ),
-                                    Text(
-                                      context.l10n.aiChatButtonSubTitle,
-                                      style:
-                                          context.themeData.textTheme.bodySmall,
-                                    ),
-                                  ],
+                            GestureDetector(
+                              onLongPressStart: (_) async {
+                                if (state.isRecorderPermissionAllowed) {
+                                  if (state.canRequestForFoodNutrition) {
+                                    context
+                                        .read<SearchCubit>()
+                                        .onSearchByVoicePressedDown();
+                                  } else {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        return BlocProvider.value(
+                                          value: context.read<SearchCubit>(),
+                                          child: PaymentDialogBuilder(),
+                                        );
+                                      },
+                                    );
+                                  }
+                                } else {
+                                  context
+                                      .read<SearchCubit>()
+                                      .onRequestRecorderPremission();
+                                }
+                              },
+                              onLongPressUp:
+                                  context
+                                      .read<SearchCubit>()
+                                      .onSearchByVoicePressedUp,
+                              child: SizedBox.fromSize(
+                                size: context.sizeExtenstion.chatButton,
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        context.l10n.aiChatButtonTitle,
+                                        style:
+                                            context
+                                                .themeData
+                                                .textTheme
+                                                .bodyMedium,
+                                      ),
+                                      Text(
+                                        context.l10n.aiChatButtonSubTitle,
+                                        style:
+                                            context
+                                                .themeData
+                                                .textTheme
+                                                .bodySmall,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
