@@ -24,14 +24,26 @@ class IntroductionRoute extends StatelessWidget {
       footerPadding: EdgeInsets.all(context.sizeExtenstion.medium),
       topHeightForFooter: MediaQuery.of(context).size.height / 2,
       skipText: '',
+      nextWidget: _buildNavigation(context, context.l10n.introductionNextText),
+      doneWidget: _buildNavigation(context, context.l10n.introductionDoneText),
+    );
+  }
 
-      nextWidget: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.sizeExtenstion.small),
-        child: Text(context.l10n.introductionNextText),
-      ),
-      doneWidget: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.sizeExtenstion.small),
-        child: Text(context.l10n.introductionDoneText),
+  Widget _buildNavigation(BuildContext context, String label) {
+    return Material(
+      color: context.themeData.colorScheme.primary,
+      elevation: 4.0,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.sizeExtenstion.extraLarge,
+          vertical: context.sizeExtenstion.small,
+        ),
+        child: Text(
+          label,
+          style: context.textTheme.titleMedium!.apply(
+            color: context.themeData.colorScheme.onPrimary,
+          ),
+        ),
       ),
     );
   }

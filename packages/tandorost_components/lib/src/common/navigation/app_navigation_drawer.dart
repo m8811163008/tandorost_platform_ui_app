@@ -85,7 +85,7 @@ abstract class DrawerNavigationRoutes {
   };
   static const Map<int, IconData> icons = {
     0: Icons.search,
-    1: Icons.report,
+    1: Icons.circle,
     2: Icons.fitness_center,
     3: Icons.account_box,
     4: Icons.health_and_safety,
@@ -102,7 +102,7 @@ abstract class BottomNavigationRoutes {
   };
   static const Map<int, IconData> icons = {
     0: Icons.search,
-    1: Icons.report,
+    1: Icons.circle,
     2: Icons.fitness_center,
     3: Icons.account_box,
   };

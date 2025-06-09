@@ -31,19 +31,33 @@ class AppTheme {
         style: TextButton.styleFrom(visualDensity: screenWidth.visualDensity),
       ),
       colorScheme: ColorScheme.fromSeed(
-        seedColor: ThemeColor.pictonBlue.color,
-        primary: ThemeColor.pictonBlue.color,
-        secondary: ThemeColor.oxfordBlue.color,
-        tertiary: ThemeColor.pigmentGreen.color,
-        onPrimary: ThemeColor.charcoal.color,
-        onSecondary: ThemeColor.white.color,
+        seedColor: ThemeColor.russianViolet.color,
+        primary: ThemeColor.russianViolet.color,
+        secondary: ThemeColor.tekhelet.color,
+        tertiary: ThemeColor.black.color,
+        onPrimary: ThemeColor.seasalt.color,
+        onSecondary: ThemeColor.mediumSlateBlue.color,
       ),
+      scaffoldBackgroundColor: ThemeColor.seasalt.color,
+      canvasColor: ThemeColor.seasalt.color,
 
       textTheme: textTheme(locale, screenWidth),
       extensions: [sizeExtenstion, colorExtenstion],
       appBarTheme: AppBarTheme(
-        color: ThemeColor.white.color,
+        backgroundColor: ThemeColor.seasalt.color,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(sizeExtenstion.medium),
+            bottomRight: Radius.circular(sizeExtenstion.medium),
+          ),
+        ),
+
+        surfaceTintColor: Colors.transparent,
         actionsPadding: EdgeInsets.symmetric(horizontal: sizeExtenstion.medium),
+      ),
+      tabBarTheme: TabBarThemeData(
+        textScaler: TextScaler.linear(screenWidth.textFactor),
+        dividerColor: Colors.transparent,
       ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(),
@@ -51,7 +65,7 @@ class AppTheme {
         hintStyle: textTheme(
           locale,
           screenWidth,
-        ).titleMedium!.copyWith(color: ThemeColor.charcoal.color),
+        ).titleMedium!.copyWith(color: ThemeColor.black.color),
         contentPadding: EdgeInsets.symmetric(
           horizontal: sizeExtenstion.medium,
           vertical: sizeExtenstion.small,
@@ -67,29 +81,25 @@ class AppTheme {
         borderRadius: BorderRadius.circular(sizeExtenstion.large),
       ),
       listTileTheme: ListTileThemeData(
-        tileColor: ThemeColor.white.color,
+        tileColor: ThemeColor.mediumSlateBlue.color.withAlpha(50),
+        selectedTileColor: ThemeColor.mediumSlateBlue.color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(sizeExtenstion.small),
         ),
       ),
       // Calm theme: soft, muted colors
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: ThemeColor.white.color,
-        selectedItemColor: ThemeColor.pictonBlue.color.withAlpha(
-          160,
-        ), // calm blue
-        unselectedItemColor: ThemeColor.oxfordBlue.color.withAlpha(
+        backgroundColor: ThemeColor.seasalt.color,
+        selectedItemColor: ThemeColor.russianViolet.color, // calm blue
+        unselectedItemColor: ThemeColor.russianViolet.color.withAlpha(
           128,
         ), // muted blue
-        selectedIconTheme: IconThemeData(color: ThemeColor.pictonBlue.color),
+        selectedIconTheme: IconThemeData(color: ThemeColor.russianViolet.color),
         unselectedIconTheme: IconThemeData(
-          color: ThemeColor.oxfordBlue.color.withAlpha(128),
+          color: ThemeColor.russianViolet.color.withAlpha(128),
         ),
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
-      ),
-      tabBarTheme: TabBarThemeData(
-        textScaler: TextScaler.linear(screenWidth.textFactor),
       ),
     );
   }
@@ -104,9 +114,9 @@ class AppTheme {
         package: 'tandorost_theme',
         fontSizeFactor: screenWidth.textFactor,
         fontSizeDelta: 0,
-        bodyColor: ThemeColor.charcoal.color,
-        displayColor: ThemeColor.charcoal.color,
-        decorationColor: ThemeColor.charcoal.color,
+        bodyColor: ThemeColor.black.color,
+        displayColor: ThemeColor.black.color,
+        decorationColor: ThemeColor.black.color,
       );
     } else {
       return Typography.dense2021.apply(
@@ -114,9 +124,9 @@ class AppTheme {
         package: 'tandorost_theme',
         fontSizeFactor: screenWidth.textFactor,
         fontSizeDelta: 0,
-        bodyColor: ThemeColor.charcoal.color,
-        displayColor: ThemeColor.charcoal.color,
-        decorationColor: ThemeColor.charcoal.color,
+        bodyColor: ThemeColor.black.color,
+        displayColor: ThemeColor.black.color,
+        decorationColor: ThemeColor.black.color,
       );
     }
   }
@@ -126,7 +136,6 @@ enum ScreenSize { small, medium, large, extraLarge }
 
 extension ScreenSizeFromWidth on num {
   ScreenSize get screenSize {
-    
     if (this < 425) return ScreenSize.small;
     if (this < 768) return ScreenSize.medium;
     if (this < 1024) return ScreenSize.large;

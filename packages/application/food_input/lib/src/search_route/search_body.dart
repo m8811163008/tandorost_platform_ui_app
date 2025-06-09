@@ -284,7 +284,9 @@ class SearchBody extends StatelessWidget {
                               previous.isRecorderPermissionAllowed !=
                                   current.isRecorderPermissionAllowed ||
                               previous.canRequestForFoodNutrition !=
-                                  current.canRequestForFoodNutrition,
+                                  current.canRequestForFoodNutrition ||
+                              previous.searchFoodsByVoiceInputStatus !=
+                                  current.searchFoodsByVoiceInputStatus,
                       builder: (context, state) {
                         final chatButton = AIChatButton(
                           onLongPressStart: () async {

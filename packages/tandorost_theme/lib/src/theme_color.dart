@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 enum ThemeColor {
-  oxfordBlue(Color(0xff011638)),
-  pictonBlue(Color(0xff29A9E4)),
-  pigmentGreen(Color(0xff4CAF50)),
-  charcoal(Color(0xff364156)),
-  white(Colors.white);
+  tekhelet(Color(0xff631490)),
+  mediumSlateBlue(Color(0xff9e6df7)),
+  russianViolet(Color(0xff2e0549)),
+  seasalt(Color(0xfff7f7f7)),
+  black(Colors.black);
 
   final Color color;
   const ThemeColor(this.color);

@@ -19,7 +19,7 @@ class AddImageButton extends StatelessWidget {
 
     return isFilled
         ? ElevatedButton(onPressed: onPressed, child: label)
-        : IconButton.filled(
+        : IconButton.filledTonal(
           onPressed: onPressed,
           // label: label,
           icon: Icon(Icons.image),
