@@ -9,6 +9,7 @@ class SearchBodyLayoutFooter extends StatelessWidget {
     return Column(
       children: [
         _buildHint(context, context.l10n.aiChatButtonTitle),
+        SizedBox(height: context.sizeExtenstion.small),
         _buildHint(context, context.l10n.aiChatButtonSubTitle),
       ],
     );
@@ -17,10 +18,7 @@ class SearchBodyLayoutFooter extends StatelessWidget {
   Widget _buildHint(BuildContext context, String title) {
     return Align(
       alignment: AlignmentDirectional.centerStart,
-      child: Text(
-        context.l10n.aiChatButtonSubTitle,
-        style: context.textTheme.bodySmall,
-      ),
+      child: Text(title, style: context.textTheme.bodySmall),
     );
   }
 }

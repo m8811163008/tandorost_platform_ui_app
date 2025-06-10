@@ -17,7 +17,6 @@ class SearchRoute extends StatelessWidget {
   });
   final VoidCallback? goToResultRoute;
   final ValueChanged<int>? onBottomNavigationChanged;
-
   final int bottomNavigationIndex;
   final ValueChanged<int>? onDrawerNavigationChanged;
   final int drawerNavigationIndex;
@@ -46,11 +45,8 @@ class SearchRoute extends StatelessWidget {
           currentIndex: bottomNavigationIndex,
           items: AppNavigation.bottomNavigationItems(context),
         ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: context.sizeExtenstion.small,
-          ),
-          child: SearchView(onSeachFoodSuccess: goToResultRoute),
+        body: AppScaffoldBody(
+          child: SearchBody(onSeachFoodSuccess: goToResultRoute),
         ),
       ),
     );

@@ -1,7 +1,5 @@
-import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
-import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
-import 'package:tandorost_components/tandorost_components.dart';
+import 'package:food_input_app/src/search_route/language_bottom_sheet_form.dart';
 
 class LanguageBottomSheet extends StatefulWidget {
   const LanguageBottomSheet({super.key});
@@ -43,52 +41,4 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet>
   }
 }
 
-class LanguageBottomSheetForm extends StatelessWidget {
-  const LanguageBottomSheetForm({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: context.sizeExtenstion.large),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // TODO fix layout bug show scroll content behind the text
-          Text(
-            context.l10n.selectLanguageBottomSheetHeading,
-            style: context.textTheme.headlineMedium,
-          ),
-          Divider(),
-
-          Flexible(
-            child: BlocBuilder<SearchCubit, SearchState>(
-              buildWhen:
-                  (previous, current) =>
-                      previous.userSpokenLanguage != current.userSpokenLanguage,
-              builder: (context, state) {
-                return ListView.separated(
-                  shrinkWrap: true,
-                  itemCount: Language.values.length,
-                  itemBuilder: (context, index) {
-                    final language = Language.values[index];
-                    return RadioListTile(
-                      value: language,
-                      groupValue: state.userSpokenLanguage,
-                      onChanged: context.read<SearchCubit>().onChangeLanguage,
-                      title: Text(language.name, textAlign: TextAlign.left),
-                      subtitle: Text(language.code, textAlign: TextAlign.left),
-                      visualDensity: VisualDensity.compact,
-                    );
-                  },
-                  separatorBuilder:
-                      (context, index) =>
-                          SizedBox(height: context.sizeExtenstion.small),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
