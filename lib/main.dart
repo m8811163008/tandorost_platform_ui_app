@@ -127,24 +127,13 @@ class TandorostBlocProviders extends StatelessWidget {
   }
 }
 
-class TandorostPlatform extends StatefulWidget {
+class TandorostPlatform extends StatelessWidget {
   const TandorostPlatform({super.key});
 
   @override
-  State<TandorostPlatform> createState() => _TandorostPlatformState();
-}
-
-class _TandorostPlatformState extends State<TandorostPlatform> {
-  MediaQueryData? _mediaQueryData = null;
-  late final double dpr;
-  late final double width;
-  @override
   Widget build(BuildContext context) {
-    if (_mediaQueryData == null) {
-      _mediaQueryData = MediaQuery.of(context);
-      dpr = _mediaQueryData!.devicePixelRatio;
-      width = _mediaQueryData!.size.width;
-    }
+    final dpr = View.of(context).display.devicePixelRatio;
+    final width = View.of(context).display.size.width;
     return MaterialApp.router(
       theme:
           AppTheme(
