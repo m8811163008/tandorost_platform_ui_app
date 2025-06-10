@@ -1,3 +1,4 @@
+import 'package:authentication_app/src/common/common.dart';
 import 'package:authentication_app/src/register/cubit/register_cubit.dart';
 import 'package:authentication_app/src/register/privacy_dialog.dart';
 import 'package:flutter/material.dart';

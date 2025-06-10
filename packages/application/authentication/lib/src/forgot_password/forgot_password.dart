@@ -1,3 +1,5 @@
+import 'package:authentication_app/src/common/password_text_field.dart';
+import 'package:authentication_app/src/common/phone_number_text_field.dart';
 import 'package:authentication_app/src/forgot_password/cubit/forgot_password_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';

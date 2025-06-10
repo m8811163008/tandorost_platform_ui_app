@@ -1,5 +1,7 @@
 import 'package:authentication_app/authentication.dart';
 import 'package:authentication_app/src/common/autentication_form_header.dart';
+import 'package:authentication_app/src/common/password_text_field.dart';
+import 'package:authentication_app/src/common/phone_number_text_field.dart';
 import 'package:authentication_app/src/login/login_button.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -31,9 +33,7 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AutheticationFormHeader(
-            label: context.l10n.loginRouteLabel,
-          ),
+          AutheticationFormHeader(label: context.l10n.loginRouteLabel),
           gap,
           PhoneNumberTextField(
             onChange: (value) {
@@ -41,7 +41,6 @@ class _LoginFormState extends State<LoginForm> {
             },
             textDirection: TextDirection.ltr,
             autofillHints: [AutofillHints.newUsername, AutofillHints.username],
-            
           ),
           gapSmall,
           PasswordTextField(
@@ -77,5 +76,3 @@ class _LoginFormState extends State<LoginForm> {
     }
   }
 }
-
-
