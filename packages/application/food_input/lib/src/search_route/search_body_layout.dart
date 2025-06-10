@@ -10,22 +10,25 @@ class SearchBodyLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final gap = SizedBox(width: context.sizeExtenstion.small);
     return Padding(
-      padding: EdgeInsets.only(bottom: context.sizeExtenstion.medium),
+      padding: EdgeInsets.symmetric(vertical: context.sizeExtenstion.medium),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          SearchBodyLayoutHint(),
+          Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               FoodBottomSheetButton(),
+              gap,
               Flexible(child: ChatButtonBuilder()),
-              LanguageIconButton(),
+              gap,
+              SizedBox.square(dimension: context.sizeExtenstion.xxExtraLarge),
             ],
           ),
-          SizedBox(height: context.sizeExtenstion.medium),
-          SearchBodyLayoutFooter(),
         ],
       ),
     );

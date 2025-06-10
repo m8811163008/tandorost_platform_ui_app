@@ -1,7 +1,9 @@
+import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:food_input/food_input.dart';
 import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
 import 'package:food_input_app/src/search_route/search_body.dart';
+import 'package:food_input_app/src/search_route/search_food/spoken_language/language_icon_button.dart';
 import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -34,7 +36,10 @@ class SearchRoute extends StatelessWidget {
         );
       },
       child: AppScaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text(context.l10n.appRoutesName(RoutesNames.searchRoute.name)),
+          actions: [LanguageIconButton()],
+        ),
         drawer: NavigationDrawer(
           onDestinationSelected: onDrawerNavigationChanged,
           selectedIndex: drawerNavigationIndex,

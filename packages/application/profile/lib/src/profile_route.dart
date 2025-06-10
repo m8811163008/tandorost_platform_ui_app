@@ -34,7 +34,11 @@ class ProfileRoute extends StatelessWidget {
             RepositoryProvider.of<PaymentRepository>(context),
           ),
       child: AppScaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text(
+            context.l10n.appRoutesName(RoutesNames.profileRoute.name),
+          ),
+        ),
         body: ProfileView(),
         drawer: NavigationDrawer(
           onDestinationSelected: onDrawerNavigationChanged,

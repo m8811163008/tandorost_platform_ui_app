@@ -1,3 +1,4 @@
+import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 import 'package:vo2max_calculator/src/fuel_mixture.dart';
@@ -17,7 +18,11 @@ class Vo2maxCalculatorRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(
+          context.l10n.appRoutesName(RoutesNames.vo2maxCalculator.name),
+        ),
+      ),
       body: Vo2maxCalculatorView(),
       drawer: NavigationDrawer(
         onDestinationSelected: onDrawerNavigationChanged,

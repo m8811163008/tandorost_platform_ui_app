@@ -18,7 +18,7 @@ class LanguageIconButton extends StatelessWidget {
             return BlocProvider.value(
               value: context.read<SearchCubit>(),
               child: AppBottomSheet(
-                title: context.l10n.searchFoodBottomSheetHeading,
+                title: context.l10n.selectLanguageBottomSheetHeading,
                 child: LanguageBottomSheetForm(),
               ),
             );

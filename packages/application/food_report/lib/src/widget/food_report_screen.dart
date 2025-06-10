@@ -84,6 +84,9 @@ class _FoodReportScreenState extends State<FoodReportScreen>
             items: AppNavigation.bottomNavigationItems(context),
           ),
           appBar: AppBar(
+            title: Text(
+              context.l10n.appRoutesName(RoutesNames.foodReportRoute.name),
+            ),
             actions: [
               IconButton.outlined(
                 onPressed: widget.goToFoodInputRoute,

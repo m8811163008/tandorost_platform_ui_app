@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
-class SearchBodyLayoutFooter extends StatelessWidget {
-  const SearchBodyLayoutFooter({super.key});
+class SearchBodyLayoutHint extends StatelessWidget {
+  const SearchBodyLayoutHint({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,12 @@ class SearchBodyLayoutFooter extends StatelessWidget {
   Widget _buildHint(BuildContext context, String title) {
     return Align(
       alignment: AlignmentDirectional.centerStart,
-      child: Text(title, style: context.textTheme.bodySmall),
+      child: Text(
+        title,
+        style: context.textTheme.bodySmall!.apply(
+          color: context.themeData.colorScheme.tertiary.withAlpha(128),
+        ),
+      ),
     );
   }
 }

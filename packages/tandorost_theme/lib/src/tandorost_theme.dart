@@ -51,6 +51,7 @@ class AppTheme {
             bottomRight: Radius.circular(sizeExtenstion.medium),
           ),
         ),
+        titleTextStyle: textTheme(locale, screenWidth).titleMedium,
 
         surfaceTintColor: Colors.transparent,
         actionsPadding: EdgeInsets.symmetric(horizontal: sizeExtenstion.medium),

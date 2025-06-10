@@ -1326,7 +1326,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get aiChatButtonTitle => 'دکمه را نگه دارید و نام غذاهایی که خوردید خلاصه و بدون مکث بگویید';
 
   @override
-  String get aiChatButtonSubTitle => 'یا کیبرد را لمس کنید و نام غذاهایی که خوردید تایپ کنید.';
+  String get aiChatButtonSubTitle => 'یا کیبرد را لمس کنید و نام غذاهایی که خوردید تایپ نمایید.';
 
   @override
   String get paymentDialogTitle => 'دسترسی امکانات';
