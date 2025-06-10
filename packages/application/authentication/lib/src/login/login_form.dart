@@ -1,7 +1,7 @@
-import 'package:authentication_app/authentication.dart';
 import 'package:authentication_app/src/common/autentication_form_header.dart';
 import 'package:authentication_app/src/common/password_text_field.dart';
 import 'package:authentication_app/src/common/phone_number_text_field.dart';
+import 'package:authentication_app/src/login/cubit/login_cubit.dart';
 import 'package:authentication_app/src/login/login_button.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';

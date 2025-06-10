@@ -1,4 +1,4 @@
-import 'package:authentication_app/authentication.dart';
+import 'package:authentication_app/src/forgot_password/cubit/forgot_password_cubit.dart';
 import 'package:authentication_app/src/forgot_password/verify_route/forgot_password_verify_form.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
