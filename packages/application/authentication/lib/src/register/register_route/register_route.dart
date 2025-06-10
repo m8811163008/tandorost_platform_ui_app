@@ -1,7 +1,4 @@
-import 'package:authentication_app/src/common/common.dart';
-import 'package:authentication_app/src/register/cubit/register_cubit.dart';
-import 'package:authentication_app/src/register/privacy_dialog.dart';
-import 'package:authentication_app/src/register/register_listener.dart';
+import 'package:authentication_app/src/register/register_route/register_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
