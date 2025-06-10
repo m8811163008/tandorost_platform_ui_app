@@ -2,16 +2,17 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
+import 'package:food_input_app/src/search_route/search_food/food_ai_text_field_search/search_food_by_text_submit_buttom.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
-class SearchFoodFormLayout extends StatefulWidget {
-  const SearchFoodFormLayout({super.key});
+class SearchFoodForm extends StatefulWidget {
+  const SearchFoodForm({super.key});
 
   @override
-  State<SearchFoodFormLayout> createState() => _SearchFoodFormLayoutState();
+  State<SearchFoodForm> createState() => _SearchFoodFormState();
 }
 
-class _SearchFoodFormLayoutState extends State<SearchFoodFormLayout> {
+class _SearchFoodFormState extends State<SearchFoodForm> {
   final _formKey = GlobalKey<FormState>();
   String hint = '';
 
@@ -30,15 +31,26 @@ class _SearchFoodFormLayoutState extends State<SearchFoodFormLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildTextField(),
-          SizedBox(height: context.sizeExtenstion.small),
-          SearchFoodByTextSubmitButton(onTap: _onTapSearchButton),
-        ],
+    return BlocListener<SearchCubit, SearchState>(
+      listenWhen:
+          (previous, current) =>
+              previous.searchFoodsByTextInputStatus !=
+              current.searchFoodsByTextInputStatus,
+      listener: (context, state) {
+        if (state.searchFoodsByTextInputStatus.isSuccess) {
+          Navigator.of(context).pop();
+        }
+      },
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildTextField(),
+            SizedBox(height: context.sizeExtenstion.small),
+            SearchFoodByTextSubmitButton(onTap: _onTapSearchButton),
+          ],
+        ),
       ),
     );
   }
@@ -66,42 +78,6 @@ class _SearchFoodFormLayoutState extends State<SearchFoodFormLayout> {
           return context.l10n.emptyFormFieldValidationError;
         }
         return null;
-      },
-    );
-  }
-}
-
-class SearchFoodByTextSubmitButton extends StatelessWidget {
-  const SearchFoodByTextSubmitButton({super.key, this.onTap});
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<SearchCubit, SearchState>(
-      listenWhen:
-          (previous, current) =>
-              previous.searchFoodsByTextInputStatus !=
-              current.searchFoodsByTextInputStatus,
-      listener: (context, state) {
-        if (state.searchFoodsByTextInputStatus.isSuccess) {
-          Navigator.of(context).pop();
-        }
-      },
-      buildWhen:
-          (previous, current) =>
-              previous.searchFoodsByTextInputStatus !=
-              current.searchFoodsByTextInputStatus,
-      builder: (context, state) {
-        if (state.searchFoodsByTextInputStatus.isLoading) {
-          return AppOutLineButton.loading(
-            label: context.l10n.searchFoodBottomSheetButtonLabel,
-          );
-        } else {
-          return AppOutLineButton(
-            onTap: onTap,
-            label: context.l10n.searchFoodBottomSheetButtonLabel,
-          );
-        }
       },
     );
   }

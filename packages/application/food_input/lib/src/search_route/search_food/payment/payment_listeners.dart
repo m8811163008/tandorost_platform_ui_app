@@ -11,7 +11,6 @@ class PaymentBlocListeners extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners:[
-        
         BlocListener<SearchCubit, SearchState>(
           listenWhen:
               (previous, current) =>
@@ -33,7 +32,6 @@ class PaymentBlocListeners extends StatelessWidget {
             }
           },
         ),
-
         BlocListener<SearchCubit, SearchState>(
           listenWhen:
               (previous, current) =>

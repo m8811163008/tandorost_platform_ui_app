@@ -14,11 +14,6 @@ class LanguageBottomSheetForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // TODO fix layout bug show scroll content behind the text
-          Text(
-            context.l10n.selectLanguageBottomSheetHeading,
-            style: context.textTheme.headlineMedium,
-          ),
-          Divider(),
           Flexible(
             child: BlocBuilder<SearchCubit, SearchState>(
               buildWhen:
