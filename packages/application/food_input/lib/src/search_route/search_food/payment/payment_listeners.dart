@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
-import 'package:food_input_app/src/search_route/payment_dialog_builder.dart';
+import 'package:food_input_app/src/search_route/search_food/payment/payment_dialog_builder.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class PaymentBlocListeners extends StatelessWidget {

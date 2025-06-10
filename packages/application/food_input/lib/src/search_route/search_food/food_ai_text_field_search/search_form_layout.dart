@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
-class FormLayout extends StatefulWidget {
-  const FormLayout({super.key});
+class SearchFoodFormLayout extends StatefulWidget {
+  const SearchFoodFormLayout({super.key});
 
   @override
-  State<FormLayout> createState() => _FormLayoutState();
+  State<SearchFoodFormLayout> createState() => _SearchFoodFormLayoutState();
 }
 
-class _FormLayoutState extends State<FormLayout> {
+class _SearchFoodFormLayoutState extends State<SearchFoodFormLayout> {
   final _formKey = GlobalKey<FormState>();
   String hint = '';
 
@@ -37,7 +37,7 @@ class _FormLayoutState extends State<FormLayout> {
         children: [
           _buildTextField(),
           SizedBox(height: context.sizeExtenstion.small),
-          SearchFoodByTextButton(onTap: _onTapSearchButton),
+          SearchFoodByTextSubmitButton(onTap: _onTapSearchButton),
         ],
       ),
     );
@@ -71,8 +71,8 @@ class _FormLayoutState extends State<FormLayout> {
   }
 }
 
-class SearchFoodByTextButton extends StatelessWidget {
-  const SearchFoodByTextButton({super.key, this.onTap});
+class SearchFoodByTextSubmitButton extends StatelessWidget {
+  const SearchFoodByTextSubmitButton({super.key, this.onTap});
   final VoidCallback? onTap;
 
   @override

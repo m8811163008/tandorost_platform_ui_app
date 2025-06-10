@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-
 import 'package:food_input/food_input.dart';
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 import 'package:path_provider/path_provider.dart';
@@ -34,7 +33,6 @@ class SearchCubit extends Cubit<SearchState> {
     _enhancedEmit(
       state.copyWith(
         searchFoodsByTextInputStatus: AsyncProcessingStatus.inital,
-
         searchFoodsByVoiceInputStatus: AsyncProcessingStatus.inital,
         foodName: '',
       ),
