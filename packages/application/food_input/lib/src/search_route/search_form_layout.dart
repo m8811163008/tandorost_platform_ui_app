@@ -13,71 +13,10 @@ class FormLayout extends StatefulWidget {
 
 class _FormLayoutState extends State<FormLayout> {
   final _formKey = GlobalKey<FormState>();
-  @override
-  void initState() {
-    super.initState();
-  }
+  String hint = '';
 
   @override
-  void deactivate() {
-    super.deactivate();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.sizeExtenstion.large),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              context.l10n.searchFoodBottomSheetHeading,
-              style: context.textTheme.headlineMedium,
-            ),
-            Divider(),
-            SizedBox(height: context.sizeExtenstion.medium),
-            _buildTextField(),
-            SizedBox(height: context.sizeExtenstion.small),
-            BlocConsumer<SearchCubit, SearchState>(
-              listenWhen:
-                  (previous, current) =>
-                      previous.searchFoodsByTextInputStatus !=
-                      current.searchFoodsByTextInputStatus,
-              listener: (context, state) {
-                if (state.searchFoodsByTextInputStatus.isSuccess) {
-                  Navigator.of(context).pop();
-                }
-              },
-              buildWhen:
-                  (previous, current) =>
-                      previous.searchFoodsByTextInputStatus !=
-                      current.searchFoodsByTextInputStatus,
-              builder: (context, state) {
-                if (state.searchFoodsByTextInputStatus.isLoading) {
-                  return AppOutLineButton.loading(
-                    label: context.l10n.searchFoodBottomSheetButtonLabel,
-                  );
-                } else {
-                  return AppOutLineButton(
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {
-                        context.read<SearchCubit>().readFoodsNutritionsByText();
-                      }
-                    },
-                    label: context.l10n.searchFoodBottomSheetButtonLabel,
-                  );
-                }
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTextField() {
+  void didChangeDependencies() {
     final hints = [
       context.l10n.searchFoodBottomSheetTextFieldHintExample1,
       context.l10n.searchFoodBottomSheetTextFieldHintExample2,
@@ -85,14 +24,39 @@ class _FormLayoutState extends State<FormLayout> {
       context.l10n.searchFoodBottomSheetTextFieldHintExample4,
       context.l10n.searchFoodBottomSheetTextFieldHintExample5,
     ];
+    hint = hints[Random().nextInt(5)];
+    super.didChangeDependencies();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildTextField(),
+          SizedBox(height: context.sizeExtenstion.small),
+          SearchFoodByTextButton(onTap: _onTapSearchButton),
+        ],
+      ),
+    );
+  }
+
+  void _onTapSearchButton() {
+    if (_formKey.currentState!.validate()) {
+      context.read<SearchCubit>().readFoodsNutritionsByText();
+    }
+  }
+
+  Widget _buildTextField() {
     return TextFormField(
       onChanged: context.read<SearchCubit>().onFoodSearchChanged,
-
       textInputAction: TextInputAction.search,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
         label: Text(context.l10n.foodName),
-        hintText: hints[Random().nextInt(5)],
+        hintText: hint,
       ),
       autofocus: true,
       maxLines: null,
@@ -102,6 +66,42 @@ class _FormLayoutState extends State<FormLayout> {
           return context.l10n.emptyFormFieldValidationError;
         }
         return null;
+      },
+    );
+  }
+}
+
+class SearchFoodByTextButton extends StatelessWidget {
+  const SearchFoodByTextButton({super.key, this.onTap});
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<SearchCubit, SearchState>(
+      listenWhen:
+          (previous, current) =>
+              previous.searchFoodsByTextInputStatus !=
+              current.searchFoodsByTextInputStatus,
+      listener: (context, state) {
+        if (state.searchFoodsByTextInputStatus.isSuccess) {
+          Navigator.of(context).pop();
+        }
+      },
+      buildWhen:
+          (previous, current) =>
+              previous.searchFoodsByTextInputStatus !=
+              current.searchFoodsByTextInputStatus,
+      builder: (context, state) {
+        if (state.searchFoodsByTextInputStatus.isLoading) {
+          return AppOutLineButton.loading(
+            label: context.l10n.searchFoodBottomSheetButtonLabel,
+          );
+        } else {
+          return AppOutLineButton(
+            onTap: onTap,
+            label: context.l10n.searchFoodBottomSheetButtonLabel,
+          );
+        }
       },
     );
   }

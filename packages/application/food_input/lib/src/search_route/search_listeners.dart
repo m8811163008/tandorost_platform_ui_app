@@ -89,6 +89,25 @@ class SearchListeners extends StatelessWidget {
         BlocListener<SearchCubit, SearchState>(
           listenWhen:
               (previous, current) =>
+                  previous.searchFoodsByTextInputStatus !=
+                  current.searchFoodsByTextInputStatus,
+          listener: (context, state) {
+            if (state.searchFoodsByTextInputStatus.isConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.searchFoodsByTextInputStatus.isConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            }
+          },
+        ),
+        BlocListener<SearchCubit, SearchState>(
+          listenWhen:
+              (previous, current) =>
                   previous.canRequestForFoodNutritionStatus !=
                   current.canRequestForFoodNutritionStatus,
           listener: (context, state) async {

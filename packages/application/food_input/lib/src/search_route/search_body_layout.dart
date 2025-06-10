@@ -20,18 +20,14 @@ class SearchBodyLayout extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               FoodBottomSheetButton(),
-              Flexible(
-                child: ChatButtonBuilder(),
-              ),
+              Flexible(child: ChatButtonBuilder()),
               LanguageIconButton(),
             ],
           ),
           SizedBox(height: context.sizeExtenstion.medium),
-          SearchBodyLayoutFooter()
+          SearchBodyLayoutFooter(),
         ],
       ),
     );
   }
 }
-
-
