@@ -190,6 +190,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get changeWeightSpeedLabel => 'سرعت کاهش وزن';
 
   @override
+  String get changeWeightSpeedInfoHint => 'در وضعیت فعلی شاید عادت کرده باشید بیشتر از انرژی مورد نیاز روزانه میل کنید. ابتدا سرعت را در حالت ثابت بگذارید و بعد از تغییر عادت های غذایی و عادت به وضعیت جدید، سپس سرعت را به تدریج افزایش دهید تا ‌احساس گرسنگی و خیلی کمتری را تجربه کنید.';
+
+  @override
   String get changeWeightSpeedInfoConstantSpeed => 'در حالت تثبیت وزن از انرژی مورد نیاز کم نمیشود';
 
   @override
@@ -1320,7 +1323,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get privacyDialogText6 => 'امیدواریم بهترین استفاده را از نرم افزار تندرست داشته باشید';
 
   @override
-  String get aiChatButtonTitle => 'دکمه را نگه دارید و نام غذاهایی که خوردید بگویید';
+  String get aiChatButtonTitle => 'دکمه را نگه دارید و نام غذاهایی که خوردید خلاصه و بدون مکث بگویید';
 
   @override
   String get aiChatButtonSubTitle => 'یا کیبرد را لمس کنید و نام غذاهایی که خوردید تایپ کنید.';

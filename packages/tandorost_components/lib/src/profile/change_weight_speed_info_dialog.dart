@@ -9,6 +9,8 @@ class ChangeWeightSpeedInfoDialog extends StatelessWidget {
     return AppDialog(
       title: context.l10n.changeWeightSpeedLabel,
       contents: [
+        Text(context.l10n.changeWeightSpeedInfoHint),
+        SizedBox(height: context.sizeExtenstion.small),
         Text(context.l10n.changeWeightSpeedInfoConstantSpeed),
         SizedBox(height: context.sizeExtenstion.small),
         Text(context.l10n.changeWeightSpeedInfoSlowAndEasySpeed),

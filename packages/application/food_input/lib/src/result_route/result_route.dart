@@ -37,7 +37,10 @@ class ResultRoute extends StatelessWidget {
                   context,
                 ),
               ),
-          child: const ResultBody(),
+          child:  Padding(
+            padding:  EdgeInsets.symmetric(horizontal: context.sizeExtenstion.small),
+            child: ResultBody(),
+          ),
         ),
       ),
     );

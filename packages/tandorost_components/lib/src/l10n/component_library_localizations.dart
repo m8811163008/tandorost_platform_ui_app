@@ -423,6 +423,12 @@ abstract class ComponentLibraryLocalizations {
   /// **'سرعت کاهش وزن'**
   String get changeWeightSpeedLabel;
 
+  /// No description provided for @changeWeightSpeedInfoHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'در وضعیت فعلی شاید عادت کرده باشید بیشتر از انرژی مورد نیاز روزانه میل کنید. ابتدا سرعت را در حالت ثابت بگذارید و بعد از تغییر عادت های غذایی و عادت به وضعیت جدید، سپس سرعت را به تدریج افزایش دهید تا ‌احساس گرسنگی و خیلی کمتری را تجربه کنید.'**
+  String get changeWeightSpeedInfoHint;
+
   /// No description provided for @changeWeightSpeedInfoConstantSpeed.
   ///
   /// In fa, this message translates to:
@@ -2274,7 +2280,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @aiChatButtonTitle.
   ///
   /// In fa, this message translates to:
-  /// **'دکمه را نگه دارید و نام غذاهایی که خوردید بگویید'**
+  /// **'دکمه را نگه دارید و نام غذاهایی که خوردید خلاصه و بدون مکث بگویید'**
   String get aiChatButtonTitle;
 
   /// No description provided for @aiChatButtonSubTitle.
