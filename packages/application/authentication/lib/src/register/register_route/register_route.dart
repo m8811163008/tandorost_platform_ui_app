@@ -1,6 +1,6 @@
+import 'package:authentication_app/src/common/common.dart';
 import 'package:authentication_app/src/register/register_route/register_listener.dart';
 import 'package:flutter/material.dart';
-import 'package:tandorost_components/tandorost_components.dart';
 
 class RegisterRoute extends StatelessWidget {
   const RegisterRoute({
@@ -16,19 +16,11 @@ class RegisterRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
-      appBar: AppBar(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: context.sizeExtenstion.extraLarge,
-          ),
-          child: RegisterListener(
-            goToVerificationRoute: goToVerificationRoute,
-            goToLoginRoute: goToLoginRoute,
-            goToHomeRoute: goToHomeRoute,
-          ),
-        ),
+    return AuthenticationScaffold(
+      child: RegisterListener(
+        goToVerificationRoute: goToVerificationRoute,
+        goToLoginRoute: goToLoginRoute,
+        goToHomeRoute: goToHomeRoute,
       ),
     );
   }

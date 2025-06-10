@@ -1,29 +1,7 @@
-import 'package:authentication_app/src/forgot_password/cubit/forgot_password_cubit.dart';
-import 'package:authentication_app/src/forgot_password/verify_form.dart';
-
+import 'package:authentication_app/authentication.dart';
+import 'package:authentication_app/src/forgot_password/verify_route/forgot_password_verify_form.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
-
-class ForgotPasswordVerifyPhoneNumberRoute extends StatelessWidget {
-  const ForgotPasswordVerifyPhoneNumberRoute({super.key, this.goToLoginRoute});
-  static const String name = 'forgot-password-verify-phone-number';
-  final VoidCallback? goToLoginRoute;
-
-  @override
-  Widget build(BuildContext context) {
-    return AppScaffold(
-      appBar: AppBar(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: context.sizeExtenstion.extraLarge,
-          ),
-          child: ForgotPasswordVerifyListener(goToLoginRoute: goToLoginRoute),
-        ),
-      ),
-    );
-  }
-}
 
 class ForgotPasswordVerifyListener extends StatelessWidget {
   const ForgotPasswordVerifyListener({super.key, this.goToLoginRoute});
