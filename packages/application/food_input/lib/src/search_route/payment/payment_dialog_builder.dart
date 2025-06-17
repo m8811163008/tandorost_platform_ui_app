@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
+import 'package:food_input_app/src/search_route/payment/cubit/payment_cubit.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class PaymentDialogBuilder extends StatelessWidget {
@@ -8,8 +8,8 @@ class PaymentDialogBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return PaymentDialog(
       onPlanTap: (planType) {
-        context.read<SearchCubit>().onChangeSelectedSubscriptionType(planType);
-        context.read<SearchCubit>().onConnectToCofeBazzar();
+        context.read<PaymentCubit>().onChangeSelectedSubscriptionType(planType);
+        context.read<PaymentCubit>().onConnectToCofeBazzar();
       },
     );
   }

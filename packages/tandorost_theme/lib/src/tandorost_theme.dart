@@ -31,20 +31,20 @@ class AppTheme {
         style: TextButton.styleFrom(visualDensity: screenWidth.visualDensity),
       ),
       colorScheme: ColorScheme.fromSeed(
-        seedColor: ThemeColor.russianViolet.color,
-        primary: ThemeColor.russianViolet.color,
-        secondary: ThemeColor.tekhelet.color,
-        tertiary: ThemeColor.black.color,
-        onPrimary: ThemeColor.seasalt.color,
-        onSecondary: ThemeColor.mediumSlateBlue.color,
+        seedColor: ThemeColor.primary.color,
+        primary: ThemeColor.primary.color,
+        secondary: ThemeColor.secondary.color,
+        tertiary: ThemeColor.tertiary.color,
+        onPrimary: ThemeColor.onPrimary.color,
+        onSecondary: ThemeColor.onSecondary.color,
       ),
-      scaffoldBackgroundColor: ThemeColor.seasalt.color,
-      canvasColor: ThemeColor.seasalt.color,
+      scaffoldBackgroundColor: ThemeColor.onPrimary.color,
+      canvasColor: ThemeColor.onPrimary.color,
 
       textTheme: textTheme(locale, screenWidth),
       extensions: [sizeExtenstion, colorExtenstion],
       appBarTheme: AppBarTheme(
-        backgroundColor: ThemeColor.seasalt.color,
+        backgroundColor: ThemeColor.onPrimary.color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(sizeExtenstion.medium),
@@ -66,7 +66,7 @@ class AppTheme {
         hintStyle: textTheme(
           locale,
           screenWidth,
-        ).titleMedium!.copyWith(color: ThemeColor.black.color),
+        ).titleMedium!.copyWith(color: ThemeColor.tertiary.color),
         contentPadding: EdgeInsets.symmetric(
           horizontal: sizeExtenstion.medium,
           vertical: sizeExtenstion.small,
@@ -82,22 +82,22 @@ class AppTheme {
         borderRadius: BorderRadius.circular(sizeExtenstion.large),
       ),
       listTileTheme: ListTileThemeData(
-        tileColor: ThemeColor.mediumSlateBlue.color.withAlpha(50),
-        selectedTileColor: ThemeColor.mediumSlateBlue.color,
+        tileColor: ThemeColor.onSecondary.color.withAlpha(50),
+        selectedTileColor: ThemeColor.onSecondary.color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(sizeExtenstion.small),
         ),
       ),
       // Calm theme: soft, muted colors
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: ThemeColor.seasalt.color,
-        selectedItemColor: ThemeColor.russianViolet.color, // calm blue
-        unselectedItemColor: ThemeColor.russianViolet.color.withAlpha(
+        backgroundColor: ThemeColor.onPrimary.color,
+        selectedItemColor: ThemeColor.primary.color, // calm blue
+        unselectedItemColor: ThemeColor.primary.color.withAlpha(
           128,
         ), // muted blue
-        selectedIconTheme: IconThemeData(color: ThemeColor.russianViolet.color),
+        selectedIconTheme: IconThemeData(color: ThemeColor.primary.color),
         unselectedIconTheme: IconThemeData(
-          color: ThemeColor.russianViolet.color.withAlpha(128),
+          color: ThemeColor.primary.color.withAlpha(128),
         ),
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
@@ -115,9 +115,9 @@ class AppTheme {
         package: 'tandorost_theme',
         fontSizeFactor: screenWidth.textFactor,
         fontSizeDelta: 0,
-        bodyColor: ThemeColor.black.color,
-        displayColor: ThemeColor.black.color,
-        decorationColor: ThemeColor.black.color,
+        bodyColor: ThemeColor.tertiary.color,
+        displayColor: ThemeColor.tertiary.color,
+        decorationColor: ThemeColor.tertiary.color,
       );
     } else {
       return Typography.dense2021.apply(
@@ -125,9 +125,9 @@ class AppTheme {
         package: 'tandorost_theme',
         fontSizeFactor: screenWidth.textFactor,
         fontSizeDelta: 0,
-        bodyColor: ThemeColor.black.color,
-        displayColor: ThemeColor.black.color,
-        decorationColor: ThemeColor.black.color,
+        bodyColor: ThemeColor.tertiary.color,
+        displayColor: ThemeColor.tertiary.color,
+        decorationColor: ThemeColor.tertiary.color,
       );
     }
   }

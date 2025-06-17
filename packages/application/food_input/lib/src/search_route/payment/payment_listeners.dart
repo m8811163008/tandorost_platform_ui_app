@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
-import 'package:food_input_app/src/search_route/search_food/payment/payment_dialog_builder.dart';
+import 'package:food_input_app/src/search_route/payment/cubit/payment_cubit.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class PaymentBlocListeners extends StatelessWidget {
@@ -10,29 +9,30 @@ class PaymentBlocListeners extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
-      listeners:[
-        BlocListener<SearchCubit, SearchState>(
+      listeners: [
+        BlocListener<PaymentCubit, PaymentState>(
           listenWhen:
               (previous, current) =>
-                  previous.onCreateSubscriptionPaymentsStatus !=
-                  current.onCreateSubscriptionPaymentsStatus,
+                  previous.onReadUserProfileStatus !=
+                  current.onReadUserProfileStatus,
           listener: (context, state) async {
-            if (state.canRequestForFoodNutritionStatus.isConnectionError) {
+            if (state.onReadUserProfileStatus.isConnectionError) {
               final content = context.l10n.networkError;
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
-            } else if (state
-                .canRequestForFoodNutritionStatus
-                .isConnectionError) {
+            } else if (state.onReadUserProfileStatus.isConnectionError) {
               final content = context.l10n.internetConnectionError;
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.onReadUserProfileStatus.isSuccess) {
+              context.read<PaymentCubit>().onCafeBazzarSubscribe();
             }
           },
         ),
-        BlocListener<SearchCubit, SearchState>(
+
+        BlocListener<PaymentCubit, PaymentState>(
           listenWhen:
               (previous, current) =>
                   previous.coffeBazzarConnectionStatus !=
@@ -45,11 +45,11 @@ class PaymentBlocListeners extends StatelessWidget {
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
             } else if (state.coffeBazzarConnectionStatus.isSuccess) {
-              context.read<SearchCubit>().onReadUserProfile();
+              context.read<PaymentCubit>().onReadUserProfile();
             }
           },
         ),
-        BlocListener<SearchCubit, SearchState>(
+        BlocListener<PaymentCubit, PaymentState>(
           listenWhen:
               (previous, current) =>
                   previous.onReadCafeBazzarSkusStatus !=
@@ -63,7 +63,7 @@ class PaymentBlocListeners extends StatelessWidget {
           },
         ),
 
-        BlocListener<SearchCubit, SearchState>(
+        BlocListener<PaymentCubit, PaymentState>(
           listenWhen:
               (previous, current) =>
                   previous.onCafeBazzarSubscribeStatus !=
@@ -79,13 +79,12 @@ class PaymentBlocListeners extends StatelessWidget {
                 context,
               ).showSnackBar(SnackBar(content: Text(message)));
             } else if (state.onCafeBazzarSubscribeStatus.isSuccess) {
-              context.read<SearchCubit>().onReadCafeBazzarSkus();
+              context.read<PaymentCubit>().onReadCafeBazzarSkus();
             }
           },
         ),
 
-
-        BlocListener<SearchCubit, SearchState>(
+        BlocListener<PaymentCubit, PaymentState>(
           listenWhen:
               (previous, current) =>
                   previous.onCreateSubscriptionPaymentsStatus !=
@@ -113,28 +112,7 @@ class PaymentBlocListeners extends StatelessWidget {
           },
         ),
 
-        BlocListener<SearchCubit, SearchState>(
-          listenWhen:
-              (previous, current) =>
-                  previous.canRequestForFoodNutrition !=
-                      current.canRequestForFoodNutrition ||
-                  previous.canRequestForFoodNutritionStatus !=
-                      current.canRequestForFoodNutritionStatus,
-          listener: (context, state) async {
-            if (!state.canRequestForFoodNutrition) {
-              await showDialog(
-                context: context,
-                builder: (_) {
-                  return BlocProvider.value(
-                    value: context.read<SearchCubit>(),
-                    child: PaymentDialogBuilder(),
-                  );
-                },
-              );
-            }
-          },
-        ),
-        BlocListener<SearchCubit, SearchState>(
+        BlocListener<PaymentCubit, PaymentState>(
           listenWhen:
               (previous, current) =>
                   previous.readCoffeBazzarPaymentStatus !=
@@ -150,6 +128,20 @@ class PaymentBlocListeners extends StatelessWidget {
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
+            }
+          },
+        ),
+        BlocListener<PaymentCubit, PaymentState>(
+          listenWhen:
+              (previous, current) =>
+                  previous.onReadUserProfileStatus !=
+                      current.onReadUserProfileStatus ||
+                  previous.onReadCafeBazzarSkusStatus !=
+                      current.onReadCafeBazzarSkusStatus,
+          listener: (context, state) async {
+            if (state.onReadUserProfileStatus.isSuccess &&
+                state.onReadCafeBazzarSkusStatus.isSuccess) {
+              context.read<PaymentCubit>().onCreateSubscriptionPayments();
             }
           },
         ),

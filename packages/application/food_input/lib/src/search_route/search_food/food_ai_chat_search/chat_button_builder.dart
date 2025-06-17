@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
+import 'package:food_input_app/src/search_route/search_food/cubit/search_cubit.dart';
 import 'package:food_input_app/src/search_route/search_food/food_ai_chat_search/loading_chat_button_indicator.dart';
-import 'package:food_input_app/src/search_route/search_food/payment/payment_dialog_builder.dart';
+import 'package:food_input_app/src/search_route/payment/payment_dialog_builder.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class ChatButtonBuilder extends StatelessWidget {

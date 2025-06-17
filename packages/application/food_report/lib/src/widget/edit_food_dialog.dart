@@ -53,7 +53,13 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
         child: AppDialog(
           title: context.l10n.update,
           contents: [
-            _buildDateTextField(),
+            DateTextField(
+              upsertDate: updatedFood.upsertDate,
+              onPickedDate: (updatedDateTime) {
+                updatedFood = updatedFood.copyWith(upsertDate: updatedDateTime);
+                setState(() {});
+              },
+            ),
             gap,
             RegullarTextField(
               label: context.l10n.foodName,
@@ -182,67 +188,6 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildDateTextField() {
-    return TextField(
-      controller: TextEditingController(
-        text: updatedFood.upsertDate.formattedDateTime(context),
-      ),
-      decoration: InputDecoration(label: Text(context.l10n.upsertDate)),
-      readOnly: false,
-      onTap: () async {
-        final locale = Localizations.localeOf(context);
-        late final DateTime? pickedDate;
-        // todo fix bug of show datepicker on small device, maybe use textfield with formatter
-        if (locale.languageCode == Language.persian.code) {
-          Jalali? picked = await showPersianDatePicker(
-            context: context,
-            initialDate: Jalali.fromDateTime(updatedFood.upsertDate),
-            firstDate: Jalali.fromDateTime(
-              updatedFood.upsertDate.subtract(Duration(days: 5)),
-            ),
-            lastDate: Jalali.fromDateTime(
-              updatedFood.upsertDate.add(Duration(days: 5)),
-            ),
-            initialEntryMode: PersianDatePickerEntryMode.calendar,
-            initialDatePickerMode: PersianDatePickerMode.day,
-            builder: (context, child) {
-              return SingleChildScrollView(child: child!);
-            },
-          );
-          pickedDate = picked?.toDateTime();
-        } else {
-          pickedDate = await showDatePicker(
-            context: context,
-            initialDate: updatedFood.upsertDate,
-            firstDate: updatedFood.upsertDate.subtract(Duration(days: 5)),
-            lastDate: updatedFood.upsertDate.add(Duration(days: 5)),
-            initialEntryMode: DatePickerEntryMode.calendar,
-            initialDatePickerMode: DatePickerMode.day,
-            builder: (context, child) {
-              return SingleChildScrollView(child: child!);
-            },
-          );
-        }
-        if (!mounted) {
-          return;
-        }
-        final pickedTime = await showTimePicker(
-          context: context,
-          initialTime: TimeOfDay.fromDateTime(updatedFood.upsertDate),
-          initialEntryMode: TimePickerEntryMode.input,
-        );
-
-        final updatedDateTime = pickedDate?.copyWith(
-          hour: pickedTime?.hour ?? updatedFood.upsertDate.hour,
-          minute: pickedTime?.minute ?? updatedFood.upsertDate.minute,
-          second: updatedFood.upsertDate.second,
-        );
-        updatedFood = updatedFood.copyWith(upsertDate: updatedDateTime);
-        setState(() {});
-      },
     );
   }
 }

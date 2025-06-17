@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
+import 'package:food_input_app/src/search_route/search_food/cubit/search_cubit.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class SearchFoodByTextSubmitButton extends StatelessWidget {

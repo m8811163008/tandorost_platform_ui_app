@@ -2286,13 +2286,13 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @aiChatButtonSubTitle.
   ///
   /// In fa, this message translates to:
-  /// **'یا کیبرد را لمس کنید و نام غذاهایی که خوردید تایپ نمایید.'**
+  /// **'یا آیکن کیبورد را لمس کنید و نام غذاهایی که خوردید تایپ نمایید.'**
   String get aiChatButtonSubTitle;
 
   /// No description provided for @paymentDialogTitle.
   ///
   /// In fa, this message translates to:
-  /// **'دسترسی امکانات'**
+  /// **'ارتقا اشتراک'**
   String get paymentDialogTitle;
 
   /// No description provided for @paymentDialogOneMonth.

@@ -9,14 +9,9 @@ class ColorExtenstion extends ThemeExtension<ColorExtenstion> {
   final Color protein;
 
   const ColorExtenstion({
-    this.energy = const Color(0xff2e0549), // russianViolet
+    this.energy = const Color(0xffCE2D4F), // russianViolet
     this.fat = const Color(0xff631490), // tekhelet
-    this.carbsFruitsVeggies = const Color.fromARGB(
-      255,
-      1,
-      141,
-      118,
-    ), // mediumSlateBlue
+    this.carbsFruitsVeggies = const Color(0xFF018D76), // mediumSlateBlue
     this.carbsOther = const Color(0xFF532D00), // black
     this.protein = const Color(0xFFC20836), // seasalt
   });

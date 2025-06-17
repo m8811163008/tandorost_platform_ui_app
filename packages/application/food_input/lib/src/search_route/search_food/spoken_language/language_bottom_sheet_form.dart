@@ -1,6 +1,6 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
-import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
+import 'package:food_input_app/src/search_route/search_food/cubit/search_cubit.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class LanguageBottomSheetForm extends StatelessWidget {
@@ -24,7 +24,7 @@ class LanguageBottomSheetForm extends StatelessWidget {
                 return RadioListTile(
                   value: language,
                   groupValue: state.userSpokenLanguage,
-                  onChanged: context.read<SearchCubit>().onChangeLanguage,
+                  onChanged: context.read<SearchCubit>().onChangeSpokenLanguage,
                   title: Text(
                     context.l10n.languageTranslation(language.name),
                     textAlign: TextAlign.left,

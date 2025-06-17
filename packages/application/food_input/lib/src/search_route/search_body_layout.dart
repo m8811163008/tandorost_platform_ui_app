@@ -5,8 +5,8 @@ import 'package:food_input_app/src/search_route/search_food/food_ai_chat_search/
 import 'package:food_input_app/src/search_route/search_food/food_ai_text_field_search/food_bottom_sheet_button.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
-class SearchBodyLayout extends StatelessWidget {
-  const SearchBodyLayout({super.key});
+class SearchView extends StatelessWidget {
+  const SearchView({super.key});
 
   @override
   Widget build(BuildContext context) {

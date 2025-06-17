@@ -12,10 +12,7 @@ class PaymentDialog extends StatelessWidget {
       child: SingleChildScrollView(
         child: DecoratedBox(
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image: PaymentBackground(),
-              fit: BoxFit.cover,
-            ),
+            color: context.themeData.colorScheme.secondary,
           ),
           child: Padding(
             padding: EdgeInsets.all(context.sizeExtenstion.medium),
@@ -23,9 +20,14 @@ class PaymentDialog extends StatelessWidget {
               children: [
                 Text(
                   context.l10n.paymentDialogTitle,
-                  style: context.textTheme.headlineMedium,
+                  style: context.textTheme.headlineMedium!.copyWith(
+                    color: context.themeData.colorScheme.onPrimary,
+                  ),
                 ),
+                SizedBox(height: context.sizeExtenstion.medium),
                 Wrap(
+                  spacing: context.sizeExtenstion.medium,
+                  runSpacing: context.sizeExtenstion.medium,
                   children: [
                     PaymentCard(
                       title: context.l10n.paymentDialogThreeMonth,
@@ -36,6 +38,7 @@ class PaymentDialog extends StatelessWidget {
                           onPlanTap?.call(SubscriptionType.threeMonth);
                         },
                       ),
+                      titleColor: Colors.amber,
                     ),
                     PaymentCard(
                       title: context.l10n.paymentDialogOneMonth,
@@ -46,13 +49,22 @@ class PaymentDialog extends StatelessWidget {
                           onPlanTap?.call(SubscriptionType.oneMonth);
                         },
                       ),
+                      titleColor: Colors.grey,
                     ),
                   ],
                 ),
                 SizedBox(height: context.sizeExtenstion.small),
-                TextButton(
-                  onPressed: Navigator.of(context).pop,
-                  child: Text(context.l10n.cancle),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: Navigator.of(context).pop,
+                    child: Text(
+                      context.l10n.cancle,
+                      style: context.textTheme.bodyMedium!.copyWith(
+                        color: context.themeData.colorScheme.onPrimary,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -69,32 +81,44 @@ class PaymentCard extends StatelessWidget {
     this.submitButton,
     this.title = '',
     this.limit = '',
+    required this.titleColor,
   });
   final Widget? submitButton;
   final String title, limit;
+  final Color titleColor;
 
   @override
   Widget build(BuildContext context) {
     return AppCard(
-      child: Column(
-        children: [
-          Text(title, style: context.textTheme.headlineSmall),
-          Divider(),
-          Text(
-            context.l10n.paymentDialogText1,
-            style: context.textTheme.titleMedium,
-          ),
-          SizedBox(height: context.sizeExtenstion.small),
-          Text(context.l10n.paymentDialogText2),
-          SizedBox(height: context.sizeExtenstion.small),
-          PaymentCardRow(text: limit),
-          PaymentCardRow(text: context.l10n.paymentDialogText6),
-          PaymentCardRow(text: context.l10n.paymentDialogText7),
-          PaymentCardRow(text: context.l10n.paymentDialogText3),
-          PaymentCardRow(text: context.l10n.paymentDialogText4),
-          SizedBox(height: context.sizeExtenstion.medium),
-          if (submitButton != null) submitButton!,
-        ],
+      child: Padding(
+        padding: EdgeInsets.only(bottom: context.sizeExtenstion.small),
+        child: Column(
+          children: [
+            Text(
+              title,
+              style: context.textTheme.headlineSmall!.copyWith(
+                color: titleColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Divider(),
+            Text(
+              context.l10n.paymentDialogText1,
+              style: context.textTheme.titleMedium,
+            ),
+            SizedBox(height: context.sizeExtenstion.small),
+            Text(context.l10n.paymentDialogText2),
+            SizedBox(height: context.sizeExtenstion.small),
+            PaymentCardRow(text: limit),
+            PaymentCardRow(text: context.l10n.paymentDialogText6),
+            PaymentCardRow(text: context.l10n.paymentDialogText7),
+            PaymentCardRow(text: context.l10n.paymentDialogText3),
+            PaymentCardRow(text: context.l10n.paymentDialogText4),
+            SizedBox(height: context.sizeExtenstion.medium),
+            if (submitButton != null)
+              SizedBox(width: double.infinity, child: submitButton!),
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
+import 'package:food_input_app/src/search_route/search_food/cubit/search_cubit.dart';
 import 'package:food_input_app/src/search_route/search_food/spoken_language/language_bottom_sheet_form.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
