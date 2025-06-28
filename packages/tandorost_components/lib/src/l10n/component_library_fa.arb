@@ -594,12 +594,12 @@
     "paymentDialogTitle": "ارتقا اشتراک",
     "paymentDialogOneMonth": "نقره‌ای",
     "paymentDialogThreeMonth": "طلایی",
-    "paymentDialogText1": "سلامت و تندرستی",
+    "paymentDialogText1": "سریع‌ترین روش لاغری",
     "paymentDialogText2": "پیشگیری از بیماری مرتبط با چاقی",
-    "paymentDialogText3": "سریع‌ترین روش لاغری",
+    "paymentDialogText3": "تغذیه ورزشی و غیرورزشی",
     "paymentDialogText4": "دسترسی به ثبت انواع غذا",
-    "paymentDialogOneMonthText5": "یک ماه یا 600 عدد غذا",
-    "paymentDialogThreeMonthText5": "سه ماه یا 1800 عدد غذا",
+    "paymentDialogOneMonthText5": "یک ماهه(600 عدد)",
+    "paymentDialogThreeMonthText5": "سه ماهه(1800 عدد)",
     "paymentDialogText6": "مطابق سفره ایرانی",
     "paymentDialogText7": "همراه با پشتیبانی",
     "paymentDialogSubmitButtonLabel": "ادامه",
@@ -615,5 +615,7 @@
     "profileRouteTansactionListTileFoodRequestLimit": "تعداد غذای قابل ثبت",
     "profileRouteTansactionListTileNumberOfRequestedFoods": "تعداد غذای ثبت شده",
     "profileRouteTansactionListTileActive": "فعال",
-    "searchRouteMicrophonePermissionMessage": "لطفا برای گفتن غذاها دسترسی میکرفن دستگاه را بدهید"
+    "searchRouteMicrophonePermissionMessage": "لطفا برای گفتن غذاها دسترسی میکرفن دستگاه را بدهید",
+    "scheduleMessageTitle": "یادآوری ثبت وعده غذایی",
+    "scheduleMessageText": "لطفا وعده‌های غذایی امروز خود را ثبت کنید"
 }

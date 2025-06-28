@@ -1338,22 +1338,22 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get paymentDialogThreeMonth => 'طلایی';
 
   @override
-  String get paymentDialogText1 => 'سلامت و تندرستی';
+  String get paymentDialogText1 => 'سریع‌ترین روش لاغری';
 
   @override
   String get paymentDialogText2 => 'پیشگیری از بیماری مرتبط با چاقی';
 
   @override
-  String get paymentDialogText3 => 'سریع‌ترین روش لاغری';
+  String get paymentDialogText3 => 'تغذیه ورزشی و غیرورزشی';
 
   @override
   String get paymentDialogText4 => 'دسترسی به ثبت انواع غذا';
 
   @override
-  String get paymentDialogOneMonthText5 => 'یک ماه یا 600 عدد غذا';
+  String get paymentDialogOneMonthText5 => 'یک ماهه(600 عدد)';
 
   @override
-  String get paymentDialogThreeMonthText5 => 'سه ماه یا 1800 عدد غذا';
+  String get paymentDialogThreeMonthText5 => 'سه ماهه(1800 عدد)';
 
   @override
   String get paymentDialogText6 => 'مطابق سفره ایرانی';
@@ -1402,4 +1402,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get searchRouteMicrophonePermissionMessage => 'لطفا برای گفتن غذاها دسترسی میکرفن دستگاه را بدهید';
+
+  @override
+  String get scheduleMessageTitle => 'یادآوری ثبت وعده غذایی';
+
+  @override
+  String get scheduleMessageText => 'لطفا وعده‌های غذایی امروز خود را ثبت کنید';
 }

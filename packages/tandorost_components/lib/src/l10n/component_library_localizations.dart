@@ -2310,7 +2310,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @paymentDialogText1.
   ///
   /// In fa, this message translates to:
-  /// **'سلامت و تندرستی'**
+  /// **'سریع‌ترین روش لاغری'**
   String get paymentDialogText1;
 
   /// No description provided for @paymentDialogText2.
@@ -2322,7 +2322,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @paymentDialogText3.
   ///
   /// In fa, this message translates to:
-  /// **'سریع‌ترین روش لاغری'**
+  /// **'تغذیه ورزشی و غیرورزشی'**
   String get paymentDialogText3;
 
   /// No description provided for @paymentDialogText4.
@@ -2334,13 +2334,13 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @paymentDialogOneMonthText5.
   ///
   /// In fa, this message translates to:
-  /// **'یک ماه یا 600 عدد غذا'**
+  /// **'یک ماهه(600 عدد)'**
   String get paymentDialogOneMonthText5;
 
   /// No description provided for @paymentDialogThreeMonthText5.
   ///
   /// In fa, this message translates to:
-  /// **'سه ماه یا 1800 عدد غذا'**
+  /// **'سه ماهه(1800 عدد)'**
   String get paymentDialogThreeMonthText5;
 
   /// No description provided for @paymentDialogText6.
@@ -2438,6 +2438,18 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'لطفا برای گفتن غذاها دسترسی میکرفن دستگاه را بدهید'**
   String get searchRouteMicrophonePermissionMessage;
+
+  /// No description provided for @scheduleMessageTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'یادآوری ثبت وعده غذایی'**
+  String get scheduleMessageTitle;
+
+  /// No description provided for @scheduleMessageText.
+  ///
+  /// In fa, this message translates to:
+  /// **'لطفا وعده‌های غذایی امروز خود را ثبت کنید'**
+  String get scheduleMessageText;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

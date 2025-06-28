@@ -12,11 +12,30 @@ import 'package:profile/profile.dart';
 import 'package:remote_api/remote_api.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:tandorost/navigation.dart';
+import 'package:tandorost/scheduling_helper.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 import 'package:image_repository/image_repository.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
 
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  tz.initializeTimeZones();
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('app_icon'); // Add app_icon to drawable
+
+  final InitializationSettings initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+  );
+  await flutterLocalNotificationsPlugin.initialize(
+    initializationSettings,
+    onDidReceiveNotificationResponse: (NotificationResponse response) {
+      // Handle notification tap
+    },
+  );
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -122,7 +141,51 @@ class TandorostBlocProviders extends StatelessWidget {
           lazy: false,
         ),
       ],
-      child: TandorostPlatform(),
+      child: NotificationPermissionHandler(),
+    );
+  }
+}
+
+class NotificationPermissionHandler extends StatelessWidget {
+  const NotificationPermissionHandler({super.key});
+
+  Future<bool> _checkAndRequestPermission() async {
+    final androidPlugin =
+        flutterLocalNotificationsPlugin
+            .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin
+            >();
+    if (androidPlugin == null) return true;
+    final enabled = await androidPlugin.areNotificationsEnabled();
+    if (enabled == true) return true;
+    final requested = await androidPlugin.requestNotificationsPermission();
+    return requested ?? false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<bool>(
+      future: _checkAndRequestPermission(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.data == true) {
+          return FutureBuilder(
+            future: scheduleDailyFoodLogReminders(context),
+            builder: (context2, snapshot2) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return TandorostPlatform();
+              } else {
+                return const SizedBox();
+              }
+            },
+          );
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const SizedBox();
+        }
+        // If permission denied or error, still show the app
+        return const TandorostPlatform();
+      },
     );
   }
 }

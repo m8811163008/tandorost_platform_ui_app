@@ -54,14 +54,17 @@ class PaymentDialog extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: context.sizeExtenstion.small),
-                SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton(
-                    onPressed: Navigator.of(context).pop,
-                    child: Text(
-                      context.l10n.cancle,
-                      style: context.textTheme.bodyMedium!.copyWith(
-                        color: context.themeData.colorScheme.onPrimary,
+                Padding(
+                  padding: EdgeInsets.all(context.sizeExtenstion.medium),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton(
+                      onPressed: Navigator.of(context).pop,
+                      child: Text(
+                        context.l10n.cancle,
+                        style: context.textTheme.bodyMedium!.copyWith(
+                          color: context.themeData.colorScheme.onPrimary,
+                        ),
                       ),
                     ),
                   ),
