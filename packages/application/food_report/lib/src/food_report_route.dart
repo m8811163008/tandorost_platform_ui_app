@@ -61,7 +61,9 @@ class BazzarReviewListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<FoodReportCubit, FoodReportState>(
-      listenWhen: (previous, current) => current.foods.length >= 5,
+      listenWhen:
+          (previous, current) =>
+              previous.foods != current.foods && current.foods.length >= 5,
       listener: (context, state) async {
         // show dialog
         if (state.isCommitReviewedOnCafeBazzar) {
