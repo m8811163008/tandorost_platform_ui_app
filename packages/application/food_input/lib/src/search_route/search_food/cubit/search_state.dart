@@ -31,6 +31,7 @@ class SearchState extends Equatable {
     searchFoodsByVoiceInputStatus,
     canRequestForFoodNutrition,
     canRequestForFoodNutritionStatus,
+    isRecorderPermissionAllowed
   ];
   SearchState copyWith({
     String? foodName,

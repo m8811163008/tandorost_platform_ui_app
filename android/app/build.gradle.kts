@@ -46,6 +46,9 @@ android {
             isShrinkResources = true // Enable resource shrinking
         }
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 dependencies {
     // ...existing code...

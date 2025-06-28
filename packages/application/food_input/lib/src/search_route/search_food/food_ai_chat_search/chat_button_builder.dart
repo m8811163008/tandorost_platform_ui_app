@@ -34,7 +34,7 @@ class ChatButtonBuilder extends StatelessWidget {
           },
           onLongPressUp: context.read<SearchCubit>().onSearchByVoicePressedUp,
         );
-        
+
         bool isLoading = cubit.state.searchFoodsByVoiceInputStatus.isLoading;
         return !isLoading
             ? chatButton
