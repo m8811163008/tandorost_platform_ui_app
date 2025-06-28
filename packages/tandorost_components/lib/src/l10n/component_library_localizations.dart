@@ -2448,8 +2448,26 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @scheduleMessageText.
   ///
   /// In fa, this message translates to:
-  /// **'لطفا وعده‌های غذایی امروز خود را ثبت کنید'**
+  /// **'لطفا وعده‌های غذایی امروز خود را ثبت کنید 👏'**
   String get scheduleMessageText;
+
+  /// No description provided for @reviewDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'نظر بدهید 👏'**
+  String get reviewDialogTitle;
+
+  /// No description provided for @reviewDialogText.
+  ///
+  /// In fa, this message translates to:
+  /// **'کاربر محترم برای حمایت و بهبود امکانات پلتفرم تندرست امتیاز 5 ستاره و نظر سازنده خود را بدهید'**
+  String get reviewDialogText;
+
+  /// No description provided for @reviewDialogSubmitButtonText.
+  ///
+  /// In fa, this message translates to:
+  /// **'ثبت نظر'**
+  String get reviewDialogSubmitButtonText;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

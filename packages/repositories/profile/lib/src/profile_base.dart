@@ -52,4 +52,16 @@ class ProfileRepository {
     if (result == null) return false;
     return result[StorageKey.visitedIntroductionRoute];
   }
+
+  Future<void> reviewedBazzar() async {
+    await localStorage.upsert(StorageKey.reviewedBazzar, {
+      StorageKey.reviewedBazzar: true,
+    });
+  }
+
+  Future<bool> get isReviewedBazzar async {
+    final result = await localStorage.read(StorageKey.reviewedBazzar);
+    if (result == null) return false;
+    return result[StorageKey.reviewedBazzar];
+  }
 }

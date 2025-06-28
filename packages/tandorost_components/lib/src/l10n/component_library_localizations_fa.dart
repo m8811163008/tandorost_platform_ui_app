@@ -1407,5 +1407,14 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get scheduleMessageTitle => 'یادآوری ثبت وعده غذایی';
 
   @override
-  String get scheduleMessageText => 'لطفا وعده‌های غذایی امروز خود را ثبت کنید';
+  String get scheduleMessageText => 'لطفا وعده‌های غذایی امروز خود را ثبت کنید 👏';
+
+  @override
+  String get reviewDialogTitle => 'نظر بدهید 👏';
+
+  @override
+  String get reviewDialogText => 'کاربر محترم برای حمایت و بهبود امکانات پلتفرم تندرست امتیاز 5 ستاره و نظر سازنده خود را بدهید';
+
+  @override
+  String get reviewDialogSubmitButtonText => 'ثبت نظر';
 }

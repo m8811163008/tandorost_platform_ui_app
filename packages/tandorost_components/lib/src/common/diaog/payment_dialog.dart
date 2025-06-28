@@ -12,7 +12,7 @@ class PaymentDialog extends StatelessWidget {
       child: SingleChildScrollView(
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: context.themeData.colorScheme.secondary,
+            color: context.themeData.colorScheme.primary,
           ),
           child: Padding(
             padding: EdgeInsets.all(context.sizeExtenstion.medium),

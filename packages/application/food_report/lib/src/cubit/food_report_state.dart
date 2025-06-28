@@ -14,6 +14,7 @@ class FoodReportState extends Equatable {
     this.nutritionRequirements,
     this.userProfile,
     this.userPhysicalProfile,
+    this.isCommitReviewedOnCafeBazzar = false,
   });
 
   final List<Food> foods;
@@ -22,6 +23,7 @@ class FoodReportState extends Equatable {
   final UserProfile? userProfile;
   final UserPhysicalProfile? userPhysicalProfile;
   final SelectedTab selectedTab;
+  final bool isCommitReviewedOnCafeBazzar;
 
   final AsyncProcessingStatus readFoodsNutritionStatus;
   final AsyncProcessingStatus updateFoodsNutritionsStatus;
@@ -72,6 +74,7 @@ class FoodReportState extends Equatable {
     AsyncProcessingStatus? readProfileStatus,
     AsyncProcessingStatus? readUserPhysicalProfileStatus,
     SelectedTab? selectedTab,
+    bool? isCommitReviewedOnCafeBazzar,
   }) {
     return FoodReportState(
       foods: foods ?? this.foods,
@@ -95,6 +98,8 @@ class FoodReportState extends Equatable {
       readNutritionRequirementsStatus:
           readNutritionRequirementsStatus ??
           this.readNutritionRequirementsStatus,
+      isCommitReviewedOnCafeBazzar:
+          isCommitReviewedOnCafeBazzar ?? this.isCommitReviewedOnCafeBazzar,
     );
   }
 
@@ -112,6 +117,7 @@ class FoodReportState extends Equatable {
     userProfile,
     userPhysicalProfile,
     readUserPhysicalProfileStatus,
+    isCommitReviewedOnCafeBazzar,
   ];
 }
 

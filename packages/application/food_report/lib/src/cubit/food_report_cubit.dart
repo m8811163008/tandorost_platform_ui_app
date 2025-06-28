@@ -28,6 +28,7 @@ class FoodReportCubit extends Cubit<FoodReportState> {
     readNutritionRequirements();
     readProfile();
     readPhysicalProfile();
+    _checkCommitBazzarReview();
   }
 
   void readFoodsNutrition() async {
@@ -226,6 +227,16 @@ class FoodReportCubit extends Cubit<FoodReportState> {
 
   void onChangeTab(SelectedTab selectedTab) {
     _enhancedEmit(state.copyWith(selectedTab: selectedTab));
+  }
+
+  void _checkCommitBazzarReview() async {
+    final isReviewed = await _profileRepository.isReviewedBazzar;
+    _enhancedEmit(state.copyWith(isCommitReviewedOnCafeBazzar: isReviewed));
+  }
+  void onCommitedBazzarReview() async {
+    _profileRepository.reviewedBazzar();
+    final isReviewed = await _profileRepository.isReviewedBazzar;
+    _enhancedEmit(state.copyWith(isCommitReviewedOnCafeBazzar: isReviewed));
   }
 
   void _enhancedEmit(FoodReportState state) {
