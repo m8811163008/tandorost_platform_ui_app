@@ -9,6 +9,7 @@ class PaymentDialogBuilder extends StatelessWidget {
     return PaymentDialog(
       onPlanTap: (planType) {
         context.read<PaymentCubit>().onChangeSelectedSubscriptionType(planType);
+        //web
         context.read<PaymentCubit>().onConnectToCofeBazzar();
       },
     );

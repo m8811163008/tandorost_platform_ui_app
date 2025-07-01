@@ -80,6 +80,7 @@ class SearchBlocListeners extends StatelessWidget {
                   previous.canRequestForFoodNutritionStatus !=
                       current.canRequestForFoodNutritionStatus,
           listener: (context, state) async {
+            //web
             if (!state.canRequestForFoodNutrition) {
               await showDialog(
                 context: context,

@@ -38,6 +38,7 @@ class PaymentBlocListeners extends StatelessWidget {
                   previous.coffeBazzarConnectionStatus !=
                   current.coffeBazzarConnectionStatus,
           listener: (context, state) async {
+            //web
             final content = context.l10n.bazzarNotFound;
             if (state.coffeBazzarConnectionStatus.isConnectionError) {
               Navigator.of(context).pop();
@@ -55,6 +56,7 @@ class PaymentBlocListeners extends StatelessWidget {
                   previous.onReadCafeBazzarSkusStatus !=
                   current.onReadCafeBazzarSkusStatus,
           listener: (context, state) async {
+            //web
             if (state.onReadCafeBazzarSkusStatus.isConnectionError) {
               ScaffoldMessenger.of(
                 context,
@@ -69,6 +71,7 @@ class PaymentBlocListeners extends StatelessWidget {
                   previous.onCafeBazzarSubscribeStatus !=
                   current.onCafeBazzarSubscribeStatus,
           listener: (context, state) async {
+            //web
             if (state.onCafeBazzarSubscribeStatus.isConnectionError) {
               Navigator.of(context).pop();
               final message =
@@ -118,6 +121,7 @@ class PaymentBlocListeners extends StatelessWidget {
                   previous.readCoffeBazzarPaymentStatus !=
                   current.readCoffeBazzarPaymentStatus,
           listener: (context, state) async {
+            //web
             if (state.readCoffeBazzarPaymentStatus.isConnectionError) {
               final content = context.l10n.networkError;
               ScaffoldMessenger.of(
@@ -139,6 +143,7 @@ class PaymentBlocListeners extends StatelessWidget {
                   previous.onReadCafeBazzarSkusStatus !=
                       current.onReadCafeBazzarSkusStatus,
           listener: (context, state) async {
+            //web
             if (state.onReadUserProfileStatus.isSuccess &&
                 state.onReadCafeBazzarSkusStatus.isSuccess) {
               context.read<PaymentCubit>().onCreateSubscriptionPayments();

@@ -69,6 +69,7 @@ class PaymentCubit extends Cubit<PaymentState> {
       );
     }
   }
+  
 
   void onConnectToCofeBazzar() async {
     if (state.cafeBazzarPaymentInfo == null) return;
