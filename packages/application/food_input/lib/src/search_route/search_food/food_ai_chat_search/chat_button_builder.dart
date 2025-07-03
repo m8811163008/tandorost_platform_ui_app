@@ -18,7 +18,9 @@ class ChatButtonBuilder extends StatelessWidget {
               previous.canRequestForFoodNutrition !=
                   current.canRequestForFoodNutrition ||
               previous.searchFoodsByVoiceInputStatus !=
-                  current.searchFoodsByVoiceInputStatus,
+                  current.searchFoodsByVoiceInputStatus ||
+              previous.searchFoodsByTextInputStatus !=
+                  current.searchFoodsByTextInputStatus,
       builder: (context, state) {
         final chatButton = AIChatButton(
           onLongPressStart: () async {
@@ -34,8 +36,10 @@ class ChatButtonBuilder extends StatelessWidget {
           },
           onLongPressUp: context.read<SearchCubit>().onSearchByVoicePressedUp,
         );
-
-        bool isLoading = cubit.state.searchFoodsByVoiceInputStatus.isLoading;
+        // cubit.state.searchFoodsByTextInputStatus.isLoading for hndling notification inputs
+        bool isLoading =
+            cubit.state.searchFoodsByVoiceInputStatus.isLoading ||
+            cubit.state.searchFoodsByTextInputStatus.isLoading;
         return !isLoading
             ? chatButton
             : LoadingChatButtonIndicator(chatButton: chatButton);

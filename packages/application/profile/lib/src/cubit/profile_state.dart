@@ -5,6 +5,7 @@ class ProfileState extends Equatable {
   const ProfileState({
     this.changeWeightSpeed = ChangeWeightSpeed.constant,
     this.isTimeRestrictedEating = false,
+    this.isReminderNotificationPermissionGranted = false,
     this.language = Language.english,
     this.name = '',
     this.phoneNumber = '',
@@ -20,6 +21,7 @@ class ProfileState extends Equatable {
 
   final ChangeWeightSpeed changeWeightSpeed;
   final bool isTimeRestrictedEating;
+  final bool isReminderNotificationPermissionGranted;
   final Language language;
   final String name;
   final String phoneNumber;
@@ -35,6 +37,7 @@ class ProfileState extends Equatable {
   ProfileState copyWith({
     ChangeWeightSpeed? changeWeightSpeed,
     bool? isTimeRestrictedEating,
+    bool? isReminderNotificationPermissionGranted,
     Language? language,
     String? name,
     String? phoneNumber,
@@ -51,6 +54,8 @@ class ProfileState extends Equatable {
       changeWeightSpeed: changeWeightSpeed ?? this.changeWeightSpeed,
       isTimeRestrictedEating:
           isTimeRestrictedEating ?? this.isTimeRestrictedEating,
+      isReminderNotificationPermissionGranted:
+          isReminderNotificationPermissionGranted ?? this.isReminderNotificationPermissionGranted,
       language: language ?? this.language,
       name: name ?? this.name,
       phoneNumber: phoneNumber ?? this.phoneNumber,
@@ -73,6 +78,7 @@ class ProfileState extends Equatable {
   List<Object?> get props => [
     changeWeightSpeed,
     isTimeRestrictedEating,
+    isReminderNotificationPermissionGranted,
     language,
     name,
     phoneNumber,

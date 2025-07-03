@@ -160,17 +160,15 @@ class Navigation {
         GoRoute(
           path: RoutesNames.profileRoute.path,
           builder: (context, state) {
-            return NotificationPermissionHandler(
-              child: ProfileRoute(
-                onBottomNavigationChanged: (index) {
-                  _onBottomNavigationChanged(context, index);
-                },
-                onDrawerNavigationChanged: (index) {
-                  _onDrawerNavigationChanged(context, index);
-                },
-                bottomNavigationIndex: _bottomNavigationIndex(state),
-                drawerNavigationIndex: _drawerNavigationIndex(state),
-              ),
+            return ProfileRoute(
+              onBottomNavigationChanged: (index) {
+                _onBottomNavigationChanged(context, index);
+              },
+              onDrawerNavigationChanged: (index) {
+                _onDrawerNavigationChanged(context, index);
+              },
+              bottomNavigationIndex: _bottomNavigationIndex(state),
+              drawerNavigationIndex: _drawerNavigationIndex(state),
             );
           },
         ),

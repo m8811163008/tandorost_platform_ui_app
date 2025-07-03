@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:food_input/food_input.dart';
 import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 import 'package:path_provider/path_provider.dart';
@@ -10,11 +12,16 @@ import 'package:record/record.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 part 'search_state.dart';
 
+final StreamController<String?> didReceiveNotificationResponseStreamController =
+    StreamController<String?>.broadcast();
+
 class SearchCubit extends Cubit<SearchState> {
   SearchCubit({
     required this.foodInputRepository,
     required this.profileRepository,
     required this.paymentRepository,
+    required this.flutterLocalNotificationsPlugin,
+    // required this.didReceiveNotificationResponseStreamController,
   }) : recorder = AudioRecorder(),
        super(SearchState()) {
     _init();
@@ -31,6 +38,7 @@ class SearchCubit extends Cubit<SearchState> {
     _enhancedEmit(state.copyWith(userSpokenLanguage: () => language));
     await onRequestRecorderPremission();
     await _canRequestForFoodNutrition();
+    await initalizeNotification();
   }
 
   void resetStatus() {
@@ -47,6 +55,46 @@ class SearchCubit extends Cubit<SearchState> {
   final ProfileRepository profileRepository;
   final PaymentRepository paymentRepository;
   final AudioRecorder recorder;
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  // final StreamController<String?> didReceiveNotificationResponseStreamController;
+
+  Future<void> initalizeNotification() async {
+    if (Platform.isAndroid) {
+      const AndroidInitializationSettings initializationSettingsAndroid =
+          AndroidInitializationSettings('app_icon');
+
+      final InitializationSettings initializationSettings =
+          InitializationSettings(android: initializationSettingsAndroid);
+      await flutterLocalNotificationsPlugin.initialize(
+        initializationSettings,
+        onDidReceiveNotificationResponse: (
+          NotificationResponse notificationResponse,
+        ) async {
+          // todo naviagte to search page
+          if (notificationResponse.input != null) {
+            onFoodSearchByTextChanged(notificationResponse.input!);
+            readFoodsNutritionsByText();
+          }
+          flutterLocalNotificationsPlugin.cancel(notificationResponse.id ?? 0);
+        },
+      );
+      final NotificationAppLaunchDetails? notificationAppLaunchDetails =
+          await flutterLocalNotificationsPlugin
+              .getNotificationAppLaunchDetails();
+
+      if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
+        // If the app was launched by tapping a notification, capture the input
+        final input = notificationAppLaunchDetails!.notificationResponse?.input;
+        if (input != null) {
+          onFoodSearchByTextChanged(input);
+          readFoodsNutritionsByText();
+        }
+        flutterLocalNotificationsPlugin.cancel(
+          notificationAppLaunchDetails.notificationResponse?.id ?? 0,
+        );
+      }
+    }
+  }
 
   Future<void> onRequestRecorderPremission() async {
     final result = await recorder.hasPermission();

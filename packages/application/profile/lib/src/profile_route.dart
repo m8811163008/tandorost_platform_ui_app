@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_repository/image_repository.dart';
 import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
+import 'package:profile_app/profile.dart';
 import 'package:profile_app/src/cubit/profile_cubit.dart';
 import 'package:profile_app/src/edit_dialog.dart';
 import 'package:profile_app/src/edit_name_button.dart';
@@ -32,6 +33,7 @@ class ProfileRoute extends StatelessWidget {
             RepositoryProvider.of<ProfileRepository>(context),
             RepositoryProvider.of<ImageRepository>(context),
             RepositoryProvider.of<PaymentRepository>(context),
+            RepositoryProvider.of<FlutterLocalNotificationsPlugin>(context),
           ),
       child: AppScaffold(
         appBar: AppBar(
@@ -239,11 +241,21 @@ class SettingCard extends StatelessWidget {
                 context.read<ProfileCubit>().onChangeWeightSpeed,
           ),
           SizedBox(height: context.sizeExtenstion.medium),
-          TimeRestrictedSetting(
+          SettingRadioButton(
+            label: context.l10n.timeRestrictedEatingLabel,
             value: context.select(
               (ProfileCubit cubit) => cubit.state.isTimeRestrictedEating,
             ),
             onChanged: context.read<ProfileCubit>().onChangeIsFasting,
+          ),
+          SettingRadioButton(
+            label: context.l10n.notificationReminderLabel,
+            value: context.select(
+              (ProfileCubit cubit) =>
+                  cubit.state.isReminderNotificationPermissionGranted,
+            ),
+            onChanged:
+                context.read<ProfileCubit>().onToggleReminderNotifications,
           ),
           // TODO Add language suport
           // Divider(height: context.sizeExtenstion.medium),

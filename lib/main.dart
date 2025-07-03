@@ -15,19 +15,19 @@ import 'package:tandorost/navigation.dart';
 import 'package:tandorost/notification_helper.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 import 'package:image_repository/image_repository.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:timezone/data/latest_all.dart' as tz;
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:timezone/data/latest_all.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  tz.initializeTimeZones();
+  // tz.initializeTimeZones();
 
-  await flutterLocalNotificationsPlugin.initialize(
-    initializationSettings,
-    onDidReceiveNotificationResponse: (NotificationResponse response) {
-      // Handle notification tap
-    },
-  );
+  // await flutterLocalNotificationsPlugin.initialize(
+  //   initializationSettings,
+  //   onDidReceiveNotificationResponse: (NotificationResponse response) {
+  //     // Handle notification tap
+  //   },
+  // );
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -94,6 +94,7 @@ class DependencyManager extends StatelessWidget {
     final imageRepository = ImageRepository(remoteApi: remoteApi);
     final fitnessNutrition = FitnessNutrition(remoteApi: remoteApi);
     final foodReport = FoodReport(remoteApi: remoteApi);
+    
 
     return MultiRepositoryProvider(
       providers: [
@@ -108,6 +109,7 @@ class DependencyManager extends StatelessWidget {
         RepositoryProvider(create: (_) => fitnessNutrition, lazy: true),
         RepositoryProvider(create: (_) => foodReport, lazy: true),
         RepositoryProvider(create: (_) => paymentRep, lazy: true),
+        RepositoryProvider(create: (_) => flutterLocalNotificationsPlugin, lazy: true),
       ],
       child: TandorostBlocProviders(),
     );

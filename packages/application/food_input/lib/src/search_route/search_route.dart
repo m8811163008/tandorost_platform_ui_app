@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:food_input/food_input.dart';
 import 'package:food_input_app/src/search_route/payment/cubit/payment_cubit.dart';
 import 'package:food_input_app/src/search_route/search_food/cubit/search_cubit.dart';
@@ -17,12 +20,15 @@ class SearchRoute extends StatelessWidget {
     required this.bottomNavigationIndex,
     this.onDrawerNavigationChanged,
     required this.drawerNavigationIndex,
+    // required this.didReceiveNotificationResponseStreamController
   });
   final VoidCallback? goToResultRoute;
   final ValueChanged<int>? onBottomNavigationChanged;
   final int bottomNavigationIndex;
   final ValueChanged<int>? onDrawerNavigationChanged;
   final int drawerNavigationIndex;
+  // final StreamController<String?> didReceiveNotificationResponseStreamController;
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +45,7 @@ class SearchRoute extends StatelessWidget {
               ),
             );
           },
-          lazy : false,
+          lazy: false,
         ),
         BlocProvider(
           create: (BuildContext context) {
@@ -53,6 +59,10 @@ class SearchRoute extends StatelessWidget {
               paymentRepository: RepositoryProvider.of<PaymentRepository>(
                 context,
               ),
+              flutterLocalNotificationsPlugin:
+                  RepositoryProvider.of<FlutterLocalNotificationsPlugin>(
+                    context,
+                  ),
             );
           },
         ),

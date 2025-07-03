@@ -230,6 +230,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get timeRestrictedEatingLabel => 'رژیم با زمان محدود(فستینگ)';
 
   @override
+  String get notificationReminderLabel => 'اعلان یادآوری ثبت غذا';
+
+  @override
   String get languageSettingLabel => 'زبان نرم افزار';
 
   @override

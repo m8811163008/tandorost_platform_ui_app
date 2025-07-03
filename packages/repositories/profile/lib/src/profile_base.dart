@@ -53,6 +53,21 @@ class ProfileRepository {
     return result[StorageKey.visitedIntroductionRoute];
   }
 
+  Future<void> toggleNotificationReminderSetting() async {
+    await localStorage.upsert(StorageKey.notificationReminderSetting, {
+      StorageKey.notificationReminderSetting:
+          !(await isNotificationReminderSettingEnabled),
+    });
+  }
+
+  Future<bool> get isNotificationReminderSettingEnabled async {
+    final result = await localStorage.read(
+      StorageKey.notificationReminderSetting,
+    );
+    if (result == null) return false;
+    return result[StorageKey.notificationReminderSetting];
+  }
+
   Future<void> reviewedBazzar() async {
     await localStorage.upsert(StorageKey.reviewedBazzar, {
       StorageKey.reviewedBazzar: true,

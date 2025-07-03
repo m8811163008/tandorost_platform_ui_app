@@ -3,23 +3,34 @@ import 'dart:io';
 
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:image_repository/image_repository.dart';
 import 'package:payment_repository/payment.dart';
 
 import 'package:profile/profile.dart';
+import 'package:profile_app/src/cubit/time_zone_helper.dart';
 import 'package:tandorost_components/tandorost_components.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  ProfileCubit(this._profile, this._imageRepository, this._paymentRepository)
-    : super(ProfileState()) {
+  ProfileCubit(
+    this._profile,
+    this._imageRepository,
+    this._paymentRepository,
+    this.flutterLocalNotificationsPlugin,
+  ) : super(ProfileState()) {
     readProfile();
     readImageProfile();
+    isReminderEnabled();
+    tz.initializeTimeZones();
   }
   final ProfileRepository _profile;
   final ImageRepository _imageRepository;
   final PaymentRepository _paymentRepository;
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
   void readImageProfile() async {
     _enhancedEmit(
@@ -51,6 +62,13 @@ class ProfileCubit extends Cubit<ProfileState> {
         ),
       );
     }
+  }
+
+  void isReminderEnabled() async {
+    final isEnable = await _profile.isNotificationReminderSettingEnabled;
+    _enhancedEmit(
+      state.copyWith(isReminderNotificationPermissionGranted: isEnable),
+    );
   }
 
   void readSubscriptions() async {
@@ -174,6 +192,110 @@ class ProfileCubit extends Cubit<ProfileState> {
     _enhancedEmit(
       state.copyWith(isTimeRestrictedEating: isTimeRestrictedEating),
     );
+  }
+
+  void onToggleReminderNotifications(bool _) async {
+    final isEnable = await _profile.isNotificationReminderSettingEnabled;
+
+    if (isEnable) {
+      await _profile.toggleNotificationReminderSetting();
+      await flutterLocalNotificationsPlugin.cancelAll();
+      _enhancedEmit(
+        state.copyWith(isReminderNotificationPermissionGranted: !isEnable),
+      );
+    } else {
+      if (Platform.isAndroid) {
+        final isNotificationsPermissionGranted =
+            await flutterLocalNotificationsPlugin
+                .resolvePlatformSpecificImplementation<
+                  AndroidFlutterLocalNotificationsPlugin
+                >()
+                ?.requestNotificationsPermission() ??
+            false;
+
+        final isExactAlarmsPermissionGranted =
+            await flutterLocalNotificationsPlugin
+                .resolvePlatformSpecificImplementation<
+                  AndroidFlutterLocalNotificationsPlugin
+                >()
+                ?.requestExactAlarmsPermission() ??
+            false;
+        if (isNotificationsPermissionGranted &&
+            isExactAlarmsPermissionGranted) {
+          await _scheduleNotificationWithTextInput();
+          await _profile.toggleNotificationReminderSetting();
+          _enhancedEmit(
+            state.copyWith(isReminderNotificationPermissionGranted: !isEnable),
+          );
+        }
+      }
+    }
+  }
+
+  Future<void> _scheduleNotificationWithTextInput() async {
+    final AndroidNotificationAction replyAction = AndroidNotificationAction(
+      'text_reply_id_scheduled', // Use a unique ID for scheduled notifications if needed
+      'Reply',
+      inputs: <AndroidNotificationActionInput>[
+        const AndroidNotificationActionInput(label: 'Type eaten foods'),
+      ],
+      showsUserInterface: true,
+    );
+
+    final AndroidNotificationDetails
+    androidPlatformChannelSpecifics = AndroidNotificationDetails(
+      'input_channel_id', // Re-using the same channel ID as before or create a new one
+      'Input Notifications',
+      channelDescription: 'Notifications that allow text input',
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker',
+      actions: <AndroidNotificationAction>[replyAction], // Add the action here
+      icon: '@drawable/app_icon',
+    );
+    final NotificationDetails platformChannelSpecifics = NotificationDetails(
+      android: androidPlatformChannelSpecifics,
+    );
+
+    final String currentTimeZone =
+        timezoneNames[DateTime.now().timeZoneOffset.inMilliseconds];
+    var currentTehranTime = tz.getLocation('Asia/Tehran');
+    final scheduledTime = tz.TZDateTime.now(
+      currentTehranTime,
+    ).add(const Duration(seconds: 20));
+    // Example: schedule for 9am, 2pm, and 8pm
+    final scheduledTimes = [
+      scheduledTime,
+      _nextInstanceOfHour(9, currentTimeZone),
+      _nextInstanceOfHour(14, currentTimeZone),
+      _nextInstanceOfHour(20, currentTimeZone),
+    ];
+    for (tz.TZDateTime scheduledTime in scheduledTimes) {
+      await flutterLocalNotificationsPlugin.zonedSchedule(
+        scheduledTimes.indexOf(
+          scheduledTime,
+        ), // Use a different Notification ID for scheduled notifications (e.g., 2 instead of 0)
+        'Scheduled Reply Notification', // Title
+        'This notification with input will appear in 15 seconds!', // Body
+        scheduledTime, // Schedule time using TZDateTime
+        platformChannelSpecifics,
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        matchDateTimeComponents: DateTimeComponents.time, // <-- Repeat daily
+        payload: 'scheduled_reply_notification', // Optional payload
+      );
+      debugPrint('Notification with text input scheduled for: $scheduledTime');
+    }
+  }
+
+  // Helper to get the next occurrence of a specific hour (today or tomorrow)
+  tz.TZDateTime _nextInstanceOfHour(int hour, String currentTimeZone) {
+    final location = tz.getLocation(currentTimeZone);
+    final now = tz.TZDateTime.now(location);
+    var scheduled = tz.TZDateTime(location, now.year, now.month, now.day, hour);
+    if (scheduled.isBefore(now)) {
+      scheduled = scheduled.add(const Duration(days: 1));
+    }
+    return scheduled;
   }
 
   void onChangeLanguage(Language? language) async {

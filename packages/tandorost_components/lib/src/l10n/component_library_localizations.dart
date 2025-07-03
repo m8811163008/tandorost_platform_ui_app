@@ -477,6 +477,12 @@ abstract class ComponentLibraryLocalizations {
   /// **'رژیم با زمان محدود(فستینگ)'**
   String get timeRestrictedEatingLabel;
 
+  /// No description provided for @notificationReminderLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'اعلان یادآوری ثبت غذا'**
+  String get notificationReminderLabel;
+
   /// No description provided for @languageSettingLabel.
   ///
   /// In fa, this message translates to:

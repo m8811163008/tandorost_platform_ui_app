@@ -97,6 +97,7 @@
         }
     },
     "timeRestrictedEatingLabel": "رژیم با زمان محدود(فستینگ)",
+    "notificationReminderLabel": "اعلان یادآوری ثبت غذا",
     "languageSettingLabel": "زبان نرم افزار",
     "languageTranslation": "{language_name, select, english{انگلیسی} chinese{چینی} hindi{هندی} spanish{اسپانیایی} french{فرانسوی} arabic{عربی} bengali{بنگالی} russian{روسی} portuguese{پرتغالی} urdu{اردو} indonesian{اندونزیایی} german{آلمانی} japanese{ژاپنی} marathi{مراتی} telugu{تلوگو} turkish{ترکی} tamil{تامیلی} vietnamese{ویتنامی} tagalog{تاگالوگ} korean{کره‌ای} persian{فارسی} hausa{هوسا} javanese{جاوه‌ای} italian{ایتالیایی} punjabi{پنجابی} kannada{کانادا} gujarati{گجراتی} thai{تایلندی} polish{لهستانی} ukrainian{اوکراینی} other{ترجمه تعریف نشده}}",
     "@languageTranslation": {
