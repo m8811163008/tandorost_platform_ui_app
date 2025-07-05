@@ -194,7 +194,9 @@ class ProfileCubit extends Cubit<ProfileState> {
     );
   }
 
-  void onToggleReminderNotifications(bool _) async {
+  void onToggleReminderNotifications(
+    NotiticationTexts notiticationTexts,
+  ) async {
     final isEnable = await _profile.isNotificationReminderSettingEnabled;
 
     if (isEnable) {
@@ -222,7 +224,7 @@ class ProfileCubit extends Cubit<ProfileState> {
             false;
         if (isNotificationsPermissionGranted &&
             isExactAlarmsPermissionGranted) {
-          await _scheduleNotificationWithTextInput();
+          await _scheduleNotificationWithTextInput(notiticationTexts);
           await _profile.toggleNotificationReminderSetting();
           _enhancedEmit(
             state.copyWith(isReminderNotificationPermissionGranted: !isEnable),
@@ -232,12 +234,14 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-  Future<void> _scheduleNotificationWithTextInput() async {
+  Future<void> _scheduleNotificationWithTextInput(
+    NotiticationTexts notiticationTexts,
+  ) async {
     final AndroidNotificationAction replyAction = AndroidNotificationAction(
       'text_reply_id_scheduled', // Use a unique ID for scheduled notifications if needed
       'Reply',
       inputs: <AndroidNotificationActionInput>[
-        const AndroidNotificationActionInput(label: 'Type eaten foods'),
+        AndroidNotificationActionInput(label: notiticationTexts.hint),
       ],
       showsUserInterface: true,
     );
@@ -259,13 +263,8 @@ class ProfileCubit extends Cubit<ProfileState> {
 
     final String currentTimeZone =
         timezoneNames[DateTime.now().timeZoneOffset.inMilliseconds];
-    var currentTehranTime = tz.getLocation('Asia/Tehran');
-    final scheduledTime = tz.TZDateTime.now(
-      currentTehranTime,
-    ).add(const Duration(seconds: 20));
     // Example: schedule for 9am, 2pm, and 8pm
     final scheduledTimes = [
-      scheduledTime,
       _nextInstanceOfHour(9, currentTimeZone),
       _nextInstanceOfHour(14, currentTimeZone),
       _nextInstanceOfHour(20, currentTimeZone),
@@ -275,8 +274,8 @@ class ProfileCubit extends Cubit<ProfileState> {
         scheduledTimes.indexOf(
           scheduledTime,
         ), // Use a different Notification ID for scheduled notifications (e.g., 2 instead of 0)
-        'Scheduled Reply Notification', // Title
-        'This notification with input will appear in 15 seconds!', // Body
+        notiticationTexts.title, // Title
+        notiticationTexts.body, // Body
         scheduledTime, // Schedule time using TZDateTime
         platformChannelSpecifics,
         androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
@@ -337,4 +336,14 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(state);
     }
   }
+}
+
+class NotiticationTexts {
+  final String title, body, hint;
+
+  NotiticationTexts({
+    required this.title,
+    required this.body,
+    required this.hint,
+  });
 }

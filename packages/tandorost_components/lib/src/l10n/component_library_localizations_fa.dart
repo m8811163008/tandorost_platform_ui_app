@@ -1410,7 +1410,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get scheduleMessageTitle => 'یادآوری ثبت وعده غذایی';
 
   @override
-  String get scheduleMessageText => 'لطفا وعده‌های غذایی امروز خود را ثبت کنید 👏';
+  String get scheduleMessageBody => 'لطفا وعده‌های غذایی امروز خود را ثبت کنید 👏';
+
+  @override
+  String get scheduleMessageHint => 'وعده‌های غذایی...';
 
   @override
   String get reviewDialogTitle => 'نظر بدهید 👏';

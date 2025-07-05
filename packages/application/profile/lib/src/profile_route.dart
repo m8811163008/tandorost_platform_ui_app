@@ -254,8 +254,16 @@ class SettingCard extends StatelessWidget {
               (ProfileCubit cubit) =>
                   cubit.state.isReminderNotificationPermissionGranted,
             ),
-            onChanged:
-                context.read<ProfileCubit>().onToggleReminderNotifications,
+            onChanged: (_) {
+              final notificationTexts = NotiticationTexts(
+                title: context.l10n.scheduleMessageTitle,
+                body: context.l10n.scheduleMessageBody,
+                hint: context.l10n.scheduleMessageHint,
+              );
+              context.read<ProfileCubit>().onToggleReminderNotifications(
+                notificationTexts,
+              );
+            },
           ),
           // TODO Add language suport
           // Divider(height: context.sizeExtenstion.medium),

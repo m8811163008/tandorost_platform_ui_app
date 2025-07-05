@@ -2451,11 +2451,17 @@ abstract class ComponentLibraryLocalizations {
   /// **'یادآوری ثبت وعده غذایی'**
   String get scheduleMessageTitle;
 
-  /// No description provided for @scheduleMessageText.
+  /// No description provided for @scheduleMessageBody.
   ///
   /// In fa, this message translates to:
   /// **'لطفا وعده‌های غذایی امروز خود را ثبت کنید 👏'**
-  String get scheduleMessageText;
+  String get scheduleMessageBody;
+
+  /// No description provided for @scheduleMessageHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'وعده‌های غذایی...'**
+  String get scheduleMessageHint;
 
   /// No description provided for @reviewDialogTitle.
   ///
