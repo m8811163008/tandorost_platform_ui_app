@@ -18,6 +18,7 @@ class FoodReportView extends StatelessWidget {
         FoodReportStaticsConsumer(
           goToFitnessProfileRoute: goToFitnessProfileRoute,
         ),
+        
         foodListConsumer,
       ],
     );

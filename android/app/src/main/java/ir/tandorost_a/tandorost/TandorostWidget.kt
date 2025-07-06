@@ -11,8 +11,9 @@ import java.io.File
 import es.antonborri.home_widget.HomeWidgetPlugin
 import android.app.PendingIntent
 import android.content.Intent
-
-
+import android.content.ComponentName
+import android.os.Build
+import android.os.Bundle
 
 /**
  * Implementation of App Widget functionality.
@@ -58,6 +59,22 @@ class TandorostWidget : AppWidgetProvider() {
             }
 
             appWidgetManager.updateAppWidget(appWidgetId, views)
+        }
+    }
+}
+
+fun requestAddHomeWidget(context: Context) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        val appWidgetManager = context.getSystemService(AppWidgetManager::class.java)
+        val myProvider = ComponentName(context, TandorostWidget::class.java)
+
+
+        if (appWidgetManager.isRequestPinAppWidgetSupported) {
+            val pinnedWidgetCallbackIntent = Intent(context, TandorostWidget::class.java)
+            val successCallback = PendingIntent.getBroadcast(
+                context, 0, pinnedWidgetCallbackIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            )
+            appWidgetManager.requestPinAppWidget(myProvider, null, successCallback)
         }
     }
 }

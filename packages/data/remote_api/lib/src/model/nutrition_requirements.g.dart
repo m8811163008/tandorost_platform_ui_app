@@ -49,6 +49,18 @@ NutritionRequirement _$NutritionRequirementFromJson(
   },
 );
 
+Map<String, dynamic> _$NutritionRequirementToJson(
+  NutritionRequirement instance,
+) => <String, dynamic>{
+  'fat': instance.fat,
+  'protein': instance.protein,
+  'carbohydrate_fruits_or_non_starchy_vegetables':
+      instance.carbohydrateFruitsOrNonStarchyVegetables,
+  'carbohydrate_other': instance.carbohydrateOther,
+  'effective_total_daily_energy_expenditure':
+      instance.effectiveTotalDailyEnergyExpenditure,
+};
+
 NutritionRequirements _$NutritionRequirementsFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate(
@@ -70,3 +82,10 @@ NutritionRequirements _$NutritionRequirementsFromJson(
   },
   fieldKeyMap: const {'restDay': 'rest_day', 'trainingDay': 'training_day'},
 );
+
+Map<String, dynamic> _$NutritionRequirementsToJson(
+  NutritionRequirements instance,
+) => <String, dynamic>{
+  'rest_day': instance.restDay.toJson(),
+  'training_day': instance.trainingDay.toJson(),
+};

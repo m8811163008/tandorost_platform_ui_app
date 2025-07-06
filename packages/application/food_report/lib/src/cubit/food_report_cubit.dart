@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:domain_model/domain_model.dart';
@@ -23,12 +24,28 @@ class FoodReportCubit extends Cubit<FoodReportState> {
   final FoodReport _foodReport;
   final FitnessNutrition _fitnessNutrition;
   final ProfileRepository _profileRepository;
+  late final StreamSubscription<NutritionRequirements?>
+  _nutritionRequirementsSubscription;
   void _initialize() async {
     readFoodsNutrition();
     readNutritionRequirements();
     readProfile();
     readPhysicalProfile();
     _checkCommitBazzarReview();
+    _checkIsShowAddHomeWidgetDialog();
+    _nutritionRequirementsSubscription = _fitnessNutrition
+        .nutritionRequirementsStream
+        .listen((nutritionRequirements) {
+          _enhancedEmit(
+            state.copyWith(nutritionRequirements: () => nutritionRequirements),
+          );
+        });
+  }
+
+  @override
+  Future<void> close() {
+    _nutritionRequirementsSubscription.cancel();
+    return super.close();
   }
 
   void readFoodsNutrition() async {
@@ -127,12 +144,10 @@ class FoodReportCubit extends Cubit<FoodReportState> {
       ),
     );
     try {
-      final nutritionRequirements =
-          await _fitnessNutrition.readNutritionRequirements();
+      await _fitnessNutrition.readNutritionRequirements();
       _enhancedEmit(
         state.copyWith(
           readNutritionRequirementsStatus: AsyncProcessingStatus.success,
-          nutritionRequirements: () => nutritionRequirements,
         ),
       );
     } on InternetConnectionException {
@@ -233,10 +248,22 @@ class FoodReportCubit extends Cubit<FoodReportState> {
     final isReviewed = await _profileRepository.isReviewedBazzar;
     _enhancedEmit(state.copyWith(isCommitReviewedOnCafeBazzar: isReviewed));
   }
+
   void onCommitedBazzarReview() async {
     _profileRepository.reviewedBazzar();
     final isReviewed = await _profileRepository.isReviewedBazzar;
     _enhancedEmit(state.copyWith(isCommitReviewedOnCafeBazzar: isReviewed));
+  }
+
+  void _checkIsShowAddHomeWidgetDialog() async {
+    final isShowed = await _profileRepository.isShowAddHomeWidgetDialog;
+    _enhancedEmit(state.copyWith(isShowAddHomeWidgetDialog: isShowed));
+  }
+
+  void onToggleIsShowAddHomeWidgetDialog() async {
+    _profileRepository.toggleIsShowAddHomeWidgetDialog();
+    final isShowed = await _profileRepository.isShowAddHomeWidgetDialog;
+    _enhancedEmit(state.copyWith(isShowAddHomeWidgetDialog: isShowed));
   }
 
   void _enhancedEmit(FoodReportState state) {

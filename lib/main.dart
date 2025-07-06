@@ -92,9 +92,11 @@ class DependencyManager extends StatelessWidget {
     final paymentRep = PaymentRepository(remoteApi: remoteApi);
 
     final imageRepository = ImageRepository(remoteApi: remoteApi);
-    final fitnessNutrition = FitnessNutrition(remoteApi: remoteApi);
+    final fitnessNutrition = FitnessNutrition(
+      remoteApi: remoteApi,
+      localStorage: localStorage,
+    );
     final foodReport = FoodReport(remoteApi: remoteApi);
-    
 
     return MultiRepositoryProvider(
       providers: [
@@ -106,10 +108,19 @@ class DependencyManager extends StatelessWidget {
         RepositoryProvider(create: (_) => profileRep, lazy: true),
         RepositoryProvider(create: (_) => authenticationRep, lazy: true),
         RepositoryProvider(create: (_) => imageRepository, lazy: true),
-        RepositoryProvider(create: (_) => fitnessNutrition, lazy: true),
+        RepositoryProvider(
+          create: (_) => fitnessNutrition,
+          lazy: true,
+          dispose: (fitnessNutrition) async {
+            await fitnessNutrition.dispose();
+          },
+        ),
         RepositoryProvider(create: (_) => foodReport, lazy: true),
         RepositoryProvider(create: (_) => paymentRep, lazy: true),
-        RepositoryProvider(create: (_) => flutterLocalNotificationsPlugin, lazy: true),
+        RepositoryProvider(
+          create: (_) => flutterLocalNotificationsPlugin,
+          lazy: true,
+        ),
       ],
       child: TandorostBlocProviders(),
     );

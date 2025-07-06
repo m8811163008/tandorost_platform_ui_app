@@ -2480,6 +2480,24 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'ثبت نظر'**
   String get reviewDialogSubmitButtonText;
+
+  /// No description provided for @homeWidgetDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'اضاف کردن Home Widget'**
+  String get homeWidgetDialogTitle;
+
+  /// No description provided for @homeWidgetDialogText.
+  ///
+  /// In fa, this message translates to:
+  /// **'برای صرفه‌جویی در زمان Home Widget را به صفحه اصلی اضافه نمایید'**
+  String get homeWidgetDialogText;
+
+  /// No description provided for @homeWidgetDialogSubmitButtonText.
+  ///
+  /// In fa, this message translates to:
+  /// **'اضافه کردن'**
+  String get homeWidgetDialogSubmitButtonText;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

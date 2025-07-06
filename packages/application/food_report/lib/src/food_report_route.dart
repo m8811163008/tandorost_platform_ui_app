@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:android_intent_plus/android_intent.dart';
 import 'package:fitness_nutrition/fitness_nutrition.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_report/food_report.dart';
 import 'package:food_report_app/src/cubit/food_report_cubit.dart';
@@ -40,14 +41,16 @@ class FoodReportRoute extends StatelessWidget {
             ),
           ),
       lazy: false,
-      child: BazzarReviewListener(
-        child: FoodReportScreen(
-          goToFoodInputRoute: goToFoodInputRoute,
-          goToFitnessProfileRoute: goToFitnessProfileRoute,
-          bottomNavigationIndex: bottomNavigationIndex,
-          drawerNavigationIndex: drawerNavigationIndex,
-          onBottomNavigationChanged: onBottomNavigationChanged,
-          onDrawerNavigationChanged: onDrawerNavigationChanged,
+      child: HomeWidgetListener(
+        child: BazzarReviewListener(
+          child: FoodReportScreen(
+            goToFoodInputRoute: goToFoodInputRoute,
+            goToFitnessProfileRoute: goToFitnessProfileRoute,
+            bottomNavigationIndex: bottomNavigationIndex,
+            drawerNavigationIndex: drawerNavigationIndex,
+            onBottomNavigationChanged: onBottomNavigationChanged,
+            onDrawerNavigationChanged: onDrawerNavigationChanged,
+          ),
         ),
       ),
     );
@@ -113,6 +116,82 @@ class BazzarReviewListener extends StatelessWidget {
         package: 'com.farsitel.bazaar',
       );
       await intent.launch();
+    }
+  }
+}
+
+class HomeWidgetListener extends StatelessWidget {
+  const HomeWidgetListener({super.key, required this.child});
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<FoodReportCubit, FoodReportState>(
+      listenWhen:
+          (previous, current) =>
+              previous.foods != current.foods &&
+              current.foods.length < 5 &&
+              current.foods.isEmpty,
+      listener: (context, state) async {
+        // show dialog
+        if (state.isShowAddHomeWidgetDialog) {
+          return;
+        }
+
+        await showDialog(
+          context: context,
+          builder: (ctx) {
+            final cubit = context.read<FoodReportCubit>();
+            return BlocProvider.value(
+              value: cubit,
+              child: AppDialog(
+                title: context.l10n.homeWidgetDialogTitle,
+                contents: [
+                  Text(context.l10n.homeWidgetDialogText),
+                  SizedBox(height: context.sizeExtenstion.small),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      'assets/gif/add_home_widget_guide.gif',
+                      package: 'food_report_app',
+                    ),
+                  ),
+                ],
+                submitButton: AppOutLineButton(
+                  label: context.l10n.homeWidgetDialogSubmitButtonText,
+                  onTap: () async {
+                    // Todo add more user friendly review flow with date and skip
+                    Navigator.of(ctx).pop();
+                    try {
+                      await requestAddHomeWidget();
+                      cubit.onToggleIsShowAddHomeWidgetDialog();
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(SnackBar(content: Text(e.toString())));
+                      }
+                    }
+                  },
+                ),
+              ),
+            );
+          },
+        );
+      },
+      child: child,
+    );
+  }
+
+  Future<void> requestAddHomeWidget() async {
+    if (Platform.isAndroid) {
+      const platform = MethodChannel('ir.tandorost_a.tandorost/widget');
+      try {
+        await platform.invokeMethod('requestAddHomeWidget');
+      } on PlatformException catch (e) {
+        // Handle error
+        debugPrint('Failed to add widget: $e');
+      }
     }
   }
 }

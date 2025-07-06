@@ -79,4 +79,18 @@ class ProfileRepository {
     if (result == null) return false;
     return result[StorageKey.reviewedBazzar];
   }
+
+  Future<void> toggleIsShowAddHomeWidgetDialog() async {
+    await localStorage.upsert(StorageKey.isShowAddHomeWidgetDialog, {
+      StorageKey.isShowAddHomeWidgetDialog: true,
+    });
+  }
+
+  Future<bool> get isShowAddHomeWidgetDialog async {
+    final result = await localStorage.read(
+      StorageKey.isShowAddHomeWidgetDialog,
+    );
+    if (result == null) return false;
+    return result[StorageKey.isShowAddHomeWidgetDialog];
+  }
 }

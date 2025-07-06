@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'nutrition_requirements.g.dart';
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class NutritionRequirement {
   final int fat;
   final int protein;
@@ -23,9 +23,11 @@ class NutritionRequirement {
 
   factory NutritionRequirement.fromJson(Map<String, dynamic> json) =>
       _$NutritionRequirementFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NutritionRequirementToJson(this);
 }
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class NutritionRequirements {
   final NutritionRequirement restDay;
   final NutritionRequirement trainingDay;
@@ -34,4 +36,6 @@ class NutritionRequirements {
 
   factory NutritionRequirements.fromJson(Map<String, dynamic> json) =>
       _$NutritionRequirementsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NutritionRequirementsToJson(this);
 }

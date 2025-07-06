@@ -622,5 +622,8 @@
     "scheduleMessageHint": "وعده‌های غذایی...",
     "reviewDialogTitle": "نظر بدهید 👏",
     "reviewDialogText": "کاربر محترم برای حمایت و بهبود امکانات پلتفرم تندرست امتیاز 5 ستاره و نظر سازنده خود را بدهید",
-    "reviewDialogSubmitButtonText": "ثبت نظر"
+    "reviewDialogSubmitButtonText": "ثبت نظر",
+    "homeWidgetDialogTitle": "اضاف کردن Home Widget",
+    "homeWidgetDialogText": "برای صرفه‌جویی در زمان Home Widget را به صفحه اصلی اضافه نمایید",
+    "homeWidgetDialogSubmitButtonText": "اضافه کردن"
 }

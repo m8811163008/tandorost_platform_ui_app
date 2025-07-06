@@ -1423,4 +1423,13 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get reviewDialogSubmitButtonText => 'ثبت نظر';
+
+  @override
+  String get homeWidgetDialogTitle => 'اضاف کردن Home Widget';
+
+  @override
+  String get homeWidgetDialogText => 'برای صرفه‌جویی در زمان Home Widget را به صفحه اصلی اضافه نمایید';
+
+  @override
+  String get homeWidgetDialogSubmitButtonText => 'اضافه کردن';
 }
