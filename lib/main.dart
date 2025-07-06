@@ -20,14 +20,7 @@ import 'package:image_repository/image_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // tz.initializeTimeZones();
 
-  // await flutterLocalNotificationsPlugin.initialize(
-  //   initializationSettings,
-  //   onDidReceiveNotificationResponse: (NotificationResponse response) {
-  //     // Handle notification tap
-  //   },
-  // );
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

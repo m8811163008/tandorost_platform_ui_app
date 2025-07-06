@@ -784,10 +784,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get foodRequerementDialogGeneralRecommendationVitaminTitle => 'ویتامین و مواد معدنی';
 
   @override
-  String get foodRequerementDialogGeneralRecommendationVitaminText2 => 'با مصرف میوه و سبزی با رنگ هاب مختلف در روز استراحت معمولا نیاز به ویتامین و مواد معدنی تامین میشود و برای تشخصی کمبود ویتامین و مواد معدنی به پزشک مراجعه کنید.';
+  String get foodRequerementDialogGeneralRecommendationVitaminText2 => 'با مصرف میوه و سبزی با رنگ های مختلف در روز استراحت معمولا نیاز به ویتامین و مواد معدنی تامین میشود و برای تشخصی کمبود ویتامین و مواد معدنی به پزشک مراجعه کنید.';
 
   @override
-  String get foodRequerementDialogGeneralRecommendationVitaminText3 => 'در صبح میزان هرمون هپسیدین در کمترین مقدار هست و آهن بهتر هست در صبح خورده بشه مثل املت اسفناج یا جگر که جذب را حداکثر میکند.';
+  String get foodRequerementDialogGeneralRecommendationVitaminText3 => 'در صبح میزان هرمون هپسیدین در کمترین مقدار هست و آهن بهتر هست در صبح خورده بشه مثل املت اسفناج یا جگر که جذب آهن را حداکثر میکند.';
 
   @override
   String get foodRequerementDialogGeneralRecommendationVitaminText4 => 'مصرف آهن برای انتقال اکسیژن در خون و مایچه مهم هست (هموگلوبین و میوگلوبین) . بعد از تمرین بخاطر اثر التهاب ، سطح هرمون تنظیم آهن یعنی هپسیدین به مدت 3 تا 6 ساعت بعد تمرین زیاد میشه و جذب آهن کاهش پیدا میکند و آهن در این مدت کمتر از صبح جذب میشود.';
@@ -829,10 +829,13 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get foodRequerementDialogHydrationRestDayText2 => 'نوشیدن آب همراه غذا، به ویژه غذاهای جامد مانند برنج و نان، می‌تواند به فرآیند هضم کمک کند؛ زیرا آب به نرم شدن غذا و عملکرد بهتر آنزیم‌های گوارشی یاری می‌رساند.';
 
   @override
+  String get foodRequerementDialogHydrationRestDaySubtitle1 => 'نوشیدن آب و حجم معده';
+
+  @override
   String get foodRequerementDialogHydrationRestDayText3 => 'معده یک عضو ماهیچه‌ای با قابلیت انقباض و انبساط است و نوشیدن آب همراه با غذا یا سایر مواد غذایی باعث بزرگ شدن دائمی آن نمی‌شود؛ معده پس از تخلیه، به اندازه طبیعی خود بازمی‌گردد';
 
   @override
-  String get foodRequerementDialogHydrationRestDayText4 => 'معده یک عضو ماهیچه‌ای با قابلیت انقباض و انبساط است و نوشیدن آب همراه با غذا یا سایر مواد غذایی باعث بزرگ شدن دائمی آن نمی‌شود؛ معده پس از تخلیه، به اندازه طبیعی خود بازمی‌گردد';
+  String get foodRequerementDialogHydrationRestDaySubtitle2 => 'مقدار آب‌رسانی موردنیاز';
 
   @override
   String foodRequerementDialogHydrationRestDayText5(double waterVolume) {
@@ -860,6 +863,15 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   }
 
   @override
+  String get foodRequerementDialogHydrationTrainingDaySubtitle1 => 'مقدار نوشیدن آب';
+
+  @override
+  String get foodRequerementDialogHydrationTrainingDaySubtitle2 => 'نوشیدنی‌های طعم‌دار';
+
+  @override
+  String get foodRequerementDialogHydrationTrainingDaySubtitle3 => 'پوسیدگی دندان';
+
+  @override
   String get foodRequerementDialogHydrationTrainingDayText4 => 'پس از ورزش، توصیه می‌شود ۱.۲۵ تا ۱.۵ برابر حجم مایعی که در طول تمرین از دست داده‌اید مصرف کنید.';
 
   @override
@@ -884,12 +896,21 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get foodRequerementDialogCarbohydrateRestDayText1 => 'قند و شکر که اغلب از نیشکر یا چغندر قند فرآوری می‌شوند، نوعی کربوهیدرات هستند. مصرف نوشیدنی‌های حاوی قند افزوده می‌تواند به پوسیدگی دندان منجر شود. این نوع قندها معمولاً در غذاهای فرآوری شده‌ای مانند شکلات، بیسکویت (که اغلب چربی بالایی دارند) یا چیپس (که نمک زیادی دارند) یافت می‌شوند. این دسته از غذاهای فرآوری شده انرژی زیادی دارند اما از نظر مواد مغذی و فیبر فقیر هستند و حجم کمی نسبت به انرژی خود دارند که می‌تواند منجر به احساس گرسنگی زودهنگام شود و دریافت انرژی بیش از نیاز بدن شما بگردد.';
 
   @override
+  String get foodRequerementDialogCarbohydrateRestDaySubtitle1 => 'مقدار و نوع کربوهیدرات';
+
+  @override
   String foodRequerementDialogCarbohydrateRestDayText2(int fivePercentCalorie, int sugarCubeCount) {
     return 'توصیه می‌شود حداکثر 5 درصد از انرژی روزانه شما، معادل حدود $fivePercentCalorie کیلوکالری، از قندهای افزوده تأمین شود. این مقدار شکر برای شما تقریباً معادل $sugarCubeCount حبه قند است که شامل قند موجود در غذاهای فرآوری‌شده، شربت‌ها، آبمیوه‌ها و عسل می‌شود و قندهای طبیعی موجود در شیر، سبزیجات و میوه‌ها را در بر نمی‌گیرد.';
   }
 
   @override
+  String get foodRequerementDialogCarbohydrateRestDaySubtitle2 => 'میوه و چربی';
+
+  @override
   String get foodRequerementDialogCarbohydrateRestDayText3 => 'کربوهیدرات اصلی موجود در میوه‌ها، فروکتوز است. مصرف زیاد فروکتوز در افراد کم‌تحرک می‌تواند باعث افزایش تری‌گلیسیرید و چربی خون شود. با این حال، اگر فعالیت بدنی منظمی دارید، تأثیر آن بر چربی خون معمولاً ناچیز است.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateRestDaySubtitle3 => 'آنتی‌اکسیدان';
 
   @override
   String get foodRequerementDialogCarbohydrateRestDayText4 => 'حتی در صورت کم‌تحرکی، توصیه می‌شود روزانه حداقل 2 تا 3 واحد میوه مصرف کنید؛ زیرا میوه‌ها منبع عالی آب برای هیدراسیون بدن، فیبر برای تقویت سیستم ایمنی و ترکیبات فیتوشیمیایی برای مقابله با التهاب و اکسیدان‌ها هستند.';
@@ -907,6 +928,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText1(int weight, int carbohydrate, int protein) {
     return 'زمان و مقدار مصرف کربوهیدرات پیش از تمرین با یکدیگر مرتبط هستند. به طور کلی، می‌توانید ۱ تا ۴ گرم کربوهیدرات به ازای هر کیلوگرم وزن بدن، از ۱ تا ۴ ساعت پیش از شروع تمرین مصرف کنید. برای نمونه، با وزن $weight کیلوگرم، اگر ۲ ساعت تا آغاز تمرین باقی مانده است، می‌توانید $carbohydrate گرم کربوهیدرات به همراه $protein گرم پروتئین با کیفیت میل کنید.';
   }
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceSubtitle1 => 'زمان خوردن کربوهیدرات';
 
   @override
   String get foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText2 => 'مصرف کربوهیدرات ۱ تا ۴ ساعت پیش از تمرین به افزایش ذخیره گلیکوژن و بهبود عملکرد تمرین کمک می‌کند. خوردن کربوهیدرات تا ۲ ساعت قبل از تمرین، زمان کافی برای هضم و جذب آن را فراهم می‌سازد.';
@@ -927,10 +951,16 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText2 => 'برای تمرین‌های ۴۵ تا ۷۵ دقیقه‌ای، می‌توانید کربوهیدرات شیرین را بمکید یا بچشید تا هم پیام خستگی به مغز کاهش یابد و هم در صورت دشواری خوردن هنگام تمرین، از مشکلات گوارشی جلوگیری شود.';
 
   @override
+  String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceSubtitle1 => 'حداکثر مقدار کربوهیدرات';
+
+  @override
   String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText3 => 'در تمرین‌های بیش از یک ساعت، می‌توانید به ازای هر ساعت، ۳۰ تا ۶۰ گرم کربوهیدرات بسته به شدت تمرین مصرف کنید. بدن قادر نیست بیش از ۱ گرم گلوکز در دقیقه را در عضله با اکسیژن ترکیب کند؛ مصرف بیش از ۶۰ گرم کربوهیدرات در ساعت ممکن است مشکلات گوارشی ایجاد کند و سود بیشتری نخواهد داشت.';
 
   @override
   String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText4 => 'حدود ۱۵ تا ۲۰ دقیقه طول می‌کشد تا کربوهیدرات مصرف‌شده به عضلات برسد؛ بنابراین، میان‌وعده تمرینی را پیش از شروع خستگی میل کنید. معمولاً هر ۲۰ تا ۳۰ دقیقه در طول تمرین می‌توانید کربوهیدرات مصرف نمایید.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceSubtitle2 => 'نمونه‌های کربوهیدرات زمان تمرین';
 
   @override
   String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText5 => 'سه نمونه از میان‌وعده‌های مناسب تمرین شامل یک عدد موز، دو عدد خرما یا یک عدد انبه است که هرکدام حدود ۳۰ گرم کربوهیدرات دارند. در صورت شدت بالای تمرین، می‌توانید تا دو برابر این مقدار مصرف کنید.';
@@ -942,10 +972,16 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText1 => 'گلیکوژن مصرف‌شده در طول تمرین باید برای تمرین‌های روزهای بعد جبران شود؛ در غیر این صورت، عملکرد تمرینات بعدی کاهش می‌یابد.';
 
   @override
+  String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceSubtitle1 => 'مقدار خوردن کربوهیدرات بعد تمرین';
+
+  @override
   String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText2 => 'در دو ساعت پس از تمرین، ذخیره‌سازی گلیکوژن تا ۱۵۰ درصد بیشتر از حالت عادی انجام می‌شود.';
 
   @override
   String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText3 => 'در دو ساعت ابتدایی پس از تمرین، جذب گلوکز بیشتر است؛ زیرا هم میزان گلوکز خون افزایش یافته و هم نفوذپذیری غشای سلولی برای دریافت گلوکز نسبت به حالت عادی بیشتر می‌شود.';
+
+  @override
+  String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceSubtitle2 => 'کربوهیدرات و پروتئین';
 
   @override
   String foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText4(int carbohydrateValu1, int carbohydrateValu2) {
@@ -970,7 +1006,13 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get foodRequerementDialogProteinRestDayText2 => 'تمام پروتئین های حیوانی مانند شیر و گوشت با کیفیت هستند. اگر 9 آمینو اسید ضروری در ماده غذایی تقریبا به اندازه نیاز بدن باشد به آنها پروتئین با کیفیت بالا میگیم، به همین خاطر بین مواد غذایی گیاهی ، سویا(شیر و ماست سویا) ، گندم سیاه، دانه کینوا، دانه چیا و دانه کنف یا شاهدانه غذای گیاهی شامل پروتئین با کیفیت بالا هستند.';
 
   @override
+  String get foodRequerementDialogProteinRestDaySubtitile1 => 'پروتئین باکیفیت';
+
+  @override
   String get foodRequerementDialogProteinRestDayText3 => 'همچنین لوبیا، عدس، نخود، غلات و آجیل ها شامل برخی آمینو اسید های ضروری هستند که میتوانید با خوردن ترکیبی ازین مواد غذایی نیاز بدن به امینو اسید های ضروری را در 24 ساعت تامین کنید.برای مثال خوردن لوبیا و برنج و آجیل هر 9 آمینو اسید ضروری را تامین میکنند.';
+
+  @override
+  String get foodRequerementDialogProteinRestDaySubtitile2 => 'پروتئین موردنیاز شما';
 
   @override
   String foodRequerementDialogProteinRestDayText4(double proteinPerBodyWeight) {
@@ -987,19 +1029,28 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get foodRequerementDialogProteinRestDayText5 => '*مبتدیان مقدار پروتئین بیشتری نسبت به ورزشکار حرفه ای نیاز دارند ( تا 3 هفته اول 40 درصد بیشتر از افراد حرفه ای هست)';
 
   @override
+  String get foodRequerementDialogProteinRestDaySubtitile3 => 'لاغری بدون ورزش';
+
+  @override
   String get foodRequerementDialogProteinRestDayText6 => 'اگر به اندازه کافی پروتئین بخورید میتوانید بدون ورزش و با حداقل کاهش ماهیچه ، چربی کم کنید.';
 
   @override
   String get foodRequerementDialogProteinRestDayText7 => 'برای سرعت بیشتر کاهش چربی و تناسب اندام و همچنین افزایش ماهیچه میتوانید ورزش پرورش اندام یا دیگر ورزش ها مانند بوکس یا شنا را انجام دهید';
 
   @override
-  String get foodRequerementDialogProteinTrainingDayText1 => 'مصرف غذای پروتئینی همراه با تمرین مقاومتی به ساخت ماهیچه کمک می‌کند. افزایش حجم ماهیچه باعث بالا رفتن نرخ سوخت‌وساز، کاهش سریع‌تر وزن، افزایش اعتماد به نفس و بهبود تناسب اندام می‌شود.';
+  String get foodRequerementDialogProteinTrainingDayText1 => 'میل کردن غذای پروتئینی همراه با تمرین مقاومتی به ساخت ماهیچه کمک می‌کند. افزایش حجم ماهیچه باعث بالا رفتن نرخ سوخت‌وساز، کاهش سریع‌تر وزن، افزایش اعتماد به نفس و بهبود تناسب اندام می‌شود.';
 
   @override
   String get foodRequerementDialogProteinTrainingDayText2 => 'برای ساخت ماهیچه، مصرف پروتئین با کیفیت حاوی لوسین که سریع هضم و جذب می‌شود ضروری است. برای حداکثر عضله‌سازی باید آستانه لوسین (۲ تا ۳ گرم در هر وعده) تأمین شود.';
 
   @override
   String get foodRequerementDialogProteinTrainingDayText3 => 'مواد غذایی زیر حاوی ۲ تا ۳ گرم لوسین هستند و مصرف آن‌ها بعد از تمرین همراه با کربوهیدرات برای حداکثر عضله‌سازی توصیه می‌شود:';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDaySubtitle1 => 'آستانه لوسین در پروتئین';
+
+  @override
+  String get foodRequerementDialogProteinTrainingDaySubtitle2 => 'اهمیت پروتئین بعد تمرین';
 
   @override
   String get foodRequerementDialogProteinTrainingDayText3SampleLucine1 => '۶۰۰ میلی‌لیتر شیر کامل';
@@ -1044,6 +1095,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get foodRequerementDialogFatRestDayText2 => 'چربی بیشترین مقدار انرژی را در بین مواد غذایی دارد و مصرف زیاد آن به‌راحتی اتفاق می‌افتد. برای مثال، انرژی یک قاشق غذاخوری روغن معادل ۹ کیلوکالری ضربدر ۱۵ گرم یا ۱۳۵ کیلوکالری است؛ بنابراین به مقدار روغن مصرفی خود دقت کنید.';
 
   @override
+  String get foodRequerementDialogFatRestDaySubtitle1 => 'انواع چربی';
+
+  @override
   String get foodRequerementDialogFatRestDayText3 => '۳۵ درصد انرژی روزانه باید از چربی‌ها تأمین شود که شامل سه بخش زیر است:';
 
   @override
@@ -1060,6 +1114,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get foodRequerementDialogFatRestDayText8 => 'چربی منبع مهمی از انرژی برای ورزش است. نسبت مصرف چربی و کربوهیدرات در بدن به شدت و مدت زمان فعالیت، سطح آمادگی جسمانی و رژیم غذایی قبل از ورزش بستگی دارد.';
+
+  @override
+  String get foodRequerementDialogFatRestDaySubtitle2 => 'چربی و سلامت قلب';
 
   @override
   String get foodRequerementDialogFatRestDayText9 => 'سطح بالای کلسترول LDL یکی از عوامل اصلی بیماری‌های قلبی عروقی است. جایگزین کردن بخشی از چربی‌های اشباع با چربی‌های غیراشباع به کاهش کلسترول LDL و کاهش خطر بیماری قلبی کمک می‌کند.';
@@ -1134,10 +1191,16 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get timeRestrictedText3 => 'مطالعات نشان داده‌اند که اختلال در ریتم شبانه‌روزی می‌تواند بر هورمون‌های کنترل‌کننده اشتها، مصرف انرژی و قند خون اثر منفی بگذارد.';
 
   @override
+  String get timeRestrictedSubtitle1 => 'مناسبترین زمان فستینگ';
+
+  @override
   String get timeRestrictedText4 => 'خوردن از ساعت ۸ صبح تا ۲ ظهر می‌تواند مفید باشد و اشتها و مصرف غذا را کاهش دهد.';
 
   @override
   String get timeRestrictedText5 => 'یک مطالعه نشان داده است که غذا خوردن در یک بازه ۶ ساعته پیش از ساعت ۳ بعدازظهر، گرسنگی و عوامل خطر دیابت نوع ۲ را در مردان مبتلا به پیش‌دیابت کاهش داده است.';
+
+  @override
+  String get timeRestrictedSubtitle2 => 'نکات قابل توجه در رژيم ساعات محدود';
 
   @override
   String get timeRestrictedText6 => 'در فستینگ، به دلیل محدودیت زمانی غذا خوردن، احتمال دریافت کالری کمتر و کاهش وزن وجود دارد و همچنین با تنظیم وعده‌ها بر اساس ساعت زیستی بدن، از دیر خوردن شام جلوگیری می‌شود.';

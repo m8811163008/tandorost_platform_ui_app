@@ -18,7 +18,8 @@ storeFile= ../../build/app/outputs/bundle/release/tandorost.jks
 
 // to genrate appbundle 
 flutter build appbundle -t "lib/main.dart" --obfuscate --split-debug-info=./split-debug-info
-
+// to upload debug symblo
+flutter pub run sentry_dart_plugin --log-level=debug
 
 // To build apks from appbundle
 cd C:\projects\tandorost_platform_ui_app\build\app\outputs\bundle\release

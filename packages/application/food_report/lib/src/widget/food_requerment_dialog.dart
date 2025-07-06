@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_report_app/src/cubit/food_report_cubit.dart';
+import 'package:food_report_app/src/widget/food_requerment_dialog_text_widget.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class GeneralRequrementDialog extends StatelessWidget {
@@ -10,60 +11,64 @@ class GeneralRequrementDialog extends StatelessWidget {
     return AppDialog(
       title: context.l10n.foodRequerementDialogGeneralRecommendationTitle,
       contents: [
-        Text(
+        DialogBodyTitle(
           context.l10n.foodRequerementDialogGeneralRecommendationVitaminTitle,
-          style: context.textTheme.bodyMedium!.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
         ),
-        Text(
+        DialogBodyText(
           context.l10n.foodRequerementDialogGeneralRecommendationVitaminText2,
         ),
-        Text(
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/vitamin-1.png',
+        ),
+        DialogBodyText(
           context.l10n.foodRequerementDialogGeneralRecommendationVitaminText3,
         ),
-        Text(
-          context.l10n.foodRequerementDialogGeneralRecommendationVitaminText4,
-        ),
-        Text(
+
+        DialogBodyText(
           context.l10n.foodRequerementDialogGeneralRecommendationVitaminText5,
         ),
-        Text(
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/vitamin-3.png',
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogGeneralRecommendationVitaminText4,
+        ),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/vitamin-2.png',
+        ),
+        DialogBodyText(
           context.l10n.foodRequerementDialogGeneralRecommendationVitaminText6,
         ),
-        Text(
+        DialogBodyText(
           context.l10n.foodRequerementDialogGeneralRecommendationVitaminText7,
         ),
         Divider(),
-        Text(
+        DialogBodyTitle(
           context
               .l10n
               .foodRequerementDialogGeneralRecommendationProperSleepTitle,
-          style: context.textTheme.bodyMedium!.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
         ),
-        Text(
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogGeneralRecommendationProperSleepText1,
         ),
-        Text(
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogGeneralRecommendationProperSleepText2,
         ),
         Divider(),
-        Text(
+        DialogBodyTitle(
           context.l10n.foodRequerementDialogGeneralRecommendationStressTitle,
-          style: context.textTheme.bodyMedium!.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
         ),
-        Text(
+        DialogBodyText(
           context.l10n.foodRequerementDialogGeneralRecommendationStressText1,
         ),
-        Text(
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/vitamins-6.png',
+        ),
+        DialogBodyText(
           context.l10n.foodRequerementDialogGeneralRecommendationStressText2,
         ),
       ],
@@ -83,11 +88,18 @@ class WaterRequrementDialogRestDay extends StatelessWidget {
     return AppDialog(
       title: context.l10n.foodRequerementDialogHydrationTrainingTitle,
       contents: [
-        Text(context.l10n.foodRequerementDialogHydrationRestDayText1),
-        Text(context.l10n.foodRequerementDialogHydrationRestDayText2),
-        Text(context.l10n.foodRequerementDialogHydrationRestDayText3),
-        Text(context.l10n.foodRequerementDialogHydrationRestDayText4),
-        Text(
+        DialogBodyText(context.l10n.foodRequerementDialogHydrationRestDayText1),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/water-2.png',
+        ),
+        DialogBodyText(context.l10n.foodRequerementDialogHydrationRestDayText2),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/water-1.png',
+        ),
+        DialogBodyTitle(
+          context.l10n.foodRequerementDialogHydrationRestDaySubtitle2,
+        ),
+        DialogBodyText(
           context.l10n.foodRequerementDialogHydrationRestDayText5(
             isMale == null
                 ? -1
@@ -96,6 +108,11 @@ class WaterRequrementDialogRestDay extends StatelessWidget {
                 : 2.0,
           ),
         ),
+
+        DialogBodyTitle(
+          context.l10n.foodRequerementDialogHydrationRestDaySubtitle1,
+        ),
+        DialogBodyText(context.l10n.foodRequerementDialogHydrationRestDayText3),
       ],
     );
   }
@@ -114,21 +131,51 @@ class WaterRequrementDialogTrainingDay extends StatelessWidget {
     return AppDialog(
       title: context.l10n.foodRequerementDialogHydrationTrainingTitle,
       contents: [
-        Text(context.l10n.foodRequerementDialogHydrationTrainingDayText1),
-        Text(context.l10n.foodRequerementDialogHydrationTrainingDayText2),
-        Text(
+        DialogBodyText(
+          context.l10n.foodRequerementDialogHydrationTrainingDayText1,
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogHydrationTrainingDayText2,
+        ),
+        DialogBodyTitle(
+          context.l10n.foodRequerementDialogHydrationTrainingDaySubtitle1,
+        ),
+        DialogBodyText(
           context.l10n.foodRequerementDialogHydrationTrainingDayText3(
             weight == null ? -1 : (weight * 5).toInt(),
             weight == null ? -1 : (weight * 10).toInt(),
           ),
         ),
-        Text(context.l10n.foodRequerementDialogHydrationTrainingDayText4),
-        Text(context.l10n.foodRequerementDialogHydrationTrainingDayText5),
-        Text(context.l10n.foodRequerementDialogHydrationTrainingDayText6),
-        Text(context.l10n.foodRequerementDialogHydrationTrainingDayText7),
-        Text(context.l10n.foodRequerementDialogHydrationTrainingDayText8),
-        Text(context.l10n.foodRequerementDialogHydrationTrainingDayText9),
-        Text(context.l10n.foodRequerementDialogHydrationTrainingDayText10),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/carbohydrate_bodybuilding-6.png',
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogHydrationTrainingDayText4,
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogHydrationTrainingDayText5,
+        ),
+        DialogBodyTitle(
+          context.l10n.foodRequerementDialogHydrationTrainingDaySubtitle2,
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogHydrationTrainingDayText6,
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogHydrationTrainingDayText7,
+        ),
+        DialogBodyTitle(
+          context.l10n.foodRequerementDialogHydrationTrainingDaySubtitle3,
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogHydrationTrainingDayText8,
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogHydrationTrainingDayText9,
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogHydrationTrainingDayText10,
+        ),
       ],
     );
   }
@@ -151,17 +198,54 @@ class CarbRequrementDialogRestDay extends StatelessWidget {
     return AppDialog(
       title: context.l10n.carbohydrate,
       contents: [
-        Text(context.l10n.foodRequerementDialogCarbohydrateRestDayText1),
-        Text(
+        DialogBodyText(
+          context.l10n.foodRequerementDialogCarbohydrateRestDayText1,
+        ),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/carbohydrates-2.png',
+        ),
+
+        DialogBodyTitle(
+          context.l10n.foodRequerementDialogCarbohydrateRestDaySubtitle1,
+        ),
+        DialogBodyText(
           context.l10n.foodRequerementDialogCarbohydrateRestDayText2(
             calorie == null ? -1 : (calorie * 0.05).toInt(),
-            calorie == null ? -1 : (calorie * 0.1).toInt(),
+            // 9 calarie per sugar cube
+            calorie == null ? -1 : (calorie * 0.05 / 9).toInt(),
           ),
         ),
-        Text(context.l10n.foodRequerementDialogCarbohydrateRestDayText3),
-        Text(context.l10n.foodRequerementDialogCarbohydrateRestDayText4),
-        Text(context.l10n.foodRequerementDialogCarbohydrateRestDayText5),
-        Text(context.l10n.foodRequerementDialogCarbohydrateRestDayText6),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/carbohydrates-5.png',
+        ),
+
+        DialogBodyTitle(
+          context.l10n.foodRequerementDialogCarbohydrateRestDaySubtitle2,
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogCarbohydrateRestDayText3,
+        ),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/carbohydrates-4.png',
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogCarbohydrateRestDayText4,
+        ),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/carbohydrates-3.png',
+        ),
+        DialogBodyTitle(
+          context.l10n.foodRequerementDialogCarbohydrateRestDaySubtitle3,
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogCarbohydrateRestDayText5,
+        ),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/carbohydrates-1.png',
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogCarbohydrateRestDayText6,
+        ),
       ],
     );
   }
@@ -191,7 +275,7 @@ class CarbRequrementDialogTrainingDayBeforeExcercise extends StatelessWidget {
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceTitle,
       contents: [
-        Text(
+        DialogBodyText(
           context.l10n
               .foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText1(
                 weight == null ? -1 : weight.toInt(),
@@ -199,17 +283,25 @@ class CarbRequrementDialogTrainingDayBeforeExcercise extends StatelessWidget {
                 protein == null ? -1 : protein.toInt(),
               ),
         ),
-        Text(
+        DialogBodyTitle(
+          context
+              .l10n
+              .foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceSubtitle1,
+        ),
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText2,
         ),
-        Text(
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/carbohydrate_bodybuilding-7.png',
+        ),
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText3,
         ),
-        Text(
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText4,
@@ -230,27 +322,43 @@ class CarbRequrementDialogTrainingDayDuringExcercise extends StatelessWidget {
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceTitle,
       contents: [
-        Text(
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText1,
         ),
-        Text(
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/carbohydrate_bodybuilding-2.png',
+        ),
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText2,
         ),
-        Text(
+        DialogBodyTitle(
+          context
+              .l10n
+              .foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceSubtitle1,
+        ),
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText3,
         ),
-        Text(
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/carbohydrate_bodybuilding-1.png',
+        ),
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText4,
         ),
-        Text(
+        DialogBodyTitle(
+          context
+              .l10n
+              .foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceSubtitle2,
+        ),
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText5,
@@ -275,39 +383,55 @@ class CarbRequrementDialogTrainingDayAfterExcercise extends StatelessWidget {
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceTitle,
       contents: [
-        Text(
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText1,
         ),
-        Text(
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText2,
         ),
-        Text(
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/carbohydrate_bodybuilding-3.png',
+        ),
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText3,
         ),
-        Text(
+        DialogBodyTitle(
+          context
+              .l10n
+              .foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceSubtitle1,
+        ),
+        DialogBodyText(
           context.l10n
               .foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText4(
                 weight == null ? -1 : weight.toInt(),
                 weight == null ? -1 : (weight * 1.2).toInt(),
               ),
         ),
-        Text(
+        DialogBodyTitle(
+          context
+              .l10n
+              .foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceSubtitle2,
+        ),
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText5,
         ),
-        Text(
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/carbohydrate_bodybuilding-9.png',
+        ),
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText6,
         ),
-        Text(
+        DialogBodyText(
           context
               .l10n
               .foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText7,
@@ -340,19 +464,43 @@ class ProteinRequrementDialogRestDay extends StatelessWidget {
     return AppDialog(
       title: context.l10n.protein,
       contents: [
-        Text(
+        DialogBodyText(
           context.l10n.foodRequerementDialogProteinRestDayText1(proteinPerMeal),
         ),
-        Text(context.l10n.foodRequerementDialogProteinRestDayText2),
-        Text(context.l10n.foodRequerementDialogProteinRestDayText3),
-        Text(
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/protein.png',
+        ),
+        DialogBodyTitle(
+          context.l10n.foodRequerementDialogProteinRestDaySubtitile1,
+        ),
+        DialogBodyText(context.l10n.foodRequerementDialogProteinRestDayText2),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/protein-1.png',
+        ),
+
+        DialogBodyText(context.l10n.foodRequerementDialogProteinRestDayText3),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/protein-4.png',
+        ),
+
+        DialogBodyTitle(
+          context.l10n.foodRequerementDialogProteinRestDaySubtitile2,
+        ),
+        DialogBodyText(
           context.l10n.foodRequerementDialogProteinRestDayText4(
             proteinPerBodyWeight.toDouble(),
           ),
         ),
-        Text(context.l10n.foodRequerementDialogProteinRestDayText5),
-        Text(context.l10n.foodRequerementDialogProteinRestDayText6),
-        Text(context.l10n.foodRequerementDialogProteinRestDayText7),
+
+        DialogBodyText(context.l10n.foodRequerementDialogProteinRestDayText5),
+        DialogBodyTitle(
+          context.l10n.foodRequerementDialogProteinRestDaySubtitile3,
+        ),
+        DialogBodyText(context.l10n.foodRequerementDialogProteinRestDayText6),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/protein-2.png',
+        ),
+        DialogBodyText(context.l10n.foodRequerementDialogProteinRestDayText7),
       ],
     );
   }
@@ -366,16 +514,39 @@ class ProteinRequrementDialogTrainingDay extends StatelessWidget {
     return AppDialog(
       title: context.l10n.protein,
       contents: [
-        Text(context.l10n.foodRequerementDialogProteinTrainingDayText1),
-        Text(context.l10n.foodRequerementDialogProteinTrainingDayText2),
-        Text(context.l10n.foodRequerementDialogProteinTrainingDayText3),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogProteinTrainingDayText1,
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogProteinTrainingDayText2,
+        ),
+        DialogBodyTitle(
+          context.l10n.foodRequerementDialogProteinTrainingDaySubtitle1,
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogProteinTrainingDayText3,
+        ),
         SizedBox(height: context.sizeExtenstion.small),
         _buildLucineProteinSampleFood(context),
         SizedBox(height: context.sizeExtenstion.small),
-        Text(context.l10n.foodRequerementDialogProteinTrainingDayText4),
-        Text(context.l10n.foodRequerementDialogProteinTrainingDayText5),
-        Text(context.l10n.foodRequerementDialogProteinTrainingDayText6),
-        Text(context.l10n.foodRequerementDialogProteinTrainingDayText7),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogProteinTrainingDayText4,
+        ),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/carbohydrate_bodybuilding-10.png',
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogProteinTrainingDayText5,
+        ),
+        DialogBodyTitle(
+          context.l10n.foodRequerementDialogProteinTrainingDaySubtitle2,
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogProteinTrainingDayText6,
+        ),
+        DialogBodyText(
+          context.l10n.foodRequerementDialogProteinTrainingDayText7,
+        ),
       ],
     );
   }
@@ -482,17 +653,33 @@ class FatRequrementDialogRestDay extends StatelessWidget {
     return AppDialog(
       title: context.l10n.fat,
       contents: [
-        Text(context.l10n.foodRequerementDialogFatRestDayText1),
-        Text(context.l10n.foodRequerementDialogFatRestDayText2),
-        Text(context.l10n.foodRequerementDialogFatRestDayText3),
-        Text(context.l10n.foodRequerementDialogFatRestDayText4),
-        Text(context.l10n.foodRequerementDialogFatRestDayText5),
-        Text(context.l10n.foodRequerementDialogFatRestDayText6),
-        Text(context.l10n.foodRequerementDialogFatRestDayText7),
-        Text(context.l10n.foodRequerementDialogFatRestDayText8),
-        Text(context.l10n.foodRequerementDialogFatRestDayText9),
-        Text(context.l10n.foodRequerementDialogFatRestDayText10),
-        Text(context.l10n.foodRequerementDialogFatRestDayText11),
+        DialogBodyText(context.l10n.foodRequerementDialogFatRestDayText1),
+        DialogBodyText(context.l10n.foodRequerementDialogFatRestDayText2),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/fat-1.png',
+        ),
+
+        DialogBodyTitle(context.l10n.foodRequerementDialogFatRestDaySubtitle1),
+
+        DialogBodyText(context.l10n.foodRequerementDialogFatRestDayText3),
+        DialogBodyText(context.l10n.foodRequerementDialogFatRestDayText4),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/fat-2.png',
+        ),
+        DialogBodyText(context.l10n.foodRequerementDialogFatRestDayText5),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/fat-4.png',
+        ),
+        DialogBodyText(context.l10n.foodRequerementDialogFatRestDayText6),
+        DialogBodyText(context.l10n.foodRequerementDialogFatRestDayText7),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/fat-3.png',
+        ),
+        DialogBodyText(context.l10n.foodRequerementDialogFatRestDayText8),
+        DialogBodyTitle(context.l10n.foodRequerementDialogFatRestDaySubtitle2),
+        DialogBodyText(context.l10n.foodRequerementDialogFatRestDayText9),
+        DialogBodyText(context.l10n.foodRequerementDialogFatRestDayText10),
+        DialogBodyText(context.l10n.foodRequerementDialogFatRestDayText11),
       ],
     );
   }
@@ -506,16 +693,21 @@ class TimeRestrictedDialogRestDay extends StatelessWidget {
     return AppDialog(
       title: context.l10n.timeRestrictedEatingLabel,
       contents: [
-        Text(context.l10n.timeRestrictedText1),
-        Text(context.l10n.timeRestrictedText2),
-        Text(context.l10n.timeRestrictedText3),
-        Text(context.l10n.timeRestrictedText4),
-        Text(context.l10n.timeRestrictedText5),
-        Text(context.l10n.timeRestrictedText6),
-        Text(context.l10n.timeRestrictedText7),
-        Text(context.l10n.timeRestrictedText8),
-        Text(context.l10n.timeRestrictedText9),
-        Text(context.l10n.timeRestrictedText10),
+        DialogBodyText(context.l10n.timeRestrictedText1),
+        DialogBodyText(context.l10n.timeRestrictedText2),
+        DialogBodyText(context.l10n.timeRestrictedText3),
+        DialogNetworkImage(
+          'https://tandorost-a.ir/wp-content/uploads/2025/07/fasting-1.png',
+        ),
+        DialogBodyTitle(context.l10n.timeRestrictedSubtitle1),
+        DialogBodyText(context.l10n.timeRestrictedText4),
+        DialogBodyText(context.l10n.timeRestrictedText5),
+        DialogBodyText(context.l10n.timeRestrictedText9),
+        DialogBodyTitle(context.l10n.timeRestrictedSubtitle2),
+        DialogBodyText(context.l10n.timeRestrictedText6),
+        DialogBodyText(context.l10n.timeRestrictedText7),
+        DialogBodyText(context.l10n.timeRestrictedText8),
+        DialogBodyText(context.l10n.timeRestrictedText10),
       ],
     );
   }

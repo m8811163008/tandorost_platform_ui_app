@@ -1290,13 +1290,13 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @foodRequerementDialogGeneralRecommendationVitaminText2.
   ///
   /// In fa, this message translates to:
-  /// **'با مصرف میوه و سبزی با رنگ هاب مختلف در روز استراحت معمولا نیاز به ویتامین و مواد معدنی تامین میشود و برای تشخصی کمبود ویتامین و مواد معدنی به پزشک مراجعه کنید.'**
+  /// **'با مصرف میوه و سبزی با رنگ های مختلف در روز استراحت معمولا نیاز به ویتامین و مواد معدنی تامین میشود و برای تشخصی کمبود ویتامین و مواد معدنی به پزشک مراجعه کنید.'**
   String get foodRequerementDialogGeneralRecommendationVitaminText2;
 
   /// No description provided for @foodRequerementDialogGeneralRecommendationVitaminText3.
   ///
   /// In fa, this message translates to:
-  /// **'در صبح میزان هرمون هپسیدین در کمترین مقدار هست و آهن بهتر هست در صبح خورده بشه مثل املت اسفناج یا جگر که جذب را حداکثر میکند.'**
+  /// **'در صبح میزان هرمون هپسیدین در کمترین مقدار هست و آهن بهتر هست در صبح خورده بشه مثل املت اسفناج یا جگر که جذب آهن را حداکثر میکند.'**
   String get foodRequerementDialogGeneralRecommendationVitaminText3;
 
   /// No description provided for @foodRequerementDialogGeneralRecommendationVitaminText4.
@@ -1377,17 +1377,23 @@ abstract class ComponentLibraryLocalizations {
   /// **'نوشیدن آب همراه غذا، به ویژه غذاهای جامد مانند برنج و نان، می‌تواند به فرآیند هضم کمک کند؛ زیرا آب به نرم شدن غذا و عملکرد بهتر آنزیم‌های گوارشی یاری می‌رساند.'**
   String get foodRequerementDialogHydrationRestDayText2;
 
+  /// No description provided for @foodRequerementDialogHydrationRestDaySubtitle1.
+  ///
+  /// In fa, this message translates to:
+  /// **'نوشیدن آب و حجم معده'**
+  String get foodRequerementDialogHydrationRestDaySubtitle1;
+
   /// No description provided for @foodRequerementDialogHydrationRestDayText3.
   ///
   /// In fa, this message translates to:
   /// **'معده یک عضو ماهیچه‌ای با قابلیت انقباض و انبساط است و نوشیدن آب همراه با غذا یا سایر مواد غذایی باعث بزرگ شدن دائمی آن نمی‌شود؛ معده پس از تخلیه، به اندازه طبیعی خود بازمی‌گردد'**
   String get foodRequerementDialogHydrationRestDayText3;
 
-  /// No description provided for @foodRequerementDialogHydrationRestDayText4.
+  /// No description provided for @foodRequerementDialogHydrationRestDaySubtitle2.
   ///
   /// In fa, this message translates to:
-  /// **'معده یک عضو ماهیچه‌ای با قابلیت انقباض و انبساط است و نوشیدن آب همراه با غذا یا سایر مواد غذایی باعث بزرگ شدن دائمی آن نمی‌شود؛ معده پس از تخلیه، به اندازه طبیعی خود بازمی‌گردد'**
-  String get foodRequerementDialogHydrationRestDayText4;
+  /// **'مقدار آب‌رسانی موردنیاز'**
+  String get foodRequerementDialogHydrationRestDaySubtitle2;
 
   /// No description provided for @foodRequerementDialogHydrationRestDayText5.
   ///
@@ -1418,6 +1424,24 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'با توجه به وزن شما، نوشیدن {fiveTimeWeight} تا {tenTimeWeight} میلی‌لیتر آب ۲ تا ۴ ساعت قبل از تمرین توصیه می‌شود. اگر ادرار نکردید یا رنگ ادرار تیره بود، باید آب بیشتری بنوشید.'**
   String foodRequerementDialogHydrationTrainingDayText3(int fiveTimeWeight, int tenTimeWeight);
+
+  /// No description provided for @foodRequerementDialogHydrationTrainingDaySubtitle1.
+  ///
+  /// In fa, this message translates to:
+  /// **'مقدار نوشیدن آب'**
+  String get foodRequerementDialogHydrationTrainingDaySubtitle1;
+
+  /// No description provided for @foodRequerementDialogHydrationTrainingDaySubtitle2.
+  ///
+  /// In fa, this message translates to:
+  /// **'نوشیدنی‌های طعم‌دار'**
+  String get foodRequerementDialogHydrationTrainingDaySubtitle2;
+
+  /// No description provided for @foodRequerementDialogHydrationTrainingDaySubtitle3.
+  ///
+  /// In fa, this message translates to:
+  /// **'پوسیدگی دندان'**
+  String get foodRequerementDialogHydrationTrainingDaySubtitle3;
 
   /// No description provided for @foodRequerementDialogHydrationTrainingDayText4.
   ///
@@ -1467,17 +1491,35 @@ abstract class ComponentLibraryLocalizations {
   /// **'قند و شکر که اغلب از نیشکر یا چغندر قند فرآوری می‌شوند، نوعی کربوهیدرات هستند. مصرف نوشیدنی‌های حاوی قند افزوده می‌تواند به پوسیدگی دندان منجر شود. این نوع قندها معمولاً در غذاهای فرآوری شده‌ای مانند شکلات، بیسکویت (که اغلب چربی بالایی دارند) یا چیپس (که نمک زیادی دارند) یافت می‌شوند. این دسته از غذاهای فرآوری شده انرژی زیادی دارند اما از نظر مواد مغذی و فیبر فقیر هستند و حجم کمی نسبت به انرژی خود دارند که می‌تواند منجر به احساس گرسنگی زودهنگام شود و دریافت انرژی بیش از نیاز بدن شما بگردد.'**
   String get foodRequerementDialogCarbohydrateRestDayText1;
 
+  /// No description provided for @foodRequerementDialogCarbohydrateRestDaySubtitle1.
+  ///
+  /// In fa, this message translates to:
+  /// **'مقدار و نوع کربوهیدرات'**
+  String get foodRequerementDialogCarbohydrateRestDaySubtitle1;
+
   /// No description provided for @foodRequerementDialogCarbohydrateRestDayText2.
   ///
   /// In fa, this message translates to:
   /// **'توصیه می‌شود حداکثر 5 درصد از انرژی روزانه شما، معادل حدود {fivePercentCalorie} کیلوکالری، از قندهای افزوده تأمین شود. این مقدار شکر برای شما تقریباً معادل {sugarCubeCount} حبه قند است که شامل قند موجود در غذاهای فرآوری‌شده، شربت‌ها، آبمیوه‌ها و عسل می‌شود و قندهای طبیعی موجود در شیر، سبزیجات و میوه‌ها را در بر نمی‌گیرد.'**
   String foodRequerementDialogCarbohydrateRestDayText2(int fivePercentCalorie, int sugarCubeCount);
 
+  /// No description provided for @foodRequerementDialogCarbohydrateRestDaySubtitle2.
+  ///
+  /// In fa, this message translates to:
+  /// **'میوه و چربی'**
+  String get foodRequerementDialogCarbohydrateRestDaySubtitle2;
+
   /// No description provided for @foodRequerementDialogCarbohydrateRestDayText3.
   ///
   /// In fa, this message translates to:
   /// **'کربوهیدرات اصلی موجود در میوه‌ها، فروکتوز است. مصرف زیاد فروکتوز در افراد کم‌تحرک می‌تواند باعث افزایش تری‌گلیسیرید و چربی خون شود. با این حال، اگر فعالیت بدنی منظمی دارید، تأثیر آن بر چربی خون معمولاً ناچیز است.'**
   String get foodRequerementDialogCarbohydrateRestDayText3;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateRestDaySubtitle3.
+  ///
+  /// In fa, this message translates to:
+  /// **'آنتی‌اکسیدان'**
+  String get foodRequerementDialogCarbohydrateRestDaySubtitle3;
 
   /// No description provided for @foodRequerementDialogCarbohydrateRestDayText4.
   ///
@@ -1508,6 +1550,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'زمان و مقدار مصرف کربوهیدرات پیش از تمرین با یکدیگر مرتبط هستند. به طور کلی، می‌توانید ۱ تا ۴ گرم کربوهیدرات به ازای هر کیلوگرم وزن بدن، از ۱ تا ۴ ساعت پیش از شروع تمرین مصرف کنید. برای نمونه، با وزن {weight} کیلوگرم، اگر ۲ ساعت تا آغاز تمرین باقی مانده است، می‌توانید {carbohydrate} گرم کربوهیدرات به همراه {protein} گرم پروتئین با کیفیت میل کنید.'**
   String foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText1(int weight, int carbohydrate, int protein);
+
+  /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceSubtitle1.
+  ///
+  /// In fa, this message translates to:
+  /// **'زمان خوردن کربوهیدرات'**
+  String get foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceSubtitle1;
 
   /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText2.
   ///
@@ -1545,6 +1593,12 @@ abstract class ComponentLibraryLocalizations {
   /// **'برای تمرین‌های ۴۵ تا ۷۵ دقیقه‌ای، می‌توانید کربوهیدرات شیرین را بمکید یا بچشید تا هم پیام خستگی به مغز کاهش یابد و هم در صورت دشواری خوردن هنگام تمرین، از مشکلات گوارشی جلوگیری شود.'**
   String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText2;
 
+  /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceSubtitle1.
+  ///
+  /// In fa, this message translates to:
+  /// **'حداکثر مقدار کربوهیدرات'**
+  String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceSubtitle1;
+
   /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText3.
   ///
   /// In fa, this message translates to:
@@ -1556,6 +1610,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'حدود ۱۵ تا ۲۰ دقیقه طول می‌کشد تا کربوهیدرات مصرف‌شده به عضلات برسد؛ بنابراین، میان‌وعده تمرینی را پیش از شروع خستگی میل کنید. معمولاً هر ۲۰ تا ۳۰ دقیقه در طول تمرین می‌توانید کربوهیدرات مصرف نمایید.'**
   String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText4;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceSubtitle2.
+  ///
+  /// In fa, this message translates to:
+  /// **'نمونه‌های کربوهیدرات زمان تمرین'**
+  String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceSubtitle2;
 
   /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText5.
   ///
@@ -1575,6 +1635,12 @@ abstract class ComponentLibraryLocalizations {
   /// **'گلیکوژن مصرف‌شده در طول تمرین باید برای تمرین‌های روزهای بعد جبران شود؛ در غیر این صورت، عملکرد تمرینات بعدی کاهش می‌یابد.'**
   String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText1;
 
+  /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceSubtitle1.
+  ///
+  /// In fa, this message translates to:
+  /// **'مقدار خوردن کربوهیدرات بعد تمرین'**
+  String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceSubtitle1;
+
   /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText2.
   ///
   /// In fa, this message translates to:
@@ -1586,6 +1652,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'در دو ساعت ابتدایی پس از تمرین، جذب گلوکز بیشتر است؛ زیرا هم میزان گلوکز خون افزایش یافته و هم نفوذپذیری غشای سلولی برای دریافت گلوکز نسبت به حالت عادی بیشتر می‌شود.'**
   String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText3;
+
+  /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceSubtitle2.
+  ///
+  /// In fa, this message translates to:
+  /// **'کربوهیدرات و پروتئین'**
+  String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceSubtitle2;
 
   /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText4.
   ///
@@ -1623,11 +1695,23 @@ abstract class ComponentLibraryLocalizations {
   /// **'تمام پروتئین های حیوانی مانند شیر و گوشت با کیفیت هستند. اگر 9 آمینو اسید ضروری در ماده غذایی تقریبا به اندازه نیاز بدن باشد به آنها پروتئین با کیفیت بالا میگیم، به همین خاطر بین مواد غذایی گیاهی ، سویا(شیر و ماست سویا) ، گندم سیاه، دانه کینوا، دانه چیا و دانه کنف یا شاهدانه غذای گیاهی شامل پروتئین با کیفیت بالا هستند.'**
   String get foodRequerementDialogProteinRestDayText2;
 
+  /// No description provided for @foodRequerementDialogProteinRestDaySubtitile1.
+  ///
+  /// In fa, this message translates to:
+  /// **'پروتئین باکیفیت'**
+  String get foodRequerementDialogProteinRestDaySubtitile1;
+
   /// No description provided for @foodRequerementDialogProteinRestDayText3.
   ///
   /// In fa, this message translates to:
   /// **'همچنین لوبیا، عدس، نخود، غلات و آجیل ها شامل برخی آمینو اسید های ضروری هستند که میتوانید با خوردن ترکیبی ازین مواد غذایی نیاز بدن به امینو اسید های ضروری را در 24 ساعت تامین کنید.برای مثال خوردن لوبیا و برنج و آجیل هر 9 آمینو اسید ضروری را تامین میکنند.'**
   String get foodRequerementDialogProteinRestDayText3;
+
+  /// No description provided for @foodRequerementDialogProteinRestDaySubtitile2.
+  ///
+  /// In fa, this message translates to:
+  /// **'پروتئین موردنیاز شما'**
+  String get foodRequerementDialogProteinRestDaySubtitile2;
 
   /// No description provided for @foodRequerementDialogProteinRestDayText4.
   ///
@@ -1640,6 +1724,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'*مبتدیان مقدار پروتئین بیشتری نسبت به ورزشکار حرفه ای نیاز دارند ( تا 3 هفته اول 40 درصد بیشتر از افراد حرفه ای هست)'**
   String get foodRequerementDialogProteinRestDayText5;
+
+  /// No description provided for @foodRequerementDialogProteinRestDaySubtitile3.
+  ///
+  /// In fa, this message translates to:
+  /// **'لاغری بدون ورزش'**
+  String get foodRequerementDialogProteinRestDaySubtitile3;
 
   /// No description provided for @foodRequerementDialogProteinRestDayText6.
   ///
@@ -1656,7 +1746,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @foodRequerementDialogProteinTrainingDayText1.
   ///
   /// In fa, this message translates to:
-  /// **'مصرف غذای پروتئینی همراه با تمرین مقاومتی به ساخت ماهیچه کمک می‌کند. افزایش حجم ماهیچه باعث بالا رفتن نرخ سوخت‌وساز، کاهش سریع‌تر وزن، افزایش اعتماد به نفس و بهبود تناسب اندام می‌شود.'**
+  /// **'میل کردن غذای پروتئینی همراه با تمرین مقاومتی به ساخت ماهیچه کمک می‌کند. افزایش حجم ماهیچه باعث بالا رفتن نرخ سوخت‌وساز، کاهش سریع‌تر وزن، افزایش اعتماد به نفس و بهبود تناسب اندام می‌شود.'**
   String get foodRequerementDialogProteinTrainingDayText1;
 
   /// No description provided for @foodRequerementDialogProteinTrainingDayText2.
@@ -1670,6 +1760,18 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'مواد غذایی زیر حاوی ۲ تا ۳ گرم لوسین هستند و مصرف آن‌ها بعد از تمرین همراه با کربوهیدرات برای حداکثر عضله‌سازی توصیه می‌شود:'**
   String get foodRequerementDialogProteinTrainingDayText3;
+
+  /// No description provided for @foodRequerementDialogProteinTrainingDaySubtitle1.
+  ///
+  /// In fa, this message translates to:
+  /// **'آستانه لوسین در پروتئین'**
+  String get foodRequerementDialogProteinTrainingDaySubtitle1;
+
+  /// No description provided for @foodRequerementDialogProteinTrainingDaySubtitle2.
+  ///
+  /// In fa, this message translates to:
+  /// **'اهمیت پروتئین بعد تمرین'**
+  String get foodRequerementDialogProteinTrainingDaySubtitle2;
 
   /// No description provided for @foodRequerementDialogProteinTrainingDayText3SampleLucine1.
   ///
@@ -1755,6 +1857,12 @@ abstract class ComponentLibraryLocalizations {
   /// **'چربی بیشترین مقدار انرژی را در بین مواد غذایی دارد و مصرف زیاد آن به‌راحتی اتفاق می‌افتد. برای مثال، انرژی یک قاشق غذاخوری روغن معادل ۹ کیلوکالری ضربدر ۱۵ گرم یا ۱۳۵ کیلوکالری است؛ بنابراین به مقدار روغن مصرفی خود دقت کنید.'**
   String get foodRequerementDialogFatRestDayText2;
 
+  /// No description provided for @foodRequerementDialogFatRestDaySubtitle1.
+  ///
+  /// In fa, this message translates to:
+  /// **'انواع چربی'**
+  String get foodRequerementDialogFatRestDaySubtitle1;
+
   /// No description provided for @foodRequerementDialogFatRestDayText3.
   ///
   /// In fa, this message translates to:
@@ -1790,6 +1898,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'چربی منبع مهمی از انرژی برای ورزش است. نسبت مصرف چربی و کربوهیدرات در بدن به شدت و مدت زمان فعالیت، سطح آمادگی جسمانی و رژیم غذایی قبل از ورزش بستگی دارد.'**
   String get foodRequerementDialogFatRestDayText8;
+
+  /// No description provided for @foodRequerementDialogFatRestDaySubtitle2.
+  ///
+  /// In fa, this message translates to:
+  /// **'چربی و سلامت قلب'**
+  String get foodRequerementDialogFatRestDaySubtitle2;
 
   /// No description provided for @foodRequerementDialogFatRestDayText9.
   ///
@@ -1899,6 +2013,12 @@ abstract class ComponentLibraryLocalizations {
   /// **'مطالعات نشان داده‌اند که اختلال در ریتم شبانه‌روزی می‌تواند بر هورمون‌های کنترل‌کننده اشتها، مصرف انرژی و قند خون اثر منفی بگذارد.'**
   String get timeRestrictedText3;
 
+  /// No description provided for @timeRestrictedSubtitle1.
+  ///
+  /// In fa, this message translates to:
+  /// **'مناسبترین زمان فستینگ'**
+  String get timeRestrictedSubtitle1;
+
   /// No description provided for @timeRestrictedText4.
   ///
   /// In fa, this message translates to:
@@ -1910,6 +2030,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'یک مطالعه نشان داده است که غذا خوردن در یک بازه ۶ ساعته پیش از ساعت ۳ بعدازظهر، گرسنگی و عوامل خطر دیابت نوع ۲ را در مردان مبتلا به پیش‌دیابت کاهش داده است.'**
   String get timeRestrictedText5;
+
+  /// No description provided for @timeRestrictedSubtitle2.
+  ///
+  /// In fa, this message translates to:
+  /// **'نکات قابل توجه در رژيم ساعات محدود'**
+  String get timeRestrictedSubtitle2;
 
   /// No description provided for @timeRestrictedText6.
   ///

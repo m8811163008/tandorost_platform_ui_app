@@ -131,7 +131,7 @@ class HomeWidgetListener extends StatelessWidget {
           (previous, current) =>
               previous.foods != current.foods &&
               current.foods.length < 5 &&
-              current.foods.isEmpty,
+              current.foods.isNotEmpty,
       listener: (context, state) async {
         // show dialog
         if (state.isShowAddHomeWidgetDialog) {
