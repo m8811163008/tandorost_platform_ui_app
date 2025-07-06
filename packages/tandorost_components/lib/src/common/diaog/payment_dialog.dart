@@ -18,11 +18,30 @@ class PaymentDialog extends StatelessWidget {
             padding: EdgeInsets.all(context.sizeExtenstion.medium),
             child: Column(
               children: [
-                Text(
-                  context.l10n.paymentDialogTitle,
-                  style: context.textTheme.headlineMedium!.copyWith(
-                    color: context.themeData.colorScheme.onPrimary,
-                  ),
+                Row(
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        Icons.close,
+                        color: context.themeData.colorScheme.onPrimary,
+                      ),
+                      onPressed: () => Navigator.of(context).pop(),
+                      tooltip:
+                          MaterialLocalizations.of(context).closeButtonTooltip,
+                    ),
+
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          context.l10n.paymentDialogTitle,
+                          style: context.textTheme.headlineMedium!.copyWith(
+                            color: context.themeData.colorScheme.onPrimary,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: context.sizeExtenstion.xxExtraLarge),
+                  ],
                 ),
                 SizedBox(height: context.sizeExtenstion.medium),
                 Wrap(
@@ -30,44 +49,42 @@ class PaymentDialog extends StatelessWidget {
                   runSpacing: context.sizeExtenstion.medium,
                   children: [
                     PaymentCard(
+                      title: context.l10n.paymentDialogSixMonth,
+                      limit: context.l10n.paymentDialogSixMonthText5,
+                      price: 650,
+                      submitButton: AppOutLineButton(
+                        label: context.l10n.paymentDialogSubmitButtonLabel,
+                        onTap: () {
+                          onPlanTap?.call(SubscriptionType.sixMonth);
+                        },
+                      ),
+                      titleColor: Colors.amber,
+                    ),
+                    PaymentCard(
                       title: context.l10n.paymentDialogThreeMonth,
                       limit: context.l10n.paymentDialogThreeMonthText5,
+                      price: 350,
                       submitButton: AppOutLineButton(
                         label: context.l10n.paymentDialogSubmitButtonLabel,
                         onTap: () {
                           onPlanTap?.call(SubscriptionType.threeMonth);
                         },
                       ),
-                      titleColor: Colors.amber,
+                      titleColor: Colors.grey,
                     ),
                     PaymentCard(
                       title: context.l10n.paymentDialogOneMonth,
                       limit: context.l10n.paymentDialogOneMonthText5,
+                      price: 175,
                       submitButton: AppOutLineButton(
                         label: context.l10n.paymentDialogSubmitButtonLabel,
                         onTap: () {
                           onPlanTap?.call(SubscriptionType.oneMonth);
                         },
                       ),
-                      titleColor: Colors.grey,
+                      titleColor: Colors.brown,
                     ),
                   ],
-                ),
-                SizedBox(height: context.sizeExtenstion.small),
-                Padding(
-                  padding: EdgeInsets.all(context.sizeExtenstion.medium),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: OutlinedButton(
-                      onPressed: Navigator.of(context).pop,
-                      child: Text(
-                        context.l10n.cancle,
-                        style: context.textTheme.bodyMedium!.copyWith(
-                          color: context.themeData.colorScheme.onPrimary,
-                        ),
-                      ),
-                    ),
-                  ),
                 ),
               ],
             ),
@@ -84,11 +101,13 @@ class PaymentCard extends StatelessWidget {
     this.submitButton,
     this.title = '',
     this.limit = '',
+    required this.price,
     required this.titleColor,
   });
   final Widget? submitButton;
   final String title, limit;
   final Color titleColor;
+  final int price;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +129,12 @@ class PaymentCard extends StatelessWidget {
               style: context.textTheme.titleMedium,
             ),
             SizedBox(height: context.sizeExtenstion.small),
-            Text(context.l10n.paymentDialogText2),
+            Text(
+              context.l10n.paymentDialogText2,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: context.sizeExtenstion.small),
+            Text('$price ${context.l10n.paymentDialogIrCurrency}'),
             SizedBox(height: context.sizeExtenstion.small),
             PaymentCardRow(text: limit),
             PaymentCardRow(text: context.l10n.paymentDialogText6),

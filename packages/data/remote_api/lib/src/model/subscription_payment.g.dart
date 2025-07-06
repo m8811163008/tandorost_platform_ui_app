@@ -119,4 +119,5 @@ const _$SubscriptionTypeEnumMap = {
   SubscriptionType.freeTier: 'free_tier',
   SubscriptionType.oneMonth: 'one_month',
   SubscriptionType.threeMonth: 'three_month',
+  SubscriptionType.sixMonth: 'six_month',
 };

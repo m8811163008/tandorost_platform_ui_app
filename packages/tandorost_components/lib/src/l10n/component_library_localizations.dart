@@ -2430,25 +2430,37 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @paymentDialogOneMonth.
   ///
   /// In fa, this message translates to:
-  /// **'نقره‌ای'**
+  /// **'ارتقا به برنزی'**
   String get paymentDialogOneMonth;
 
   /// No description provided for @paymentDialogThreeMonth.
   ///
   /// In fa, this message translates to:
-  /// **'طلایی'**
+  /// **'ارتقا به نقره‌ای'**
   String get paymentDialogThreeMonth;
+
+  /// No description provided for @paymentDialogSixMonth.
+  ///
+  /// In fa, this message translates to:
+  /// **'ارتقا به طلایی'**
+  String get paymentDialogSixMonth;
+
+  /// No description provided for @paymentDialogIrCurrency.
+  ///
+  /// In fa, this message translates to:
+  /// **'هزار تومان'**
+  String get paymentDialogIrCurrency;
 
   /// No description provided for @paymentDialogText1.
   ///
   /// In fa, this message translates to:
-  /// **'سریع‌ترین روش لاغری'**
+  /// **'سریع‌ترین روش لاغری بدون دارو'**
   String get paymentDialogText1;
 
   /// No description provided for @paymentDialogText2.
   ///
   /// In fa, this message translates to:
-  /// **'پیشگیری از بیماری مرتبط با چاقی'**
+  /// **'پیشگیری از بیماری‌های مرتبط با چاقی'**
   String get paymentDialogText2;
 
   /// No description provided for @paymentDialogText3.
@@ -2460,20 +2472,26 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @paymentDialogText4.
   ///
   /// In fa, this message translates to:
-  /// **'دسترسی به ثبت انواع غذا'**
+  /// **'بیش از 2 میلیون دستور پخت'**
   String get paymentDialogText4;
 
   /// No description provided for @paymentDialogOneMonthText5.
   ///
   /// In fa, this message translates to:
-  /// **'یک ماهه(600 عدد)'**
+  /// **'یک ماه'**
   String get paymentDialogOneMonthText5;
 
   /// No description provided for @paymentDialogThreeMonthText5.
   ///
   /// In fa, this message translates to:
-  /// **'سه ماهه(1800 عدد)'**
+  /// **'یک ماه رایگان (سه ماه)'**
   String get paymentDialogThreeMonthText5;
+
+  /// No description provided for @paymentDialogSixMonthText5.
+  ///
+  /// In fa, this message translates to:
+  /// **'دو ماه رایگان (شش ماه)'**
+  String get paymentDialogSixMonthText5;
 
   /// No description provided for @paymentDialogText6.
   ///
@@ -2484,7 +2502,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @paymentDialogText7.
   ///
   /// In fa, this message translates to:
-  /// **'همراه با پشتیبانی'**
+  /// **'به همراه با پشتیبانی'**
   String get paymentDialogText7;
 
   /// No description provided for @paymentDialogSubmitButtonLabel.

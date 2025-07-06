@@ -43,6 +43,7 @@ class _FoodReportStaticsConsumerState extends State<FoodReportStaticsConsumer> {
             ).showSnackBar(SnackBar(content: Text(content)));
           } else if (state.readFoodsNutritionStatus.isSuccess) {
             if (state.nutritionRequirements == null) {
+              // Todo handle nutritionRequirements streams
               _showBanner(context);
             } else {
               ScaffoldMessenger.of(context).hideCurrentMaterialBanner();

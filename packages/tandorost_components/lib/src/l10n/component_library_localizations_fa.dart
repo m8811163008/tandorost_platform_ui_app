@@ -1398,34 +1398,43 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get paymentDialogTitle => 'ارتقا اشتراک';
 
   @override
-  String get paymentDialogOneMonth => 'نقره‌ای';
+  String get paymentDialogOneMonth => 'ارتقا به برنزی';
 
   @override
-  String get paymentDialogThreeMonth => 'طلایی';
+  String get paymentDialogThreeMonth => 'ارتقا به نقره‌ای';
 
   @override
-  String get paymentDialogText1 => 'سریع‌ترین روش لاغری';
+  String get paymentDialogSixMonth => 'ارتقا به طلایی';
 
   @override
-  String get paymentDialogText2 => 'پیشگیری از بیماری مرتبط با چاقی';
+  String get paymentDialogIrCurrency => 'هزار تومان';
+
+  @override
+  String get paymentDialogText1 => 'سریع‌ترین روش لاغری بدون دارو';
+
+  @override
+  String get paymentDialogText2 => 'پیشگیری از بیماری‌های مرتبط با چاقی';
 
   @override
   String get paymentDialogText3 => 'تغذیه ورزشی و غیرورزشی';
 
   @override
-  String get paymentDialogText4 => 'دسترسی به ثبت انواع غذا';
+  String get paymentDialogText4 => 'بیش از 2 میلیون دستور پخت';
 
   @override
-  String get paymentDialogOneMonthText5 => 'یک ماهه(600 عدد)';
+  String get paymentDialogOneMonthText5 => 'یک ماه';
 
   @override
-  String get paymentDialogThreeMonthText5 => 'سه ماهه(1800 عدد)';
+  String get paymentDialogThreeMonthText5 => 'یک ماه رایگان (سه ماه)';
+
+  @override
+  String get paymentDialogSixMonthText5 => 'دو ماه رایگان (شش ماه)';
 
   @override
   String get paymentDialogText6 => 'مطابق سفره ایرانی';
 
   @override
-  String get paymentDialogText7 => 'همراه با پشتیبانی';
+  String get paymentDialogText7 => 'به همراه با پشتیبانی';
 
   @override
   String get paymentDialogSubmitButtonLabel => 'ادامه';

@@ -25,6 +25,7 @@ class AppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           visualDensity: screenWidth.visualDensity,
+          side: const BorderSide(width: 2),
         ),
       ),
       textButtonTheme: TextButtonThemeData(

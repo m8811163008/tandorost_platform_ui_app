@@ -69,7 +69,6 @@ class PaymentCubit extends Cubit<PaymentState> {
       );
     }
   }
-  
 
   void onConnectToCofeBazzar() async {
     if (state.cafeBazzarPaymentInfo == null) return;
@@ -110,14 +109,20 @@ class PaymentCubit extends Cubit<PaymentState> {
       ),
     );
     try {
-      final sku =
-          state.selectedSubscriptionType! == SubscriptionType.oneMonth
-              ? state
-                  .cafeBazzarPaymentInfo!
-                  .caffeBazzarSubscriptionPlanOneMonthSdk
-              : state
-                  .cafeBazzarPaymentInfo!
-                  .caffeBazzarSubscriptionPlanThreeMonthSdk;
+      final subscriptionType = state.selectedSubscriptionType;
+      assert(
+        subscriptionType != null,
+        'state.selectedSubscriptionType is null',
+      );
+      final sku = switch (subscriptionType) {
+        SubscriptionType.oneMonth =>
+          state.cafeBazzarPaymentInfo!.caffeBazzarSubscriptionPlanOneMonthSdk,
+        SubscriptionType.threeMonth =>
+          state.cafeBazzarPaymentInfo!.caffeBazzarSubscriptionPlanThreeMonthSdk,
+        SubscriptionType.sixMonth =>
+          state.cafeBazzarPaymentInfo!.caffeBazzarSubscriptionPlanSixMonthSdk,
+        _ => throw Exception('state.selectedSubscriptionType is null'),
+      };
       final purchaseInfo = await FlutterPoolakey.subscribe(
         sku,
         payload: json.encode(state.userProfile!.toJson()),

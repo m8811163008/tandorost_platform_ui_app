@@ -18,6 +18,7 @@ CafeBazzarPaymentInfo _$CafeBazzarPaymentInfoFromJson(
         'caffe_bazzar_rsa',
         'caffe_bazzar_subscription_plan_one_month_sdk',
         'caffe_bazzar_subscription_plan_three_month_sdk',
+        'caffe_bazzar_subscription_plan_six_month_sdk',
       ],
     );
     final val = CafeBazzarPaymentInfo(
@@ -30,6 +31,10 @@ CafeBazzarPaymentInfo _$CafeBazzarPaymentInfoFromJson(
         'caffe_bazzar_subscription_plan_three_month_sdk',
         (v) => v as String,
       ),
+      caffeBazzarSubscriptionPlanSixMonthSdk: $checkedConvert(
+        'caffe_bazzar_subscription_plan_six_month_sdk',
+        (v) => v as String,
+      ),
     );
     return val;
   },
@@ -39,5 +44,7 @@ CafeBazzarPaymentInfo _$CafeBazzarPaymentInfoFromJson(
         'caffe_bazzar_subscription_plan_one_month_sdk',
     'caffeBazzarSubscriptionPlanThreeMonthSdk':
         'caffe_bazzar_subscription_plan_three_month_sdk',
+    'caffeBazzarSubscriptionPlanSixMonthSdk':
+        'caffe_bazzar_subscription_plan_six_month_sdk',
   },
 );

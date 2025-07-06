@@ -9,11 +9,13 @@ class CafeBazzarPaymentInfo {
   final String caffeBazzarSubscriptionPlanOneMonthSdk;
 
   final String caffeBazzarSubscriptionPlanThreeMonthSdk;
+  final String caffeBazzarSubscriptionPlanSixMonthSdk;
 
   CafeBazzarPaymentInfo({
     required this.caffeBazzarRsa,
     required this.caffeBazzarSubscriptionPlanOneMonthSdk,
     required this.caffeBazzarSubscriptionPlanThreeMonthSdk,
+    required this.caffeBazzarSubscriptionPlanSixMonthSdk,
   });
 
   factory CafeBazzarPaymentInfo.fromJson(Map<String, dynamic> json) =>
