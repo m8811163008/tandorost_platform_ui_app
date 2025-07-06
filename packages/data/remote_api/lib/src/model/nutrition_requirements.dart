@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'nutrition_requirements.g.dart';
 
 @JsonSerializable()
-class NutritionRequirement {
+class NutritionRequirement extends Equatable {
   final int fat;
   final int protein;
   final int carbohydrateFruitsOrNonStarchyVegetables;
@@ -25,10 +26,19 @@ class NutritionRequirement {
       _$NutritionRequirementFromJson(json);
 
   Map<String, dynamic> toJson() => _$NutritionRequirementToJson(this);
+
+  @override
+  List<Object?> get props => [
+    fat,
+    protein,
+    carbohydrateFruitsOrNonStarchyVegetables,
+    carbohydrateOther,
+    effectiveTotalDailyEnergyExpenditure,
+  ];
 }
 
 @JsonSerializable()
-class NutritionRequirements {
+class NutritionRequirements extends Equatable {
   final NutritionRequirement restDay;
   final NutritionRequirement trainingDay;
 
@@ -38,4 +48,7 @@ class NutritionRequirements {
       _$NutritionRequirementsFromJson(json);
 
   Map<String, dynamic> toJson() => _$NutritionRequirementsToJson(this);
+
+  @override
+  List<Object?> get props => [restDay, trainingDay];
 }

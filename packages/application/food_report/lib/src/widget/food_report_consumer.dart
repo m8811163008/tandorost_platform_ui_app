@@ -44,6 +44,8 @@ class _FoodReportStaticsConsumerState extends State<FoodReportStaticsConsumer> {
           } else if (state.readFoodsNutritionStatus.isSuccess) {
             if (state.nutritionRequirements == null) {
               _showBanner(context);
+            } else {
+              ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
             }
             // final state = context.read<FoodReportCubit>().state;
           }
@@ -54,7 +56,8 @@ class _FoodReportStaticsConsumerState extends State<FoodReportStaticsConsumer> {
                     current.readNutritionRequirementsStatus ||
                 previous.readFoodsNutritionStatus !=
                     current.readFoodsNutritionStatus ||
-                previous.selectedTab != current.selectedTab,
+                previous.selectedTab != current.selectedTab ||
+                previous.nutritionRequirements != current.nutritionRequirements,
         builder: (context, state) {
           if (state.readNutritionRequirementsStatus.isSuccess) {
             WidgetsBinding.instance.addPostFrameCallback((_) async {
