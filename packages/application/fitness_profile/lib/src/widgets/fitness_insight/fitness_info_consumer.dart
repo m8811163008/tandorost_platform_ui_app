@@ -12,7 +12,8 @@ class FitnessInfoConsumer extends StatelessWidget {
     return BlocConsumer<FitnessProfileCubit, FitnessProfileState>(
       listenWhen:
           (previous, current) =>
-              previous.readFitnessDataStatus != current.readFitnessDataStatus,
+              previous.readFitnessDataStatus != current.readFitnessDataStatus ||
+              previous.fitnessData != current.fitnessData,
       listener: (context, state) {
         if (state.readUserImageGallaryStatus.isConnectionError) {
           final content = context.l10n.networkError;
@@ -28,11 +29,15 @@ class FitnessInfoConsumer extends StatelessWidget {
       },
       buildWhen:
           (previous, current) =>
-              previous.readFitnessDataStatus != current.readFitnessDataStatus,
+              previous.readFitnessDataStatus != current.readFitnessDataStatus ||
+              previous.fitnessData != current.fitnessData,
       builder:
           (context, state) => switch (state.readFitnessDataStatus) {
             AsyncProcessingStatus.inital => AppAsyncStatusCard.inital(),
-            AsyncProcessingStatus.loading => AppAsyncStatusCard.loading(),
+            AsyncProcessingStatus.loading =>
+              state.fitnessData == null
+                  ? AppAsyncStatusCard.loading()
+                  : FitnessInfo(fitnessData: state.fitnessData!),
             AsyncProcessingStatus.connectionError =>
               AppAsyncStatusCard.serverError(),
             AsyncProcessingStatus.internetConnectionError =>

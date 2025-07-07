@@ -12,6 +12,16 @@ class PhysicalDataChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FitnessProfileCubit, FitnessProfileState>(
+      buildWhen:
+          (previous, current) =>
+              previous.userPhysicalProfile != current.userPhysicalProfile ||
+              previous.readUserPhysicalProfileStatus !=
+                  current.readUserPhysicalProfileStatus ||
+              previous.updateUserPhysicalDataStatus !=
+                  current.updateUserPhysicalDataStatus ||
+              previous.deleteUserPhysicalDataPointStatus !=
+                  current.deleteUserPhysicalDataPointStatus ||
+              previous.selectedChartType != current.selectedChartType,
       builder: (context, state) {
         final userPhysicalProfile = state.userPhysicalProfile;
         if (userPhysicalProfile == null) {

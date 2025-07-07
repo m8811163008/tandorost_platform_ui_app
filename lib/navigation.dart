@@ -12,7 +12,6 @@ import 'package:introduction_app/introduction.dart';
 import 'package:profile/profile.dart';
 import 'package:profile_app/profile.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:tandorost/notification_helper.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 import 'package:vo2max_calculator/vo2max_calculator.dart';
 

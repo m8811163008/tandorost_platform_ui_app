@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -22,10 +23,21 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     readUserImageGallary();
     readFitnessData();
     readUserPhysicalProfile();
+    _initiateSubscriptions();
   }
 
   final ImageRepository _imageRepository;
   final FitnessNutrition _fitnessNutrition;
+  late final StreamSubscription<UserPhysicalProfile?>
+  _userPhysicalProfileSubscription;
+  late final StreamSubscription<FitnessData?>
+  _fitnessDataSubscription;
+
+  @override
+  Future<void> close() {
+    _userPhysicalProfileSubscription.cancel();
+    return super.close();
+  }
 
   void onEditImageComplete(Uint8List bytes, String fileName) async {
     final fileDetail = FileDetail(fileName: fileName, bytes: bytes);
@@ -175,12 +187,10 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
       ),
     );
     try {
-      final userPhysicalProfile =
-          await _fitnessNutrition.readUserPhysicalProfile();
+      await _fitnessNutrition.readUserPhysicalProfile();
       _enhancedEmit(
         state.copyWith(
           readUserPhysicalProfileStatus: AsyncProcessingStatus.success,
-          userPhysicalProfile: userPhysicalProfile,
         ),
       );
     } on InternetConnectionException {
@@ -206,12 +216,12 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
       ),
     );
     try {
-      final userPhysicalProfile = await _fitnessNutrition
-          .updateUserPhysicalData(state.userPhysicalDataUpsert);
+      await _fitnessNutrition.updateUserPhysicalData(
+        state.userPhysicalDataUpsert,
+      );
       _enhancedEmit(
         state.copyWith(
           updateUserPhysicalDataStatus: AsyncProcessingStatus.success,
-          userPhysicalProfile: userPhysicalProfile,
         ),
       );
     } on InternetConnectionException {
@@ -305,11 +315,11 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     );
 
     try {
-      final fitnessData = await _fitnessNutrition.readFitnessData();
+      await _fitnessNutrition.readFitnessData();
       _enhancedEmit(
         state.copyWith(
           readFitnessDataStatus: AsyncProcessingStatus.success,
-          fitnessData: fitnessData,
+          
         ),
       );
     } on InternetConnectionException {
@@ -335,5 +345,22 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     if (!isClosed) {
       emit(state);
     }
+  }
+
+  void _initiateSubscriptions() {
+    _userPhysicalProfileSubscription = _fitnessNutrition
+        .userPhysicalProfileStream
+        .listen((userPhysicalProfile) {
+          _enhancedEmit(
+            state.copyWith(userPhysicalProfile: userPhysicalProfile),
+          );
+        });
+    _fitnessDataSubscription = _fitnessNutrition
+        .readFitnessDataStream
+        .listen((fitnessData) {
+          _enhancedEmit(
+            state.copyWith(fitnessData: fitnessData),
+          );
+        });
   }
 }

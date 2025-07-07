@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -24,10 +25,17 @@ class PaymentCubit extends Cubit<PaymentState> {
   void _init() async {
     // payment
     await onReadCoffeBazzarPaymentInfo();
+    userProfileSubscription = profileRepository.userProfileStream.listen((
+      profile,
+    ) {
+      if (profile == null) return;
+      _enhancedEmit(state.copyWith(userProfile: () => profile));
+    });
   }
 
   final ProfileRepository profileRepository;
   final PaymentRepository paymentRepository;
+  late final StreamSubscription<UserProfile?> userProfileSubscription;
 
   // Paymet process
   // _canRequestForFoodNutrition if !state.canRequestForFoodNutrition
@@ -37,6 +45,11 @@ class PaymentCubit extends Cubit<PaymentState> {
   // onReadCafeBazzarSkus
   // onCreateSubscriptionPayments
   // onCreateSubscriptionPayments
+  @override
+  Future<void> close() async {
+    await userProfileSubscription.cancel();
+    return super.close();
+  }
 
   Future<void> onReadCoffeBazzarPaymentInfo() async {
     if (isClosed) return;
@@ -149,12 +162,9 @@ class PaymentCubit extends Cubit<PaymentState> {
       state.copyWith(onReadUserProfileStatus: AsyncProcessingStatus.loading),
     );
     try {
-      final profile = await profileRepository.userProfile();
+      await profileRepository.userProfile();
       _enhancedEmit(
-        state.copyWith(
-          onReadUserProfileStatus: AsyncProcessingStatus.success,
-          userProfile: () => profile,
-        ),
+        state.copyWith(onReadUserProfileStatus: AsyncProcessingStatus.success),
       );
     } on InternetConnectionException {
       _enhancedEmit(

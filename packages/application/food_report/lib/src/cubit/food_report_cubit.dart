@@ -26,6 +26,9 @@ class FoodReportCubit extends Cubit<FoodReportState> {
   final ProfileRepository _profileRepository;
   late final StreamSubscription<NutritionRequirements?>
   _nutritionRequirementsSubscription;
+  late final StreamSubscription<UserPhysicalProfile?>
+  _userPhysicalProfileSubscription;
+  late final StreamSubscription<UserProfile?> userProfileSubscription;
   void _initialize() async {
     readFoodsNutrition();
     readNutritionRequirements();
@@ -33,18 +36,16 @@ class FoodReportCubit extends Cubit<FoodReportState> {
     readPhysicalProfile();
     _checkCommitBazzarReview();
     _checkIsShowAddHomeWidgetDialog();
-    _nutritionRequirementsSubscription = _fitnessNutrition
-        .nutritionRequirementsStream
-        .listen((nutritionRequirements) {
-          _enhancedEmit(
-            state.copyWith(nutritionRequirements: () => nutritionRequirements),
-          );
-        });
+    _initiateSubscriptions();
   }
 
   @override
-  Future<void> close() {
-    _nutritionRequirementsSubscription.cancel();
+  Future<void> close() async {
+    await Future.wait([
+      _nutritionRequirementsSubscription.cancel(),
+      _userPhysicalProfileSubscription.cancel(),
+      userProfileSubscription.cancel(),
+    ]);
     return super.close();
   }
 
@@ -172,12 +173,9 @@ class FoodReportCubit extends Cubit<FoodReportState> {
       state.copyWith(readProfileStatus: AsyncProcessingStatus.loading),
     );
     try {
-      final userProfile = await _profileRepository.userProfile();
+      await _profileRepository.userProfile();
       _enhancedEmit(
-        state.copyWith(
-          readProfileStatus: AsyncProcessingStatus.success,
-          userProfile: userProfile,
-        ),
+        state.copyWith(readProfileStatus: AsyncProcessingStatus.success),
       );
     } on InternetConnectionException {
       _enhancedEmit(
@@ -201,12 +199,10 @@ class FoodReportCubit extends Cubit<FoodReportState> {
       ),
     );
     try {
-      final userPhysicalProfile =
-          await _fitnessNutrition.readUserPhysicalProfile();
+      await _fitnessNutrition.readUserPhysicalProfile();
       _enhancedEmit(
         state.copyWith(
           readUserPhysicalProfileStatus: AsyncProcessingStatus.success,
-          userPhysicalProfile: userPhysicalProfile,
         ),
       );
     } on InternetConnectionException {
@@ -270,5 +266,29 @@ class FoodReportCubit extends Cubit<FoodReportState> {
     if (!isClosed) {
       emit(state);
     }
+  }
+
+  void _initiateSubscriptions() {
+    _nutritionRequirementsSubscription = _fitnessNutrition
+        .nutritionRequirementsStream
+        .listen((nutritionRequirements) {
+          _enhancedEmit(
+            state.copyWith(nutritionRequirements: () => nutritionRequirements),
+          );
+        });
+    _userPhysicalProfileSubscription = _fitnessNutrition
+        .userPhysicalProfileStream
+        .listen((userPhysicalProfile) {
+          _enhancedEmit(
+            state.copyWith(userPhysicalProfile: userPhysicalProfile),
+          );
+        });
+
+    userProfileSubscription = _profileRepository.userProfileStream.listen((
+      profile,
+    ) {
+      if (profile == null) return;
+      _enhancedEmit(state.copyWith(userProfile: profile));
+    });
   }
 }

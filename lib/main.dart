@@ -21,7 +21,6 @@ import 'package:image_repository/image_repository.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -98,7 +97,11 @@ class DependencyManager extends StatelessWidget {
           dispose: (value) async => await value.dispose(),
           lazy: true,
         ),
-        RepositoryProvider(create: (_) => profileRep, lazy: true),
+        RepositoryProvider(
+          create: (_) => profileRep,
+          lazy: true,
+          dispose: (profileRep) => profileRep.dispose(),
+        ),
         RepositoryProvider(create: (_) => authenticationRep, lazy: true),
         RepositoryProvider(create: (_) => imageRepository, lazy: true),
         RepositoryProvider(

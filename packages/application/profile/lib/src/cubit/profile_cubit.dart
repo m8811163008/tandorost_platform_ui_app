@@ -26,11 +26,31 @@ class ProfileCubit extends Cubit<ProfileState> {
     readImageProfile();
     isReminderEnabled();
     tz.initializeTimeZones();
+    userProfileSubscription = _profile.userProfileStream.listen((profile) {
+      if (profile == null) return;
+      _enhancedEmit(
+        state.copyWith(
+          name: profile.fullName,
+          phoneNumber: profile.phoneNumber,
+          changeWeightSpeed: profile.changeWeightSpeed,
+          isTimeRestrictedEating: profile.isTimeRestrictedEating,
+          userProfile: profile,
+          language: profile.language,
+        ),
+      );
+    });
   }
   final ProfileRepository _profile;
   final ImageRepository _imageRepository;
   final PaymentRepository _paymentRepository;
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  late final StreamSubscription<UserProfile?> userProfileSubscription;
+
+  @override
+  Future<void> close() async {
+    await userProfileSubscription.cancel();
+    return super.close();
+  }
 
   void readImageProfile() async {
     _enhancedEmit(
@@ -141,17 +161,8 @@ class ProfileCubit extends Cubit<ProfileState> {
       state.copyWith(readProfileStatus: AsyncProcessingStatus.loading),
     );
     try {
-      final profile = await _profile.userProfile();
-      _enhancedEmit(
-        state.copyWith(
-          name: profile.fullName,
-          phoneNumber: profile.phoneNumber,
-          changeWeightSpeed: profile.changeWeightSpeed,
-          isTimeRestrictedEating: profile.isTimeRestrictedEating,
-          userProfile: profile,
-          language: profile.language,
-        ),
-      );
+      await _profile.userProfile();
+
       _enhancedEmit(
         state.copyWith(readProfileStatus: AsyncProcessingStatus.success),
       );
@@ -311,8 +322,8 @@ class ProfileCubit extends Cubit<ProfileState> {
       state.copyWith(updatingProfileStatus: AsyncProcessingStatus.loading),
     );
     try {
-      final profile = await _profile.updateProfile(updatedProfile);
-      _enhancedEmit(state.copyWith(userProfile: profile));
+      await _profile.updateProfile(updatedProfile);
+
       _enhancedEmit(
         state.copyWith(updatingProfileStatus: AsyncProcessingStatus.success),
       );

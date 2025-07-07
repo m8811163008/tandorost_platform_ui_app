@@ -9,19 +9,60 @@ class FitnessNutrition {
   final BehaviorSubject<NutritionRequirements?>
   _nutritionRequirementsController = BehaviorSubject.seeded(null);
 
+  final BehaviorSubject<UserPhysicalProfile?> _userPhysicalProfileController =
+      BehaviorSubject.seeded(null);
+
+  final BehaviorSubject<FitnessData?> _fitnessDataController =
+      BehaviorSubject.seeded(null);
+
   FitnessNutrition({required this.remoteApi, required this.localStorage});
 
-  Future<UserPhysicalProfile?> readUserPhysicalProfile() =>
-      remoteApi.readUserPhysicalProfile();
+  Future<void> readUserPhysicalProfile() async {
+    final userPhysicalProfile = await remoteApi.readUserPhysicalProfile();
+    if (userPhysicalProfile != null) {
+      _userPhysicalProfileController.add(userPhysicalProfile);
+      localStorage.upsert(userPhysicalProfileKey, userPhysicalProfile.toJson());
+    }
+  }
 
   Future<void> deleteUserPhysicalDataPoint({required String dataPointsId}) =>
       remoteApi.deleteUserPhysicalDataPoint(dataPointsId: dataPointsId);
 
-  Future<UserPhysicalProfile> updateUserPhysicalData(
+  Future<void> updateUserPhysicalData(
     UserPhysicalDataUpsert userPhysicalDataUpsert,
-  ) => remoteApi.updateUserPhysicalData(userPhysicalDataUpsert);
+  ) async {
+    final userPhysicalProfile = await remoteApi.updateUserPhysicalData(
+      userPhysicalDataUpsert,
+    );
+    _userPhysicalProfileController.add(userPhysicalProfile);
+    localStorage.upsert(userPhysicalProfileKey, userPhysicalProfile.toJson());
+  }
 
-  Future<FitnessData?> readFitnessData() => remoteApi.readFitnessData();
+  Stream<UserPhysicalProfile?> get userPhysicalProfileStream async* {
+    final userPhysicalProfileJson = await localStorage.read(
+      userPhysicalProfileKey,
+    );
+    if (userPhysicalProfileJson != null) {
+      yield UserPhysicalProfile.fromJson(userPhysicalProfileJson);
+    }
+    yield* _userPhysicalProfileController.stream.asBroadcastStream();
+  }
+
+  Future<void> readFitnessData() async {
+    final fitnessData = await remoteApi.readFitnessData();
+    if (fitnessData != null) {
+      _fitnessDataController.add(fitnessData);
+      localStorage.upsert(fitnessDataKey, fitnessData.toJson());
+    }
+  }
+
+  Stream<FitnessData?> get readFitnessDataStream async* {
+    final readFitnessDataJson = await localStorage.read(fitnessDataKey);
+    if (readFitnessDataJson != null) {
+      yield FitnessData.fromJson(readFitnessDataJson);
+    }
+    yield* _fitnessDataController.stream.asBroadcastStream();
+  }
 
   Future<void> readNutritionRequirements() async {
     // add to stream after fetching data
@@ -47,5 +88,8 @@ class FitnessNutrition {
     yield* _nutritionRequirementsController.stream.asBroadcastStream();
   }
 
-  Future<void> dispose() => _nutritionRequirementsController.close();
+  Future<void> dispose() async {
+    await _nutritionRequirementsController.close();
+    await _userPhysicalProfileController.close();
+  }
 }

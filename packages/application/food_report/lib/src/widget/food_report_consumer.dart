@@ -29,7 +29,8 @@ class _FoodReportStaticsConsumerState extends State<FoodReportStaticsConsumer> {
         listenWhen:
             (previous, current) =>
                 previous.readNutritionRequirementsStatus !=
-                current.readNutritionRequirementsStatus,
+                    current.readNutritionRequirementsStatus ||
+                previous.nutritionRequirements != current.nutritionRequirements,
         listener: (context, state) async {
           if (state.readNutritionRequirementsStatus.isConnectionError) {
             final content = context.l10n.networkError;
@@ -63,7 +64,6 @@ class _FoodReportStaticsConsumerState extends State<FoodReportStaticsConsumer> {
           if (state.readNutritionRequirementsStatus.isSuccess) {
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               if (_globalKey.currentContext != null) {
-                // Your logic here, e.g. render widget, update imagePath, etc.
                 final homeWidget = Column(
                   children: [
                     FoodReportStaticsHomeWidget(

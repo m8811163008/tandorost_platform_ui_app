@@ -6,12 +6,14 @@ import 'package:rxdart/rxdart.dart';
 class ProfileRepository {
   final RemoteApi remoteApi;
   final LocalStorage localStorage;
-  final BehaviorSubject<Language> _controller;
+  final BehaviorSubject<Language> _languageController;
+  final BehaviorSubject<UserProfile?> _userProfileController;
 
   ProfileRepository({required this.remoteApi, required this.localStorage})
-    : _controller = BehaviorSubject.seeded(Language.persian);
+    : _languageController = BehaviorSubject.seeded(Language.persian),
+      _userProfileController = BehaviorSubject.seeded(null);
 
-  Future<Language> userLanguage() => _controller.first;
+  Future<Language> userLanguage() => _languageController.first;
 
   Future<Language> get userSpokenLanguage async {
     final language = await localStorage.read(StorageKey.userspokenLanguage);
@@ -23,22 +25,38 @@ class ProfileRepository {
     return Language.values.singleWhere((item) => item.code == languageCode);
   }
 
+  Stream<UserProfile?> get userProfileStream async* {
+    yield* _userProfileController.stream.asBroadcastStream();
+  }
+
   Future<void> upsertUserSpokenLanguage(Language language) async {
     await localStorage.upsert(StorageKey.userspokenLanguage, {
       StorageKey.userspokenLanguage: language.code,
     });
   }
 
-  Future<UserProfile> userProfile() async {
+  Future<void> userProfile() async {
+    // read from local storage
+    final profileJson = await localStorage.read(StorageKey.userProfileKey);
+    // if local storage is not null add it
+    if (profileJson != null) {
+      _userProfileController.add(UserProfile.fromJson(profileJson));
+    }
+    // read from remote api
     final profile = await remoteApi.userProfile();
-    _controller.add(profile.language);
-    return profile;
+    // upsert to local storage
+    await localStorage.upsert(StorageKey.userProfileKey, profile.toJson());
+
+    // add it
+    _userProfileController.add(profile);
+
+    _languageController.add(profile.language);
   }
 
-  Future<UserProfile> updateProfile(UserProfile updatedProfile) async {
+  Future<void> updateProfile(UserProfile updatedProfile) async {
     final profile = await remoteApi.updateProfile(updatedProfile);
-    _controller.add(profile.language);
-    return profile;
+    _languageController.add(profile.language);
+    _userProfileController.add(profile);
   }
 
   Future<void> visitedIntroductionRoute() async {
@@ -93,4 +111,9 @@ class ProfileRepository {
     if (result == null) return false;
     return result[StorageKey.isShowAddHomeWidgetDialog];
   }
+
+  Future<void> dispose() => Future.wait([
+    _userProfileController.close(),
+    _languageController.close(),
+  ]);
 }

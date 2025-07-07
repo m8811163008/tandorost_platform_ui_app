@@ -65,6 +65,21 @@ FitnessData _$FitnessDataFromJson(Map<String, dynamic> json) => $checkedCreate(
   },
 );
 
+Map<String, dynamic> _$FitnessDataToJson(FitnessData instance) =>
+    <String, dynamic>{
+      'resting_metabolic_rate': instance.restingMetabolicRate,
+      'total_daily_energy_expenditure': instance.totalDailyEnergyExpenditure,
+      'bmi': instance.bmi,
+      'bmi_prime': instance.bmiPrime,
+      'bmi_level': _$BmiLevelEnumMap[instance.bmiLevel]!,
+      if (instance.waistCircumferenceToHeightRatio case final value?)
+        'waist_circumference_to_height_ratio': value,
+      if (instance.isWaistCircumferenceToHeightRatioSafe case final value?)
+        'is_waist_circumference_to_height_ratio_safe': value,
+      if (instance.isWaistCircumferenceSafeRange case final value?)
+        'is_waist_circumference_safe_range': value,
+    };
+
 const _$BmiLevelEnumMap = {
   BmiLevel.underWeight: 'under_weight',
   BmiLevel.healthyWeight: 'healthy_weight',
