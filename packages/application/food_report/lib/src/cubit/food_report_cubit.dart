@@ -272,9 +272,13 @@ class FoodReportCubit extends Cubit<FoodReportState> {
     _nutritionRequirementsSubscription = _fitnessNutrition
         .nutritionRequirementsStream
         .listen((nutritionRequirements) {
-          _enhancedEmit(
-            state.copyWith(nutritionRequirements: () => nutritionRequirements),
-          );
+          if (nutritionRequirements != null) {
+            _enhancedEmit(
+              state.copyWith(
+                nutritionRequirements: () => nutritionRequirements,
+              ),
+            );
+          }
         });
     _userPhysicalProfileSubscription = _fitnessNutrition
         .userPhysicalProfileStream

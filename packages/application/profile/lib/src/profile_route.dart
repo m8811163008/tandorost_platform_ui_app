@@ -7,6 +7,7 @@ import 'package:profile/profile.dart';
 import 'package:profile_app/profile.dart';
 import 'package:profile_app/src/cubit/profile_cubit.dart';
 import 'package:profile_app/src/edit_dialog.dart';
+import 'package:profile_app/src/edit_language_button.dart';
 import 'package:profile_app/src/edit_name_button.dart';
 import 'package:profile_app/src/transactions.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -265,15 +266,15 @@ class SettingCard extends StatelessWidget {
               );
             },
           ),
-          // TODO Add language suport
-          // Divider(height: context.sizeExtenstion.medium),
-          // LanguageSetting(
-          //   value: context.select((ProfileCubit cubit) => cubit.state.language),
-          //   onChangeLanguageDialog: BlocProvider.value(
-          //     value: context.read<ProfileCubit>(),
-          //     child: ChangeLanguageDialog(),
-          //   ),
-          // ),
+          Divider(height: context.sizeExtenstion.medium),
+          // add langiage support to front and babckend
+          LanguageSetting(
+            value: context.select((ProfileCubit cubit) => cubit.state.language),
+            onChangeLanguageDialog: BlocProvider.value(
+              value: context.read<ProfileCubit>(),
+              child: ChangeLanguageDialog(),
+            ),
+          ),
         ],
       ),
     );
