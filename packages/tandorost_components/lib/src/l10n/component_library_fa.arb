@@ -626,7 +626,7 @@
     "paymentDialogThreeMonthText5": "یک ماه رایگان (سه ماه)",
     "paymentDialogSixMonthText5": "دو ماه رایگان (شش ماه)",
     "paymentDialogText6": "مطابق سفره ایرانی",
-    "paymentDialogText7": "به همراه با پشتیبانی",
+    "paymentDialogText7": "با پشتیبانی تلفنی مربی",
     "paymentDialogSubmitButtonLabel": "ادامه",
     "profileRouteTansactionDialogTitle": "لیست تراکنش‌ها",
     "profileRouteTansactionListTileID": "شناسه",
@@ -649,5 +649,6 @@
     "reviewDialogSubmitButtonText": "ثبت نظر",
     "homeWidgetDialogTitle": "اضاف کردن Home Widget",
     "homeWidgetDialogText": "برای صرفه‌جویی در زمان Home Widget را به صفحه اصلی اضافه نمایید",
-    "homeWidgetDialogSubmitButtonText": "اضافه کردن"
+    "homeWidgetDialogSubmitButtonText": "اضافه کردن",
+    "paymentDialogCarouselTitle": "تصاویر ما"
 }

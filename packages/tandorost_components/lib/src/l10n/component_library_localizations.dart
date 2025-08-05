@@ -2502,7 +2502,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @paymentDialogText7.
   ///
   /// In fa, this message translates to:
-  /// **'به همراه با پشتیبانی'**
+  /// **'با پشتیبانی تلفنی مربی'**
   String get paymentDialogText7;
 
   /// No description provided for @paymentDialogSubmitButtonLabel.
@@ -2642,6 +2642,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'اضافه کردن'**
   String get homeWidgetDialogSubmitButtonText;
+
+  /// No description provided for @paymentDialogCarouselTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'تصاویر ما'**
+  String get paymentDialogCarouselTitle;
 }
 
 class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {

@@ -1434,7 +1434,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get paymentDialogText6 => 'مطابق سفره ایرانی';
 
   @override
-  String get paymentDialogText7 => 'به همراه با پشتیبانی';
+  String get paymentDialogText7 => 'با پشتیبانی تلفنی مربی';
 
   @override
   String get paymentDialogSubmitButtonLabel => 'ادامه';
@@ -1504,4 +1504,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get homeWidgetDialogSubmitButtonText => 'اضافه کردن';
+
+  @override
+  String get paymentDialogCarouselTitle => 'تصاویر ما';
 }

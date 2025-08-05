@@ -1,5 +1,6 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
+import 'package:tandorost_components/src/common/diaog/lose_weight_carousel_slider.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class PaymentDialog extends StatelessWidget {
@@ -48,18 +49,24 @@ class PaymentDialog extends StatelessWidget {
                   spacing: context.sizeExtenstion.medium,
                   runSpacing: context.sizeExtenstion.medium,
                   children: [
-                    PaymentCard(
-                      title: context.l10n.paymentDialogSixMonth,
-                      limit: context.l10n.paymentDialogSixMonthText5,
-                      price: 650,
-                      submitButton: AppOutLineButton(
-                        label: context.l10n.paymentDialogSubmitButtonLabel,
-                        onTap: () {
-                          onPlanTap?.call(SubscriptionType.sixMonth);
-                        },
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: context.sizeExtenstion.medium,
                       ),
-                      titleColor: Colors.amber,
+                      child: LoseWeightCarouselSlider(),
                     ),
+                    // PaymentCard(
+                    //   title: context.l10n.paymentDialogSixMonth,
+                    //   limit: context.l10n.paymentDialogSixMonthText5,
+                    //   price: 650,
+                    //   submitButton: AppOutLineButton(
+                    //     label: context.l10n.paymentDialogSubmitButtonLabel,
+                    //     onTap: () {
+                    //       onPlanTap?.call(SubscriptionType.sixMonth);
+                    //     },
+                    //   ),
+                    //   titleColor: Colors.amber,
+                    // ),
                     PaymentCard(
                       title: context.l10n.paymentDialogThreeMonth,
                       limit: context.l10n.paymentDialogThreeMonthText5,
@@ -72,6 +79,7 @@ class PaymentDialog extends StatelessWidget {
                       ),
                       titleColor: Colors.grey,
                     ),
+
                     PaymentCard(
                       title: context.l10n.paymentDialogOneMonth,
                       limit: context.l10n.paymentDialogOneMonthText5,
@@ -161,6 +169,7 @@ class PaymentCardRow extends StatelessWidget {
       children: [
         Icon(Icons.check, color: context.themeData.colorScheme.primary),
         Text(text),
+        // Slider
       ],
     );
   }
