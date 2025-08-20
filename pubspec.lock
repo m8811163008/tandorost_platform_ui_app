@@ -629,10 +629,10 @@ packages:
     dependency: transitive
     description:
       name: persian_datetime_picker
-      sha256: "7ccbfd3a68dc89d405550f624e9fa590c914fed2aa2d48973c4f4400baab2e06"
+      sha256: "0ec2879d2bee8390dda088b412739e6316e3a54d77640ec54dc1eeca8c5baa59"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.0"
+    version: "3.1.1"
   petitparser:
     dependency: transitive
     description:

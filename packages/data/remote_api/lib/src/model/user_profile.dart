@@ -8,7 +8,8 @@ part 'user_profile.g.dart';
 class UserProfile extends Equatable {
   @JsonKey(name: '_id')
   final String id;
-  final String phoneNumber;
+  final String? phoneNumber;
+  final String? email;
   final Address? address;
   final String? fullName;
   final Language language;
@@ -18,6 +19,7 @@ class UserProfile extends Equatable {
   UserProfile copyWith({
     String? id,
     String? phoneNumber,
+    String? email,
     Address? address,
     String? fullName,
     Language? language,
@@ -27,6 +29,7 @@ class UserProfile extends Equatable {
     return UserProfile(
       id: id ?? this.id,
       phoneNumber: phoneNumber ?? this.phoneNumber,
+      email: email ?? this.email,
       address: address ?? this.address,
       fullName: fullName ?? this.fullName,
       language: language ?? this.language,
@@ -38,6 +41,7 @@ class UserProfile extends Equatable {
   UserProfile({
     required this.id,
     required this.phoneNumber,
+    required this.email,
     required this.address,
     required this.fullName,
     required this.language,
@@ -54,6 +58,7 @@ class UserProfile extends Equatable {
   List<Object?> get props => [
     id,
     phoneNumber,
+    email,
     address,
     fullName,
     language,

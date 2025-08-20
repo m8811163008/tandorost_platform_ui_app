@@ -322,7 +322,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @verifyNumberTextFieldLabel.
   ///
   /// In fa, this message translates to:
-  /// **'تایید شماره همراه'**
+  /// **'تایید کد'**
   String get verifyNumberTextFieldLabel;
 
   /// No description provided for @verifyFormOutlineLabel.
@@ -358,7 +358,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @verificationCodeTextFieldLabel.
   ///
   /// In fa, this message translates to:
-  /// **'کد پیامک شده'**
+  /// **'کد ارسال شده'**
   String get verificationCodeTextFieldLabel;
 
   /// No description provided for @dialogTitleChangeApplicationLanguage.

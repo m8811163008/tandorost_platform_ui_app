@@ -140,7 +140,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get textButtonLabelLogin => 'ورود';
 
   @override
-  String get verifyNumberTextFieldLabel => 'تایید شماره همراه';
+  String get verifyNumberTextFieldLabel => 'تایید کد';
 
   @override
   String get verifyFormOutlineLabel => 'ارسال';
@@ -159,7 +159,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get passwordTextFieldLabel => 'رمز عبور';
 
   @override
-  String get verificationCodeTextFieldLabel => 'کد پیامک شده';
+  String get verificationCodeTextFieldLabel => 'کد ارسال شده';
 
   @override
   String get dialogTitleChangeApplicationLanguage => 'تغییر زبان نرم افزار';

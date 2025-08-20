@@ -15,6 +15,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
       allowedKeys: const [
         '_id',
         'phone_number',
+        'email',
         'address',
         'full_name',
         'language',
@@ -24,7 +25,8 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
     );
     final val = UserProfile(
       id: $checkedConvert('_id', (v) => v as String),
-      phoneNumber: $checkedConvert('phone_number', (v) => v as String),
+      phoneNumber: $checkedConvert('phone_number', (v) => v as String?),
+      email: $checkedConvert('email', (v) => v as String?),
       address: $checkedConvert(
         'address',
         (v) => v == null ? null : Address.fromJson(v as Map<String, dynamic>),
@@ -57,7 +59,8 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
 Map<String, dynamic> _$UserProfileToJson(UserProfile instance) =>
     <String, dynamic>{
       '_id': instance.id,
-      'phone_number': instance.phoneNumber,
+      'phone_number': ?instance.phoneNumber,
+      'email': ?instance.email,
       'address': ?instance.address?.toJson(),
       'full_name': ?instance.fullName,
       'language': _$LanguageEnumMap[instance.language]!,
