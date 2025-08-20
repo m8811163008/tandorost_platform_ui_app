@@ -3,93 +3,95 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
+
+
+
 class AIChatButton extends StatefulWidget {
   const AIChatButton({super.key, this.onLongPressStart, this.onLongPressUp});
-  final VoidCallback? onLongPressStart, onLongPressUp;
+  final VoidCallback? onLongPressUp, onLongPressStart;
+  
+  // final Function({VoidCallback? onCancleLongPress})? onLongPressStart;
 
   @override
   State<AIChatButton> createState() => _AIChatButtonState();
 }
 
-class _AIChatButtonState extends State<AIChatButton>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-  late final Animation<double> _animation;
-  Timer _timer = Timer(Duration.zero, () {});
-  final Duration _conversation_duration = Duration(seconds: 2);
-  bool _isPressed = false;
+class _AIChatButtonState extends State<AIChatButton> {
+  late Timer _timer;
+  final Duration _conversationDuration = Duration(seconds: 2);
+  late CrossFadeState _crossFadeState;
 
   @override
   void initState() {
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 2),
-      reverseDuration: Duration(seconds: 1),
-    );
-    _animation = Tween(begin: 1.0, end: 0.0).animate(_controller);
-
+    _timer = Timer(Duration.zero, () {});
+    _crossFadeState = CrossFadeState.showFirst;
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: (_) {
-        _isPressed = true;
-        _controller.forward();
-      },
-      onTapUp: (_) {
-        _isPressed = false;
-        _controller.reverse();
-      },
       onLongPressStart: (_) {
-        _isPressed = true;
-        _controller.forward();
         _timer.cancel();
 
-        _timer = Timer(_conversation_duration, () {});
+        _timer = Timer(_conversationDuration, () {});
 
+        setState(() {
+          _crossFadeState = CrossFadeState.showSecond;
+        });
         widget.onLongPressStart?.call();
       },
+      onLongPressCancel: () {
+        setState(() {
+          _crossFadeState = CrossFadeState.showFirst;
+        });
+      },
       onLongPressUp: () {
-        _isPressed = false;
-        _controller.reverse();
-        if (!_timer.isActive) {
-          widget.onLongPressUp?.call();
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                context.l10n.voiceAiInsufficientLength(
-                  _conversation_duration.inSeconds,
+        if (_timer.isActive) {
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  context.l10n.voiceAiInsufficientLength(
+                    _conversationDuration.inSeconds,
+                  ),
                 ),
               ),
-            ),
-          );
+            );
+          }
         }
+        setState(() {
+          _crossFadeState = CrossFadeState.showFirst;
+        });
+        widget.onLongPressUp?.call();
       },
-      child: Stack(
-        children: [
-          AnimatedBuilder(
-            animation: _animation,
-            builder: (context, child) {
-              return Material(
-                // color: Colors.transparent,
-                elevation: _isPressed ? 4 : 8,
-                shape: CircleBorder(),
-                child: Opacity(opacity: _animation.value, child: child),
-              );
-            },
-            child: LoadingLottie(size: context.sizeExtenstion.chatButton),
-          ),
-          AnimatedBuilder(
-            animation: _animation,
-            builder: (context, child) {
-              return Opacity(opacity: 1 - _animation.value, child: child);
-            },
-            child: ActiveChatLotties(size: context.sizeExtenstion.chatButton),
-          ),
-        ],
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 1400),
+        reverseDuration: const Duration(milliseconds: 800),
+        switchInCurve: Curves.easeIn,
+        switchOutCurve: Curves.easeOut,
+        child:
+            _crossFadeState == CrossFadeState.showFirst
+                ? Material(
+                  key: const ValueKey('loading-lottie'),
+                  elevation: 8,
+                  shape: const CircleBorder(),
+                  child: LoadingLottie(size: context.sizeExtenstion.chatButton),
+                )
+                : Material(
+                  key: const ValueKey('active-chat-lottie'),
+                  elevation: 4,
+                  shape: const CircleBorder(),
+                  child: ActiveChatLotties(
+                    size: context.sizeExtenstion.chatButton,
+                  ),
+                ),
       ),
     );
   }

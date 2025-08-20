@@ -14,19 +14,21 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
     : super(ForgotPasswordState());
   final AuthenticationRepository _authenticationRepository;
   void onChangePhoneNumber(String value) {
-    emit(state.copyWith(phoneNumber: value));
+    _enhancedEmit(state.copyWith(phoneNumber: value));
   }
 
   void onChangePinCode(String value) {
-    emit(state.copyWith(password: value));
+    _enhancedEmit(state.copyWith(password: value));
   }
 
   void onChangeVerificationCode(String value) {
-    emit(state.copyWith(verificationCode: value));
+    _enhancedEmit(state.copyWith(verificationCode: value));
   }
 
   void sendVerificationCode() async {
-    emit(state.copyWith(verificationStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(verificationStatus: AsyncProcessingStatus.loading),
+    );
     try {
       final request = VerificationCodeRequest(
         identifier: state.phoneNumber,
@@ -35,17 +37,19 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
       await _authenticationRepository.sendVerificationCode(
         verificationCodeRequest: request,
       );
-      emit(state.copyWith(verificationStatus: AsyncProcessingStatus.success));
+      _enhancedEmit(
+        state.copyWith(verificationStatus: AsyncProcessingStatus.success),
+      );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           verificationStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException catch (e) {
-      emit(
+      _enhancedEmit(
         state.copyWith(
-          verificationStatus: AsyncProcessingStatus.serverConnectionError,
+          verificationStatus: AsyncProcessingStatus.connectionError,
           exception: e.message,
         ),
       );
@@ -53,7 +57,9 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
   }
 
   void onForgotPassword() async {
-    emit(state.copyWith(forgotPasswordStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(forgotPasswordStatus: AsyncProcessingStatus.loading),
+    );
     try {
       final forgotPasswordRequest = ForgotPasswordRequest(
         userName: state.phoneNumber,
@@ -63,20 +69,28 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
       await _authenticationRepository.forgotPassword(
         forgotPasswordRequest: forgotPasswordRequest,
       );
-      emit(state.copyWith(forgotPasswordStatus: AsyncProcessingStatus.success));
+      _enhancedEmit(
+        state.copyWith(forgotPasswordStatus: AsyncProcessingStatus.success),
+      );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           forgotPasswordStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException catch (e) {
-      emit(
+      _enhancedEmit(
         state.copyWith(
-          forgotPasswordStatus: AsyncProcessingStatus.serverConnectionError,
+          forgotPasswordStatus: AsyncProcessingStatus.connectionError,
           exception: e.message,
         ),
       );
+    }
+  }
+
+  void _enhancedEmit(ForgotPasswordState state) {
+    if (!isClosed) {
+      emit(state);
     }
   }
 }

@@ -19,14 +19,14 @@ class DeleteDataPointDialog extends StatelessWidget {
                 previous.deleteUserPhysicalDataPointStatus !=
                 current.deleteUserPhysicalDataPointStatus,
         listener: (context, state) {
-          if (state.deleteUserPhysicalDataPointStatus.isServerConnectionError) {
+          if (state.deleteUserPhysicalDataPointStatus.isConnectionError) {
             final content = context.l10n.networkError;
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(SnackBar(content: Text(content)));
           } else if (state
               .deleteUserPhysicalDataPointStatus
-              .isServerConnectionError) {
+              .isConnectionError) {
             final content = context.l10n.internetConnectionError;
             ScaffoldMessenger.of(
               context,

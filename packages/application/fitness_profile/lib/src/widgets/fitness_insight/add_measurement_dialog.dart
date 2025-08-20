@@ -3,6 +3,7 @@ import 'package:fitness_profile_app/src/cubit/fitness_profile_cubit.dart';
 import 'package:fitness_profile_app/src/widgets/fitness_insight/add_mesurement_dialog_hint.dart';
 import 'package:fitness_profile_app/src/widgets/fitness_insight/waist_circumference_field_hint.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class AddNewMeasurementDialog extends StatefulWidget {
@@ -121,6 +122,7 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
       ),
       gap,
     ];
+
     final demographicFields = [
       DropDownField<Gender>(
         label: context.l10n.fitnessProfileNewMeasurementDialogGender,
@@ -171,38 +173,9 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
           }
           return birthDay.formattedDate(context);
         }),
+
         onTap: () async {
-          final locale = Localizations.localeOf(context);
-          late final DateTime? pickedDate;
-          if (locale.languageCode == Language.persian.code) {
-            Jalali? picked = await showPersianDatePicker(
-              context: context,
-              initialDate: Jalali.fromDateTime(
-                DateTime.now().subtract(Duration(days: 365 * 25)),
-              ),
-              firstDate: Jalali(1350),
-              lastDate: Jalali.fromDateTime(
-                DateTime.now().subtract(Duration(days: 365 * 17)),
-              ),
-
-              initialEntryMode: PersianDatePickerEntryMode.calendarOnly,
-              initialDatePickerMode: PersianDatePickerMode.year,
-            );
-            pickedDate = picked?.toDateTime();
-          } else {
-            pickedDate = await showDatePicker(
-              context: context,
-              initialDate: DateTime.now().subtract(Duration(days: 365 * 25)),
-              firstDate: DateTime(1950),
-              // to limit the application to users who are at least 18 years old
-              lastDate: DateTime.now().subtract(Duration(days: 365 * 17)),
-            );
-          }
-
-          if (pickedDate == null) {
-            return;
-          }
-          cubit.onChangeBirthDay(pickedDate);
+          await onDateOnTap(context, cubit);
         },
       ),
       gap,
@@ -229,12 +202,12 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
               previous.updateUserPhysicalDataStatus !=
               current.updateUserPhysicalDataStatus,
       listener: (context, state) {
-        if (state.updateUserPhysicalDataStatus.isServerConnectionError) {
+        if (state.updateUserPhysicalDataStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.updateUserPhysicalDataStatus.isServerConnectionError) {
+        } else if (state.updateUserPhysicalDataStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,
@@ -265,6 +238,10 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
                     .weight
                     .tryToString(),
             errorMessage: isWeightError ? '' : null,
+            keyboardType: TextInputType.numberWithOptions(decimal: true),
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*')),
+            ],
           ),
           gap,
           NumberTextField(
@@ -285,7 +262,7 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
           gap,
           if (!isRequiredFields) ...[...bodyShapeFields, ...demographicFields],
         ],
-        fullscreen: true,
+
         submitButton: BlocBuilder<FitnessProfileCubit, FitnessProfileState>(
           builder: (context, state) {
             final label = context.l10n.update;
@@ -308,6 +285,48 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
         ),
       ),
     );
+  }
+
+  Future<void> onDateOnTap(
+    BuildContext context,
+    FitnessProfileCubit cubit,
+  ) async {
+    final locale = Localizations.localeOf(context);
+    late final DateTime? pickedDate;
+    if (locale.languageCode == Language.persian.code) {
+      Jalali? picked = await showPersianDatePicker(
+        context: context,
+        initialDate: Jalali.fromDateTime(
+          DateTime.now().subtract(Duration(days: 365 * 25)),
+        ),
+        firstDate: Jalali(1330),
+        lastDate: Jalali.fromDateTime(
+          DateTime.now().subtract(Duration(days: 365 * 17)),
+        ),
+        builder: (context, child) {
+          return SingleChildScrollView(child: child!);
+        },
+        initialEntryMode: PersianDatePickerEntryMode.calendar,
+        initialDatePickerMode: PersianDatePickerMode.year,
+      );
+      pickedDate = picked?.toDateTime();
+    } else {
+      pickedDate = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now().subtract(Duration(days: 365 * 25)),
+        firstDate: DateTime(1930),
+        builder: (context, child) {
+          return SingleChildScrollView(child: child!);
+        },
+        // to limit the application to users who are at least 18 years old
+        lastDate: DateTime.now().subtract(Duration(days: 365 * 17)),
+      );
+    }
+
+    if (pickedDate == null) {
+      return;
+    }
+    cubit.onChangeBirthDay(pickedDate);
   }
 }
 
@@ -333,6 +352,6 @@ class HintButton extends StatelessWidget {
 
 extension on double? {
   String tryToString() {
-    return this == null ? '' : this.toString();
+    return this == null ? '' : toString();
   }
 }

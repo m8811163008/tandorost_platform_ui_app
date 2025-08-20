@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tandorost_components/tandorost_components.dart';
 
 class AppOutLineButton extends StatelessWidget {
   const AppOutLineButton({super.key, this.onTap, required this.label})
@@ -17,7 +16,7 @@ class AppOutLineButton extends StatelessWidget {
         ? OutlinedButton.icon(
           onPressed: onTap,
           label: Text(label),
-          icon: LoadingLottie(size: context.sizeExtenstion.appButton),
+          icon: Transform.scale(scale: 0.7, child: CircularProgressIndicator()),
         )
         : OutlinedButton(onPressed: onTap, child: Text(label));
   }

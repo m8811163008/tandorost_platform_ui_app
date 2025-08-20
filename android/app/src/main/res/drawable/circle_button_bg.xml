@@ -1,0 +1,14 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Shadow layer -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#33000000"/> <!-- semi-transparent black for shadow -->
+        </shape>
+    </item>
+    <!-- Button layer, slightly inset -->
+    <item android:top="2dp" android:left="2dp" android:right="2dp" android:bottom="2dp">
+        <shape android:shape="oval">
+            <solid android:color="#631490"/>
+        </shape>
+    </item>
+</layer-list>

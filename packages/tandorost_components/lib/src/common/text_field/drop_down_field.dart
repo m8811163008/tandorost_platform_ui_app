@@ -31,6 +31,7 @@ class DropDownField<E> extends StatelessWidget {
       child: DropdownButtonHideUnderline(
         child: DropdownButton<E>(
           isExpanded: true,
+          
           value: value,
           items: items,
           onChanged: onChange,

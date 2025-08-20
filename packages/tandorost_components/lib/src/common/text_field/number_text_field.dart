@@ -16,6 +16,8 @@ class NumberTextField extends StatelessWidget {
     this.suffix,
     this.textDirection,
     this.autofillHints,
+    this.keyboardType = TextInputType.number,
+    this.inputFormatters,
   });
   final String label;
   final String? prefix;
@@ -29,6 +31,8 @@ class NumberTextField extends StatelessWidget {
   final Widget? suffix;
   final TextDirection? textDirection;
   final Iterable<String>? autofillHints;
+  final TextInputType keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +40,9 @@ class NumberTextField extends StatelessWidget {
       autofillHints: autofillHints,
       controller: TextEditingController(text: initalValue),
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      keyboardType: TextInputType.number,
-      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+      keyboardType: keyboardType,
+      inputFormatters:
+          inputFormatters ?? [FilteringTextInputFormatter.digitsOnly],
       decoration: InputDecoration(
         labelText: label,
         prefixText: prefix,

@@ -1,0 +1,33 @@
+import 'package:authentication_app/src/forgot_password/cubit/forgot_password_cubit.dart';
+import 'package:authentication_app/src/forgot_password/verify_route/forgot_password_verify_form.dart';
+import 'package:flutter/material.dart';
+import 'package:tandorost_components/tandorost_components.dart';
+
+class ForgotPasswordVerifyListener extends StatelessWidget {
+  const ForgotPasswordVerifyListener({super.key, this.goToLoginRoute});
+  final VoidCallback? goToLoginRoute;
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
+      listenWhen:
+          (previous, current) =>
+              previous.forgotPasswordStatus != current.forgotPasswordStatus,
+      listener: (context, state) {
+        if (state.forgotPasswordStatus.isConnectionError) {
+          final content = context.l10n.networkError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.exception ?? content)));
+        } else if (state.forgotPasswordStatus.isConnectionError) {
+          final content = context.l10n.internetConnectionError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.exception ?? content)));
+        } else if (state.forgotPasswordStatus.isSuccess) {
+          goToLoginRoute?.call();
+        }
+      },
+      child: VerifyFormForgotPassword(),
+    );
+  }
+}

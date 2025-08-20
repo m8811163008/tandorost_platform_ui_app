@@ -39,8 +39,7 @@ class FoodTile extends StatelessWidget {
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Wrap(
             children: [
               _buildMacroText(
                 context,
@@ -56,8 +55,7 @@ class FoodTile extends StatelessWidget {
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Wrap(
             children: [
               _buildMacroText(
                 context,

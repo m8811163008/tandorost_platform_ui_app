@@ -1,16 +1,14 @@
 import 'package:flutter/widgets.dart';
-import 'package:tandorost_components/src/common/animations/circle_clipper.dart';
+import 'package:tandorost_components/src/common/package_name.dart';
 
-class ChartAnimation extends StatelessWidget {
-  const ChartAnimation({super.key, this.size});
-  final Size? size;
+class EmptyChartImage extends StatelessWidget {
+  const EmptyChartImage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AnimationClipper(
-      size: size,
-      path: 'assets/animations/chart_animation.mp4',
-      isCircle: false,
+    return Image.asset(
+      'assets/images/chart_background.png',
+      package: packageName,
     );
   }
 }

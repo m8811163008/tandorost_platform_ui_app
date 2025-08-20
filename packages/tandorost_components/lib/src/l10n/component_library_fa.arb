@@ -1,5 +1,7 @@
 {
     "@@locale": "fa",
+    "drawerSupportText1": "شماره پشتیبانی 09212805230",
+    "drawerSupportText2": "محتویات برنامه متعلق به تیم توسعه دهنده تندرست می‌باشد.",
     "foodName": "نام غذا",
     "fat": "چربی",
     "carbohydrate": "کربوهیدرات",
@@ -72,7 +74,12 @@
     "invalidIdentifierValidationError": "شماره تلفن یا ایمیل نامعتبر است",
 
     "passwordTextFieldLabel": "رمز عبور",
+<<<<<<< HEAD
     "verificationCodeTextFieldLabel": "کد ارسال شده",
+=======
+    "newPasswordTextFieldLabel": "رمز عبور جدید",
+    "verificationCodeTextFieldLabel": "کد پیامک شده",
+>>>>>>> origin/refactor-applications
     "dialogTitleChangeApplicationLanguage": "تغییر زبان نرم افزار",
     "dialogTitleChangeName": "تغییرنام",
     "changeNameTextFieldLabel": "نام",
@@ -82,6 +89,7 @@
     "personalInfoSettingLabel": "مشخصات فردی",
     "settingLabel": "تنظیمات",
     "changeWeightSpeedLabel": "سرعت کاهش وزن",
+    "changeWeightSpeedInfoHint": "در وضعیت فعلی شاید عادت کرده باشید بیشتر از انرژی مورد نیاز روزانه میل کنید. ابتدا سرعت را در حالت ثابت بگذارید و بعد از تغییر عادت های غذایی و عادت به وضعیت جدید، سپس سرعت را به تدریج افزایش دهید تا ‌احساس گرسنگی و خیلی کمتری را تجربه کنید.",
     "changeWeightSpeedInfoConstantSpeed": "در حالت تثبیت وزن از انرژی مورد نیاز کم نمیشود",
     "changeWeightSpeedInfoSlowAndEasySpeed": "در حالت آهسته و آسان در روز استراحت 10 درصد از انرژی مورد نیاز کم میشود و در روز تمرین 0 درصد از انرژی مورد نیاز کم میشود",
     "changeWeightSpeedInfoMediumSpeed": "در حالت طبیعی در روز استراحت 10 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  5 درصد از انرژی مورد نیاز کم میشود",
@@ -95,6 +103,7 @@
         }
     },
     "timeRestrictedEatingLabel": "رژیم با زمان محدود(فستینگ)",
+    "notificationReminderLabel": "اعلان یادآوری ثبت غذا",
     "languageSettingLabel": "زبان نرم افزار",
     "languageTranslation": "{language_name, select, english{انگلیسی} chinese{چینی} hindi{هندی} spanish{اسپانیایی} french{فرانسوی} arabic{عربی} bengali{بنگالی} russian{روسی} portuguese{پرتغالی} urdu{اردو} indonesian{اندونزیایی} german{آلمانی} japanese{ژاپنی} marathi{مراتی} telugu{تلوگو} turkish{ترکی} tamil{تامیلی} vietnamese{ویتنامی} tagalog{تاگالوگ} korean{کره‌ای} persian{فارسی} hausa{هوسا} javanese{جاوه‌ای} italian{ایتالیایی} punjabi{پنجابی} kannada{کانادا} gujarati{گجراتی} thai{تایلندی} polish{لهستانی} ukrainian{اوکراینی} other{ترجمه تعریف نشده}}",
     "@languageTranslation": {
@@ -144,7 +153,7 @@
     "photoEditorRatio": "نسبت",
     "photoEditorBack": "بازگشت",
     "photoEditorDone": "انجام شد",
-    "photoEditorCancel": "لغو",
+    "photoEditorCancel": "بازگشت",
     "photoEditorUndo": "برگرداندن",
     "photoEditorRedo": "دوباره انجام دادن",
     "photoEditorSmallScreenMoreTooltip": "بیشتر",
@@ -203,8 +212,8 @@
     "fitnessProfileWaistCircumferenceToHeightRatio": "نسبت دور کمر به قد",
     "fitnessProfileIsWaistCircumferenceToHeightRatioSafe": "آیا نسبت دور کمر به قد ایمن است؟",
     "fitnessProfileIsWaistCircumferenceSafeRange": "آیا دور کمر در محدوده ایمن است؟",
-    "fitnessProfileYes": "بله",
-    "fitnessProfileNo": "خیر",
+    "yes": "بله",
+    "no": "خیر",
     "fitnessProfileNA": "در دسترس نیست",
     "fitnessProfileBodyMassIndexLevelLabel": "سطح شاخص توده بدنی",
     "fitnessProfileBmiDescription": "شاخص توده بدنی شما {bmiValue} و در وضعیت {bmiDescriptive} هستید.",
@@ -285,7 +294,7 @@
     "foodReportDeleteDialogContent": "آیا این غذا حذف شود؟",
     "foodReportFoodsListLabel": "‌لیست خوراکی‌ها",
     "foodReportUserFoodRequirementNA": "N/A",
-    "appRoutesName": "{routesNames, select, loginRoute{ورود} registerRoute{ثبت نام} searchRoute{جستجو} resultRoute{نتیجه} forgotPassRoute{فراموشی رمز عبور} verificationRoute{تایید شماره} profileRoute{پروفایل} fitnessProfileRoute{تناسب اندام} foodReportRoute{گزارش تغذیه} other{ترجمه تعریف نشده}}",
+    "appRoutesName": "{routesNames, select, loginRoute{ورود} registerRoute{ثبت نام} searchRoute{جستجو} resultRoute{نتیجه} forgotPassRoute{فراموشی رمز عبور} verificationRoute{تایید شماره} profileRoute{پروفایل} fitnessProfileRoute{ترکیب بدن | تناسب اندام} foodReportRoute{گزارش تغذیه} vo2maxCalculator{هوازی | حداکثر کاهش چربی} other{ترجمه تعریف نشده}}",
     "@appRoutesName": {
         "placeholders": {
             "routesNames": {
@@ -293,5 +302,359 @@
             }
         }
     },
-    "wellcomeMessage" : "سلام"
+    "wellcomeMessage": "سلام",
+    "appAsyncCardStatusText": "{asyncStatus, select, inital{بدون داده} loading{درحال بارگیری} serverConnectionError{خطای سرور ، دوباره تلاش کنید} internetConnectionError{خطای اینترنت. اینترنت خود را وصل کنید} success{داده ای برای نمایش دادن نیست} other{ترجمه تعریف نشده}}",
+    "@appAsyncCardStatusText": {
+        "placeholders": {
+            "asyncStatus": {
+                "type": "String"
+            }
+        }
+    },
+    "bazzarNotFound": "کافه بازار نصب نشده است. کافه بازار را نصب کنید",
+    "bazzarSuccessfulPayment": "اشتراک با موفقیت اضافه شد.برای اضافه کردن غذا اشتراک را تمدید نمایید",
+    "bazzarFailPayment": "فرآیند تمدید اشتراک لغو شد",
+    "addMeasurementDialogHintTitle": "شکل بدن",
+    "addMeasurementDialogHintText1": "بخاطر پیشگیری از وسواس فکری بیش از هفته‌ای یکبار خود را وزن نکنید.",
+    "addMeasurementDialogHintText2": "اندازه گیری شکل بدن نسبت به اندازه گیری وزن بیشتر باعث انگیزه تناسب اندام میشود.",
+    "addMeasurementDialogHintText3": "با اندازه گیری شکل بدن متوجه میشوید توزیع کاهش چربی در بدن چه شکلی داشته",
+    "addMeasurementDialogHintText4": "زمان اندازه گیری ماهیچه سرد باشد.",
+    "addMeasurementDialogHintText5": "حداکثر انقباض یا قطر ماهیچه را اندازه بگیرید.",
+    "addMeasurementDialogHintText6": "روش اندازه گیری دور کمر به توصیه سازمان بهداشت جهانی و فدراسیون بین المللی دیابت ",
+    "addMeasurementDialogHintText6Bold": "بین پایین ترین دنده ها و ستیغ تهیگاهی ",
+    "addMeasurementDialogHintText7": "است.",
+    "addMeasurementDialogHintText8": "بالاتر از ناف باشد و پوست زیر متر جمع نشود",
+    "foodRequerementDialogGeneralRecommendationTitle": "ویتامین و موادمعدنی",
+    "foodRequerementDialogGeneralRecommendationVitaminTitle": "ویتامین و مواد معدنی",
+    "foodRequerementDialogGeneralRecommendationVitaminText2": "با مصرف میوه و سبزی با رنگ های مختلف در روز استراحت معمولا نیاز به ویتامین و مواد معدنی تامین میشود و برای تشخصی کمبود ویتامین و مواد معدنی به پزشک مراجعه کنید.",
+    "foodRequerementDialogGeneralRecommendationVitaminText3": "در صبح میزان هرمون هپسیدین در کمترین مقدار هست و آهن بهتر هست در صبح خورده بشه مثل املت اسفناج یا جگر که جذب آهن را حداکثر میکند.",
+    "foodRequerementDialogGeneralRecommendationVitaminText4": "مصرف آهن برای انتقال اکسیژن در خون و مایچه مهم هست (هموگلوبین و میوگلوبین) . بعد از تمرین بخاطر اثر التهاب ، سطح هرمون تنظیم آهن یعنی هپسیدین به مدت 3 تا 6 ساعت بعد تمرین زیاد میشه و جذب آهن کاهش پیدا میکند و آهن در این مدت کمتر از صبح جذب میشود.",
+    "foodRequerementDialogGeneralRecommendationVitaminText5": "غذاهای غنی از آهن عبارتند از گوشت و کله پاچه، ساردین، ماهی تن، غلات سبوس دار، زرده تخم مرغ، لوبیا، عدس، سبزیجات برگ سبز، زردآلو خشک، آجیل و دانه ها. ",
+    "foodRequerementDialogGeneralRecommendationVitaminText6": "جذب آهن با مصرف ویتامین سی مانند پرتقال افزایش پیدا میکنه",
+    "foodRequerementDialogGeneralRecommendationVitaminText7": "آهن و زینک و کلسیم دارای سیستم جذب و انتقال یکسان هستند پس مصرف زیاد آهن باعث کاهش جذب زینک و کلسیم میشه پس اگر صبح مواد غذایی شامل آهن میخورید سعی کنید مواد غذایی شامل کلسیم مثل شیر یا مواد غذایی شامل زینک مثل گوشت قرمز یا غلات کامل را با آن نخورید.",
+    "foodRequerementDialogGeneralRecommendationProperSleepTitle": "خواب",
+    "foodRequerementDialogGeneralRecommendationProperSleepText1": "خواب کم و شب بیداری باعث افزایش کورتیزل و پرخوری میشود. در نتیجه خوردن قند و چربی زیادتر از نیاز روزانه تان، به شکل چربی و وزن اضافه در بدن جمع میشود .",
+    "foodRequerementDialogGeneralRecommendationProperSleepText2": "اگر میخواهید صبح زودتر بیدار شوید، شب 7 تا 8 ساعت زودتر بخواب بروید",
+    "foodRequerementDialogGeneralRecommendationStressTitle": "استرس",
+    "foodRequerementDialogGeneralRecommendationStressText1": "استرس روزمره و کاری باعث افزایش هورمون کورتیزل و اضطراب میشود و پاسخ طبیعی و ساده معمولا خوردن قند و چربی و نمک زیاد برای افزایش هورمون دوپامین جهت خنثی کردن اضطراب و استرس است. ",
+    "foodRequerementDialogGeneralRecommendationStressText2": "در حالت استرس ،میتوانید نفس عمیق بکشید و آب بخورید و ریشه مسئله را پیدا و حل کنید.",
+    "foodRequerementDialogHydrationTitle": "آب",
+    "foodRequerementDialogHydrationRestDayText1": "نوشیدن ۵۰۰ میلی‌لیتر آب نیم ساعت قبل از هر وعده غذایی همراه با رژیم کم‌کالری می‌تواند به کاهش وزن بیشتر در افراد میانسال و مسن دارای اضافه وزن یا چاقی کمک کند. این کار ساده و بی‌خطر است، اما برای افراد با نارسایی قلبی یا مشکلات شدید کلیوی توصیه نمی‌شود.",
+    "foodRequerementDialogHydrationRestDayText2": "نوشیدن آب همراه غذا، به ویژه غذاهای جامد مانند برنج و نان، می‌تواند به فرآیند هضم کمک کند؛ زیرا آب به نرم شدن غذا و عملکرد بهتر آنزیم‌های گوارشی یاری می‌رساند.",
+    "foodRequerementDialogHydrationRestDaySubtitle1": "نوشیدن آب و حجم معده",
+    "foodRequerementDialogHydrationRestDayText3": "معده یک عضو ماهیچه‌ای با قابلیت انقباض و انبساط است و نوشیدن آب همراه با غذا یا سایر مواد غذایی باعث بزرگ شدن دائمی آن نمی‌شود؛ معده پس از تخلیه، به اندازه طبیعی خود بازمی‌گردد",
+    "foodRequerementDialogHydrationRestDaySubtitle2": "مقدار آب‌رسانی موردنیاز",
+    "foodRequerementDialogHydrationRestDayText5": "اگر در منطقه معتدل آب و هوایی زندگی میکنید خوردن حداقل {waterVolume} لیتر آب برای شما نیاز است مهم نیست آب از دمنوش و چای و قهوه یا آب میوه یا نوشیدنی انرژی باشد. هرچه محیط گرم تر باشد آب بیشتری نیاز دارید و برعکس.",
+    "@foodRequerementDialogHydrationRestDayText5": {
+        "placeholders": {
+            "waterVolume": {
+                "type": "double",
+                "format": "decimalPatternDigits",
+                "optionalParameters": {
+                    "decimalDigits": 1
+                }
+            }
+        }
+    },
+    "foodRequerementDialogHydrationTrainingTitle": "آب‌رسانی",
+    "foodRequerementDialogHydrationTrainingDayText1": "کم‌آبی بدن باعث استرس قلبی‌عروقی می‌شود و دمای مرکزی بدن را افزایش می‌دهد.",
+    "foodRequerementDialogHydrationTrainingDayText2": "پس از تمرین، آب را در چند نوبت و همراه با کمی نمک یا طعم‌دهنده بنوشید تا حجم خون به‌یکباره افزایش نیابد و بدن دچار کم‌آبی نشود؛ مصرف آب خالی می‌تواند احساس تشنگی را کاهش دهد و باعث ادرار بیشتر شود، در نتیجه ممکن است پیش از رفع کامل تشنگی نوشیدن آب را متوقف کنید.",
+    "foodRequerementDialogHydrationTrainingDayText3": "با توجه به وزن شما، نوشیدن {fiveTimeWeight} تا {tenTimeWeight} میلی‌لیتر آب ۲ تا ۴ ساعت قبل از تمرین توصیه می‌شود. اگر ادرار نکردید یا رنگ ادرار تیره بود، باید آب بیشتری بنوشید.",
+    "@foodRequerementDialogHydrationTrainingDayText3": {
+        "placeholders": {
+            "fiveTimeWeight": {
+                "type": "int"
+            },
+            "tenTimeWeight": {
+                "type": "int"
+            }
+        }
+    },
+    "foodRequerementDialogHydrationTrainingDaySubtitle1": "مقدار نوشیدن آب",
+    "foodRequerementDialogHydrationTrainingDaySubtitle2": "نوشیدنی‌های طعم‌دار",
+    "foodRequerementDialogHydrationTrainingDaySubtitle3": "پوسیدگی دندان",
+    "foodRequerementDialogHydrationTrainingDayText4": "پس از ورزش، توصیه می‌شود ۱.۲۵ تا ۱.۵ برابر حجم مایعی که در طول تمرین از دست داده‌اید مصرف کنید.",
+    "foodRequerementDialogHydrationTrainingDayText5": "در فعالیت‌های سبک یا متوسط زیر ۴۵ دقیقه، آب کافی است. در تمرینات شدیدتر و طولانی‌تر (بیش از ۶۰ تا ۹۰ دقیقه)، نوشیدنی ورزشی با ۴۰ تا ۸۰ گرم کربوهیدرات در هر لیتر توصیه می‌شود. برای تمرینات ۱ تا ۲.۵ ساعت، مصرف ۳۰ تا ۶۰ گرم کربوهیدرات در ساعت و برای تمرینات شدیدتر بیش از ۲.۵ ساعت، تا ۹۰ گرم کربوهیدرات در ساعت (ترکیبی) پیشنهاد می‌شود.",
+    "foodRequerementDialogHydrationTrainingDayText6": "سدیم در نوشیدنی ورزشی باعث افزایش میل به نوشیدن، حفظ آب بدن و خوش‌طعم‌تر شدن نوشیدنی می‌شود. کربوهیدرات به جذب بهتر آب و تأمین انرژی کمک می‌کند. نوشیدنی‌های انرژی‌زا حاوی کافئین می‌توانند عملکرد هوازی و بی‌هوازی را بهبود دهند.",
+    "foodRequerementDialogHydrationTrainingDayText7": "نوشیدنی‌های ورزشی، نوشابه‌های گازدار و آبمیوه‌ها می‌توانند به دلیل اسیدیته بالا باعث فرسایش مینای دندان شوند؛ این اثر در حین ورزش به دلیل کاهش بزاق تشدید می‌شود.",
+    "foodRequerementDialogHydrationTrainingDayText8": "برای محافظت از دندان‌ها: از بطری با نی یا نازل استفاده کنید، آب را به طور متناوب بنوشید و از نوشیدن مداوم یا چرخاندن نوشیدنی در دهان خودداری کنید.",
+    "foodRequerementDialogHydrationTrainingDayText9": "برای بررسی وضعیت آب بدن خود، به رنگ ادرار در ابتدای صبح توجه کنید. ادرار رقیق و کم‌رنگ نشان‌دهنده آب رسانی مناسب است، در حالی که رنگ تیره و حجم کم می‌تواند به معنای کم‌آبی بدن باشد که نیازمند نوشیدن آب بیشتر، به خصوص قبل از تمرین، است.",
+    "foodRequerementDialogHydrationTrainingDayText10": "کم ابی یا هایپوهیدراشن به روزهای قبل و تمرین های قبلی بستگی داره و کم آبی امروز روی تمرین فردا تاثیر میگذارد.",
+    "foodRequerementDialogCarbohydrateRestDayText1": "قند و شکر که اغلب از نیشکر یا چغندر قند فرآوری می‌شوند، نوعی کربوهیدرات هستند. مصرف نوشیدنی‌های حاوی قند افزوده می‌تواند به پوسیدگی دندان منجر شود. این نوع قندها معمولاً در غذاهای فرآوری شده‌ای مانند شکلات، بیسکویت (که اغلب چربی بالایی دارند) یا چیپس (که نمک زیادی دارند) یافت می‌شوند. این دسته از غذاهای فرآوری شده انرژی زیادی دارند اما از نظر مواد مغذی و فیبر فقیر هستند و حجم کمی نسبت به انرژی خود دارند که می‌تواند منجر به احساس گرسنگی زودهنگام شود و دریافت انرژی بیش از نیاز بدن شما بگردد.",
+    "foodRequerementDialogCarbohydrateRestDaySubtitle1": "مقدار و نوع کربوهیدرات",
+    "foodRequerementDialogCarbohydrateRestDayText2": "توصیه می‌شود حداکثر 5 درصد از انرژی روزانه شما، معادل حدود {fivePercentCalorie} کیلوکالری، از قندهای افزوده تأمین شود. این مقدار شکر برای شما تقریباً معادل {sugarCubeCount} حبه قند است که شامل قند موجود در غذاهای فرآوری‌شده، شربت‌ها، آبمیوه‌ها و عسل می‌شود و قندهای طبیعی موجود در شیر، سبزیجات و میوه‌ها را در بر نمی‌گیرد.",
+    "@foodRequerementDialogCarbohydrateRestDayText2": {
+        "placeholders": {
+            "fivePercentCalorie": {
+                "type": "int"
+            },
+            "sugarCubeCount": {
+                "type": "int"
+            }
+        }
+    },
+    "foodRequerementDialogCarbohydrateRestDaySubtitle2": "میوه و چربی",
+    "foodRequerementDialogCarbohydrateRestDayText3": "کربوهیدرات اصلی موجود در میوه‌ها، فروکتوز است. مصرف زیاد فروکتوز در افراد کم‌تحرک می‌تواند باعث افزایش تری‌گلیسیرید و چربی خون شود. با این حال، اگر فعالیت بدنی منظمی دارید، تأثیر آن بر چربی خون معمولاً ناچیز است.",
+    "foodRequerementDialogCarbohydrateRestDaySubtitle3": "آنتی‌اکسیدان",
+    "foodRequerementDialogCarbohydrateRestDayText4": "حتی در صورت کم‌تحرکی، توصیه می‌شود روزانه حداقل 2 تا 3 واحد میوه مصرف کنید؛ زیرا میوه‌ها منبع عالی آب برای هیدراسیون بدن، فیبر برای تقویت سیستم ایمنی و ترکیبات فیتوشیمیایی برای مقابله با التهاب و اکسیدان‌ها هستند.",
+    "foodRequerementDialogCarbohydrateRestDayText5": "در هر وعده غذایی، تلاش کنید تا با تنوع بخشیدن به رنگ میوه‌ها و سبزیجات (سبز، قرمز، بنفش، زرد، سفید و نارنجی)، یک رنگین‌کمان از رنگ‌ها را در بشقاب خود داشته باشید. هر رنگ، حاوی مجموعه‌ای منحصربه‌فرد از مواد مغذی ساخته شده از نور خورشید (ترکیبات گیاهی مفید) است که بسیاری از آن‌ها به عنوان آنتی‌اکسیدان عمل کرده و به محافظت از سلول‌ها در برابر آسیب و کاهش التهاب پس از ورزش کمک می‌کنند.",
+    "foodRequerementDialogCarbohydrateRestDayText6": "در روزهای استراحت، با مصرف بیشتر میوه‌ها و سبزیجات، نیازهای ویتامینی و فیبر بدن را تأمین کنید؛ در روزهای تمرین نیز، برای تأمین انرژی مورد نیاز عضلات، بر مصرف کربوهیدرات‌های پیچیده و غنی تمرکز داشته باشید.",
+    "foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceTitle": "کربوهیدرات قبل از ورزش",
+    "foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText1": "زمان و مقدار مصرف کربوهیدرات پیش از تمرین با یکدیگر مرتبط هستند. به طور کلی، می‌توانید ۱ تا ۴ گرم کربوهیدرات به ازای هر کیلوگرم وزن بدن، از ۱ تا ۴ ساعت پیش از شروع تمرین مصرف کنید. برای نمونه، با وزن {weight} کیلوگرم، اگر ۲ ساعت تا آغاز تمرین باقی مانده است، می‌توانید {carbohydrate} گرم کربوهیدرات به همراه {protein} گرم پروتئین با کیفیت میل کنید.",
+    "@foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText1": {
+        "placeholders": {
+            "weight": {
+                "type": "int"
+            },
+            "carbohydrate": {
+                "type": "int"
+            },
+            "protein": {
+                "type": "int"
+            }
+        }
+    },
+    "foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceSubtitle1": "زمان خوردن کربوهیدرات",
+    "foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText2": "مصرف کربوهیدرات ۱ تا ۴ ساعت پیش از تمرین به افزایش ذخیره گلیکوژن و بهبود عملکرد تمرین کمک می‌کند. خوردن کربوهیدرات تا ۲ ساعت قبل از تمرین، زمان کافی برای هضم و جذب آن را فراهم می‌سازد.",
+    "foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText3": "در صورتی که وعده غذایی خود را نزدیک به زمان تمرین میل کنید، ممکن است دچار سوهاضمه و ناراحتی معده شوید؛ زیرا هنگام تمرین، جریان خون از معده به سمت عضلات هدایت می‌شود تا اکسیژن را به عضلات برساند.",
+    "foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText4": "اگر پیش از تمرین دچار ناراحتی معده یا سوهاضمه شدید، توصیه می‌شود دو ساعت پیش از شروع تمرین یک میان‌وعده سبک و ساده با کربوهیدرات با شاخص گلیسمی بالا مانند موز یا سایر میوه‌های تازه یا خشک و یک مشت آجیل میل کنید. همچنین می‌توانید نان و کره مغزیجات (مانند کره پسته یا بادام‌زمینی) یا فرنی و جودوسر با شیر (اوتمیل) مصرف نمایید.",
+    "foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceTitle": "کربوهیدرات هنگام ورزش",
+    "foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText1": "تا پیش از ۴۵ دقیقه تمرین، به جز آب نیازی به مصرف ماده غذایی دیگری نیست؛ زیرا در این مدت، احتمال تخلیه ذخایر گلیکوژن پایین است.",
+    "foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText2": "برای تمرین‌های ۴۵ تا ۷۵ دقیقه‌ای، می‌توانید کربوهیدرات شیرین را بمکید یا بچشید تا هم پیام خستگی به مغز کاهش یابد و هم در صورت دشواری خوردن هنگام تمرین، از مشکلات گوارشی جلوگیری شود.",
+    "foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceSubtitle1": "حداکثر مقدار کربوهیدرات",
+    "foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText3": "در تمرین‌های بیش از یک ساعت، می‌توانید به ازای هر ساعت، ۳۰ تا ۶۰ گرم کربوهیدرات بسته به شدت تمرین مصرف کنید. بدن قادر نیست بیش از ۱ گرم گلوکز در دقیقه را در عضله با اکسیژن ترکیب کند؛ مصرف بیش از ۶۰ گرم کربوهیدرات در ساعت ممکن است مشکلات گوارشی ایجاد کند و سود بیشتری نخواهد داشت.",
+    "foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText4": "حدود ۱۵ تا ۲۰ دقیقه طول می‌کشد تا کربوهیدرات مصرف‌شده به عضلات برسد؛ بنابراین، میان‌وعده تمرینی را پیش از شروع خستگی میل کنید. معمولاً هر ۲۰ تا ۳۰ دقیقه در طول تمرین می‌توانید کربوهیدرات مصرف نمایید.",
+    "foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceSubtitle2": "نمونه‌های کربوهیدرات زمان تمرین",
+    "foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText5": "سه نمونه از میان‌وعده‌های مناسب تمرین شامل یک عدد موز، دو عدد خرما یا یک عدد انبه است که هرکدام حدود ۳۰ گرم کربوهیدرات دارند. در صورت شدت بالای تمرین، می‌توانید تا دو برابر این مقدار مصرف کنید.",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceTitle": "کربوهیدرات بعد از ورزش",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText1": "گلیکوژن مصرف‌شده در طول تمرین باید برای تمرین‌های روزهای بعد جبران شود؛ در غیر این صورت، عملکرد تمرینات بعدی کاهش می‌یابد.",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceSubtitle1": "مقدار خوردن کربوهیدرات بعد تمرین",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText2": "در دو ساعت پس از تمرین، ذخیره‌سازی گلیکوژن تا ۱۵۰ درصد بیشتر از حالت عادی انجام می‌شود.",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText3": "در دو ساعت ابتدایی پس از تمرین، جذب گلوکز بیشتر است؛ زیرا هم میزان گلوکز خون افزایش یافته و هم نفوذپذیری غشای سلولی برای دریافت گلوکز نسبت به حالت عادی بیشتر می‌شود.",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceSubtitle2": "کربوهیدرات و پروتئین",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText4": "تا چهار ساعت پس از تمرین، می‌توانید به ازای هر کیلوگرم وزن بدن، ۱ تا ۱.۲ گرم کربوهیدرات در هر ساعت مصرف کنید که معادل {carbohydrateValu1} تا {carbohydrateValu2} گرم کربوهیدرات در هر ساعت است. این مقدار، حداکثر میزان کربوهیدراتی است که دستگاه گوارش می‌تواند در هر ساعت هضم کند.",
+    "@foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText4": {
+        "placeholders": {
+            "carbohydrateValu1": {
+                "type": "int"
+            },
+            "carbohydrateValu2": {
+                "type": "int"
+            }
+        }
+    },
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText5": "توصیه می‌شود کربوهیدرات را همراه با پروتئین با کیفیت (حاوی لوسین) برای حداکثرسازی عضله‌سازی و تأمین گلیکوژن مصرف کنید.",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText6": "مصرف پروتئین همراه با کربوهیدرات باعث ترشح بیشتر انسولین نسبت به مصرف تنها کربوهیدرات می‌شود. افزایش انسولین، جذب گلوکز و آمینواسیدهای پروتئین توسط سلول‌های عضلانی را افزایش داده و سطح کورتیزول را کاهش می‌دهد؛ در نتیجه، ترکیب پروتئین برای ساخت عضله بیشتر خواهد شد.",
+    "foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText7": "وجود پروتئین در وعده غذایی پس از تمرین، به ساخت و ترمیم پروتئین عضلات کمک می‌کند و موجب کاهش تجزیه پروتئین و افزایش ذخیره پروتئین در عضلات برای بازسازی پس از تمرین می‌شود.",
+    "foodRequerementDialogProteinRestDayText1": "سعی کنید هر 3 ساعت در 5 وعده و هر وعده به مقدار مساوی و منظم حدود {proteinPerMeal} گرم در هر وعده پروتئین بخورید*. پروتئین باعث سیری طولانی مدت تر نسبت به کربوهیدرات میشود و در کنار غلات سبوس دار و حبوبات فیبر دار باعث سیری و کاهش اشتها در روز میشود . 30 درصد از پروتئین را از منبع شیر و محصولات لبنی تامین کنید که همزمان غنی از کلسیم هستند.",
+    "@foodRequerementDialogProteinRestDayText1": {
+        "placeholders": {
+            "proteinPerMeal": {
+                "type": "int"
+            }
+        }
+    },
+    "foodRequerementDialogProteinRestDayText2": "تمام پروتئین های حیوانی مانند شیر و گوشت با کیفیت هستند. اگر 9 آمینو اسید ضروری در ماده غذایی تقریبا به اندازه نیاز بدن باشد به آنها پروتئین با کیفیت بالا میگیم، به همین خاطر بین مواد غذایی گیاهی ، سویا(شیر و ماست سویا) ، گندم سیاه، دانه کینوا، دانه چیا و دانه کنف یا شاهدانه غذای گیاهی شامل پروتئین با کیفیت بالا هستند.",
+    "foodRequerementDialogProteinRestDaySubtitile1": "پروتئین باکیفیت",
+    "foodRequerementDialogProteinRestDayText3": "همچنین لوبیا، عدس، نخود، غلات و آجیل ها شامل برخی آمینو اسید های ضروری هستند که میتوانید با خوردن ترکیبی ازین مواد غذایی نیاز بدن به امینو اسید های ضروری را در 24 ساعت تامین کنید.برای مثال خوردن لوبیا و برنج و آجیل هر 9 آمینو اسید ضروری را تامین میکنند.",
+    "foodRequerementDialogProteinRestDaySubtitile2": "پروتئین موردنیاز شما",
+    "foodRequerementDialogProteinRestDayText4": "پروتئین با مقدار جذب بیشتر از روده بزرگ و امتیاز بیشتر DIAAS : شیر و تخم مرغ و سویا و محصولات سویا و نخود  وعدس سبز و لوبیا سیاه و بادام زمینی و برنج سفید هستند. شما روزانه به {proteinPerBodyWeight} گرم پروتئین به ازای هر کیلو از وزن بدنتون نیاز دارید تا با توجه به سطح فعالیت هفتگی و سرعت کاهش وزن عضله‌های خود را حفظ و افزایش دهید.",
+    "@foodRequerementDialogProteinRestDayText4": {
+        "placeholders": {
+            "proteinPerBodyWeight": {
+                "type": "double",
+                "format": "decimalPatternDigits",
+                "optionalParameters": {
+                    "decimalDigits": 1
+                }
+            }
+        }
+    },
+    "foodRequerementDialogProteinRestDayText5": "*مبتدیان مقدار پروتئین بیشتری نسبت به ورزشکار حرفه ای نیاز دارند ( تا 3 هفته اول 40 درصد بیشتر از افراد حرفه ای هست)",
+    "foodRequerementDialogProteinRestDaySubtitile3": "لاغری بدون ورزش",
+    "foodRequerementDialogProteinRestDayText6": "اگر به اندازه کافی پروتئین بخورید میتوانید بدون ورزش و با حداقل کاهش ماهیچه ، چربی کم کنید.",
+    "foodRequerementDialogProteinRestDayText7": "برای سرعت بیشتر کاهش چربی و تناسب اندام و همچنین افزایش ماهیچه میتوانید ورزش پرورش اندام یا دیگر ورزش ها مانند بوکس یا شنا را انجام دهید",
+    "foodRequerementDialogProteinTrainingDayText1": "میل کردن غذای پروتئینی همراه با تمرین مقاومتی به ساخت ماهیچه کمک می‌کند. افزایش حجم ماهیچه باعث بالا رفتن نرخ سوخت‌وساز، کاهش سریع‌تر وزن، افزایش اعتماد به نفس و بهبود تناسب اندام می‌شود.",
+    "foodRequerementDialogProteinTrainingDayText2": "برای ساخت ماهیچه، مصرف پروتئین با کیفیت حاوی لوسین که سریع هضم و جذب می‌شود ضروری است. برای حداکثر عضله‌سازی باید آستانه لوسین (۲ تا ۳ گرم در هر وعده) تأمین شود.",
+    "foodRequerementDialogProteinTrainingDayText3": "مواد غذایی زیر حاوی ۲ تا ۳ گرم لوسین هستند و مصرف آن‌ها بعد از تمرین همراه با کربوهیدرات برای حداکثر عضله‌سازی توصیه می‌شود:",
+    "foodRequerementDialogProteinTrainingDaySubtitle1": "آستانه لوسین در پروتئین",
+    "foodRequerementDialogProteinTrainingDaySubtitle2": "اهمیت پروتئین بعد تمرین",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine1": "۶۰۰ میلی‌لیتر شیر کامل",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine2": "۸۵ گرم پنیر چدار",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine3": "۴۵۰ گرم ماست ساده",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine4": "۴ عدد تخم‌مرغ (یک زرده و ۴ سفیده توصیه می‌شود)",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine5": "۸۵ گرم گوشت قرمز یا گوشت پرنده",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine6": "۱۰۰ گرم ماهی",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine7": "۱۷ گرم پودر پروتئین وی",
+    "foodRequerementDialogProteinTrainingDayText3SampleLucine8": "۴۰۰ گرم لوبیا یا عدس پخته‌شده",
+    "foodRequerementDialogProteinTrainingDayText4": "شیر حاوی آب، پروتئین، کربوهیدرات و مواد مغذی است و گزینه‌ای عالی برای ریکاوری عضلات بعد از تمرین محسوب می‌شود؛ زیرا به تأمین ذخیره گلیکوژن، ساخت ماهیچه و آب‌رسانی بدن کمک می‌کند. نوع شیر (کم‌چرب، پرچرب، شیر قهوه، شیر کاکائو یا طعم‌دار) تفاوتی ندارد.",
+    "foodRequerementDialogProteinTrainingDayText5": "برای ریکاوری و عضله‌سازی در پایان شب، مواد غذایی حاوی کازئین مانند شیر، ماست یا مکمل مصرف کنید. پروتئین باعث احساس سیری طولانی‌تر و خواب عمیق‌تر می‌شود.",
+    "foodRequerementDialogProteinTrainingDayText6": "پروتئین‌ها از آمینواسیدها ساخته شده‌اند. یازده نوع آمینواسید در بدن ساخته می‌شوند (آمینواسیدهای غیرضروری) و نه نوع دیگر باید از طریق رژیم غذایی تأمین شوند (آمینواسیدهای ضروری).",
+    "foodRequerementDialogProteinTrainingDayText7": "پروتئین‌ها به طور مداوم در بدن تجزیه می‌شوند (تجزیه پروتئین عضله) و آمینواسیدها نیز به طور مداوم در ساخت پروتئین‌ها به کار می‌روند (سنتز پروتئین عضله).",
+    "foodRequerementDialogFatRestDayText1": "مقدار مصرف چربی بر اساس توصیه سازمان‌های بهداشت جهانی، رژیم مدیترانه‌ای و سبک آشپزی ایرانی، حدود ۳۵ درصد انرژی روزانه است. کاهش مصرف چربی به کاهش وزن، کاهش شاخص توده بدنی و دور کمر و افزایش اعتماد به نفس کمک می‌کند. بیشترین میزان چربی‌سوزی بدن شما در محدوده ۶۲ تا ۶۳ درصد VO2max رخ می‌دهد.",
+    "foodRequerementDialogFatRestDayText2": "چربی بیشترین مقدار انرژی را در بین مواد غذایی دارد و مصرف زیاد آن به‌راحتی اتفاق می‌افتد. برای مثال، انرژی یک قاشق غذاخوری روغن معادل ۹ کیلوکالری ضربدر ۱۵ گرم یا ۱۳۵ کیلوکالری است؛ بنابراین به مقدار روغن مصرفی خود دقت کنید.",
+    "foodRequerementDialogFatRestDaySubtitle1": "انواع چربی",
+    "foodRequerementDialogFatRestDayText3": "۳۵ درصد انرژی روزانه باید از چربی‌ها تأمین شود که شامل سه بخش زیر است:",
+    "foodRequerementDialogFatRestDayText4": "۱۰ درصد چربی اشباع (معمولاً جامد یا نیمه‌جامد در دمای اتاق): روغن‌های گیاهی مانند پالم، نارگیل و کاکائو و همچنین چربی‌های حیوانی مانند دنبه، چربی بین بافت ماهیچه و گوشت، کره و موارد مشابه.",
+    "foodRequerementDialogFatRestDayText5": "چربی‌های موجود در محصولات لبنی به دلیل ساختار مولکولی خاص چربی شیر، کلسترول خون را افزایش نمی‌دهند و خطر بیماری قلبی عروقی ندارند. همچنین بخشی از چربی غیراشباع آن به دلیل ترکیب با کلسیم جذب بدن نمی‌شود.",
+    "foodRequerementDialogFatRestDayText6": "حداکثر ۱۲ درصد چربی غیراشباع تک‌زنجیره‌ای (معمولاً مایع در دمای اتاق): روغن زیتون، روغن کلزا، روغن آفتابگردان، بادام‌زمینی، روغن فندق و بادام، آووکادو، زیتون، آجیل و دانه‌ها.",
+    "foodRequerementDialogFatRestDayText7": "حداقل ۱۳ درصد چربی غیراشباع چندزنجیره‌ای (معمولاً مایع در دمای اتاق): امگا ۳ نوع EPA و DHA عمدتاً در ماهی‌های چرب مانند قزل‌آلا، سالمون و خال‌مخالی و به مقدار کمتر در ماهی تن وجود دارد. حداقل هفته‌ای یک بار ماهی چرب مصرف کنید. روغن کلزا با نسبت ۲ به ۱ امگا ۶ به امگا ۳ و نقطه دود ۱۷۰ درجه سانتی‌گراد برای پخت‌وپز مناسب است.",
+    "foodRequerementDialogFatRestDayText8": "چربی منبع مهمی از انرژی برای ورزش است. نسبت مصرف چربی و کربوهیدرات در بدن به شدت و مدت زمان فعالیت، سطح آمادگی جسمانی و رژیم غذایی قبل از ورزش بستگی دارد.",
+    "foodRequerementDialogFatRestDaySubtitle2": "چربی و سلامت قلب",
+    "foodRequerementDialogFatRestDayText9": "سطح بالای کلسترول LDL یکی از عوامل اصلی بیماری‌های قلبی عروقی است. جایگزین کردن بخشی از چربی‌های اشباع با چربی‌های غیراشباع به کاهش کلسترول LDL و کاهش خطر بیماری قلبی کمک می‌کند.",
+    "foodRequerementDialogFatRestDayText10": "اسیدهای چرب امگا ۳ باعث کاهش التهاب و کاهش خطر بیماری‌های قلبی عروقی و سایر بیماری‌های مزمن می‌شوند.",
+    "foodRequerementDialogFatRestDayText11": "مصرف مکمل امگا ۳ می‌تواند به بهبود سازگاری عضلات، متابولیسم انرژی، ریکاوری عضلات و پیشگیری از آسیب کمک کند.",
+    "vo2maxCalculatorText1": "در طول تمرینات با شدت کم، چربی سوخت اصلی است، در حالی که کربوهیدرات سوخت اصلی در تمرینات با شدت بالا است.",
+    "vo2maxCalculatorText2": "با این حال، اکسیداسیون کل چربی بر حسب گرم با افزایش شدت ورزش از کم به زیاد افزایش می‌یابد، حتی اگر درصد سهم چربی کاهش یابد. این به این دلیل است که کل انرژی مصرفی افزایش می‌یابد، یعنی کالری بیشتری در دقیقه می‌سوزانید.",
+    "vo2maxCalculatorText3": "به طور متوسط، بالاترین نرخ اکسیداسیون چربی (\"fat max\") در ۶۲-۶۳٪ VO2max رخ می‌دهد.",
+    "vo2maxCalculatorText4": "هر چه شدت تمرین بیشتر باشد، سرعت شکسته شدن گلیکوژن ماهیچه بیشتر می‌شود.",
+    "vo2maxCalculatorText5": "برای محاسبه مقدار بهینه و بهترین سرعت برای حداکثر چربی‌سوزی ابتدا تست کوپر را اجرا می‌کنیم و سپس مقدار بهینه مسافتی که باید با سرعت تقریباً ثابت در زمان کاردیو راه بروید را محاسبه می‌کنیم.",
+    "vo2maxCalculatorText6": "به مدت ۱۲ دقیقه روی تردمیل یا زمین صاف حداکثر مسافتی که می‌توانید، بدوید و سپس مسافت را به متر برای محاسبه VO2max در زیر وارد کنید.",
+    "vo2maxCalculatorLabelText": "مسافت طی شده به متر",
+    "vo2maxCalculatorHintText": "مسافت طی شده در ۱۲ دقیقه به متر",
+    "vo2maxCalculatorVo2maxRate": "مقدار VO2max شما {vo2max} میلی‌لیتر اکسیژن به ازای هر کیلوگرم وزن بدن در دقیقه (mL/kg/min) می‌باشد",
+    "@vo2maxCalculatorVo2maxRate": {
+        "placeholders": {
+            "vo2max": {
+                "type": "double",
+                "format": "decimalPatternDigits",
+                "optionalParameters": {
+                    "decimalDigits": 2
+                }
+            }
+        }
+    },
+    "vo2maxCalculatorVo2maxEfficientDistance": "مسافت بهینه شما در 62 درصد VO2max در هر دقیقه {maxDistanceInMeterInOneMinues} متر میباشد",
+    "@vo2maxCalculatorVo2maxEfficientDistance": {
+        "placeholders": {
+            "maxDistanceInMeterInOneMinues": {
+                "type": "double",
+                "format": "decimalPatternDigits",
+                "optionalParameters": {
+                    "decimalDigits": 1
+                }
+            }
+        }
+    },
+    "vo2maxCalculatorVo2maxRecommandation": "برای حداکثر کردن سرعت چربی سوزی بعد از تمرین مقاومتی بین 15 تا 30 دقیقه تمرین هوازی انجام دهید",
+    "vo2maxCalculatorVo2maxDistance": "در {minutes} دقیقه مسافت {distance} متر را با سرعت متوسط طی کنید",
+    "@vo2maxCalculatorVo2maxDistance": {
+        "placeholders": {
+            "minutes": {
+                "type": "int"
+            },
+            "distance": {
+                "type": "int"
+            }
+        }
+    },
+    "timeRestrictedText1": "فستینگ یا غذا خوردن با محدودیت زمانی، نوعی روزه‌داری متناوب است که شامل یک بازه روزه‌داری ۱۲ تا ۱۶ ساعته و یک بازه غذا خوردن ۸ تا ۱۲ ساعته در روز می‌شود.",
+    "timeRestrictedText2": "تنظیم وعده‌های غذایی بر اساس ریتم شبانه‌روزی (ساعت زیستی بدن) به بهبود عملکرد بدن، سلامت و کاهش وزن کمک می‌کند.",
+    "timeRestrictedText3": "مطالعات نشان داده‌اند که اختلال در ریتم شبانه‌روزی می‌تواند بر هورمون‌های کنترل‌کننده اشتها، مصرف انرژی و قند خون اثر منفی بگذارد.",
+    "timeRestrictedSubtitle1": "مناسبترین زمان فستینگ",
+    "timeRestrictedText4": "خوردن از ساعت ۸ صبح تا ۲ ظهر می‌تواند مفید باشد و اشتها و مصرف غذا را کاهش دهد.",
+    "timeRestrictedText5": "یک مطالعه نشان داده است که غذا خوردن در یک بازه ۶ ساعته پیش از ساعت ۳ بعدازظهر، گرسنگی و عوامل خطر دیابت نوع ۲ را در مردان مبتلا به پیش‌دیابت کاهش داده است.",
+    "timeRestrictedSubtitle2": "نکات قابل توجه در رژيم ساعات محدود",
+    "timeRestrictedText6": "در فستینگ، به دلیل محدودیت زمانی غذا خوردن، احتمال دریافت کالری کمتر و کاهش وزن وجود دارد و همچنین با تنظیم وعده‌ها بر اساس ساعت زیستی بدن، از دیر خوردن شام جلوگیری می‌شود.",
+    "timeRestrictedText7": "بیشتر مطالعات فستینگ روی حیوانات انجام شده و شواهد انسانی محدود است؛ تنها تعداد کمی از مطالعات، کاهش وزن را در انسان‌ها نشان داده‌اند.",
+    "timeRestrictedText8": "در بازه غذا خوردن، مطابق نیاز انرژی و درشت‌مغذی‌های خود رژیم بگیرید.",
+    "timeRestrictedText9": "فستینگ‌های رایج شامل ۱۲ ساعت روزه‌داری و ۱۲ ساعت غذا خوردن است و می‌توانید تا ۱۶ ساعت روزه‌داری را افزایش دهید.",
+    "timeRestrictedText10": "نوشیدن مایعات مانند آب و دمنوش در تمام طول شبانه‌روز مجاز است.",
+    "introductionSkipText": "بعدا میبینم",
+    "introductionDoneText": "دیدم",
+    "introductionNextText": "جلو",
+    "introductionSingleIntroScreen1TitleText": "لاغری سریع",
+    "introductionSingleIntroScreen1DescriptionText": "سریع‌ترین روش لاغری بدون دارو در جهان",
+    "introductionSingleIntroScreen1BannerText": "سریع",
+    "introductionSingleIntroScreen2TitleText": "تناسب اندام",
+    "introductionSingleIntroScreen2DescriptionText": "کاهش چربی و جذابیت اندام شما",
+    "introductionSingleIntroScreen3TitleText": "پشتیبانی",
+    "introductionSingleIntroScreen3DescriptionText": "پشتیبانی از سفره ایرانی",
+    "foodRequerementDialogAgeRelatedFoodConsidarationTitle": "تغذیه بزرگسالان",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText1": "با افزایش سن، عملکرد ورزشی به‌تدریج کاهش می‌یابد؛ این کاهش معمولاً از دهه ۲۰ یا ۳۰ زندگی آغاز می‌شود و هر دهه حدود ۷٪ کمتر می‌شود. علت اصلی این کاهش، افت عملکرد قلب، ریه، کاهش توده و قدرت عضلات و استخوان‌هاست. زنان بیشتر از مردان دچار این تغییرات می‌شوند. کاهش هورمون‌های رشد، تستوسترون و استروژن نقش مهمی دارد و باعث افزایش چربی بدن و کاهش عضله می‌شود.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText2": "توده استخوانی از میانه دهه ۳۰ کاهش می‌یابد و خطر پوکی استخوان و شکستگی در زنان بالای ۵۰ سال و مردان بالای ۶۰ سال افزایش می‌یابد. انعطاف‌پذیری بدن نیز کمتر شده و ریکاوری و بهبود آسیب‌ها زمان بیشتری می‌برد. برای کاهش آسیب، تمرینات کم‌برخورد و خواب کافی توصیه می‌شود.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText3": "در زنان، کاهش عملکرد ورزشی زودتر از مردان و معمولاً از ۵۵ تا ۶۰ سالگی آغاز می‌شود، در حالی که در مردان این کاهش از ۷۰ تا ۷۵ سالگی شروع می‌شود. علت اصلی این تفاوت، تغییرات هورمونی دوران پیش‌یائسگی و یائسگی است که باعث کاهش توده عضلانی، افزایش چربی زیرپوستی و احشایی و تغییر توزیع چربی به سمت شکم می‌شود. این تغییرات خطر بیماری‌های قلبی، دیابت نوع ۲ و پوکی استخوان را افزایش می‌دهد.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText4": "دوران پیش‌یائسگی معمولاً از ۴۵ سالگی آغاز می‌شود و با کاهش هورمون‌های استروژن و پروژسترون همراه است. این تغییرات باعث کاهش توده عضلانی، افزایش چربی شکمی، کاهش تراکم استخوان و کاهش حساسیت به انسولین می‌شود. همچنین، علائمی مانند گرگرفتگی، تغییرات خلقی و اختلال خواب شایع است.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText5": "یائسگی به خودی خود باعث افزایش وزن نمی‌شود، اما نحوه ذخیره و توزیع چربی بدن را تغییر می‌دهد و چربی بیشتر در ناحیه شکم تجمع می‌یابد. علائمی مانند خستگی و کم‌خوابی می‌تواند منجر به انتخاب‌های غذایی ناسالم و کاهش فعالیت بدنی شود. هورمون‌درمانی جایگزین (HRT) می‌تواند به کاهش تجمع چربی شکمی و حفظ توده عضلانی کمک کند، اما اگر کالری دریافتی بیش از نیاز باشد، افزایش وزن رخ می‌دهد.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText6": "کاهش توده عضلانی و عملکرد با افزایش سن اجتناب‌ناپذیر نیست. با انجام منظم تمرینات مقاومتی و هوازی، تغذیه مناسب و ریکاوری کافی می‌توان بسیاری از اثرات منفی پیری را کاهش داد یا حتی معکوس کرد. گرم‌کردن پویا و ریکاوری فعال برای پیشگیری از آسیب و حفظ انعطاف‌پذیری اهمیت دارد.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText7": "تمرینات مقاومتی حداقل دو بار در هفته می‌تواند از سارکوپنی (کاهش عضله) جلوگیری کند و حتی باعث افزایش توده عضلانی و قدرت شود. این تمرینات سطح هورمون‌های رشد و تستوسترون را افزایش داده و به بهبود ترکیب بدن، تراکم استخوان و کنترل قند خون کمک می‌کند.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText8": "تمرینات هوازی با شدت بالا (HIIT) نسبت به تمرینات هوازی ملایم، تأثیر بیشتری در بهبود ظرفیت هوازی (VO2max)، کنترل قند خون و کاهش چربی بدن دارند. با این حال، تمرینات هوازی با شدت متوسط نیز برای حفظ سلامت قلب و عروق مفید هستند.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText9": "ریکاوری برای ورزشکاران مسن اهمیت بیشتری دارد. پس از تمرینات شدید یا مقاومتی، زمان ریکاوری باید افزایش یابد. همچنین، استفاده از دوره‌های تمرینی کوتاه‌تر (مثلاً دو هفته تمرین و یک هفته ریکاوری) و ریکاوری فعال مانند پیاده‌روی یا شنا در روزهای استراحت توصیه می‌شود.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText10": "ورزش‌های مکمل مانند وزنه‌برداری و یوگا به حفظ توده عضلانی و انعطاف‌پذیری کمک می‌کنند و خطر آسیب‌های ناشی از استفاده بیش از حد را کاهش می‌دهند. خواب کافی و عادات خواب سالم برای ریکاوری و عملکرد بهتر ضروری است.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText11": "با افزایش سن، پاسخ عضلات به پروتئین و ورزش کمتر می‌شود و پدیده‌ای به نام مقاومت آنابولیک رخ می‌دهد. این موضوع باعث کاهش ساخت عضله و افزایش خطر کاهش توده عضلانی می‌شود. برای پیشگیری، مصرف پروتئین کافی و انجام منظم تمرین مقاومتی ضروری است.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText12": "افراد بالای ۶۵ سال برای حفظ عضله و پیشگیری از سارکوپنی به پروتئین بیشتری نسبت به جوانان نیاز دارند. مقدار توصیه‌شده برای افراد غیرفعال ۱ تا ۱.۲ گرم به ازای هر کیلوگرم وزن بدن و برای افراد فعال ۱.۲ تا ۱.۵ گرم است. مصرف پروتئین در وعده‌های مساوی در طول روز مؤثرتر از مصرف یک‌باره آن است.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText13": "مصرف ۴۰ گرم پروتئین یا ۰.۴ گرم به ازای هر کیلوگرم وزن بدن در هر وعده، بیشترین تحریک ساخت عضله را در سالمندان ایجاد می‌کند. این مقدار بیشتر از نیاز جوانان است. مصرف پروتئین بلافاصله بعد از تمرین، ساخت عضله را افزایش می‌دهد.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText14": "مصرف پروتئین با کیفیت بالا شامل تمام آمینواسیدهای ضروری (مانند شیر، لبنیات، تخم‌مرغ، گوشت، ماهی، سویا، کینوا و دانه‌ها) اهمیت دارد. گیاه‌خواران باید ترکیبی از منابع گیاهی مانند حبوبات و غلات مصرف کنند تا همه آمینواسیدهای ضروری تأمین شود.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText15": "مصرف میان‌وعده پروتئینی قبل از خواب (مانند شیر، ماست یونانی یا نوشیدنی حاوی پروتئین) می‌تواند ساخت عضله را در سالمندان افزایش دهد و اثر تمرین مقاومتی را تقویت کند.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText16": "با افزایش سن، توانایی ذخیره و استفاده از کربوهیدرات به صورت گلیکوژن در کبد و عضلات حفظ می‌شود و نیاز کربوهیدراتی افراد مسن مشابه جوانان است. اما با کاهش فعالیت بدنی و مصرف انرژی روزانه، مقدار کربوهیدرات مورد نیاز ممکن است کمتر شود.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText17": "مقدار کربوهیدرات مصرفی باید متناسب با حجم و شدت تمرین و وزن بدن باشد. هرچه وزن و حجم تمرین بیشتر باشد، نیاز به کربوهیدرات نیز بیشتر است. عضلات سالمندان نسبت به آسیب ناشی از تمرینات اکسنتریک (مانند پایین آوردن وزنه یا دویدن سرازیری) حساس‌تر هستند و ترمیم آن‌ها زمان بیشتری می‌برد.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText18": "برای ریکاوری بهتر پس از تمرین، به‌ویژه اگر کمتر از ۸ ساعت تا تمرین بعدی زمان دارید، مصرف ۱ تا ۱.۲ گرم کربوهیدرات به ازای هر کیلوگرم وزن بدن در هر ساعت طی ۴ ساعت اول توصیه می‌شود. افزودن پروتئین به وعده پس از تمرین به ترمیم عضله و ذخیره گلیکوژن کمک می‌کند.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText19": "رژیم کم‌کربوهیدرات برای کاهش وزن در ورزشکاران مسن مزیت خاصی نسبت به سایر رژیم‌ها ندارد و مهم‌ترین عامل کاهش وزن، ایجاد کسری کالری و تداوم رژیم است. محدودیت شدید کربوهیدرات می‌تواند عملکرد ورزشی را در تمرینات با شدت متوسط و بالا کاهش دهد.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText20": "مطالعات کمی روی ورزشکاران زن و سالمند درباره رژیم کم‌کربوهیدرات انجام شده و شواهدی مبنی بر بهبود عملکرد وجود ندارد. زنان به طور طبیعی توانایی بالایی در اکسیداسیون چربی دارند و محدودیت کربوهیدرات برای آن‌ها سودی ندارد.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText21": "دوره‌بندی مصرف کربوهیدرات (مصرف کمتر در تمرینات سبک و بیشتر در تمرینات شدید) می‌تواند برای ورزشکاران حرفه‌ای مفید باشد و به سازگاری بهتر بدن با تمرینات کمک کند.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText22": "با افزایش سن، احساس تشنگی و میزان تعریق کاهش می‌یابد و عملکرد کلیه‌ها نیز ضعیف‌تر می‌شود؛ بنابراین سالمندان بیشتر در معرض کم‌آبی بدن قرار دارند. توصیه می‌شود در ۲۴ ساعت قبل از تمرین آب کافی بنوشید و ۲ تا ۴ ساعت قبل از ورزش، به ازای هر کیلوگرم وزن بدن ۵ تا ۱۰ میلی‌لیتر آب مصرف کنید. در طول تمرین، بهتر است طبق برنامه آب بنوشید و فقط به احساس تشنگی اکتفا نکنید.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText23": "برای پیشگیری از کم‌آبی و پرآبی، مصرف ۴۰۰ تا ۸۰۰ میلی‌لیتر آب در هر ساعت تمرین توصیه می‌شود. پس از تمرین، به ازای هر کیلوگرم وزنی که از دست داده‌اید، ۱.۲ تا ۱.۵ لیتر آب بنوشید. وزن‌کشی قبل و بعد از تمرین به شما کمک می‌کند میزان آب مورد نیاز را بهتر تنظیم کنید.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText24": "مکمل امگا ۳ می‌تواند به کاهش التهاب و پیشگیری از کاهش عضله در سالمندان کمک کند. مصرف روزانه ۴۵۰ تا ۹۰۰ میلی‌گرم امگا ۳ یا دو وعده ماهی (یک وعده ماهی چرب) در هفته توصیه می‌شود. منابع خوب امگا ۳ شامل ماهی‌های چرب، بذر کتان، تخم کدو، گردو و دانه چیا هستند.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText25": "مصرف مکمل کراتین همراه با تمرین مقاومتی باعث افزایش قدرت، توده عضلانی و عملکرد بدنی سالمندان می‌شود. دوز معمول ۵ گرم در روز است و کراتین مونوهیدرات بهترین و مطمئن‌ترین نوع آن است.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationRestDayText26": "ویتامین D برای سلامت استخوان، عضله، سیستم ایمنی و عملکرد قلب و مغز ضروری است. با افزایش سن، کمبود ویتامین D شایع‌تر می‌شود. منابع غذایی محدودند (تخم‌مرغ، جگر، ماهی چرب، لبنیات غنی‌شده)، بنابراین مصرف مکمل روزانه ۱۰ میکروگرم (۴۰۰ واحد) برای سالمندان توصیه می‌شود. در صورت کمبود شدید، دوز بالاتر طبق نظر پزشک مصرف شود.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText1": "قدرت و توان عضلانی با افزایش سن سریع‌تر کاهش می‌یابد، مگر اینکه تمرینات مقاومتی (وزنه یا کششی) به برنامه ورزشی اضافه شود. کاهش توده عضله قلب نیز باعث افت عملکرد قلب و ریه می‌شود.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText2": "در افراد کم‌تحرک، حجم ضربه‌ای قلب، حداکثر ضربان قلب و توانایی استفاده از اکسیژن (VO2max) از میانه دهه ۲۰ هر دهه حدود ۱۰٪ کاهش می‌یابد. این کاهش باعث افت استقامت و عملکرد ورزشی می‌شود. ریکاوری بعد از تمرینات سخت طولانی‌تر شده و احتمال آسیب‌های مزمن بیشتر می‌شود؛ بنابراین باید شدت و حجم تمرینات را با افزایش سن تنظیم و به ریکاوری توجه بیشتری کرد.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText3": "در دوران پیش‌یائسگی و یائسگی، کاهش هورمون‌های زنانه باعث کاهش ساخت عضله و افزایش تجزیه عضلات می‌شود. همچنین، حساسیت بدن به ورزش و پروتئین کمتر می‌شود و ریکاوری کندتر خواهد بود. برای حفظ سلامت عضلات و استخوان‌ها، انجام تمرینات مقاومتی و مصرف پروتئین کافی اهمیت بیشتری دارد.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText4": "تمرینات مقاومتی با تکرار کم و وزنه سنگین باعث افزایش قدرت، توده عضلانی، تراکم استخوان و کارایی متابولیک می‌شود. در زنان یائسه، این تمرینات به بهبود ترکیب بدن، کاهش چربی شکمی و کنترل قند خون کمک می‌کند.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText5": "تمرینات هوازی با شدت بالا (HIIT) و تمرینات تناوبی بیشترین تأثیر را در افزایش VO2max و بهبود سلامت قلب دارند. نسبت ۲ به ۱ (۲۰ ثانیه فعالیت، ۱۰ ثانیه استراحت) برای بهبود سیستم قلبی-عروقی مؤثر است. ترکیب انواع تمرینات و شدت‌ها بهترین نتیجه را دارد.",
+    "foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText6": "افراد فعال در سنین بالا می‌توانند سطح آمادگی جسمانی بالاتری نسبت به افراد کم‌تحرک جوان داشته باشند. تمرین منظم هوازی و مقاومتی باعث حفظ قدرت، استقامت و ظرفیت هوازی می‌شود و روند افت عملکرد با افزایش سن را به تأخیر می‌اندازد.",
+    "foodInputChatButtonLoadingText1": "در حال پردازش...",
+    "foodInputChatButtonLoadingText2": "لطفاً منتظر بمانید",
+    "privacyDialogTitle": "حریم خصوصی",
+    "privacyDialogSubtitle1": "چگونه از اطلاعات شما حراست میکنیم؟",
+    "privacyDialogSubtitle2": "چه اطلاعاتی از شما دریافت می‌شود؟",
+    "privacyDialogSubtitle3": "چگونه از اطلاعات شما محافظت می‌شود؟",
+    "privacyDialogSubtitle4": "چه استفاده‌ای اطلاعات شما خواهد شد؟",
+    "privacyDialogSubtitle5": "چه کسانی به اطلاعات شما دسترسی دارند؟",
+    "privacyDialogText1": "امروزه با گسترش جریان اطلاعات و استفاده روزمره کاربران از اینترنت و وسایل ارتباطی، حریم خصوصی کاربران به یکی از جدی‌ترین دغدغه‌ها تبدیل شده‌است. نگرانی بسیاری از مشتریان، محفوظ ماندن اطلاعات شخصی همچنین شماره موبایل، نام و نام خانوادگی و ایمیل است که برای ثبت نام و لاگین شدن به ما می‌سپارند. باید گفت ما نیز اهمیت این موضوع را درک می‌کنیم و حریم خصوصی کاربران برای ما اهمیت بسیاری دارد. در ذیل سیاست حفظ حریم خصوصی و محرمانگی اطلاعات کاربران را ملاحظه خواهیدکرد.",
+    "privacyDialogText2": "برای ثبت نام در اپلیکشین تندرست لازم است تا اطلاعاتی مانند نام، تلفن همراه، تاریخ تولد و قد و وزن و اندازه ترکیب بدنی خود را در اختیار ما قرار دهید. دریافت مشخصات فردی شما نیز صرفاً برای ثبت نام در سایت، محاسبات تغذیه شما مانند انرژی مورد نیاز روزانه، ارسال اعلان‌های مهم و باخبر کردن شما از رویدادها و تخفیف‌های ویژه، استفاده از خدمات تندرست است.",
+    "privacyDialogText3": "با وجود این‌که امنیت به صورت نسبی تعریف شده است اما در طراحی اپلیکیشن تندرست سعی شده که از بالاترین سطوح امنیتی سخت‌افزاری و نرم‌افزاری در نظر گرفته شود. در زمان ثبت نام، درخواست کد اعتبار، دریافت داده های کاربر، گزارشات و غیره، تمامی در خواست‌ها و خدمات بر روی سرورهای ایمن ما ذخیره و توسط فایروال‌های مستحکم محافظت خواهند شد. اطلاعات شخصی شما نیز به صورت رمزنگاری‌شده در بستر امن HTTPS به وب‌سایت ما منتقل و برای تعاملات بعدی نگهداری خواهند شد.",
+    "privacyDialogText4": "چه از نظر قانونی چه از نظر اخلاقی ما موظف به صیانت از اطلاعات و پرونده‌های شما هستیم. اطلاعات شخصی شما نیز صرفاً جهت تعاملات بعدی به صورت ایمن در پایگاه داده نگهداری می‌شوند تا در درخواست‌های آینده بتوانید به راحتی از نرم افزار استفاده کنید . ایمیل‌ها و پیام‌های تبلیغاتی بی مورد را برای کاربران‌مان ارسال نخواهیم کرد.",
+    "privacyDialogText5": "برای ارائه پشتیبانی بهتر و خدمات با کیفیت‌تر بخش پشتیبانی به برخی از اطلاعات شما دسترسی دارند. تمامی اطلاعات شخصی شما نزد ما محفوظ خواهد ماند و در اختیار افراد یا سازمان‌های دیگری قرار نخواهد گرفت. بدیهی است که مراجع قانونی با ارائه حکم دادگاه قادرند به این اطلاعات دسترسی داشته باشند. به طور کلی ما موظفیم از اطلاعات شما حفاظت و حراست نماییم.",
+    "privacyDialogText6": "امیدواریم بهترین استفاده را از نرم افزار تندرست داشته باشید",
+    "aiChatButtonTitle": "دکمه را نگه دارید و نام غذاهایی که خوردید خلاصه و بدون مکث بگویید",
+    "aiChatButtonSubTitle": "یا آیکن کیبورد را لمس کنید و نام غذاهایی که خوردید تایپ نمایید.",
+    "paymentDialogTitle": "ارتقا اشتراک",
+    "paymentDialogOneMonth": "ارتقا به برنزی",
+    "paymentDialogThreeMonth": "ارتقا به نقره‌ای",
+    "paymentDialogSixMonth": "ارتقا به طلایی",
+    "paymentDialogIrCurrency": "هزار تومان",
+    "paymentDialogText1": "سریع‌ترین روش لاغری بدون دارو",
+    "paymentDialogText2": "پیشگیری از بیماری‌های مرتبط با چاقی",
+    "paymentDialogText3": "تغذیه ورزشی و غیرورزشی",
+    "paymentDialogText4": "بیش از 2 میلیون دستور پخت",
+    "paymentDialogOneMonthText5": "یک ماه",
+    "paymentDialogThreeMonthText5": "یک ماه رایگان (سه ماه)",
+    "paymentDialogSixMonthText5": "دو ماه رایگان (شش ماه)",
+    "paymentDialogText6": "مطابق سفره ایرانی",
+    "paymentDialogText7": "با پشتیبانی تلفنی مربی",
+    "paymentDialogSubmitButtonLabel": "ادامه",
+    "profileRouteTansactionDialogTitle": "لیست تراکنش‌ها",
+    "profileRouteTansactionListTileID": "شناسه",
+    "profileRouteTansactionListTilePaidAmount": "مبلغ پرداختی",
+    "profileRouteTansactionListTilePaymentMethod": "روش پرداخت",
+    "profileRouteTansactionListTilePurchaseDate": "تاریخ خرید",
+    "profileRouteTansactionListTileExpireDate": "تاریخ اتمام",
+    "profileRouteTansactionListTileUpdatedAt": "تاریخ بروزرسانی",
+    "profileRouteTansactionListTileSubscriptionType": "نوع اشتراک",
+    "profileRouteTansactionListTileCafeBazzarOrderID": "شناسه کافه بازار",
+    "profileRouteTansactionListTileFoodRequestLimit": "تعداد غذای قابل ثبت",
+    "profileRouteTansactionListTileNumberOfRequestedFoods": "تعداد غذای ثبت شده",
+    "profileRouteTansactionListTileActive": "فعال",
+    "searchRouteMicrophonePermissionMessage": "لطفا برای گفتن غذاها دسترسی میکرفن دستگاه را بدهید",
+    "scheduleMessageTitle": "یادآوری ثبت وعده غذایی",
+    "scheduleMessageBody": "لطفا وعده‌های غذایی امروز خود را ثبت کنید 👏",
+    "scheduleMessageHint": "وعده‌های غذایی...",
+    "reviewDialogTitle": "نظر بدهید 👏",
+    "reviewDialogText": "کاربر محترم برای حمایت و بهبود امکانات پلتفرم تندرست امتیاز 5 ستاره و نظر سازنده خود را بدهید",
+    "reviewDialogSubmitButtonText": "ثبت نظر",
+    "homeWidgetDialogTitle": "اضاف کردن Home Widget",
+    "homeWidgetDialogText": "برای صرفه‌جویی در زمان Home Widget را به صفحه اصلی اضافه نمایید",
+    "homeWidgetDialogSubmitButtonText": "اضافه کردن",
+    "paymentDialogCarouselTitle": "تصاویر ما"
 }

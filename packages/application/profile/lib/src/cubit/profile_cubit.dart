@@ -1,26 +1,61 @@
 import 'dart:async';
 import 'dart:io';
 
-
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:image_repository/image_repository.dart';
+import 'package:payment_repository/payment.dart';
 
 import 'package:profile/profile.dart';
+import 'package:profile_app/src/cubit/time_zone_helper.dart';
 import 'package:tandorost_components/tandorost_components.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  ProfileCubit(this._profile, this._imageRepository) : super(ProfileState()) {
+  ProfileCubit(
+    this._profile,
+    this._imageRepository,
+    this._paymentRepository,
+    this.flutterLocalNotificationsPlugin,
+  ) : super(ProfileState()) {
     readProfile();
     readImageProfile();
+    isReminderEnabled();
+    tz.initializeTimeZones();
+    userProfileSubscription = _profile.userProfileStream.listen((profile) {
+      if (profile == null) return;
+      _enhancedEmit(
+        state.copyWith(
+          name: profile.fullName,
+          phoneNumber: profile.phoneNumber,
+          changeWeightSpeed: profile.changeWeightSpeed,
+          isTimeRestrictedEating: profile.isTimeRestrictedEating,
+          userProfile: profile,
+          language: profile.language,
+        ),
+      );
+    });
   }
   final ProfileRepository _profile;
   final ImageRepository _imageRepository;
+  final PaymentRepository _paymentRepository;
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  late final StreamSubscription<UserProfile?> userProfileSubscription;
+
+  @override
+  Future<void> close() async {
+    await userProfileSubscription.cancel();
+    return super.close();
+  }
 
   void readImageProfile() async {
-    emit(state.copyWith(readProfileImageStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(readProfileImageStatus: AsyncProcessingStatus.loading),
+    );
     try {
       final profileImage = await _imageRepository.readUserProfileImage();
       FileDetail? actualImage;
@@ -28,29 +63,66 @@ class ProfileCubit extends Cubit<ProfileState> {
         actualImage = await _imageRepository.readImage(profileImage.last);
       }
 
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readProfileImageStatus: AsyncProcessingStatus.success,
           profileImage: actualImage,
         ),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readProfileImageStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
-          readProfileImageStatus: AsyncProcessingStatus.serverConnectionError,
+          readProfileImageStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
+  void isReminderEnabled() async {
+    final isEnable = await _profile.isNotificationReminderSettingEnabled;
+    _enhancedEmit(
+      state.copyWith(isReminderNotificationPermissionGranted: isEnable),
+    );
+  }
+
+  void readSubscriptions() async {
+    _enhancedEmit(
+      state.copyWith(readSubscriptionStatus: AsyncProcessingStatus.loading),
+    );
+    try {
+      final subscriptions = await _paymentRepository.readSubscriptionPayments();
+
+      _enhancedEmit(
+        state.copyWith(
+          readSubscriptionStatus: AsyncProcessingStatus.success,
+          subscriptions: subscriptions,
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          readSubscriptionStatus: AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          readSubscriptionStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
   }
 
   void updateImageProfile(FileDetail profileImage) async {
-    emit(state.copyWith(updatingProfileStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(updatingProfileStatus: AsyncProcessingStatus.loading),
+    );
     try {
       final userImage = UserImage(
         gallaryTag: GallaryTag.profileImage,
@@ -63,59 +135,54 @@ class ProfileCubit extends Cubit<ProfileState> {
         updatedProfileImage.last,
       );
 
-      emit(
+      _enhancedEmit(
         state.copyWith(
           updatingProfileStatus: AsyncProcessingStatus.success,
           profileImage: actualImage,
         ),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           updatingProfileStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
-          updatingProfileStatus: AsyncProcessingStatus.serverConnectionError,
+          updatingProfileStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
   }
 
   void readProfile() async {
-    emit(state.copyWith(readProfileStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(readProfileStatus: AsyncProcessingStatus.loading),
+    );
     try {
-      final profile = await _profile.userProfile();
-      emit(
-        state.copyWith(
-          name: profile.fullName,
-          phoneNumber: profile.phoneNumber,
-          changeWeightSpeed: profile.changeWeightSpeed,
-          isTimeRestrictedEating: profile.isTimeRestrictedEating,
-          userProfile: profile,
-          language: profile.language,
-        ),
+      await _profile.userProfile();
+
+      _enhancedEmit(
+        state.copyWith(readProfileStatus: AsyncProcessingStatus.success),
       );
-      emit(state.copyWith(readProfileStatus: AsyncProcessingStatus.success));
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readProfileStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
-          readProfileStatus: AsyncProcessingStatus.serverConnectionError,
+          readProfileStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
   }
 
   void onChangeName(String name) async {
-    emit(state.copyWith(name: name));
+    _enhancedEmit(state.copyWith(name: name));
   }
 
   void updateName() async {
@@ -124,7 +191,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   void onChangeWeightSpeed(ChangeWeightSpeed speed) async {
     await updateProfile(state.userProfile!.copyWith(changeWeightSpeed: speed));
-    emit(state.copyWith(changeWeightSpeed: speed));
+    _enhancedEmit(state.copyWith(changeWeightSpeed: speed));
   }
 
   void onChangeIsFasting(bool isTimeRestrictedEating) async {
@@ -133,11 +200,116 @@ class ProfileCubit extends Cubit<ProfileState> {
         isTimeRestrictedEating: isTimeRestrictedEating,
       ),
     );
-    emit(state.copyWith(isTimeRestrictedEating: isTimeRestrictedEating));
+    _enhancedEmit(
+      state.copyWith(isTimeRestrictedEating: isTimeRestrictedEating),
+    );
+  }
+
+  void onToggleReminderNotifications(
+    NotiticationTexts notiticationTexts,
+  ) async {
+    final isEnable = await _profile.isNotificationReminderSettingEnabled;
+
+    if (isEnable) {
+      await _profile.toggleNotificationReminderSetting();
+      await flutterLocalNotificationsPlugin.cancelAll();
+      _enhancedEmit(
+        state.copyWith(isReminderNotificationPermissionGranted: !isEnable),
+      );
+    } else {
+      if (Platform.isAndroid) {
+        final isNotificationsPermissionGranted =
+            await flutterLocalNotificationsPlugin
+                .resolvePlatformSpecificImplementation<
+                  AndroidFlutterLocalNotificationsPlugin
+                >()
+                ?.requestNotificationsPermission() ??
+            false;
+
+        final isExactAlarmsPermissionGranted =
+            await flutterLocalNotificationsPlugin
+                .resolvePlatformSpecificImplementation<
+                  AndroidFlutterLocalNotificationsPlugin
+                >()
+                ?.requestExactAlarmsPermission() ??
+            false;
+        if (isNotificationsPermissionGranted &&
+            isExactAlarmsPermissionGranted) {
+          await _scheduleNotificationWithTextInput(notiticationTexts);
+          await _profile.toggleNotificationReminderSetting();
+          _enhancedEmit(
+            state.copyWith(isReminderNotificationPermissionGranted: !isEnable),
+          );
+        }
+      }
+    }
+  }
+
+  Future<void> _scheduleNotificationWithTextInput(
+    NotiticationTexts notiticationTexts,
+  ) async {
+    final AndroidNotificationAction replyAction = AndroidNotificationAction(
+      'text_reply_id_scheduled', // Use a unique ID for scheduled notifications if needed
+      'Reply',
+      inputs: <AndroidNotificationActionInput>[
+        AndroidNotificationActionInput(label: notiticationTexts.hint),
+      ],
+      showsUserInterface: true,
+    );
+
+    final AndroidNotificationDetails
+    androidPlatformChannelSpecifics = AndroidNotificationDetails(
+      'input_channel_id', // Re-using the same channel ID as before or create a new one
+      'Input Notifications',
+      channelDescription: 'Notifications that allow text input',
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker',
+      actions: <AndroidNotificationAction>[replyAction], // Add the action here
+      icon: '@drawable/app_icon',
+    );
+    final NotificationDetails platformChannelSpecifics = NotificationDetails(
+      android: androidPlatformChannelSpecifics,
+    );
+
+    final String currentTimeZone =
+        timezoneNames[DateTime.now().timeZoneOffset.inMilliseconds];
+    // Example: schedule for 9am, 2pm, and 8pm
+    final scheduledTimes = [
+      _nextInstanceOfHour(9, currentTimeZone),
+      _nextInstanceOfHour(14, currentTimeZone),
+      _nextInstanceOfHour(20, currentTimeZone),
+    ];
+    for (tz.TZDateTime scheduledTime in scheduledTimes) {
+      await flutterLocalNotificationsPlugin.zonedSchedule(
+        scheduledTimes.indexOf(
+          scheduledTime,
+        ), // Use a different Notification ID for scheduled notifications (e.g., 2 instead of 0)
+        notiticationTexts.title, // Title
+        notiticationTexts.body, // Body
+        scheduledTime, // Schedule time using TZDateTime
+        platformChannelSpecifics,
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        matchDateTimeComponents: DateTimeComponents.time, // <-- Repeat daily
+        payload: 'scheduled_reply_notification', // Optional payload
+      );
+      debugPrint('Notification with text input scheduled for: $scheduledTime');
+    }
+  }
+
+  // Helper to get the next occurrence of a specific hour (today or tomorrow)
+  tz.TZDateTime _nextInstanceOfHour(int hour, String currentTimeZone) {
+    final location = tz.getLocation(currentTimeZone);
+    final now = tz.TZDateTime.now(location);
+    var scheduled = tz.TZDateTime(location, now.year, now.month, now.day, hour);
+    if (scheduled.isBefore(now)) {
+      scheduled = scheduled.add(const Duration(days: 1));
+    }
+    return scheduled;
   }
 
   void onChangeLanguage(Language? language) async {
-    emit(state.copyWith(language: language));
+    _enhancedEmit(state.copyWith(language: language));
   }
 
   void updateLanguage() async {
@@ -146,25 +318,43 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   Future<void> updateProfile(UserProfile updatedProfile) async {
     if (state.userProfile == null) return;
-    emit(state.copyWith(updatingProfileStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(updatingProfileStatus: AsyncProcessingStatus.loading),
+    );
     try {
-      final profile = await _profile.updateProfile(updatedProfile);
-      emit(state.copyWith(userProfile: profile));
-      emit(
+      await _profile.updateProfile(updatedProfile);
+
+      _enhancedEmit(
         state.copyWith(updatingProfileStatus: AsyncProcessingStatus.success),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           updatingProfileStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
-          updatingProfileStatus: AsyncProcessingStatus.serverConnectionError,
+          updatingProfileStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
   }
+
+  void _enhancedEmit(ProfileState state) {
+    if (!isClosed) {
+      emit(state);
+    }
+  }
+}
+
+class NotiticationTexts {
+  final String title, body, hint;
+
+  NotiticationTexts({
+    required this.title,
+    required this.body,
+    required this.hint,
+  });
 }

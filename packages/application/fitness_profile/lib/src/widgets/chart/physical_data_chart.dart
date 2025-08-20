@@ -11,27 +11,37 @@ class PhysicalDataChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppCard(
-      child: BlocBuilder<FitnessProfileCubit, FitnessProfileState>(
-        builder: (context, state) {
-          final userPhysicalProfile = state.userPhysicalProfile;
-          if (userPhysicalProfile == null) {
-            return AppAsyncStatusCard.notFound();
-          }
-          final dataPoints = state.chartDataPoints.sublist(
-            state.chartDataPoints.length > 10
-                ? state.chartDataPoints.length - 10
-                : 0,
+    return BlocBuilder<FitnessProfileCubit, FitnessProfileState>(
+      buildWhen:
+          (previous, current) =>
+              previous.userPhysicalProfile != current.userPhysicalProfile ||
+              previous.readUserPhysicalProfileStatus !=
+                  current.readUserPhysicalProfileStatus ||
+              previous.updateUserPhysicalDataStatus !=
+                  current.updateUserPhysicalDataStatus ||
+              previous.deleteUserPhysicalDataPointStatus !=
+                  current.deleteUserPhysicalDataPointStatus ||
+              previous.selectedChartType != current.selectedChartType,
+      builder: (context, state) {
+        final userPhysicalProfile = state.userPhysicalProfile;
+        if (userPhysicalProfile == null) {
+          return AppAsyncStatusCard.notFound();
+        }
+        final dataPoints = state.chartDataPoints.sublist(
+          state.chartDataPoints.length > 10
+              ? state.chartDataPoints.length - 10
+              : 0,
+        );
+        // handle delete single data type
+        // Todo handle edit data point and delete
+        if (dataPoints.isEmpty) {
+          context.read<FitnessProfileCubit>().onChangeChartType(
+            ChartType.weight,
           );
-          // handle delete single data type
-          // Todo handle edit data point and delete
-          if (dataPoints.isEmpty) {
-            context.read<FitnessProfileCubit>().onChangeChartType(
-              ChartType.weight,
-            );
-            return NoDataFound(title: '');
-          }
-          return Column(
+          return NoDataFound(title: '');
+        }
+        return AppCard(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppCardHeader(title: context.l10n.fitnessProfilePhysicaDataChart),
@@ -69,9 +79,9 @@ class PhysicalDataChart extends StatelessWidget {
                 selectedChartType: state.selectedChartType,
               ),
             ],
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

@@ -9,45 +9,41 @@ class FoodListConsumer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppCard(
-      child: BlocConsumer<FoodReportCubit, FoodReportState>(
-        listenWhen:
-            (previous, current) =>
-                previous.readFoodsNutritionStatus !=
-                current.readFoodsNutritionStatus,
-        listener: (context, state) {
-          if (state.readNutritionRequirementsStatus.isServerConnectionError) {
-            final content = context.l10n.networkError;
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(content)));
-          } else if (state
-              .readNutritionRequirementsStatus
-              .isServerConnectionError) {
-            final content = context.l10n.internetConnectionError;
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(content)));
-          }
-        },
-        buildWhen:
-            (previous, current) =>
-                previous.readFoodsNutritionStatus !=
-                current.readFoodsNutritionStatus,
-        builder: (context, state) {
-          return switch (state.readFoodsNutritionStatus) {
-            AsyncProcessingStatus.inital => AppAsyncStatusCard.inital(),
-            AsyncProcessingStatus.loading => AppAsyncStatusCard.loading(),
-            AsyncProcessingStatus.serverConnectionError =>
-              AppAsyncStatusCard.serverError(),
-            AsyncProcessingStatus.internetConnectionError =>
-              AppAsyncStatusCard.internetConnectionError(),
-            AsyncProcessingStatus.success => SuccessStatusFoodsList(
-              foods: state.foods,
-            ),
-          };
-        },
-      ),
+    return BlocConsumer<FoodReportCubit, FoodReportState>(
+      listenWhen:
+          (previous, current) =>
+              previous.readFoodsNutritionStatus !=
+              current.readFoodsNutritionStatus,
+      listener: (context, state) {
+        if (state.readNutritionRequirementsStatus.isConnectionError) {
+          final content = context.l10n.networkError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.readNutritionRequirementsStatus.isConnectionError) {
+          final content = context.l10n.internetConnectionError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        }
+      },
+      buildWhen:
+          (previous, current) =>
+              previous.readFoodsNutritionStatus !=
+              current.readFoodsNutritionStatus,
+      builder: (context, state) {
+        return switch (state.readFoodsNutritionStatus) {
+          AsyncProcessingStatus.inital => AppAsyncStatusCard.inital(),
+          AsyncProcessingStatus.loading => AppAsyncStatusCard.loading(),
+          AsyncProcessingStatus.connectionError =>
+            AppAsyncStatusCard.serverError(),
+          AsyncProcessingStatus.internetConnectionError =>
+            AppAsyncStatusCard.internetConnectionError(),
+          AsyncProcessingStatus.success => SuccessStatusFoodsList(
+            foods: state.foods.reversed.toList(),
+          ),
+        };
+      },
     );
   }
 }

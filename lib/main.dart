@@ -1,83 +1,124 @@
+import 'dart:developer';
+
 import 'package:authentication/authentication.dart';
 import 'package:fitness_nutrition/fitness_nutrition.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food_input/food_input.dart';
 import 'package:food_report/food_report.dart';
 import 'package:local_storage/local_storage.dart';
+import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
 import 'package:remote_api/remote_api.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:tandorost/navigation.dart';
+import 'package:tandorost/notification_helper.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 import 'package:image_repository/image_repository.dart';
-import 'package:tandorost_platform_ui_app/navigation.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:timezone/data/latest_all.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // final remote_api = RemoteApi(
-  //   get_user_language: () => Future.value(Language.english),
-  //   get_access_token:
-  //       () => Future.value(
-  //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwOTIxMjgwNTIzMCIsInVzZXJfaWQiOiIxMjBjZmY1Mi03YTVjLTRhOTYtOWJjMC1mZjQ1MTVjYTkwZmEiLCJleHAiOjE3NDcxNDYwMTl9.cbFxpHvjqsql-i5LP9No6MXbsOvI0ukOnAMl93lWwys',
-  //       ),
-  // );
 
-  runApp(DependencyManager());
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  final sharePref = await SharedPreferences.getInstance();
+  FlutterError.onError = (FlutterErrorDetails details) async {
+    await Sentry.captureException(details.exception, stackTrace: details.stack);
+    log(
+      'error in ${details.library}',
+      stackTrace: details.stack,
+      error: details.exception,
+    );
+  };
+  await SentryFlutter.init(
+    (options) {
+      options.dsn =
+          'https://1d10de0455222c0ba27560b4f0071ff3@o4504084043530240.ingest.us.sentry.io/4506958323253248';
+      options.tracesSampleRate = 1.0;
+    },
+    appRunner:
+        () => runApp(
+          DefaultAssetBundle(
+            bundle: SentryAssetBundle(),
+            child: DependencyManager(sharedPreferences: sharePref),
+          ),
+        ),
+  );
 }
 
 class DependencyManager extends StatelessWidget {
-  const DependencyManager({super.key});
+  const DependencyManager({super.key, required this.sharedPreferences});
+  final SharedPreferences sharedPreferences;
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: Future.wait([SharedPreferences.getInstance()]),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          final nonSecureStorage = snapshot.data![0];
+    final nonSecureStorage = sharedPreferences;
 
-          final remoteApi = RemoteApi();
+    final remoteApi = RemoteApi();
 
-          AndroidOptions _getAndroidOptions() =>
-              const AndroidOptions(encryptedSharedPreferences: true);
+    AndroidOptions _getAndroidOptions() =>
+        const AndroidOptions(encryptedSharedPreferences: true);
 
-          final storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
-          final localStorage = LocalStorage(
-            flutterSecureStorage: storage,
-            sharedPreferences: nonSecureStorage,
-          );
-          late final authenticationRep = AuthenticationRepository(
-            remoteApi: remoteApi,
-            localStorage: localStorage,
-          );
-          final foodInputRep = FoodInputRepository(remoteApi: remoteApi);
-          final profileRep = ProfileRepository(
-            remoteApi: remoteApi,
-            localStorage: localStorage,
-          );
+    final storage = FlutterSecureStorage(aOptions: _getAndroidOptions());
+    final localStorage = LocalStorage(
+      flutterSecureStorage: storage,
+      sharedPreferences: nonSecureStorage,
+    );
+    late final authenticationRep = AuthenticationRepository(
+      remoteApi: remoteApi,
+      localStorage: localStorage,
+    );
+    final profileRep = ProfileRepository(
+      remoteApi: remoteApi,
+      localStorage: localStorage,
+    );
+    remoteApi.accessTokenProvider = authenticationRep.accessTokenProvider;
+    remoteApi.userLanguageProvider = profileRep.userLanguage;
 
-          final imageRepository = ImageRepository(remoteApi: remoteApi);
-          final fitnessNutrition = FitnessNutrition(remoteApi: remoteApi);
-          final foodReport = FoodReport(remoteApi: remoteApi);
-          remoteApi.accessTokenProvider = authenticationRep.accessTokenProvider;
-          remoteApi.userLanguageProvider = profileRep.userLanguage;
+    final foodInputRep = FoodInputRepository(remoteApi: remoteApi);
 
-          return MultiRepositoryProvider(
-            providers: [
-              RepositoryProvider(
-                create: (_) => foodInputRep,
-                dispose: (value) async => await value.dispose(),
-                lazy: true,
-              ),
-              RepositoryProvider(create: (_) => profileRep, lazy: true),
-              RepositoryProvider(create: (_) => authenticationRep, lazy: true),
-              RepositoryProvider(create: (_) => imageRepository, lazy: true),
-              RepositoryProvider(create: (_) => fitnessNutrition, lazy: true),
-              RepositoryProvider(create: (_) => foodReport, lazy: true),
-            ],
-            child: TandorostBlocProviders(),
-          );
-        }
-        return SizedBox();
-      },
+    final paymentRep = PaymentRepository(remoteApi: remoteApi);
+
+    final imageRepository = ImageRepository(remoteApi: remoteApi);
+    final fitnessNutrition = FitnessNutrition(
+      remoteApi: remoteApi,
+      localStorage: localStorage,
+    );
+    final foodReport = FoodReport(remoteApi: remoteApi);
+
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (_) => foodInputRep,
+          dispose: (value) async => await value.dispose(),
+          lazy: true,
+        ),
+        RepositoryProvider(
+          create: (_) => profileRep,
+          lazy: true,
+          dispose: (profileRep) => profileRep.dispose(),
+        ),
+        RepositoryProvider(create: (_) => authenticationRep, lazy: true),
+        RepositoryProvider(create: (_) => imageRepository, lazy: true),
+        RepositoryProvider(
+          create: (_) => fitnessNutrition,
+          lazy: true,
+          dispose: (fitnessNutrition) async {
+            await fitnessNutrition.dispose();
+          },
+        ),
+        RepositoryProvider(create: (_) => foodReport, lazy: true),
+        RepositoryProvider(create: (_) => paymentRep, lazy: true),
+        RepositoryProvider(
+          create: (_) => flutterLocalNotificationsPlugin,
+          lazy: true,
+        ),
+      ],
+      child: TandorostBlocProviders(),
     );
   }
 }
@@ -112,13 +153,18 @@ class TandorostPlatform extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dpr = View.of(context).display.devicePixelRatio;
+    final width = View.of(context).display.size.width;
     return MaterialApp.router(
-      theme: AppTheme(locale: Locale('fa')).lightTheme,
+      theme:
+          AppTheme(
+            locale: const Locale('fa'),
+            screenWidth: dpr * width,
+          ).lightTheme,
       routerConfig: Navigation.goRouter(context),
       localizationsDelegates: const [
         PersianMaterialLocalizations.delegate,
         PersianCupertinoLocalizations.delegate,
-
         GlobalCupertinoLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

@@ -19,7 +19,11 @@ dependencies:
     path: ../../repositories/fitness_nutrition
   food_report:
     path: ../../repositories/food_report
+  profile:
+    path: ../../repositories/profile
   pie_chart: ^5.4.0
+  android_intent_plus: ^5.3.0
+  home_widget: ^0.8.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -30,7 +34,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  assets:
+      - assets/gif/add_home_widget_guide.gif
   # To add assets to your package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

@@ -1,4 +1,4 @@
-name: tandorost_platform_ui_app
+name: tandorost
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 2.7.3+110
 
 environment:
   sdk: ^3.9.0
@@ -32,6 +32,9 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^9.1.1
   go_router: ^15.1.2
+  sentry_flutter: ^8.14.2
+  flutter_local_notifications: ^19.3.0
+  timezone: ^0.10.1
   # Data layers
   remote_api:
     path: packages/data/remote_api
@@ -48,6 +51,8 @@ dependencies:
     path: packages/repositories/food_report
   image_repository:
     path: packages/repositories/image_repository
+  payment_repository:
+    path: packages/repositories/payment_repository
   profile:
     path: packages/repositories/profile
   # Common
@@ -68,18 +73,28 @@ dependencies:
     path: packages/application/introduction
   profile_app:
     path: packages/application/profile
+  vo2max_calculator:
+    path: packages/application/vo2max_calculator
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.14.4
+  flutter_launcher_icons: ^0.14.3
+  sentry_dart_plugin: ^3.1.0
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-
+sentry:
+  project: tandorost
+  org: tandorost
+  # TODO fix auth token and use in envrenment value
+  auth_token: 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
+  upload_debug_symbols: true
+  upload_source_maps: true
+  upload_sources: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

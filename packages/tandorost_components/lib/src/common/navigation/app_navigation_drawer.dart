@@ -41,6 +41,21 @@ class AppNavigation {
           icon: Icon(DrawerNavigationRoutes.icons[index]),
         ),
       ),
+      Padding(
+        padding: EdgeInsetsDirectional.only(
+          start: context.sizeExtenstion.large,
+          bottom: context.sizeExtenstion.small,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: context.sizeExtenstion.medium),
+            Text(context.l10n.drawerSupportText1),
+            SizedBox(height: context.sizeExtenstion.small),
+            Text(context.l10n.drawerSupportText2),
+          ],
+        ),
+      ),
     ];
   }
 
@@ -65,14 +80,16 @@ abstract class DrawerNavigationRoutes {
     1: RoutesNames.foodReportRoute,
     2: RoutesNames.fitnessProfileRoute,
     3: RoutesNames.profileRoute,
-    4: RoutesNames.loginRoute,
+    4: RoutesNames.vo2maxCalculator,
+    5: RoutesNames.loginRoute,
   };
   static const Map<int, IconData> icons = {
     0: Icons.search,
-    1: Icons.report,
+    1: Icons.circle,
     2: Icons.fitness_center,
     3: Icons.account_box,
-    4: Icons.login,
+    4: Icons.health_and_safety,
+    5: Icons.login,
   };
 }
 
@@ -85,7 +102,7 @@ abstract class BottomNavigationRoutes {
   };
   static const Map<int, IconData> icons = {
     0: Icons.search,
-    1: Icons.report,
+    1: Icons.circle,
     2: Icons.fitness_center,
     3: Icons.account_box,
   };

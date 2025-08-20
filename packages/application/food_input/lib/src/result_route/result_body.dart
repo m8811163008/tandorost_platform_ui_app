@@ -10,13 +10,28 @@ class ResultBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final count =
-        width >= 768
-            ? width > 1024
-                ? 4
-                : 3
-            : 2;
-    return BlocBuilder<ResultCubit, ResultState>(
+    final count = switch (width) {
+      >= 1024 => 4,
+      >= 768 => 3,
+      > 425 => 2,
+      _ => 1,
+    };
+    final aspectRatio = switch (width) {
+      >= 1024 => 1.2,
+      >= 768 => 1.0,
+      > 425 => 0.7,
+      _ => 0.55,
+    };
+    return BlocConsumer<ResultCubit, ResultState>(
+      listenWhen:
+          (previous, current) =>
+              previous.foods != current.foods ||
+              previous.deletingStatus != current.deletingStatus,
+      listener: (context, state) {
+        if (state.foods.isEmpty) {
+          Navigator.of(context).pop();
+        }
+      },
       buildWhen:
           (previous, current) =>
               previous.foods != current.foods ||
@@ -25,7 +40,7 @@ class ResultBody extends StatelessWidget {
         return GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: count,
-            childAspectRatio: 0.7,
+            childAspectRatio: aspectRatio,
           ),
           itemCount: state.foods.length,
           padding: EdgeInsets.all(context.sizeExtenstion.medium),

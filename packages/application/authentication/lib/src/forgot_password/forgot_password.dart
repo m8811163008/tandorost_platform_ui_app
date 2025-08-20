@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:authentication_app/src/forgot_password/cubit/forgot_password_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -154,3 +155,8 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
     );
   }
 }
+=======
+export 'forgot_password_route/forgot_password_route.dart';
+export 'cubit/forgot_password_cubit.dart';
+export 'verify_route/forgot_password_verify_phone_route.dart';
+>>>>>>> origin/refactor-applications

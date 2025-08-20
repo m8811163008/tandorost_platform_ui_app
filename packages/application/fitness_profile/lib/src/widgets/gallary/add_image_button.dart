@@ -13,15 +13,15 @@ class AddImageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final label = Text(context.l10n.fitnessProfileAddImageButton);
-    final onPressed = () {
+    onPressed() {
       onPress(context);
-    };
+    }
 
     return isFilled
         ? ElevatedButton(onPressed: onPressed, child: label)
-        : TextButton.icon(
+        : IconButton.filledTonal(
           onPressed: onPressed,
-          label: label,
+          // label: label,
           icon: Icon(Icons.image),
         );
   }

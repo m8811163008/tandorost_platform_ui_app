@@ -8,6 +8,7 @@ class LoadingLottie extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimationClipper(
+      // key: ValueKey('loading-lottie'),
       size: size,
       path: 'assets/animations-lottie/loading_indicator.mp4',
     );

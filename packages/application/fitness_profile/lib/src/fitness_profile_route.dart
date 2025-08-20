@@ -1,3 +1,4 @@
+import 'package:domain_model/domain_model.dart';
 import 'package:fitness_nutrition/fitness_nutrition.dart';
 import 'package:fitness_profile_app/src/cubit/fitness_profile_cubit.dart';
 import 'package:fitness_profile_app/src/widgets/chart/chart.dart';
@@ -29,7 +30,12 @@ class FitnessProfileRoute extends StatelessWidget {
           ),
       lazy: false,
       child: AppScaffold(
-        appBar: AppBar(actions: [AddMeasurementButton(), AddImageButton()]),
+        appBar: AppBar(
+          actions: [AddMeasurementButton(), AddImageButton()],
+          title: Text(
+            context.l10n.appRoutesName(RoutesNames.fitnessProfileRoute.name),
+          ),
+        ),
         body: FitnessProfileView(),
         drawer: NavigationDrawer(
           onDestinationSelected: onDrawerNavigationChanged,
@@ -54,23 +60,7 @@ class FitnessProfileView extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Builder(
-            builder: (context) {
-              return ImageGallary();
-            },
-          ),
-          Builder(
-            builder: (context) {
-              return FitnessInfoConsumer();
-            },
-          ),
-          Builder(
-            builder: (context) {
-              return PhysicalDataChart();
-            },
-          ),
-        ],
+        children: [ImageGallary(), FitnessInfoConsumer(), PhysicalDataChart()],
       ),
     );
   }

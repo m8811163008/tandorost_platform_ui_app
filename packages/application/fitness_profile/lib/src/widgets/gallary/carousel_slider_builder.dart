@@ -15,12 +15,12 @@ class CarouselSliderBuilder extends StatelessWidget {
               previous.readUserImageGallaryStatus !=
               current.readUserImageGallaryStatus,
       listener: (context, state) {
-        if (state.readUserImageGallaryStatus.isServerConnectionError) {
+        if (state.readUserImageGallaryStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.readUserImageGallaryStatus.isServerConnectionError) {
+        } else if (state.readUserImageGallaryStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,
@@ -35,14 +35,19 @@ class CarouselSliderBuilder extends StatelessWidget {
             child: Stack(
               alignment: AlignmentDirectional.bottomCenter,
               children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 3,
-                  child: AppRoundedRectangleBorder(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(
-                        context.sizeExtenstion.small,
+                Padding(
+                  padding: EdgeInsets.only(
+                    bottom: context.sizeExtenstion.medium,
+                  ),
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height / 3,
+                    child: AppRoundedRectangleBorder(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                          context.sizeExtenstion.small,
+                        ),
+                        child: AddNewImageSelfie(),
                       ),
-                      child: AddNewImageSelfie(),
                     ),
                   ),
                 ),

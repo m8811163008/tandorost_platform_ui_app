@@ -1,9 +1,10 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'fitness_data.g.dart';
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class FitnessData extends Equatable {
   final double restingMetabolicRate;
   final double totalDailyEnergyExpenditure;
@@ -25,9 +26,6 @@ class FitnessData extends Equatable {
     this.isWaistCircumferenceSafeRange,
   });
 
-  factory FitnessData.fromJson(Map<String, dynamic> json) =>
-      _$FitnessDataFromJson(json);
-
   @override
   List<Object?> get props => [
     restingMetabolicRate,
@@ -39,6 +37,10 @@ class FitnessData extends Equatable {
     isWaistCircumferenceToHeightRatioSafe,
     isWaistCircumferenceSafeRange,
   ];
+  Map<String, dynamic> toJson() => _$FitnessDataToJson(this);
+
+  factory FitnessData.fromJson(Map<String, dynamic> json) =>
+      _$FitnessDataFromJson(json);
 }
 
 @JsonEnum(fieldRename: FieldRename.snake)

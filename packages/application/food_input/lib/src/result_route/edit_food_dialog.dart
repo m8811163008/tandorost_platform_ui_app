@@ -29,12 +29,12 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
           (previous, current) =>
               previous.updatingStatus != current.updatingStatus,
       listener: (context, state) {
-        if (state.updatingStatus.isServerConnectionError) {
+        if (state.updatingStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.updatingStatus.isServerConnectionError) {
+        } else if (state.updatingStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,
@@ -46,10 +46,15 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
       child: Form(
         key: _formKey,
         child: AppDialog(
-          fullscreen: true,
           title: context.l10n.update,
           contents: [
-            _buildDateTextField(),
+            DateTextField(
+              upsertDate: updatedFood.upsertDate,
+              onPickedDate: (updatedDateTime) {
+                updatedFood = updatedFood.copyWith(upsertDate: updatedDateTime);
+                setState(() {});
+              },
+            ),
             gap,
             RegullarTextField(
               label: context.l10n.foodName,
@@ -60,7 +65,6 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
                 );
               },
             ),
-
             gap,
             RegullarTextField(
               label: context.l10n.unitOfMeasurement,
@@ -71,7 +75,6 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
                 );
               },
             ),
-
             gap,
             NumberTextField(
               label: context.l10n.quantityOfUnitOfMeasurement,
@@ -82,7 +85,6 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
                 );
               },
             ),
-
             gap,
             NumberTextField(
               label: context.l10n.calculatedCalorie,
@@ -156,75 +158,42 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
               errorText: null,
             ),
           ],
-          submitButton: BlocBuilder<ResultCubit, ResultState>(
-            buildWhen:
-                (previous, current) =>
-                    previous.updatingStatus != current.updatingStatus,
-            builder: (context, state) {
-              return state.updatingStatus.isLoading
-                  ? AppTextButton.loading(label: context.l10n.update)
-                  : AppTextButton(
-                    label: context.l10n.update,
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {
-                        context.read<ResultCubit>().updateFood(updatedFood);
-                      }
-                    },
-                  );
-            },
+          submitButton: EditFoodDialogSubmitButton(
+            updatedFood: updatedFood,
+            validate: () => _formKey.currentState!.validate(),
           ),
         ),
       ),
     );
   }
+}
 
-  Widget _buildDateTextField() {
-    return TextField(
-      controller: TextEditingController(
-        text: updatedFood.upsertDate.formattedDateTime(context),
-      ),
-      decoration: InputDecoration(label: Text(context.l10n.upsertDate)),
-      readOnly: false,
-      onTap: () async {
-        final locale = Localizations.localeOf(context);
-        late final DateTime? pickedDate;
-        if (locale.languageCode == Language.persian.code) {
-          Jalali? picked = await showPersianDatePicker(
-            context: context,
-            initialDate: Jalali.fromDateTime(updatedFood.upsertDate),
-            firstDate: Jalali.fromDateTime(
-              updatedFood.upsertDate.subtract(Duration(days: 5)),
-            ),
-            lastDate: Jalali.fromDateTime(
-              updatedFood.upsertDate.add(Duration(days: 5)),
-            ),
-            initialEntryMode: PersianDatePickerEntryMode.calendarOnly,
-            initialDatePickerMode: PersianDatePickerMode.day,
-          );
-          pickedDate = picked?.toDateTime();
-        } else {
-          pickedDate = await showDatePicker(
-            context: context,
-            initialDate: updatedFood.upsertDate,
-            firstDate: updatedFood.upsertDate.subtract(Duration(days: 5)),
-            lastDate: updatedFood.upsertDate.add(Duration(days: 5)),
-          );
-        }
-        if (!mounted) {
-          return;
-        }
-        final pickedTime = await showTimePicker(
-          context: context,
-          initialTime: TimeOfDay.fromDateTime(updatedFood.upsertDate),
-        );
+class EditFoodDialogSubmitButton extends StatelessWidget {
+  const EditFoodDialogSubmitButton({
+    super.key,
+    required this.updatedFood,
+    required this.validate,
+  });
+  final ValueGetter<bool> validate;
+  final Food updatedFood;
 
-        final updatedDateTime = pickedDate?.copyWith(
-          hour: pickedTime?.hour ?? updatedFood.upsertDate.hour,
-          minute: pickedTime?.minute ?? updatedFood.upsertDate.minute,
-          second: updatedFood.upsertDate.second,
-        );
-        updatedFood = updatedFood.copyWith(upsertDate: updatedDateTime);
-        setState(() {});
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ResultCubit, ResultState>(
+      buildWhen:
+          (previous, current) =>
+              previous.updatingStatus != current.updatingStatus,
+      builder: (context, state) {
+        return state.updatingStatus.isLoading
+            ? AppTextButton.loading(label: context.l10n.update)
+            : AppTextButton(
+              label: context.l10n.update,
+              onTap: () {
+                if (validate()) {
+                  context.read<ResultCubit>().updateFood(updatedFood);
+                }
+              },
+            );
       },
     );
   }

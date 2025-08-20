@@ -19,7 +19,11 @@ dependencies:
     path: ../../repositories/profile
   image_repository:
     path: ../../repositories/image_repository
+  payment_repository:
+    path: ../../repositories/payment_repository
   file_picker: ^10.1.9
+  flutter_local_notifications: ^19.3.0
+  timezone: ^0.10.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

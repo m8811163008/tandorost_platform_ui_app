@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:domain_model/domain_model.dart';
@@ -14,68 +15,87 @@ class UserAccountCubit extends Cubit<UserAccountState> {
     required ProfileRepository profileRepository,
   }) : _imageRepository = imageRepository,
        _profileRepository = profileRepository,
-       super(UserAccountState()){
-        _initialize();
-       }
+       super(UserAccountState()) {
+    _initialize();
+  }
   final ImageRepository _imageRepository;
   final ProfileRepository _profileRepository;
-  void _initialize(){
+  late final StreamSubscription<UserProfile?> userProfileSubscription;
+  void _initialize() {
     readUserProfileImage();
     readUserProfile();
+    userProfileSubscription = _profileRepository.userProfileStream.listen((
+      profile,
+    ) {
+      if (profile == null) return;
+      _enhancedEmit(state.copyWith(userProfile: () => profile));
+    });
+  }
+
+  @override
+  Future<void> close() async {
+    await userProfileSubscription.cancel();
+    return super.close();
   }
 
   void readUserProfileImage() async {
-    emit(
+    _enhancedEmit(
       state.copyWith(readUserProfileImageStatus: AsyncProcessingStatus.loading),
     );
     try {
       final profileImages = await _imageRepository.readUserProfileImage();
-      final profileImage = await _imageRepository.readImage(profileImages.last);
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readUserProfileImageStatus: AsyncProcessingStatus.success,
-          profileImage: () => profileImage,
         ),
       );
+      if (profileImages.isEmpty) return;
+
+      final profileImage = await _imageRepository.readImage(profileImages.last);
+      _enhancedEmit(state.copyWith(profileImage: () => profileImage));
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readUserProfileImageStatus:
               AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
-          readUserProfileImageStatus:
-              AsyncProcessingStatus.serverConnectionError,
+          readUserProfileImageStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }
   }
 
   void readUserProfile() async {
-    emit(state.copyWith(readUserProfileStatus: AsyncProcessingStatus.loading));
+    _enhancedEmit(
+      state.copyWith(readUserProfileStatus: AsyncProcessingStatus.loading),
+    );
     try {
       final profile = await _profileRepository.userProfile();
-      emit(
-        state.copyWith(
-          readUserProfileStatus: AsyncProcessingStatus.success,
-          userProfile: () => profile,
-        ),
+      _enhancedEmit(
+        state.copyWith(readUserProfileStatus: AsyncProcessingStatus.success),
       );
     } on InternetConnectionException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
           readUserProfileStatus: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
-      emit(
+      _enhancedEmit(
         state.copyWith(
-          readUserProfileStatus: AsyncProcessingStatus.serverConnectionError,
+          readUserProfileStatus: AsyncProcessingStatus.connectionError,
         ),
       );
+    }
+  }
+
+  void _enhancedEmit(UserAccountState state) {
+    if (!isClosed) {
+      emit(state);
     }
   }
 }

@@ -1,7 +1,14 @@
+import 'dart:async';
+
+import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:food_input/food_input.dart';
-import 'package:food_input_app/src/search_route/cubit/search_cubit.dart';
+import 'package:food_input_app/src/search_route/payment/cubit/payment_cubit.dart';
+import 'package:food_input_app/src/search_route/search_food/cubit/search_cubit.dart';
 import 'package:food_input_app/src/search_route/search_body.dart';
+import 'package:food_input_app/src/search_route/search_food/spoken_language/language_icon_button.dart';
+import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
@@ -13,27 +20,58 @@ class SearchRoute extends StatelessWidget {
     required this.bottomNavigationIndex,
     this.onDrawerNavigationChanged,
     required this.drawerNavigationIndex,
+    // required this.didReceiveNotificationResponseStreamController
   });
   final VoidCallback? goToResultRoute;
   final ValueChanged<int>? onBottomNavigationChanged;
-
   final int bottomNavigationIndex;
   final ValueChanged<int>? onDrawerNavigationChanged;
   final int drawerNavigationIndex;
+  // final StreamController<String?> didReceiveNotificationResponseStreamController;
+
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) {
-        return SearchCubit(
-          foodInputRepository: RepositoryProvider.of<FoodInputRepository>(
-            context,
-          ),
-          profileRepository: RepositoryProvider.of<ProfileRepository>(context),
-        );
-      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (BuildContext context) {
+            return PaymentCubit(
+              profileRepository: RepositoryProvider.of<ProfileRepository>(
+                context,
+              ),
+              paymentRepository: RepositoryProvider.of<PaymentRepository>(
+                context,
+              ),
+            );
+          },
+          lazy: false,
+        ),
+        BlocProvider(
+          create: (BuildContext context) {
+            return SearchCubit(
+              foodInputRepository: RepositoryProvider.of<FoodInputRepository>(
+                context,
+              ),
+              profileRepository: RepositoryProvider.of<ProfileRepository>(
+                context,
+              ),
+              paymentRepository: RepositoryProvider.of<PaymentRepository>(
+                context,
+              ),
+              flutterLocalNotificationsPlugin:
+                  RepositoryProvider.of<FlutterLocalNotificationsPlugin>(
+                    context,
+                  ),
+            );
+          },
+        ),
+      ],
       child: AppScaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text(context.l10n.appRoutesName(RoutesNames.searchRoute.name)),
+          actions: [LanguageIconButton()],
+        ),
         drawer: NavigationDrawer(
           onDestinationSelected: onDrawerNavigationChanged,
           selectedIndex: drawerNavigationIndex,
@@ -44,7 +82,9 @@ class SearchRoute extends StatelessWidget {
           currentIndex: bottomNavigationIndex,
           items: AppNavigation.bottomNavigationItems(context),
         ),
-        body: SearchBody(onSeachFoodSuccess: goToResultRoute),
+        body: AppScaffoldBody(
+          child: SearchBody(onSeachFoodSuccess: goToResultRoute),
+        ),
       ),
     );
   }

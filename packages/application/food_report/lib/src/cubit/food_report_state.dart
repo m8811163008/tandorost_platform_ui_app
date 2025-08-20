@@ -8,18 +8,30 @@ class FoodReportState extends Equatable {
     this.updateFoodsNutritionsStatus = AsyncProcessingStatus.inital,
     this.deleteFoodsNutritionsStatus = AsyncProcessingStatus.inital,
     this.readNutritionRequirementsStatus = AsyncProcessingStatus.inital,
+    this.readProfileStatus = AsyncProcessingStatus.inital,
+    this.readUserPhysicalProfileStatus = AsyncProcessingStatus.inital,
     this.selectedTab = SelectedTab.restDay,
     this.nutritionRequirements,
+    this.userProfile,
+    this.userPhysicalProfile,
+    this.isCommitReviewedOnCafeBazzar = false,
+    this.isShowAddHomeWidgetDialog = false,
   });
 
   final List<Food> foods;
   final List<Food> selectedFoods;
   final NutritionRequirements? nutritionRequirements;
+  final UserProfile? userProfile;
+  final UserPhysicalProfile? userPhysicalProfile;
   final SelectedTab selectedTab;
+  final bool isCommitReviewedOnCafeBazzar;
+  final bool isShowAddHomeWidgetDialog;
 
   final AsyncProcessingStatus readFoodsNutritionStatus;
   final AsyncProcessingStatus updateFoodsNutritionsStatus;
   final AsyncProcessingStatus deleteFoodsNutritionsStatus;
+  final AsyncProcessingStatus readProfileStatus;
+  final AsyncProcessingStatus readUserPhysicalProfileStatus;
 
   final AsyncProcessingStatus readNutritionRequirementsStatus;
 
@@ -54,17 +66,25 @@ class FoodReportState extends Equatable {
   FoodReportState copyWith({
     List<Food>? foods,
     List<Food>? selectedFoods,
+    UserProfile? userProfile,
+    UserPhysicalProfile? userPhysicalProfile,
     ValueGetter<NutritionRequirements?>? nutritionRequirements,
     AsyncProcessingStatus? readFoodsNutritionStatus,
     AsyncProcessingStatus? updateFoodsNutritionsStatus,
     AsyncProcessingStatus? deleteFoodsNutritionsStatus,
     AsyncProcessingStatus? readNutritionRequirementsStatus,
+    AsyncProcessingStatus? readProfileStatus,
+    AsyncProcessingStatus? readUserPhysicalProfileStatus,
     SelectedTab? selectedTab,
+    bool? isCommitReviewedOnCafeBazzar,
+    bool? isShowAddHomeWidgetDialog,
   }) {
     return FoodReportState(
       foods: foods ?? this.foods,
       selectedFoods: selectedFoods ?? this.selectedFoods,
+      userProfile: userProfile ?? this.userProfile,
       selectedTab: selectedTab ?? this.selectedTab,
+      userPhysicalProfile: userPhysicalProfile ?? this.userPhysicalProfile,
       nutritionRequirements:
           nutritionRequirements != null
               ? nutritionRequirements()
@@ -75,9 +95,16 @@ class FoodReportState extends Equatable {
           updateFoodsNutritionsStatus ?? this.updateFoodsNutritionsStatus,
       deleteFoodsNutritionsStatus:
           deleteFoodsNutritionsStatus ?? this.deleteFoodsNutritionsStatus,
+      readProfileStatus: readProfileStatus ?? this.readProfileStatus,
+      readUserPhysicalProfileStatus:
+          readUserPhysicalProfileStatus ?? this.readUserPhysicalProfileStatus,
       readNutritionRequirementsStatus:
           readNutritionRequirementsStatus ??
           this.readNutritionRequirementsStatus,
+      isCommitReviewedOnCafeBazzar:
+          isCommitReviewedOnCafeBazzar ?? this.isCommitReviewedOnCafeBazzar,
+      isShowAddHomeWidgetDialog:
+          isShowAddHomeWidgetDialog ?? this.isShowAddHomeWidgetDialog,
     );
   }
 
@@ -91,6 +118,12 @@ class FoodReportState extends Equatable {
     readNutritionRequirementsStatus,
     selectedFoods,
     selectedTab,
+    readProfileStatus,
+    userProfile,
+    userPhysicalProfile,
+    readUserPhysicalProfileStatus,
+    isCommitReviewedOnCafeBazzar,
+    isShowAddHomeWidgetDialog,
   ];
 }
 

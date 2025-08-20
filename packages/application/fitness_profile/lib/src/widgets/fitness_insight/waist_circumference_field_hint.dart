@@ -7,33 +7,26 @@ class WaistCircumferenceFieldHint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SimpleDialog(
-      titlePadding: EdgeInsets.all(context.sizeExtenstion.medium),
-      contentPadding: EdgeInsets.only(
-        left: context.sizeExtenstion.medium,
-        right: context.sizeExtenstion.medium,
-        bottom: context.sizeExtenstion.medium,
-      ),
-      title: const Text('دور کمر'),
-      children: [
+    return AppDialog(
+      title: context.l10n.fitnessProfileNewMeasurementDialogWaistCircumference,
+      contents: [
         Text.rich(
           TextSpan(
-            text:
-                'روش اندازه گیری دور کمر به توصیه سازمان بهداشت جهانی و فدراسیون بین المللی دیابت ',
+            text: context.l10n.addMeasurementDialogHintText6,
             children: [
               TextSpan(
-                text: 'بین پایین ترین دنده ها و ستیغ تهیگاهی ',
+                text: context.l10n.addMeasurementDialogHintText6Bold,
                 style: context.themeData.textTheme.bodyMedium!.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const TextSpan(text: 'است. '),
+              TextSpan(text: context.l10n.addMeasurementDialogHintText7),
             ],
           ),
         ),
         WaistCircumferenceFieldHintImage(),
         SizedBox(height: context.sizeExtenstion.medium),
-        const Text('بالاتر از ناف باشد و پوست زیر متر جمع نشود'),
+        Text(context.l10n.addMeasurementDialogHintText8),
       ],
     );
   }

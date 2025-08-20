@@ -30,7 +30,10 @@ class ImageProfile extends StatelessWidget {
           IconButton.outlined(icon: Icon(Icons.edit), onPressed: onEditPressed)
         else
           IconButton.outlined(
-            icon: LoadingLottie(size: context.sizeExtenstion.appButton),
+            icon: Transform.scale(
+              scale: 0.7,
+              child: CircularProgressIndicator(),
+            ),
             onPressed: null,
           ),
       ],

@@ -19,10 +19,13 @@ dependencies:
     path: ../../repositories/food_input
   profile:
     path: ../../repositories/profile
+  payment_repository:
+    path: ../../repositories/payment_repository
   record: ^6.0.0
   image_picker_platform_interface: ^2.10.1
   path_provider: ^2.1.5
-
+  flutter_poolakey: ^2.2.0
+  flutter_local_notifications: ^19.3.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

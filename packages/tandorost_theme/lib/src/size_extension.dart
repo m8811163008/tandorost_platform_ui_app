@@ -9,10 +9,12 @@ class SizeExtenstion extends ThemeExtension<SizeExtenstion> {
   final double large;
   final double extraLarge;
   final double xExtraLarge;
+  final double xxExtraLarge;
   final double foodTilePieChartDimension;
   final double profileRadius;
   final double full;
   final Size chatButton;
+  final Size logoImage;
   final Size appButton;
 
   /// Creates a [SizeExtenstion] with the specified sizes.
@@ -25,9 +27,11 @@ class SizeExtenstion extends ThemeExtension<SizeExtenstion> {
     this.extraLarge = 32,
     this.full = double.infinity,
     this.xExtraLarge = 40,
+    this.xxExtraLarge = 48,
     this.profileRadius = 56,
     this.foodTilePieChartDimension = 80,
-    this.chatButton = const Size.square(180),
+    this.chatButton = const Size.square(176),
+    this.logoImage = const Size.square(64),
     this.appButton = const Size.square(24),
   });
 

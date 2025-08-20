@@ -1,3 +1,4 @@
+import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:food_input/food_input.dart';
 import 'package:food_input_app/src/result_route/cubit/result_cubit.dart';
@@ -23,7 +24,9 @@ class ResultRoute extends StatelessWidget {
             ),
           ),
       child: AppScaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text(context.l10n.appRoutesName(RoutesNames.resultRoute.name)),
+        ),
 
         bottomNavigationBar: BottomNavigationBar(
           onTap: onBottomNavigationChanged,
@@ -37,7 +40,12 @@ class ResultRoute extends StatelessWidget {
                   context,
                 ),
               ),
-          child: const ResultBody(),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: context.sizeExtenstion.small,
+            ),
+            child: ResultBody(),
+          ),
         ),
       ),
     );

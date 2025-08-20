@@ -1,6 +1,7 @@
 name: introduction_app
 description: "A new Flutter package project."
 version: 0.0.1
+publish_to: none
 homepage:
 
 environment:
@@ -10,7 +11,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  animated_introduction: ^1.0.4
+  domain_model:
+    path: ../../domain_model
+  profile:
+    path: ../../repositories/profile
+  tandorost_components:
+    path: ../../tandorost_components
 dev_dependencies:
   flutter_test:
     sdk: flutter

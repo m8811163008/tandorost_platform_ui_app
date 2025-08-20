@@ -1,6 +1,9 @@
-import 'package:authentication_app/src/login/cubit/login_cubit.dart';
+import 'package:authentication_app/src/common/common.dart';
+import 'package:authentication_app/src/login/login_listeners.dart';
+import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
+
 
 class LoginRoute extends StatelessWidget {
   const LoginRoute({
@@ -16,53 +19,9 @@ class LoginRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
-      appBar: AppBar(),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: context.sizeExtenstion.extraLarge,
-        ),
-        child: LoginListener(
-          goToRegisterRoute: goToRegisterRoute,
-          goToForgotPasswordRoute: goToForgotPasswordRoute,
-          goToHomeRoute: goToHomeRoute,
-        ),
-      ),
-    );
-  }
-}
-
-class LoginListener extends StatelessWidget {
-  const LoginListener({
-    super.key,
-    this.goToRegisterRoute,
-    this.goToForgotPasswordRoute,
-    this.goToHomeRoute,
-  });
-  final VoidCallback? goToRegisterRoute;
-  final VoidCallback? goToForgotPasswordRoute;
-  final VoidCallback? goToHomeRoute;
-  @override
-  Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
-      listenWhen:
-          (previous, current) => previous.loginStatus != current.loginStatus,
-      listener: (context, state) {
-        if (state.loginStatus.isServerConnectionError) {
-          final content = context.l10n.networkError;
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.exception ?? content)));
-        } else if (state.loginStatus.isServerConnectionError) {
-          final content = context.l10n.internetConnectionError;
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.loginStatus.isSuccess) {
-          goToHomeRoute?.call();
-        }
-      },
-      child: LoginForm(
+    return AuthenticationScaffold(
+      title: context.l10n.appRoutesName(RoutesNames.loginRoute.name),
+      child: LoginListener(
         goToRegisterRoute: goToRegisterRoute,
         goToForgotPasswordRoute: goToForgotPasswordRoute,
         goToHomeRoute: goToHomeRoute,
@@ -70,6 +29,7 @@ class LoginListener extends StatelessWidget {
     );
   }
 }
+<<<<<<< HEAD
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
@@ -152,3 +112,5 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 }
+=======
+>>>>>>> origin/refactor-applications

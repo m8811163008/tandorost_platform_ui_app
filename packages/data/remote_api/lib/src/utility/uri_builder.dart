@@ -1,8 +1,8 @@
 import 'package:remote_api/remote_api.dart';
 
 class UriBuilder {
-  static final baseUri = Uri(scheme: 'http', host: '10.0.2.2', port: 8001);
-  // static final baseUri = Uri(scheme: 'http', host: '127.0.0.1', port: 8001);
+  // static final baseUri = Uri(scheme: 'http', host: '10.0.2.2', port: 8001);
+  static final baseUri = Uri(scheme: 'http', host: '127.0.0.1', port: 8001);
   static final basePath = '/api/v1';
   static Uri authSendVerificationCode(VerificationType verificationType) {
     return baseUri.replace(
@@ -112,5 +112,23 @@ class UriBuilder {
       path: '$basePath/user/delete_user_physical_data/',
       queryParameters: {'data_point_id': dataPointsId},
     );
+  }
+
+  static Uri readSubscriptions() {
+    return baseUri.replace(path: '$basePath/payment/read_subscriptions/');
+  }
+
+  static Uri readCoffeBazzarPayment() {
+    return baseUri.replace(path: '$basePath/payment/cafe_bazzar_payment_info/');
+  }
+
+  static Uri createSubscriptionPayment() {
+    return baseUri.replace(
+      path: '$basePath/payment/create_subscription_payment/',
+    );
+  }
+
+  static Uri readUserFoodCount() {
+    return baseUri.replace(path: '$basePath/payment/read_user_food_count/');
   }
 }

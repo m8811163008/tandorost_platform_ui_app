@@ -15,12 +15,12 @@ class EditImageScreen extends StatelessWidget {
           (previous, current) =>
               previous.addUserImageStatus != current.addUserImageStatus,
       listener: (context, state) {
-        if (state.addUserImageStatus.isServerConnectionError) {
+        if (state.addUserImageStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.addUserImageStatus.isServerConnectionError) {
+        } else if (state.addUserImageStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,

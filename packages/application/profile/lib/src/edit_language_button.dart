@@ -13,12 +13,12 @@ class ChangeLanguageDialog extends StatelessWidget {
           (previous, current) =>
               previous.updatingProfileStatus != current.updatingProfileStatus,
       listener: (context, state) {
-        if (state.updatingProfileStatus.isServerConnectionError) {
+        if (state.updatingProfileStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.updatingProfileStatus.isServerConnectionError) {
+        } else if (state.updatingProfileStatus.isConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,

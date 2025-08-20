@@ -1,10 +1,13 @@
+import 'package:json_annotation/json_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remote_api/remote_api.dart';
 
 part 'user_physical_data.g.dart';
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class DoubleDataPoint extends Equatable {
   final String dataPointId;
   final double value;
@@ -16,14 +19,15 @@ class DoubleDataPoint extends Equatable {
     required this.dataPointId,
   });
 
-  factory DoubleDataPoint.fromJson(Map<String, dynamic> json) =>
-      _$DoubleDataPointFromJson(json);
-
   @override
   List<Object?> get props => [dataPointId, value, createDate];
+  Map<String, dynamic> toJson() => _$DoubleDataPointToJson(this);
+
+  factory DoubleDataPoint.fromJson(Map<String, dynamic> json) =>
+      _$DoubleDataPointFromJson(json);
 }
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class ActivityLevelDataPoint extends Equatable {
   final String dataPointId;
   final ActivityLevel value;
@@ -35,14 +39,15 @@ class ActivityLevelDataPoint extends Equatable {
     required this.dataPointId,
   });
 
-  factory ActivityLevelDataPoint.fromJson(Map<String, dynamic> json) =>
-      _$ActivityLevelDataPointFromJson(json);
-
   @override
   List<Object?> get props => [dataPointId, value, createDate];
+  Map<String, dynamic> toJson() => _$ActivityLevelDataPointToJson(this);
+
+  factory ActivityLevelDataPoint.fromJson(Map<String, dynamic> json) =>
+      _$ActivityLevelDataPointFromJson(json);
 }
 
-@JsonSerializable(createToJson: false)
+@JsonSerializable()
 class UserPhysicalProfile extends Equatable {
   @JsonKey(name: '_id')
   final String id;
@@ -75,9 +80,15 @@ class UserPhysicalProfile extends Equatable {
     required this.activityLevel,
   });
 
-
-  factory UserPhysicalProfile.fromJson(Map<String, dynamic> json) =>
-      _$UserPhysicalProfileFromJson(json);
+  int get age {
+    final now = DateTime.now();
+    int years = now.year - birthday.year;
+    if (now.month < birthday.month ||
+        (now.month == birthday.month && now.day < birthday.day)) {
+      years--;
+    }
+    return years;
+  }
 
   @override
   List<Object?> get props => [
@@ -95,4 +106,8 @@ class UserPhysicalProfile extends Equatable {
     hipCircumference,
     activityLevel,
   ];
+  Map<String, dynamic> toJson() => _$UserPhysicalProfileToJson(this);
+
+  factory UserPhysicalProfile.fromJson(Map<String, dynamic> json) =>
+      _$UserPhysicalProfileFromJson(json);
 }

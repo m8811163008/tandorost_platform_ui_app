@@ -31,6 +31,13 @@ DoubleDataPoint _$DoubleDataPointFromJson(Map<String, dynamic> json) =>
       },
     );
 
+Map<String, dynamic> _$DoubleDataPointToJson(DoubleDataPoint instance) =>
+    <String, dynamic>{
+      'data_point_id': instance.dataPointId,
+      'value': instance.value,
+      'create_date': instance.createDate.toIso8601String(),
+    };
+
 ActivityLevelDataPoint _$ActivityLevelDataPointFromJson(
   Map<String, dynamic> json,
 ) => $checkedCreate(
@@ -59,6 +66,14 @@ ActivityLevelDataPoint _$ActivityLevelDataPointFromJson(
     'dataPointId': 'data_point_id',
   },
 );
+
+Map<String, dynamic> _$ActivityLevelDataPointToJson(
+  ActivityLevelDataPoint instance,
+) => <String, dynamic>{
+  'data_point_id': instance.dataPointId,
+  'value': _$ActivityLevelEnumMap[instance.value]!,
+  'create_date': instance.createDate.toIso8601String(),
+};
 
 const _$ActivityLevelEnumMap = {
   ActivityLevel.sedentary: 'sedentary',
@@ -169,6 +184,30 @@ UserPhysicalProfile _$UserPhysicalProfileFromJson(
     'activityLevel': 'activity_level',
   },
 );
+
+Map<String, dynamic> _$UserPhysicalProfileToJson(
+  UserPhysicalProfile instance,
+) => <String, dynamic>{
+  '_id': instance.id,
+  'user_id': instance.userId,
+  'gender': _$GenderEnumMap[instance.gender]!,
+  'birthday': instance.birthday.toIso8601String(),
+  'height': instance.height.map((e) => e.toJson()).toList(),
+  'weight': instance.weight.map((e) => e.toJson()).toList(),
+  'waist_circumference':
+      instance.waistCircumference.map((e) => e.toJson()).toList(),
+  'arm_circumference':
+      instance.armCircumference.map((e) => e.toJson()).toList(),
+  'chest_circumference':
+      instance.chestCircumference.map((e) => e.toJson()).toList(),
+  'thigh_circumference':
+      instance.thighCircumference.map((e) => e.toJson()).toList(),
+  'calf_muscle_circumference':
+      instance.calfMuscleCircumference.map((e) => e.toJson()).toList(),
+  'hip_circumference':
+      instance.hipCircumference.map((e) => e.toJson()).toList(),
+  'activity_level': instance.activityLevel.map((e) => e.toJson()).toList(),
+};
 
 const _$GenderEnumMap = {
   Gender.male: 'male',

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
@@ -23,8 +22,10 @@ class UserFoodRequirementRow extends StatelessWidget {
     final progressValue = value > 1.0 ? 1.0 : value;
     final isExceed = value > 1.0;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.end,
           children: [
             Material(
               shape: CircleBorder(),
@@ -35,8 +36,13 @@ class UserFoodRequirementRow extends StatelessWidget {
             Text(
               '$macroNutritionLabel $currentValue ${context.l10n.foodReportUserFoodRequirementFrom} ${total ?? context.l10n.foodReportUserFoodRequirementNA} $unitOfmeasurement',
             ),
+            SizedBox(width: context.sizeExtenstion.small),
             if (isExceed)
-              Icon(Icons.warning, color: context.themeData.colorScheme.error),
+              Icon(
+                Icons.warning_amber_rounded,
+                color: context.themeData.colorScheme.error,
+                size: context.sizeExtenstion.extraLarge,
+              ),
           ],
         ),
         SizedBox(height: context.sizeExtenstion.small),
