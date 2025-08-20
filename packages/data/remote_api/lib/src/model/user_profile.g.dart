@@ -58,8 +58,8 @@ Map<String, dynamic> _$UserProfileToJson(UserProfile instance) =>
     <String, dynamic>{
       '_id': instance.id,
       'phone_number': instance.phoneNumber,
-      if (instance.address?.toJson() case final value?) 'address': value,
-      if (instance.fullName case final value?) 'full_name': value,
+      'address': ?instance.address?.toJson(),
+      'full_name': ?instance.fullName,
       'language': _$LanguageEnumMap[instance.language]!,
       'change_weight_speed':
           _$ChangeWeightSpeedEnumMap[instance.changeWeightSpeed]!,

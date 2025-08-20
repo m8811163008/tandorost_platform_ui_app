@@ -96,10 +96,8 @@ class _RegisterFormState extends State<RegisterForm> {
             style: context.textTheme.headlineLarge,
           ),
           SizedBox(height: context.sizeExtenstion.extraLarge),
-          PhoneNumberTextField(
-            onChange: (value) {
-              context.read<RegisterCubit>().onChangePhoneNumber('09$value');
-            },
+          IdentifierTextField(
+            onChange: context.read<RegisterCubit>().onChangePhoneNumber,
             textDirection: TextDirection.ltr,
           ),
 

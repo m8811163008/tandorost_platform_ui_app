@@ -29,7 +29,7 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
     emit(state.copyWith(verificationStatus: AsyncProcessingStatus.loading));
     try {
       final request = VerificationCodeRequest(
-        phoneNumber: state.phoneNumber,
+        identifier: state.phoneNumber,
         verificationType: VerificationType.forgotPassword,
       );
       await _authenticationRepository.sendVerificationCode(

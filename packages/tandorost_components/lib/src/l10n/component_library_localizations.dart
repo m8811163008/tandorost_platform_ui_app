@@ -61,15 +61,20 @@ import 'component_library_localizations_fa.dart';
 /// be consistent with the languages listed in the ComponentLibraryLocalizations.supportedLocales
 /// property.
 abstract class ComponentLibraryLocalizations {
-  ComponentLibraryLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  ComponentLibraryLocalizations(String locale)
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static ComponentLibraryLocalizations of(BuildContext context) {
-    return Localizations.of<ComponentLibraryLocalizations>(context, ComponentLibraryLocalizations)!;
+    return Localizations.of<ComponentLibraryLocalizations>(
+      context,
+      ComponentLibraryLocalizations,
+    )!;
   }
 
-  static const LocalizationsDelegate<ComponentLibraryLocalizations> delegate = _ComponentLibraryLocalizationsDelegate();
+  static const LocalizationsDelegate<ComponentLibraryLocalizations> delegate =
+      _ComponentLibraryLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -81,17 +86,16 @@ abstract class ComponentLibraryLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('fa')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('fa')];
 
   /// No description provided for @foodName.
   ///
@@ -333,11 +337,17 @@ abstract class ComponentLibraryLocalizations {
   /// **'فراموشی رمز عبور'**
   String get forgotPasswordLabel;
 
-  /// No description provided for @phoneNumberTextFieldLabel.
+  /// No description provided for @identifierTextFieldLabel.
   ///
   /// In fa, this message translates to:
-  /// **'شماره تلفن همراه'**
-  String get phoneNumberTextFieldLabel;
+  /// **'ایمیل یا شماره تلفن همراه'**
+  String get identifierTextFieldLabel;
+
+  /// No description provided for @invalidIdentifierValidationError.
+  ///
+  /// In fa, this message translates to:
+  /// **'شماره تلفن یا ایمیل نامعتبر است'**
+  String get invalidIdentifierValidationError;
 
   /// No description provided for @passwordTextFieldLabel.
   ///
@@ -937,13 +947,16 @@ abstract class ComponentLibraryLocalizations {
   ///
   /// In fa, this message translates to:
   /// **'شاخص دور کمر به قد برای شما {ratio} است'**
-  String fitnessProfileWaistCircumferenceToHeightRatioAvailableDescription(double ratio);
+  String fitnessProfileWaistCircumferenceToHeightRatioAvailableDescription(
+    double ratio,
+  );
 
   /// No description provided for @fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription.
   ///
   /// In fa, this message translates to:
   /// **'شاخص دور کمر به قد برای شما در دسترس نیست، لطفا دور کمر خود را در قسمت اندازه گیری جدید در صفحه قبل، اندازه و اضافه کنید'**
-  String get fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription;
+  String
+  get fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription;
 
   /// No description provided for @fitnessProfileBmiWaistCircumferenceHealthDescription.
   ///
@@ -973,7 +986,9 @@ abstract class ComponentLibraryLocalizations {
   ///
   /// In fa, this message translates to:
   /// **'{isWaistCircumferenceSafeRange, select, true{دور کمر شما در محدوده مجاز می‌باشد} false{دور کمر شما از محدوده مجاز بیشتر است و احتمال ابتلا به دیابت نوع 2 در شما بیشتر است. لطفا چربی خود را سریع کاهش دهید} other{ترجمه تعریف نشده}}'**
-  String fitnessProfileIsWaistCircumferenceSafeRangeDescription(String isWaistCircumferenceSafeRange);
+  String fitnessProfileIsWaistCircumferenceSafeRangeDescription(
+    String isWaistCircumferenceSafeRange,
+  );
 
   /// No description provided for @fitnessProfileNewMeasurementLabel.
   ///
@@ -1162,33 +1177,38 @@ abstract class ComponentLibraryLocalizations {
   String get wellcomeMessage;
 }
 
-class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {
+class _ComponentLibraryLocalizationsDelegate
+    extends LocalizationsDelegate<ComponentLibraryLocalizations> {
   const _ComponentLibraryLocalizationsDelegate();
 
   @override
   Future<ComponentLibraryLocalizations> load(Locale locale) {
-    return SynchronousFuture<ComponentLibraryLocalizations>(lookupComponentLibraryLocalizations(locale));
+    return SynchronousFuture<ComponentLibraryLocalizations>(
+      lookupComponentLibraryLocalizations(locale),
+    );
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['fa'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['fa'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_ComponentLibraryLocalizationsDelegate old) => false;
 }
 
-ComponentLibraryLocalizations lookupComponentLibraryLocalizations(Locale locale) {
-
-
+ComponentLibraryLocalizations lookupComponentLibraryLocalizations(
+  Locale locale,
+) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'fa': return ComponentLibraryLocalizationsFa();
+    case 'fa':
+      return ComponentLibraryLocalizationsFa();
   }
 
   throw FlutterError(
     'ComponentLibraryLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+    'that was used.',
   );
 }

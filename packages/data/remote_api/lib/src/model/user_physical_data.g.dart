@@ -100,70 +100,59 @@ UserPhysicalProfile _$UserPhysicalProfileFromJson(
       birthday: $checkedConvert('birthday', (v) => DateTime.parse(v as String)),
       height: $checkedConvert(
         'height',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       weight: $checkedConvert(
         'weight',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       waistCircumference: $checkedConvert(
         'waist_circumference',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       armCircumference: $checkedConvert(
         'arm_circumference',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       chestCircumference: $checkedConvert(
         'chest_circumference',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       thighCircumference: $checkedConvert(
         'thigh_circumference',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       calfMuscleCircumference: $checkedConvert(
         'calf_muscle_circumference',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       hipCircumference: $checkedConvert(
         'hip_circumference',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       activityLevel: $checkedConvert(
         'activity_level',
-        (v) =>
-            (v as List<dynamic>)
-                .map(
-                  (e) => ActivityLevelDataPoint.fromJson(
-                    e as Map<String, dynamic>,
-                  ),
-                )
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map(
+              (e) => ActivityLevelDataPoint.fromJson(e as Map<String, dynamic>),
+            )
+            .toList(),
       ),
     );
     return val;

@@ -18,7 +18,8 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get carbohydrate => 'کربوهیدرات';
 
   @override
-  String get carbohydrateFruitsOrNonStarchyVegetables => 'کربوهیدرات میوه و سبزی';
+  String get carbohydrateFruitsOrNonStarchyVegetables =>
+      'کربوهیدرات میوه و سبزی';
 
   @override
   String get carbohydrateOthers => 'کربوهیدرات غنی';
@@ -49,14 +50,11 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String carbohydrateSourceValue(String source) {
-    String _temp0 = intl.Intl.selectLogic(
-      source,
-      {
-        'fruitsOrNonStarchyVegetables': 'میوه و سبزی',
-        'others': 'کربوهیدرات غنی',
-        'other': 'ترجمه تعریف نشده',
-      },
-    );
+    String _temp0 = intl.Intl.selectLogic(source, {
+      'fruitsOrNonStarchyVegetables': 'میوه و سبزی',
+      'others': 'کربوهیدرات غنی',
+      'other': 'ترجمه تعریف نشده',
+    });
     return '$_temp0';
   }
 
@@ -81,19 +79,24 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get searchFoodBottomSheetHeading => 'اضافه کردن غذا';
 
   @override
-  String get searchFoodBottomSheetTextFieldHintExample1 => 'برای مثال یک عدد سینه مرغ سرخ شده و دو عدد سیب زمینی پخته متوسط';
+  String get searchFoodBottomSheetTextFieldHintExample1 =>
+      'برای مثال یک عدد سینه مرغ سرخ شده و دو عدد سیب زمینی پخته متوسط';
 
   @override
-  String get searchFoodBottomSheetTextFieldHintExample2 => 'یک بشقاب قرمه سبزی و یک کاسه سالاد شیرازی و دو لیوان دوغ';
+  String get searchFoodBottomSheetTextFieldHintExample2 =>
+      'یک بشقاب قرمه سبزی و یک کاسه سالاد شیرازی و دو لیوان دوغ';
 
   @override
-  String get searchFoodBottomSheetTextFieldHintExample3 => 'یه کاسه ماست یونانی و یک مشت جو دوسر';
+  String get searchFoodBottomSheetTextFieldHintExample3 =>
+      'یه کاسه ماست یونانی و یک مشت جو دوسر';
 
   @override
-  String get searchFoodBottomSheetTextFieldHintExample4 => 'نصف بشقاب باقلی قاتق و یک لیوان آب جو بدون الکل';
+  String get searchFoodBottomSheetTextFieldHintExample4 =>
+      'نصف بشقاب باقلی قاتق و یک لیوان آب جو بدون الکل';
 
   @override
-  String get searchFoodBottomSheetTextFieldHintExample5 => 'اشکنه شنبلیله و نعناع یک کاسه بزرگ';
+  String get searchFoodBottomSheetTextFieldHintExample5 =>
+      'اشکنه شنبلیله و نعناع یک کاسه بزرگ';
 
   @override
   String get searchFoodBottomSheetButtonLabel => 'جستجو';
@@ -102,7 +105,8 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get networkError => 'خطای ارتباط. دوباره امتحان کنید';
 
   @override
-  String get internetConnectionError => 'خطای اینترنت. اینترنت خود را روشن نمایید';
+  String get internetConnectionError =>
+      'خطای اینترنت. اینترنت خود را روشن نمایید';
 
   @override
   String voiceAiInsufficientLength(int seconds) {
@@ -145,7 +149,11 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get forgotPasswordLabel => 'فراموشی رمز عبور';
 
   @override
-  String get phoneNumberTextFieldLabel => 'شماره تلفن همراه';
+  String get identifierTextFieldLabel => 'ایمیل یا شماره تلفن همراه';
+
+  @override
+  String get invalidIdentifierValidationError =>
+      'شماره تلفن یا ایمیل نامعتبر است';
 
   @override
   String get passwordTextFieldLabel => 'رمز عبور';
@@ -181,36 +189,39 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get changeWeightSpeedLabel => 'سرعت کاهش وزن';
 
   @override
-  String get changeWeightSpeedInfoConstantSpeed => 'در حالت تثبیت وزن از انرژی مورد نیاز کم نمیشود';
+  String get changeWeightSpeedInfoConstantSpeed =>
+      'در حالت تثبیت وزن از انرژی مورد نیاز کم نمیشود';
 
   @override
-  String get changeWeightSpeedInfoSlowAndEasySpeed => 'در حالت آهسته و آسان در روز استراحت 10 درصد از انرژی مورد نیاز کم میشود و در روز تمرین 0 درصد از انرژی مورد نیاز کم میشود';
+  String get changeWeightSpeedInfoSlowAndEasySpeed =>
+      'در حالت آهسته و آسان در روز استراحت 10 درصد از انرژی مورد نیاز کم میشود و در روز تمرین 0 درصد از انرژی مورد نیاز کم میشود';
 
   @override
-  String get changeWeightSpeedInfoMediumSpeed => 'در حالت طبیعی در روز استراحت 10 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  5 درصد از انرژی مورد نیاز کم میشود';
+  String get changeWeightSpeedInfoMediumSpeed =>
+      'در حالت طبیعی در روز استراحت 10 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  5 درصد از انرژی مورد نیاز کم میشود';
 
   @override
-  String get changeWeightSpeedInfoFastSpeed => 'در حالت سریع در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  5 درصد از انرژی مورد نیاز کم میشود';
+  String get changeWeightSpeedInfoFastSpeed =>
+      'در حالت سریع در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  5 درصد از انرژی مورد نیاز کم میشود';
 
   @override
-  String get changeWeightSpeedInfoFastAndHardSpeed => 'در حالت سریع و سخت در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  15 درصد از انرژی مورد نیاز کم میشود';
+  String get changeWeightSpeedInfoFastAndHardSpeed =>
+      'در حالت سریع و سخت در روز استراحت 15 درصد از انرژی مورد نیاز کم میشود و در روز تمرین  15 درصد از انرژی مورد نیاز کم میشود';
 
   @override
-  String get changeWeightSpeedInfoFastAndHardSpeedCaution => 'دقت کنید حالت سریع و سخت برای بعضی روزهای تمرین مناسب نیست چون باعث میشه انرژی کمی برای تمرین فراهم باشد.';
+  String get changeWeightSpeedInfoFastAndHardSpeedCaution =>
+      'دقت کنید حالت سریع و سخت برای بعضی روزهای تمرین مناسب نیست چون باعث میشه انرژی کمی برای تمرین فراهم باشد.';
 
   @override
   String profileChangeWeightSpeedButtonLabel(String changeWeightSpeed) {
-    String _temp0 = intl.Intl.selectLogic(
-      changeWeightSpeed,
-      {
-        'constant': 'تثبیت وزن',
-        'slowAndEasy': 'آهسته و آسان',
-        'medium': 'طبیعی',
-        'fast': 'سریع',
-        'fastAndHard': 'سریع و سخت',
-        'other': 'ترجمه تعریف نشده',
-      },
-    );
+    String _temp0 = intl.Intl.selectLogic(changeWeightSpeed, {
+      'constant': 'تثبیت وزن',
+      'slowAndEasy': 'آهسته و آسان',
+      'medium': 'طبیعی',
+      'fast': 'سریع',
+      'fastAndHard': 'سریع و سخت',
+      'other': 'ترجمه تعریف نشده',
+    });
     return '$_temp0';
   }
 
@@ -222,62 +233,56 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String languageTranslation(String language_name) {
-    String _temp0 = intl.Intl.selectLogic(
-      language_name,
-      {
-        'english': 'انگلیسی',
-        'chinese': 'چینی',
-        'hindi': 'هندی',
-        'spanish': 'اسپانیایی',
-        'french': 'فرانسوی',
-        'arabic': 'عربی',
-        'bengali': 'بنگالی',
-        'russian': 'روسی',
-        'portuguese': 'پرتغالی',
-        'urdu': 'اردو',
-        'indonesian': 'اندونزیایی',
-        'german': 'آلمانی',
-        'japanese': 'ژاپنی',
-        'marathi': 'مراتی',
-        'telugu': 'تلوگو',
-        'turkish': 'ترکی',
-        'tamil': 'تامیلی',
-        'vietnamese': 'ویتنامی',
-        'tagalog': 'تاگالوگ',
-        'korean': 'کره‌ای',
-        'persian': 'فارسی',
-        'hausa': 'هوسا',
-        'javanese': 'جاوه‌ای',
-        'italian': 'ایتالیایی',
-        'punjabi': 'پنجابی',
-        'kannada': 'کانادا',
-        'gujarati': 'گجراتی',
-        'thai': 'تایلندی',
-        'polish': 'لهستانی',
-        'ukrainian': 'اوکراینی',
-        'other': 'ترجمه تعریف نشده',
-      },
-    );
+    String _temp0 = intl.Intl.selectLogic(language_name, {
+      'english': 'انگلیسی',
+      'chinese': 'چینی',
+      'hindi': 'هندی',
+      'spanish': 'اسپانیایی',
+      'french': 'فرانسوی',
+      'arabic': 'عربی',
+      'bengali': 'بنگالی',
+      'russian': 'روسی',
+      'portuguese': 'پرتغالی',
+      'urdu': 'اردو',
+      'indonesian': 'اندونزیایی',
+      'german': 'آلمانی',
+      'japanese': 'ژاپنی',
+      'marathi': 'مراتی',
+      'telugu': 'تلوگو',
+      'turkish': 'ترکی',
+      'tamil': 'تامیلی',
+      'vietnamese': 'ویتنامی',
+      'tagalog': 'تاگالوگ',
+      'korean': 'کره‌ای',
+      'persian': 'فارسی',
+      'hausa': 'هوسا',
+      'javanese': 'جاوه‌ای',
+      'italian': 'ایتالیایی',
+      'punjabi': 'پنجابی',
+      'kannada': 'کانادا',
+      'gujarati': 'گجراتی',
+      'thai': 'تایلندی',
+      'polish': 'لهستانی',
+      'ukrainian': 'اوکراینی',
+      'other': 'ترجمه تعریف نشده',
+    });
     return '$_temp0';
   }
 
   @override
   String profileChartTypeLabel(String chartType) {
-    String _temp0 = intl.Intl.selectLogic(
-      chartType,
-      {
-        'weight': 'وزن',
-        'height': 'قد',
-        'waistCircumference': 'دور کمر',
-        'armCircumference': 'دور بازو',
-        'chestCircumference': 'دور سینه',
-        'thighCircumference': 'دور ران',
-        'calfMuscleCircumference': 'ماهیچه ساق پا',
-        'hipCircumference': 'دور باسن',
-        'activityLevel': 'سطح فعالیت',
-        'other': 'ترجمه تعریف نشده',
-      },
-    );
+    String _temp0 = intl.Intl.selectLogic(chartType, {
+      'weight': 'وزن',
+      'height': 'قد',
+      'waistCircumference': 'دور کمر',
+      'armCircumference': 'دور بازو',
+      'chestCircumference': 'دور سینه',
+      'thighCircumference': 'دور ران',
+      'calfMuscleCircumference': 'ماهیچه ساق پا',
+      'hipCircumference': 'دور باسن',
+      'activityLevel': 'سطح فعالیت',
+      'other': 'ترجمه تعریف نشده',
+    });
     return '$_temp0';
   }
 
@@ -441,7 +446,8 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get photoEditorCloseEditorWarningTitle => 'بستن ویرایشگر تصویر؟';
 
   @override
-  String get photoEditorCloseEditorWarningMessage => 'آیا مطمئن هستید که می‌خواهید ویرایشگر تصویر را ببندید؟ تغییرات شما ذخیره نخواهد شد.';
+  String get photoEditorCloseEditorWarningMessage =>
+      'آیا مطمئن هستید که می‌خواهید ویرایشگر تصویر را ببندید؟ تغییرات شما ذخیره نخواهد شد.';
 
   @override
   String get photoEditorCloseEditorWarningConfirmBtn => 'تأیید';
@@ -450,37 +456,33 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get photoEditorCloseEditorWarningCancelBtn => 'لغو';
 
   @override
-  String get photoEditorImportStateHistoryMsg => 'ویرایشگر در حال راه‌اندازی است';
+  String get photoEditorImportStateHistoryMsg =>
+      'ویرایشگر در حال راه‌اندازی است';
 
   @override
   String get photoEditorDoneLoadingMsg => 'تغییرات در حال اعمال هستند';
 
   @override
   String physicalDataGender(String gender) {
-    String _temp0 = intl.Intl.selectLogic(
-      gender,
-      {
-        'male': 'مرد',
-        'female': 'زن',
-        'other': 'ترجمه تعریف نشده',
-      },
-    );
+    String _temp0 = intl.Intl.selectLogic(gender, {
+      'male': 'مرد',
+      'female': 'زن',
+      'other': 'ترجمه تعریف نشده',
+    });
     return '$_temp0';
   }
 
   @override
   String physicalActivityLevel(String activityLevel) {
-    String _temp0 = intl.Intl.selectLogic(
-      activityLevel,
-      {
-        'sedentary': 'غیرفعال و زیاد میشینم',
-        'fairyActive': 'تقریبا فعال، هر هفته یکی دوبار ورزش میکنم و پیاده روی میکنم',
-        'moderatelyActive': 'فعال، هر هفته دو سه روز ورزش میکنم',
-        'active': 'خیلی فعال، هر هفته بیش از 3 بار با شدت بالا ورزش میکنم',
-        'veryActive': 'روزی دوبار ورزش میکنم',
-        'other': 'ترجمه تعریف نشده',
-      },
-    );
+    String _temp0 = intl.Intl.selectLogic(activityLevel, {
+      'sedentary': 'غیرفعال و زیاد میشینم',
+      'fairyActive':
+          'تقریبا فعال، هر هفته یکی دوبار ورزش میکنم و پیاده روی میکنم',
+      'moderatelyActive': 'فعال، هر هفته دو سه روز ورزش میکنم',
+      'active': 'خیلی فعال، هر هفته بیش از 3 بار با شدت بالا ورزش میکنم',
+      'veryActive': 'روزی دوبار ورزش میکنم',
+      'other': 'ترجمه تعریف نشده',
+    });
     return '$_temp0';
   }
 
@@ -494,10 +496,12 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get fitnessProfilePhysicalDataLabel => 'اطلاعات فیزیکی شما';
 
   @override
-  String get fitnessProfileRestingMetabolicRate => 'نرخ سوخت ساز در حالت استراحت';
+  String get fitnessProfileRestingMetabolicRate =>
+      'نرخ سوخت ساز در حالت استراحت';
 
   @override
-  String get fitnessProfileTotalDailyEnergyExpenditure => 'کل انرژی مصرفی روزانه';
+  String get fitnessProfileTotalDailyEnergyExpenditure =>
+      'کل انرژی مصرفی روزانه';
 
   @override
   String get fitnessProfileBodyMassIndex => 'شاخص توده بدنی';
@@ -509,13 +513,16 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get fitnessProfileBodyMassIndexLevelLabel => 'سطح شاخص توده بدنی';
 
   @override
-  String get fitnessProfileWaistCircumferenceToHeightRatio => 'نسبت دور کمر به قد';
+  String get fitnessProfileWaistCircumferenceToHeightRatio =>
+      'نسبت دور کمر به قد';
 
   @override
-  String get fitnessProfileIsWaistCircumferenceToHeightRatioSafe => 'آیا نسبت دور کمر به قد ایمن است؟';
+  String get fitnessProfileIsWaistCircumferenceToHeightRatioSafe =>
+      'آیا نسبت دور کمر به قد ایمن است؟';
 
   @override
-  String get fitnessProfileIsWaistCircumferenceSafeRange => 'آیا دور کمر در محدوده ایمن است؟';
+  String get fitnessProfileIsWaistCircumferenceSafeRange =>
+      'آیا دور کمر در محدوده ایمن است؟';
 
   @override
   String get fitnessProfileYes => 'بله';
@@ -528,9 +535,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String fitnessProfileBmiDescription(double bmiValue, String bmiDescriptive) {
-    final intl.NumberFormat bmiValueNumberFormat = intl.NumberFormat.decimalPatternDigits(
+    final intl.NumberFormat bmiValueNumberFormat = intl
+        .NumberFormat.decimalPatternDigits(
       locale: localeName,
-      decimalDigits: 1
+      decimalDigits: 1,
     );
     final String bmiValueString = bmiValueNumberFormat.format(bmiValue);
 
@@ -538,16 +546,21 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   }
 
   @override
-  String get fitnessProfileWaistCircumferencePhysicalDataHintLabel => 'دور کمر و دیابت';
+  String get fitnessProfileWaistCircumferencePhysicalDataHintLabel =>
+      'دور کمر و دیابت';
 
   @override
-  String get fitnessProfileWaistCircumferenceToHeightRatioDescription => 'شاخص دور کمر به قد از شاخص توده بدنی برای ارزیابی خطرات مرتبط با سلامت دقیق‌تر است ، این نسبت هرچه به صفر نزدیک تر باشد وضعیت خطرات مرتبط با سلامتی برای شما کمتر میشود.';
+  String get fitnessProfileWaistCircumferenceToHeightRatioDescription =>
+      'شاخص دور کمر به قد از شاخص توده بدنی برای ارزیابی خطرات مرتبط با سلامت دقیق‌تر است ، این نسبت هرچه به صفر نزدیک تر باشد وضعیت خطرات مرتبط با سلامتی برای شما کمتر میشود.';
 
   @override
-  String fitnessProfileWaistCircumferenceToHeightRatioAvailableDescription(double ratio) {
-    final intl.NumberFormat ratioNumberFormat = intl.NumberFormat.decimalPatternDigits(
+  String fitnessProfileWaistCircumferenceToHeightRatioAvailableDescription(
+    double ratio,
+  ) {
+    final intl.NumberFormat ratioNumberFormat = intl
+        .NumberFormat.decimalPatternDigits(
       locale: localeName,
-      decimalDigits: 1
+      decimalDigits: 1,
     );
     final String ratioString = ratioNumberFormat.format(ratio);
 
@@ -555,44 +568,46 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   }
 
   @override
-  String get fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription => 'شاخص دور کمر به قد برای شما در دسترس نیست، لطفا دور کمر خود را در قسمت اندازه گیری جدید در صفحه قبل، اندازه و اضافه کنید';
+  String
+  get fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription =>
+      'شاخص دور کمر به قد برای شما در دسترس نیست، لطفا دور کمر خود را در قسمت اندازه گیری جدید در صفحه قبل، اندازه و اضافه کنید';
 
   @override
-  String get fitnessProfileBmiWaistCircumferenceHealthDescription => 'خطرات مرتبط با سلامتی شامل بیماری های قلبی عروقی، بیماری کیسه صفرا، فشار خون بالا و دیابت نوع 2 میباشد.';
+  String get fitnessProfileBmiWaistCircumferenceHealthDescription =>
+      'خطرات مرتبط با سلامتی شامل بیماری های قلبی عروقی، بیماری کیسه صفرا، فشار خون بالا و دیابت نوع 2 میباشد.';
 
   @override
   String fitnessProfileBmiStatus(String bmiStatus) {
-    String _temp0 = intl.Intl.selectLogic(
-      bmiStatus,
-      {
-        'underweight': 'کمبود وزن',
-        'healthyWeight': 'عادی',
-        'overweight': 'اضافه وزن',
-        'obeseClassOne': 'چاقی کلاس 1',
-        'obeseClassTwo': 'چاقی کلاس 2',
-        'obeseClassThree': 'چاقی کلاس 3',
-        'other': 'ترجمه تعریف نشده',
-      },
-    );
+    String _temp0 = intl.Intl.selectLogic(bmiStatus, {
+      'underweight': 'کمبود وزن',
+      'healthyWeight': 'عادی',
+      'overweight': 'اضافه وزن',
+      'obeseClassOne': 'چاقی کلاس 1',
+      'obeseClassTwo': 'چاقی کلاس 2',
+      'obeseClassThree': 'چاقی کلاس 3',
+      'other': 'ترجمه تعریف نشده',
+    });
     return '$_temp0';
   }
 
   @override
-  String get fitnessProfileWaistCircumferenceSafeRangeDescription => 'محدوده سالم اندازه دور کمر بهتر است کمتر از 94 سانتی متر در آقایان و 80 سانتی متر در خانم‌ها باشد.این شاخص با احتمال ابتلا به دیابت نوع 2 در ارتباط است';
+  String get fitnessProfileWaistCircumferenceSafeRangeDescription =>
+      'محدوده سالم اندازه دور کمر بهتر است کمتر از 94 سانتی متر در آقایان و 80 سانتی متر در خانم‌ها باشد.این شاخص با احتمال ابتلا به دیابت نوع 2 در ارتباط است';
 
   @override
-  String get fitnessProfileWaistCircumferenceSafeRangeNotAvailableDescription => 'شاخص محدوده مجاز دور کمر برای شما در دسترس نیست، لطفا دور کمر خود را در قسمت اندازه گیری جدید در صفحه قبل، اندازه و اضافه کنید';
+  String get fitnessProfileWaistCircumferenceSafeRangeNotAvailableDescription =>
+      'شاخص محدوده مجاز دور کمر برای شما در دسترس نیست، لطفا دور کمر خود را در قسمت اندازه گیری جدید در صفحه قبل، اندازه و اضافه کنید';
 
   @override
-  String fitnessProfileIsWaistCircumferenceSafeRangeDescription(String isWaistCircumferenceSafeRange) {
-    String _temp0 = intl.Intl.selectLogic(
-      isWaistCircumferenceSafeRange,
-      {
-        'true': 'دور کمر شما در محدوده مجاز می‌باشد',
-        'false': 'دور کمر شما از محدوده مجاز بیشتر است و احتمال ابتلا به دیابت نوع 2 در شما بیشتر است. لطفا چربی خود را سریع کاهش دهید',
-        'other': 'ترجمه تعریف نشده',
-      },
-    );
+  String fitnessProfileIsWaistCircumferenceSafeRangeDescription(
+    String isWaistCircumferenceSafeRange,
+  ) {
+    String _temp0 = intl.Intl.selectLogic(isWaistCircumferenceSafeRange, {
+      'true': 'دور کمر شما در محدوده مجاز می‌باشد',
+      'false':
+          'دور کمر شما از محدوده مجاز بیشتر است و احتمال ابتلا به دیابت نوع 2 در شما بیشتر است. لطفا چربی خود را سریع کاهش دهید',
+      'other': 'ترجمه تعریف نشده',
+    });
     return '$_temp0';
   }
 
@@ -609,7 +624,8 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get fitnessProfileNewMeasurementDialogThighCircumference => 'دور ران';
 
   @override
-  String get fitnessProfileNewMeasurementDialogCalfMuscleCircumference => 'دور ماهیچه ساق پا';
+  String get fitnessProfileNewMeasurementDialogCalfMuscleCircumference =>
+      'دور ماهیچه ساق پا';
 
   @override
   String get fitnessProfileNewMeasurementDialogHipCircumference => 'دور باسن';
@@ -651,7 +667,8 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get fitnessProfileDeleteDataPointDialogLabel => 'حذف اندازه';
 
   @override
-  String get fitnessProfileDeleteDataPointDialogDescription => 'آیا از حذف این اندازه مطمئن هستید؟';
+  String get fitnessProfileDeleteDataPointDialogDescription =>
+      'آیا از حذف این اندازه مطمئن هستید؟';
 
   @override
   String get foodReportUserFoodRequirementFrom => 'از';
@@ -663,7 +680,8 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get foodReportTabLabelTrainingDay => 'روز تمرین';
 
   @override
-  String get foodReportBannerContent => 'مشخصات تغذیه شما دردسترس نیست. لطفا مشخصات خود را در صفحه تناسب اندام کامل کنید';
+  String get foodReportBannerContent =>
+      'مشخصات تغذیه شما دردسترس نیست. لطفا مشخصات خود را در صفحه تناسب اندام کامل کنید';
 
   @override
   String get foodReportBannerGotoLabel => 'رفتن به صفحه تناسب اندام';
@@ -685,21 +703,18 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String appRoutesName(String routesNames) {
-    String _temp0 = intl.Intl.selectLogic(
-      routesNames,
-      {
-        'loginRoute': 'ورود',
-        'registerRoute': 'ثبت نام',
-        'searchRoute': 'جستجو',
-        'resultRoute': 'نتیجه',
-        'forgotPassRoute': 'فراموشی رمز عبور',
-        'verificationRoute': 'تایید شماره',
-        'profileRoute': 'پروفایل',
-        'fitnessProfileRoute': 'تناسب اندام',
-        'foodReportRoute': 'گزارش تغذیه',
-        'other': 'ترجمه تعریف نشده',
-      },
-    );
+    String _temp0 = intl.Intl.selectLogic(routesNames, {
+      'loginRoute': 'ورود',
+      'registerRoute': 'ثبت نام',
+      'searchRoute': 'جستجو',
+      'resultRoute': 'نتیجه',
+      'forgotPassRoute': 'فراموشی رمز عبور',
+      'verificationRoute': 'تایید شماره',
+      'profileRoute': 'پروفایل',
+      'fitnessProfileRoute': 'تناسب اندام',
+      'foodReportRoute': 'گزارش تغذیه',
+      'other': 'ترجمه تعریف نشده',
+    });
     return '$_temp0';
   }
 

@@ -71,9 +71,8 @@ Map<String, dynamic> _$FileDataToJson(FileData instance) => <String, dynamic>{
   'content_type': instance.contentType,
   'file_upload_path': instance.fileUploadPath,
   'processing_status': _$ProcessingStatusEnumMap[instance.processingStatus]!,
-  if (_$ImageRejectionReasonEnumMap[instance.rejectProcessingStatusDesc]
-      case final value?)
-    'reject_processing_status_desc': value,
+  'reject_processing_status_desc':
+      ?_$ImageRejectionReasonEnumMap[instance.rejectProcessingStatusDesc],
 };
 
 const _$GallaryTagEnumMap = {

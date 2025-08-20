@@ -12,12 +12,9 @@ ValidationErrors _$ValidationErrorsFromJson(Map<String, dynamic> json) =>
       final val = ValidationErrors(
         detail: $checkedConvert(
           'detail',
-          (v) =>
-              (v as List<dynamic>?)
-                  ?.map(
-                    (e) => ValidationError.fromJson(e as Map<String, dynamic>),
-                  )
-                  .toList(),
+          (v) => (v as List<dynamic>?)
+              ?.map((e) => ValidationError.fromJson(e as Map<String, dynamic>))
+              .toList(),
         ),
       );
       return val;
@@ -25,6 +22,5 @@ ValidationErrors _$ValidationErrorsFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ValidationErrorsToJson(ValidationErrors instance) =>
     <String, dynamic>{
-      if (instance.detail?.map((e) => e.toJson()).toList() case final value?)
-        'detail': value,
+      'detail': ?instance.detail?.map((e) => e.toJson()).toList(),
     };

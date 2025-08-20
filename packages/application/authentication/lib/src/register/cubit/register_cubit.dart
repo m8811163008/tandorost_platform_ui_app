@@ -29,7 +29,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(state.copyWith(verificationStatus: AsyncProcessingStatus.loading));
     try {
       final request = VerificationCodeRequest(
-        phoneNumber: state.phoneNumber,
+        identifier: state.phoneNumber,
         verificationType: VerificationType.register,
       );
       await _authenticationRepository.sendVerificationCode(

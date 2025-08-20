@@ -102,12 +102,8 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
             style: context.textTheme.headlineLarge,
           ),
           SizedBox(height: context.sizeExtenstion.extraLarge),
-          PhoneNumberTextField(
-            onChange: (value) {
-              context.read<ForgotPasswordCubit>().onChangePhoneNumber(
-                '09$value',
-              );
-            },
+          IdentifierTextField(
+            onChange: context.read<ForgotPasswordCubit>().onChangePhoneNumber,
             textDirection: TextDirection.ltr,
           ),
           SizedBox(height: context.sizeExtenstion.small),

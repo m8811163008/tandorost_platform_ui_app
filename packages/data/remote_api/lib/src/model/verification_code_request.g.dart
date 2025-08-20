@@ -8,4 +8,4 @@ part of 'verification_code_request.dart';
 
 Map<String, dynamic> _$VerificationCodeRequestToJson(
   VerificationCodeRequest instance,
-) => <String, dynamic>{'phone_number': instance.phoneNumber};
+) => <String, dynamic>{'identifier': instance.identifier};

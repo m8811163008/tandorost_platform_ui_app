@@ -100,10 +100,8 @@ class _LoginFormState extends State<LoginForm> {
             style: context.textTheme.headlineLarge,
           ),
           SizedBox(height: context.sizeExtenstion.extraLarge),
-          PhoneNumberTextField(
-            onChange: (value) {
-              context.read<LoginCubit>().onChangePhoneNumber('09$value');
-            },
+          IdentifierTextField(
+            onChange: context.read<LoginCubit>().onChangePhoneNumber,
             textDirection: TextDirection.ltr,
             autofillHints: [AutofillHints.newUsername, AutofillHints.username]
           ),

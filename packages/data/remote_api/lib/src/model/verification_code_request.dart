@@ -4,12 +4,12 @@ part 'verification_code_request.g.dart';
 
 @JsonSerializable(createFactory: false)
 class VerificationCodeRequest {
-  final String phoneNumber;
+  final String identifier;
   @JsonKey(includeToJson: false)
   final VerificationType verificationType;
 
   VerificationCodeRequest({
-    required this.phoneNumber,
+    required this.identifier,
     required this.verificationType,
   });
 

@@ -68,7 +68,9 @@
     "verifyNumberTextFieldLabel": "تایید شماره همراه",
     "verifyFormOutlineLabel": "ارسال",
     "forgotPasswordLabel": "فراموشی رمز عبور",
-    "phoneNumberTextFieldLabel": "شماره تلفن همراه",
+    "identifierTextFieldLabel": "ایمیل یا شماره تلفن همراه",
+    "invalidIdentifierValidationError": "شماره تلفن یا ایمیل نامعتبر است",
+
     "passwordTextFieldLabel": "رمز عبور",
     "verificationCodeTextFieldLabel": "کد پیامک شده",
     "dialogTitleChangeApplicationLanguage": "تغییر زبان نرم افزار",
