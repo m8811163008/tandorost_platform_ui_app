@@ -33,12 +33,8 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
         children: [
           AutheticationFormHeader(label: context.l10n.forgotPasswordLabel),
           gap,
-          PhoneNumberTextField(
-            onChange: (value) {
-              context.read<ForgotPasswordCubit>().onChangePhoneNumber(
-                '09$value',
-              );
-            },
+          identifierTextField(
+            onChange: context.read<ForgotPasswordCubit>().onChangePhoneNumber,
             textDirection: TextDirection.ltr,
           ),
           gapSmall,

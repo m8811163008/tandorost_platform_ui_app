@@ -31,7 +31,7 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
     );
     try {
       final request = VerificationCodeRequest(
-        phoneNumber: state.phoneNumber,
+        identifier: state.phoneNumber,
         verificationType: VerificationType.forgotPassword,
       );
       await _authenticationRepository.sendVerificationCode(
@@ -62,7 +62,7 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
     );
     try {
       final forgotPasswordRequest = ForgotPasswordRequest(
-        userName: state.phoneNumber,
+        identifier: state.phoneNumber,
         newPassword: state.password,
         verificationCode: state.verificationCode,
       );

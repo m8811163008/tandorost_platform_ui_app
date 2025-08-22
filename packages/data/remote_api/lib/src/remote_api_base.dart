@@ -526,13 +526,12 @@ class RemoteApiBase implements RemoteApi {
   Future<E?> _handleRequest<E>(Future<Response> Function() request) async {
     try {
       final res = await request();
-      if (res.statusCode == 401) {
-        await _handleAuauthorize();
-
-        throw HttpException('');
-      } else if (res.statusCode == 204 || res.statusCode == 404) {
+      if (res.statusCode == 204 || res.statusCode == 404) {
         return null;
       } else {
+        if (res.statusCode == 401) {
+          await _handleAuauthorize();
+        }
         final jsonResponse = json.decode(res.body);
         if (res.statusCode != 200 && res.statusCode != 201) {
           assert(jsonResponse is JsonMap);

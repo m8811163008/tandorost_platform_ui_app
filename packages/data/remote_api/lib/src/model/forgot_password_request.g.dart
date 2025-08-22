@@ -9,7 +9,7 @@ part of 'forgot_password_request.dart';
 Map<String, dynamic> _$ForgotPasswordRequestToJson(
   ForgotPasswordRequest instance,
 ) => <String, dynamic>{
-  'user_name': instance.userName,
+  'identifier': instance.identifier,
   'new_password': instance.newPassword,
   'verification_code': instance.verificationCode,
 };

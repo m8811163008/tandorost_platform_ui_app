@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
-class PhoneNumberTextField extends StatelessWidget {
-  const PhoneNumberTextField({
+class identifierTextField extends StatelessWidget {
+  const identifierTextField({
     super.key,
     this.onChange,
     this.textDirection,
@@ -14,24 +14,27 @@ class PhoneNumberTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: textDirection ?? Directionality.of(context),
-      child: NumberTextField(
-        label: context.l10n.phoneNumberTextFieldLabel,
-        prefix: '+98  9',
-        hintText: '---------',
-        maxLength: 9,
-        onChange: onChange,
+    return TextFormField(
+      autofillHints: autofillHints,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      keyboardType: TextInputType.text,
+      decoration: InputDecoration(
+        labelText: context.l10n.identifierTextFieldLabel,
+      ),
+      onChanged: onChange,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return context.l10n.emptyFormFieldValidationError;
-          } else if (value.length < 9) {
-            return context.l10n.minLengthFormFieldValidationError(9);
+          } else{
+            final phonenumberEmailRegex = RegExp(r'(^09\d{9}$)|(^[^@]+@[^@]+\.[^@]+$)');
+            if(!phonenumberEmailRegex.hasMatch(value)){
+              return context.l10n.identifierTextFieldValidationError;
+            }
           }
           return null;
         },
-        autofillHints: autofillHints,
-      ),
+      textDirection: textDirection ?? Directionality.of(context),
     );
   }
 }
+

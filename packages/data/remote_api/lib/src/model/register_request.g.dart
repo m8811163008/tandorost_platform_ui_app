@@ -8,7 +8,7 @@ part of 'register_request.dart';
 
 Map<String, dynamic> _$RegisterRequestToJson(RegisterRequest instance) =>
     <String, dynamic>{
-      'user_name': instance.userName,
+      'identifier': instance.identifier,
       'password': instance.password,
       'verification_code': instance.verificationCode,
     };

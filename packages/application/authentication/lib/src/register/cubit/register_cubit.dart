@@ -30,7 +30,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     );
     try {
       final request = VerificationCodeRequest(
-        phoneNumber: state.phoneNumber,
+        identifier: state.phoneNumber,
         verificationType: VerificationType.register,
       );
       await _authenticationRepository.sendVerificationCode(
@@ -61,7 +61,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     );
     try {
       final registerReques = RegisterRequest(
-        userName: state.phoneNumber,
+        identifier: state.phoneNumber,
         password: state.password,
         verificationCode: state.verificationCode,
       );

@@ -84,22 +84,17 @@ UserPhysicalDataUpsert _$UserPhysicalDataUpsertFromJson(
 Map<String, dynamic> _$UserPhysicalDataUpsertToJson(
   UserPhysicalDataUpsert instance,
 ) => <String, dynamic>{
-  if (_$ActivityLevelEnumMap[instance.activityLevel] case final value?)
-    'activity_level': value,
-  if (instance.height case final value?) 'height': value,
-  if (instance.birthday?.toIso8601String() case final value?) 'birthday': value,
-  if (_$GenderEnumMap[instance.gender] case final value?) 'gender': value,
-  if (instance.weight case final value?) 'weight': value,
-  if (instance.waistCircumference case final value?)
-    'waist_circumference': value,
-  if (instance.armCircumference case final value?) 'arm_circumference': value,
-  if (instance.chestCircumference case final value?)
-    'chest_circumference': value,
-  if (instance.thighCircumference case final value?)
-    'thigh_circumference': value,
-  if (instance.calfMuscleCircumference case final value?)
-    'calf_muscle_circumference': value,
-  if (instance.hipCircumference case final value?) 'hip_circumference': value,
+  'activity_level': ?_$ActivityLevelEnumMap[instance.activityLevel],
+  'height': ?instance.height,
+  'birthday': ?instance.birthday?.toIso8601String(),
+  'gender': ?_$GenderEnumMap[instance.gender],
+  'weight': ?instance.weight,
+  'waist_circumference': ?instance.waistCircumference,
+  'arm_circumference': ?instance.armCircumference,
+  'chest_circumference': ?instance.chestCircumference,
+  'thigh_circumference': ?instance.thighCircumference,
+  'calf_muscle_circumference': ?instance.calfMuscleCircumference,
+  'hip_circumference': ?instance.hipCircumference,
 };
 
 const _$ActivityLevelEnumMap = {

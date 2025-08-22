@@ -61,15 +61,20 @@ import 'component_library_localizations_fa.dart';
 /// be consistent with the languages listed in the ComponentLibraryLocalizations.supportedLocales
 /// property.
 abstract class ComponentLibraryLocalizations {
-  ComponentLibraryLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  ComponentLibraryLocalizations(String locale)
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
   static ComponentLibraryLocalizations of(BuildContext context) {
-    return Localizations.of<ComponentLibraryLocalizations>(context, ComponentLibraryLocalizations)!;
+    return Localizations.of<ComponentLibraryLocalizations>(
+      context,
+      ComponentLibraryLocalizations,
+    )!;
   }
 
-  static const LocalizationsDelegate<ComponentLibraryLocalizations> delegate = _ComponentLibraryLocalizationsDelegate();
+  static const LocalizationsDelegate<ComponentLibraryLocalizations> delegate =
+      _ComponentLibraryLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -81,17 +86,16 @@ abstract class ComponentLibraryLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('fa')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('fa')];
 
   /// No description provided for @drawerSupportText1.
   ///
@@ -330,7 +334,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @verifyNumberTextFieldLabel.
   ///
   /// In fa, this message translates to:
-  /// **'تایید شماره همراه'**
+  /// **'تایید کد'**
   String get verifyNumberTextFieldLabel;
 
   /// No description provided for @verifyFormOutlineLabel.
@@ -345,11 +349,17 @@ abstract class ComponentLibraryLocalizations {
   /// **'فراموشی رمز عبور'**
   String get forgotPasswordLabel;
 
-  /// No description provided for @phoneNumberTextFieldLabel.
+  /// No description provided for @identifierTextFieldLabel.
   ///
   /// In fa, this message translates to:
-  /// **'شماره تلفن همراه'**
-  String get phoneNumberTextFieldLabel;
+  /// **'شماره همراه یا ایمیل'**
+  String get identifierTextFieldLabel;
+
+  /// No description provided for @identifierTextFieldValidationError.
+  ///
+  /// In fa, this message translates to:
+  /// **'نام کاربری نا معتبر است'**
+  String get identifierTextFieldValidationError;
 
   /// No description provided for @passwordTextFieldLabel.
   ///
@@ -366,7 +376,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @verificationCodeTextFieldLabel.
   ///
   /// In fa, this message translates to:
-  /// **'کد پیامک شده'**
+  /// **'کد ارسال شده'**
   String get verificationCodeTextFieldLabel;
 
   /// No description provided for @dialogTitleChangeApplicationLanguage.
@@ -967,13 +977,16 @@ abstract class ComponentLibraryLocalizations {
   ///
   /// In fa, this message translates to:
   /// **'شاخص دور کمر به قد برای شما {ratio} است'**
-  String fitnessProfileWaistCircumferenceToHeightRatioAvailableDescription(double ratio);
+  String fitnessProfileWaistCircumferenceToHeightRatioAvailableDescription(
+    double ratio,
+  );
 
   /// No description provided for @fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription.
   ///
   /// In fa, this message translates to:
   /// **'شاخص دور کمر به قد برای شما در دسترس نیست، لطفا دور کمر خود را در قسمت اندازه گیری جدید در صفحه قبل، اندازه و اضافه کنید'**
-  String get fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription;
+  String
+  get fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription;
 
   /// No description provided for @fitnessProfileBmiWaistCircumferenceHealthDescription.
   ///
@@ -1003,7 +1016,9 @@ abstract class ComponentLibraryLocalizations {
   ///
   /// In fa, this message translates to:
   /// **'{isWaistCircumferenceSafeRange, select, true{دور کمر شما در محدوده مجاز می‌باشد} false{دور کمر شما از محدوده مجاز بیشتر است و احتمال ابتلا به دیابت نوع 2 در شما بیشتر است. لطفا چربی خود را سریع کاهش دهید} other{ترجمه تعریف نشده}}'**
-  String fitnessProfileIsWaistCircumferenceSafeRangeDescription(String isWaistCircumferenceSafeRange);
+  String fitnessProfileIsWaistCircumferenceSafeRangeDescription(
+    String isWaistCircumferenceSafeRange,
+  );
 
   /// No description provided for @fitnessProfileNewMeasurementLabel.
   ///
@@ -1423,7 +1438,10 @@ abstract class ComponentLibraryLocalizations {
   ///
   /// In fa, this message translates to:
   /// **'با توجه به وزن شما، نوشیدن {fiveTimeWeight} تا {tenTimeWeight} میلی‌لیتر آب ۲ تا ۴ ساعت قبل از تمرین توصیه می‌شود. اگر ادرار نکردید یا رنگ ادرار تیره بود، باید آب بیشتری بنوشید.'**
-  String foodRequerementDialogHydrationTrainingDayText3(int fiveTimeWeight, int tenTimeWeight);
+  String foodRequerementDialogHydrationTrainingDayText3(
+    int fiveTimeWeight,
+    int tenTimeWeight,
+  );
 
   /// No description provided for @foodRequerementDialogHydrationTrainingDaySubtitle1.
   ///
@@ -1501,7 +1519,10 @@ abstract class ComponentLibraryLocalizations {
   ///
   /// In fa, this message translates to:
   /// **'توصیه می‌شود حداکثر 5 درصد از انرژی روزانه شما، معادل حدود {fivePercentCalorie} کیلوکالری، از قندهای افزوده تأمین شود. این مقدار شکر برای شما تقریباً معادل {sugarCubeCount} حبه قند است که شامل قند موجود در غذاهای فرآوری‌شده، شربت‌ها، آبمیوه‌ها و عسل می‌شود و قندهای طبیعی موجود در شیر، سبزیجات و میوه‌ها را در بر نمی‌گیرد.'**
-  String foodRequerementDialogCarbohydrateRestDayText2(int fivePercentCalorie, int sugarCubeCount);
+  String foodRequerementDialogCarbohydrateRestDayText2(
+    int fivePercentCalorie,
+    int sugarCubeCount,
+  );
 
   /// No description provided for @foodRequerementDialogCarbohydrateRestDaySubtitle2.
   ///
@@ -1549,13 +1570,18 @@ abstract class ComponentLibraryLocalizations {
   ///
   /// In fa, this message translates to:
   /// **'زمان و مقدار مصرف کربوهیدرات پیش از تمرین با یکدیگر مرتبط هستند. به طور کلی، می‌توانید ۱ تا ۴ گرم کربوهیدرات به ازای هر کیلوگرم وزن بدن، از ۱ تا ۴ ساعت پیش از شروع تمرین مصرف کنید. برای نمونه، با وزن {weight} کیلوگرم، اگر ۲ ساعت تا آغاز تمرین باقی مانده است، می‌توانید {carbohydrate} گرم کربوهیدرات به همراه {protein} گرم پروتئین با کیفیت میل کنید.'**
-  String foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText1(int weight, int carbohydrate, int protein);
+  String foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText1(
+    int weight,
+    int carbohydrate,
+    int protein,
+  );
 
   /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceSubtitle1.
   ///
   /// In fa, this message translates to:
   /// **'زمان خوردن کربوهیدرات'**
-  String get foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceSubtitle1;
+  String
+  get foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceSubtitle1;
 
   /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayBeforeExcersiceText2.
   ///
@@ -1597,7 +1623,8 @@ abstract class ComponentLibraryLocalizations {
   ///
   /// In fa, this message translates to:
   /// **'حداکثر مقدار کربوهیدرات'**
-  String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceSubtitle1;
+  String
+  get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceSubtitle1;
 
   /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText3.
   ///
@@ -1615,7 +1642,8 @@ abstract class ComponentLibraryLocalizations {
   ///
   /// In fa, this message translates to:
   /// **'نمونه‌های کربوهیدرات زمان تمرین'**
-  String get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceSubtitle2;
+  String
+  get foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceSubtitle2;
 
   /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayDuringExcersiceText5.
   ///
@@ -1639,7 +1667,8 @@ abstract class ComponentLibraryLocalizations {
   ///
   /// In fa, this message translates to:
   /// **'مقدار خوردن کربوهیدرات بعد تمرین'**
-  String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceSubtitle1;
+  String
+  get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceSubtitle1;
 
   /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText2.
   ///
@@ -1657,13 +1686,17 @@ abstract class ComponentLibraryLocalizations {
   ///
   /// In fa, this message translates to:
   /// **'کربوهیدرات و پروتئین'**
-  String get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceSubtitle2;
+  String
+  get foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceSubtitle2;
 
   /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText4.
   ///
   /// In fa, this message translates to:
   /// **'تا چهار ساعت پس از تمرین، می‌توانید به ازای هر کیلوگرم وزن بدن، ۱ تا ۱.۲ گرم کربوهیدرات در هر ساعت مصرف کنید که معادل {carbohydrateValu1} تا {carbohydrateValu2} گرم کربوهیدرات در هر ساعت است. این مقدار، حداکثر میزان کربوهیدراتی است که دستگاه گوارش می‌تواند در هر ساعت هضم کند.'**
-  String foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText4(int carbohydrateValu1, int carbohydrateValu2);
+  String foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText4(
+    int carbohydrateValu1,
+    int carbohydrateValu2,
+  );
 
   /// No description provided for @foodRequerementDialogCarbohydrateTrainingDayAfterExcersiceText5.
   ///
@@ -1981,7 +2014,9 @@ abstract class ComponentLibraryLocalizations {
   ///
   /// In fa, this message translates to:
   /// **'مسافت بهینه شما در 62 درصد VO2max در هر دقیقه {maxDistanceInMeterInOneMinues} متر میباشد'**
-  String vo2maxCalculatorVo2maxEfficientDistance(double maxDistanceInMeterInOneMinues);
+  String vo2maxCalculatorVo2maxEfficientDistance(
+    double maxDistanceInMeterInOneMinues,
+  );
 
   /// No description provided for @vo2maxCalculatorVo2maxRecommandation.
   ///
@@ -2650,33 +2685,38 @@ abstract class ComponentLibraryLocalizations {
   String get paymentDialogCarouselTitle;
 }
 
-class _ComponentLibraryLocalizationsDelegate extends LocalizationsDelegate<ComponentLibraryLocalizations> {
+class _ComponentLibraryLocalizationsDelegate
+    extends LocalizationsDelegate<ComponentLibraryLocalizations> {
   const _ComponentLibraryLocalizationsDelegate();
 
   @override
   Future<ComponentLibraryLocalizations> load(Locale locale) {
-    return SynchronousFuture<ComponentLibraryLocalizations>(lookupComponentLibraryLocalizations(locale));
+    return SynchronousFuture<ComponentLibraryLocalizations>(
+      lookupComponentLibraryLocalizations(locale),
+    );
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['fa'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['fa'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_ComponentLibraryLocalizationsDelegate old) => false;
 }
 
-ComponentLibraryLocalizations lookupComponentLibraryLocalizations(Locale locale) {
-
-
+ComponentLibraryLocalizations lookupComponentLibraryLocalizations(
+  Locale locale,
+) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'fa': return ComponentLibraryLocalizationsFa();
+    case 'fa':
+      return ComponentLibraryLocalizationsFa();
   }
 
   throw FlutterError(
     'ComponentLibraryLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+    'that was used.',
   );
 }

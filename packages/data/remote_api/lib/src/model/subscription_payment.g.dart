@@ -94,18 +94,16 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$SubscriptionPaymentToJson(
   SubscriptionPayment instance,
 ) => <String, dynamic>{
-  if (instance.id case final value?) 'id': value,
+  'id': ?instance.id,
   'user_id': instance.userId,
-  if (instance.cafeBazzarOrderId case final value?)
-    'cafe_bazzar_order_id': value,
+  'cafe_bazzar_order_id': ?instance.cafeBazzarOrderId,
   'paid_amount': instance.paidAmount,
   'discount_amount': instance.discountAmount,
   'currency': _$CurrencyEnumMap[instance.currency]!,
   'payment_method': _$PaymentMethodEnumMap[instance.paymentMethod]!,
   'purchase_date': instance.purchaseDate.toIso8601String(),
   'subscription_type': _$SubscriptionTypeEnumMap[instance.subscriptionType]!,
-  if (instance.updatedAt?.toIso8601String() case final value?)
-    'updated_at': value,
+  'updated_at': ?instance.updatedAt?.toIso8601String(),
 };
 
 const _$CurrencyEnumMap = {Currency.irRial: 'ir_rial'};

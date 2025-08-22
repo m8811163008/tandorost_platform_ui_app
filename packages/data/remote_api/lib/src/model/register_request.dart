@@ -4,14 +4,14 @@ part 'register_request.g.dart';
 
 @JsonSerializable(createFactory: false)
 class RegisterRequest {
-  final String userName;
+  final String identifier;
 
   final String password;
 
   final String verificationCode;
 
   RegisterRequest({
-    required this.userName,
+    required this.identifier,
     required this.password,
     required this.verificationCode,
   });

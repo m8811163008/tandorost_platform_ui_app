@@ -115,70 +115,59 @@ UserPhysicalProfile _$UserPhysicalProfileFromJson(
       birthday: $checkedConvert('birthday', (v) => DateTime.parse(v as String)),
       height: $checkedConvert(
         'height',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       weight: $checkedConvert(
         'weight',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       waistCircumference: $checkedConvert(
         'waist_circumference',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       armCircumference: $checkedConvert(
         'arm_circumference',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       chestCircumference: $checkedConvert(
         'chest_circumference',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       thighCircumference: $checkedConvert(
         'thigh_circumference',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       calfMuscleCircumference: $checkedConvert(
         'calf_muscle_circumference',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       hipCircumference: $checkedConvert(
         'hip_circumference',
-        (v) =>
-            (v as List<dynamic>)
-                .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map((e) => DoubleDataPoint.fromJson(e as Map<String, dynamic>))
+            .toList(),
       ),
       activityLevel: $checkedConvert(
         'activity_level',
-        (v) =>
-            (v as List<dynamic>)
-                .map(
-                  (e) => ActivityLevelDataPoint.fromJson(
-                    e as Map<String, dynamic>,
-                  ),
-                )
-                .toList(),
+        (v) => (v as List<dynamic>)
+            .map(
+              (e) => ActivityLevelDataPoint.fromJson(e as Map<String, dynamic>),
+            )
+            .toList(),
       ),
     );
     return val;
@@ -205,18 +194,24 @@ Map<String, dynamic> _$UserPhysicalProfileToJson(
   'birthday': instance.birthday.toIso8601String(),
   'height': instance.height.map((e) => e.toJson()).toList(),
   'weight': instance.weight.map((e) => e.toJson()).toList(),
-  'waist_circumference':
-      instance.waistCircumference.map((e) => e.toJson()).toList(),
-  'arm_circumference':
-      instance.armCircumference.map((e) => e.toJson()).toList(),
-  'chest_circumference':
-      instance.chestCircumference.map((e) => e.toJson()).toList(),
-  'thigh_circumference':
-      instance.thighCircumference.map((e) => e.toJson()).toList(),
-  'calf_muscle_circumference':
-      instance.calfMuscleCircumference.map((e) => e.toJson()).toList(),
-  'hip_circumference':
-      instance.hipCircumference.map((e) => e.toJson()).toList(),
+  'waist_circumference': instance.waistCircumference
+      .map((e) => e.toJson())
+      .toList(),
+  'arm_circumference': instance.armCircumference
+      .map((e) => e.toJson())
+      .toList(),
+  'chest_circumference': instance.chestCircumference
+      .map((e) => e.toJson())
+      .toList(),
+  'thigh_circumference': instance.thighCircumference
+      .map((e) => e.toJson())
+      .toList(),
+  'calf_muscle_circumference': instance.calfMuscleCircumference
+      .map((e) => e.toJson())
+      .toList(),
+  'hip_circumference': instance.hipCircumference
+      .map((e) => e.toJson())
+      .toList(),
   'activity_level': instance.activityLevel.map((e) => e.toJson()).toList(),
 };
 
