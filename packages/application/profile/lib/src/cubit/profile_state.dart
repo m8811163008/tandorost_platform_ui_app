@@ -9,6 +9,7 @@ class ProfileState extends Equatable {
     this.language = Language.english,
     this.name = '',
     this.phoneNumber = '',
+    this.email = '',
     this.updatingProfileStatus = AsyncProcessingStatus.inital,
     this.uploadingImageProfileStatus = AsyncProcessingStatus.inital,
     this.readProfileImageStatus = AsyncProcessingStatus.inital,
@@ -25,6 +26,7 @@ class ProfileState extends Equatable {
   final Language language;
   final String name;
   final String phoneNumber;
+  final String email;
   final AsyncProcessingStatus updatingProfileStatus;
   final AsyncProcessingStatus readProfileStatus;
   final AsyncProcessingStatus readProfileImageStatus;
@@ -41,6 +43,7 @@ class ProfileState extends Equatable {
     Language? language,
     String? name,
     String? phoneNumber,
+    String? email,
     AsyncProcessingStatus? updatingProfileStatus,
     AsyncProcessingStatus? readProfileStatus,
     AsyncProcessingStatus? readProfileImageStatus,
@@ -55,10 +58,12 @@ class ProfileState extends Equatable {
       isTimeRestrictedEating:
           isTimeRestrictedEating ?? this.isTimeRestrictedEating,
       isReminderNotificationPermissionGranted:
-          isReminderNotificationPermissionGranted ?? this.isReminderNotificationPermissionGranted,
+          isReminderNotificationPermissionGranted ??
+          this.isReminderNotificationPermissionGranted,
       language: language ?? this.language,
       name: name ?? this.name,
       phoneNumber: phoneNumber ?? this.phoneNumber,
+      email: email ?? this.email,
       updatingProfileStatus:
           updatingProfileStatus ?? this.updatingProfileStatus,
       readProfileStatus: readProfileStatus ?? this.readProfileStatus,
@@ -82,6 +87,7 @@ class ProfileState extends Equatable {
     language,
     name,
     phoneNumber,
+    email,
     updatingProfileStatus,
     readProfileStatus,
     readProfileImageStatus,

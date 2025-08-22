@@ -19,6 +19,7 @@ class UserProfile extends Equatable {
   UserProfile copyWith({
     String? id,
     String? phoneNumber,
+    String? email,
     Address? address,
     String? fullName,
     Language? language,

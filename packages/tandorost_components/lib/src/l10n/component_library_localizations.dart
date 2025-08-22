@@ -397,6 +397,42 @@ abstract class ComponentLibraryLocalizations {
   /// **'نام'**
   String get changeNameTextFieldLabel;
 
+  /// No description provided for @dialogTitleChangePhoneNumber.
+  ///
+  /// In fa, this message translates to:
+  /// **'تغییر شماره تماس'**
+  String get dialogTitleChangePhoneNumber;
+
+  /// No description provided for @changePhoneNumberTextFieldLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'شماره تماس'**
+  String get changePhoneNumberTextFieldLabel;
+
+  /// No description provided for @changePhoneNumberTextFieldValidatorErrorMessage.
+  ///
+  /// In fa, this message translates to:
+  /// **'شماره تماس نامعتبر است'**
+  String get changePhoneNumberTextFieldValidatorErrorMessage;
+
+  /// No description provided for @dialogTitleChangeEmail.
+  ///
+  /// In fa, this message translates to:
+  /// **'تغییر ایمیل'**
+  String get dialogTitleChangeEmail;
+
+  /// No description provided for @changeEmailTextFieldLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'ایمیل'**
+  String get changeEmailTextFieldLabel;
+
+  /// No description provided for @changeEmailTextFieldValidatorErrorMessage.
+  ///
+  /// In fa, this message translates to:
+  /// **'ایمیل نامعتبر است'**
+  String get changeEmailTextFieldValidatorErrorMessage;
+
   /// No description provided for @personalInfoNameLabel.
   ///
   /// In fa, this message translates to:
@@ -408,6 +444,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'شماره تلفن'**
   String get personalInfoPhoneLabel;
+
+  /// No description provided for @personalInfoEmailLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'ایمیل'**
+  String get personalInfoEmailLabel;
 
   /// No description provided for @updateButton.
   ///

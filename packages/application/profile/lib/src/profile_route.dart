@@ -29,13 +29,12 @@ class ProfileRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (context) => ProfileCubit(
-            RepositoryProvider.of<ProfileRepository>(context),
-            RepositoryProvider.of<ImageRepository>(context),
-            RepositoryProvider.of<PaymentRepository>(context),
-            RepositoryProvider.of<FlutterLocalNotificationsPlugin>(context),
-          ),
+      create: (context) => ProfileCubit(
+        RepositoryProvider.of<ProfileRepository>(context),
+        RepositoryProvider.of<ImageRepository>(context),
+        RepositoryProvider.of<PaymentRepository>(context),
+        RepositoryProvider.of<FlutterLocalNotificationsPlugin>(context),
+      ),
       child: AppScaffold(
         appBar: AppBar(
           title: Text(
@@ -64,9 +63,8 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<ProfileCubit, ProfileState>(
-      listenWhen:
-          (previous, current) =>
-              previous.updatingProfileStatus != current.updatingProfileStatus,
+      listenWhen: (previous, current) =>
+          previous.updatingProfileStatus != current.updatingProfileStatus,
       listener: (context, state) {
         if (state.updatingProfileStatus.isConnectionError) {
           final content = context.l10n.networkError;
@@ -111,19 +109,89 @@ class ProfileCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  NameRichText(
-                    name: context.select(
-                      (ProfileCubit cubit) => cubit.state.name,
+                  UserInfoRichText(
+                    label: context.l10n.personalInfoNameLabel,
+                    value: context.select(
+                      (ProfileCubit cubit) =>
+                          cubit.state.userProfile?.fullName ?? '',
                     ),
-                    editNameButton: EditDialog(dialog: EditNameDialog()),
+                    editValueButton: EditDialog(
+                      dialog: EditUserInfoDialog(
+                        dialogTitle: context.l10n.dialogTitleChangeName,
+                        textFieldlabel: context.l10n.changeNameTextFieldLabel,
+                        initialValue: context.select(
+                          (ProfileCubit cubit) => cubit.state.name,
+                        ),
+                        onChnaged: context.read<ProfileCubit>().onChangeName,
+                        onSubmit: context.read<ProfileCubit>().updateName,
+                      ),
+                    ),
                   ),
                   SizedBox(height: context.sizeExtenstion.small),
-                  PhoneNumberRichText(
-                    phoneNumber: context
-                        .select<ProfileCubit, String>(
-                          (cubit) => cubit.state.phoneNumber,
-                        )
-                        .replaceFirst('0', '98'),
+                  // TODO verify phone number and email
+                  UserInfoRichText(
+                    label: context.l10n.personalInfoPhoneLabel,
+                    value: context.select(
+                      (ProfileCubit cubit) =>
+                          cubit.state.userProfile?.phoneNumber ?? '',
+                    ),
+                    editValueButton: EditDialog(
+                      dialog: EditUserInfoDialog(
+                        dialogTitle: context.l10n.dialogTitleChangePhoneNumber,
+                        textFieldlabel:
+                            context.l10n.changePhoneNumberTextFieldLabel,
+                        initialValue: context.select(
+                          (ProfileCubit cubit) => cubit.state.phoneNumber,
+                        ),
+                        onChnaged: context
+                            .read<ProfileCubit>()
+                            .onChangPhoneNumber,
+                        onSubmit: context
+                            .read<ProfileCubit>()
+                            .updatePhoneNumber,
+                        validator: (value) {
+                          final phoneRegex = RegExp(r'^09\d{9}$');
+                          if (value != null &&
+                              value.isNotEmpty &&
+                              !phoneRegex.hasMatch(value)) {
+                            return context
+                                .l10n
+                                .changePhoneNumberTextFieldValidatorErrorMessage;
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: context.sizeExtenstion.small),
+                  UserInfoRichText(
+                    label: context.l10n.personalInfoEmailLabel,
+                    value: context.select(
+                      (ProfileCubit cubit) => cubit.state.email,
+                    ),
+                    editValueButton: EditDialog(
+                      dialog: EditUserInfoDialog(
+                        dialogTitle: context.l10n.dialogTitleChangeEmail,
+                        textFieldlabel: context.l10n.changeEmailTextFieldLabel,
+                        initialValue: context.select(
+                          (ProfileCubit cubit) =>
+                              cubit.state.userProfile?.email ?? '',
+                        ),
+                        onChnaged: context.read<ProfileCubit>().onChangEmail,
+                        onSubmit: context.read<ProfileCubit>().updateEmail,
+                        validator: (value) {
+                          final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
+                          if (value != null &&
+                              value.isNotEmpty &&
+                              !emailRegex.hasMatch(value)) {
+                            return context
+                                .l10n
+                                .changeEmailTextFieldValidatorErrorMessage;
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
                   ),
                   SizedBox(height: context.sizeExtenstion.small),
                   Align(
@@ -133,11 +201,10 @@ class ProfileCard extends StatelessWidget {
                         context.read<ProfileCubit>().readSubscriptions();
                         showDialog(
                           context: context,
-                          builder:
-                              (_) => BlocProvider.value(
-                                value: context.read<ProfileCubit>(),
-                                child: Transactions(),
-                              ),
+                          builder: (_) => BlocProvider.value(
+                            value: context.read<ProfileCubit>(),
+                            child: Transactions(),
+                          ),
                         );
                       },
                       label: Text(
@@ -162,10 +229,9 @@ class ImageProfileConsumer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileCubit, ProfileState>(
-      listenWhen:
-          (previous, current) =>
-              previous.uploadingImageProfileStatus !=
-              current.uploadingImageProfileStatus,
+      listenWhen: (previous, current) =>
+          previous.uploadingImageProfileStatus !=
+          current.uploadingImageProfileStatus,
       listener: (context, state) {
         if (state.uploadingImageProfileStatus.isConnectionError) {
           final content = context.l10n.networkError;
@@ -181,10 +247,9 @@ class ImageProfileConsumer extends StatelessWidget {
           context.read<UserAccountCubit>().readUserProfileImage();
         }
       },
-      buildWhen:
-          (previous, current) =>
-              previous.uploadingImageProfileStatus !=
-              current.uploadingImageProfileStatus,
+      buildWhen: (previous, current) =>
+          previous.uploadingImageProfileStatus !=
+          current.uploadingImageProfileStatus,
       builder: (context, state) {
         return ImageProfile(
           imageProfile: context.select(
@@ -238,8 +303,9 @@ class SettingCard extends StatelessWidget {
             selected: context.select(
               (ProfileCubit cubit) => cubit.state.changeWeightSpeed,
             ),
-            onSelectionChanged:
-                context.read<ProfileCubit>().onChangeWeightSpeed,
+            onSelectionChanged: context
+                .read<ProfileCubit>()
+                .onChangeWeightSpeed,
           ),
           SizedBox(height: context.sizeExtenstion.medium),
           SettingRadioButton(

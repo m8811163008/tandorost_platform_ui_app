@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
-class NameRichText extends StatelessWidget {
-  const NameRichText({super.key, this.name = '', required this.editNameButton});
-  final String name;
+class UserInfoRichText extends StatelessWidget {
+  const UserInfoRichText({
+    super.key,
+    this.label = '',
+    this.value = '',
+    required this.editValueButton,
+  });
+  final String value;
+  final String label;
 
-  final Widget? editNameButton;
+  final Widget? editValueButton;
 
   @override
   Widget build(BuildContext context) {
@@ -13,15 +19,12 @@ class NameRichText extends StatelessWidget {
       textAlign: TextAlign.start,
       text: TextSpan(
         children: [
-          TextSpan(
-            text: '${context.l10n.personalInfoNameLabel} : ',
-            style: context.textTheme.titleSmall,
-          ),
-          TextSpan(text: name, style: context.textTheme.bodyMedium),
+          TextSpan(text: '$label : ', style: context.textTheme.titleSmall),
+          TextSpan(text: value, style: context.textTheme.bodyMedium),
           WidgetSpan(
             child: Padding(
               padding: EdgeInsetsDirectional.only(start: 8.0),
-              child: editNameButton,
+              child: editValueButton,
             ),
           ),
         ],

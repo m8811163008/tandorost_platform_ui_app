@@ -32,6 +32,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         state.copyWith(
           name: profile.fullName,
           phoneNumber: profile.phoneNumber,
+          email: profile.email,
           changeWeightSpeed: profile.changeWeightSpeed,
           isTimeRestrictedEating: profile.isTimeRestrictedEating,
           userProfile: profile,
@@ -185,8 +186,26 @@ class ProfileCubit extends Cubit<ProfileState> {
     _enhancedEmit(state.copyWith(name: name));
   }
 
+  void onChangPhoneNumber(String phoneNumber) async {
+    _enhancedEmit(state.copyWith(phoneNumber: phoneNumber));
+  }
+
+  void onChangEmail(String email) async {
+    _enhancedEmit(state.copyWith(email: email));
+  }
+
   void updateName() async {
     await updateProfile(state.userProfile!.copyWith(fullName: state.name));
+  }
+
+  void updatePhoneNumber() async {
+    await updateProfile(
+      state.userProfile!.copyWith(phoneNumber: state.phoneNumber),
+    );
+  }
+
+  void updateEmail() async {
+    await updateProfile(state.userProfile!.copyWith(email: state.email));
   }
 
   void onChangeWeightSpeed(ChangeWeightSpeed speed) async {

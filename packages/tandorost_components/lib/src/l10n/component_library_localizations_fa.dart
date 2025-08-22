@@ -180,10 +180,32 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get changeNameTextFieldLabel => 'نام';
 
   @override
+  String get dialogTitleChangePhoneNumber => 'تغییر شماره تماس';
+
+  @override
+  String get changePhoneNumberTextFieldLabel => 'شماره تماس';
+
+  @override
+  String get changePhoneNumberTextFieldValidatorErrorMessage =>
+      'شماره تماس نامعتبر است';
+
+  @override
+  String get dialogTitleChangeEmail => 'تغییر ایمیل';
+
+  @override
+  String get changeEmailTextFieldLabel => 'ایمیل';
+
+  @override
+  String get changeEmailTextFieldValidatorErrorMessage => 'ایمیل نامعتبر است';
+
+  @override
   String get personalInfoNameLabel => 'نام';
 
   @override
   String get personalInfoPhoneLabel => 'شماره تلفن';
+
+  @override
+  String get personalInfoEmailLabel => 'ایمیل';
 
   @override
   String get updateButton => 'بروزرسانی';
