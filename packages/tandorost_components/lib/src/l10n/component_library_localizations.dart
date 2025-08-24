@@ -2725,6 +2725,48 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'تصاویر ما'**
   String get paymentDialogCarouselTitle;
+
+  /// No description provided for @googleAuthExceptionCanceled.
+  ///
+  /// In fa, this message translates to:
+  /// **'ورود با گوگل لغو شد'**
+  String get googleAuthExceptionCanceled;
+
+  /// No description provided for @googleAuthExceptionUnknownError.
+  ///
+  /// In fa, this message translates to:
+  /// **'خطای ناشناخته در ورود با گوگل'**
+  String get googleAuthExceptionUnknownError;
+
+  /// No description provided for @googleAuthExceptionInterrupted.
+  ///
+  /// In fa, this message translates to:
+  /// **'فرآیند ورود با گوگل قطع شد'**
+  String get googleAuthExceptionInterrupted;
+
+  /// No description provided for @googleAuthExceptionClientConfigurationError.
+  ///
+  /// In fa, this message translates to:
+  /// **'خطا در پیکربندی کلاینت ورود با گوگل'**
+  String get googleAuthExceptionClientConfigurationError;
+
+  /// No description provided for @googleAuthExceptionProviderConfigurationError.
+  ///
+  /// In fa, this message translates to:
+  /// **'خطا در پیکربندی ارائه‌دهنده ورود با گوگل'**
+  String get googleAuthExceptionProviderConfigurationError;
+
+  /// No description provided for @googleAuthExceptionUiUnavailable.
+  ///
+  /// In fa, this message translates to:
+  /// **'رابط کاربری ورود با گوگل در دسترس نیست'**
+  String get googleAuthExceptionUiUnavailable;
+
+  /// No description provided for @googleAuthExceptionUserMismatch.
+  ///
+  /// In fa, this message translates to:
+  /// **'کاربر ورود با گوگل مطابقت ندارد'**
+  String get googleAuthExceptionUserMismatch;
 }
 
 class _ComponentLibraryLocalizationsDelegate

@@ -24,13 +24,14 @@ class PaymentCubit extends Cubit<PaymentState> {
 
   void _init() async {
     // payment
-    await onReadCoffeBazzarPaymentInfo();
+
     userProfileSubscription = profileRepository.userProfileStream.listen((
       profile,
     ) {
       if (profile == null) return;
       _enhancedEmit(state.copyWith(userProfile: () => profile));
     });
+    await onReadCoffeBazzarPaymentInfo();
   }
 
   final ProfileRepository profileRepository;
@@ -59,8 +60,8 @@ class PaymentCubit extends Cubit<PaymentState> {
       ),
     );
     try {
-      final cafeBazzarPaymentInfo =
-          await paymentRepository.readCoffeBazzarPayment();
+      final cafeBazzarPaymentInfo = await paymentRepository
+          .readCoffeBazzarPayment();
       _enhancedEmit(
         state.copyWith(
           cafeBazzarPaymentInfo: () => cafeBazzarPaymentInfo,
@@ -189,14 +190,9 @@ class PaymentCubit extends Cubit<PaymentState> {
       return;
     }
 
-    final sku =
-        state.selectedSubscriptionType! == SubscriptionType.oneMonth
-            ? state
-                .cafeBazzarPaymentInfo!
-                .caffeBazzarSubscriptionPlanOneMonthSdk
-            : state
-                .cafeBazzarPaymentInfo!
-                .caffeBazzarSubscriptionPlanThreeMonthSdk;
+    final sku = state.selectedSubscriptionType! == SubscriptionType.oneMonth
+        ? state.cafeBazzarPaymentInfo!.caffeBazzarSubscriptionPlanOneMonthSdk
+        : state.cafeBazzarPaymentInfo!.caffeBazzarSubscriptionPlanThreeMonthSdk;
     final skuDetail = state.skuDetails.singleWhere(
       (skuDetail) => skuDetail.sku == sku,
     );

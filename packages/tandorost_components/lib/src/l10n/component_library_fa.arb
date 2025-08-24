@@ -658,5 +658,12 @@
     "homeWidgetDialogTitle": "اضاف کردن Home Widget",
     "homeWidgetDialogText": "برای صرفه‌جویی در زمان Home Widget را به صفحه اصلی اضافه نمایید",
     "homeWidgetDialogSubmitButtonText": "اضافه کردن",
-    "paymentDialogCarouselTitle": "تصاویر ما"
+    "paymentDialogCarouselTitle": "تصاویر ما",
+    "googleAuthExceptionCanceled": "ورود با گوگل لغو شد",
+    "googleAuthExceptionUnknownError": "خطای ناشناخته در ورود با گوگل",
+    "googleAuthExceptionInterrupted": "فرآیند ورود با گوگل قطع شد",
+    "googleAuthExceptionClientConfigurationError": "خطا در پیکربندی کلاینت ورود با گوگل",
+    "googleAuthExceptionProviderConfigurationError": "خطا در پیکربندی ارائه‌دهنده ورود با گوگل",
+    "googleAuthExceptionUiUnavailable": "رابط کاربری ورود با گوگل در دسترس نیست",
+    "googleAuthExceptionUserMismatch": "کاربر ورود با گوگل مطابقت ندارد"
 }

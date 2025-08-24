@@ -63,6 +63,10 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ],
           ),
+          TextButton(
+            onPressed: context.read<LoginCubit>().signInWithGoogle,
+            child: Text('Login with Google'),
+          ),
         ],
       ),
     );

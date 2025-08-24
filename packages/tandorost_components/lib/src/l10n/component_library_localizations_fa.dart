@@ -1743,4 +1743,29 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get paymentDialogCarouselTitle => 'تصاویر ما';
+
+  @override
+  String get googleAuthExceptionCanceled => 'ورود با گوگل لغو شد';
+
+  @override
+  String get googleAuthExceptionUnknownError => 'خطای ناشناخته در ورود با گوگل';
+
+  @override
+  String get googleAuthExceptionInterrupted => 'فرآیند ورود با گوگل قطع شد';
+
+  @override
+  String get googleAuthExceptionClientConfigurationError =>
+      'خطا در پیکربندی کلاینت ورود با گوگل';
+
+  @override
+  String get googleAuthExceptionProviderConfigurationError =>
+      'خطا در پیکربندی ارائه‌دهنده ورود با گوگل';
+
+  @override
+  String get googleAuthExceptionUiUnavailable =>
+      'رابط کاربری ورود با گوگل در دسترس نیست';
+
+  @override
+  String get googleAuthExceptionUserMismatch =>
+      'کاربر ورود با گوگل مطابقت ندارد';
 }
