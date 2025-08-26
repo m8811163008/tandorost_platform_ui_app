@@ -14,7 +14,10 @@ class UserProfile extends Equatable {
   final String? fullName;
   final Language language;
   final ChangeWeightSpeed changeWeightSpeed;
+  final List<Role> role;
   final bool isTimeRestrictedEating;
+
+  bool get isBodybuildingCoach => role.contains(Role.bodybuildingCoach);
 
   UserProfile copyWith({
     String? id,
@@ -24,6 +27,7 @@ class UserProfile extends Equatable {
     String? fullName,
     Language? language,
     ChangeWeightSpeed? changeWeightSpeed,
+    List<Role>? role,
     bool? isTimeRestrictedEating,
   }) {
     return UserProfile(
@@ -34,6 +38,7 @@ class UserProfile extends Equatable {
       fullName: fullName ?? this.fullName,
       language: language ?? this.language,
       changeWeightSpeed: changeWeightSpeed ?? this.changeWeightSpeed,
+      role: role ?? this.role,
       isTimeRestrictedEating:
           isTimeRestrictedEating ?? this.isTimeRestrictedEating,
     );
@@ -47,6 +52,7 @@ class UserProfile extends Equatable {
     required this.fullName,
     required this.language,
     required this.changeWeightSpeed,
+    required this.role,
     required this.isTimeRestrictedEating,
   });
 
@@ -64,6 +70,7 @@ class UserProfile extends Equatable {
     fullName,
     language,
     changeWeightSpeed,
+    role,
     isTimeRestrictedEating,
   ];
 }

@@ -104,6 +104,18 @@ class RemoteApiBase implements RemoteApi {
     return Token.fromJson(res!);
   }
 
+  Future<void> logout() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.logout();
+    await _handleRequest<JsonMap>(() => interceptedHttp.post(uri));
+    _controller.add(AuthenticationStatus.unauthorized);
+  }
+
   Future<UserProfile> userProfile() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
@@ -521,6 +533,72 @@ class RemoteApiBase implements RemoteApi {
     return _handleRequest<JsonMap>(
       () => interceptedHttp.get(uri),
     ).then((res) => UserFoodCount.fromJson(res!));
+  }
+
+  Future<CoachProfile> readCoachProfile() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readCoachProfile();
+    final res = await _handleRequest<JsonMap>(() => interceptedHttp.get(uri));
+    return CoachProfile.fromJson(res!);
+  }
+
+  Future<CoachProfile> updateCoachProfile(CoachProfile coachProfile) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.updateCoachProfile();
+    final res = await _handleRequest<JsonMap>(
+      () => interceptedHttp.put(uri, body: json.encode(coachProfile.toJson())),
+    );
+    return CoachProfile.fromJson(res!);
+  }
+
+  Future<CoachProgram> addCoachProgram(CoachProgram program) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.addCoachProgram();
+    final res = await _handleRequest<JsonMap>(
+      () => interceptedHttp.post(uri, body: json.encode(program.toJson())),
+    );
+    return CoachProgram.fromJson(res!);
+  }
+
+  Future<void> deleteCoachProgram(String programId) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.deleteCoachProgram(programId);
+    await _handleRequest<JsonMap?>(() => interceptedHttp.delete(uri));
+  }
+
+  Future<List<CoachProgram>> readCoachPrograms() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readCoachPrograms();
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => CoachProgram.fromJson(e)).toList();
   }
 
   Future<E?> _handleRequest<E>(Future<Response> Function() request) async {

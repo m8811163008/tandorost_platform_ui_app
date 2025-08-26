@@ -2,11 +2,7 @@ import 'package:remote_api/remote_api.dart';
 
 class UriBuilder {
   // static final baseUri = Uri(scheme: 'https', host: 'tandorost-a.ir');
-  static final baseUri = Uri(
-    scheme: 'http',
-    host: '10.4.2.1',
-    port: 8001,
-  );
+  static final baseUri = Uri(scheme: 'http', host: '10.4.2.1', port: 8001);
   static final basePath = '/api/v1';
   static Uri authSendVerificationCode(VerificationType verificationType) {
     return baseUri.replace(
@@ -25,6 +21,10 @@ class UriBuilder {
 
   static Uri authToken() {
     return baseUri.replace(path: '$basePath/auth/token/');
+  }
+
+  static Uri logout() {
+    return baseUri.replace(path: '$basePath/auth/logout/');
   }
 
   static Uri userProfile() {
@@ -134,5 +134,28 @@ class UriBuilder {
 
   static Uri readUserFoodCount() {
     return baseUri.replace(path: '$basePath/payment/read_user_food_count/');
+  }
+
+  static Uri readCoachProfile() {
+    return baseUri.replace(path: '$basePath/coach/coach_profile/');
+  }
+
+  static Uri updateCoachProfile() {
+    return baseUri.replace(path: '$basePath/coach/update_coach_profile/');
+  }
+
+  static Uri addCoachProgram() {
+    return baseUri.replace(path: '$basePath/coach/add_coach_program/');
+  }
+
+  static Uri deleteCoachProgram(String programId) {
+    return baseUri.replace(
+      path: '$basePath/coach/delete_coach_program/',
+      queryParameters: {'program_id': programId},
+    );
+  }
+
+  static Uri readCoachPrograms() {
+    return baseUri.replace(path: '$basePath/coach/read_coach_programs/');
   }
 }

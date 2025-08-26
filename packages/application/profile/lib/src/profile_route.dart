@@ -1,3 +1,4 @@
+import 'package:coach_repository/coach_repository.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class ProfileRoute extends StatelessWidget {
         RepositoryProvider.of<ProfileRepository>(context),
         RepositoryProvider.of<ImageRepository>(context),
         RepositoryProvider.of<PaymentRepository>(context),
+        RepositoryProvider.of<CoachRepository>(context),
         RepositoryProvider.of<FlutterLocalNotificationsPlugin>(context),
       ),
       child: AppScaffold(
@@ -81,7 +83,9 @@ class ProfileView extends StatelessWidget {
         }
       },
       child: SingleChildScrollView(
-        child: Column(children: [ProfileCard(), SettingCard()]),
+        child: Column(
+          children: [ProfileCard(), SettingCard(), BodyBuildingCoachCard()],
+        ),
       ),
     );
   }
@@ -120,7 +124,8 @@ class ProfileCard extends StatelessWidget {
                         dialogTitle: context.l10n.dialogTitleChangeName,
                         textFieldlabel: context.l10n.changeNameTextFieldLabel,
                         initialValue: context.select(
-                          (ProfileCubit cubit) => cubit.state.name,
+                          (ProfileCubit cubit) =>
+                              cubit.state.userProfile?.fullName ?? '',
                         ),
                         onChnaged: context.read<ProfileCubit>().onChangeName,
                         onSubmit: context.read<ProfileCubit>().updateName,
@@ -141,7 +146,8 @@ class ProfileCard extends StatelessWidget {
                         textFieldlabel:
                             context.l10n.changePhoneNumberTextFieldLabel,
                         initialValue: context.select(
-                          (ProfileCubit cubit) => cubit.state.phoneNumber,
+                          (ProfileCubit cubit) =>
+                              cubit.state.userProfile?.phoneNumber ?? '',
                         ),
                         onChnaged: context
                             .read<ProfileCubit>()
@@ -167,7 +173,8 @@ class ProfileCard extends StatelessWidget {
                   UserInfoRichText(
                     label: context.l10n.personalInfoEmailLabel,
                     value: context.select(
-                      (ProfileCubit cubit) => cubit.state.email,
+                      (ProfileCubit cubit) =>
+                          cubit.state.userProfile?.email ?? '',
                     ),
                     editValueButton: EditDialog(
                       dialog: EditUserInfoDialog(
@@ -301,7 +308,9 @@ class SettingCard extends StatelessWidget {
           SizedBox(height: context.sizeExtenstion.medium),
           ChangeWeightSpeedSetting(
             selected: context.select(
-              (ProfileCubit cubit) => cubit.state.changeWeightSpeed,
+              (ProfileCubit cubit) =>
+                  cubit.state.userProfile?.changeWeightSpeed ??
+                  ChangeWeightSpeed.constant,
             ),
             onSelectionChanged: context
                 .read<ProfileCubit>()
@@ -311,7 +320,8 @@ class SettingCard extends StatelessWidget {
           SettingRadioButton(
             label: context.l10n.timeRestrictedEatingLabel,
             value: context.select(
-              (ProfileCubit cubit) => cubit.state.isTimeRestrictedEating,
+              (ProfileCubit cubit) =>
+                  cubit.state.userProfile?.isTimeRestrictedEating ?? false,
             ),
             onChanged: context.read<ProfileCubit>().onChangeIsFasting,
           ),
@@ -335,11 +345,44 @@ class SettingCard extends StatelessWidget {
           Divider(height: context.sizeExtenstion.medium),
           // add langiage support to front and babckend
           LanguageSetting(
-            value: context.select((ProfileCubit cubit) => cubit.state.language),
+            value: context.select(
+              (ProfileCubit cubit) =>
+                  cubit.state.userProfile?.language ?? Language.persian,
+            ),
             onChangeLanguageDialog: BlocProvider.value(
               value: context.read<ProfileCubit>(),
               child: ChangeLanguageDialog(),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BodyBuildingCoachCard extends StatelessWidget {
+  const BodyBuildingCoachCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return AppCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'context.l10n.settingLabel',
+            style: context.textTheme.headlineMedium,
+          ),
+          SizedBox(height: context.sizeExtenstion.medium),
+          SettingRadioButton(
+            label: 'context.l10n.timeRestrictedEatingLabel',
+            value: context.select(
+              (ProfileCubit cubit) =>
+                  cubit.state.userProfile?.isBodybuildingCoach ?? false,
+            ),
+            onChanged: context
+                .read<ProfileCubit>()
+                .onChangeBodybuildingCoachRole,
           ),
         ],
       ),

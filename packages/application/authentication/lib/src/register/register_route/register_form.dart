@@ -28,7 +28,7 @@ class _RegisterFormState extends State<RegisterForm> {
         children: [
           AutheticationFormHeader(label: context.l10n.registerLabel),
           gap,
-          identifierTextField(
+          IdentifierTextField(
             onChange: context.read<RegisterCubit>().onChangePhoneNumber,
             textDirection: TextDirection.ltr,
           ),

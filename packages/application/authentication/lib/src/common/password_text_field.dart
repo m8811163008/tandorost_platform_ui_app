@@ -19,10 +19,9 @@ class PasswordTextField extends StatelessWidget {
     return Directionality(
       textDirection: textDirection ?? Directionality.of(context),
       child: NumberTextField(
-        label:
-            isForgotPasswordField
-                ? context.l10n.newPasswordTextFieldLabel
-                : context.l10n.passwordTextFieldLabel,
+        label: isForgotPasswordField
+            ? context.l10n.newPasswordTextFieldLabel
+            : context.l10n.passwordTextFieldLabel,
         hintText: '1234',
         maxLength: 4,
         obscureText: true,

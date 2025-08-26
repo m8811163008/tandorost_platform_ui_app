@@ -9,9 +9,8 @@ class ChangeLanguageDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileCubit, ProfileState>(
-      listenWhen:
-          (previous, current) =>
-              previous.updatingProfileStatus != current.updatingProfileStatus,
+      listenWhen: (previous, current) =>
+          previous.updatingProfileStatus != current.updatingProfileStatus,
       listener: (context, state) {
         if (state.updatingProfileStatus.isConnectionError) {
           final content = context.l10n.networkError;
@@ -27,35 +26,34 @@ class ChangeLanguageDialog extends StatelessWidget {
           Navigator.of(context).pop();
         }
       },
-      buildWhen: (previous, current) => previous.language != current.language,
+      buildWhen: (previous, current) =>
+          previous.updatedUserProfile!.language !=
+          current.updatedUserProfile!.language,
       builder: (context, state) {
         return AppDialog(
           title: context.l10n.dialogTitleChangeApplicationLanguage,
-          contents:
-              Language.values
-                  .map(
-                    (language) => _buildLanguageRow(
-                      context,
-                      language: language,
-                      groupValue: state.language,
-                      onChanged: context.read<ProfileCubit>().onChangeLanguage,
-                    ),
-                  )
-                  .toList(),
+          contents: Language.values
+              .map(
+                (language) => _buildLanguageRow(
+                  context,
+                  language: language,
+                  groupValue: state.userProfile!.language,
+                  onChanged: context.read<ProfileCubit>().onChangeLanguage,
+                ),
+              )
+              .toList(),
 
           submitButton: BlocBuilder<ProfileCubit, ProfileState>(
-            buildWhen:
-                (previous, current) =>
-                    previous.updatingProfileStatus !=
-                    current.updatingProfileStatus,
+            buildWhen: (previous, current) =>
+                previous.updatingProfileStatus != current.updatingProfileStatus,
             builder: (context, state) {
               final label = context.l10n.updateButton;
               return state.updatingProfileStatus.isLoading
                   ? AppTextButton.loading(label: label)
                   : AppTextButton(
-                    label: label,
-                    onTap: context.read<ProfileCubit>().updateLanguage,
-                  );
+                      label: label,
+                      onTap: context.read<ProfileCubit>().updateLanguage,
+                    );
             },
           ),
         );

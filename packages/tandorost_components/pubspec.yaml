@@ -23,6 +23,8 @@ dependencies:
   flutter_bloc: ^9.1.1
   profile:
     path: ../repositories/profile
+  authentication:
+    path: ../repositories/authentication
   image_repository:
     path: ../repositories/image_repository
   carousel_slider: ^5.1.1

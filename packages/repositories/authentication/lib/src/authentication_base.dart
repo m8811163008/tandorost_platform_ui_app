@@ -31,6 +31,11 @@ class AuthenticationRepository {
     await localStorage.upsert(StorageKey.token, token.toJson());
   }
 
+  Future<void> logout() async {
+    await remoteApi.logout();
+    await localStorage.delete(StorageKey.token);
+  }
+
   Future<Token?> accessTokenProvider() async {
     final tokenMap = await localStorage.read(StorageKey.token);
     if (tokenMap == null) {

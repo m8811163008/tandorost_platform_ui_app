@@ -1,3 +1,4 @@
+import 'package:authentication/authentication.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -15,15 +16,15 @@ class AppNavigation {
           '${context.select((UserAccountCubit cubit) => cubit.state.userProfile?.phoneNumber ?? '')} ',
         ),
         currentAccountPicture: BlocBuilder<UserAccountCubit, UserAccountState>(
-          buildWhen:
-              (previous, current) =>
-                  previous.readUserProfileImageStatus !=
-                  current.readUserProfileImageStatus,
+          buildWhen: (previous, current) =>
+              previous.readUserProfileImageStatus !=
+              current.readUserProfileImageStatus,
           builder: (context, state) {
             final imageProfile = state.profileImage;
             return CircleAvatar(
-              backgroundImage:
-                  imageProfile != null ? MemoryImage(imageProfile.bytes) : null,
+              backgroundImage: imageProfile != null
+                  ? MemoryImage(imageProfile.bytes)
+                  : null,
               radius: context.sizeExtenstion.xExtraLarge,
               child: imageProfile == null ? Icon(Icons.person) : null,
             );
@@ -41,6 +42,7 @@ class AppNavigation {
           icon: Icon(DrawerNavigationRoutes.icons[index]),
         ),
       ),
+
       Padding(
         padding: EdgeInsetsDirectional.only(
           start: context.sizeExtenstion.large,
@@ -53,6 +55,8 @@ class AppNavigation {
             Text(context.l10n.drawerSupportText1),
             SizedBox(height: context.sizeExtenstion.small),
             Text(context.l10n.drawerSupportText2),
+            SizedBox(height: context.sizeExtenstion.medium),
+            LogoutButton(),
           ],
         ),
       ),
@@ -70,6 +74,34 @@ class AppNavigation {
           BottomNavigationRoutes.routes[index]!.name,
         ),
       ),
+    );
+  }
+}
+
+class LogoutButton extends StatelessWidget {
+  const LogoutButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: RepositoryProvider.of<AuthenticationRepository>(
+        context,
+      ).authenticationStatusStream.first,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          if (snapshot.data?.isAuthorized ?? false) {
+            return TextButton(
+              onPressed: () async {
+                await RepositoryProvider.of<AuthenticationRepository>(
+                  context,
+                ).logout();
+              },
+              child: Text(context.l10n.logout),
+            );
+          }
+        }
+        return SizedBox.shrink();
+      },
     );
   }
 }

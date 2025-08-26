@@ -16,6 +16,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
       'محتویات برنامه متعلق به تیم توسعه دهنده تندرست می‌باشد.';
 
   @override
+  String get logout => 'خروج از حساب کاربری';
+
+  @override
   String get foodName => 'نام غذا';
 
   @override

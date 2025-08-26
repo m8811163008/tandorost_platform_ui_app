@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:coach_repository/coach_repository.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -20,6 +21,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     this._profile,
     this._imageRepository,
     this._paymentRepository,
+    this._coachRepository,
     this.flutterLocalNotificationsPlugin,
   ) : super(ProfileState()) {
     readProfile();
@@ -30,13 +32,8 @@ class ProfileCubit extends Cubit<ProfileState> {
       if (profile == null) return;
       _enhancedEmit(
         state.copyWith(
-          name: profile.fullName,
-          phoneNumber: profile.phoneNumber,
-          email: profile.email,
-          changeWeightSpeed: profile.changeWeightSpeed,
-          isTimeRestrictedEating: profile.isTimeRestrictedEating,
           userProfile: profile,
-          language: profile.language,
+          updatedUserProfile: state.updatedUserProfile ?? profile,
         ),
       );
     });
@@ -44,6 +41,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   final ProfileRepository _profile;
   final ImageRepository _imageRepository;
   final PaymentRepository _paymentRepository;
+  final CoachRepository _coachRepository;
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   late final StreamSubscription<UserProfile?> userProfileSubscription;
 
@@ -183,45 +181,69 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void onChangeName(String name) async {
-    _enhancedEmit(state.copyWith(name: name));
+    _enhancedEmit(
+      state.copyWith(
+        updatedUserProfile: state.updatedUserProfile!.copyWith(fullName: name),
+      ),
+    );
   }
 
   void onChangPhoneNumber(String phoneNumber) async {
-    _enhancedEmit(state.copyWith(phoneNumber: phoneNumber));
+    _enhancedEmit(
+      state.copyWith(
+        updatedUserProfile: state.updatedUserProfile!.copyWith(
+          phoneNumber: phoneNumber,
+        ),
+      ),
+    );
   }
 
   void onChangEmail(String email) async {
-    _enhancedEmit(state.copyWith(email: email));
+    _enhancedEmit(
+      state.copyWith(
+        updatedUserProfile: state.updatedUserProfile!.copyWith(email: email),
+      ),
+    );
   }
 
   void updateName() async {
-    await updateProfile(state.userProfile!.copyWith(fullName: state.name));
+    await updateProfile(state.updatedUserProfile!);
   }
 
   void updatePhoneNumber() async {
-    await updateProfile(
-      state.userProfile!.copyWith(phoneNumber: state.phoneNumber),
-    );
+    await updateProfile(state.updatedUserProfile!);
   }
 
   void updateEmail() async {
-    await updateProfile(state.userProfile!.copyWith(email: state.email));
+    await updateProfile(state.updatedUserProfile!);
   }
 
   void onChangeWeightSpeed(ChangeWeightSpeed speed) async {
-    await updateProfile(state.userProfile!.copyWith(changeWeightSpeed: speed));
-    _enhancedEmit(state.copyWith(changeWeightSpeed: speed));
+    final updatedProfileVar = state.updatedUserProfile!.copyWith(
+      changeWeightSpeed: speed,
+    );
+    await updateProfile(updatedProfileVar);
+    _enhancedEmit(state.copyWith(updatedUserProfile: updatedProfileVar));
   }
 
   void onChangeIsFasting(bool isTimeRestrictedEating) async {
-    await updateProfile(
-      state.userProfile!.copyWith(
-        isTimeRestrictedEating: isTimeRestrictedEating,
-      ),
+    final updatedProfileVar = state.updatedUserProfile!.copyWith(
+      isTimeRestrictedEating: isTimeRestrictedEating,
     );
-    _enhancedEmit(
-      state.copyWith(isTimeRestrictedEating: isTimeRestrictedEating),
+    await updateProfile(updatedProfileVar);
+    _enhancedEmit(state.copyWith(updatedUserProfile: updatedProfileVar));
+  }
+
+  void onChangeBodybuildingCoachRole(bool isBodybuildingCoach) async {
+    final currentRoles = Set<Role>.from(state.updatedUserProfile!.role);
+    isBodybuildingCoach
+        ? currentRoles.add(Role.bodybuildingCoach)
+        : currentRoles.remove(Role.bodybuildingCoach);
+    final updatedProfileVar = state.updatedUserProfile!.copyWith(
+      role: currentRoles.toList(),
     );
+    await updateProfile(updatedProfileVar);
+    _enhancedEmit(state.copyWith(updatedUserProfile: updatedProfileVar));
   }
 
   void onToggleReminderNotifications(
@@ -328,11 +350,17 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void onChangeLanguage(Language? language) async {
-    _enhancedEmit(state.copyWith(language: language));
+    _enhancedEmit(
+      state.copyWith(
+        updatedUserProfile: state.updatedUserProfile!.copyWith(
+          language: language,
+        ),
+      ),
+    );
   }
 
   void updateLanguage() async {
-    await updateProfile(state.userProfile!.copyWith(language: state.language));
+    await updateProfile(state.updatedUserProfile!);
   }
 
   Future<void> updateProfile(UserProfile updatedProfile) async {

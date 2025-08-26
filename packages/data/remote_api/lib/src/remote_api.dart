@@ -55,6 +55,11 @@ abstract interface class RemoteApi {
   /// Returns a [Future] that resolves to a [Token] object.
   Future<Token> authenticate({required Credential credential});
 
+  /// Logout user.
+  ///
+  /// Returns a [Future] that completes when the operation is done..
+  Future<void> logout();
+
   /// Retrieves the user's profile information.
   ///
   /// Returns a [Future] that resolves to a [UserProfile] object.
@@ -197,4 +202,10 @@ abstract interface class RemoteApi {
   /// Returns a [Future] that completes with a [CafeBazzarPaymentInfo] object containing
   /// the payment details from Cafe Bazzar.
   Future<CafeBazzarPaymentInfo> readCoffeBazzarPayment();
+
+  Future<CoachProfile> readCoachProfile();
+  Future<CoachProfile> updateCoachProfile(CoachProfile coachProfile);
+  Future<CoachProgram> addCoachProgram(CoachProgram program);
+  Future<void> deleteCoachProgram(String programId);
+  Future<List<CoachProgram>> readCoachPrograms();
 }

@@ -55,6 +55,8 @@ dependencies:
     path: packages/repositories/payment_repository
   profile:
     path: packages/repositories/profile
+  coach_repository:
+    path: packages/repositories/coach_repository
   # Common
   tandorost_components:
     path: packages/tandorost_components

@@ -109,6 +109,12 @@ abstract class ComponentLibraryLocalizations {
   /// **'محتویات برنامه متعلق به تیم توسعه دهنده تندرست می‌باشد.'**
   String get drawerSupportText2;
 
+  /// No description provided for @logout.
+  ///
+  /// In fa, this message translates to:
+  /// **'خروج از حساب کاربری'**
+  String get logout;
+
   /// No description provided for @foodName.
   ///
   /// In fa, this message translates to:

@@ -15,6 +15,7 @@ import 'package:tandorost/navigation.dart';
 import 'package:tandorost/notification_helper.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 import 'package:image_repository/image_repository.dart';
+import 'package:coach_repository/coach_repository.dart';
 // import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // import 'package:timezone/data/latest_all.dart' as tz;
 
@@ -40,13 +41,12 @@ void main() async {
           'https://1d10de0455222c0ba27560b4f0071ff3@o4504084043530240.ingest.us.sentry.io/4506958323253248';
       options.tracesSampleRate = 1.0;
     },
-    appRunner:
-        () => runApp(
-          DefaultAssetBundle(
-            bundle: SentryAssetBundle(),
-            child: DependencyManager(sharedPreferences: sharePref),
-          ),
-        ),
+    appRunner: () => runApp(
+      DefaultAssetBundle(
+        bundle: SentryAssetBundle(),
+        child: DependencyManager(sharedPreferences: sharePref),
+      ),
+    ),
   );
 }
 
@@ -76,6 +76,7 @@ class DependencyManager extends StatelessWidget {
       remoteApi: remoteApi,
       localStorage: localStorage,
     );
+    final coachRep = CoachRepository(remoteApi: remoteApi);
     remoteApi.accessTokenProvider = authenticationRep.accessTokenProvider;
     remoteApi.userLanguageProvider = profileRep.userLanguage;
 
@@ -113,6 +114,7 @@ class DependencyManager extends StatelessWidget {
         ),
         RepositoryProvider(create: (_) => foodReport, lazy: true),
         RepositoryProvider(create: (_) => paymentRep, lazy: true),
+        RepositoryProvider(create: (_) => coachRep, lazy: true),
         RepositoryProvider(
           create: (_) => flutterLocalNotificationsPlugin,
           lazy: true,
@@ -131,15 +133,12 @@ class TandorostBlocProviders extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create:
-              (context) => UserAccountCubit(
-                imageRepository: RepositoryProvider.of<ImageRepository>(
-                  context,
-                ),
-                profileRepository: RepositoryProvider.of<ProfileRepository>(
-                  context,
-                ),
-              ),
+          create: (context) => UserAccountCubit(
+            imageRepository: RepositoryProvider.of<ImageRepository>(context),
+            profileRepository: RepositoryProvider.of<ProfileRepository>(
+              context,
+            ),
+          ),
           lazy: false,
         ),
       ],
@@ -156,11 +155,10 @@ class TandorostPlatform extends StatelessWidget {
     final dpr = View.of(context).display.devicePixelRatio;
     final width = View.of(context).display.size.width;
     return MaterialApp.router(
-      theme:
-          AppTheme(
-            locale: const Locale('fa'),
-            screenWidth: dpr * width,
-          ).lightTheme,
+      theme: AppTheme(
+        locale: const Locale('fa'),
+        screenWidth: dpr * width,
+      ).lightTheme,
       routerConfig: Navigation.goRouter(context),
       localizationsDelegates: const [
         PersianMaterialLocalizations.delegate,

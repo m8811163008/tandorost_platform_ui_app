@@ -20,6 +20,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
         'full_name',
         'language',
         'change_weight_speed',
+        'role',
         'is_time_restricted_eating',
       ],
     );
@@ -39,6 +40,12 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
       changeWeightSpeed: $checkedConvert(
         'change_weight_speed',
         (v) => $enumDecode(_$ChangeWeightSpeedEnumMap, v),
+      ),
+      role: $checkedConvert(
+        'role',
+        (v) => (v as List<dynamic>)
+            .map((e) => $enumDecode(_$RoleEnumMap, e))
+            .toList(),
       ),
       isTimeRestrictedEating: $checkedConvert(
         'is_time_restricted_eating',
@@ -66,6 +73,7 @@ Map<String, dynamic> _$UserProfileToJson(UserProfile instance) =>
       'language': _$LanguageEnumMap[instance.language]!,
       'change_weight_speed':
           _$ChangeWeightSpeedEnumMap[instance.changeWeightSpeed]!,
+      'role': instance.role.map((e) => _$RoleEnumMap[e]!).toList(),
       'is_time_restricted_eating': instance.isTimeRestrictedEating,
     };
 
@@ -108,4 +116,9 @@ const _$ChangeWeightSpeedEnumMap = {
   ChangeWeightSpeed.medium: 'medium',
   ChangeWeightSpeed.fast: 'fast',
   ChangeWeightSpeed.fastAndHard: 'fast_and_hard',
+};
+
+const _$RoleEnumMap = {
+  Role.trainer: 'trainer',
+  Role.bodybuildingCoach: 'bodybuilding_coach',
 };

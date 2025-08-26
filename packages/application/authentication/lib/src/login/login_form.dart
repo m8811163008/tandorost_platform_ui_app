@@ -35,7 +35,7 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           AutheticationFormHeader(label: context.l10n.loginRouteLabel),
           gap,
-          identifierTextField(
+          IdentifierTextField(
             onChange: context.read<LoginCubit>().onChangePhoneNumber,
             textDirection: TextDirection.ltr,
             autofillHints: [AutofillHints.newUsername, AutofillHints.username],

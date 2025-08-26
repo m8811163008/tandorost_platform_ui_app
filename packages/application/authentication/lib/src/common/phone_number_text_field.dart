@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
-class identifierTextField extends StatelessWidget {
-  const identifierTextField({
+class IdentifierTextField extends StatelessWidget {
+  const IdentifierTextField({
     super.key,
     this.onChange,
     this.textDirection,
@@ -14,27 +14,31 @@ class identifierTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      autofillHints: autofillHints,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      keyboardType: TextInputType.text,
-      decoration: InputDecoration(
-        labelText: context.l10n.identifierTextFieldLabel,
-      ),
-      onChanged: onChange,
+    return Directionality(
+      textDirection: textDirection ?? Directionality.of(context),
+      child: TextFormField(
+        autofillHints: autofillHints,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        keyboardType: TextInputType.text,
+        decoration: InputDecoration(
+          labelText: context.l10n.identifierTextFieldLabel,
+        ),
+        onChanged: onChange,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return context.l10n.emptyFormFieldValidationError;
-          } else{
-            final phonenumberEmailRegex = RegExp(r'(^09\d{9}$)|(^[^@]+@[^@]+\.[^@]+$)');
-            if(!phonenumberEmailRegex.hasMatch(value)){
+          } else {
+            final phonenumberEmailRegex = RegExp(
+              r'(^09\d{9}$)|(^[^@]+@[^@]+\.[^@]+$)',
+            );
+            if (!phonenumberEmailRegex.hasMatch(value)) {
               return context.l10n.identifierTextFieldValidationError;
             }
           }
           return null;
         },
-      textDirection: textDirection ?? Directionality.of(context),
+        textDirection: textDirection ?? Directionality.of(context),
+      ),
     );
   }
 }
-
