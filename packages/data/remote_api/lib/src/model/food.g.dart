@@ -13,7 +13,7 @@ Food _$FoodFromJson(Map<String, dynamic> json) => $checkedCreate(
     $checkKeys(
       json,
       allowedKeys: const [
-        '_id',
+        'id',
         'user_id',
         'upsert_date',
         'user_language',
@@ -28,7 +28,7 @@ Food _$FoodFromJson(Map<String, dynamic> json) => $checkedCreate(
       ],
     );
     final val = Food(
-      id: $checkedConvert('_id', (v) => v as String),
+      id: $checkedConvert('id', (v) => v as String),
       userId: $checkedConvert('user_id', (v) => v as String),
       upsertDate: $checkedConvert(
         'upsert_date',
@@ -74,7 +74,6 @@ Food _$FoodFromJson(Map<String, dynamic> json) => $checkedCreate(
     return val;
   },
   fieldKeyMap: const {
-    'id': '_id',
     'userId': 'user_id',
     'upsertDate': 'upsert_date',
     'userLanguage': 'user_language',
@@ -91,7 +90,7 @@ Food _$FoodFromJson(Map<String, dynamic> json) => $checkedCreate(
 );
 
 Map<String, dynamic> _$FoodToJson(Food instance) => <String, dynamic>{
-  '_id': instance.id,
+  'id': instance.id,
   'user_id': instance.userId,
   'upsert_date': instance.upsertDate.toIso8601String(),
   'user_language': _$LanguageEnumMap[instance.userLanguage]!,

@@ -7,6 +7,8 @@ part 'coach_program.g.dart';
 @JsonSerializable()
 class CoachProgram extends Equatable {
   CoachProgram({
+    this.id,
+    required this.userId,
     required this.title,
     required this.description,
     required this.durationWeeks,
@@ -14,6 +16,8 @@ class CoachProgram extends Equatable {
     required this.currency,
     required this.features,
   });
+  final String? id;
+  final String userId;
   final String title;
   final String description;
   final int durationWeeks;
@@ -22,6 +26,8 @@ class CoachProgram extends Equatable {
   final List<ProgramFeature> features;
 
   CoachProgram copyWith({
+    String? id,
+    String? userId,
     String? title,
     String? description,
     int? durationWeeks,
@@ -30,6 +36,8 @@ class CoachProgram extends Equatable {
     List<ProgramFeature>? features,
   }) {
     return CoachProgram(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
       title: title ?? this.title,
       description: description ?? this.description,
       durationWeeks: durationWeeks ?? this.durationWeeks,
@@ -41,6 +49,8 @@ class CoachProgram extends Equatable {
 
   @override
   List<Object?> get props => [
+    id,
+    userId,
     title,
     description,
     durationWeeks,

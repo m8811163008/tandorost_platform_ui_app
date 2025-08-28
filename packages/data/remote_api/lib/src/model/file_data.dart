@@ -7,8 +7,6 @@ part 'file_data.g.dart';
 
 @JsonSerializable()
 class FileData extends Equatable {
-
-  @JsonKey(name: '_id')
   final String id;
   final String userId;
   final GallaryTag tag;
@@ -61,10 +59,10 @@ class FileData extends Equatable {
     String? contentType,
     String? fileUploadPath,
     ProcessingStatus? processingStatus,
-    ValueGetter<ImageRejectionReason?>? rejectProcessingStatusDesc    
+    ValueGetter<ImageRejectionReason?>? rejectProcessingStatusDesc,
   }) {
     return FileData(
-          id: id ?? this.id,
+      id: id ?? this.id,
       userId: userId ?? this.userId,
       tag: tag ?? this.tag,
       fileName: fileName ?? this.fileName,
@@ -73,7 +71,9 @@ class FileData extends Equatable {
       contentType: contentType ?? this.contentType,
       fileUploadPath: fileUploadPath ?? this.fileUploadPath,
       processingStatus: processingStatus ?? this.processingStatus,
-      rejectProcessingStatusDesc: rejectProcessingStatusDesc != null ? rejectProcessingStatusDesc() : this.rejectProcessingStatusDesc
+      rejectProcessingStatusDesc: rejectProcessingStatusDesc != null
+          ? rejectProcessingStatusDesc()
+          : this.rejectProcessingStatusDesc,
     );
   }
 }

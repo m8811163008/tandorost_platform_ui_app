@@ -49,7 +49,6 @@ class ActivityLevelDataPoint extends Equatable {
 
 @JsonSerializable()
 class UserPhysicalProfile extends Equatable {
-  @JsonKey(name: '_id')
   final String id;
   final String userId;
   final Gender gender;

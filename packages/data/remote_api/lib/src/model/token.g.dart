@@ -12,10 +12,10 @@ Token _$TokenFromJson(Map<String, dynamic> json) => $checkedCreate(
   ($checkedConvert) {
     $checkKeys(
       json,
-      allowedKeys: const ['_id', 'user_id', 'access_token', 'token_type'],
+      allowedKeys: const ['id', 'user_id', 'access_token', 'token_type'],
     );
     final val = Token(
-      id: $checkedConvert('_id', (v) => v as String),
+      id: $checkedConvert('id', (v) => v as String),
       userId: $checkedConvert('user_id', (v) => v as String),
       accessToken: $checkedConvert('access_token', (v) => v as String),
       tokenType: $checkedConvert('token_type', (v) => v as String),
@@ -23,7 +23,6 @@ Token _$TokenFromJson(Map<String, dynamic> json) => $checkedCreate(
     return val;
   },
   fieldKeyMap: const {
-    'id': '_id',
     'userId': 'user_id',
     'accessToken': 'access_token',
     'tokenType': 'token_type',
@@ -31,7 +30,7 @@ Token _$TokenFromJson(Map<String, dynamic> json) => $checkedCreate(
 );
 
 Map<String, dynamic> _$TokenToJson(Token instance) => <String, dynamic>{
-  '_id': instance.id,
+  'id': instance.id,
   'user_id': instance.userId,
   'access_token': instance.accessToken,
   'token_type': instance.tokenType,

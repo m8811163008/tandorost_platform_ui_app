@@ -93,7 +93,7 @@ UserPhysicalProfile _$UserPhysicalProfileFromJson(
     $checkKeys(
       json,
       allowedKeys: const [
-        '_id',
+        'id',
         'user_id',
         'gender',
         'birthday',
@@ -109,7 +109,7 @@ UserPhysicalProfile _$UserPhysicalProfileFromJson(
       ],
     );
     final val = UserPhysicalProfile(
-      id: $checkedConvert('_id', (v) => v as String),
+      id: $checkedConvert('id', (v) => v as String),
       userId: $checkedConvert('user_id', (v) => v as String),
       gender: $checkedConvert('gender', (v) => $enumDecode(_$GenderEnumMap, v)),
       birthday: $checkedConvert('birthday', (v) => DateTime.parse(v as String)),
@@ -173,7 +173,6 @@ UserPhysicalProfile _$UserPhysicalProfileFromJson(
     return val;
   },
   fieldKeyMap: const {
-    'id': '_id',
     'userId': 'user_id',
     'waistCircumference': 'waist_circumference',
     'armCircumference': 'arm_circumference',
@@ -188,7 +187,7 @@ UserPhysicalProfile _$UserPhysicalProfileFromJson(
 Map<String, dynamic> _$UserPhysicalProfileToJson(
   UserPhysicalProfile instance,
 ) => <String, dynamic>{
-  '_id': instance.id,
+  'id': instance.id,
   'user_id': instance.userId,
   'gender': _$GenderEnumMap[instance.gender]!,
   'birthday': instance.birthday.toIso8601String(),

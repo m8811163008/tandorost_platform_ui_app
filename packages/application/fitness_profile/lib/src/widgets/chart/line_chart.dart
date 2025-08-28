@@ -77,7 +77,7 @@ class _AppLineChartState extends State<AppLineChart> {
     return RotatedBox(
       quarterTurns: 3,
       child: Text(
-        dateTime.formattedDate(context),
+        dateTime.toLocal().formattedDate(context),
         style: context.themeData.textTheme.labelSmall,
       ),
     );

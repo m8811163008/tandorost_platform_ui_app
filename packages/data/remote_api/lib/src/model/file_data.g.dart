@@ -13,7 +13,7 @@ FileData _$FileDataFromJson(Map<String, dynamic> json) => $checkedCreate(
     $checkKeys(
       json,
       allowedKeys: const [
-        '_id',
+        'id',
         'user_id',
         'tag',
         'file_name',
@@ -26,7 +26,7 @@ FileData _$FileDataFromJson(Map<String, dynamic> json) => $checkedCreate(
       ],
     );
     final val = FileData(
-      id: $checkedConvert('_id', (v) => v as String),
+      id: $checkedConvert('id', (v) => v as String),
       userId: $checkedConvert('user_id', (v) => v as String),
       tag: $checkedConvert('tag', (v) => $enumDecode(_$GallaryTagEnumMap, v)),
       fileName: $checkedConvert('file_name', (v) => v as String),
@@ -49,7 +49,6 @@ FileData _$FileDataFromJson(Map<String, dynamic> json) => $checkedCreate(
     return val;
   },
   fieldKeyMap: const {
-    'id': '_id',
     'userId': 'user_id',
     'fileName': 'file_name',
     'fileSize': 'file_size',
@@ -62,7 +61,7 @@ FileData _$FileDataFromJson(Map<String, dynamic> json) => $checkedCreate(
 );
 
 Map<String, dynamic> _$FileDataToJson(FileData instance) => <String, dynamic>{
-  '_id': instance.id,
+  'id': instance.id,
   'user_id': instance.userId,
   'tag': _$GallaryTagEnumMap[instance.tag]!,
   'file_name': instance.fileName,

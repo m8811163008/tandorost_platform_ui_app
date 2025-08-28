@@ -6,7 +6,6 @@ part 'food.g.dart';
 
 @JsonSerializable()
 class Food extends Equatable {
-  @JsonKey(name: '_id')
   final String id;
 
   final String userId;
@@ -117,6 +116,7 @@ class MacroNutrition extends Equatable {
       protein: protein ?? this.protein,
     );
   }
+
   int get total => fat + carbohydrate + protein;
 
   MacroNutrition({
