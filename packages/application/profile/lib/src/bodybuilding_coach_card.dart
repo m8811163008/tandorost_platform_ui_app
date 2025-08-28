@@ -12,15 +12,16 @@ class BodyBuildingCoachCard extends StatelessWidget {
     final gap = SizedBox(height: context.sizeExtenstion.medium);
     return AppCard(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+
         children: [
           Text(
-            'context.l10n.settingLabel',
+            context.l10n.coachSettingLabel,
             style: context.textTheme.headlineMedium,
           ),
           gap,
           SettingRadioButton(
-            label: 'isCoach',
+            label: context.l10n.coachSettingActivateToggleLabel,
             value: context.select(
               (ProfileCubit cubit) =>
                   cubit.state.userProfile?.isBodybuildingCoach ?? false,
@@ -35,7 +36,7 @@ class BodyBuildingCoachCard extends StatelessWidget {
           )) ...[
             gap,
             SettingRadioButton(
-              label: 'isAvalabel',
+              label: context.l10n.coachSettingAvailabilityToggleLabel,
               value: context.select(
                 (ProfileCubit cubit) =>
                     cubit.state.coachProfile?.isActive ?? false,
@@ -44,15 +45,19 @@ class BodyBuildingCoachCard extends StatelessWidget {
             ),
             gap,
             UserInfoRichText(
-              label: 'biography',
+              label: context.l10n.coachSettingBiographyLabel,
               value: context.select(
                 (ProfileCubit cubit) =>
                     cubit.state.coachProfile?.biography ?? '',
               ),
               editValueButton: EditDialog(
                 dialog: EditUserInfoDialog(
-                  dialogTitle: 'context.l10n.dialogTitleChangeName',
-                  textFieldlabel: 'context.l10n.changeNameTextFieldLabel',
+                  dialogTitle: context.l10n.coachSettingBiographyDialogTitle,
+                  textFieldlabel:
+                      context.l10n.coachSettingBiographyDialogTextFieldlabel,
+                  hint: context.l10n.coachSettingBiographyDialogTextFieldHint,
+                  maxLines: 4,
+                  maxLength: 700,
                   initialValue: context.select(
                     (ProfileCubit cubit) =>
                         cubit.state.coachProfile?.biography ?? '',

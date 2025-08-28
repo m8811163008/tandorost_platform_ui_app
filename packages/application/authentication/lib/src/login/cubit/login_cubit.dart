@@ -145,6 +145,7 @@ class LoginCubit extends Cubit<LoginState> {
         username: state.phoneNumber,
         password: state.password,
       );
+      // save credential on device
       await _authenticationRepository.authenticate(credential: credential);
       _enhancedEmit(state.copyWith(loginStatus: AsyncProcessingStatus.success));
     } on InternetConnectionException {

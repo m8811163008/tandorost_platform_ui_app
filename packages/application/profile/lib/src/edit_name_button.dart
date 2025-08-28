@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:profile_app/src/cubit/profile_cubit.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
@@ -8,13 +9,19 @@ class EditUserInfoDialog extends StatefulWidget {
     required this.dialogTitle,
     this.initialValue = '',
     this.textFieldlabel = '',
+    this.hint,
     this.onChnaged,
     this.onSubmit,
     this.validator,
+    this.maxLength = 50,
+    this.maxLines = 1,
   });
   final String dialogTitle;
   final String initialValue;
   final String textFieldlabel;
+  final String? hint;
+  final int maxLength;
+  final int maxLines;
   final ValueSetter<String>? onChnaged;
   final VoidCallback? onSubmit;
   final String? Function(String?)? validator;
@@ -29,19 +36,23 @@ class _EditUserInfoDialogState extends State<EditUserInfoDialog> {
   Widget build(BuildContext context) {
     return BlocListener<ProfileCubit, ProfileState>(
       listenWhen: (previous, current) =>
-          previous.updatingProfileStatus != current.updatingProfileStatus,
+          previous.updatingProfileStatus != current.updatingProfileStatus ||
+          previous.updateCoachProfileStatus != current.updateCoachProfileStatus,
       listener: (context, state) {
-        if (state.updatingProfileStatus.isConnectionError) {
+        if (state.updatingProfileStatus.isConnectionError ||
+            state.updateCoachProfileStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.updatingProfileStatus.isConnectionError) {
+        } else if (state.updatingProfileStatus.isInternetConnectionError ||
+            state.updateCoachProfileStatus.isInternetConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.updatingProfileStatus.isSuccess) {
+        } else if (state.updatingProfileStatus.isSuccess ||
+            state.updateCoachProfileStatus.isSuccess) {
           Navigator.of(context).pop();
         }
       },
@@ -52,9 +63,14 @@ class _EditUserInfoDialogState extends State<EditUserInfoDialog> {
           contents: [
             TextFormField(
               initialValue: widget.initialValue,
-              decoration: InputDecoration(labelText: widget.textFieldlabel),
+              decoration: InputDecoration(
+                labelText: widget.textFieldlabel,
+                alignLabelWithHint: true,
+                hintText: widget.hint,
+              ),
               onChanged: widget.onChnaged,
-              maxLength: 50,
+              maxLines: widget.maxLines,
+              maxLength: widget.maxLength,
               validator: widget.validator,
             ),
           ],

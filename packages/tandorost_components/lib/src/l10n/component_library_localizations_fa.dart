@@ -220,6 +220,28 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get settingLabel => 'تنظیمات';
 
   @override
+  String get coachSettingLabel => 'تنظیمات پروفایل مربی';
+
+  @override
+  String get coachSettingActivateToggleLabel => 'فعال کردن حالت مربی';
+
+  @override
+  String get coachSettingAvailabilityToggleLabel => 'پذیرش شاگرد جدید';
+
+  @override
+  String get coachSettingBiographyLabel => 'معرفی';
+
+  @override
+  String get coachSettingBiographyDialogTitle => 'درباره شما';
+
+  @override
+  String get coachSettingBiographyDialogTextFieldlabel => 'درباره';
+
+  @override
+  String get coachSettingBiographyDialogTextFieldHint =>
+      'سوابق ، گواهینامه ها، روش تمرین 🏆';
+
+  @override
   String get changeWeightSpeedLabel => 'سرعت کاهش وزن';
 
   @override

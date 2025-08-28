@@ -31,10 +31,8 @@ class LocalStorage {
     return await secureStorage.read(key);
   }
 
-  Future<void> delete(String key) async {
-    //Todo fix
-    await secureStorage.delete(key);
-  }
+  Future<void> delete(String key) =>
+      Future.wait([nonSecureStorage.delete(key), secureStorage.delete(key)]);
 }
 
 // secure storage

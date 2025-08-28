@@ -475,6 +475,48 @@ abstract class ComponentLibraryLocalizations {
   /// **'تنظیمات'**
   String get settingLabel;
 
+  /// No description provided for @coachSettingLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'تنظیمات پروفایل مربی'**
+  String get coachSettingLabel;
+
+  /// No description provided for @coachSettingActivateToggleLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'فعال کردن حالت مربی'**
+  String get coachSettingActivateToggleLabel;
+
+  /// No description provided for @coachSettingAvailabilityToggleLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'پذیرش شاگرد جدید'**
+  String get coachSettingAvailabilityToggleLabel;
+
+  /// No description provided for @coachSettingBiographyLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'معرفی'**
+  String get coachSettingBiographyLabel;
+
+  /// No description provided for @coachSettingBiographyDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'درباره شما'**
+  String get coachSettingBiographyDialogTitle;
+
+  /// No description provided for @coachSettingBiographyDialogTextFieldlabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'درباره'**
+  String get coachSettingBiographyDialogTextFieldlabel;
+
+  /// No description provided for @coachSettingBiographyDialogTextFieldHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'سوابق ، گواهینامه ها، روش تمرین 🏆'**
+  String get coachSettingBiographyDialogTextFieldHint;
+
   /// No description provided for @changeWeightSpeedLabel.
   ///
   /// In fa, this message translates to:

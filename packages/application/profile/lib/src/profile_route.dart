@@ -100,6 +100,7 @@ class ProfileView extends StatelessWidget {
               cubit.readCoachProfile();
             } else {
               if (state.coachProfile != null) {
+                // get a new jwt with proper scopes
                 cubit.logout();
               }
             }

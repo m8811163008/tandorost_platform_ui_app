@@ -91,6 +91,13 @@
     "updateButton": "بروزرسانی",
     "personalInfoSettingLabel": "مشخصات فردی",
     "settingLabel": "تنظیمات",
+    "coachSettingLabel": "تنظیمات پروفایل مربی",
+    "coachSettingActivateToggleLabel": "فعال کردن حالت مربی",
+    "coachSettingAvailabilityToggleLabel": "پذیرش شاگرد جدید",
+    "coachSettingBiographyLabel": "معرفی",
+    "coachSettingBiographyDialogTitle": "درباره شما",
+    "coachSettingBiographyDialogTextFieldlabel": "درباره",
+    "coachSettingBiographyDialogTextFieldHint": "سوابق ، گواهینامه ها، روش تمرین 🏆",
     "changeWeightSpeedLabel": "سرعت کاهش وزن",
     "changeWeightSpeedInfoHint": "در وضعیت فعلی شاید عادت کرده باشید بیشتر از انرژی مورد نیاز روزانه میل کنید. ابتدا سرعت را در حالت ثابت بگذارید و بعد از تغییر عادت های غذایی و عادت به وضعیت جدید، سپس سرعت را به تدریج افزایش دهید تا ‌احساس گرسنگی و خیلی کمتری را تجربه کنید.",
     "changeWeightSpeedInfoConstantSpeed": "در حالت تثبیت وزن از انرژی مورد نیاز کم نمیشود",

@@ -264,7 +264,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       changeWeightSpeed: speed,
     );
     await updateProfile(updatedProfileVar);
-    _enhancedEmit(state.copyWith(updatedUserProfile: updatedProfileVar));
+    // _enhancedEmit(state.copyWith(updatedUserProfile: updatedProfileVar));
   }
 
   void onChangeIsFasting(bool isTimeRestrictedEating) async {
@@ -272,7 +272,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       isTimeRestrictedEating: isTimeRestrictedEating,
     );
     await updateProfile(updatedProfileVar);
-    _enhancedEmit(state.copyWith(updatedUserProfile: updatedProfileVar));
+    // _enhancedEmit(state.copyWith(updatedUserProfile: updatedProfileVar));
   }
 
   void onChangeIsCoachAvailable(bool isAvailable) async {
