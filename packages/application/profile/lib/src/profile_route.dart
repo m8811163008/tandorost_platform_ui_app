@@ -1,3 +1,4 @@
+import 'package:authentication/authentication.dart';
 import 'package:coach_repository/coach_repository.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:file_picker/file_picker.dart';
@@ -6,6 +7,7 @@ import 'package:image_repository/image_repository.dart';
 import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
 import 'package:profile_app/profile.dart';
+import 'package:profile_app/src/bodybuilding_coach_card.dart';
 import 'package:profile_app/src/cubit/profile_cubit.dart';
 import 'package:profile_app/src/edit_dialog.dart';
 import 'package:profile_app/src/edit_language_button.dart';
@@ -35,6 +37,7 @@ class ProfileRoute extends StatelessWidget {
         RepositoryProvider.of<ImageRepository>(context),
         RepositoryProvider.of<PaymentRepository>(context),
         RepositoryProvider.of<CoachRepository>(context),
+        RepositoryProvider.of<AuthenticationRepository>(context),
         RepositoryProvider.of<FlutterLocalNotificationsPlugin>(context),
       ),
       child: AppScaffold(
@@ -64,24 +67,46 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ProfileCubit, ProfileState>(
-      listenWhen: (previous, current) =>
-          previous.updatingProfileStatus != current.updatingProfileStatus,
-      listener: (context, state) {
-        if (state.updatingProfileStatus.isConnectionError) {
-          final content = context.l10n.networkError;
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.updatingProfileStatus.isConnectionError) {
-          final content = context.l10n.internetConnectionError;
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.updatingProfileStatus.isSuccess) {
-          context.read<UserAccountCubit>().readUserProfile();
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<ProfileCubit, ProfileState>(
+          listenWhen: (previous, current) =>
+              previous.readProfileStatus != current.readProfileStatus ||
+              previous.updatingProfileStatus != current.updatingProfileStatus,
+          listener: (context, state) async {
+            if (state.readProfileStatus.isConnectionError ||
+                state.updatingProfileStatus.isConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.readProfileStatus.isInternetConnectionError ||
+                state.updatingProfileStatus.isInternetConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            }
+          },
+        ),
+        BlocListener<ProfileCubit, ProfileState>(
+          listenWhen: (previous, current) =>
+              previous.userProfile?.isBodybuildingCoach !=
+              current.userProfile?.isBodybuildingCoach,
+          listener: (context, state) async {
+            // if (state.coachProfile == null) return;
+            final cubit = context.read<ProfileCubit>();
+            if (state.userProfile!.isBodybuildingCoach) {
+              cubit.readCoachProfile();
+            } else {
+              if (state.coachProfile != null) {
+                cubit.logout();
+              }
+            }
+          },
+        ),
+      ],
+
       child: SingleChildScrollView(
         child: Column(
           children: [ProfileCard(), SettingCard(), BodyBuildingCoachCard()],
@@ -353,36 +378,6 @@ class SettingCard extends StatelessWidget {
               value: context.read<ProfileCubit>(),
               child: ChangeLanguageDialog(),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class BodyBuildingCoachCard extends StatelessWidget {
-  const BodyBuildingCoachCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AppCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'context.l10n.settingLabel',
-            style: context.textTheme.headlineMedium,
-          ),
-          SizedBox(height: context.sizeExtenstion.medium),
-          SettingRadioButton(
-            label: 'context.l10n.timeRestrictedEatingLabel',
-            value: context.select(
-              (ProfileCubit cubit) =>
-                  cubit.state.userProfile?.isBodybuildingCoach ?? false,
-            ),
-            onChanged: context
-                .read<ProfileCubit>()
-                .onChangeBodybuildingCoachRole,
           ),
         ],
       ),

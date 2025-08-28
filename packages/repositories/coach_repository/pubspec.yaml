@@ -11,6 +11,8 @@ environment:
 dependencies:
   remote_api:
     path: ../../data/remote_api
+  local_storage:
+    path: ../../data/local_storage
 
 dev_dependencies:
   lints: ^6.0.0

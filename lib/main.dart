@@ -76,7 +76,10 @@ class DependencyManager extends StatelessWidget {
       remoteApi: remoteApi,
       localStorage: localStorage,
     );
-    final coachRep = CoachRepository(remoteApi: remoteApi);
+    final coachRep = CoachRepository(
+      remoteApi: remoteApi,
+      localStorage: localStorage,
+    );
     remoteApi.accessTokenProvider = authenticationRep.accessTokenProvider;
     remoteApi.userLanguageProvider = profileRep.userLanguage;
 

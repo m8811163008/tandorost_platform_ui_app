@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:authentication/authentication.dart';
 import 'package:coach_repository/coach_repository.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/foundation.dart';
@@ -22,6 +23,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     this._imageRepository,
     this._paymentRepository,
     this._coachRepository,
+    this._authenticationRepositry,
     this.flutterLocalNotificationsPlugin,
   ) : super(ProfileState()) {
     readProfile();
@@ -37,17 +39,31 @@ class ProfileCubit extends Cubit<ProfileState> {
         ),
       );
     });
+    coachProfileSubscription = _coachRepository.coachProfileStream.listen((
+      coachProfile,
+    ) {
+      if (coachProfile == null) return;
+      _enhancedEmit(
+        state.copyWith(
+          coachProfile: coachProfile,
+          updatedCoachProfile: state.updatedCoachProfile ?? coachProfile,
+        ),
+      );
+    });
   }
   final ProfileRepository _profile;
   final ImageRepository _imageRepository;
   final PaymentRepository _paymentRepository;
   final CoachRepository _coachRepository;
+  final AuthenticationRepository _authenticationRepositry;
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   late final StreamSubscription<UserProfile?> userProfileSubscription;
+  late final StreamSubscription<CoachProfile?> coachProfileSubscription;
 
   @override
   Future<void> close() async {
     await userProfileSubscription.cancel();
+    await coachProfileSubscription.cancel();
     return super.close();
   }
 
@@ -180,6 +196,31 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
+  void readCoachProfile() async {
+    _enhancedEmit(
+      state.copyWith(readCoachProfileStatus: AsyncProcessingStatus.loading),
+    );
+    try {
+      await _coachRepository.readCoachProfile();
+
+      _enhancedEmit(
+        state.copyWith(readCoachProfileStatus: AsyncProcessingStatus.success),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          readCoachProfileStatus: AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          readCoachProfileStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
   void onChangeName(String name) async {
     _enhancedEmit(
       state.copyWith(
@@ -234,6 +275,14 @@ class ProfileCubit extends Cubit<ProfileState> {
     _enhancedEmit(state.copyWith(updatedUserProfile: updatedProfileVar));
   }
 
+  void onChangeIsCoachAvailable(bool isAvailable) async {
+    final updatedProfileVar = state.updatedCoachProfile!.copyWith(
+      isActive: isAvailable,
+    );
+    await updateCoachProfile(updatedProfileVar);
+    _enhancedEmit(state.copyWith(updatedCoachProfile: updatedProfileVar));
+  }
+
   void onChangeBodybuildingCoachRole(bool isBodybuildingCoach) async {
     final currentRoles = Set<Role>.from(state.updatedUserProfile!.role);
     isBodybuildingCoach
@@ -242,9 +291,14 @@ class ProfileCubit extends Cubit<ProfileState> {
     final updatedProfileVar = state.updatedUserProfile!.copyWith(
       role: currentRoles.toList(),
     );
+    // await _coachRepository.clearCacheCoachProfile();
     await updateProfile(updatedProfileVar);
-    _enhancedEmit(state.copyWith(updatedUserProfile: updatedProfileVar));
+
+    // _enhancedEmit(state.copyWith(updatedUserProfile: updatedProfileVar));
   }
+
+  void logout() => // log out to get new access token
+      _authenticationRepositry.logout();
 
   void onToggleReminderNotifications(
     NotiticationTexts notiticationTexts,
@@ -359,6 +413,20 @@ class ProfileCubit extends Cubit<ProfileState> {
     );
   }
 
+  void onChangeCoachBiography(String biography) async {
+    _enhancedEmit(
+      state.copyWith(
+        updatedCoachProfile: state.updatedCoachProfile!.copyWith(
+          biography: biography,
+        ),
+      ),
+    );
+  }
+
+  void updateCoachBiography() async {
+    await updateCoachProfile(state.updatedCoachProfile!);
+  }
+
   void updateLanguage() async {
     await updateProfile(state.updatedUserProfile!);
   }
@@ -384,6 +452,33 @@ class ProfileCubit extends Cubit<ProfileState> {
       _enhancedEmit(
         state.copyWith(
           updatingProfileStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
+  Future<void> updateCoachProfile(CoachProfile updatedCoachProfile) async {
+    if (state.coachProfile == null) return;
+    _enhancedEmit(
+      state.copyWith(updateCoachProfileStatus: AsyncProcessingStatus.loading),
+    );
+    try {
+      await _coachRepository.updateCoachProfile(updatedCoachProfile);
+
+      _enhancedEmit(
+        state.copyWith(updateCoachProfileStatus: AsyncProcessingStatus.success),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          updateCoachProfileStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          updateCoachProfileStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }

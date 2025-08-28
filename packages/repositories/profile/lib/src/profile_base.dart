@@ -17,10 +17,9 @@ class ProfileRepository {
 
   Future<Language> get userSpokenLanguage async {
     final language = await localStorage.read(StorageKey.userspokenLanguage);
-    final String languageCode =
-        language != null
-            ? language[StorageKey.userspokenLanguage]
-            : Language.persian.code;
+    final String languageCode = language != null
+        ? language[StorageKey.userspokenLanguage]
+        : Language.persian.code;
 
     return Language.values.singleWhere((item) => item.code == languageCode);
   }
@@ -44,19 +43,20 @@ class ProfileRepository {
     }
     // read from remote api
     final profile = await remoteApi.userProfile();
-    // upsert to local storage
-    await localStorage.upsert(StorageKey.userProfileKey, profile.toJson());
-
     // add it
     _userProfileController.add(profile);
 
     _languageController.add(profile.language);
+    // upsert to local storage
+    await localStorage.upsert(StorageKey.userProfileKey, profile.toJson());
   }
 
   Future<void> updateProfile(UserProfile updatedProfile) async {
     final profile = await remoteApi.updateProfile(updatedProfile);
     _languageController.add(profile.language);
     _userProfileController.add(profile);
+    // upsert to local storage
+    await localStorage.upsert(StorageKey.userProfileKey, profile.toJson());
   }
 
   Future<void> visitedIntroductionRoute() async {

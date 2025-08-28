@@ -23,6 +23,8 @@ dependencies:
     path: ../../repositories/payment_repository
   coach_repository:
     path: ../../repositories/coach_repository
+  authentication:
+    path: ../../repositories/authentication
   file_picker: ^10.1.9
   flutter_local_notifications: ^19.3.0
   timezone: ^0.10.1

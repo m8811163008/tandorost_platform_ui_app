@@ -74,7 +74,7 @@ class UserAccountCubit extends Cubit<UserAccountState> {
       state.copyWith(readUserProfileStatus: AsyncProcessingStatus.loading),
     );
     try {
-      final profile = await _profileRepository.userProfile();
+      await _profileRepository.userProfile();
       _enhancedEmit(
         state.copyWith(readUserProfileStatus: AsyncProcessingStatus.success),
       );
