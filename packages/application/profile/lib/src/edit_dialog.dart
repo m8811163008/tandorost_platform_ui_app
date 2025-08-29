@@ -16,7 +16,6 @@ class EditDialog extends StatelessWidget {
           builder: (_) {
             return BlocProvider.value(
               value: context.read<ProfileCubit>(),
-
               child: dialog,
             );
           },

@@ -69,9 +69,44 @@ class BodyBuildingCoachCard extends StatelessWidget {
                 ),
               ),
             ),
+            gap,
+            Text('certificates', style: context.textTheme.titleSmall),
+            gap,
+            CertificateSection(),
           ],
         ],
       ),
     );
+  }
+}
+
+class CertificateSection extends StatelessWidget {
+  const CertificateSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 150 / 1.6,
+      child: ListView.separated(
+        primary: false,
+        scrollDirection: Axis.horizontal,
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          return ThumernailImage();
+        },
+        separatorBuilder: (context, index) {
+          return SizedBox(width: 16);
+        },
+      ),
+    );
+  }
+}
+
+class ThumernailImage extends StatelessWidget {
+  const ThumernailImage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(height: 150 / 1.6, width: 150, child: Placeholder());
   }
 }

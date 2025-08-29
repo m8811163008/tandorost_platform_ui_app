@@ -17,6 +17,7 @@ class FileData extends Equatable {
   final String fileUploadPath;
   final ProcessingStatus processingStatus;
   final ImageRejectionReason? rejectProcessingStatusDesc;
+  final String? description;
 
   FileData({
     required this.id,
@@ -28,6 +29,7 @@ class FileData extends Equatable {
     required this.contentType,
     required this.fileUploadPath,
     required this.processingStatus,
+    required this.description,
     this.rejectProcessingStatusDesc,
   });
 
@@ -48,6 +50,7 @@ class FileData extends Equatable {
     fileUploadPath,
     processingStatus,
     rejectProcessingStatusDesc,
+    description,
   ];
   FileData copyWith({
     String? id,
@@ -59,6 +62,7 @@ class FileData extends Equatable {
     String? contentType,
     String? fileUploadPath,
     ProcessingStatus? processingStatus,
+    String? description,
     ValueGetter<ImageRejectionReason?>? rejectProcessingStatusDesc,
   }) {
     return FileData(
@@ -74,6 +78,7 @@ class FileData extends Equatable {
       rejectProcessingStatusDesc: rejectProcessingStatusDesc != null
           ? rejectProcessingStatusDesc()
           : this.rejectProcessingStatusDesc,
+      description: description ?? this.description,
     );
   }
 }

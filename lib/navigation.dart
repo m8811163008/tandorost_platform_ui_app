@@ -18,17 +18,16 @@ import 'package:vo2max_calculator/vo2max_calculator.dart';
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: RoutesNames.searchRoute.path,
+      initialLocation: RoutesNames.profileRoute.path,
       observers: [SentryNavigatorObserver()],
       routes: [
         GoRoute(
           path: RoutesNames.searchRoute.path,
           builder: (context, state) {
             return SearchRoute(
-              goToResultRoute:
-                  () => context.go(
-                    '${RoutesNames.searchRoute.path}${RoutesNames.resultRoute.path}',
-                  ),
+              goToResultRoute: () => context.go(
+                '${RoutesNames.searchRoute.path}${RoutesNames.resultRoute.path}',
+              ),
               onBottomNavigationChanged: (index) {
                 _onBottomNavigationChanged(context, index);
               },
@@ -56,10 +55,9 @@ class Navigation {
         ShellRoute(
           builder: (context, state, child) {
             return BlocProvider(
-              create:
-                  (context) => RegisterCubit(
-                    RepositoryProvider.of<AuthenticationRepository>(context),
-                  ),
+              create: (context) => RegisterCubit(
+                RepositoryProvider.of<AuthenticationRepository>(context),
+              ),
               child: child,
             );
           },
@@ -69,12 +67,11 @@ class Navigation {
               builder: (context, state) {
                 return RegisterRoute(
                   goToHomeRoute: () => _goToHomeRoute(context),
-                  goToLoginRoute:
-                      () => context.go(RoutesNames.searchRoute.path),
-                  goToVerificationRoute:
-                      () => context.go(
-                        '${RoutesNames.registerRoute.path}${RoutesNames.verificationRoute.path}',
-                      ),
+                  goToLoginRoute: () =>
+                      context.go(RoutesNames.searchRoute.path),
+                  goToVerificationRoute: () => context.go(
+                    '${RoutesNames.registerRoute.path}${RoutesNames.verificationRoute.path}',
+                  ),
                 );
               },
               routes: [
@@ -82,8 +79,8 @@ class Navigation {
                   path: RoutesNames.verificationRoute.path,
                   builder: (context, state) {
                     return RegisterVerifyPhoneNumberRoute(
-                      goToLoginRoute:
-                          () => context.go(RoutesNames.loginRoute.path),
+                      goToLoginRoute: () =>
+                          context.go(RoutesNames.loginRoute.path),
                     );
                   },
                 ),
@@ -94,10 +91,9 @@ class Navigation {
         ShellRoute(
           builder: (context, state, child) {
             return BlocProvider(
-              create:
-                  (context) => LoginCubit(
-                    RepositoryProvider.of<AuthenticationRepository>(context),
-                  ),
+              create: (context) => LoginCubit(
+                RepositoryProvider.of<AuthenticationRepository>(context),
+              ),
               child: child,
             );
           },
@@ -121,10 +117,9 @@ class Navigation {
         ShellRoute(
           builder: (context, state, child) {
             return BlocProvider(
-              create:
-                  (context) => ForgotPasswordCubit(
-                    RepositoryProvider.of<AuthenticationRepository>(context),
-                  ),
+              create: (context) => ForgotPasswordCubit(
+                RepositoryProvider.of<AuthenticationRepository>(context),
+              ),
               child: child,
             );
           },
@@ -134,12 +129,11 @@ class Navigation {
               builder: (context, state) {
                 return ForgotPasswordRoute(
                   goToLoginRoute: () => context.go(RoutesNames.loginRoute.path),
-                  goToVerificationRoute:
-                      () => context.go(
-                        '${RoutesNames.forgotPassRoute.path}${RoutesNames.verificationRoute.path}',
-                      ),
-                  goToRegisterRoute:
-                      () => context.go(RoutesNames.registerRoute.path),
+                  goToVerificationRoute: () => context.go(
+                    '${RoutesNames.forgotPassRoute.path}${RoutesNames.verificationRoute.path}',
+                  ),
+                  goToRegisterRoute: () =>
+                      context.go(RoutesNames.registerRoute.path),
                 );
               },
               routes: [
@@ -147,8 +141,8 @@ class Navigation {
                   path: RoutesNames.verificationRoute.path,
                   builder: (context, state) {
                     return ForgotPasswordVerifyPhoneNumberRoute(
-                      goToLoginRoute:
-                          () => context.go(RoutesNames.loginRoute.path),
+                      goToLoginRoute: () =>
+                          context.go(RoutesNames.loginRoute.path),
                     );
                   },
                 ),
@@ -190,10 +184,10 @@ class Navigation {
           path: RoutesNames.foodReportRoute.path,
           builder: (context, state) {
             return FoodReportRoute(
-              goToFoodInputRoute:
-                  () => context.go(RoutesNames.searchRoute.path),
-              goToFitnessProfileRoute:
-                  () => context.go(RoutesNames.fitnessProfileRoute.path),
+              goToFoodInputRoute: () =>
+                  context.go(RoutesNames.searchRoute.path),
+              goToFitnessProfileRoute: () =>
+                  context.go(RoutesNames.fitnessProfileRoute.path),
               onBottomNavigationChanged: (index) {
                 _onBottomNavigationChanged(context, index);
               },
@@ -224,8 +218,8 @@ class Navigation {
           path: RoutesNames.introductionRoute.path,
           builder: (context, state) {
             return IntroductionRoute(
-              onDoneIntroduction:
-                  () => context.go(RoutesNames.searchRoute.path),
+              onDoneIntroduction: () =>
+                  context.go(RoutesNames.searchRoute.path),
             );
           },
         ),
@@ -259,10 +253,9 @@ class Navigation {
         return fullPath;
       },
       refreshListenable: RedirectListenable(
-        authenticationStream:
-            RepositoryProvider.of<AuthenticationRepository>(
-              context,
-            ).authenticationStatusStream,
+        authenticationStream: RepositoryProvider.of<AuthenticationRepository>(
+          context,
+        ).authenticationStatusStream,
       ),
     );
   }

@@ -23,6 +23,7 @@ FileData _$FileDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'file_upload_path',
         'processing_status',
         'reject_processing_status_desc',
+        'description',
       ],
     );
     final val = FileData(
@@ -41,6 +42,7 @@ FileData _$FileDataFromJson(Map<String, dynamic> json) => $checkedCreate(
         'processing_status',
         (v) => $enumDecode(_$ProcessingStatusEnumMap, v),
       ),
+      description: $checkedConvert('description', (v) => v as String?),
       rejectProcessingStatusDesc: $checkedConvert(
         'reject_processing_status_desc',
         (v) => $enumDecodeNullable(_$ImageRejectionReasonEnumMap, v),
@@ -72,6 +74,7 @@ Map<String, dynamic> _$FileDataToJson(FileData instance) => <String, dynamic>{
   'processing_status': _$ProcessingStatusEnumMap[instance.processingStatus]!,
   'reject_processing_status_desc':
       ?_$ImageRejectionReasonEnumMap[instance.rejectProcessingStatusDesc],
+  'description': ?instance.description,
 };
 
 const _$GallaryTagEnumMap = {
