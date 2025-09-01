@@ -4,6 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remote_api/remote_api.dart';
+import 'package:remote_api/src/utility/time_zone_converter.dart';
 
 part 'user_physical_data.g.dart';
 
@@ -11,6 +12,7 @@ part 'user_physical_data.g.dart';
 class DoubleDataPoint extends Equatable {
   final String dataPointId;
   final double value;
+  @JsonKey(fromJson: dateTimeUtcFromJson, toJson: dateTimeUtcToJson)
   final DateTime createDate;
 
   DoubleDataPoint({
@@ -31,6 +33,7 @@ class DoubleDataPoint extends Equatable {
 class ActivityLevelDataPoint extends Equatable {
   final String dataPointId;
   final ActivityLevel value;
+  @JsonKey(fromJson: dateTimeUtcFromJson, toJson: dateTimeUtcToJson)
   final DateTime createDate;
 
   ActivityLevelDataPoint({
@@ -52,6 +55,7 @@ class UserPhysicalProfile extends Equatable {
   final String id;
   final String userId;
   final Gender gender;
+  @JsonKey(fromJson: dateTimeUtcFromJson, toJson: dateTimeUtcToJson)
   final DateTime birthday;
   final List<DoubleDataPoint> height;
   final List<DoubleDataPoint> weight;

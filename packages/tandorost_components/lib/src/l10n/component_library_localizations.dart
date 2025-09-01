@@ -955,6 +955,12 @@ abstract class ComponentLibraryLocalizations {
   /// **'{gender, select, male{مرد} female{زن} other{ترجمه تعریف نشده}}'**
   String physicalDataGender(String gender);
 
+  /// No description provided for @imageSideDescription.
+  ///
+  /// In fa, this message translates to:
+  /// **'{side, select, front{روبرو} back{پشت} side{پهلو} free{فیگور آزاد} other{ترجمه تعریف نشده}}'**
+  String imageSideDescription(String side);
+
   /// No description provided for @physicalActivityLevel.
   ///
   /// In fa, this message translates to:
@@ -2815,6 +2821,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'کاربر ورود با گوگل مطابقت ندارد'**
   String get googleAuthExceptionUserMismatch;
+
+  /// No description provided for @fitnessPrfileArchiveImagesButtonTooltip.
+  ///
+  /// In fa, this message translates to:
+  /// **'آرشیو کردن تصاویر در سرور'**
+  String get fitnessPrfileArchiveImagesButtonTooltip;
 }
 
 class _ComponentLibraryLocalizationsDelegate

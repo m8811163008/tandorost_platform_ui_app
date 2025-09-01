@@ -30,55 +30,12 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
   final FitnessNutrition _fitnessNutrition;
   late final StreamSubscription<UserPhysicalProfile?>
   _userPhysicalProfileSubscription;
-  late final StreamSubscription<FitnessData?>
-  _fitnessDataSubscription;
+  late final StreamSubscription<FitnessData?> _fitnessDataSubscription;
 
   @override
   Future<void> close() {
     _userPhysicalProfileSubscription.cancel();
     return super.close();
-  }
-
-  void onEditImageComplete(Uint8List bytes, String fileName) async {
-    final fileDetail = FileDetail(fileName: fileName, bytes: bytes);
-    final userImage = UserImage(
-      gallaryTag: GallaryTag.defaultTag,
-      imageGallaryFiles: [fileDetail],
-    );
-    _enhancedEmit(
-      state.copyWith(addUserImageStatus: AsyncProcessingStatus.loading),
-    );
-
-    try {
-      final userImagesDetail = await _imageRepository.addUserImages(userImage);
-      // find new added image
-      final result =
-          userImagesDetail.toSet().difference(state.filesData.toSet()).single;
-      // fetch image
-      final fetchImageDetail = await _imageRepository.readImage(result);
-      // update state
-      final List<FileDetail> filesDetail = List.from(state.filesDetail);
-      filesDetail.add(fetchImageDetail);
-      _enhancedEmit(
-        state.copyWith(
-          addUserImageStatus: AsyncProcessingStatus.success,
-          filesData: userImagesDetail,
-          filesDetail: filesDetail.reversed.toList(),
-        ),
-      );
-    } on InternetConnectionException {
-      _enhancedEmit(
-        state.copyWith(
-          addUserImageStatus: AsyncProcessingStatus.internetConnectionError,
-        ),
-      );
-    } on HttpException {
-      _enhancedEmit(
-        state.copyWith(
-          addUserImageStatus: AsyncProcessingStatus.connectionError,
-        ),
-      );
-    }
   }
 
   void onChangeGender(Gender? gender) {
@@ -272,25 +229,79 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     }
   }
 
+  void onEditImageComplete(
+    Uint8List bytes,
+    String fileName, [
+    DateTime? uploadDate,
+  ]) async {
+    final fileDetail = FileDetail(
+      fileName: fileName,
+      bytes: bytes,
+      uploadDate: uploadDate,
+    );
+    final userImage = UserImage(
+      gallaryTag: GallaryTag.defaultTag,
+      imageGallaryFiles: [fileDetail],
+      uploadDate: uploadDate,
+    );
+    _enhancedEmit(
+      state.copyWith(addUserImageStatus: AsyncProcessingStatus.loading),
+    );
+
+    try {
+      final userImagesDetail = await _imageRepository.addUserImages(userImage);
+      // fetch image
+      final fetchImageDetail = await _imageRepository.readImage(
+        userImagesDetail.first,
+      );
+      // update state
+      final fileDetail = List<FileDetail>.from(state.filesDetail);
+      final filesData = List<FileData>.from(state.filesData);
+
+      fileDetail.add(fetchImageDetail);
+      filesData.addAll(userImagesDetail);
+      _enhancedEmit(
+        state.copyWith(
+          addUserImageStatus: AsyncProcessingStatus.success,
+          filesData: filesData,
+          filesDetail: fileDetail,
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          addUserImageStatus: AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          addUserImageStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
   void readUserImageGallary() async {
     _enhancedEmit(
       state.copyWith(readUserImageGallaryStatus: AsyncProcessingStatus.loading),
     );
 
     try {
-      final userImagesDetail = await _imageRepository.readUserImageGallary([
-        GallaryTag.defaultTag,
-      ]);
+      final userImagesDetail = await _imageRepository
+          .readUnarchivedUserImageGallary([GallaryTag.defaultTag]);
+
       final filesDetail = <FileDetail>[];
       for (var imageDetail in userImagesDetail) {
         final result = await _imageRepository.readImage(imageDetail);
+
         filesDetail.add(result);
       }
       _enhancedEmit(
         state.copyWith(
           readUserImageGallaryStatus: AsyncProcessingStatus.success,
           filesData: userImagesDetail,
-          filesDetail: filesDetail.reversed.toList(),
+          filesDetail: filesDetail.toList(),
         ),
       );
     } on InternetConnectionException {
@@ -317,10 +328,7 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
     try {
       await _fitnessNutrition.readFitnessData();
       _enhancedEmit(
-        state.copyWith(
-          readFitnessDataStatus: AsyncProcessingStatus.success,
-          
-        ),
+        state.copyWith(readFitnessDataStatus: AsyncProcessingStatus.success),
       );
     } on InternetConnectionException {
       _enhancedEmit(
@@ -335,6 +343,45 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
         ),
       );
     }
+  }
+
+  void insertOrDeleteFromArchiveImageList(String? imageId) {
+    if (imageId == null) return;
+    final imagesId = List<String>.from(state.archiveImagesId);
+    state.archiveImagesId.contains(imageId)
+        ? imagesId.remove(imageId)
+        : imagesId.add(imageId);
+    _enhancedEmit(state.copyWith(archiveImagesId: imagesId));
+  }
+
+  void archiveImages() async {
+    _enhancedEmit(
+      state.copyWith(archivingImagesStatus: AsyncProcessingStatus.loading),
+    );
+
+    try {
+      await _imageRepository.archiveUserImages(state.archiveImagesId);
+      _enhancedEmit(
+        state.copyWith(
+          archivingImagesStatus: AsyncProcessingStatus.success,
+          archiveImagesId: [],
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          archivingImagesStatus: AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          archivingImagesStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+
+    // empty archiveImagesId
   }
 
   void onChangeChartType(ChartType chartType) {
@@ -355,12 +402,10 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
             state.copyWith(userPhysicalProfile: userPhysicalProfile),
           );
         });
-    _fitnessDataSubscription = _fitnessNutrition
-        .readFitnessDataStream
-        .listen((fitnessData) {
-          _enhancedEmit(
-            state.copyWith(fitnessData: fitnessData),
-          );
-        });
+    _fitnessDataSubscription = _fitnessNutrition.readFitnessDataStream.listen((
+      fitnessData,
+    ) {
+      _enhancedEmit(state.copyWith(fitnessData: fitnessData));
+    });
   }
 }

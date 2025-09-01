@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remote_api/src/model/model.dart';
+import 'package:remote_api/src/utility/time_zone_converter.dart';
 
 part 'file_data.g.dart';
 
@@ -12,6 +13,7 @@ class FileData extends Equatable {
   final GallaryTag tag;
   final String fileName;
   final int fileSize;
+  @JsonKey(fromJson: dateTimeUtcFromJson, toJson: dateTimeUtcToJson)
   final DateTime uploadDate;
   final String contentType;
   final String fileUploadPath;

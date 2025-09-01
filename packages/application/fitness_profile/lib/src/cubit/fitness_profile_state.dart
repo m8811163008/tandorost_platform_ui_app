@@ -3,6 +3,7 @@ part of 'fitness_profile_cubit.dart';
 class FitnessProfileState extends Equatable {
   final List<FileData> filesData;
   final List<FileDetail> filesDetail;
+  final List<String> archiveImagesId;
 
   final ChartType selectedChartType;
 
@@ -18,10 +19,12 @@ class FitnessProfileState extends Equatable {
 
   final AsyncProcessingStatus readFitnessDataStatus;
   final AsyncProcessingStatus readUserPhysicalProfileStatus;
+  final AsyncProcessingStatus archivingImagesStatus;
 
   const FitnessProfileState({
     this.filesData = const [],
     this.filesDetail = const [],
+    this.archiveImagesId = const [],
     this.selectedChartType = ChartType.weight,
     this.fitnessData,
     this.userPhysicalDataUpsert = const UserPhysicalDataUpsert(),
@@ -33,6 +36,7 @@ class FitnessProfileState extends Equatable {
     this.readUserImageGallaryStatus = AsyncProcessingStatus.inital,
     this.readFitnessDataStatus = AsyncProcessingStatus.inital,
     this.readUserPhysicalProfileStatus = AsyncProcessingStatus.inital,
+    this.archivingImagesStatus = AsyncProcessingStatus.inital,
   });
 
   Set<ChartType> get supportedChartTypes {
@@ -93,11 +97,14 @@ class FitnessProfileState extends Equatable {
     readUserPhysicalProfileStatus,
     supportedChartTypes,
     selectedChartType,
+    archivingImagesStatus,
+    archiveImagesId,
   ];
   FitnessProfileState copyWith({
     List<FileData>? filesData,
     List<FileDetail>? filesDetail,
     List<ChartType>? supportedChartTypes,
+    List<String>? archiveImagesId,
     ChartType? selectedChartType,
 
     FitnessData? fitnessData,
@@ -110,10 +117,12 @@ class FitnessProfileState extends Equatable {
     AsyncProcessingStatus? readFitnessDataStatus,
     AsyncProcessingStatus? updateUserPhysicalDataStatus,
     AsyncProcessingStatus? readUserPhysicalProfileStatus,
+    AsyncProcessingStatus? archivingImagesStatus,
   }) {
     return FitnessProfileState(
       filesData: filesData ?? this.filesData,
       filesDetail: filesDetail ?? this.filesDetail,
+      archiveImagesId: archiveImagesId ?? this.archiveImagesId,
       selectedChartType: selectedChartType ?? this.selectedChartType,
       fitnessData: fitnessData ?? this.fitnessData,
       userPhysicalProfile: userPhysicalProfile ?? this.userPhysicalProfile,
@@ -131,6 +140,8 @@ class FitnessProfileState extends Equatable {
           updateUserPhysicalDataStatus ?? this.updateUserPhysicalDataStatus,
       readUserPhysicalProfileStatus:
           readUserPhysicalProfileStatus ?? this.readUserPhysicalProfileStatus,
+      archivingImagesStatus:
+          archivingImagesStatus ?? this.archivingImagesStatus,
     );
   }
 }

@@ -39,7 +39,7 @@ UserPhysicalDataUpsert _$UserPhysicalDataUpsertFromJson(
       ),
       birthday: $checkedConvert(
         'birthday',
-        (v) => v == null ? null : DateTime.parse(v as String),
+        (v) => dateTimeUtcFromJsonNullaware(v as String),
       ),
       height: $checkedConvert('height', (v) => (v as num?)?.toDouble()),
       weight: $checkedConvert('weight', (v) => (v as num?)?.toDouble()),
@@ -86,7 +86,7 @@ Map<String, dynamic> _$UserPhysicalDataUpsertToJson(
 ) => <String, dynamic>{
   'activity_level': ?_$ActivityLevelEnumMap[instance.activityLevel],
   'height': ?instance.height,
-  'birthday': ?instance.birthday?.toIso8601String(),
+  'birthday': ?dateTimeUtcToJsonNullaware(instance.birthday),
   'gender': ?_$GenderEnumMap[instance.gender],
   'weight': ?instance.weight,
   'waist_circumference': ?instance.waistCircumference,

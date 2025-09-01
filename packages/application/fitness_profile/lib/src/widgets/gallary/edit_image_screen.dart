@@ -11,9 +11,8 @@ class EditImageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<FitnessProfileCubit, FitnessProfileState>(
-      listenWhen:
-          (previous, current) =>
-              previous.addUserImageStatus != current.addUserImageStatus,
+      listenWhen: (previous, current) =>
+          previous.addUserImageStatus != current.addUserImageStatus,
       listener: (context, state) {
         if (state.addUserImageStatus.isConnectionError) {
           final content = context.l10n.networkError;
@@ -36,6 +35,7 @@ class EditImageScreen extends StatelessWidget {
               context.read<FitnessProfileCubit>().onEditImageComplete(
                 editedBytes,
                 pickedFile.fileName,
+                pickedFile.uploadDate,
               );
               Navigator.of(context).pop();
             },

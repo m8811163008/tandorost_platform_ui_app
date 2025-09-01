@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remote_api/remote_api.dart';
+import 'package:remote_api/src/utility/time_zone_converter.dart';
 
 part 'subscription_payment.g.dart';
 
@@ -12,8 +13,13 @@ class SubscriptionPayment {
   final double discountAmount;
   final Currency currency;
   final PaymentMethod paymentMethod;
+  @JsonKey(fromJson: dateTimeUtcFromJson, toJson: dateTimeUtcToJson)
   final DateTime purchaseDate;
   final SubscriptionType subscriptionType;
+  @JsonKey(
+    fromJson: dateTimeUtcFromJsonNullaware,
+    toJson: dateTimeUtcToJsonNullaware,
+  )
   final DateTime? updatedAt;
   @JsonKey(includeToJson: false)
   final int? userAiRequestLimitFoods;

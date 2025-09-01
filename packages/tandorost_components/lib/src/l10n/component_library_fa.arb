@@ -205,6 +205,12 @@
             "gender": {}
         }
     },
+    "imageSideDescription": "{side, select, front{روبرو} back{پشت} side{پهلو} free{فیگور آزاد} other{ترجمه تعریف نشده}}",
+    "@imageSideDescription": {
+        "placeholders": {
+            "side": {}
+        }
+    },
     "physicalActivityLevel": "{activityLevel, select, sedentary{غیرفعال و زیاد میشینم} fairyActive{تقریبا فعال، هر هفته یکی دوبار ورزش میکنم و پیاده روی میکنم} moderatelyActive{فعال، هر هفته دو سه روز ورزش میکنم} active{خیلی فعال، هر هفته بیش از 3 بار با شدت بالا ورزش میکنم} veryActive{روزی دوبار ورزش میکنم} other{ترجمه تعریف نشده}}",
     "@physicalActivityLevel": {
         "placeholders": {
@@ -673,5 +679,6 @@
     "googleAuthExceptionClientConfigurationError": "خطا در پیکربندی کلاینت ورود با گوگل",
     "googleAuthExceptionProviderConfigurationError": "خطا در پیکربندی ارائه‌دهنده ورود با گوگل",
     "googleAuthExceptionUiUnavailable": "رابط کاربری ورود با گوگل در دسترس نیست",
-    "googleAuthExceptionUserMismatch": "کاربر ورود با گوگل مطابقت ندارد"
+    "googleAuthExceptionUserMismatch": "کاربر ورود با گوگل مطابقت ندارد",
+    "fitnessPrfileArchiveImagesButtonTooltip":"آرشیو کردن تصاویر در سرور"
 }

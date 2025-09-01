@@ -536,6 +536,18 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   }
 
   @override
+  String imageSideDescription(String side) {
+    String _temp0 = intl.Intl.selectLogic(side, {
+      'front': 'روبرو',
+      'back': 'پشت',
+      'side': 'پهلو',
+      'free': 'فیگور آزاد',
+      'other': 'ترجمه تعریف نشده',
+    });
+    return '$_temp0';
+  }
+
+  @override
   String physicalActivityLevel(String activityLevel) {
     String _temp0 = intl.Intl.selectLogic(activityLevel, {
       'sedentary': 'غیرفعال و زیاد میشینم',
@@ -1793,4 +1805,8 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   @override
   String get googleAuthExceptionUserMismatch =>
       'کاربر ورود با گوگل مطابقت ندارد';
+
+  @override
+  String get fitnessPrfileArchiveImagesButtonTooltip =>
+      'آرشیو کردن تصاویر در سرور';
 }

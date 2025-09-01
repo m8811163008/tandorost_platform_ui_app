@@ -265,6 +265,11 @@ class RemoteApiBase implements RemoteApi {
     });
 
     request.fields['tag'] = userImage.gallaryTag.requestName;
+    if (userImage.uploadDate != null) {
+      request.fields['upload_date'] = userImage.uploadDate!
+          .toUtc()
+          .toIso8601String();
+    }
 
     for (FileDetail file in userImage.imageGallaryFiles) {
       request.files.add(

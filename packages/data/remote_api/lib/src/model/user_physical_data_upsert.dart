@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remote_api/src/model/activity_level.dart';
 import 'package:remote_api/src/model/gender.dart';
+import 'package:remote_api/src/utility/time_zone_converter.dart';
 
 part 'user_physical_data_upsert.g.dart';
 
@@ -25,6 +26,10 @@ class UserPhysicalDataUpsert extends Equatable {
 
   final ActivityLevel? activityLevel;
   final double? height;
+  @JsonKey(
+    fromJson: dateTimeUtcFromJsonNullaware,
+    toJson: dateTimeUtcToJsonNullaware,
+  )
   final DateTime? birthday;
   final Gender? gender;
   final double? weight;
@@ -55,28 +60,27 @@ class UserPhysicalDataUpsert extends Equatable {
       birthday: birthday != null ? birthday() : this.birthday,
       height: height != null ? height() : this.height,
       weight: weight != null ? weight() : this.weight,
-      waistCircumference:
-          waistCircumference != null
-              ? waistCircumference()
-              : this.waistCircumference,
-      armCircumference:
-          armCircumference != null ? armCircumference() : this.armCircumference,
-      chestCircumference:
-          chestCircumference != null
-              ? chestCircumference()
-              : this.chestCircumference,
-      thighCircumference:
-          thighCircumference != null
-              ? thighCircumference()
-              : this.thighCircumference,
-      calfMuscleCircumference:
-          calfMuscleCircumference != null
-              ? calfMuscleCircumference()
-              : this.calfMuscleCircumference,
-      hipCircumference:
-          hipCircumference != null ? hipCircumference() : this.hipCircumference,
-      activityLevel:
-          activityLevel != null ? activityLevel() : this.activityLevel,
+      waistCircumference: waistCircumference != null
+          ? waistCircumference()
+          : this.waistCircumference,
+      armCircumference: armCircumference != null
+          ? armCircumference()
+          : this.armCircumference,
+      chestCircumference: chestCircumference != null
+          ? chestCircumference()
+          : this.chestCircumference,
+      thighCircumference: thighCircumference != null
+          ? thighCircumference()
+          : this.thighCircumference,
+      calfMuscleCircumference: calfMuscleCircumference != null
+          ? calfMuscleCircumference()
+          : this.calfMuscleCircumference,
+      hipCircumference: hipCircumference != null
+          ? hipCircumference()
+          : this.hipCircumference,
+      activityLevel: activityLevel != null
+          ? activityLevel()
+          : this.activityLevel,
     );
   }
 

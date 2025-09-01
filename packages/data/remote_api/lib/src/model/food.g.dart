@@ -32,7 +32,7 @@ Food _$FoodFromJson(Map<String, dynamic> json) => $checkedCreate(
       userId: $checkedConvert('user_id', (v) => v as String),
       upsertDate: $checkedConvert(
         'upsert_date',
-        (v) => DateTime.parse(v as String),
+        (v) => dateTimeUtcFromJson(v as String),
       ),
       userLanguage: $checkedConvert(
         'user_language',
@@ -92,7 +92,7 @@ Food _$FoodFromJson(Map<String, dynamic> json) => $checkedCreate(
 Map<String, dynamic> _$FoodToJson(Food instance) => <String, dynamic>{
   'id': instance.id,
   'user_id': instance.userId,
-  'upsert_date': instance.upsertDate.toIso8601String(),
+  'upsert_date': dateTimeUtcToJson(instance.upsertDate),
   'user_language': _$LanguageEnumMap[instance.userLanguage]!,
   'user_native_language_food_name': instance.userNativeLanguageFoodName,
   'translated_to_english_food_name': instance.translatedToEnglishFoodName,

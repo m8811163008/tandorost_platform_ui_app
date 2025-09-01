@@ -7,6 +7,15 @@ class ImageRepository {
 
   Future<List<FileData>> readUserImageGallary(List<GallaryTag> gallaryTags) =>
       remoteApi.readUserImageGallary(gallaryTags);
+  Future<List<FileData>> readUnarchivedUserImageGallary(
+    List<GallaryTag> gallaryTags,
+  ) async {
+    final images = await remoteApi.readUserImageGallary(gallaryTags);
+    return images
+        .where((image) => image.processingStatus != ProcessingStatus.archived)
+        .toList();
+  }
+
   Future<List<FileData>> readUserProfileImage() =>
       remoteApi.readUserProfileImage();
   // TODO add behavior subject for drawer

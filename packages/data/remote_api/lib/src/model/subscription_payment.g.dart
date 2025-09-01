@@ -50,7 +50,7 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
           ),
           purchaseDate: $checkedConvert(
             'purchase_date',
-            (v) => DateTime.parse(v as String),
+            (v) => dateTimeUtcFromJson(v as String),
           ),
           subscriptionType: $checkedConvert(
             'subscription_type',
@@ -66,7 +66,7 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
           ),
           updatedAt: $checkedConvert(
             'updated_at',
-            (v) => v == null ? null : DateTime.parse(v as String),
+            (v) => dateTimeUtcFromJsonNullaware(v as String),
           ),
           isActive: $checkedConvert('is_active', (v) => v as bool? ?? false),
           userAiRequestedFoods: $checkedConvert(
@@ -101,9 +101,9 @@ Map<String, dynamic> _$SubscriptionPaymentToJson(
   'discount_amount': instance.discountAmount,
   'currency': _$CurrencyEnumMap[instance.currency]!,
   'payment_method': _$PaymentMethodEnumMap[instance.paymentMethod]!,
-  'purchase_date': instance.purchaseDate.toIso8601String(),
+  'purchase_date': dateTimeUtcToJson(instance.purchaseDate),
   'subscription_type': _$SubscriptionTypeEnumMap[instance.subscriptionType]!,
-  'updated_at': ?instance.updatedAt?.toIso8601String(),
+  'updated_at': ?dateTimeUtcToJsonNullaware(instance.updatedAt),
 };
 
 const _$CurrencyEnumMap = {Currency.irRial: 'ir_rial'};

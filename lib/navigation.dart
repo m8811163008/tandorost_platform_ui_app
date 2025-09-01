@@ -18,7 +18,7 @@ import 'package:vo2max_calculator/vo2max_calculator.dart';
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: RoutesNames.profileRoute.path,
+      initialLocation: RoutesNames.fitnessProfileRoute.path,
       observers: [SentryNavigatorObserver()],
       routes: [
         GoRoute(

@@ -23,15 +23,14 @@ class FitnessProfileRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (_) => FitnessProfileCubit(
-            imageRepository: RepositoryProvider.of<ImageRepository>(context),
-            fitnessNutrition: RepositoryProvider.of<FitnessNutrition>(context),
-          ),
+      create: (_) => FitnessProfileCubit(
+        imageRepository: RepositoryProvider.of<ImageRepository>(context),
+        fitnessNutrition: RepositoryProvider.of<FitnessNutrition>(context),
+      ),
       lazy: false,
       child: AppScaffold(
         appBar: AppBar(
-          actions: [AddMeasurementButton(), AddImageButton()],
+          actions: [AddMeasurementButton(), ArchiveImagesButton()],
           title: Text(
             context.l10n.appRoutesName(RoutesNames.fitnessProfileRoute.name),
           ),
@@ -48,6 +47,48 @@ class FitnessProfileRoute extends StatelessWidget {
           items: AppNavigation.bottomNavigationItems(context),
         ),
       ),
+    );
+  }
+}
+
+class ArchiveImagesButton extends StatelessWidget {
+  const ArchiveImagesButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final cubit = context.read<FitnessProfileCubit>();
+    return BlocConsumer<FitnessProfileCubit, FitnessProfileState>(
+      listenWhen: (previous, current) =>
+          previous.archivingImagesStatus != current.archivingImagesStatus,
+      listener: (context, state) {
+        if (state.archivingImagesStatus.isConnectionError) {
+          final content = context.l10n.networkError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.archivingImagesStatus.isInternetConnectionError) {
+          final content = context.l10n.internetConnectionError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.archivingImagesStatus.isSuccess) {
+          cubit.readUserImageGallary();
+        }
+      },
+      buildWhen: (previous, current) =>
+          previous.archivingImagesStatus != current.archivingImagesStatus ||
+          previous.archiveImagesId != current.archiveImagesId,
+      builder: (context, state) {
+        final isLoading = state.archivingImagesStatus.isLoading;
+        final isImagesIdNotEmpty = state.archiveImagesId.isNotEmpty;
+        return IconButton(
+          onPressed: !isLoading && isImagesIdNotEmpty
+              ? cubit.archiveImages
+              : null,
+          tooltip: context.l10n.fitnessPrfileArchiveImagesButtonTooltip,
+          icon: Icon(Icons.archive),
+        );
+      },
     );
   }
 }

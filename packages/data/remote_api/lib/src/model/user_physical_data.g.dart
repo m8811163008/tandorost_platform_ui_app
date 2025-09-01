@@ -19,7 +19,7 @@ DoubleDataPoint _$DoubleDataPointFromJson(Map<String, dynamic> json) =>
           value: $checkedConvert('value', (v) => (v as num).toDouble()),
           createDate: $checkedConvert(
             'create_date',
-            (v) => DateTime.parse(v as String),
+            (v) => dateTimeUtcFromJson(v as String),
           ),
           dataPointId: $checkedConvert('data_point_id', (v) => v as String),
         );
@@ -35,7 +35,7 @@ Map<String, dynamic> _$DoubleDataPointToJson(DoubleDataPoint instance) =>
     <String, dynamic>{
       'data_point_id': instance.dataPointId,
       'value': instance.value,
-      'create_date': instance.createDate.toIso8601String(),
+      'create_date': dateTimeUtcToJson(instance.createDate),
     };
 
 ActivityLevelDataPoint _$ActivityLevelDataPointFromJson(
@@ -55,7 +55,7 @@ ActivityLevelDataPoint _$ActivityLevelDataPointFromJson(
       ),
       createDate: $checkedConvert(
         'create_date',
-        (v) => DateTime.parse(v as String),
+        (v) => dateTimeUtcFromJson(v as String),
       ),
       dataPointId: $checkedConvert('data_point_id', (v) => v as String),
     );
@@ -72,7 +72,7 @@ Map<String, dynamic> _$ActivityLevelDataPointToJson(
 ) => <String, dynamic>{
   'data_point_id': instance.dataPointId,
   'value': _$ActivityLevelEnumMap[instance.value]!,
-  'create_date': instance.createDate.toIso8601String(),
+  'create_date': dateTimeUtcToJson(instance.createDate),
 };
 
 const _$ActivityLevelEnumMap = {
@@ -112,7 +112,10 @@ UserPhysicalProfile _$UserPhysicalProfileFromJson(
       id: $checkedConvert('id', (v) => v as String),
       userId: $checkedConvert('user_id', (v) => v as String),
       gender: $checkedConvert('gender', (v) => $enumDecode(_$GenderEnumMap, v)),
-      birthday: $checkedConvert('birthday', (v) => DateTime.parse(v as String)),
+      birthday: $checkedConvert(
+        'birthday',
+        (v) => dateTimeUtcFromJson(v as String),
+      ),
       height: $checkedConvert(
         'height',
         (v) => (v as List<dynamic>)
@@ -190,7 +193,7 @@ Map<String, dynamic> _$UserPhysicalProfileToJson(
   'id': instance.id,
   'user_id': instance.userId,
   'gender': _$GenderEnumMap[instance.gender]!,
-  'birthday': instance.birthday.toIso8601String(),
+  'birthday': dateTimeUtcToJson(instance.birthday),
   'height': instance.height.map((e) => e.toJson()).toList(),
   'weight': instance.weight.map((e) => e.toJson()).toList(),
   'waist_circumference': instance.waistCircumference

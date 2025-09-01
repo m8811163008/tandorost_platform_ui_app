@@ -34,7 +34,7 @@ FileData _$FileDataFromJson(Map<String, dynamic> json) => $checkedCreate(
       fileSize: $checkedConvert('file_size', (v) => (v as num).toInt()),
       uploadDate: $checkedConvert(
         'upload_date',
-        (v) => DateTime.parse(v as String),
+        (v) => dateTimeUtcFromJson(v as String),
       ),
       contentType: $checkedConvert('content_type', (v) => v as String),
       fileUploadPath: $checkedConvert('file_upload_path', (v) => v as String),
@@ -68,7 +68,7 @@ Map<String, dynamic> _$FileDataToJson(FileData instance) => <String, dynamic>{
   'tag': _$GallaryTagEnumMap[instance.tag]!,
   'file_name': instance.fileName,
   'file_size': instance.fileSize,
-  'upload_date': instance.uploadDate.toIso8601String(),
+  'upload_date': dateTimeUtcToJson(instance.uploadDate),
   'content_type': instance.contentType,
   'file_upload_path': instance.fileUploadPath,
   'processing_status': _$ProcessingStatusEnumMap[instance.processingStatus]!,

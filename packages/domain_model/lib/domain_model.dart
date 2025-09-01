@@ -7,3 +7,4 @@ export 'package:equatable/equatable.dart';
 export 'src/chart_type.dart';
 export 'src/total_macro_nutrition.dart';
 export 'src/routes.dart';
+export 'src/photo_side.dart';
