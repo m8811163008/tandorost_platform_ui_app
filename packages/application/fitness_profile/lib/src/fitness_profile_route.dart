@@ -85,7 +85,7 @@ class ArchiveImagesButton extends StatelessWidget {
           onPressed: !isLoading && isImagesIdNotEmpty
               ? cubit.archiveImages
               : null,
-          tooltip: context.l10n.fitnessPrfileArchiveImagesButtonTooltip,
+          tooltip: context.l10n.prfileArchiveImagesButtonTooltip,
           icon: Icon(Icons.archive),
         );
       },

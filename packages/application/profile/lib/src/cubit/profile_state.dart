@@ -11,7 +11,14 @@ class ProfileState extends Equatable {
     this.readCoachProfileStatus = AsyncProcessingStatus.inital,
     this.updateCoachProfileStatus = AsyncProcessingStatus.inital,
     this.readSubscriptionStatus = AsyncProcessingStatus.inital,
+    this.readUserImageGallaryStatus = AsyncProcessingStatus.inital,
+    this.addUserImageStatus = AsyncProcessingStatus.inital,
+    this.archivingImagesStatus = AsyncProcessingStatus.inital,
+
     this.subscriptions = const [],
+    this.filesData = const [],
+    this.filesDetail = const [],
+    this.archiveImagesId = const [],
     this.userProfile,
     this.updatedUserProfile,
     this.coachProfile,
@@ -27,6 +34,13 @@ class ProfileState extends Equatable {
   final AsyncProcessingStatus readSubscriptionStatus;
   final AsyncProcessingStatus readCoachProfileStatus;
   final AsyncProcessingStatus updateCoachProfileStatus;
+  final AsyncProcessingStatus readUserImageGallaryStatus;
+  final AsyncProcessingStatus addUserImageStatus;
+  final AsyncProcessingStatus archivingImagesStatus;
+
+  final List<FileData> filesData;
+  final List<FileDetail> filesDetail;
+  final List<String> archiveImagesId;
   final UserProfile? userProfile;
   final UserProfile? updatedUserProfile;
   final CoachProfile? coachProfile;
@@ -50,6 +64,14 @@ class ProfileState extends Equatable {
     CoachProfile? coachProfile,
     CoachProfile? updatedCoachProfile,
     FileDetail? profileImage,
+
+    AsyncProcessingStatus? readUserImageGallaryStatus,
+    AsyncProcessingStatus? addUserImageStatus,
+    AsyncProcessingStatus? archivingImagesStatus,
+
+    List<FileData>? filesData,
+    List<FileDetail>? filesDetail,
+    List<String>? archiveImagesId,
   }) {
     return ProfileState(
       isReminderNotificationPermissionGranted:
@@ -75,6 +97,14 @@ class ProfileState extends Equatable {
       subscriptions: subscriptions ?? this.subscriptions,
       readSubscriptionStatus:
           readSubscriptionStatus ?? this.readSubscriptionStatus,
+      readUserImageGallaryStatus:
+          readUserImageGallaryStatus ?? this.readUserImageGallaryStatus,
+      addUserImageStatus: addUserImageStatus ?? this.addUserImageStatus,
+      archivingImagesStatus:
+          archivingImagesStatus ?? this.archivingImagesStatus,
+      filesData: filesData ?? this.filesData,
+      filesDetail: filesDetail ?? this.filesDetail,
+      archiveImagesId: archiveImagesId ?? this.archiveImagesId,
     );
   }
 
@@ -94,5 +124,11 @@ class ProfileState extends Equatable {
     profileImage,
     subscriptions,
     readSubscriptionStatus,
+    readUserImageGallaryStatus,
+    addUserImageStatus,
+    archivingImagesStatus,
+    filesData,
+    filesDetail,
+    archiveImagesId,
   ];
 }

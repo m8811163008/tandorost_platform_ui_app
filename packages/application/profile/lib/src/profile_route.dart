@@ -45,6 +45,7 @@ class ProfileRoute extends StatelessWidget {
           title: Text(
             context.l10n.appRoutesName(RoutesNames.profileRoute.name),
           ),
+          actions: [ArchiveImagesButton()],
         ),
         body: ProfileView(),
         drawer: NavigationDrawer(
@@ -58,6 +59,48 @@ class ProfileRoute extends StatelessWidget {
           items: AppNavigation.bottomNavigationItems(context),
         ),
       ),
+    );
+  }
+}
+
+class ArchiveImagesButton extends StatelessWidget {
+  const ArchiveImagesButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final cubit = context.read<ProfileCubit>();
+    return BlocConsumer<ProfileCubit, ProfileState>(
+      listenWhen: (previous, current) =>
+          previous.archivingImagesStatus != current.archivingImagesStatus,
+      listener: (context, state) {
+        if (state.archivingImagesStatus.isConnectionError) {
+          final content = context.l10n.networkError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.archivingImagesStatus.isInternetConnectionError) {
+          final content = context.l10n.internetConnectionError;
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(content)));
+        } else if (state.archivingImagesStatus.isSuccess) {
+          cubit.readUserImageGallary();
+        }
+      },
+      buildWhen: (previous, current) =>
+          previous.archivingImagesStatus != current.archivingImagesStatus ||
+          previous.archiveImagesId != current.archiveImagesId,
+      builder: (context, state) {
+        final isLoading = state.archivingImagesStatus.isLoading;
+        final isImagesIdNotEmpty = state.archiveImagesId.isNotEmpty;
+        return IconButton(
+          onPressed: !isLoading && isImagesIdNotEmpty
+              ? cubit.archiveImages
+              : null,
+          tooltip: context.l10n.prfileArchiveImagesButtonTooltip,
+          icon: Icon(Icons.archive),
+        );
+      },
     );
   }
 }
@@ -98,11 +141,55 @@ class ProfileView extends StatelessWidget {
             final cubit = context.read<ProfileCubit>();
             if (state.userProfile!.isBodybuildingCoach) {
               cubit.readCoachProfile();
+              cubit.readUserImageGallary();
             } else {
               if (state.coachProfile != null) {
                 // get a new jwt with proper scopes
                 cubit.logout();
               }
+            }
+          },
+        ),
+        BlocListener<ProfileCubit, ProfileState>(
+          listenWhen: (previous, current) =>
+              previous.readUserImageGallaryStatus !=
+              current.readUserImageGallaryStatus,
+          listener: (context, state) async {
+            if (state.readUserImageGallaryStatus.isConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state
+                .readUserImageGallaryStatus
+                .isInternetConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            }
+          },
+        ),
+        BlocListener<ProfileCubit, ProfileState>(
+          listenWhen: (previous, current) =>
+              previous.archivingImagesStatus != current.archivingImagesStatus ||
+              previous.addUserImageStatus != current.addUserImageStatus,
+          listener: (context, state) async {
+            if (state.archivingImagesStatus.isConnectionError ||
+                state.addUserImageStatus.isConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.archivingImagesStatus.isInternetConnectionError ||
+                state.addUserImageStatus.isInternetConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.archivingImagesStatus.isSuccess ||
+                state.addUserImageStatus.isSuccess) {
+              context.read<ProfileCubit>().readUserImageGallary();
             }
           },
         ),
@@ -368,18 +455,19 @@ class SettingCard extends StatelessWidget {
               );
             },
           ),
-          Divider(height: context.sizeExtenstion.medium),
-          // add langiage support to front and babckend
-          LanguageSetting(
-            value: context.select(
-              (ProfileCubit cubit) =>
-                  cubit.state.userProfile?.language ?? Language.persian,
-            ),
-            onChangeLanguageDialog: BlocProvider.value(
-              value: context.read<ProfileCubit>(),
-              child: ChangeLanguageDialog(),
-            ),
-          ),
+          // TODO add langiage support to front and babckend
+          // Divider(height: context.sizeExtenstion.medium),
+
+          // LanguageSetting(
+          //   value: context.select(
+          //     (ProfileCubit cubit) =>
+          //         cubit.state.userProfile?.language ?? Language.persian,
+          //   ),
+          //   onChangeLanguageDialog: BlocProvider.value(
+          //     value: context.read<ProfileCubit>(),
+          //     child: ChangeLanguageDialog(),
+          //   ),
+          // ),
         ],
       ),
     );

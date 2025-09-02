@@ -29,6 +29,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     readProfile();
     readImageProfile();
     isReminderEnabled();
+
     tz.initializeTimeZones();
     userProfileSubscription = _profile.userProfileStream.listen((profile) {
       if (profile == null) return;
@@ -482,6 +483,140 @@ class ProfileCubit extends Cubit<ProfileState> {
         ),
       );
     }
+  }
+
+  void readUserImageGallary() async {
+    _enhancedEmit(
+      state.copyWith(readUserImageGallaryStatus: AsyncProcessingStatus.loading),
+    );
+
+    try {
+      final userImagesDetail = await _imageRepository
+          .readUnarchivedUserImageGallary([
+            GallaryTag.achievement,
+            GallaryTag.certificate,
+          ]);
+
+      final filesDetail = <FileDetail>[];
+      for (var imageDetail in userImagesDetail) {
+        final result = await _imageRepository.readImage(imageDetail);
+
+        filesDetail.add(result);
+      }
+      _enhancedEmit(
+        state.copyWith(
+          readUserImageGallaryStatus: AsyncProcessingStatus.success,
+          filesData: userImagesDetail,
+          filesDetail: filesDetail.toList(),
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          readUserImageGallaryStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          readUserImageGallaryStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
+  void onEditImageComplete(
+    Uint8List bytes,
+    String fileName,
+    GallaryTag tag, [
+    DateTime? uploadDate,
+  ]) async {
+    final fileDetail = FileDetail(
+      fileName: fileName,
+      bytes: bytes,
+      uploadDate: uploadDate,
+    );
+    final userImage = UserImage(
+      gallaryTag: tag,
+      imageGallaryFiles: [fileDetail],
+      uploadDate: uploadDate,
+    );
+    _enhancedEmit(
+      state.copyWith(addUserImageStatus: AsyncProcessingStatus.loading),
+    );
+
+    try {
+      final userImagesDetail = await _imageRepository.addUserImages(userImage);
+      // fetch image
+      final fetchImageDetail = await _imageRepository.readImage(
+        userImagesDetail.first,
+      );
+      // update state
+      final fileDetail = List<FileDetail>.from(state.filesDetail);
+      final filesData = List<FileData>.from(state.filesData);
+
+      fileDetail.add(fetchImageDetail);
+      filesData.addAll(userImagesDetail);
+      _enhancedEmit(
+        state.copyWith(
+          addUserImageStatus: AsyncProcessingStatus.success,
+          filesData: filesData,
+          filesDetail: fileDetail,
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          addUserImageStatus: AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          addUserImageStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
+  void insertOrDeleteFromArchiveImageList(String? imageId) {
+    if (imageId == null) return;
+    final imagesId = List<String>.from(state.archiveImagesId);
+    state.archiveImagesId.contains(imageId)
+        ? imagesId.remove(imageId)
+        : imagesId.add(imageId);
+    _enhancedEmit(state.copyWith(archiveImagesId: imagesId));
+  }
+
+  void archiveImages() async {
+    _enhancedEmit(
+      state.copyWith(archivingImagesStatus: AsyncProcessingStatus.loading),
+    );
+
+    try {
+      await _imageRepository.archiveUserImages(state.archiveImagesId);
+      _enhancedEmit(
+        state.copyWith(
+          archivingImagesStatus: AsyncProcessingStatus.success,
+          archiveImagesId: [],
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          archivingImagesStatus: AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          archivingImagesStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+
+    // empty archiveImagesId
   }
 
   void _enhancedEmit(ProfileState state) {

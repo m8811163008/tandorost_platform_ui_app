@@ -2822,11 +2822,23 @@ abstract class ComponentLibraryLocalizations {
   /// **'کاربر ورود با گوگل مطابقت ندارد'**
   String get googleAuthExceptionUserMismatch;
 
-  /// No description provided for @fitnessPrfileArchiveImagesButtonTooltip.
+  /// No description provided for @prfileArchiveImagesButtonTooltip.
   ///
   /// In fa, this message translates to:
   /// **'آرشیو کردن تصاویر در سرور'**
-  String get fitnessPrfileArchiveImagesButtonTooltip;
+  String get prfileArchiveImagesButtonTooltip;
+
+  /// No description provided for @profileAchievementsLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'افتخارات'**
+  String get profileAchievementsLabel;
+
+  /// No description provided for @profileCertificatesLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'گواهینامه‌ها'**
+  String get profileCertificatesLabel;
 }
 
 class _ComponentLibraryLocalizationsDelegate

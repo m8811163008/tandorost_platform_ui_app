@@ -680,5 +680,8 @@
     "googleAuthExceptionProviderConfigurationError": "خطا در پیکربندی ارائه‌دهنده ورود با گوگل",
     "googleAuthExceptionUiUnavailable": "رابط کاربری ورود با گوگل در دسترس نیست",
     "googleAuthExceptionUserMismatch": "کاربر ورود با گوگل مطابقت ندارد",
-    "fitnessPrfileArchiveImagesButtonTooltip":"آرشیو کردن تصاویر در سرور"
+    "prfileArchiveImagesButtonTooltip":"آرشیو کردن تصاویر در سرور",
+    "profileAchievementsLabel":"افتخارات",
+    "profileCertificatesLabel":"گواهینامه‌ها"
+    
 }

@@ -1807,6 +1807,11 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
       'کاربر ورود با گوگل مطابقت ندارد';
 
   @override
-  String get fitnessPrfileArchiveImagesButtonTooltip =>
-      'آرشیو کردن تصاویر در سرور';
+  String get prfileArchiveImagesButtonTooltip => 'آرشیو کردن تصاویر در سرور';
+
+  @override
+  String get profileAchievementsLabel => 'افتخارات';
+
+  @override
+  String get profileCertificatesLabel => 'گواهینامه‌ها';
 }
