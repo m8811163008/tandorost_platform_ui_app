@@ -1814,4 +1814,63 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get profileCertificatesLabel => 'گواهینامه‌ها';
+
+  @override
+  String get profileImageCoachDescriptionDialogTitle => 'توضیحات تصویر';
+
+  @override
+  String get profileImageCoachDescriptionDialogTextFieldLabel => 'توضیحات';
+
+  @override
+  String get profileImageCoachDescriptionDialogTextFieldHint =>
+      'مدرک مربیگری یا قهرمانی کشوری';
+
+  @override
+  String get profileCoachProfileCoachProgramCardTitle => 'برنامه‌های مربی';
+
+  @override
+  String get profileCoachProfileCoachProgramDialogTitle => 'برنامه مربی';
+
+  @override
+  String get profileCoachProfileCoachProgramTitleLabel => 'عنوان برنامه';
+
+  @override
+  String get profileCoachProfileCoachProgramDescriptionLabel => 'شرح برنامه';
+
+  @override
+  String get profileCoachProfileCoachProgramPriceLabel => 'قیمت';
+
+  @override
+  String get profileCoachProfileCoachProgramDurationWeekLabel =>
+      'مدت برنامه( تعداد هفته)';
+
+  @override
+  String get profileCoachProfileCoachProgramFeatureLabel => 'ویژگی‌های برنامه';
+
+  @override
+  String profileCoachProfileCoachProgramFeatureValue(String feature) {
+    String _temp0 = intl.Intl.selectLogic(feature, {
+      'phoneSupport': 'پشتیبانی تلفنی',
+      'personalizedNutritionGuide': 'راهنمای تغذیه شخصی‌سازی‌شده',
+      'personalizedSportSupplementGuide': 'راهنمای مکمل ورزشی شخصی‌سازی‌شده',
+      'formingCheckVideoSupport': 'پشتیبانی بررسی فرم حرکت انجام‌شده با ویدیو',
+      'other': 'ترجمه تعریف نشده',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get profileCoachProfileCoachProgramDurationWeekFieldValidationError =>
+      'مدت باید بزرگتر از صفر باشد';
+
+  @override
+  String get profileCoachProfileCoachProgramSaveButtonLabel =>
+      'اضافه کردن برنامه';
+
+  @override
+  String get profileCoachProfileCoachProgramDeleteDialogTitle => 'حذف برنامه';
+
+  @override
+  String get profileCoachProfileCoachProgramDeleteDialogLabel =>
+      'آیا این برنامه مربی حذف شود؟';
 }

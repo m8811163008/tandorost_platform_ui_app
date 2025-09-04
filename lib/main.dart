@@ -29,11 +29,11 @@ void main() async {
   final sharePref = await SharedPreferences.getInstance();
   FlutterError.onError = (FlutterErrorDetails details) async {
     await Sentry.captureException(details.exception, stackTrace: details.stack);
-    log(
-      'error in ${details.library}',
-      stackTrace: details.stack,
-      error: details.exception,
-    );
+    // log(
+    //   'error in ${details.library}',
+    //   stackTrace: details.stack,
+    //   error: details.exception,
+    // );
   };
   await SentryFlutter.init(
     (options) {

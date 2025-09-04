@@ -33,7 +33,10 @@ CoachProgram _$CoachProgramFromJson(Map<String, dynamic> json) =>
             'duration_weeks',
             (v) => (v as num).toInt(),
           ),
-          price: $checkedConvert('price', (v) => (v as num).toDouble()),
+          price: $checkedConvert(
+            'price',
+            (v) => CoachProgram._priceFromJson((v as num).toDouble()),
+          ),
           currency: $checkedConvert(
             'currency',
             (v) => $enumDecode(_$CurrencyEnumMap, v),
@@ -60,7 +63,7 @@ Map<String, dynamic> _$CoachProgramToJson(CoachProgram instance) =>
       'title': instance.title,
       'description': instance.description,
       'duration_weeks': instance.durationWeeks,
-      'price': instance.price,
+      'price': CoachProgram._priceToJson(instance.price),
       'currency': _$CurrencyEnumMap[instance.currency]!,
       'features': instance.features
           .map((e) => _$ProgramFeatureEnumMap[e]!)
@@ -75,5 +78,4 @@ const _$ProgramFeatureEnumMap = {
   ProgramFeature.personalizedSportSupplementGuide:
       'personalized_sport_supplement_guide',
   ProgramFeature.formingCheckVideoSupport: 'forming_check_video_support',
-  ProgramFeature.achievement: 'achievement',
 };

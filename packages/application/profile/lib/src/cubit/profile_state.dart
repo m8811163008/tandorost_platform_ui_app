@@ -14,7 +14,9 @@ class ProfileState extends Equatable {
     this.readUserImageGallaryStatus = AsyncProcessingStatus.inital,
     this.addUserImageStatus = AsyncProcessingStatus.inital,
     this.archivingImagesStatus = AsyncProcessingStatus.inital,
-
+    this.readingCoachProgram = AsyncProcessingStatus.inital,
+    this.deletingCoachProgram = AsyncProcessingStatus.inital,
+    this.updatingCoachProgram = AsyncProcessingStatus.inital,
     this.subscriptions = const [],
     this.filesData = const [],
     this.filesDetail = const [],
@@ -24,6 +26,8 @@ class ProfileState extends Equatable {
     this.coachProfile,
     this.updatedCoachProfile,
     this.profileImage,
+    this.coachPrograms = const [],
+    this.cacheCoachProgram,
   });
 
   final bool isReminderNotificationPermissionGranted;
@@ -47,6 +51,11 @@ class ProfileState extends Equatable {
   final CoachProfile? updatedCoachProfile;
   final FileDetail? profileImage;
   final List<SubscriptionPayment> subscriptions;
+  final List<CoachProgram> coachPrograms;
+  final CoachProgram? cacheCoachProgram;
+  final AsyncProcessingStatus readingCoachProgram;
+  final AsyncProcessingStatus deletingCoachProgram;
+  final AsyncProcessingStatus updatingCoachProgram;
 
   ProfileState copyWith({
     bool? isReminderNotificationPermissionGranted,
@@ -58,12 +67,17 @@ class ProfileState extends Equatable {
     AsyncProcessingStatus? readSubscriptionStatus,
     AsyncProcessingStatus? readCoachProfileStatus,
     AsyncProcessingStatus? updateCoachProfileStatus,
+    AsyncProcessingStatus? readingCoachProgram,
+    AsyncProcessingStatus? deletingCoachProgram,
+    AsyncProcessingStatus? upsertingCoachProgram,
     List<SubscriptionPayment>? subscriptions,
     UserProfile? userProfile,
     UserProfile? updatedUserProfile,
     CoachProfile? coachProfile,
     CoachProfile? updatedCoachProfile,
     FileDetail? profileImage,
+    List<CoachProgram>? coachPrograms,
+    CoachProgram? cacheCoachProgram,
 
     AsyncProcessingStatus? readUserImageGallaryStatus,
     AsyncProcessingStatus? addUserImageStatus,
@@ -77,9 +91,13 @@ class ProfileState extends Equatable {
       isReminderNotificationPermissionGranted:
           isReminderNotificationPermissionGranted ??
           this.isReminderNotificationPermissionGranted,
-
+      coachPrograms: coachPrograms ?? this.coachPrograms,
+      cacheCoachProgram: cacheCoachProgram ?? this.cacheCoachProgram,
       updatingProfileStatus:
           updatingProfileStatus ?? this.updatingProfileStatus,
+      readingCoachProgram: readingCoachProgram ?? this.readingCoachProgram,
+      deletingCoachProgram: deletingCoachProgram ?? this.deletingCoachProgram,
+      updatingCoachProgram: upsertingCoachProgram ?? this.updatingCoachProgram,
       readProfileStatus: readProfileStatus ?? this.readProfileStatus,
       uploadingImageProfileStatus:
           uploadingImageProfileStatus ?? this.uploadingImageProfileStatus,
@@ -130,5 +148,10 @@ class ProfileState extends Equatable {
     filesData,
     filesDetail,
     archiveImagesId,
+    coachPrograms,
+    cacheCoachProgram,
+    readingCoachProgram,
+    deletingCoachProgram,
+    updatingCoachProgram,
   ];
 }

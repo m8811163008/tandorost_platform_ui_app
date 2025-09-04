@@ -9,11 +9,13 @@ class UserImage {
   final GallaryTag gallaryTag;
   final List<FileDetail> imageGallaryFiles;
   final DateTime? uploadDate;
+  final String? description;
 
   UserImage({
     required this.gallaryTag,
     required this.imageGallaryFiles,
     this.uploadDate,
+    this.description,
   });
 }
 

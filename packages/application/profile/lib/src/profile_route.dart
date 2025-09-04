@@ -142,6 +142,7 @@ class ProfileView extends StatelessWidget {
             if (state.userProfile!.isBodybuildingCoach) {
               cubit.readCoachProfile();
               cubit.readUserImageGallary();
+              cubit.readCoachPrograms();
             } else {
               if (state.coachProfile != null) {
                 // get a new jwt with proper scopes
@@ -190,6 +191,23 @@ class ProfileView extends StatelessWidget {
             } else if (state.archivingImagesStatus.isSuccess ||
                 state.addUserImageStatus.isSuccess) {
               context.read<ProfileCubit>().readUserImageGallary();
+            }
+          },
+        ),
+        BlocListener<ProfileCubit, ProfileState>(
+          listenWhen: (previous, current) =>
+              previous.readingCoachProgram != current.readingCoachProgram,
+          listener: (context, state) async {
+            if (state.readingCoachProgram.isConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.archivingImagesStatus.isInternetConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
             }
           },
         ),

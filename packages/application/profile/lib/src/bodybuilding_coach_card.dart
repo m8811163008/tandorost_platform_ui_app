@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:domain_model/domain_model.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:profile_app/src/bodybuilding_coach_program.dart';
 import 'package:profile_app/src/cubit/profile_cubit.dart';
 import 'package:profile_app/src/edit_dialog.dart';
 import 'package:profile_app/src/edit_name_button.dart';
@@ -89,6 +90,13 @@ class BodyBuildingCoachCard extends StatelessWidget {
             ),
             gap,
             CoachImagesSection(gallaryTag: GallaryTag.achievement),
+            gap,
+            Text(
+              context.l10n.profileCoachProfileCoachProgramCardTitle,
+              style: context.textTheme.titleSmall,
+            ),
+            gap,
+            BodyBuldingCoachPrograms(),
           ],
         ],
       ),
@@ -114,7 +122,7 @@ class CoachImagesSection extends StatelessWidget {
             .where((e) => e.tag == gallaryTag)
             .toList();
         return SizedBox(
-          height: MediaQuery.of(context).size.height / 6,
+          height: MediaQuery.of(context).size.height / 3.5,
           child: ListView.separated(
             primary: false,
             scrollDirection: Axis.horizontal,
@@ -130,6 +138,7 @@ class CoachImagesSection extends StatelessWidget {
               return ImagePlaceholder(
                 bytes: fileDetail.bytes,
                 imageId: fileData.id,
+                description: fileData.description,
               );
             },
             separatorBuilder: (context, index) {
@@ -143,12 +152,18 @@ class CoachImagesSection extends StatelessWidget {
 }
 
 class ImagePlaceholder extends StatelessWidget {
-  const ImagePlaceholder({super.key, this.bytes, this.imageId, this.tag})
-    : assert(bytes != null || tag != null);
+  const ImagePlaceholder({
+    super.key,
+    this.bytes,
+    this.imageId,
+    this.tag,
+    this.description,
+  }) : assert(bytes != null || tag != null);
 
   final Uint8List? bytes;
   final String? imageId;
   final GallaryTag? tag;
+  final String? description;
 
   @override
   Widget build(BuildContext context) {
@@ -159,7 +174,7 @@ class ImagePlaceholder extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(bottom: context.sizeExtenstion.medium),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height / 6,
+              height: MediaQuery.of(context).size.height / 3.5,
               width: MediaQuery.of(context).size.height / 6 * 1.6,
               child: AppRoundedRectangleBorder(
                 child: ClipRRect(
@@ -170,9 +185,25 @@ class ImagePlaceholder extends StatelessWidget {
                     alignment: AlignmentDirectional.center,
                     children: [
                       if (bytes != null) ...[
-                        ImageGestureDetector(
-                          imageId: imageId!,
-                          child: Center(child: Image.memory(bytes!)),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ImageGestureDetector(
+                              imageId: imageId!,
+                              child: Center(child: Image.memory(bytes!)),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: context.sizeExtenstion.small,
+                              ),
+                              child: Text(
+                                description ?? '',
+                                style: context.textTheme.labelSmall,
+                                overflow: TextOverflow.clip,
+                                maxLines: 2,
+                              ),
+                            ),
+                          ],
                         ),
                       ] else ...[
                         AddImageButton(tag: tag!),
@@ -312,7 +343,7 @@ class AddImageButton extends StatelessWidget {
   }
 }
 
-class EditImageScreen extends StatelessWidget {
+class EditImageScreen extends StatefulWidget {
   const EditImageScreen({
     super.key,
     required this.pickedFile,
@@ -320,6 +351,18 @@ class EditImageScreen extends StatelessWidget {
   });
   final FileDetail pickedFile;
   final GallaryTag tag;
+
+  @override
+  State<EditImageScreen> createState() => _EditImageScreenState();
+}
+
+class _EditImageScreenState extends State<EditImageScreen> {
+  late final TextEditingController _textEditingController;
+  @override
+  void initState() {
+    _textEditingController = TextEditingController(text: '');
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -343,15 +386,51 @@ class EditImageScreen extends StatelessWidget {
         child: SizedBox.fromSize(
           size: MediaQuery.of(context).size,
           child: ImageEditor(
-            bytes: pickedFile.bytes,
-            onComplete: (editedBytes) {
-              context.read<ProfileCubit>().onEditImageComplete(
-                editedBytes,
-                pickedFile.fileName,
-                tag,
-                pickedFile.uploadDate,
+            bytes: widget.pickedFile.bytes,
+            onComplete: (editedBytes) async {
+              // Todo add description
+              await showDialog(
+                context: context,
+                builder: (context) {
+                  return SimpleDialog(
+                    title: Text(
+                      context.l10n.profileImageCoachDescriptionDialogTitle,
+                    ),
+                    titlePadding: EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 0.0),
+                    contentPadding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 16.0),
+                    children: [
+                      TextField(
+                        controller: _textEditingController,
+                        maxLines: 2,
+                        decoration: InputDecoration(
+                          labelText: context
+                              .l10n
+                              .profileImageCoachDescriptionDialogTextFieldLabel,
+                          hintText: context
+                              .l10n
+                              .profileImageCoachDescriptionDialogTextFieldHint,
+                        ),
+                      ),
+                      SimpleDialogOption(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text('done'),
+                      ),
+                    ],
+                  );
+                },
               );
-              Navigator.of(context).pop();
+              if (context.mounted) {
+                context.read<ProfileCubit>().onEditImageComplete(
+                  editedBytes,
+                  widget.pickedFile.fileName,
+                  widget.tag,
+                  _textEditingController.text,
+                  widget.pickedFile.uploadDate,
+                );
+                Navigator.of(context).pop();
+              }
             },
           ),
         ),

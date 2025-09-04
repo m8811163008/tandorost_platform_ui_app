@@ -66,7 +66,7 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
           ),
           updatedAt: $checkedConvert(
             'updated_at',
-            (v) => dateTimeUtcFromJsonNullaware(v as String),
+            (v) => dateTimeUtcFromJsonNullaware(v as String?),
           ),
           isActive: $checkedConvert('is_active', (v) => v as bool? ?? false),
           userAiRequestedFoods: $checkedConvert(

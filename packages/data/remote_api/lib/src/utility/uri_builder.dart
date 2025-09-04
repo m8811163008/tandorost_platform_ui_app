@@ -144,8 +144,8 @@ class UriBuilder {
     return baseUri.replace(path: '$basePath/coach/update_coach_profile/');
   }
 
-  static Uri addCoachProgram() {
-    return baseUri.replace(path: '$basePath/coach/add_coach_program/');
+  static Uri upsertCoachProgram() {
+    return baseUri.replace(path: '$basePath/coach/upsert_coach_program/');
   }
 
   static Uri deleteCoachProgram(String programId) {

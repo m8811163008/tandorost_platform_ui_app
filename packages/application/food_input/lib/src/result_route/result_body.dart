@@ -13,7 +13,7 @@ class ResultBody extends StatelessWidget {
     final count = switch (width) {
       >= 1024 => 4,
       >= 768 => 3,
-      > 425 => 2,
+      > 425 => 1,
       _ => 1,
     };
     final aspectRatio = switch (width) {
@@ -23,19 +23,17 @@ class ResultBody extends StatelessWidget {
       _ => 0.55,
     };
     return BlocConsumer<ResultCubit, ResultState>(
-      listenWhen:
-          (previous, current) =>
-              previous.foods != current.foods ||
-              previous.deletingStatus != current.deletingStatus,
+      listenWhen: (previous, current) =>
+          previous.foods != current.foods ||
+          previous.deletingStatus != current.deletingStatus,
       listener: (context, state) {
         if (state.foods.isEmpty) {
           Navigator.of(context).pop();
         }
       },
-      buildWhen:
-          (previous, current) =>
-              previous.foods != current.foods ||
-              previous.deletingStatus != current.deletingStatus,
+      buildWhen: (previous, current) =>
+          previous.foods != current.foods ||
+          previous.deletingStatus != current.deletingStatus,
       builder: (context, state) {
         return GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

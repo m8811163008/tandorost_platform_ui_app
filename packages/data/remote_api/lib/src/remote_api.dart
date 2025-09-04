@@ -205,7 +205,7 @@ abstract interface class RemoteApi {
 
   Future<CoachProfile> readCoachProfile();
   Future<CoachProfile> updateCoachProfile(CoachProfile coachProfile);
-  Future<CoachProgram> addCoachProgram(CoachProgram program);
+  Future<CoachProgram> upsertCoachProgram(CoachProgram program);
   Future<void> deleteCoachProgram(String programId);
   Future<List<CoachProgram>> readCoachPrograms();
 }

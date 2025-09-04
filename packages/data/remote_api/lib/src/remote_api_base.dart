@@ -270,6 +270,9 @@ class RemoteApiBase implements RemoteApi {
           .toUtc()
           .toIso8601String();
     }
+    if (userImage.description != null) {
+      request.fields['description'] = userImage.description!;
+    }
 
     for (FileDetail file in userImage.imageGallaryFiles) {
       request.files.add(
@@ -567,7 +570,7 @@ class RemoteApiBase implements RemoteApi {
     return CoachProfile.fromJson(res!);
   }
 
-  Future<CoachProgram> addCoachProgram(CoachProgram program) async {
+  Future<CoachProgram> upsertCoachProgram(CoachProgram program) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         CommonInterceptor(userLanguageProvider),
@@ -575,7 +578,7 @@ class RemoteApiBase implements RemoteApi {
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
-    final uri = UriBuilder.addCoachProgram();
+    final uri = UriBuilder.upsertCoachProgram();
     final res = await _handleRequest<JsonMap>(
       () => interceptedHttp.post(uri, body: json.encode(program.toJson())),
     );

@@ -682,6 +682,27 @@
     "googleAuthExceptionUserMismatch": "کاربر ورود با گوگل مطابقت ندارد",
     "prfileArchiveImagesButtonTooltip":"آرشیو کردن تصاویر در سرور",
     "profileAchievementsLabel":"افتخارات",
-    "profileCertificatesLabel":"گواهینامه‌ها"
-    
+    "profileCertificatesLabel":"گواهینامه‌ها",
+    "profileImageCoachDescriptionDialogTitle":"توضیحات تصویر",
+    "profileImageCoachDescriptionDialogTextFieldLabel":"توضیحات",
+    "profileImageCoachDescriptionDialogTextFieldHint":"مدرک مربیگری یا قهرمانی کشوری",
+    "profileCoachProfileCoachProgramCardTitle":"برنامه‌های مربی",
+    "profileCoachProfileCoachProgramDialogTitle":"برنامه مربی",
+    "profileCoachProfileCoachProgramTitleLabel":"عنوان برنامه",
+    "profileCoachProfileCoachProgramDescriptionLabel":"شرح برنامه",
+    "profileCoachProfileCoachProgramPriceLabel":"قیمت",
+    "profileCoachProfileCoachProgramDurationWeekLabel":"مدت برنامه( تعداد هفته)",
+    "profileCoachProfileCoachProgramFeatureLabel":"ویژگی‌های برنامه",
+    "profileCoachProfileCoachProgramFeatureValue": "{feature, select, phoneSupport{پشتیبانی تلفنی} personalizedNutritionGuide{راهنمای تغذیه شخصی‌سازی‌شده} personalizedSportSupplementGuide{راهنمای مکمل ورزشی شخصی‌سازی‌شده} formingCheckVideoSupport{پشتیبانی بررسی فرم حرکت انجام‌شده با ویدیو} other{ترجمه تعریف نشده}}",
+    "@profileCoachProfileCoachProgramFeatureValue": {
+        "placeholders": {
+            "feature": {
+                "type": "String"
+            }
+        }
+    },
+    "profileCoachProfileCoachProgramDurationWeekFieldValidationError": "مدت باید بزرگتر از صفر باشد",
+    "profileCoachProfileCoachProgramSaveButtonLabel" : "اضافه کردن برنامه",
+    "profileCoachProfileCoachProgramDeleteDialogTitle" : "حذف برنامه",
+    "profileCoachProfileCoachProgramDeleteDialogLabel" : "آیا این برنامه مربی حذف شود؟"
 }

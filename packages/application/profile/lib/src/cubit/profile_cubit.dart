@@ -51,6 +51,11 @@ class ProfileCubit extends Cubit<ProfileState> {
         ),
       );
     });
+    coachProgramSubscription = _coachRepository.coachProgramsStream.listen((
+      coachPrograms,
+    ) {
+      _enhancedEmit(state.copyWith(coachPrograms: coachPrograms));
+    });
   }
   final ProfileRepository _profile;
   final ImageRepository _imageRepository;
@@ -60,11 +65,15 @@ class ProfileCubit extends Cubit<ProfileState> {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   late final StreamSubscription<UserProfile?> userProfileSubscription;
   late final StreamSubscription<CoachProfile?> coachProfileSubscription;
+  late final StreamSubscription<List<CoachProgram>> coachProgramSubscription;
 
   @override
   Future<void> close() async {
-    await userProfileSubscription.cancel();
-    await coachProfileSubscription.cancel();
+    await Future.wait([
+      userProfileSubscription.cancel(),
+      coachProfileSubscription.cancel(),
+      coachProgramSubscription.cancel(),
+    ]);
     return super.close();
   }
 
@@ -529,7 +538,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   void onEditImageComplete(
     Uint8List bytes,
     String fileName,
-    GallaryTag tag, [
+    GallaryTag tag,
+    String? description, [
     DateTime? uploadDate,
   ]) async {
     final fileDetail = FileDetail(
@@ -541,6 +551,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       gallaryTag: tag,
       imageGallaryFiles: [fileDetail],
       uploadDate: uploadDate,
+      description: description,
     );
     _enhancedEmit(
       state.copyWith(addUserImageStatus: AsyncProcessingStatus.loading),
@@ -615,8 +626,92 @@ class ProfileCubit extends Cubit<ProfileState> {
         ),
       );
     }
+  }
 
-    // empty archiveImagesId
+  void readCoachPrograms() async {
+    _enhancedEmit(
+      state.copyWith(readingCoachProgram: AsyncProcessingStatus.loading),
+    );
+
+    try {
+      await _coachRepository.readCoachPrograms();
+      _enhancedEmit(
+        state.copyWith(readingCoachProgram: AsyncProcessingStatus.success),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          readingCoachProgram: AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          readingCoachProgram: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
+  void onChangeCoachProgram(CoachProgram coachProgram) {
+    _enhancedEmit(state.copyWith(cacheCoachProgram: coachProgram));
+  }
+
+  void upsertCoachProgram() async {
+    assert(state.cacheCoachProgram != null);
+    _enhancedEmit(
+      state.copyWith(upsertingCoachProgram: AsyncProcessingStatus.loading),
+    );
+
+    try {
+      await _coachRepository.upsertCoachProgram(state.cacheCoachProgram!);
+
+      _enhancedEmit(
+        state.copyWith(
+          cacheCoachProgram: null,
+          upsertingCoachProgram: AsyncProcessingStatus.success,
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          readingCoachProgram: AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          readingCoachProgram: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
+  void deleteCoachProgram(String programId) async {
+    _enhancedEmit(
+      state.copyWith(deletingCoachProgram: AsyncProcessingStatus.loading),
+    );
+
+    try {
+      await _coachRepository.deleteCoachProgram(programId);
+      // updat the stream
+      // read programs
+      _enhancedEmit(
+        state.copyWith(deletingCoachProgram: AsyncProcessingStatus.success),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          deletingCoachProgram: AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          deletingCoachProgram: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
   }
 
   void _enhancedEmit(ProfileState state) {

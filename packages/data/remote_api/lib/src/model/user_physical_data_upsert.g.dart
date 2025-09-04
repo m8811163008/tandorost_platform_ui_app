@@ -39,7 +39,7 @@ UserPhysicalDataUpsert _$UserPhysicalDataUpsertFromJson(
       ),
       birthday: $checkedConvert(
         'birthday',
-        (v) => dateTimeUtcFromJsonNullaware(v as String),
+        (v) => dateTimeUtcFromJsonNullaware(v as String?),
       ),
       height: $checkedConvert('height', (v) => (v as num?)?.toDouble()),
       weight: $checkedConvert('weight', (v) => (v as num?)?.toDouble()),

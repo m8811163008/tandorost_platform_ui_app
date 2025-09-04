@@ -2839,6 +2839,96 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'گواهینامه‌ها'**
   String get profileCertificatesLabel;
+
+  /// No description provided for @profileImageCoachDescriptionDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'توضیحات تصویر'**
+  String get profileImageCoachDescriptionDialogTitle;
+
+  /// No description provided for @profileImageCoachDescriptionDialogTextFieldLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'توضیحات'**
+  String get profileImageCoachDescriptionDialogTextFieldLabel;
+
+  /// No description provided for @profileImageCoachDescriptionDialogTextFieldHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'مدرک مربیگری یا قهرمانی کشوری'**
+  String get profileImageCoachDescriptionDialogTextFieldHint;
+
+  /// No description provided for @profileCoachProfileCoachProgramCardTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'برنامه‌های مربی'**
+  String get profileCoachProfileCoachProgramCardTitle;
+
+  /// No description provided for @profileCoachProfileCoachProgramDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'برنامه مربی'**
+  String get profileCoachProfileCoachProgramDialogTitle;
+
+  /// No description provided for @profileCoachProfileCoachProgramTitleLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'عنوان برنامه'**
+  String get profileCoachProfileCoachProgramTitleLabel;
+
+  /// No description provided for @profileCoachProfileCoachProgramDescriptionLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'شرح برنامه'**
+  String get profileCoachProfileCoachProgramDescriptionLabel;
+
+  /// No description provided for @profileCoachProfileCoachProgramPriceLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'قیمت'**
+  String get profileCoachProfileCoachProgramPriceLabel;
+
+  /// No description provided for @profileCoachProfileCoachProgramDurationWeekLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'مدت برنامه( تعداد هفته)'**
+  String get profileCoachProfileCoachProgramDurationWeekLabel;
+
+  /// No description provided for @profileCoachProfileCoachProgramFeatureLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'ویژگی‌های برنامه'**
+  String get profileCoachProfileCoachProgramFeatureLabel;
+
+  /// No description provided for @profileCoachProfileCoachProgramFeatureValue.
+  ///
+  /// In fa, this message translates to:
+  /// **'{feature, select, phoneSupport{پشتیبانی تلفنی} personalizedNutritionGuide{راهنمای تغذیه شخصی‌سازی‌شده} personalizedSportSupplementGuide{راهنمای مکمل ورزشی شخصی‌سازی‌شده} formingCheckVideoSupport{پشتیبانی بررسی فرم حرکت انجام‌شده با ویدیو} other{ترجمه تعریف نشده}}'**
+  String profileCoachProfileCoachProgramFeatureValue(String feature);
+
+  /// No description provided for @profileCoachProfileCoachProgramDurationWeekFieldValidationError.
+  ///
+  /// In fa, this message translates to:
+  /// **'مدت باید بزرگتر از صفر باشد'**
+  String get profileCoachProfileCoachProgramDurationWeekFieldValidationError;
+
+  /// No description provided for @profileCoachProfileCoachProgramSaveButtonLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'اضافه کردن برنامه'**
+  String get profileCoachProfileCoachProgramSaveButtonLabel;
+
+  /// No description provided for @profileCoachProfileCoachProgramDeleteDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'حذف برنامه'**
+  String get profileCoachProfileCoachProgramDeleteDialogTitle;
+
+  /// No description provided for @profileCoachProfileCoachProgramDeleteDialogLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'آیا این برنامه مربی حذف شود؟'**
+  String get profileCoachProfileCoachProgramDeleteDialogLabel;
 }
 
 class _ComponentLibraryLocalizationsDelegate

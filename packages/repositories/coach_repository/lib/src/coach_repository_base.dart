@@ -14,9 +14,15 @@ class CoachRepository {
   CoachRepository({required this.remoteApi, required this.localStorage});
   final StreamController<CoachProfile?> _coachStreamController =
       StreamController.broadcast();
+  final StreamController<List<CoachProgram>> _coachProgramStreamController =
+      StreamController.broadcast();
 
   Stream<CoachProfile?> get coachProfileStream async* {
     yield* _coachStreamController.stream.asBroadcastStream();
+  }
+
+  Stream<List<CoachProgram>> get coachProgramsStream async* {
+    yield* _coachProgramStreamController.stream.asBroadcastStream();
   }
 
   Future<void> readCoachProfile() async {
@@ -38,10 +44,30 @@ class CoachRepository {
 
   Future<void> clearCacheCoachProfile() => localStorage.delete(coachProfileKey);
 
-  Future<CoachProgram> addCoachProgram(CoachProgram program) =>
-      remoteApi.addCoachProgram(program);
+  Future<void> upsertCoachProgram(CoachProgram program) =>
+      remoteApi.upsertCoachProgram(program);
+
   Future<void> deleteCoachProgram(String programId) =>
       remoteApi.deleteCoachProgram(programId);
-  Future<List<CoachProgram>> readCoachPrograms() =>
-      remoteApi.readCoachPrograms();
+
+  Future<void> readCoachPrograms() async {
+    final cachedPrograms = await localStorage.read(coachProgramKey);
+    if (cachedPrograms != null) {
+      final programsList = cachedPrograms[coachProgramKey] as List;
+      final List<CoachProgram> programs = [];
+      for (final program in programsList) {
+        programs.add(CoachProgram.fromJson(program as Map<String, dynamic>));
+      }
+      _coachProgramStreamController.add(programs);
+    }
+    final coachPrograms = await remoteApi.readCoachPrograms();
+    _coachProgramStreamController.add(coachPrograms);
+
+    final coachProgramListJson = <Map<String, dynamic>>[];
+    for (final program in coachPrograms) {
+      coachProgramListJson.add(program.toJson());
+    }
+    final coachProgramJson = {coachProgramKey: coachProgramListJson};
+    await localStorage.upsert(coachProgramKey, coachProgramJson);
+  }
 }
