@@ -788,6 +788,8 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
       'profileRoute': 'پروفایل',
       'fitnessProfileRoute': 'ترکیب بدن | تناسب اندام',
       'foodReportRoute': 'گزارش تغذیه',
+      'coachesListRoute': 'مربیان بدنسازی',
+      'coachDetailRoute': 'جزئیات مربی',
       'vo2maxCalculator': 'هوازی | حداکثر کاهش چربی',
       'other': 'ترجمه تعریف نشده',
     });

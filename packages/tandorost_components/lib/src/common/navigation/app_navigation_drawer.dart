@@ -114,14 +114,16 @@ abstract class DrawerNavigationRoutes {
     3: RoutesNames.profileRoute,
     4: RoutesNames.vo2maxCalculator,
     5: RoutesNames.loginRoute,
+    6: RoutesNames.coachesListRoute,
   };
   static const Map<int, IconData> icons = {
     0: Icons.search,
     1: Icons.circle,
-    2: Icons.fitness_center,
+    2: Icons.monitor_weight,
     3: Icons.account_box,
     4: Icons.health_and_safety,
     5: Icons.login,
+    6: Icons.fitness_center,
   };
 }
 

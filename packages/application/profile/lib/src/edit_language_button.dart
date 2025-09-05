@@ -23,7 +23,9 @@ class ChangeLanguageDialog extends StatelessWidget {
             context,
           ).showSnackBar(SnackBar(content: Text(content)));
         } else if (state.updatingProfileStatus.isSuccess) {
-          Navigator.of(context).pop();
+          if (Navigator.of(context).canPop()) {
+            Navigator.of(context).pop();
+          }
         }
       },
       buildWhen: (previous, current) =>

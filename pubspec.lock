@@ -199,6 +199,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.2"
+  coach:
+    dependency: "direct main"
+    description:
+      path: "packages/application/coach"
+      relative: true
+    source: path
+    version: "0.0.1"
   coach_repository:
     dependency: "direct main"
     description:

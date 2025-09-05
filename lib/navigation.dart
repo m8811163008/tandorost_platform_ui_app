@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:authentication/authentication.dart';
 import 'package:authentication_app/authentication.dart';
+import 'package:coach/coach.dart';
+import 'package:coach_repository/coach_repository.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:fitness_profile_app/fitness_profile.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +16,12 @@ import 'package:profile_app/profile.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 import 'package:vo2max_calculator/vo2max_calculator.dart';
+import 'package:image_repository/image_repository.dart';
 
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: RoutesNames.fitnessProfileRoute.path,
+      initialLocation: RoutesNames.coachesListRoute.path,
       observers: [SentryNavigatorObserver()],
       routes: [
         GoRoute(
@@ -222,6 +225,57 @@ class Navigation {
                   context.go(RoutesNames.searchRoute.path),
             );
           },
+        ),
+        ShellRoute(
+          builder: (context, state, child) {
+            return BlocProvider(
+              create: (_) => CoachCubit(
+                coachRepository: RepositoryProvider.of<CoachRepository>(
+                  context,
+                ),
+                imageRepository: RepositoryProvider.of<ImageRepository>(
+                  context,
+                ),
+              ),
+              child: child,
+            );
+          },
+          routes: [
+            GoRoute(
+              path: RoutesNames.coachesListRoute.path,
+              builder: (context, state) {
+                return CoachesListRoute(
+                  goToCoachDetailRoute: () =>
+                      context.go(RoutesNames.coachDetailRoute.path),
+                  onBottomNavigationChanged: (index) {
+                    _onBottomNavigationChanged(context, index);
+                  },
+                  onDrawerNavigationChanged: (index) {
+                    _onDrawerNavigationChanged(context, index);
+                  },
+                  bottomNavigationIndex: _bottomNavigationIndex(state),
+                  drawerNavigationIndex: _drawerNavigationIndex(state),
+                );
+              },
+              routes: [
+                GoRoute(
+                  path: RoutesNames.coachDetailRoute.path,
+                  builder: (context, state) {
+                    return CoachDetailRoute(
+                      onBottomNavigationChanged: (index) {
+                        _onBottomNavigationChanged(context, index);
+                      },
+                      onDrawerNavigationChanged: (index) {
+                        _onDrawerNavigationChanged(context, index);
+                      },
+                      bottomNavigationIndex: _bottomNavigationIndex(state),
+                      drawerNavigationIndex: _drawerNavigationIndex(state),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
         ),
       ],
 

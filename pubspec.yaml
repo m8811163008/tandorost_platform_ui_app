@@ -77,6 +77,8 @@ dependencies:
     path: packages/application/profile
   vo2max_calculator:
     path: packages/application/vo2max_calculator
+  coach:
+    path: packages/application/coach
   
 
 dev_dependencies:

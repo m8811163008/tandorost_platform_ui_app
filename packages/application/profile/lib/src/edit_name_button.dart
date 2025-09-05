@@ -53,7 +53,9 @@ class _EditUserInfoDialogState extends State<EditUserInfoDialog> {
           ).showSnackBar(SnackBar(content: Text(content)));
         } else if (state.updatingProfileStatus.isSuccess ||
             state.updateCoachProfileStatus.isSuccess) {
-          Navigator.of(context).pop();
+          if (Navigator.of(context).canPop()) {
+            Navigator.of(context).pop();
+          }
         }
       },
       child: Form(

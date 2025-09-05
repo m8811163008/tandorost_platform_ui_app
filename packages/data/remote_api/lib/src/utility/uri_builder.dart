@@ -158,4 +158,26 @@ class UriBuilder {
   static Uri readCoachPrograms() {
     return baseUri.replace(path: '$basePath/coach/read_coach_programs/');
   }
+
+  static Uri readCoaches() {
+    return baseUri.replace(path: '$basePath/coach/read_coaches/');
+  }
+
+  static Uri readCoachesProfile() {
+    return baseUri.replace(path: '$basePath/coach/read_coaches_profile/');
+  }
+
+  static Uri readCoachProgramsByCoachId(String coachId) {
+    return baseUri.replace(
+      path: '$basePath/coach/read_coach_programs_by_coach_id/',
+      queryParameters: {'coach_id': coachId},
+    );
+  }
+
+  static Uri readCoachImages(String coachId) {
+    return baseUri.replace(
+      path: '$basePath/coach/read_coach_images/',
+      queryParameters: {'coach_id': coachId},
+    );
+  }
 }

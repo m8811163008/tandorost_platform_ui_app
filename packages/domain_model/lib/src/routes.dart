@@ -7,6 +7,8 @@ enum RoutesNames {
   verificationRoute('/verify-phone-number'),
   profileRoute('/profile'),
   fitnessProfileRoute('/fitness-profile'),
+  coachesListRoute('/coaches-list'),
+  coachDetailRoute('/coach-detail'),
   foodReportRoute('/food-report'),
   vo2maxCalculator('/vo2max-calculator'),
   introductionRoute('/introduction-route');

@@ -609,6 +609,54 @@ class RemoteApiBase implements RemoteApi {
     return res!.map((e) => CoachProgram.fromJson(e)).toList();
   }
 
+  Future<List<CoachProfile>> readCoaches() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readCoaches();
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => CoachProfile.fromJson(e)).toList();
+  }
+
+  Future<List<UserProfile>> readCoachesProfiles() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readCoachesProfile();
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => UserProfile.fromJson(e)).toList();
+  }
+
+  Future<List<CoachProgram>> readCoachProgramsById(String coachId) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readCoachProgramsByCoachId(coachId);
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => CoachProgram.fromJson(e)).toList();
+  }
+
+  Future<List<FileData>> readCoachImages(String coachId) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readCoachImages(coachId);
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => FileData.fromJson(e)).toList();
+  }
+
   Future<E?> _handleRequest<E>(Future<Response> Function() request) async {
     try {
       final res = await request();

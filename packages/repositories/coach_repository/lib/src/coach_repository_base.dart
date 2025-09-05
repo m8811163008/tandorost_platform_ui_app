@@ -14,6 +14,7 @@ class CoachRepository {
   CoachRepository({required this.remoteApi, required this.localStorage});
   final StreamController<CoachProfile?> _coachStreamController =
       StreamController.broadcast();
+
   final StreamController<List<CoachProgram>> _coachProgramStreamController =
       StreamController.broadcast();
 
@@ -70,4 +71,12 @@ class CoachRepository {
     final coachProgramJson = {coachProgramKey: coachProgramListJson};
     await localStorage.upsert(coachProgramKey, coachProgramJson);
   }
+
+  Future<List<CoachProfile>> readCoaches() => remoteApi.readCoaches();
+  Future<List<UserProfile>> readCoachesProfiles() =>
+      remoteApi.readCoachesProfiles();
+  Future<List<CoachProgram>> readCoachProgramsById(String coachId) =>
+      remoteApi.readCoachProgramsById(coachId);
+  Future<List<FileData>> readCoachImages(String coachId) =>
+      remoteApi.readCoachImages(coachId);
 }
