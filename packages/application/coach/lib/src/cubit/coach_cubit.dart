@@ -135,9 +135,14 @@ class CoachCubit extends Cubit<CoachState> {
       final coachesImagesData = <FileData>[];
       final coachesImageDetail = <FileDetail>[];
       for (final activeCoach in activeCoaches) {
-        final coachImages = await coachRepository.readCoachImages(
+        var coachImages = await coachRepository.readCoachImages(
           activeCoach.userId,
         );
+        coachImages = coachImages
+            .where(
+              (image) => image.processingStatus == ProcessingStatus.approved,
+            )
+            .toList();
         coachesImagesData.addAll(coachImages);
         for (final imageData in coachImages) {
           final fileDetail = await imageRepository.readImage(imageData);

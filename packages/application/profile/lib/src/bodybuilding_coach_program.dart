@@ -192,7 +192,7 @@ class _UpsertProgramDialogState extends State<UpsertProgramDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final gap = SizedBox(height: context.sizeExtenstion.small);
+    final gap = SizedBox(height: context.sizeExtenstion.medium);
     return Form(
       key: _formKey,
       child: AppDialog(
@@ -210,6 +210,8 @@ class _UpsertProgramDialogState extends State<UpsertProgramDialog> {
           RegullarTextField(
             label: context.l10n.profileCoachProfileCoachProgramDescriptionLabel,
             initalValue: _coachProgram.description,
+            minLines: 3,
+            keyboardType: TextInputType.multiline,
             onChange: (value) {
               _coachProgram = _coachProgram.copyWith(description: value);
               // setState(() {});
@@ -221,10 +223,10 @@ class _UpsertProgramDialogState extends State<UpsertProgramDialog> {
                 context.l10n.profileCoachProfileCoachProgramDurationWeekLabel,
             initalValue: _coachProgram.durationWeeks.toString(),
             onChange: (value) {
+              if (value.isEmpty) return;
               _coachProgram = _coachProgram.copyWith(
                 durationWeeks: int.parse(value),
               );
-              // setState(() {});
             },
             validator: (value) {
               if (value == null || value.isEmpty) {

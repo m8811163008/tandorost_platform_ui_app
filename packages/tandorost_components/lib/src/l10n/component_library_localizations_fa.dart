@@ -1875,4 +1875,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   @override
   String get profileCoachProfileCoachProgramDeleteDialogLabel =>
       'آیا این برنامه مربی حذف شود؟';
+
+  @override
+  String get coachDetailLanguageLabel => 'زبان مربی';
 }

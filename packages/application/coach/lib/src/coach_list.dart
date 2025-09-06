@@ -25,7 +25,7 @@ class CoachesListRoute extends StatelessWidget {
           context.l10n.appRoutesName(RoutesNames.coachesListRoute.name),
         ),
       ),
-      body: CoachListListener(),
+      body: CoachListListener(goToCoachDetailRoute: goToCoachDetailRoute),
       drawer: NavigationDrawer(
         onDestinationSelected: onDrawerNavigationChanged,
         selectedIndex: drawerNavigationIndex,
@@ -102,7 +102,7 @@ class CoachListListener extends StatelessWidget {
           },
         ),
       ],
-      child: CoachListBuilder(),
+      child: CoachListBuilder(goToCoachDetailRoute: goToCoachDetailRoute),
     );
   }
 }
@@ -133,7 +133,7 @@ class CoachListBuilder extends StatelessWidget {
               itemBuilder: (context, index) {
                 final coach = state.coachesProfile[index];
                 final coachUserProfile = state.coachesUserProfile[index];
-                final coachImagesFileData = state.readCoachImagesData.where(
+                final coachImagesFileData = state.coachesImagesData.where(
                   (image) => image.userId == coachUserProfile.id,
                 );
                 FileDetail? coachProfileImageDetail;

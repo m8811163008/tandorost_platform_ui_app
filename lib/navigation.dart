@@ -21,7 +21,7 @@ import 'package:image_repository/image_repository.dart';
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: RoutesNames.coachesListRoute.path,
+      initialLocation: RoutesNames.searchRoute.path,
       observers: [SentryNavigatorObserver()],
       routes: [
         GoRoute(
@@ -245,8 +245,9 @@ class Navigation {
               path: RoutesNames.coachesListRoute.path,
               builder: (context, state) {
                 return CoachesListRoute(
-                  goToCoachDetailRoute: () =>
-                      context.go(RoutesNames.coachDetailRoute.path),
+                  goToCoachDetailRoute: () => context.go(
+                    '${RoutesNames.coachesListRoute.path}${RoutesNames.coachDetailRoute.path}',
+                  ),
                   onBottomNavigationChanged: (index) {
                     _onBottomNavigationChanged(context, index);
                   },

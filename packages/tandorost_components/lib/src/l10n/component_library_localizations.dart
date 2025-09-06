@@ -2929,6 +2929,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'آیا این برنامه مربی حذف شود؟'**
   String get profileCoachProfileCoachProgramDeleteDialogLabel;
+
+  /// No description provided for @coachDetailLanguageLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'زبان مربی'**
+  String get coachDetailLanguageLabel;
 }
 
 class _ComponentLibraryLocalizationsDelegate

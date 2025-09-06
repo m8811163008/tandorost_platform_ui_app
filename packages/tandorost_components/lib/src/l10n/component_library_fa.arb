@@ -704,5 +704,6 @@
     "profileCoachProfileCoachProgramDurationWeekFieldValidationError": "مدت باید بزرگتر از صفر باشد",
     "profileCoachProfileCoachProgramSaveButtonLabel" : "اضافه کردن برنامه",
     "profileCoachProfileCoachProgramDeleteDialogTitle" : "حذف برنامه",
-    "profileCoachProfileCoachProgramDeleteDialogLabel" : "آیا این برنامه مربی حذف شود؟"
+    "profileCoachProfileCoachProgramDeleteDialogLabel" : "آیا این برنامه مربی حذف شود؟",
+    "coachDetailLanguageLabel" : "زبان مربی"
 }

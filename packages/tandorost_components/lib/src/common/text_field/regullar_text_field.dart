@@ -18,6 +18,8 @@ class RegullarTextField extends StatelessWidget {
     this.errorMessage,
     this.textAlign = TextAlign.start,
     this.formatters = const [],
+    this.minLines,
+    this.keyboardType,
   });
   final String label;
   final String? prefix;
@@ -32,13 +34,15 @@ class RegullarTextField extends StatelessWidget {
   final String? errorMessage;
   final TextAlign textAlign;
   final List<TextInputFormatter> formatters;
+  final int? minLines;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: TextEditingController(text: initalValue),
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      keyboardType: TextInputType.text,
+      keyboardType: keyboardType ?? TextInputType.text,
       readOnly: readOnly,
       onTap: onTap,
       decoration: InputDecoration(
@@ -49,6 +53,8 @@ class RegullarTextField extends StatelessWidget {
       ),
       obscureText: obscureText,
       maxLength: maxLength,
+      minLines: minLines,
+      maxLines: null,
       textAlign: textAlign,
       onChanged: onChange,
       inputFormatters: formatters,

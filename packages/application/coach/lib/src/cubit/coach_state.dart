@@ -6,7 +6,7 @@ class CoachState extends Equatable {
     this.readCoachesProfileStatus = AsyncProcessingStatus.inital,
     this.coachesUserProfile = const [],
     this.readCoachesUserProfileStatus = AsyncProcessingStatus.inital,
-    this.readCoachImagesData = const [],
+    this.coachesImagesData = const [],
     this.coachesImagesFilesDetail = const [],
     this.readCoachImagesDataStatus = AsyncProcessingStatus.inital,
     this.readSelectedCoachPrograms,
@@ -21,7 +21,7 @@ class CoachState extends Equatable {
   final UserProfile? selectedCoacheUserProfile;
   final CoachProfile? selectedCoachProfile;
   final AsyncProcessingStatus readCoachesUserProfileStatus;
-  final List<FileData> readCoachImagesData;
+  final List<FileData> coachesImagesData;
   final List<FileDetail> coachesImagesFilesDetail;
   final AsyncProcessingStatus readCoachImagesDataStatus;
   final List<CoachProgram>? readSelectedCoachPrograms;
@@ -47,7 +47,7 @@ class CoachState extends Equatable {
       coachesUserProfile: coachesUserProfile ?? this.coachesUserProfile,
       readCoachesUserProfileStatus:
           readCoachesUserProfileStatus ?? this.readCoachesUserProfileStatus,
-      readCoachImagesData: readCoachImagesData ?? this.readCoachImagesData,
+      coachesImagesData: readCoachImagesData ?? this.coachesImagesData,
       coachesImagesFilesDetail:
           coachesImagesFilesDetail ?? this.coachesImagesFilesDetail,
       readCoachImagesDataStatus:
@@ -70,7 +70,7 @@ class CoachState extends Equatable {
     readCoachesProfileStatus,
     coachesUserProfile,
     readCoachesUserProfileStatus,
-    readCoachImagesData,
+    coachesImagesData,
     coachesImagesFilesDetail,
     readCoachImagesDataStatus,
     readSelectedCoachPrograms,
