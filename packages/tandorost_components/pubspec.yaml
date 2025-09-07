@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  video_player: ^2.9.5
+  video_player: ^2.10.0
   domain_model:
     path: ../domain_model
   tandorost_theme:

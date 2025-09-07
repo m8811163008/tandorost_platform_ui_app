@@ -22,7 +22,7 @@ dependencies:
   profile:
     path: ../../repositories/profile
   pie_chart: ^5.4.0
-  android_intent_plus: ^5.3.0
+  android_intent_plus: ^5.3.1
   home_widget: ^0.8.0
 dev_dependencies:
   flutter_test:

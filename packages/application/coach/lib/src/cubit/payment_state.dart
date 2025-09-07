@@ -1,0 +1,88 @@
+part of 'payment_cubit.dart';
+
+class PaymentState extends Equatable {
+  final CafeBazzarPaymentInfo? cafeBazzarPaymentInfo;
+  final AsyncProcessingStatus readCoffeBazzarPaymentStatus;
+  final AsyncProcessingStatus coffeBazzarConnectionStatus;
+  final AsyncProcessingStatus onCreateSubscriptionPaymentsStatus;
+  final AsyncProcessingStatus onCafeBazzarSubscribeStatus;
+  final AsyncProcessingStatus onReadCafeBazzarSkusStatus;
+  final AsyncProcessingStatus onReadUserProfileStatus;
+  final List<dynamic> skuDetails;
+  final SubscriptionPayment? subscriptionPayment;
+  final dynamic? purchaseInfo;
+  final UserProfile? userProfile;
+  final String? exceptionDetail;
+
+  const PaymentState({
+    this.readCoffeBazzarPaymentStatus = AsyncProcessingStatus.inital,
+    this.coffeBazzarConnectionStatus = AsyncProcessingStatus.inital,
+    this.onCreateSubscriptionPaymentsStatus = AsyncProcessingStatus.inital,
+    this.onCafeBazzarSubscribeStatus = AsyncProcessingStatus.inital,
+    this.onReadCafeBazzarSkusStatus = AsyncProcessingStatus.inital,
+    this.onReadUserProfileStatus = AsyncProcessingStatus.inital,
+    this.skuDetails = const [],
+    this.cafeBazzarPaymentInfo,
+    this.userProfile,
+
+    this.purchaseInfo,
+    this.exceptionDetail,
+    this.subscriptionPayment,
+  });
+
+  @override
+  List<Object?> get props => [
+    cafeBazzarPaymentInfo,
+    readCoffeBazzarPaymentStatus,
+    coffeBazzarConnectionStatus,
+    onCreateSubscriptionPaymentsStatus,
+    onReadUserProfileStatus,
+    onCafeBazzarSubscribeStatus,
+    purchaseInfo,
+    userProfile,
+    exceptionDetail,
+    onReadCafeBazzarSkusStatus,
+    skuDetails,
+    subscriptionPayment,
+  ];
+  PaymentState copyWith({
+    ValueGetter<CafeBazzarPaymentInfo?>? cafeBazzarPaymentInfo,
+    ValueGetter<dynamic?>? purchaseInfo,
+    ValueGetter<UserProfile?>? userProfile,
+    AsyncProcessingStatus? readCoffeBazzarPaymentStatus,
+    AsyncProcessingStatus? coffeBazzarConnectionStatus,
+    AsyncProcessingStatus? onCreateSubscriptionPaymentsStatus,
+    AsyncProcessingStatus? onCafeBazzarSubscribeStatus,
+    AsyncProcessingStatus? onReadCafeBazzarSkusStatus,
+    AsyncProcessingStatus? onReadUserProfileStatus,
+    List<dynamic>? skuDetails,
+    SubscriptionPayment? subscriptionPayment,
+    ValueGetter<String?>? exceptionDetail,
+  }) {
+    return PaymentState(
+      purchaseInfo: purchaseInfo != null ? purchaseInfo() : this.purchaseInfo,
+      userProfile: userProfile != null ? userProfile() : this.userProfile,
+      exceptionDetail: exceptionDetail != null
+          ? exceptionDetail()
+          : this.exceptionDetail,
+      cafeBazzarPaymentInfo: cafeBazzarPaymentInfo != null
+          ? cafeBazzarPaymentInfo()
+          : this.cafeBazzarPaymentInfo,
+      onCafeBazzarSubscribeStatus:
+          onCafeBazzarSubscribeStatus ?? this.onCafeBazzarSubscribeStatus,
+      onReadCafeBazzarSkusStatus:
+          onReadCafeBazzarSkusStatus ?? this.onReadCafeBazzarSkusStatus,
+      onReadUserProfileStatus:
+          onReadUserProfileStatus ?? this.onReadUserProfileStatus,
+      readCoffeBazzarPaymentStatus:
+          readCoffeBazzarPaymentStatus ?? this.readCoffeBazzarPaymentStatus,
+      skuDetails: skuDetails ?? this.skuDetails,
+      onCreateSubscriptionPaymentsStatus:
+          onCreateSubscriptionPaymentsStatus ??
+          this.onCreateSubscriptionPaymentsStatus,
+      coffeBazzarConnectionStatus:
+          coffeBazzarConnectionStatus ?? this.coffeBazzarConnectionStatus,
+      subscriptionPayment: subscriptionPayment ?? this.subscriptionPayment,
+    );
+  }
+}

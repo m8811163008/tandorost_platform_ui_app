@@ -19,7 +19,13 @@ dependencies:
     path: ../../repositories/image_repository
   coach_repository:
     path: ../../repositories/coach_repository
-
+  profile:
+    path: ../../repositories/profile
+  payment_repository:
+    path: ../../repositories/payment_repository
+  poolakey_flutter: 
+    path: ../../repositories/poolakey_flutter
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

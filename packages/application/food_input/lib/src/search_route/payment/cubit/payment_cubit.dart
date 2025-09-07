@@ -6,9 +6,9 @@ import 'package:domain_model/domain_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_poolakey/flutter_poolakey.dart';
 import 'package:food_input/food_input.dart';
 import 'package:payment_repository/payment.dart';
+import 'package:poolakey_flutter/poolakey_flutter.dart';
 import 'package:profile/profile.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
@@ -92,9 +92,8 @@ class PaymentCubit extends Cubit<PaymentState> {
       ),
     );
     try {
-      await FlutterPoolakey.connect(
+      await PoolakeyFlutter.connect(
         state.cafeBazzarPaymentInfo!.caffeBazzarRsa,
-        onDisconnected: () async => onConnectToCofeBazzar(),
       );
       _enhancedEmit(
         state.copyWith(
@@ -137,7 +136,7 @@ class PaymentCubit extends Cubit<PaymentState> {
           state.cafeBazzarPaymentInfo!.caffeBazzarSubscriptionPlanSixMonthSdk,
         _ => throw Exception('state.selectedSubscriptionType is null'),
       };
-      final purchaseInfo = await FlutterPoolakey.subscribe(
+      final purchaseInfo = await PoolakeyFlutter.purchaseSubscription(
         sku,
         payload: json.encode(state.userProfile!.toJson()),
       );
@@ -193,12 +192,12 @@ class PaymentCubit extends Cubit<PaymentState> {
     final sku = state.selectedSubscriptionType! == SubscriptionType.oneMonth
         ? state.cafeBazzarPaymentInfo!.caffeBazzarSubscriptionPlanOneMonthSdk
         : state.cafeBazzarPaymentInfo!.caffeBazzarSubscriptionPlanThreeMonthSdk;
-    final skuDetail = state.skuDetails.singleWhere(
-      (skuDetail) => skuDetail.sku == sku,
-    );
+    final skuDetail = "state.skuDetails.singleWhere(";
+    //   (skuDetail) => skuDetail.sku == sku,
+    // );
     final subscriptionPayment = SubscriptionPayment(
       userId: state.userProfile!.id,
-      paidAmount: skuDetail.price.toRialDouble(),
+      paidAmount: 0, //skuDetail.price.toRialDouble(),
       discountAmount: 0,
       currency: Currency.irRial,
       paymentMethod: PaymentMethod.inAppPaymentCafeBazzar,
@@ -238,10 +237,7 @@ class PaymentCubit extends Cubit<PaymentState> {
       state.copyWith(onReadCafeBazzarSkusStatus: AsyncProcessingStatus.loading),
     );
     try {
-      final skus = await FlutterPoolakey.getSubscriptionSkuDetails([
-        state.cafeBazzarPaymentInfo!.caffeBazzarSubscriptionPlanOneMonthSdk,
-        state.cafeBazzarPaymentInfo!.caffeBazzarSubscriptionPlanThreeMonthSdk,
-      ]);
+      final skus = await PoolakeyFlutter.getSubscribedProducts();
       _enhancedEmit(
         state.copyWith(
           skuDetails: skus,

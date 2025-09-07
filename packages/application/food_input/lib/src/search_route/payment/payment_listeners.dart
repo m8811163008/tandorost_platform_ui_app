@@ -11,10 +11,9 @@ class PaymentBlocListeners extends StatelessWidget {
     return MultiBlocListener(
       listeners: [
         BlocListener<PaymentCubit, PaymentState>(
-          listenWhen:
-              (previous, current) =>
-                  previous.onReadUserProfileStatus !=
-                  current.onReadUserProfileStatus,
+          listenWhen: (previous, current) =>
+              previous.onReadUserProfileStatus !=
+              current.onReadUserProfileStatus,
           listener: (context, state) async {
             if (state.onReadUserProfileStatus.isConnectionError) {
               final content = context.l10n.networkError;
@@ -33,10 +32,9 @@ class PaymentBlocListeners extends StatelessWidget {
         ),
 
         BlocListener<PaymentCubit, PaymentState>(
-          listenWhen:
-              (previous, current) =>
-                  previous.coffeBazzarConnectionStatus !=
-                  current.coffeBazzarConnectionStatus,
+          listenWhen: (previous, current) =>
+              previous.coffeBazzarConnectionStatus !=
+              current.coffeBazzarConnectionStatus,
           listener: (context, state) async {
             //web
             final content = context.l10n.bazzarNotFound;
@@ -51,10 +49,9 @@ class PaymentBlocListeners extends StatelessWidget {
           },
         ),
         BlocListener<PaymentCubit, PaymentState>(
-          listenWhen:
-              (previous, current) =>
-                  previous.onReadCafeBazzarSkusStatus !=
-                  current.onReadCafeBazzarSkusStatus,
+          listenWhen: (previous, current) =>
+              previous.onReadCafeBazzarSkusStatus !=
+              current.onReadCafeBazzarSkusStatus,
           listener: (context, state) async {
             //web
             if (state.onReadCafeBazzarSkusStatus.isConnectionError) {
@@ -66,18 +63,17 @@ class PaymentBlocListeners extends StatelessWidget {
         ),
 
         BlocListener<PaymentCubit, PaymentState>(
-          listenWhen:
-              (previous, current) =>
-                  previous.onCafeBazzarSubscribeStatus !=
-                  current.onCafeBazzarSubscribeStatus,
+          listenWhen: (previous, current) =>
+              previous.onCafeBazzarSubscribeStatus !=
+              current.onCafeBazzarSubscribeStatus,
           listener: (context, state) async {
             //web
             if (state.onCafeBazzarSubscribeStatus.isConnectionError) {
               Navigator.of(context).pop();
               final message =
                   state.exceptionDetail?.contains('PURCHASE_CANCELLED') == true
-                      ? context.l10n.bazzarFailPayment
-                      : state.exceptionDetail ?? '';
+                  ? context.l10n.bazzarFailPayment
+                  : state.exceptionDetail ?? '';
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(message)));
@@ -88,10 +84,9 @@ class PaymentBlocListeners extends StatelessWidget {
         ),
 
         BlocListener<PaymentCubit, PaymentState>(
-          listenWhen:
-              (previous, current) =>
-                  previous.onCreateSubscriptionPaymentsStatus !=
-                  current.onCreateSubscriptionPaymentsStatus,
+          listenWhen: (previous, current) =>
+              previous.onCreateSubscriptionPaymentsStatus !=
+              current.onCreateSubscriptionPaymentsStatus,
           listener: (context, state) async {
             if (state.onCreateSubscriptionPaymentsStatus.isConnectionError) {
               final content = context.l10n.networkError;
@@ -116,10 +111,9 @@ class PaymentBlocListeners extends StatelessWidget {
         ),
 
         BlocListener<PaymentCubit, PaymentState>(
-          listenWhen:
-              (previous, current) =>
-                  previous.readCoffeBazzarPaymentStatus !=
-                  current.readCoffeBazzarPaymentStatus,
+          listenWhen: (previous, current) =>
+              previous.readCoffeBazzarPaymentStatus !=
+              current.readCoffeBazzarPaymentStatus,
           listener: (context, state) async {
             //web
             if (state.readCoffeBazzarPaymentStatus.isConnectionError) {
@@ -136,12 +130,11 @@ class PaymentBlocListeners extends StatelessWidget {
           },
         ),
         BlocListener<PaymentCubit, PaymentState>(
-          listenWhen:
-              (previous, current) =>
-                  previous.onReadUserProfileStatus !=
-                      current.onReadUserProfileStatus ||
-                  previous.onReadCafeBazzarSkusStatus !=
-                      current.onReadCafeBazzarSkusStatus,
+          listenWhen: (previous, current) =>
+              previous.onReadUserProfileStatus !=
+                  current.onReadUserProfileStatus ||
+              previous.onReadCafeBazzarSkusStatus !=
+                  current.onReadCafeBazzarSkusStatus,
           listener: (context, state) async {
             //web
             if (state.onReadUserProfileStatus.isSuccess &&

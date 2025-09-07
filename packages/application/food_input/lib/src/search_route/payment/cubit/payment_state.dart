@@ -8,9 +8,9 @@ class PaymentState extends Equatable {
   final AsyncProcessingStatus onCafeBazzarSubscribeStatus;
   final AsyncProcessingStatus onReadCafeBazzarSkusStatus;
   final AsyncProcessingStatus onReadUserProfileStatus;
-  final List<SkuDetails> skuDetails;
+  final List<dynamic> skuDetails;
   final SubscriptionPayment? subscriptionPayment;
-  final PurchaseInfo? purchaseInfo;
+  final dynamic? purchaseInfo;
   final UserProfile? userProfile;
   final String? exceptionDetail;
   final SubscriptionType? selectedSubscriptionType;
@@ -49,7 +49,7 @@ class PaymentState extends Equatable {
   ];
   PaymentState copyWith({
     ValueGetter<CafeBazzarPaymentInfo?>? cafeBazzarPaymentInfo,
-    ValueGetter<PurchaseInfo?>? purchaseInfo,
+    ValueGetter<dynamic?>? purchaseInfo,
     ValueGetter<UserProfile?>? userProfile,
     AsyncProcessingStatus? readCoffeBazzarPaymentStatus,
     AsyncProcessingStatus? coffeBazzarConnectionStatus,
@@ -57,7 +57,7 @@ class PaymentState extends Equatable {
     AsyncProcessingStatus? onCafeBazzarSubscribeStatus,
     AsyncProcessingStatus? onReadCafeBazzarSkusStatus,
     AsyncProcessingStatus? onReadUserProfileStatus,
-    List<SkuDetails>? skuDetails,
+    List<dynamic>? skuDetails,
     SubscriptionPayment? subscriptionPayment,
     ValueGetter<String?>? exceptionDetail,
     SubscriptionType? selectedSubscriptionType,
@@ -68,18 +68,20 @@ class PaymentState extends Equatable {
 
       purchaseInfo: purchaseInfo != null ? purchaseInfo() : this.purchaseInfo,
       userProfile: userProfile != null ? userProfile() : this.userProfile,
-      exceptionDetail:
-          exceptionDetail != null ? exceptionDetail() : this.exceptionDetail,
-      cafeBazzarPaymentInfo:
-          cafeBazzarPaymentInfo != null
-              ? cafeBazzarPaymentInfo()
-              : this.cafeBazzarPaymentInfo,
+      exceptionDetail: exceptionDetail != null
+          ? exceptionDetail()
+          : this.exceptionDetail,
+      cafeBazzarPaymentInfo: cafeBazzarPaymentInfo != null
+          ? cafeBazzarPaymentInfo()
+          : this.cafeBazzarPaymentInfo,
       onCafeBazzarSubscribeStatus:
           onCafeBazzarSubscribeStatus ?? this.onCafeBazzarSubscribeStatus,
       onReadCafeBazzarSkusStatus:
           onReadCafeBazzarSkusStatus ?? this.onReadCafeBazzarSkusStatus,
       onReadUserProfileStatus:
           onReadUserProfileStatus ?? this.onReadUserProfileStatus,
+      readCoffeBazzarPaymentStatus:
+          readCoffeBazzarPaymentStatus ?? this.readCoffeBazzarPaymentStatus,
       skuDetails: skuDetails ?? this.skuDetails,
       onCreateSubscriptionPaymentsStatus:
           onCreateSubscriptionPaymentsStatus ??

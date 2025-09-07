@@ -32,14 +32,11 @@ class FoodReportRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (_) => FoodReportCubit(
-            foodReport: RepositoryProvider.of<FoodReport>(context),
-            fitnessNutrition: RepositoryProvider.of<FitnessNutrition>(context),
-            profileRepository: RepositoryProvider.of<ProfileRepository>(
-              context,
-            ),
-          ),
+      create: (_) => FoodReportCubit(
+        foodReport: RepositoryProvider.of<FoodReport>(context),
+        fitnessNutrition: RepositoryProvider.of<FitnessNutrition>(context),
+        profileRepository: RepositoryProvider.of<ProfileRepository>(context),
+      ),
       lazy: false,
       child: HomeWidgetListener(
         child: BazzarReviewListener(
@@ -64,9 +61,8 @@ class BazzarReviewListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<FoodReportCubit, FoodReportState>(
-      listenWhen:
-          (previous, current) =>
-              previous.foods != current.foods && current.foods.length >= 5,
+      listenWhen: (previous, current) =>
+          previous.foods != current.foods && current.foods.length >= 5,
       listener: (context, state) async {
         // show dialog
         if (state.isCommitReviewedOnCafeBazzar) {
@@ -127,11 +123,10 @@ class HomeWidgetListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<FoodReportCubit, FoodReportState>(
-      listenWhen:
-          (previous, current) =>
-              previous.foods != current.foods &&
-              current.foods.length < 5 &&
-              current.foods.isNotEmpty,
+      listenWhen: (previous, current) =>
+          previous.foods != current.foods &&
+          current.foods.length < 5 &&
+          current.foods.isNotEmpty,
       listener: (context, state) async {
         // show dialog
         if (state.isShowAddHomeWidgetDialog) {

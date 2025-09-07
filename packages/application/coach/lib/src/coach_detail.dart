@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:coach/src/cubit/coach_cubit.dart';
+import 'package:coach/src/cubit/payment_cubit.dart';
+import 'package:coach/src/payment_listeners.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -46,26 +48,28 @@ class CoachDetailListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<CoachCubit, CoachState>(
-      listenWhen: (previous, current) =>
-          previous.readSelectedCoachProgramsStatus !=
-          current.readSelectedCoachProgramsStatus,
-      listener: (context, state) {
-        if (state.readSelectedCoachProgramsStatus.isConnectionError) {
-          final content = context.l10n.networkError;
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state
-            .readSelectedCoachProgramsStatus
-            .isInternetConnectionError) {
-          final content = context.l10n.internetConnectionError;
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(content)));
-        }
-      },
-      child: CoachDetailBuilder(),
+    return PaymentBlocListeners(
+      child: BlocListener<CoachCubit, CoachState>(
+        listenWhen: (previous, current) =>
+            previous.readSelectedCoachProgramsStatus !=
+            current.readSelectedCoachProgramsStatus,
+        listener: (context, state) {
+          if (state.readSelectedCoachProgramsStatus.isConnectionError) {
+            final content = context.l10n.networkError;
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(content)));
+          } else if (state
+              .readSelectedCoachProgramsStatus
+              .isInternetConnectionError) {
+            final content = context.l10n.internetConnectionError;
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(content)));
+          }
+        },
+        child: CoachDetailBuilder(),
+      ),
     );
   }
 }
@@ -337,8 +341,9 @@ class ProgramCard extends StatelessWidget {
             ),
             ProgramCardRichTextRow(
               label: context.l10n.profileCoachProfileCoachProgramPriceLabel,
+              // add 50% to price
               value:
-                  '${(program.price.price * 10000).toStringAsFixed(0)} ${program.currency.name}',
+                  '${(program.price.price * 10000 * 1.5).toStringAsFixed(0)} ${program.currency.name}',
             ),
             ProgramCardRichTextRow(
               label: context.l10n.profileCoachProfileCoachProgramFeatureLabel,
@@ -352,7 +357,12 @@ class ProgramCard extends StatelessWidget {
                   .join('\n'),
             ),
             Spacer(),
-            ElevatedButton(onPressed: () {}, child: Text('data')),
+            ElevatedButton(
+              onPressed: () {
+                context.read<PaymentCubit>().onCafeBazzarSubscribe(program);
+              },
+              child: Text('data'),
+            ),
           ],
         ),
       ),

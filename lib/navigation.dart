@@ -11,6 +11,7 @@ import 'package:food_report_app/food_report.dart';
 import 'package:go_router/go_router.dart';
 import 'package:food_input_app/food_input.dart';
 import 'package:introduction_app/introduction.dart';
+import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
 import 'package:profile_app/profile.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -21,7 +22,7 @@ import 'package:image_repository/image_repository.dart';
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: RoutesNames.searchRoute.path,
+      initialLocation: RoutesNames.profileRoute.path,
       observers: [SentryNavigatorObserver()],
       routes: [
         GoRoute(
@@ -228,15 +229,30 @@ class Navigation {
         ),
         ShellRoute(
           builder: (context, state, child) {
-            return BlocProvider(
-              create: (_) => CoachCubit(
-                coachRepository: RepositoryProvider.of<CoachRepository>(
-                  context,
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (_) => CoachCubit(
+                    coachRepository: RepositoryProvider.of<CoachRepository>(
+                      context,
+                    ),
+                    imageRepository: RepositoryProvider.of<ImageRepository>(
+                      context,
+                    ),
+                  ),
+                  child: child,
                 ),
-                imageRepository: RepositoryProvider.of<ImageRepository>(
-                  context,
+                BlocProvider(
+                  create: (_) => PaymentCubit(
+                    profileRepository: RepositoryProvider.of<ProfileRepository>(
+                      context,
+                    ),
+                    paymentRepository: RepositoryProvider.of<PaymentRepository>(
+                      context,
+                    ),
+                  ),
                 ),
-              ),
+              ],
               child: child,
             );
           },
