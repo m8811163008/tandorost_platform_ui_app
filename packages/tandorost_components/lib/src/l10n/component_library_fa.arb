@@ -657,6 +657,7 @@
     "profileRouteTansactionListTilePurchaseDate": "تاریخ خرید",
     "profileRouteTansactionListTileExpireDate": "تاریخ اتمام",
     "profileRouteTansactionListTileUpdatedAt": "تاریخ بروزرسانی",
+    "profileRouteTansactionListTileProgramId": "شناسه برنامه پشتیبانی مربی",
     "profileRouteTansactionListTileSubscriptionType": "نوع اشتراک",
     "profileRouteTansactionListTileCafeBazzarOrderID": "شناسه کافه بازار",
     "profileRouteTansactionListTileFoodRequestLimit": "تعداد غذای قابل ثبت",
@@ -705,5 +706,6 @@
     "profileCoachProfileCoachProgramSaveButtonLabel" : "اضافه کردن برنامه",
     "profileCoachProfileCoachProgramDeleteDialogTitle" : "حذف برنامه",
     "profileCoachProfileCoachProgramDeleteDialogLabel" : "آیا این برنامه مربی حذف شود؟",
-    "coachDetailLanguageLabel" : "زبان مربی"
+    "coachDetailLanguageLabel" : "زبان مربی",
+    "coachListEmptyListlabel" : "مربی فعالی پیدا نمیشود. لطفا با پشیتبانی تماس بگیرید"
 }

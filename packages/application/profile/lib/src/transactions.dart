@@ -9,9 +9,8 @@ class Transactions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileCubit, ProfileState>(
-      listenWhen:
-          (previous, current) =>
-              previous.readSubscriptionStatus != current.readSubscriptionStatus,
+      listenWhen: (previous, current) =>
+          previous.readSubscriptionStatus != current.readSubscriptionStatus,
       listener: (context, state) {
         if (state.readSubscriptionStatus.isConnectionError) {
           final content = context.l10n.networkError;
@@ -25,9 +24,8 @@ class Transactions extends StatelessWidget {
           ).showSnackBar(SnackBar(content: Text(content)));
         }
       },
-      buildWhen:
-          (previous, current) =>
-              previous.readSubscriptionStatus != current.readSubscriptionStatus,
+      buildWhen: (previous, current) =>
+          previous.readSubscriptionStatus != current.readSubscriptionStatus,
       builder: (context, state) {
         if (state.readSubscriptionStatus.isLoading) {
           return AppDialog(
@@ -37,17 +35,16 @@ class Transactions extends StatelessWidget {
         }
         return AppDialog(
           title: context.l10n.profileRouteTansactionDialogTitle,
-          contents:
-              state.subscriptions
-                  .map(
-                    (e) => Padding(
-                      padding: EdgeInsets.only(
-                        bottom: context.sizeExtenstion.medium,
-                      ),
-                      child: TransactionTile(subscriptionPayment: e),
-                    ),
-                  )
-                  .toList(),
+          contents: state.subscriptions
+              .map(
+                (e) => Padding(
+                  padding: EdgeInsets.only(
+                    bottom: context.sizeExtenstion.medium,
+                  ),
+                  child: TransactionTile(subscriptionPayment: e),
+                ),
+              )
+              .toList(),
         );
       },
     );
@@ -99,6 +96,10 @@ class TransactionTile extends StatelessWidget {
           Text(
             '${context.l10n.profileRouteTansactionListTileActive}: ${subscriptionPayment.isActive ? context.l10n.yes : context.l10n.no}',
           ),
+          if (subscriptionPayment.programId != null)
+            Text(
+              '${context.l10n.profileRouteTansactionListTileProgramId}: ${subscriptionPayment.programId}',
+            ),
         ],
       ),
     );

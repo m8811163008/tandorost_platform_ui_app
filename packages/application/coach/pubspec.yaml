@@ -23,8 +23,7 @@ dependencies:
     path: ../../repositories/profile
   payment_repository:
     path: ../../repositories/payment_repository
-  poolakey_flutter: 
-    path: ../../repositories/poolakey_flutter
+  flutter_poolakey: ^2.2.0+1.0.0
   
 dev_dependencies:
   flutter_test:

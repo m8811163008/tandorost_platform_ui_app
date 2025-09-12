@@ -122,16 +122,27 @@ class CoachListBuilder extends StatelessWidget {
           previous.readCoachImagesDataStatus !=
               current.readCoachImagesDataStatus,
       builder: (context, state) {
+        final activeCoachProfiles = state.coachesProfile
+            .where((coach) => coach.isActive)
+            .toList();
+        if (activeCoachProfiles.isEmpty) {
+          return Padding(
+            padding: EdgeInsets.all(context.sizeExtenstion.medium),
+            child: Text(context.l10n.coachListEmptyListlabel, softWrap: true),
+          );
+        }
         if (state.readCoachesUserProfileStatus.isSuccess &&
             state.readCoachesProfileStatus.isSuccess &&
             state.readCoachImagesDataStatus.isSuccess) {
           return Padding(
             padding: EdgeInsetsGeometry.symmetric(
               horizontal: context.sizeExtenstion.medium,
+              vertical: context.sizeExtenstion.small,
             ),
             child: ListView.separated(
+              itemCount: activeCoachProfiles.length,
               itemBuilder: (context, index) {
-                final coach = state.coachesProfile[index];
+                final coach = activeCoachProfiles[index];
                 final coachUserProfile = state.coachesUserProfile[index];
                 final coachImagesFileData = state.coachesImagesData.where(
                   (image) => image.userId == coachUserProfile.id,
@@ -183,7 +194,6 @@ class CoachListBuilder extends StatelessWidget {
               separatorBuilder: (context, index) {
                 return SizedBox(height: context.sizeExtenstion.small);
               },
-              itemCount: state.coachesProfile.length,
             ),
           );
         } else {

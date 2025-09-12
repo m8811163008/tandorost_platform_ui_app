@@ -2684,6 +2684,12 @@ abstract class ComponentLibraryLocalizations {
   /// **'تاریخ بروزرسانی'**
   String get profileRouteTansactionListTileUpdatedAt;
 
+  /// No description provided for @profileRouteTansactionListTileProgramId.
+  ///
+  /// In fa, this message translates to:
+  /// **'شناسه برنامه پشتیبانی مربی'**
+  String get profileRouteTansactionListTileProgramId;
+
   /// No description provided for @profileRouteTansactionListTileSubscriptionType.
   ///
   /// In fa, this message translates to:
@@ -2935,6 +2941,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'زبان مربی'**
   String get coachDetailLanguageLabel;
+
+  /// No description provided for @coachListEmptyListlabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'مربی فعالی پیدا نمیشود. لطفا با پشیتبانی تماس بگیرید'**
+  String get coachListEmptyListlabel;
 }
 
 class _ComponentLibraryLocalizationsDelegate

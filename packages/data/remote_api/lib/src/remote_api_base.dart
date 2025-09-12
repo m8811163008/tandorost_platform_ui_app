@@ -679,7 +679,7 @@ class RemoteApiBase implements RemoteApi {
       }
     } on ValidationError {
       rethrow;
-    } on HttpException {
+    } on HttpException catch (e) {
       rethrow;
     } on SocketException {
       if (!await hasInternetConnection()) {

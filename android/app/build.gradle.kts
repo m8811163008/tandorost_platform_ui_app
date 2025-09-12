@@ -5,15 +5,30 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+allprojects {
+    repositories {
+        maven(url = "https://jitpack.io")
+        google()
+        maven(url = "https://plugins.gradle.org/m2/")
+        maven(url = "https://maven.google.com/") {
+            name = "Google"
+        }
+    }
+}
+
 android {
     namespace = "ir.tandorost_a.tandorost"
-    compileSdk = 35
+    compileSdk = 36
     ndkVersion = "27.0.12077973"
 
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     kotlinOptions {
@@ -52,6 +67,7 @@ android {
 }
 dependencies {
     // ...existing code...
+    implementation("com.github.cafebazaar.Poolakey:poolakey-rx3:2.2.0")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
     implementation("androidx.window:window:1.0.0")
     implementation("androidx.window:window-java:1.0.0")

@@ -8,9 +8,9 @@ class PaymentState extends Equatable {
   final AsyncProcessingStatus onCafeBazzarSubscribeStatus;
   final AsyncProcessingStatus onReadCafeBazzarSkusStatus;
   final AsyncProcessingStatus onReadUserProfileStatus;
-  final List<dynamic> skuDetails;
+  final List<SkuDetails> skuDetails;
   final SubscriptionPayment? subscriptionPayment;
-  final dynamic? purchaseInfo;
+  final PurchaseInfo? purchaseInfo;
   final UserProfile? userProfile;
   final String? exceptionDetail;
   final SubscriptionType? selectedSubscriptionType;
@@ -49,7 +49,7 @@ class PaymentState extends Equatable {
   ];
   PaymentState copyWith({
     ValueGetter<CafeBazzarPaymentInfo?>? cafeBazzarPaymentInfo,
-    ValueGetter<dynamic?>? purchaseInfo,
+    ValueGetter<PurchaseInfo?>? purchaseInfo,
     ValueGetter<UserProfile?>? userProfile,
     AsyncProcessingStatus? readCoffeBazzarPaymentStatus,
     AsyncProcessingStatus? coffeBazzarConnectionStatus,
@@ -57,7 +57,7 @@ class PaymentState extends Equatable {
     AsyncProcessingStatus? onCafeBazzarSubscribeStatus,
     AsyncProcessingStatus? onReadCafeBazzarSkusStatus,
     AsyncProcessingStatus? onReadUserProfileStatus,
-    List<dynamic>? skuDetails,
+    List<SkuDetails>? skuDetails,
     SubscriptionPayment? subscriptionPayment,
     ValueGetter<String?>? exceptionDetail,
     SubscriptionType? selectedSubscriptionType,

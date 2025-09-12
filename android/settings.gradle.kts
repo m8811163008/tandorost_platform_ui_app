@@ -6,9 +6,16 @@ pluginManagement {
         require(flutterSdkPath != null) { "flutter.sdk not set in local.properties" }
         flutterSdkPath
     }
-
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url = uri("https://jitpack.io") }
+    }
     includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
 
+}
+dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
@@ -16,7 +23,6 @@ pluginManagement {
         maven { url = uri("https://jitpack.io") }
     }
 }
-
 plugins {
     id("dev.flutter.flutter-plugin-loader") version "1.0.0"
     id("com.android.application") version "8.9.0" apply false

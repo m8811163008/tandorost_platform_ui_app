@@ -1729,6 +1729,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get profileRouteTansactionListTileUpdatedAt => 'تاریخ بروزرسانی';
 
   @override
+  String get profileRouteTansactionListTileProgramId =>
+      'شناسه برنامه پشتیبانی مربی';
+
+  @override
   String get profileRouteTansactionListTileSubscriptionType => 'نوع اشتراک';
 
   @override
@@ -1878,4 +1882,8 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get coachDetailLanguageLabel => 'زبان مربی';
+
+  @override
+  String get coachListEmptyListlabel =>
+      'مربی فعالی پیدا نمیشود. لطفا با پشیتبانی تماس بگیرید';
 }

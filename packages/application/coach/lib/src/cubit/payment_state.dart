@@ -8,11 +8,12 @@ class PaymentState extends Equatable {
   final AsyncProcessingStatus onCafeBazzarSubscribeStatus;
   final AsyncProcessingStatus onReadCafeBazzarSkusStatus;
   final AsyncProcessingStatus onReadUserProfileStatus;
-  final List<dynamic> skuDetails;
+  final List<SkuDetails> skuDetails;
   final SubscriptionPayment? subscriptionPayment;
-  final dynamic? purchaseInfo;
+  final PurchaseInfo? purchaseInfo;
   final UserProfile? userProfile;
   final String? exceptionDetail;
+  final CoachProgram? selectedCoachProgram;
 
   const PaymentState({
     this.readCoffeBazzarPaymentStatus = AsyncProcessingStatus.inital,
@@ -24,7 +25,7 @@ class PaymentState extends Equatable {
     this.skuDetails = const [],
     this.cafeBazzarPaymentInfo,
     this.userProfile,
-
+    this.selectedCoachProgram,
     this.purchaseInfo,
     this.exceptionDetail,
     this.subscriptionPayment,
@@ -44,10 +45,11 @@ class PaymentState extends Equatable {
     onReadCafeBazzarSkusStatus,
     skuDetails,
     subscriptionPayment,
+    selectedCoachProgram,
   ];
   PaymentState copyWith({
     ValueGetter<CafeBazzarPaymentInfo?>? cafeBazzarPaymentInfo,
-    ValueGetter<dynamic?>? purchaseInfo,
+    ValueGetter<PurchaseInfo?>? purchaseInfo,
     ValueGetter<UserProfile?>? userProfile,
     AsyncProcessingStatus? readCoffeBazzarPaymentStatus,
     AsyncProcessingStatus? coffeBazzarConnectionStatus,
@@ -55,9 +57,10 @@ class PaymentState extends Equatable {
     AsyncProcessingStatus? onCafeBazzarSubscribeStatus,
     AsyncProcessingStatus? onReadCafeBazzarSkusStatus,
     AsyncProcessingStatus? onReadUserProfileStatus,
-    List<dynamic>? skuDetails,
+    List<SkuDetails>? skuDetails,
     SubscriptionPayment? subscriptionPayment,
     ValueGetter<String?>? exceptionDetail,
+    CoachProgram? selectedCoachProgram,
   }) {
     return PaymentState(
       purchaseInfo: purchaseInfo != null ? purchaseInfo() : this.purchaseInfo,
@@ -83,6 +86,7 @@ class PaymentState extends Equatable {
       coffeBazzarConnectionStatus:
           coffeBazzarConnectionStatus ?? this.coffeBazzarConnectionStatus,
       subscriptionPayment: subscriptionPayment ?? this.subscriptionPayment,
+      selectedCoachProgram: selectedCoachProgram ?? this.selectedCoachProgram,
     );
   }
 }

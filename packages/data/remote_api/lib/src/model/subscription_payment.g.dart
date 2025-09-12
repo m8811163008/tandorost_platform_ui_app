@@ -16,6 +16,7 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
           allowedKeys: const [
             'id',
             'user_id',
+            'program_id',
             'cafe_bazzar_order_id',
             'paid_amount',
             'discount_amount',
@@ -31,6 +32,7 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
         );
         final val = SubscriptionPayment(
           id: $checkedConvert('id', (v) => v as String?),
+          programId: $checkedConvert('program_id', (v) => v as String?),
           userId: $checkedConvert('user_id', (v) => v as String),
           paidAmount: $checkedConvert(
             'paid_amount',
@@ -77,6 +79,7 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
         return val;
       },
       fieldKeyMap: const {
+        'programId': 'program_id',
         'userId': 'user_id',
         'paidAmount': 'paid_amount',
         'discountAmount': 'discount_amount',
@@ -96,6 +99,7 @@ Map<String, dynamic> _$SubscriptionPaymentToJson(
 ) => <String, dynamic>{
   'id': ?instance.id,
   'user_id': instance.userId,
+  'program_id': ?instance.programId,
   'cafe_bazzar_order_id': ?instance.cafeBazzarOrderId,
   'paid_amount': instance.paidAmount,
   'discount_amount': instance.discountAmount,

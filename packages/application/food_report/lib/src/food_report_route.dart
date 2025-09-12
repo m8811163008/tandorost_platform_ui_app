@@ -109,7 +109,7 @@ class BazzarReviewListener extends StatelessWidget {
       final intent = AndroidIntent(
         action: 'action_view',
         data: 'bazaar://details?id=$packageName',
-        package: 'com.farsitel.bazaar',
+        package: 'ir.cafebazaar',
       );
       await intent.launch();
     }

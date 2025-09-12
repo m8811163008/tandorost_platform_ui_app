@@ -8,6 +8,7 @@ part 'subscription_payment.g.dart';
 class SubscriptionPayment {
   final String? id;
   final String userId;
+  final String? programId;
   final String? cafeBazzarOrderId;
   final double paidAmount;
   final double discountAmount;
@@ -32,6 +33,7 @@ class SubscriptionPayment {
 
   SubscriptionPayment({
     this.id,
+    this.programId,
     required this.userId,
     required this.paidAmount,
     required this.discountAmount,

@@ -8,11 +8,15 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24")
     }
 }
+
 allprojects {
     repositories {
+        maven(url = "https://jitpack.io")
         google()
-        mavenCentral()
-        maven { url = uri("https://jitpack.io") }
+        maven(url = "https://plugins.gradle.org/m2/")
+        maven(url = "https://maven.google.com/") {
+            name = "Google"
+        }
     }
 }
 

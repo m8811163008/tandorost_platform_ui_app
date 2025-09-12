@@ -6,9 +6,9 @@ import 'package:domain_model/domain_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_poolakey/flutter_poolakey.dart';
 
 import 'package:payment_repository/payment.dart';
-import 'package:poolakey_flutter/poolakey_flutter.dart';
 import 'package:profile/profile.dart';
 
 import 'package:tandorost_components/tandorost_components.dart';
@@ -93,17 +93,35 @@ class PaymentCubit extends Cubit<PaymentState> {
       ),
     );
     try {
-      // await PoolakeyFlutter.connect(
+      // await FlutterPoolakey.connect(
       //   state.cafeBazzarPaymentInfo!.caffeBazzarRsa,
       //   onDisconnected: () async => onConnectToCofeBazzar(),
       // );
-      await PoolakeyFlutter.connect(
+      await FlutterPoolakey.connect(
         state.cafeBazzarPaymentInfo!.caffeBazzarRsa,
-      );
-      _enhancedEmit(
-        state.copyWith(
-          coffeBazzarConnectionStatus: AsyncProcessingStatus.success,
-        ),
+        onSucceed: () {
+          _enhancedEmit(
+            state.copyWith(
+              coffeBazzarConnectionStatus: AsyncProcessingStatus.success,
+            ),
+          );
+        },
+        onFailed: () {
+          _enhancedEmit(
+            state.copyWith(
+              coffeBazzarConnectionStatus:
+                  AsyncProcessingStatus.connectionError,
+            ),
+          );
+        },
+        onDisconnected: () {
+          _enhancedEmit(
+            state.copyWith(
+              coffeBazzarConnectionStatus:
+                  AsyncProcessingStatus.connectionError,
+            ),
+          );
+        },
       );
     } on PlatformException catch (e) {
       if (e.message?.contains('BazaarNotFoundException') ?? false) {
@@ -120,16 +138,18 @@ class PaymentCubit extends Cubit<PaymentState> {
     _enhancedEmit(
       state.copyWith(
         onCafeBazzarSubscribeStatus: AsyncProcessingStatus.loading,
+        selectedCoachProgram: program,
       ),
     );
     try {
-      final purchaseInfo = await PoolakeyFlutter.purchaseProduct(
+      final purchaseInfo = await FlutterPoolakey.purchase(
         _sku(program),
         payload: json.encode(state.userProfile!.toJson()),
       );
-      // await PoolakeyFlutter.consumeProduct(purchaseInfo.purchaseToken);
       // consume
-      // bool? response = await PoolakeyFlutter.consume(purchaseInfo.purchaseToken);
+      bool? response = await FlutterPoolakey.consume(
+        purchaseInfo.purchaseToken,
+      );
 
       _enhancedEmit(
         state.copyWith(
@@ -182,20 +202,37 @@ class PaymentCubit extends Cubit<PaymentState> {
     //await for proper implementation from the backend
     // after it consume purchase
     final sku = state.purchaseInfo!.productId;
-    final skuDetail = "state.skuDetails.singleWhere(";
-    //   (skuDetail) => skuDetail.sku == sku,
-    // );
+    final skuDetail = state.skuDetails.singleWhere(
+      (skuDetail) => skuDetail.sku == sku,
+    );
+    final programDurationinDays = state.selectedCoachProgram!.durationWeeks * 7;
+
+    SubscriptionType? subscriptionType;
+    if (programDurationinDays < SubscriptionType.oneMonth.duration.inDays) {
+      subscriptionType = SubscriptionType.oneMonth;
+    } else if (programDurationinDays <
+        SubscriptionType.threeMonth.duration.inDays) {
+      subscriptionType = SubscriptionType.threeMonth;
+    } else if (programDurationinDays <
+        SubscriptionType.sixMonth.duration.inDays) {
+      subscriptionType = SubscriptionType.sixMonth;
+    }
+    // final duration = state
     final subscriptionPayment = SubscriptionPayment(
+      programId: state.selectedCoachProgram!.id!,
       userId: state.userProfile!.id,
-      paidAmount: 1, //"skuDetail.price.toRialDouble()",
+      cafeBazzarOrderId: state.purchaseInfo!.orderId,
+      paidAmount: skuDetail.price.toRialDouble(),
       discountAmount: 0,
       currency: Currency.irRial,
       paymentMethod: PaymentMethod.inAppPaymentCafeBazzar,
       purchaseDate: DateTime.fromMillisecondsSinceEpoch(
         state.purchaseInfo!.purchaseTime,
       ),
-      subscriptionType: SubscriptionType.threeMonth,
+      subscriptionType: subscriptionType!,
+      updatedAt: DateTime.now().toUtc(),
     );
+
     _enhancedEmit(
       state.copyWith(
         onCreateSubscriptionPaymentsStatus: AsyncProcessingStatus.loading,
@@ -227,7 +264,9 @@ class PaymentCubit extends Cubit<PaymentState> {
       state.copyWith(onReadCafeBazzarSkusStatus: AsyncProcessingStatus.loading),
     );
     try {
-      final skus = await PoolakeyFlutter.getPurchasedProducts();
+      final skus = await FlutterPoolakey.getInAppSkuDetails([
+        _sku(state.selectedCoachProgram!),
+      ]);
       _enhancedEmit(
         state.copyWith(
           skuDetails: skus,
