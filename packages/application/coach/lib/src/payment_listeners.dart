@@ -1,3 +1,4 @@
+import 'package:coach/coach.dart';
 import 'package:coach/src/cubit/payment_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -37,7 +38,6 @@ class PaymentBlocListeners extends StatelessWidget {
             //web
             final content = context.l10n.bazzarNotFound;
             if (state.coffeBazzarConnectionStatus.isConnectionError) {
-              Navigator.of(context).pop();
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
@@ -98,11 +98,7 @@ class PaymentBlocListeners extends StatelessWidget {
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
             } else if (state.onCreateSubscriptionPaymentsStatus.isSuccess) {
-              Navigator.of(context).pop();
-              final content = context.l10n.bazzarSuccessfulPayment;
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(content)));
+              context.read<CoachCubit>().upsertTraineeHistory();
             }
           },
         ),

@@ -310,7 +310,7 @@
     "foodReportDeleteDialogContent": "آیا این غذا حذف شود؟",
     "foodReportFoodsListLabel": "‌لیست خوراکی‌ها",
     "foodReportUserFoodRequirementNA": "N/A",
-    "appRoutesName": "{routesNames, select, loginRoute{ورود} registerRoute{ثبت نام} searchRoute{جستجو} resultRoute{نتیجه} forgotPassRoute{فراموشی رمز عبور} verificationRoute{تایید شماره} profileRoute{پروفایل} fitnessProfileRoute{ترکیب بدن | تناسب اندام} foodReportRoute{گزارش تغذیه} coachesListRoute{مربیان بدنسازی} coachDetailRoute{جزئیات مربی} vo2maxCalculator{هوازی | حداکثر کاهش چربی} other{ترجمه تعریف نشده}}",
+    "appRoutesName": "{routesNames, select, loginRoute{ورود} registerRoute{ثبت نام} searchRoute{جستجو} resultRoute{نتیجه} forgotPassRoute{فراموشی رمز عبور} verificationRoute{تایید شماره} profileRoute{پروفایل} fitnessProfileRoute{ترکیب بدن | تناسب اندام} foodReportRoute{گزارش تغذیه} coachesListRoute{مربیان بدنسازی} coachDetailRoute{جزئیات مربی} traineeForm{فرم اطلاعات شاگرد} vo2maxCalculator{هوازی | حداکثر کاهش چربی} other{ترجمه تعریف نشده}}",
     "@appRoutesName": {
         "placeholders": {
             "routesNames": {
@@ -707,5 +707,40 @@
     "profileCoachProfileCoachProgramDeleteDialogTitle" : "حذف برنامه",
     "profileCoachProfileCoachProgramDeleteDialogLabel" : "آیا این برنامه مربی حذف شود؟",
     "coachDetailLanguageLabel" : "زبان مربی",
-    "coachListEmptyListlabel" : "مربی فعالی پیدا نمیشود. لطفا با پشیتبانی تماس بگیرید"
+    "coachListEmptyListlabel" : "مربی فعالی پیدا نمیشود. لطفا با پشیتبانی تماس بگیرید",
+    "traineeHistoryFormTitle" : "پرسشنامه ارزیابی شاگرد",
+    "traineeHistoryFormIllnessHitoryLabel" : "سابقه بیماری",
+    "traineeHistoryFormIllnessHitoryHint" : "آیا تاکنون جراحی داشته‌اید؟ اگر بله، لطفاً نوع آن را بنویس. آیا تاکنون پزشک به شما گفته است که به بیماری قلبی، فشار خون بالا، دیابت، آسم یا هر بیماری مزمن یا کهنه دیگری مبتلا هستید؟ لطفاً توضیح دهید.",
+    "traineeHistoryFormInguryHitoryLabel" : "آسیب‌های گذشته",
+    "traineeHistoryFormInguryHitoryHint" : "آیا در حال حاضر یا در گذشته دچار آسیب‌دیدگی جدی در مفاصل (مانند زانو، شانه، کمر) یا عضلات شده‌اید؟ اگر بله، لطفاً نوع آسیب و وضعیت فعلی آن را شرح دهید.",
+    "traineeHistoryFormDisabilitiesHitoryLabel" : "محدودیت جسمانی",
+    "traineeHistoryFormDisabilitiesHitoryHint" : "آیا شرایط خاصی مانند دیسک کمر، آرتروز یا مشکلات تعادلی دارید که مربی باید از آن آگاه باشد?",
+    "traineeHistoryFormSupplementLabel" : "مکمل‌های مصرفی",
+    "traineeHistoryFormSupplementHint" : "آیا در حال حاضر مکمل خاصی مصرف می‌کنید که ممکن است بر انرژی، ضربان قلب یا توانایی ورزشی شما تأثیر بگذارد؟ لطفاً نام مکمل و دلیل مصرف را ذکر کنید.",
+    "traineeHistoryFormGoalsLabel" : "اولویت اهداف شما از شروع این برنامه چیست؟",
+    "traineeHistoryFormGoalsHint" : "ممکن است مربی هدف بهتری را پیشنهاد دهد",
+    "traineeHistoryFormGoalsValue": "{goal, select, loseWeight{کاهش وزن} power{سرعت و توان} strength{قدرت} endurance{استقامت} hypertrophy{هایپرتروفی یا افزایش ماهیچه} prepareASportingEvent{آمادگی برای مسابقه} other{ترجمه تعریف نشده}}",
+    "@traineeHistoryFormGoalsValue": {
+        "placeholders": {
+            "goal": {
+                "type": "String"
+            }
+        }
+    },
+    "traineeHistoryDailyActivityLabel" : "فعالیت روزانه و سبک زندگی",
+    "traineeHistoryDailyActivityHint" : "شغل یا فعالیت روزانه شما چیست و بدن شما در چه حالتی و زیر چه استرسی قرار دارد.به طور میانگین در طول روز چند ساعت می‌نشینید",
+    "traineeHistorySportTrainingHistoryLabel" : "سابقه ورزشی و نوع تمرینات قبل",
+    "traineeHistorySportTrainingHistoryHint" : "چه ورزش‌هایی قبلاً انجام داده‌اید؟ نوع تمرینات و مدت سابقه را بنویسید.",
+    "traineeHistoryCurrentPracticeFrequencyPerWeekLabel" : "تعداد دفعات فعلی تمرین در هفته",
+    "traineeHistoryCurrentPracticeFrequencyPerWeekHint" : "در حال حاضر چند روز تمرین میکنید؟ ممکن است مربی تعداد روز متفاوتی پیشنهاد دهد",
+    "traineeHistoryExerciseEquipmentLabel" : "دسترسی به تجهیزات ورزشی",
+    "traineeHistoryExerciseEquipmentValue": "{equipment, select, weightMachine{دستگاه بدنسازی} cableMachine{دستگاه سیمکش} bodyWeight{وزن بدن} barbell{هالتر} dumbbell{دمبل} band{کش تمرینی} kettlebell{کتل‌بل} other{ترجمه تعریف نشده}}",
+    "@traineeHistoryExerciseEquipmentValue": {
+        "placeholders": {
+            "equipment": {
+                "type": "String"
+            }
+        }
+    }
 }
+

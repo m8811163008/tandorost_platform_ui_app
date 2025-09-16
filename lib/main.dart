@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:athlete_repository/athlete_repository.dart';
 import 'package:authentication/authentication.dart';
 import 'package:fitness_nutrition/fitness_nutrition.dart';
 import 'package:flutter/material.dart';
@@ -88,6 +89,11 @@ class DependencyManager extends StatelessWidget {
     final paymentRep = PaymentRepository(remoteApi: remoteApi);
 
     final imageRepository = ImageRepository(remoteApi: remoteApi);
+    final athleteRepository = AthleteRepository(
+      remoteApi: remoteApi,
+      localStorage: localStorage,
+    );
+
     final fitnessNutrition = FitnessNutrition(
       remoteApi: remoteApi,
       localStorage: localStorage,
@@ -108,6 +114,7 @@ class DependencyManager extends StatelessWidget {
         ),
         RepositoryProvider(create: (_) => authenticationRep, lazy: true),
         RepositoryProvider(create: (_) => imageRepository, lazy: true),
+        RepositoryProvider(create: (_) => athleteRepository, lazy: true),
         RepositoryProvider(
           create: (_) => fitnessNutrition,
           lazy: true,

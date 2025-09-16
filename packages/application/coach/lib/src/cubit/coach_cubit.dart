@@ -1,5 +1,7 @@
 import 'dart:io';
+import 'dart:typed_data';
 
+import 'package:athlete_repository/athlete_repository.dart';
 import 'package:coach_repository/coach_repository.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +11,19 @@ import 'package:tandorost_components/tandorost_components.dart';
 part 'coach_state.dart';
 
 class CoachCubit extends Cubit<CoachState> {
-  CoachCubit({required this.coachRepository, required this.imageRepository})
-    : super(CoachState()) {
+  CoachCubit({
+    required this.coachRepository,
+    required this.imageRepository,
+    required this.athleteRepository,
+  }) : super(CoachState()) {
     readCoachesUserProfiles();
     readCoachesProfile();
+    readUserImageGallary();
   }
 
   final CoachRepository coachRepository;
   final ImageRepository imageRepository;
+  final AthleteRepository athleteRepository;
 
   Future<void> readCoachesUserProfiles() async {
     _enhancedEmit(
@@ -124,6 +131,41 @@ class CoachCubit extends Cubit<CoachState> {
     }
   }
 
+  void onChangeTraineeHistory(TraineeHistory traineeHistory) {
+    _enhancedEmit(state.copyWith(traineeHistory: traineeHistory));
+  }
+
+  void upsertTraineeHistory() async {
+    _enhancedEmit(
+      state.copyWith(
+        upsertingTraineeHistoryStatus: AsyncProcessingStatus.loading,
+      ),
+    );
+    try {
+      final upsertedTraineeHistory = await athleteRepository
+          .upsertTraineeHistory(state.traineeHistory!);
+      _enhancedEmit(
+        state.copyWith(
+          upsertingTraineeHistoryStatus: AsyncProcessingStatus.success,
+          traineeHistory: upsertedTraineeHistory,
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          upsertingTraineeHistoryStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          upsertingTraineeHistoryStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
   Future<void> readCoachImages() async {
     _enhancedEmit(
       state.copyWith(readCoachImagesDataStatus: AsyncProcessingStatus.loading),
@@ -168,6 +210,134 @@ class CoachCubit extends Cubit<CoachState> {
       _enhancedEmit(
         state.copyWith(
           readCoachImagesDataStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
+  void readUserImageGallary() async {
+    _enhancedEmit(
+      state.copyWith(readUserImageGallaryStatus: AsyncProcessingStatus.loading),
+    );
+
+    try {
+      final userImagesDetail = await imageRepository
+          .readUnarchivedUserImageGallary([GallaryTag.defaultTag]);
+
+      final filesDetail = <FileDetail>[];
+      for (var imageDetail in userImagesDetail) {
+        final result = await imageRepository.readImage(imageDetail);
+
+        filesDetail.add(result);
+      }
+      _enhancedEmit(
+        state.copyWith(
+          readUserImageGallaryStatus: AsyncProcessingStatus.success,
+          filesData: userImagesDetail,
+          filesDetail: filesDetail.toList(),
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          readUserImageGallaryStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          readUserImageGallaryStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
+  void onEditImageComplete(
+    Uint8List bytes,
+    String fileName, [
+    DateTime? uploadDate,
+  ]) async {
+    final fileDetail = FileDetail(
+      fileName: fileName,
+      bytes: bytes,
+      uploadDate: uploadDate,
+    );
+    final userImage = UserImage(
+      gallaryTag: GallaryTag.defaultTag,
+      imageGallaryFiles: [fileDetail],
+      uploadDate: uploadDate,
+    );
+    _enhancedEmit(
+      state.copyWith(addUserImageStatus: AsyncProcessingStatus.loading),
+    );
+
+    try {
+      final userImagesDetail = await imageRepository.addUserImages(userImage);
+      // fetch image
+      final fetchImageDetail = await imageRepository.readImage(
+        userImagesDetail.first,
+      );
+      // update state
+      final fileDetail = List<FileDetail>.from(state.filesDetail);
+      final filesData = List<FileData>.from(state.filesData);
+
+      fileDetail.add(fetchImageDetail);
+      filesData.addAll(userImagesDetail);
+      _enhancedEmit(
+        state.copyWith(
+          addUserImageStatus: AsyncProcessingStatus.success,
+          filesData: filesData,
+          filesDetail: fileDetail,
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          addUserImageStatus: AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          addUserImageStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
+  void insertOrDeleteFromArchiveImageList(String? imageId) {
+    if (imageId == null) return;
+    final imagesId = List<String>.from(state.archiveImagesId);
+    state.archiveImagesId.contains(imageId)
+        ? imagesId.remove(imageId)
+        : imagesId.add(imageId);
+    _enhancedEmit(state.copyWith(archiveImagesId: imagesId));
+  }
+
+  void archiveImages() async {
+    _enhancedEmit(
+      state.copyWith(archivingImagesStatus: AsyncProcessingStatus.loading),
+    );
+
+    try {
+      await imageRepository.archiveUserImages(state.archiveImagesId);
+      _enhancedEmit(
+        state.copyWith(
+          archivingImagesStatus: AsyncProcessingStatus.success,
+          archiveImagesId: [],
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          archivingImagesStatus: AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          archivingImagesStatus: AsyncProcessingStatus.connectionError,
         ),
       );
     }

@@ -790,6 +790,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
       'foodReportRoute': 'گزارش تغذیه',
       'coachesListRoute': 'مربیان بدنسازی',
       'coachDetailRoute': 'جزئیات مربی',
+      'traineeForm': 'فرم اطلاعات شاگرد',
       'vo2maxCalculator': 'هوازی | حداکثر کاهش چربی',
       'other': 'ترجمه تعریف نشده',
     });
@@ -1886,4 +1887,98 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   @override
   String get coachListEmptyListlabel =>
       'مربی فعالی پیدا نمیشود. لطفا با پشیتبانی تماس بگیرید';
+
+  @override
+  String get traineeHistoryFormTitle => 'پرسشنامه ارزیابی شاگرد';
+
+  @override
+  String get traineeHistoryFormIllnessHitoryLabel => 'سابقه بیماری';
+
+  @override
+  String get traineeHistoryFormIllnessHitoryHint =>
+      'آیا تاکنون جراحی داشته‌اید؟ اگر بله، لطفاً نوع آن را بنویس. آیا تاکنون پزشک به شما گفته است که به بیماری قلبی، فشار خون بالا، دیابت، آسم یا هر بیماری مزمن یا کهنه دیگری مبتلا هستید؟ لطفاً توضیح دهید.';
+
+  @override
+  String get traineeHistoryFormInguryHitoryLabel => 'آسیب‌های گذشته';
+
+  @override
+  String get traineeHistoryFormInguryHitoryHint =>
+      'آیا در حال حاضر یا در گذشته دچار آسیب‌دیدگی جدی در مفاصل (مانند زانو، شانه، کمر) یا عضلات شده‌اید؟ اگر بله، لطفاً نوع آسیب و وضعیت فعلی آن را شرح دهید.';
+
+  @override
+  String get traineeHistoryFormDisabilitiesHitoryLabel => 'محدودیت جسمانی';
+
+  @override
+  String get traineeHistoryFormDisabilitiesHitoryHint =>
+      'آیا شرایط خاصی مانند دیسک کمر، آرتروز یا مشکلات تعادلی دارید که مربی باید از آن آگاه باشد?';
+
+  @override
+  String get traineeHistoryFormSupplementLabel => 'مکمل‌های مصرفی';
+
+  @override
+  String get traineeHistoryFormSupplementHint =>
+      'آیا در حال حاضر مکمل خاصی مصرف می‌کنید که ممکن است بر انرژی، ضربان قلب یا توانایی ورزشی شما تأثیر بگذارد؟ لطفاً نام مکمل و دلیل مصرف را ذکر کنید.';
+
+  @override
+  String get traineeHistoryFormGoalsLabel =>
+      'اولویت اهداف شما از شروع این برنامه چیست؟';
+
+  @override
+  String get traineeHistoryFormGoalsHint =>
+      'ممکن است مربی هدف بهتری را پیشنهاد دهد';
+
+  @override
+  String traineeHistoryFormGoalsValue(String goal) {
+    String _temp0 = intl.Intl.selectLogic(goal, {
+      'loseWeight': 'کاهش وزن',
+      'power': 'سرعت و توان',
+      'strength': 'قدرت',
+      'endurance': 'استقامت',
+      'hypertrophy': 'هایپرتروفی یا افزایش ماهیچه',
+      'prepareASportingEvent': 'آمادگی برای مسابقه',
+      'other': 'ترجمه تعریف نشده',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get traineeHistoryDailyActivityLabel => 'فعالیت روزانه و سبک زندگی';
+
+  @override
+  String get traineeHistoryDailyActivityHint =>
+      'شغل یا فعالیت روزانه شما چیست و بدن شما در چه حالتی و زیر چه استرسی قرار دارد.به طور میانگین در طول روز چند ساعت می‌نشینید';
+
+  @override
+  String get traineeHistorySportTrainingHistoryLabel =>
+      'سابقه ورزشی و نوع تمرینات قبل';
+
+  @override
+  String get traineeHistorySportTrainingHistoryHint =>
+      'چه ورزش‌هایی قبلاً انجام داده‌اید؟ نوع تمرینات و مدت سابقه را بنویسید.';
+
+  @override
+  String get traineeHistoryCurrentPracticeFrequencyPerWeekLabel =>
+      'تعداد دفعات فعلی تمرین در هفته';
+
+  @override
+  String get traineeHistoryCurrentPracticeFrequencyPerWeekHint =>
+      'در حال حاضر چند روز تمرین میکنید؟ ممکن است مربی تعداد روز متفاوتی پیشنهاد دهد';
+
+  @override
+  String get traineeHistoryExerciseEquipmentLabel => 'دسترسی به تجهیزات ورزشی';
+
+  @override
+  String traineeHistoryExerciseEquipmentValue(String equipment) {
+    String _temp0 = intl.Intl.selectLogic(equipment, {
+      'weightMachine': 'دستگاه بدنسازی',
+      'cableMachine': 'دستگاه سیمکش',
+      'bodyWeight': 'وزن بدن',
+      'barbell': 'هالتر',
+      'dumbbell': 'دمبل',
+      'band': 'کش تمرینی',
+      'kettlebell': 'کتل‌بل',
+      'other': 'ترجمه تعریف نشده',
+    });
+    return '$_temp0';
+  }
 }

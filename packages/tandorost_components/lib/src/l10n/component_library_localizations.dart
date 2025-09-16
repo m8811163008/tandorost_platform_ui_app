@@ -1293,7 +1293,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @appRoutesName.
   ///
   /// In fa, this message translates to:
-  /// **'{routesNames, select, loginRoute{ورود} registerRoute{ثبت نام} searchRoute{جستجو} resultRoute{نتیجه} forgotPassRoute{فراموشی رمز عبور} verificationRoute{تایید شماره} profileRoute{پروفایل} fitnessProfileRoute{ترکیب بدن | تناسب اندام} foodReportRoute{گزارش تغذیه} coachesListRoute{مربیان بدنسازی} coachDetailRoute{جزئیات مربی} vo2maxCalculator{هوازی | حداکثر کاهش چربی} other{ترجمه تعریف نشده}}'**
+  /// **'{routesNames, select, loginRoute{ورود} registerRoute{ثبت نام} searchRoute{جستجو} resultRoute{نتیجه} forgotPassRoute{فراموشی رمز عبور} verificationRoute{تایید شماره} profileRoute{پروفایل} fitnessProfileRoute{ترکیب بدن | تناسب اندام} foodReportRoute{گزارش تغذیه} coachesListRoute{مربیان بدنسازی} coachDetailRoute{جزئیات مربی} traineeForm{فرم اطلاعات شاگرد} vo2maxCalculator{هوازی | حداکثر کاهش چربی} other{ترجمه تعریف نشده}}'**
   String appRoutesName(String routesNames);
 
   /// No description provided for @wellcomeMessage.
@@ -2947,6 +2947,126 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'مربی فعالی پیدا نمیشود. لطفا با پشیتبانی تماس بگیرید'**
   String get coachListEmptyListlabel;
+
+  /// No description provided for @traineeHistoryFormTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'پرسشنامه ارزیابی شاگرد'**
+  String get traineeHistoryFormTitle;
+
+  /// No description provided for @traineeHistoryFormIllnessHitoryLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'سابقه بیماری'**
+  String get traineeHistoryFormIllnessHitoryLabel;
+
+  /// No description provided for @traineeHistoryFormIllnessHitoryHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'آیا تاکنون جراحی داشته‌اید؟ اگر بله، لطفاً نوع آن را بنویس. آیا تاکنون پزشک به شما گفته است که به بیماری قلبی، فشار خون بالا، دیابت، آسم یا هر بیماری مزمن یا کهنه دیگری مبتلا هستید؟ لطفاً توضیح دهید.'**
+  String get traineeHistoryFormIllnessHitoryHint;
+
+  /// No description provided for @traineeHistoryFormInguryHitoryLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'آسیب‌های گذشته'**
+  String get traineeHistoryFormInguryHitoryLabel;
+
+  /// No description provided for @traineeHistoryFormInguryHitoryHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'آیا در حال حاضر یا در گذشته دچار آسیب‌دیدگی جدی در مفاصل (مانند زانو، شانه، کمر) یا عضلات شده‌اید؟ اگر بله، لطفاً نوع آسیب و وضعیت فعلی آن را شرح دهید.'**
+  String get traineeHistoryFormInguryHitoryHint;
+
+  /// No description provided for @traineeHistoryFormDisabilitiesHitoryLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'محدودیت جسمانی'**
+  String get traineeHistoryFormDisabilitiesHitoryLabel;
+
+  /// No description provided for @traineeHistoryFormDisabilitiesHitoryHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'آیا شرایط خاصی مانند دیسک کمر، آرتروز یا مشکلات تعادلی دارید که مربی باید از آن آگاه باشد?'**
+  String get traineeHistoryFormDisabilitiesHitoryHint;
+
+  /// No description provided for @traineeHistoryFormSupplementLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'مکمل‌های مصرفی'**
+  String get traineeHistoryFormSupplementLabel;
+
+  /// No description provided for @traineeHistoryFormSupplementHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'آیا در حال حاضر مکمل خاصی مصرف می‌کنید که ممکن است بر انرژی، ضربان قلب یا توانایی ورزشی شما تأثیر بگذارد؟ لطفاً نام مکمل و دلیل مصرف را ذکر کنید.'**
+  String get traineeHistoryFormSupplementHint;
+
+  /// No description provided for @traineeHistoryFormGoalsLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'اولویت اهداف شما از شروع این برنامه چیست؟'**
+  String get traineeHistoryFormGoalsLabel;
+
+  /// No description provided for @traineeHistoryFormGoalsHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'ممکن است مربی هدف بهتری را پیشنهاد دهد'**
+  String get traineeHistoryFormGoalsHint;
+
+  /// No description provided for @traineeHistoryFormGoalsValue.
+  ///
+  /// In fa, this message translates to:
+  /// **'{goal, select, loseWeight{کاهش وزن} power{سرعت و توان} strength{قدرت} endurance{استقامت} hypertrophy{هایپرتروفی یا افزایش ماهیچه} prepareASportingEvent{آمادگی برای مسابقه} other{ترجمه تعریف نشده}}'**
+  String traineeHistoryFormGoalsValue(String goal);
+
+  /// No description provided for @traineeHistoryDailyActivityLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'فعالیت روزانه و سبک زندگی'**
+  String get traineeHistoryDailyActivityLabel;
+
+  /// No description provided for @traineeHistoryDailyActivityHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'شغل یا فعالیت روزانه شما چیست و بدن شما در چه حالتی و زیر چه استرسی قرار دارد.به طور میانگین در طول روز چند ساعت می‌نشینید'**
+  String get traineeHistoryDailyActivityHint;
+
+  /// No description provided for @traineeHistorySportTrainingHistoryLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'سابقه ورزشی و نوع تمرینات قبل'**
+  String get traineeHistorySportTrainingHistoryLabel;
+
+  /// No description provided for @traineeHistorySportTrainingHistoryHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'چه ورزش‌هایی قبلاً انجام داده‌اید؟ نوع تمرینات و مدت سابقه را بنویسید.'**
+  String get traineeHistorySportTrainingHistoryHint;
+
+  /// No description provided for @traineeHistoryCurrentPracticeFrequencyPerWeekLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'تعداد دفعات فعلی تمرین در هفته'**
+  String get traineeHistoryCurrentPracticeFrequencyPerWeekLabel;
+
+  /// No description provided for @traineeHistoryCurrentPracticeFrequencyPerWeekHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'در حال حاضر چند روز تمرین میکنید؟ ممکن است مربی تعداد روز متفاوتی پیشنهاد دهد'**
+  String get traineeHistoryCurrentPracticeFrequencyPerWeekHint;
+
+  /// No description provided for @traineeHistoryExerciseEquipmentLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'دسترسی به تجهیزات ورزشی'**
+  String get traineeHistoryExerciseEquipmentLabel;
+
+  /// No description provided for @traineeHistoryExerciseEquipmentValue.
+  ///
+  /// In fa, this message translates to:
+  /// **'{equipment, select, weightMachine{دستگاه بدنسازی} cableMachine{دستگاه سیمکش} bodyWeight{وزن بدن} barbell{هالتر} dumbbell{دمبل} band{کش تمرینی} kettlebell{کتل‌بل} other{ترجمه تعریف نشده}}'**
+  String traineeHistoryExerciseEquipmentValue(String equipment);
 }
 
 class _ComponentLibraryLocalizationsDelegate

@@ -23,8 +23,11 @@ dependencies:
     path: ../../repositories/profile
   payment_repository:
     path: ../../repositories/payment_repository
+  athlete_repository:
+    path: ../../repositories/athlete_repository
   flutter_poolakey: ^2.2.0+1.0.0
-  
+  file_picker: ^10.1.9
+  pro_image_editor: ^9.9.3
 dev_dependencies:
   flutter_test:
     sdk: flutter

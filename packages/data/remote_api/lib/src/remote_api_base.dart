@@ -657,6 +657,38 @@ class RemoteApiBase implements RemoteApi {
     return res!.map((e) => FileData.fromJson(e)).toList();
   }
 
+  @override
+  Future<List<TraineeHistory>> readTraineeHistory() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readTraineeHistory();
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => TraineeHistory.fromJson(e)).toList();
+  }
+
+  @override
+  Future<TraineeHistory> upsertTraineeHistory(
+    TraineeHistory traineeHistory,
+  ) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.upsertTraineeHistory();
+    final res = await _handleRequest<JsonMap>(
+      () =>
+          interceptedHttp.post(uri, body: json.encode(traineeHistory.toJson())),
+    );
+    return TraineeHistory.fromJson(res!);
+  }
+
   Future<E?> _handleRequest<E>(Future<Response> Function() request) async {
     try {
       final res = await request();

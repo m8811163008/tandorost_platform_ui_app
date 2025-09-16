@@ -14,11 +14,13 @@ class CoachDetailRoute extends StatelessWidget {
     required this.bottomNavigationIndex,
     this.onDrawerNavigationChanged,
     required this.drawerNavigationIndex,
+    this.onTapProgram,
   });
   final ValueChanged<int>? onBottomNavigationChanged;
   final int bottomNavigationIndex;
   final ValueChanged<int>? onDrawerNavigationChanged;
   final int drawerNavigationIndex;
+  final VoidCallback? onTapProgram;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class CoachDetailRoute extends StatelessWidget {
           context.l10n.appRoutesName(RoutesNames.coachDetailRoute.name),
         ),
       ),
-      body: CoachDetailListener(),
+      body: CoachDetailListener(onTapProgram: onTapProgram),
       drawer: NavigationDrawer(
         onDestinationSelected: onDrawerNavigationChanged,
         selectedIndex: drawerNavigationIndex,
@@ -44,7 +46,8 @@ class CoachDetailRoute extends StatelessWidget {
 }
 
 class CoachDetailListener extends StatelessWidget {
-  const CoachDetailListener({super.key});
+  const CoachDetailListener({super.key, this.onTapProgram});
+  final VoidCallback? onTapProgram;
 
   @override
   Widget build(BuildContext context) {
@@ -68,14 +71,15 @@ class CoachDetailListener extends StatelessWidget {
             ).showSnackBar(SnackBar(content: Text(content)));
           }
         },
-        child: CoachDetailBuilder(),
+        child: CoachDetailBuilder(onTapProgram: onTapProgram),
       ),
     );
   }
 }
 
 class CoachDetailBuilder extends StatelessWidget {
-  const CoachDetailBuilder({super.key});
+  const CoachDetailBuilder({super.key, this.onTapProgram});
+  final VoidCallback? onTapProgram;
 
   @override
   Widget build(BuildContext context) {
@@ -103,24 +107,24 @@ class CoachDetailBuilder extends StatelessWidget {
                 child: Column(
                   children: [
                     CoachProfileSection(),
-                    if (coachImagesFileDataAchievement.isNotEmpty) ...[
+                    if (coachImagesFileDataCertificate.isNotEmpty) ...[
                       Text(
                         context.l10n.profileCertificatesLabel,
                         style: context.textTheme.titleSmall,
                       ),
-                      CoachImageGallarySection(tag: GallaryTag.achievement),
+                      CoachImageGallarySection(tag: GallaryTag.certificate),
                     ],
-                    if (coachImagesFileDataCertificate.isNotEmpty) ...[
+                    if (coachImagesFileDataAchievement.isNotEmpty) ...[
                       Text(
                         context.l10n.profileAchievementsLabel,
                         style: context.textTheme.titleSmall,
                       ),
-                      CoachImageGallarySection(tag: GallaryTag.certificate),
+                      CoachImageGallarySection(tag: GallaryTag.achievement),
                     ],
                   ],
                 ),
               ),
-              AppCard(child: CoachProgramsSection()),
+              AppCard(child: CoachProgramsSection(onTapProgram: onTapProgram)),
             ],
           ),
         );
@@ -147,7 +151,10 @@ class CoachProfileSection extends StatelessWidget {
           (image) => image.userId == coachUserProfile!.id,
         );
         FileDetail? coachProfileImageDetail;
-        if (coachImagesFileData.isNotEmpty) {
+        if (coachImagesFileData.isNotEmpty &&
+            coachImagesFileData.any(
+              (FileData e) => e.tag == GallaryTag.profileImage,
+            )) {
           final coachProfileImageFileData = coachImagesFileData.singleWhere(
             (fileData) => fileData.tag == GallaryTag.profileImage,
           );
@@ -249,7 +256,7 @@ class CoachImageGallarySection extends StatelessWidget {
               final imageData = state.coachesImagesData.singleWhere(
                 (e) => e.fileName == imageDetail.fileName,
               );
-              return ImagePlaceholder(
+              return CoachImagePlaceholder(
                 bytes: imageDetail.bytes,
                 description: imageData.description,
               );
@@ -265,7 +272,8 @@ class CoachImageGallarySection extends StatelessWidget {
 }
 
 class CoachProgramsSection extends StatelessWidget {
-  const CoachProgramsSection({super.key});
+  const CoachProgramsSection({super.key, this.onTapProgram});
+  final VoidCallback? onTapProgram;
 
   @override
   Widget build(BuildContext context) {
@@ -294,6 +302,7 @@ class CoachProgramsSection extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return ProgramCard(
                     program: state.readSelectedCoachPrograms![index],
+                    onTapProgram: onTapProgram,
                   );
                 },
                 separatorBuilder: (context, _) =>
@@ -309,8 +318,9 @@ class CoachProgramsSection extends StatelessWidget {
 }
 
 class ProgramCard extends StatelessWidget {
-  const ProgramCard({super.key, required this.program});
+  const ProgramCard({super.key, required this.program, this.onTapProgram});
   final CoachProgram program;
+  final VoidCallback? onTapProgram;
 
   @override
   Widget build(BuildContext context) {
@@ -359,7 +369,8 @@ class ProgramCard extends StatelessWidget {
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                context.read<PaymentCubit>().onCafeBazzarSubscribe(program);
+                context.read<PaymentCubit>().onChangeSelectedprogram(program);
+                onTapProgram?.call();
               },
               child: Text('data'),
             ),
@@ -392,8 +403,8 @@ class ProgramCardRichTextRow extends StatelessWidget {
   }
 }
 
-class ImagePlaceholder extends StatelessWidget {
-  const ImagePlaceholder({super.key, this.bytes, this.description});
+class CoachImagePlaceholder extends StatelessWidget {
+  const CoachImagePlaceholder({super.key, this.bytes, this.description});
 
   final Uint8List? bytes;
   final String? description;
@@ -417,7 +428,7 @@ class ImagePlaceholder extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      ImageGestureDetector(
+                      CoachImageGestureDetector(
                         child: Center(child: Image.memory(bytes!)),
                       ),
                       Padding(
@@ -443,8 +454,8 @@ class ImagePlaceholder extends StatelessWidget {
   }
 }
 
-class ImageGestureDetector extends StatelessWidget {
-  const ImageGestureDetector({super.key, required this.child});
+class CoachImageGestureDetector extends StatelessWidget {
+  const CoachImageGestureDetector({super.key, required this.child});
   final Widget child;
 
   @override

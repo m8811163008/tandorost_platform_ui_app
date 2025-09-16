@@ -44,6 +44,7 @@ class PaymentCubit extends Cubit<PaymentState> {
   // read payment info
   // connect
   // read user profile
+
   // subscribe
   // read skus
   // consume it
@@ -134,13 +135,17 @@ class PaymentCubit extends Cubit<PaymentState> {
     }
   }
 
-  void onCafeBazzarSubscribe(CoachProgram program) async {
+  void onChangeSelectedprogram(CoachProgram program) {
+    _enhancedEmit(state.copyWith(selectedCoachProgram: program));
+  }
+
+  void onCafeBazzarSubscribe() async {
     _enhancedEmit(
       state.copyWith(
         onCafeBazzarSubscribeStatus: AsyncProcessingStatus.loading,
-        selectedCoachProgram: program,
       ),
     );
+    final program = state.selectedCoachProgram!;
     try {
       final purchaseInfo = await FlutterPoolakey.purchase(
         _sku(program),

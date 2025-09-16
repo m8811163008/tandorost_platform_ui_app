@@ -57,6 +57,8 @@ dependencies:
     path: packages/repositories/profile
   coach_repository:
     path: packages/repositories/coach_repository
+  athlete_repository:
+    path: packages/repositories/athlete_repository
   # Common
   tandorost_components:
     path: packages/tandorost_components

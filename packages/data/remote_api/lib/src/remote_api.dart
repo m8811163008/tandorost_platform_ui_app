@@ -211,6 +211,7 @@ abstract interface class RemoteApi {
   Future<List<CoachProfile>> readCoaches();
   Future<List<CoachProgram>> readCoachProgramsById(String coachId);
   Future<List<FileData>> readCoachImages(String coachId);
-
   Future<List<UserProfile>> readCoachesProfiles();
+  Future<List<TraineeHistory>> readTraineeHistory();
+  Future<TraineeHistory> upsertTraineeHistory(TraineeHistory traineeHistory);
 }

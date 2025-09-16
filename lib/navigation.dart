@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:athlete_repository/athlete_repository.dart';
 import 'package:authentication/authentication.dart';
 import 'package:authentication_app/authentication.dart';
 import 'package:coach/coach.dart';
@@ -239,6 +240,9 @@ class Navigation {
                     imageRepository: RepositoryProvider.of<ImageRepository>(
                       context,
                     ),
+                    athleteRepository: RepositoryProvider.of<AthleteRepository>(
+                      context,
+                    ),
                   ),
                   child: child,
                 ),
@@ -287,8 +291,21 @@ class Navigation {
                       },
                       bottomNavigationIndex: _bottomNavigationIndex(state),
                       drawerNavigationIndex: _drawerNavigationIndex(state),
+                      onTapProgram: () {
+                        context.go(
+                          '${RoutesNames.coachesListRoute.path}${RoutesNames.coachDetailRoute.path}${RoutesNames.traineeForm.path}',
+                        );
+                      },
                     );
                   },
+                  routes: [
+                    GoRoute(
+                      path: RoutesNames.traineeForm.path,
+                      builder: (context, state) {
+                        return TraineeFormRoute();
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),

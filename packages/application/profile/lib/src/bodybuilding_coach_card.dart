@@ -257,6 +257,7 @@ class ImageGestureDetector extends StatelessWidget {
           child: Stack(
             alignment: AlignmentDirectional.topEnd,
             children: [
+              child,
               if (isShowRadio)
                 Checkbox(
                   value: isSelected,
@@ -264,7 +265,6 @@ class ImageGestureDetector extends StatelessWidget {
                     onInsertOrDeleteImage(context);
                   },
                 ),
-              child,
             ],
           ),
         );

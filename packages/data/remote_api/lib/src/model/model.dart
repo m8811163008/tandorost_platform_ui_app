@@ -36,3 +36,4 @@ export 'cafe_bazzar_payment.dart';
 export 'user_role.dart';
 export 'coach_profile.dart';
 export 'coach_program.dart';
+export 'trainee_histoy.dart';

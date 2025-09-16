@@ -148,7 +148,10 @@ class CoachListBuilder extends StatelessWidget {
                   (image) => image.userId == coachUserProfile.id,
                 );
                 FileDetail? coachProfileImageDetail;
-                if (coachImagesFileData.isNotEmpty) {
+                if (coachImagesFileData.isNotEmpty &&
+                    coachImagesFileData.any(
+                      (FileData e) => e.tag == GallaryTag.profileImage,
+                    )) {
                   final coachProfileImageFileData = coachImagesFileData
                       .singleWhere(
                         (fileData) => fileData.tag == GallaryTag.profileImage,

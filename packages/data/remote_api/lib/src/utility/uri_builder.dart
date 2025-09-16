@@ -2,7 +2,7 @@ import 'package:remote_api/remote_api.dart';
 
 class UriBuilder {
   // static final baseUri = Uri(scheme: 'https', host: 'tandorost-a.ir');
-  static final baseUri = Uri(scheme: 'http', host: '10.105.146.85', port: 8001);
+  static final baseUri = Uri(scheme: 'http', host: '10.247.5.85', port: 8001);
   // static final baseUri = Uri(
   //   scheme: 'http',
   //   host: '10.105.146.237',
@@ -184,5 +184,13 @@ class UriBuilder {
       path: '$basePath/coach/read_coach_images/',
       queryParameters: {'coach_id': coachId},
     );
+  }
+
+  static Uri readTraineeHistory() {
+    return baseUri.replace(path: '$basePath/coach/read_trainee_history/');
+  }
+
+  static Uri upsertTraineeHistory() {
+    return baseUri.replace(path: '$basePath/coach/upsert_trainee_history/');
   }
 }

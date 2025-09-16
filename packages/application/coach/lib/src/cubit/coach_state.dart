@@ -1,7 +1,7 @@
 part of 'coach_cubit.dart';
 
 class CoachState extends Equatable {
-  const CoachState({
+  CoachState({
     this.coachesProfile = const [],
     this.readCoachesProfileStatus = AsyncProcessingStatus.inital,
     this.coachesUserProfile = const [],
@@ -13,7 +13,15 @@ class CoachState extends Equatable {
     this.readSelectedCoachProgramsStatus = AsyncProcessingStatus.inital,
     this.selectedCoachProfile,
     this.selectedCoacheUserProfile,
-  });
+    TraineeHistory? traineeHistory,
+    this.filesData = const [],
+    this.filesDetail = const [],
+    this.readUserImageGallaryStatus = AsyncProcessingStatus.inital,
+    this.addUserImageStatus = AsyncProcessingStatus.inital,
+    this.archivingImagesStatus = AsyncProcessingStatus.inital,
+    this.upsertingTraineeHistoryStatus = AsyncProcessingStatus.inital,
+    this.archiveImagesId = const [],
+  }) : this.traineeHistory = traineeHistory ?? TraineeHistory.empty();
 
   final List<CoachProfile> coachesProfile;
   final AsyncProcessingStatus readCoachesProfileStatus;
@@ -26,6 +34,14 @@ class CoachState extends Equatable {
   final AsyncProcessingStatus readCoachImagesDataStatus;
   final List<CoachProgram>? readSelectedCoachPrograms;
   final AsyncProcessingStatus readSelectedCoachProgramsStatus;
+  final TraineeHistory? traineeHistory;
+  final List<FileDetail> filesDetail;
+  final List<FileData> filesData;
+  final AsyncProcessingStatus readUserImageGallaryStatus;
+  final AsyncProcessingStatus addUserImageStatus;
+  final AsyncProcessingStatus archivingImagesStatus;
+  final AsyncProcessingStatus upsertingTraineeHistoryStatus;
+  final List<String> archiveImagesId;
 
   CoachState copyWith({
     List<CoachProfile>? coachesProfile,
@@ -39,9 +55,18 @@ class CoachState extends Equatable {
     AsyncProcessingStatus? readSelectedCoachProgramsStatus,
     UserProfile? selectedCoacheUserProfile,
     CoachProfile? selectedCoachProfile,
+    TraineeHistory? traineeHistory,
+    List<FileDetail>? filesDetail,
+    List<FileData>? filesData,
+    AsyncProcessingStatus? readUserImageGallaryStatus,
+    AsyncProcessingStatus? addUserImageStatus,
+    AsyncProcessingStatus? archivingImagesStatus,
+    AsyncProcessingStatus? upsertingTraineeHistoryStatus,
+    List<String>? archiveImagesId,
   }) {
     return CoachState(
       coachesProfile: coachesProfile ?? this.coachesProfile,
+      traineeHistory: traineeHistory ?? this.traineeHistory,
       readCoachesProfileStatus:
           readCoachesProfileStatus ?? this.readCoachesProfileStatus,
       coachesUserProfile: coachesUserProfile ?? this.coachesUserProfile,
@@ -61,6 +86,16 @@ class CoachState extends Equatable {
       selectedCoacheUserProfile:
           this.selectedCoacheUserProfile ?? selectedCoacheUserProfile,
       selectedCoachProfile: this.selectedCoachProfile ?? selectedCoachProfile,
+      filesData: filesData ?? this.filesData,
+      filesDetail: filesDetail ?? this.filesDetail,
+      readUserImageGallaryStatus:
+          readUserImageGallaryStatus ?? this.readUserImageGallaryStatus,
+      addUserImageStatus: addUserImageStatus ?? this.addUserImageStatus,
+      upsertingTraineeHistoryStatus:
+          upsertingTraineeHistoryStatus ?? this.upsertingTraineeHistoryStatus,
+      archivingImagesStatus:
+          archivingImagesStatus ?? this.archivingImagesStatus,
+      archiveImagesId: archiveImagesId ?? this.archiveImagesId,
     );
   }
 
@@ -77,5 +112,13 @@ class CoachState extends Equatable {
     readSelectedCoachProgramsStatus,
     selectedCoacheUserProfile,
     selectedCoachProfile,
+    traineeHistory,
+    filesData,
+    filesDetail,
+    readUserImageGallaryStatus,
+    addUserImageStatus,
+    archiveImagesId,
+    archivingImagesStatus,
+    upsertingTraineeHistoryStatus,
   ];
 }
