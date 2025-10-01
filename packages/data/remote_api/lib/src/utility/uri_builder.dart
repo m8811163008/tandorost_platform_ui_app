@@ -2,7 +2,7 @@ import 'package:remote_api/remote_api.dart';
 
 class UriBuilder {
   // static final baseUri = Uri(scheme: 'https', host: 'tandorost-a.ir');
-  static final baseUri = Uri(scheme: 'http', host: '10.247.5.85', port: 8001);
+  static final baseUri = Uri(scheme: 'http', host: '10.88.134.85', port: 8001);
   // static final baseUri = Uri(
   //   scheme: 'http',
   //   host: '10.105.146.237',
@@ -42,6 +42,13 @@ class UriBuilder {
 
   static Uri readUserPhysicalData() {
     return baseUri.replace(path: '$basePath/user/read_user_physical_data/');
+  }
+
+  static Uri readAthletePhysicalData(String userId) {
+    return baseUri.replace(
+      path: '$basePath/user/read_athlete_physical_data/',
+      queryParameters: {'athlete_user_id': userId},
+    );
   }
 
   static Uri updateUserPhysicalData() {
@@ -95,6 +102,13 @@ class UriBuilder {
 
   static Uri readFitnessData() {
     return baseUri.replace(path: '$basePath/fitness/fitness_data/');
+  }
+
+  static Uri readAtheleteFitnessData(String userId) {
+    return baseUri.replace(
+      path: '$basePath/fitness/athlete_fitness_data/',
+      queryParameters: {'athlete_user_id': userId},
+    );
   }
 
   static Uri readUserImageGallary(List<GallaryTag> gallaryTags) {
@@ -186,11 +200,65 @@ class UriBuilder {
     );
   }
 
-  static Uri readTraineeHistory() {
-    return baseUri.replace(path: '$basePath/coach/read_trainee_history/');
+  static Uri readTraineeHistory(String traineeId) {
+    return baseUri.replace(
+      path: '$basePath/coach/read_trainee_history/',
+      queryParameters: {'trainee_id': traineeId},
+    );
   }
 
   static Uri upsertTraineeHistory() {
     return baseUri.replace(path: '$basePath/coach/upsert_trainee_history/');
+  }
+
+  static Uri readEnrollments({String? coachId, String? traineeId}) {
+    assert(coachId != null || traineeId != null);
+    final queryParameters = <String, String>{};
+
+    if (coachId != null) queryParameters['coach_id'] = coachId;
+    if (traineeId != null) queryParameters['trainee_id'] = traineeId;
+    return baseUri.replace(
+      path: '$basePath/coach/read_enrollments/',
+      queryParameters: queryParameters.isEmpty ? null : queryParameters,
+    );
+  }
+
+  static Uri upsertEnrollment() {
+    return baseUri.replace(path: '$basePath/coach/upsert_enrollment/');
+  }
+
+  static Uri readCoachAthletesProfile() {
+    return baseUri.replace(
+      path: '$basePath/coach/read_coach_athletes_profile/',
+    );
+  }
+
+  static Uri readUsersImagesGallary(
+    List<GallaryTag> gallaryTags,
+    List<String> usersId,
+  ) {
+    assert(usersId.isNotEmpty);
+    return baseUri.replace(
+      path: '$basePath/user/read_users_images_gallary/',
+      queryParameters: {
+        'tags': gallaryTags.map((e) => e.requestName).toList(),
+        'users_id': usersId,
+      },
+    );
+  }
+
+  static Uri upsertWorkoutProgram() {
+    return baseUri.replace(path: '$basePath/coach/upsert_workout_program/');
+  }
+
+  static Uri readWorkoutProgram(String workoutId) {
+    return baseUri.replace(
+      path: '$basePath/coach/read_workout_program/',
+      queryParameters: {'workout_id': workoutId},
+    );
+  }
+
+  static Uri readExerciseDefinition() {
+    return baseUri.replace(path: '$basePath/coach/read_exercise_definition/');
   }
 }

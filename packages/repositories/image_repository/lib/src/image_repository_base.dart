@@ -28,4 +28,8 @@ class ImageRepository {
 
   Future<List<FileData>> addUserImages(UserImage userImage) =>
       remoteApi.addUserImages(userImage);
+  Future<List<FileData>> readUsersImages({
+    required List<GallaryTag> gallaryTags,
+    required List<String> userIds,
+  }) => remoteApi.readUsersImages(gallaryTags: gallaryTags, userIds: userIds);
 }

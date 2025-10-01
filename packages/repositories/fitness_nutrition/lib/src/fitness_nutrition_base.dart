@@ -25,6 +25,9 @@ class FitnessNutrition {
     }
   }
 
+  Future<UserPhysicalProfile?> readAtheletePhysicalProfile(String userId) =>
+      remoteApi.readAthletePhysicalProfile(userId);
+
   Future<void> deleteUserPhysicalDataPoint({required String dataPointsId}) =>
       remoteApi.deleteUserPhysicalDataPoint(dataPointsId: dataPointsId);
 
@@ -55,6 +58,9 @@ class FitnessNutrition {
       localStorage.upsert(fitnessDataKey, fitnessData.toJson());
     }
   }
+
+  Future<FitnessData?> readAthelteFitnessData(String userId) =>
+      remoteApi.readAthelteFitnessData(userId);
 
   Stream<FitnessData?> get readFitnessDataStream async* {
     final readFitnessDataJson = await localStorage.read(fitnessDataKey);

@@ -20,6 +20,7 @@ class TraineeHistory extends Equatable {
     required this.exerciseEquipment,
     this.dailyActivityDesc,
     this.supplements,
+    this.coachAnalysis,
   });
   TraineeHistory.empty({
     this.id,
@@ -33,6 +34,7 @@ class TraineeHistory extends Equatable {
     LinkedHashSet<ExerciseEquipment>? exerciseEquipment,
     this.dailyActivityDesc,
     this.supplements,
+    this.coachAnalysis,
   }) : this.excersiceGoal = excersiceGoal ?? LinkedHashSet<ExcersiceGoal>(),
        this.exerciseEquipment =
            exerciseEquipment ?? LinkedHashSet<ExerciseEquipment>();
@@ -46,6 +48,7 @@ class TraineeHistory extends Equatable {
   final int currentPracticeFrequencyPerWeek;
   @ExcersiceGoalLinkedHashSetConverter()
   final LinkedHashSet<ExcersiceGoal> excersiceGoal;
+  final String? coachAnalysis;
 
   final String? dailyActivityDesc;
 
@@ -60,6 +63,7 @@ class TraineeHistory extends Equatable {
     String? inguries,
     String? disabilities,
     String? sportTrainingHistory,
+    String? coachAnalysis,
     int? currentPracticeFrequencyPerWeek,
     LinkedHashSet<ExcersiceGoal>? excersiceGoal,
     ValueGetter<String?>? dailyActivityDesc,
@@ -72,6 +76,7 @@ class TraineeHistory extends Equatable {
       illness: illness ?? this.illness,
       inguries: inguries ?? this.inguries,
       disabilities: disabilities ?? this.disabilities,
+      coachAnalysis: coachAnalysis ?? this.coachAnalysis,
       sportTrainingHistory: sportTrainingHistory ?? this.sportTrainingHistory,
       currentPracticeFrequencyPerWeek:
           currentPracticeFrequencyPerWeek ??
@@ -98,6 +103,7 @@ class TraineeHistory extends Equatable {
     dailyActivityDesc,
     exerciseEquipment,
     supplements,
+    coachAnalysis,
   ];
   Map<String, dynamic> toJson() => _$TraineeHistoryToJson(this);
 

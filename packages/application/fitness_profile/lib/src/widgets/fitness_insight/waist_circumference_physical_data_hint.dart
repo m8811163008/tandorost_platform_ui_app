@@ -17,22 +17,21 @@ class WaistCircumferencePhysicalDataHint extends StatelessWidget {
     );
     final waistCircumferenceToHeightRatioDescription =
         fitnessData.waistCircumferenceToHeightRatio == null
-            ? context
-                .l10n
-                .fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription
-            : context.l10n
-                .fitnessProfileWaistCircumferenceToHeightRatioAvailableDescription(
-                  fitnessData.waistCircumferenceToHeightRatio!,
-                );
+        ? context
+              .l10n
+              .fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription
+        : context.l10n
+              .fitnessProfileWaistCircumferenceToHeightRatioAvailableDescription(
+                fitnessData.waistCircumferenceToHeightRatio!,
+              );
     final waistCircumferenceSafeRangeDescription =
         fitnessData.isWaistCircumferenceSafeRange == null
-            ? context
-                .l10n
-                .fitnessProfileWaistCircumferenceSafeRangeNotAvailableDescription
-            : context.l10n
-                .fitnessProfileIsWaistCircumferenceSafeRangeDescription(
-                  fitnessData.isWaistCircumferenceSafeRange!.toString(),
-                );
+        ? context
+              .l10n
+              .fitnessProfileWaistCircumferenceSafeRangeNotAvailableDescription
+        : context.l10n.fitnessProfileIsWaistCircumferenceSafeRangeDescription(
+            fitnessData.isWaistCircumferenceSafeRange!.toString(),
+          );
 
     return AppDialog(
       title: context.l10n.fitnessProfileWaistCircumferencePhysicalDataHintLabel,

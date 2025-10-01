@@ -224,7 +224,6 @@
     "fitnessProfileTotalDailyEnergyExpenditure": "کل انرژی مصرفی روزانه",
     "fitnessProfileBodyMassIndex": "شاخص توده بدنی",
     "fitnessProfileBodyMassIndexPrime": "BMI Prime",
-    "fitnessProfileBodyMassIndexLevelLabel": "سطح شاخص توده بدنی",
     "fitnessProfileWaistCircumferenceToHeightRatio": "نسبت دور کمر به قد",
     "fitnessProfileIsWaistCircumferenceToHeightRatioSafe": "آیا نسبت دور کمر به قد ایمن است؟",
     "fitnessProfileIsWaistCircumferenceSafeRange": "آیا دور کمر در محدوده ایمن است؟",
@@ -263,7 +262,7 @@
     },
     "fitnessProfileWaistCircumferenceToHeightRatioNotAvailableDescription": "شاخص دور کمر به قد برای شما در دسترس نیست، لطفا دور کمر خود را در قسمت اندازه گیری جدید در صفحه قبل، اندازه و اضافه کنید",
     "fitnessProfileBmiWaistCircumferenceHealthDescription": "خطرات مرتبط با سلامتی شامل بیماری های قلبی عروقی، بیماری کیسه صفرا، فشار خون بالا و دیابت نوع 2 میباشد.",
-    "fitnessProfileBmiStatus": "{bmiStatus, select, underweight{کمبود وزن} healthyWeight{عادی} overweight{اضافه وزن} obeseClassOne{چاقی کلاس 1} obeseClassTwo{چاقی کلاس 2} obeseClassThree{چاقی کلاس 3} other{ترجمه تعریف نشده}}",
+    "fitnessProfileBmiStatus": "{bmiStatus, select, underweight{کمبود وزن} healthyWeight{عادی} overWeight{اضافه وزن} obeseClassOne{چاقی کلاس 1} obeseClassTwo{چاقی کلاس 2} obeseClassThree{چاقی کلاس 3} other{ترجمه تعریف نشده}}",
     "@fitnessProfileBmiStatus": {
         "placeholders": {
             "bmiStatus": {
@@ -310,7 +309,7 @@
     "foodReportDeleteDialogContent": "آیا این غذا حذف شود؟",
     "foodReportFoodsListLabel": "‌لیست خوراکی‌ها",
     "foodReportUserFoodRequirementNA": "N/A",
-    "appRoutesName": "{routesNames, select, loginRoute{ورود} registerRoute{ثبت نام} searchRoute{جستجو} resultRoute{نتیجه} forgotPassRoute{فراموشی رمز عبور} verificationRoute{تایید شماره} profileRoute{پروفایل} fitnessProfileRoute{ترکیب بدن | تناسب اندام} foodReportRoute{گزارش تغذیه} coachesListRoute{مربیان بدنسازی} coachDetailRoute{جزئیات مربی} traineeForm{فرم اطلاعات شاگرد} vo2maxCalculator{هوازی | حداکثر کاهش چربی} other{ترجمه تعریف نشده}}",
+    "appRoutesName": "{routesNames, select, loginRoute{ورود} registerRoute{ثبت نام} searchRoute{جستجو} resultRoute{نتیجه} forgotPassRoute{فراموشی رمز عبور} verificationRoute{تایید شماره} profileRoute{پروفایل} fitnessProfileRoute{ترکیب بدن | تناسب اندام} foodReportRoute{گزارش تغذیه} coachesListRoute{مربیان بدنسازی} coachDetailRoute{جزئیات مربی} traineeForm{فرم اطلاعات شاگرد} athletesDirectoryRoute{شاگردان شما} athleteDetailRoute{جزئیات شاگرد} vo2maxCalculator{هوازی | حداکثر کاهش چربی} other{ترجمه تعریف نشده}}",
     "@appRoutesName": {
         "placeholders": {
             "routesNames": {
@@ -328,7 +327,7 @@
         }
     },
     "bazzarNotFound": "کافه بازار نصب نشده است. کافه بازار را نصب کنید",
-    "bazzarSuccessfulPayment": "اشتراک با موفقیت اضافه شد.برای اضافه کردن غذا اشتراک را تمدید نمایید",
+    "bazzarSuccessfulPayment": "اشتراک با موفقیت اضافه شد.",
     "bazzarFailPayment": "فرآیند تمدید اشتراک لغو شد",
     "addMeasurementDialogHintTitle": "شکل بدن",
     "addMeasurementDialogHintText1": "بخاطر پیشگیری از وسواس فکری بیش از هفته‌ای یکبار خود را وزن نکنید.",
@@ -708,6 +707,7 @@
     "profileCoachProfileCoachProgramDeleteDialogLabel" : "آیا این برنامه مربی حذف شود؟",
     "coachDetailLanguageLabel" : "زبان مربی",
     "coachListEmptyListlabel" : "مربی فعالی پیدا نمیشود. لطفا با پشیتبانی تماس بگیرید",
+    "athleteListEmptyListlabel" : "هنوز شاگردی ندارید، تبلیغ کنید و شاگرد دعوت کنید",
     "traineeHistoryFormTitle" : "پرسشنامه ارزیابی شاگرد",
     "traineeHistoryFormIllnessHitoryLabel" : "سابقه بیماری",
     "traineeHistoryFormIllnessHitoryHint" : "آیا تاکنون جراحی داشته‌اید؟ اگر بله، لطفاً نوع آن را بنویس. آیا تاکنون پزشک به شما گفته است که به بیماری قلبی، فشار خون بالا، دیابت، آسم یا هر بیماری مزمن یا کهنه دیگری مبتلا هستید؟ لطفاً توضیح دهید.",

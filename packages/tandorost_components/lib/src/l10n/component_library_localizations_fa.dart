@@ -585,9 +585,6 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get fitnessProfileBodyMassIndexPrime => 'BMI Prime';
 
   @override
-  String get fitnessProfileBodyMassIndexLevelLabel => 'سطح شاخص توده بدنی';
-
-  @override
   String get fitnessProfileWaistCircumferenceToHeightRatio =>
       'نسبت دور کمر به قد';
 
@@ -607,6 +604,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get fitnessProfileNA => 'در دسترس نیست';
+
+  @override
+  String get fitnessProfileBodyMassIndexLevelLabel => 'سطح شاخص توده بدنی';
 
   @override
   String fitnessProfileBmiDescription(double bmiValue, String bmiDescriptive) {
@@ -656,7 +656,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
     String _temp0 = intl.Intl.selectLogic(bmiStatus, {
       'underweight': 'کمبود وزن',
       'healthyWeight': 'عادی',
-      'overweight': 'اضافه وزن',
+      'overWeight': 'اضافه وزن',
       'obeseClassOne': 'چاقی کلاس 1',
       'obeseClassTwo': 'چاقی کلاس 2',
       'obeseClassThree': 'چاقی کلاس 3',
@@ -791,6 +791,8 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
       'coachesListRoute': 'مربیان بدنسازی',
       'coachDetailRoute': 'جزئیات مربی',
       'traineeForm': 'فرم اطلاعات شاگرد',
+      'athletesDirectoryRoute': 'شاگردان شما',
+      'athleteDetailRoute': 'جزئیات شاگرد',
       'vo2maxCalculator': 'هوازی | حداکثر کاهش چربی',
       'other': 'ترجمه تعریف نشده',
     });
@@ -818,8 +820,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
       'کافه بازار نصب نشده است. کافه بازار را نصب کنید';
 
   @override
-  String get bazzarSuccessfulPayment =>
-      'اشتراک با موفقیت اضافه شد.برای اضافه کردن غذا اشتراک را تمدید نمایید';
+  String get bazzarSuccessfulPayment => 'اشتراک با موفقیت اضافه شد.';
 
   @override
   String get bazzarFailPayment => 'فرآیند تمدید اشتراک لغو شد';
@@ -1887,6 +1888,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   @override
   String get coachListEmptyListlabel =>
       'مربی فعالی پیدا نمیشود. لطفا با پشیتبانی تماس بگیرید';
+
+  @override
+  String get athleteListEmptyListlabel =>
+      'هنوز شاگردی ندارید، تبلیغ کنید و شاگرد دعوت کنید';
 
   @override
   String get traineeHistoryFormTitle => 'پرسشنامه ارزیابی شاگرد';

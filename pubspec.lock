@@ -72,6 +72,13 @@ packages:
       relative: true
     source: path
     version: "1.0.0"
+  athletes_directory:
+    dependency: "direct main"
+    description:
+      path: "packages/application/athletes_directory"
+      relative: true
+    source: path
+    version: "0.0.1"
   authentication:
     dependency: "direct main"
     description:

@@ -1,11 +1,13 @@
 import 'dart:async';
 
 import 'package:athlete_repository/athlete_repository.dart';
+import 'package:athletes_directory/athletes_directory.dart';
 import 'package:authentication/authentication.dart';
 import 'package:authentication_app/authentication.dart';
 import 'package:coach/coach.dart';
 import 'package:coach_repository/coach_repository.dart';
 import 'package:domain_model/domain_model.dart';
+import 'package:fitness_nutrition/fitness_nutrition.dart';
 import 'package:fitness_profile_app/fitness_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:food_report_app/food_report.dart';
@@ -243,8 +245,10 @@ class Navigation {
                     athleteRepository: RepositoryProvider.of<AthleteRepository>(
                       context,
                     ),
+                    profileRepostiory: RepositoryProvider.of<ProfileRepository>(
+                      context,
+                    ),
                   ),
-                  child: child,
                 ),
                 BlocProvider(
                   create: (_) => PaymentCubit(
@@ -252,6 +256,9 @@ class Navigation {
                       context,
                     ),
                     paymentRepository: RepositoryProvider.of<PaymentRepository>(
+                      context,
+                    ),
+                    coachRepository: RepositoryProvider.of<CoachRepository>(
                       context,
                     ),
                   ),
@@ -311,8 +318,81 @@ class Navigation {
             ),
           ],
         ),
+        ShellRoute(
+          builder: (context, state, child) {
+            return BlocProvider(
+              create: (_) => AthelteDirectoryCubit(
+                coachRepository: RepositoryProvider.of<CoachRepository>(
+                  context,
+                ),
+                imageRepository: RepositoryProvider.of<ImageRepository>(
+                  context,
+                ),
+                athleteRepository: RepositoryProvider.of<AthleteRepository>(
+                  context,
+                ),
+                profileRepository: RepositoryProvider.of<ProfileRepository>(
+                  context,
+                ),
+                fitnessNutrition: RepositoryProvider.of<FitnessNutrition>(
+                  context,
+                ),
+              ),
+              child: child,
+            );
+          },
+          routes: [
+            GoRoute(
+              path: RoutesNames.athletesDirectoryRoute.path,
+              builder: (context, state) {
+                return AthletesDirectoryRoute(
+                  goToAthleteDetailRoute: () => context.go(
+                    '${RoutesNames.athletesDirectoryRoute.path}${RoutesNames.athleteDetailRoute.path}',
+                  ),
+                  onBottomNavigationChanged: (index) {
+                    _onBottomNavigationChanged(context, index);
+                  },
+                  onDrawerNavigationChanged: (index) {
+                    _onDrawerNavigationChanged(context, index);
+                  },
+                  bottomNavigationIndex: _bottomNavigationIndex(state),
+                  drawerNavigationIndex: _drawerNavigationIndex(state),
+                );
+              },
+              routes: [
+                GoRoute(
+                  path: RoutesNames.athleteDetailRoute.path,
+                  builder: (context, state) {
+                    return AthletesDetailRoute(
+                      onBottomNavigationChanged: (index) {
+                        _onBottomNavigationChanged(context, index);
+                      },
+                      onDrawerNavigationChanged: (index) {
+                        _onDrawerNavigationChanged(context, index);
+                      },
+                      bottomNavigationIndex: _bottomNavigationIndex(state),
+                      drawerNavigationIndex: _drawerNavigationIndex(state),
+                      // onTapProgram: () {
+                      //   context.go(
+                      //     '${RoutesNames.coachesListRoute.path}${RoutesNames.coachDetailRoute.path}${RoutesNames.traineeForm.path}',
+                      //   );
+                      // },
+                    );
+                  },
+                  // routes: [
+                  //   GoRoute(
+                  //     path: RoutesNames.traineeForm.path,
+                  //     builder: (context, state) {
+                  //       return TraineeFormRoute();
+                  //     },
+                  //   ),
+                  // ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
-
       redirect: (_, state) async {
         final isVisitedIntroductionRoute =
             await RepositoryProvider.of<ProfileRepository>(

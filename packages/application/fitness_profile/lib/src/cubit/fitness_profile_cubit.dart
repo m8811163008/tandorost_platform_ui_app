@@ -49,7 +49,7 @@ class FitnessProfileCubit extends Cubit<FitnessProfileState> {
 
   void onChangeBirthDay(DateTime birthday) {
     final updatedUserFitnessProfile = state.userPhysicalDataUpsert.copyWith(
-      birthday: () => birthday,
+      birthday: () => birthday.toUtc(),
     );
     _enhancedEmit(
       state.copyWith(userPhysicalDataUpsert: updatedUserFitnessProfile),

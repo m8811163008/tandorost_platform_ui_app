@@ -37,3 +37,5 @@ export 'user_role.dart';
 export 'coach_profile.dart';
 export 'coach_program.dart';
 export 'trainee_histoy.dart';
+export 'program_enrollment.dart';
+export 'workout_program.dart';

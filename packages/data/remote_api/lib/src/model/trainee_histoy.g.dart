@@ -23,6 +23,7 @@ TraineeHistory _$TraineeHistoryFromJson(
         'sport_training_history',
         'current_practice_frequency_per_week',
         'excersice_goal',
+        'coach_analysis',
         'daily_activity_desc',
         'exercise_equipment',
         'supplements',
@@ -56,6 +57,7 @@ TraineeHistory _$TraineeHistoryFromJson(
         (v) => v as String?,
       ),
       supplements: $checkedConvert('supplements', (v) => v as String?),
+      coachAnalysis: $checkedConvert('coach_analysis', (v) => v as String?),
     );
     return val;
   },
@@ -66,6 +68,7 @@ TraineeHistory _$TraineeHistoryFromJson(
     'excersiceGoal': 'excersice_goal',
     'exerciseEquipment': 'exercise_equipment',
     'dailyActivityDesc': 'daily_activity_desc',
+    'coachAnalysis': 'coach_analysis',
   },
 );
 
@@ -82,6 +85,7 @@ Map<String, dynamic> _$TraineeHistoryToJson(TraineeHistory instance) =>
       'excersice_goal': const ExcersiceGoalLinkedHashSetConverter().toJson(
         instance.excersiceGoal,
       ),
+      'coach_analysis': ?instance.coachAnalysis,
       'daily_activity_desc': ?instance.dailyActivityDesc,
       'exercise_equipment': const ExerciseEquipmentLinkedHashSetConverter()
           .toJson(instance.exerciseEquipment),

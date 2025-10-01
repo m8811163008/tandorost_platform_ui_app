@@ -1,4 +1,5 @@
 import 'package:remote_api/remote_api.dart';
+import 'package:remote_api/src/model/workout_program.dart';
 import 'remote_api_base.dart';
 
 /// An abstract interface class for interacting with a remote API.
@@ -76,6 +77,11 @@ abstract interface class RemoteApi {
   ///
   /// Returns a [Future] that resolves to a [UserPhysicalProfile] object.
   Future<UserPhysicalProfile?> readUserPhysicalProfile();
+
+  /// Retrieves the user's physicaldata.
+  ///
+  /// Returns a [Future] that resolves to a [UserPhysicalProfile] object.
+  Future<UserPhysicalProfile?> readAthletePhysicalProfile(String userId);
 
   /// Deletes a specific physicaldata point for the user.
   ///
@@ -171,6 +177,11 @@ abstract interface class RemoteApi {
   /// Returns a [FitnessData] object containing the fitness-related information.
   Future<FitnessData?> readFitnessData();
 
+  /// Reads the fitness data from the remote API.
+  ///
+  /// Returns a [FitnessData] object containing the fitness-related information.
+  Future<FitnessData?> readAthelteFitnessData(String userId);
+
   /// Reads the nutrition requirements from the remote API.
   ///
   /// Returns a [NutritionRequirements] object containing the nutritional information.
@@ -212,6 +223,28 @@ abstract interface class RemoteApi {
   Future<List<CoachProgram>> readCoachProgramsById(String coachId);
   Future<List<FileData>> readCoachImages(String coachId);
   Future<List<UserProfile>> readCoachesProfiles();
-  Future<List<TraineeHistory>> readTraineeHistory();
+  Future<List<TraineeHistory>> readTraineeHistory(String traineeId);
   Future<TraineeHistory> upsertTraineeHistory(TraineeHistory traineeHistory);
+  Future<List<ProgramEnrollment>> readEnrollments({
+    String? coachId,
+    String? traineeId,
+  });
+  Future<ProgramEnrollment> upsertEnrollment(
+    ProgramEnrollment programEnrollment,
+  );
+
+  Future<List<UserProfile>> readCoachAthletesProfile();
+
+  Future<List<FileData>> readUsersImages({
+    required List<GallaryTag> gallaryTags,
+    required List<String> userIds,
+  });
+
+  Future<WorkoutProgram> upsertWorkoutProgram({
+    required WorkoutProgram workoutProgram,
+  });
+
+  Future<WorkoutProgram?> readWorkoutProgram({required String workoutId});
+  
+  Future<List<ExerciseDefinition>> readExerciseDefinition();
 }

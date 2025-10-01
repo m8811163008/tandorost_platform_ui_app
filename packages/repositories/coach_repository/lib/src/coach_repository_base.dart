@@ -79,4 +79,24 @@ class CoachRepository {
       remoteApi.readCoachProgramsById(coachId);
   Future<List<FileData>> readCoachImages(String coachId) =>
       remoteApi.readCoachImages(coachId);
+
+  Future<List<ProgramEnrollment>> readEnrollments({
+    String? coachId,
+    String? traineeId,
+  }) => remoteApi.readEnrollments(coachId: coachId, traineeId: traineeId);
+  Future<ProgramEnrollment> upsertEnrollment(
+    ProgramEnrollment programEnrollment,
+  ) => remoteApi.upsertEnrollment(programEnrollment);
+  Future<List<UserProfile>> readCoachAthletesProfile() =>
+      remoteApi.readCoachAthletesProfile();
+
+  Future<WorkoutProgram> upsertWorkoutProgram({
+    required WorkoutProgram workoutProgram,
+  }) => remoteApi.upsertWorkoutProgram(workoutProgram: workoutProgram);
+
+  Future<WorkoutProgram?> readWorkoutProgram({required String workoutId}) =>
+      remoteApi.readWorkoutProgram(workoutId: workoutId);
+
+  Future<List<ExerciseDefinition>> readExerciseDefinition() =>
+      remoteApi.readExerciseDefinition();
 }

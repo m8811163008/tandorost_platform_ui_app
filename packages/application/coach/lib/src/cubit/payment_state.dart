@@ -8,6 +8,7 @@ class PaymentState extends Equatable {
   final AsyncProcessingStatus onCafeBazzarSubscribeStatus;
   final AsyncProcessingStatus onReadCafeBazzarSkusStatus;
   final AsyncProcessingStatus onReadUserProfileStatus;
+  final AsyncProcessingStatus onUpsertingProgramEnrollmentStatus;
   final List<SkuDetails> skuDetails;
   final SubscriptionPayment? subscriptionPayment;
   final PurchaseInfo? purchaseInfo;
@@ -22,6 +23,7 @@ class PaymentState extends Equatable {
     this.onCafeBazzarSubscribeStatus = AsyncProcessingStatus.inital,
     this.onReadCafeBazzarSkusStatus = AsyncProcessingStatus.inital,
     this.onReadUserProfileStatus = AsyncProcessingStatus.inital,
+    this.onUpsertingProgramEnrollmentStatus = AsyncProcessingStatus.inital,
     this.skuDetails = const [],
     this.cafeBazzarPaymentInfo,
     this.userProfile,
@@ -46,6 +48,7 @@ class PaymentState extends Equatable {
     skuDetails,
     subscriptionPayment,
     selectedCoachProgram,
+    onUpsertingProgramEnrollmentStatus,
   ];
   PaymentState copyWith({
     ValueGetter<CafeBazzarPaymentInfo?>? cafeBazzarPaymentInfo,
@@ -57,6 +60,7 @@ class PaymentState extends Equatable {
     AsyncProcessingStatus? onCafeBazzarSubscribeStatus,
     AsyncProcessingStatus? onReadCafeBazzarSkusStatus,
     AsyncProcessingStatus? onReadUserProfileStatus,
+    AsyncProcessingStatus? onUpsertingProgramEnrollmentStatus,
     List<SkuDetails>? skuDetails,
     SubscriptionPayment? subscriptionPayment,
     ValueGetter<String?>? exceptionDetail,
@@ -79,6 +83,9 @@ class PaymentState extends Equatable {
           onReadUserProfileStatus ?? this.onReadUserProfileStatus,
       readCoffeBazzarPaymentStatus:
           readCoffeBazzarPaymentStatus ?? this.readCoffeBazzarPaymentStatus,
+      onUpsertingProgramEnrollmentStatus:
+          onUpsertingProgramEnrollmentStatus ??
+          this.onUpsertingProgramEnrollmentStatus,
       skuDetails: skuDetails ?? this.skuDetails,
       onCreateSubscriptionPaymentsStatus:
           onCreateSubscriptionPaymentsStatus ??

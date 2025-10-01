@@ -81,7 +81,8 @@ dependencies:
     path: packages/application/vo2max_calculator
   coach:
     path: packages/application/coach
-  
+  athletes_directory:
+    path: packages/application/athletes_directory
 
 dev_dependencies:
   flutter_test:

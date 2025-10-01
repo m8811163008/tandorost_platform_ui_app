@@ -115,6 +115,7 @@ abstract class DrawerNavigationRoutes {
     4: RoutesNames.vo2maxCalculator,
     5: RoutesNames.loginRoute,
     6: RoutesNames.coachesListRoute,
+    7: RoutesNames.athletesDirectoryRoute,
   };
   static const Map<int, IconData> icons = {
     0: Icons.search,
@@ -124,6 +125,7 @@ abstract class DrawerNavigationRoutes {
     4: Icons.health_and_safety,
     5: Icons.login,
     6: Icons.fitness_center,
+    7: Icons.store_mall_directory,
   };
 }
 

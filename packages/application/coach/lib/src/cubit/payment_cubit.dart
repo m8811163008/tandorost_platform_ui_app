@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:coach_repository/coach_repository.dart';
 import 'package:domain_model/domain_model.dart';
 
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class PaymentCubit extends Cubit<PaymentState> {
   PaymentCubit({
     required this.profileRepository,
     required this.paymentRepository,
+    required this.coachRepository,
   }) : super(PaymentState()) {
     _init();
   }
@@ -37,6 +39,7 @@ class PaymentCubit extends Cubit<PaymentState> {
 
   final ProfileRepository profileRepository;
   final PaymentRepository paymentRepository;
+  final CoachRepository coachRepository;
   late final StreamSubscription<UserProfile?> userProfileSubscription;
 
   // Paymet process
@@ -167,6 +170,58 @@ class PaymentCubit extends Cubit<PaymentState> {
         state.copyWith(
           onCafeBazzarSubscribeStatus: AsyncProcessingStatus.connectionError,
           exceptionDetail: () => e.toString(),
+        ),
+      );
+    }
+  }
+
+  void onAddEnrollment() async {
+    if (state.userProfile == null) {
+      return;
+    }
+    var workout = WorkoutProgram(
+      name: state.selectedCoachProgram!.title,
+      days: List.filled(
+        state.selectedCoachProgram!.durationWeeks * 7,
+        null,
+        growable: true,
+      ),
+    );
+    workout = await coachRepository.upsertWorkoutProgram(
+      workoutProgram: workout,
+    );
+
+    final programEnrollment = ProgramEnrollment(
+      traineeId: state.userProfile!.id,
+      coachId: state.selectedCoachProgram!.userId,
+      coachProgramId: state.selectedCoachProgram!.id!,
+      workoutProgramId: workout.id!,
+      enrollmentDate: DateTime.now().toUtc(),
+    );
+    _enhancedEmit(
+      state.copyWith(
+        onUpsertingProgramEnrollmentStatus: AsyncProcessingStatus.loading,
+      ),
+    );
+    try {
+      await coachRepository.upsertEnrollment(programEnrollment);
+      _enhancedEmit(
+        state.copyWith(
+          onUpsertingProgramEnrollmentStatus: AsyncProcessingStatus.success,
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          onUpsertingProgramEnrollmentStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          onUpsertingProgramEnrollmentStatus:
+              AsyncProcessingStatus.connectionError,
         ),
       );
     }

@@ -9,8 +9,8 @@ class AthleteRepository {
 
   AthleteRepository({required this.remoteApi, required this.localStorage});
 
-  Future<List<TraineeHistory>> readTraineeHistory() =>
-      remoteApi.readTraineeHistory();
+  Future<List<TraineeHistory>> readTraineeHistory(String traineeId) =>
+      remoteApi.readTraineeHistory(traineeId);
 
   Future<TraineeHistory> upsertTraineeHistory(TraineeHistory traineeHistory) =>
       remoteApi.upsertTraineeHistory(traineeHistory);

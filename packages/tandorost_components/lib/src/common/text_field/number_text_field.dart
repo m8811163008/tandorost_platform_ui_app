@@ -52,7 +52,7 @@ class NumberTextField extends StatelessWidget {
       ),
       obscureText: obscureText,
       maxLength: maxLength,
-      maxLines: null,
+      maxLines: obscureText ? 1 : null,
       onChanged: onChange,
       validator: validator,
       textDirection: textDirection,

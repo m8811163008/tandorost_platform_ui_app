@@ -48,31 +48,57 @@ class TraineeFormListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<CoachCubit, CoachState>(
-      listenWhen: (previous, current) =>
-          previous.upsertingTraineeHistoryStatus !=
-          current.upsertingTraineeHistoryStatus,
-      listener: (context, state) {
-        if (state.upsertingTraineeHistoryStatus.isConnectionError) {
-          final content = context.l10n.networkError;
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state
-            .upsertingTraineeHistoryStatus
-            .isInternetConnectionError) {
-          final content = context.l10n.internetConnectionError;
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(content)));
-        } else if (state.upsertingTraineeHistoryStatus.isSuccess) {
-          Navigator.of(context).pop();
-          final content = context.l10n.bazzarSuccessfulPayment;
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(content)));
-        }
-      },
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<CoachCubit, CoachState>(
+          listenWhen: (previous, current) =>
+              previous.upsertingTraineeHistoryStatus !=
+              current.upsertingTraineeHistoryStatus,
+          listener: (context, state) {
+            if (state.upsertingTraineeHistoryStatus.isConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state
+                .upsertingTraineeHistoryStatus
+                .isInternetConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.upsertingTraineeHistoryStatus.isSuccess) {
+              context.read<PaymentCubit>().onAddEnrollment();
+            }
+          },
+        ),
+        BlocListener<PaymentCubit, PaymentState>(
+          listenWhen: (previous, current) =>
+              previous.onUpsertingProgramEnrollmentStatus !=
+              current.onUpsertingProgramEnrollmentStatus,
+          listener: (context, state) {
+            if (state.onUpsertingProgramEnrollmentStatus.isConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state
+                .onUpsertingProgramEnrollmentStatus
+                .isInternetConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.onUpsertingProgramEnrollmentStatus.isSuccess) {
+              Navigator.of(context).pop();
+              final content = context.l10n.bazzarSuccessfulPayment;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            }
+          },
+        ),
+      ],
       child: TraineeForm(),
     );
   }

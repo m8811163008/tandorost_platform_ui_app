@@ -6,6 +6,7 @@ import 'package:coach_repository/coach_repository.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:image_repository/image_repository.dart';
+import 'package:profile/profile.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 part 'coach_state.dart';
@@ -15,15 +16,18 @@ class CoachCubit extends Cubit<CoachState> {
     required this.coachRepository,
     required this.imageRepository,
     required this.athleteRepository,
+    required this.profileRepostiory,
   }) : super(CoachState()) {
     readCoachesUserProfiles();
     readCoachesProfile();
     readUserImageGallary();
+    profileRepostiory.userProfile();
   }
 
   final CoachRepository coachRepository;
   final ImageRepository imageRepository;
   final AthleteRepository athleteRepository;
+  final ProfileRepository profileRepostiory;
 
   Future<void> readCoachesUserProfiles() async {
     _enhancedEmit(
@@ -142,8 +146,15 @@ class CoachCubit extends Cubit<CoachState> {
       ),
     );
     try {
+      final traineeProfile = await profileRepostiory.userProfileStream.first;
+      if (traineeProfile == null) {
+        return;
+      }
+      final traineeHistory = state.traineeHistory!.copyWith(
+        userId: traineeProfile.id,
+      );
       final upsertedTraineeHistory = await athleteRepository
-          .upsertTraineeHistory(state.traineeHistory!);
+          .upsertTraineeHistory(traineeHistory);
       _enhancedEmit(
         state.copyWith(
           upsertingTraineeHistoryStatus: AsyncProcessingStatus.success,

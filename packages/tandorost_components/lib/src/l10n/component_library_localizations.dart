@@ -1009,12 +1009,6 @@ abstract class ComponentLibraryLocalizations {
   /// **'BMI Prime'**
   String get fitnessProfileBodyMassIndexPrime;
 
-  /// No description provided for @fitnessProfileBodyMassIndexLevelLabel.
-  ///
-  /// In fa, this message translates to:
-  /// **'سطح شاخص توده بدنی'**
-  String get fitnessProfileBodyMassIndexLevelLabel;
-
   /// No description provided for @fitnessProfileWaistCircumferenceToHeightRatio.
   ///
   /// In fa, this message translates to:
@@ -1050,6 +1044,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'در دسترس نیست'**
   String get fitnessProfileNA;
+
+  /// No description provided for @fitnessProfileBodyMassIndexLevelLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'سطح شاخص توده بدنی'**
+  String get fitnessProfileBodyMassIndexLevelLabel;
 
   /// No description provided for @fitnessProfileBmiDescription.
   ///
@@ -1093,7 +1093,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @fitnessProfileBmiStatus.
   ///
   /// In fa, this message translates to:
-  /// **'{bmiStatus, select, underweight{کمبود وزن} healthyWeight{عادی} overweight{اضافه وزن} obeseClassOne{چاقی کلاس 1} obeseClassTwo{چاقی کلاس 2} obeseClassThree{چاقی کلاس 3} other{ترجمه تعریف نشده}}'**
+  /// **'{bmiStatus, select, underweight{کمبود وزن} healthyWeight{عادی} overWeight{اضافه وزن} obeseClassOne{چاقی کلاس 1} obeseClassTwo{چاقی کلاس 2} obeseClassThree{چاقی کلاس 3} other{ترجمه تعریف نشده}}'**
   String fitnessProfileBmiStatus(String bmiStatus);
 
   /// No description provided for @fitnessProfileWaistCircumferenceSafeRangeDescription.
@@ -1293,7 +1293,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @appRoutesName.
   ///
   /// In fa, this message translates to:
-  /// **'{routesNames, select, loginRoute{ورود} registerRoute{ثبت نام} searchRoute{جستجو} resultRoute{نتیجه} forgotPassRoute{فراموشی رمز عبور} verificationRoute{تایید شماره} profileRoute{پروفایل} fitnessProfileRoute{ترکیب بدن | تناسب اندام} foodReportRoute{گزارش تغذیه} coachesListRoute{مربیان بدنسازی} coachDetailRoute{جزئیات مربی} traineeForm{فرم اطلاعات شاگرد} vo2maxCalculator{هوازی | حداکثر کاهش چربی} other{ترجمه تعریف نشده}}'**
+  /// **'{routesNames, select, loginRoute{ورود} registerRoute{ثبت نام} searchRoute{جستجو} resultRoute{نتیجه} forgotPassRoute{فراموشی رمز عبور} verificationRoute{تایید شماره} profileRoute{پروفایل} fitnessProfileRoute{ترکیب بدن | تناسب اندام} foodReportRoute{گزارش تغذیه} coachesListRoute{مربیان بدنسازی} coachDetailRoute{جزئیات مربی} traineeForm{فرم اطلاعات شاگرد} athletesDirectoryRoute{شاگردان شما} athleteDetailRoute{جزئیات شاگرد} vo2maxCalculator{هوازی | حداکثر کاهش چربی} other{ترجمه تعریف نشده}}'**
   String appRoutesName(String routesNames);
 
   /// No description provided for @wellcomeMessage.
@@ -1317,7 +1317,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @bazzarSuccessfulPayment.
   ///
   /// In fa, this message translates to:
-  /// **'اشتراک با موفقیت اضافه شد.برای اضافه کردن غذا اشتراک را تمدید نمایید'**
+  /// **'اشتراک با موفقیت اضافه شد.'**
   String get bazzarSuccessfulPayment;
 
   /// No description provided for @bazzarFailPayment.
@@ -2947,6 +2947,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'مربی فعالی پیدا نمیشود. لطفا با پشیتبانی تماس بگیرید'**
   String get coachListEmptyListlabel;
+
+  /// No description provided for @athleteListEmptyListlabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'هنوز شاگردی ندارید، تبلیغ کنید و شاگرد دعوت کنید'**
+  String get athleteListEmptyListlabel;
 
   /// No description provided for @traineeHistoryFormTitle.
   ///

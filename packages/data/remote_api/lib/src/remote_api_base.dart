@@ -6,6 +6,7 @@ import 'package:http_interceptor/http_interceptor.dart';
 import 'package:http_interceptor/http_interceptor.dart' as http;
 import 'package:remote_api/src/interceptor/interceptor.dart';
 import 'package:remote_api/src/model/model.dart';
+import 'package:remote_api/src/model/workout_program.dart';
 import 'package:remote_api/src/remote_api.dart';
 import 'package:remote_api/src/utility/utility.dart';
 import 'package:rxdart/rxdart.dart';
@@ -153,6 +154,19 @@ class RemoteApiBase implements RemoteApi {
       ],
     );
     final uri = UriBuilder.readUserPhysicalData();
+    final res = await _handleRequest<JsonMap?>(() => interceptedHttp.get(uri));
+    if (res == null) return null;
+    return UserPhysicalProfile.fromJson(res);
+  }
+
+  Future<UserPhysicalProfile?> readAthletePhysicalProfile(String userId) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readAthletePhysicalData(userId);
     final res = await _handleRequest<JsonMap?>(() => interceptedHttp.get(uri));
     if (res == null) return null;
     return UserPhysicalProfile.fromJson(res);
@@ -470,6 +484,21 @@ class RemoteApiBase implements RemoteApi {
     return FitnessData.fromJson(res);
   }
 
+  Future<FitnessData?> readAthelteFitnessData(String userId) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.readAtheleteFitnessData(userId);
+    final res = await _handleRequest<JsonMap?>(() => interceptedHttp.get(uri));
+    if (res == null) return null;
+
+    return FitnessData.fromJson(res);
+  }
+
   Future<NutritionRequirements?> readNutritionRequirements() async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
@@ -658,14 +687,14 @@ class RemoteApiBase implements RemoteApi {
   }
 
   @override
-  Future<List<TraineeHistory>> readTraineeHistory() async {
+  Future<List<TraineeHistory>> readTraineeHistory(String traineeId) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         CommonInterceptor(userLanguageProvider),
         AccessTokenInterceptor(accessTokenProvider),
       ],
     );
-    final uri = UriBuilder.readTraineeHistory();
+    final uri = UriBuilder.readTraineeHistory(traineeId);
     final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
     return res!.map((e) => TraineeHistory.fromJson(e)).toList();
   }
@@ -689,9 +718,127 @@ class RemoteApiBase implements RemoteApi {
     return TraineeHistory.fromJson(res!);
   }
 
+  Future<List<ProgramEnrollment>> readEnrollments({
+    String? coachId,
+    String? traineeId,
+  }) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readEnrollments(
+      coachId: coachId,
+      traineeId: traineeId,
+    );
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => ProgramEnrollment.fromJson(e)).toList();
+  }
+
+  Future<ProgramEnrollment> upsertEnrollment(
+    ProgramEnrollment programEnrollment,
+  ) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.upsertEnrollment();
+    final res = await _handleRequest<JsonMap>(
+      () => interceptedHttp.post(
+        uri,
+        body: json.encode(programEnrollment.toJson()),
+      ),
+    );
+    return ProgramEnrollment.fromJson(res!);
+  }
+
+  @override
+  Future<List<UserProfile>> readCoachAthletesProfile() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.readCoachAthletesProfile();
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => UserProfile.fromJson(e)).toList();
+  }
+
+  @override
+  Future<List<FileData>> readUsersImages({
+    required List<GallaryTag> gallaryTags,
+    required List<String> userIds,
+  }) async {
+    // readUsersImagesGallary
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readUsersImagesGallary(gallaryTags, userIds);
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => FileData.fromJson(e)).toList();
+  }
+
+  @override
+  Future<List<ExerciseDefinition>> readExerciseDefinition() async {
+    // readUsersImagesGallary
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readExerciseDefinition();
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => ExerciseDefinition.fromJson(e)).toList();
+  }
+
+  Future<WorkoutProgram> upsertWorkoutProgram({
+    required WorkoutProgram workoutProgram,
+  }) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.upsertWorkoutProgram();
+    final res = await _handleRequest<JsonMap>(
+      () =>
+          interceptedHttp.post(uri, body: json.encode(workoutProgram.toJson())),
+    );
+    return WorkoutProgram.fromJson(res!);
+  }
+
+  Future<WorkoutProgram?> readWorkoutProgram({
+    required String workoutId,
+  }) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readWorkoutProgram(workoutId);
+    final res = await _handleRequest<JsonMap?>(() => interceptedHttp.get(uri));
+    if (res == null) return null;
+
+    return WorkoutProgram.fromJson(res);
+  }
+
   Future<E?> _handleRequest<E>(Future<Response> Function() request) async {
     try {
       final res = await request();
+      print(res.body);
       if (res.statusCode == 204 || res.statusCode == 404) {
         return null;
       } else {
