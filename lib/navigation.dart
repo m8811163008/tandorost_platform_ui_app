@@ -26,7 +26,7 @@ import 'package:workout_view/workout_view.dart';
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: RoutesNames.athletesDirectoryRoute.path,
+      initialLocation: RoutesNames.searchRoute.path,
       observers: [SentryNavigatorObserver()],
       routes: [
         GoRoute(
@@ -111,6 +111,16 @@ class Navigation {
             GoRoute(
               path: RoutesNames.loginRoute.path,
               builder: (context, state) {
+                return AppScaffold(
+                  body: Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        throw StateError('This is test exception');
+                      },
+                      child: const Text('Verify Sentry Setup'),
+                    ),
+                  ),
+                );
                 return LoginRoute(
                   goToForgotPasswordRoute: () {
                     context.go(RoutesNames.forgotPassRoute.path);
