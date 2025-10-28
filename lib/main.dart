@@ -40,13 +40,15 @@ void main() async {
   await SentryFlutter.init(
     (options) {
       options.dsn =
-          'https://1d10de0455222c0ba27560b4f0071ff3@o4504084043530240.ingest.us.sentry.io/4506958323253248';
-      options.tracesSampleRate = 1.0;
+          'https://06481bd85be1169802973ab0c10cef22@o4510266823147520.ingest.de.sentry.io/4510266825048144';
+      options.sendDefaultPii = true;
     },
     appRunner: () => runApp(
-      DefaultAssetBundle(
-        bundle: SentryAssetBundle(),
-        child: DependencyManager(sharedPreferences: sharePref),
+      SentryWidget(
+        child: DefaultAssetBundle(
+          bundle: SentryAssetBundle(),
+          child: DependencyManager(sharedPreferences: sharePref),
+        ),
       ),
     ),
   );
