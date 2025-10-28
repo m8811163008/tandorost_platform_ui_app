@@ -55,7 +55,7 @@ class FoodReportCubit extends Cubit<FoodReportState> {
     );
     try {
       final foods = await _foodReport.readFoodsNutrition(
-        DateTime.now().toUtc(),
+        DateTime.now().toUtc().add(Duration(days: 1)),
         DateTime.now().copyWith(hour: 0, minute: 0, second: 0).toUtc(),
       );
       _enhancedEmit(

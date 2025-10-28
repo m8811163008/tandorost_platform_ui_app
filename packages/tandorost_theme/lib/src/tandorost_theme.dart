@@ -25,7 +25,7 @@ class AppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           visualDensity: screenWidth.visualDensity,
-          side: const BorderSide(width: 2),
+          side: const BorderSide(width: 1),
         ),
       ),
       textButtonTheme: TextButtonThemeData(
@@ -36,16 +36,20 @@ class AppTheme {
         primary: ThemeColor.primary.color,
         secondary: ThemeColor.secondary.color,
         tertiary: ThemeColor.tertiary.color,
-        onPrimary: ThemeColor.onPrimary.color,
-        onSecondary: ThemeColor.onSecondary.color,
+        // onPrimary: ThemeColor.onSurface.color,
+        // onSecondary: ThemeColor.onSurface.color,
+        // onTertiary: ThemeColor.onSurface.color,
+        surface: ThemeColor.onColor.color,
+        onSurface: ThemeColor.onSurface.color,
+        surfaceContainer: ThemeColor.surfaceContainer.color,
       ),
-      scaffoldBackgroundColor: ThemeColor.onPrimary.color,
-      canvasColor: ThemeColor.onPrimary.color,
+      scaffoldBackgroundColor: Color.fromARGB(255, 252, 229, 240),
+      canvasColor: ThemeColor.onColor.color,
 
       textTheme: textTheme(locale, screenWidth),
       extensions: [sizeExtenstion, colorExtenstion],
       appBarTheme: AppBarTheme(
-        backgroundColor: ThemeColor.onPrimary.color,
+        // backgroundColor: ThemeColor.onPrimary.color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(sizeExtenstion.medium),
@@ -57,6 +61,7 @@ class AppTheme {
         surfaceTintColor: Colors.transparent,
         actionsPadding: EdgeInsets.symmetric(horizontal: sizeExtenstion.medium),
       ),
+
       tabBarTheme: TabBarThemeData(
         textScaler: TextScaler.linear(screenWidth.textFactor),
         dividerColor: Colors.transparent,
@@ -64,50 +69,62 @@ class AppTheme {
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(),
         isDense: screenWidth.isDense,
-        hintStyle: textTheme(
-          locale,
-          screenWidth,
-        ).titleMedium!.copyWith(color: ThemeColor.tertiary.color),
+        hintStyle: textTheme(locale, screenWidth).titleMedium!,
         contentPadding: EdgeInsets.symmetric(
           horizontal: sizeExtenstion.medium,
           vertical: sizeExtenstion.small,
         ),
       ),
       cardTheme: CardThemeData(
+        color: ThemeColor.onColor.color,
         margin: EdgeInsets.symmetric(
           horizontal: sizeExtenstion.medium,
           vertical: sizeExtenstion.small,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(sizeExtenstion.small),
+          side: BorderSide(
+            color: ThemeColor.onSurface.color.withAlpha(250),
+            width: 1,
+            // style: BorderStyle.none,
+          ),
         ),
       ),
       progressIndicatorTheme: ProgressIndicatorThemeData(
         borderRadius: BorderRadius.circular(sizeExtenstion.large),
       ),
       listTileTheme: ListTileThemeData(
-        tileColor: ThemeColor.onSecondary.color.withAlpha(50),
-        selectedTileColor: ThemeColor.onSecondary.color,
+        tileColor: ThemeColor.surfaceContainer.color,
+
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(sizeExtenstion.small),
+          side: BorderSide(
+            color: ThemeColor.onSurface.color.withAlpha(250),
+            width: 1,
+            // style: BorderStyle.none,
+          ),
         ),
       ),
       // Calm theme: soft, muted colors
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: ThemeColor.onPrimary.color,
-        selectedItemColor: ThemeColor.primary.color, // calm blue
-        unselectedItemColor: ThemeColor.primary.color.withAlpha(
-          128,
-        ), // muted blue
-        selectedIconTheme: IconThemeData(color: ThemeColor.primary.color),
-        unselectedIconTheme: IconThemeData(
-          color: ThemeColor.primary.color.withAlpha(128),
-        ),
+        // backgroundColor: ThemeColor.onPrimary.color,
+        // selectedItemColor: ThemeColor.primary.color, // calm blue
+        // unselectedItemColor: ThemeColor.primary.color.withAlpha(
+        //   128,
+        // ), // muted blue
+        // selectedIconTheme: IconThemeData(color: ThemeColor.primary.color),
+        // unselectedIconTheme: IconThemeData(
+        //   color: ThemeColor.primary.color.withAlpha(128),
+        // ),
         showUnselectedLabels: true,
         type: BottomNavigationBarType.fixed,
       ),
     );
   }
 
-  final TextTheme baseTextTheme =
-      Typography.material2021(platform: TargetPlatform.android).dense;
+  final TextTheme baseTextTheme = Typography.material2021(
+    platform: TargetPlatform.android,
+  ).dense;
   TextTheme textTheme(Locale locale, double screenWidth) {
     final themeData = ThemeData.light(useMaterial3: true);
     if (locale.languageCode == 'fa') {
@@ -116,9 +133,9 @@ class AppTheme {
         package: 'tandorost_theme',
         fontSizeFactor: screenWidth.textFactor,
         fontSizeDelta: 0,
-        bodyColor: ThemeColor.tertiary.color,
-        displayColor: ThemeColor.tertiary.color,
-        decorationColor: ThemeColor.tertiary.color,
+        bodyColor: ThemeColor.onSurface.color,
+        displayColor: ThemeColor.onSurface.color,
+        decorationColor: ThemeColor.onSurface.color,
       );
     } else {
       return Typography.dense2021.apply(
@@ -126,9 +143,10 @@ class AppTheme {
         package: 'tandorost_theme',
         fontSizeFactor: screenWidth.textFactor,
         fontSizeDelta: 0,
-        bodyColor: ThemeColor.tertiary.color,
-        displayColor: ThemeColor.tertiary.color,
-        decorationColor: ThemeColor.tertiary.color,
+
+        bodyColor: ThemeColor.onSurface.color,
+        displayColor: ThemeColor.onSurface.color,
+        decorationColor: ThemeColor.onSurface.color,
       );
     }
   }

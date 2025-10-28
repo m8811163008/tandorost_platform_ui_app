@@ -39,7 +39,9 @@ class PhysicalDataChart extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppCardHeader(title: context.l10n.fitnessProfilePhysicaDataChart),
+              AppCardHeader(
+                title: context.l10n.fitnessInfoAthletePhysicaDataChart,
+              ),
               AppLineChart(dataPoints: dataPoints),
               AppLineChartInputChips(
                 chartTypes: state.supportedChartTypes,

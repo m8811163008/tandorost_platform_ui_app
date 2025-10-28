@@ -21,6 +21,8 @@ class TraineeHistory extends Equatable {
     this.dailyActivityDesc,
     this.supplements,
     this.coachAnalysis,
+    this.coachFoodsInstructions,
+    this.coachSupplementsInstruction,
   });
   TraineeHistory.empty({
     this.id,
@@ -35,6 +37,8 @@ class TraineeHistory extends Equatable {
     this.dailyActivityDesc,
     this.supplements,
     this.coachAnalysis,
+    this.coachFoodsInstructions,
+    this.coachSupplementsInstruction,
   }) : this.excersiceGoal = excersiceGoal ?? LinkedHashSet<ExcersiceGoal>(),
        this.exerciseEquipment =
            exerciseEquipment ?? LinkedHashSet<ExerciseEquipment>();
@@ -51,6 +55,8 @@ class TraineeHistory extends Equatable {
   final String? coachAnalysis;
 
   final String? dailyActivityDesc;
+  final String? coachFoodsInstructions;
+  final String? coachSupplementsInstruction;
 
   @ExerciseEquipmentLinkedHashSetConverter()
   final LinkedHashSet<ExerciseEquipment> exerciseEquipment;
@@ -64,6 +70,8 @@ class TraineeHistory extends Equatable {
     String? disabilities,
     String? sportTrainingHistory,
     String? coachAnalysis,
+    String? coachFoodsInstructions,
+    String? coachSupplementsInstruction,
     int? currentPracticeFrequencyPerWeek,
     LinkedHashSet<ExcersiceGoal>? excersiceGoal,
     ValueGetter<String?>? dailyActivityDesc,
@@ -77,6 +85,10 @@ class TraineeHistory extends Equatable {
       inguries: inguries ?? this.inguries,
       disabilities: disabilities ?? this.disabilities,
       coachAnalysis: coachAnalysis ?? this.coachAnalysis,
+      coachFoodsInstructions:
+          coachFoodsInstructions ?? this.coachFoodsInstructions,
+      coachSupplementsInstruction:
+          coachSupplementsInstruction ?? this.coachSupplementsInstruction,
       sportTrainingHistory: sportTrainingHistory ?? this.sportTrainingHistory,
       currentPracticeFrequencyPerWeek:
           currentPracticeFrequencyPerWeek ??
@@ -104,6 +116,8 @@ class TraineeHistory extends Equatable {
     exerciseEquipment,
     supplements,
     coachAnalysis,
+    coachSupplementsInstruction,
+    coachFoodsInstructions,
   ];
   Map<String, dynamic> toJson() => _$TraineeHistoryToJson(this);
 
@@ -130,6 +144,7 @@ enum ExerciseEquipment {
   dumbbell,
   band,
   kettlebell,
+  smith_machine,
 }
 
 class ExerciseEquipmentLinkedHashSetConverter

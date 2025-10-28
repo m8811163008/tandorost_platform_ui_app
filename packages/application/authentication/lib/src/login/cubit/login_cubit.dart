@@ -10,28 +10,33 @@ import 'package:tandorost_components/tandorost_components.dart';
 
 part 'login_state.dart';
 
-final GoogleSignIn signIn = GoogleSignIn.instance;
-
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._authenticationRepository) : super(LoginState()) {
     _initializeGoogleSignIn();
+    _initalizeCachedCredential();
   }
   final AuthenticationRepository _authenticationRepository;
-  final _clientId =
-      '1050674706678-onasa3m725nai77beq20t9np2thnbnsn.apps.googleusercontent.com';
+  late final StreamSubscription _googleAuthSubscription;
+  @override
+  Future<void> close() {
+    _googleAuthSubscription.cancel();
+    return super.close();
+  }
+
+  void _initalizeCachedCredential() async {
+    final credential = await _authenticationRepository.cachedCredential;
+    _enhancedEmit(state.copyWith(cachedCredential: credential));
+  }
 
   void _initializeGoogleSignIn() async {
     try {
-      await signIn.initialize(serverClientId: _clientId);
-      // unawaited(
-      //   signIn.initialize(serverClientId: _clientId).then((_) {
-      //     signIn.authenticationEvents
-      //         .listen(_handleAuthenticationEvent)
-      //         .onError(_handleAuthenticationError);
-
-      //     signIn.attemptLightweightAuthentication();
-      //   }),
-      // );
+      _googleAuthSubscription = _authenticationRepository
+          .googleAuthenticationEvents
+          .listen(
+            _handleAuthenticationEvent,
+            onError: _handleAuthenticationError,
+          );
+      await _authenticationRepository.initializeGoogleSignIn();
     } catch (e) {
       _enhancedEmit(
         state.copyWith(
@@ -45,14 +50,12 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> _handleAuthenticationEvent(
     GoogleSignInAuthenticationEvent event,
   ) async {
-    // // #docregion CheckAuthorization
-    // GoogleSignInAccount? user;
-    // // #enddocregion CheckAuthorization
-    // if (event is GoogleSignInAuthenticationEventSignIn) {
-    //   user = event.user;
-    // } else if (event is GoogleSignInAuthenticationEventSignOut) {
-    //   user = null;
-    // }
+    GoogleSignInAccount? user;
+
+    if (event is GoogleSignInAuthenticationEventSignIn) {
+      user = event.user;
+      _onVerifyGoogleToken(user);
+    }
 
     // // Check for existing authorization.
     // // #docregion CheckAuthorization
@@ -68,26 +71,59 @@ class LoginCubit extends Cubit<LoginState> {
     // }
   }
 
-  Future<void> _handleAuthenticationError(Object e) async {
-    // if (e is GoogleSignInException) {
-    //   _enhancedEmit(
-    //     state.copyWith(
-    //       initializingGoogleAuthStatus: AsyncProcessingStatus.connectionError,
-    //       googleSignInException: e,
-    //     ),
-    //   );
-    // } else {
-    //   _enhancedEmit(
-    //     state.copyWith(
-    //       initializingGoogleAuthStatus: AsyncProcessingStatus.connectionError,
-    //       exception: e.toString(),
-    //     ),
-    //   );
-    // }
+  void _onVerifyGoogleToken(GoogleSignInAccount user) async {
+    _enhancedEmit(
+      state.copyWith(onVerifyGoogleTokenStatus: AsyncProcessingStatus.loading),
+    );
+    try {
+      await _authenticationRepository.verifyGoogle(
+        googleToken: user.authentication.idToken!,
+      );
+      await _authenticationRepository.upsertCredential(user.email, '4321');
+
+      _enhancedEmit(
+        state.copyWith(
+          onVerifyGoogleTokenStatus: AsyncProcessingStatus.success,
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          onVerifyGoogleTokenStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException catch (e) {
+      try {
+        await _authenticationRepository.logout();
+      } catch (_) {}
+
+      _enhancedEmit(
+        state.copyWith(
+          onVerifyGoogleTokenStatus: AsyncProcessingStatus.connectionError,
+          exception: e.message,
+        ),
+      );
+    }
   }
 
-  // Calls the People API REST endpoint for the signed-in user to retrieve information.
-  Future<void> _handleGetContact(GoogleSignInAccount user) async {}
+  Future<void> _handleAuthenticationError(Object e) async {
+    if (e is GoogleSignInException) {
+      _enhancedEmit(
+        state.copyWith(
+          initializingGoogleAuthStatus: AsyncProcessingStatus.connectionError,
+          googleSignInException: e,
+        ),
+      );
+    } else {
+      _enhancedEmit(
+        state.copyWith(
+          initializingGoogleAuthStatus: AsyncProcessingStatus.connectionError,
+          exception: e.toString(),
+        ),
+      );
+    }
+  }
 
   Future<void> signInWithGoogle() async {
     try {
@@ -96,21 +132,13 @@ class LoginCubit extends Cubit<LoginState> {
           initializingGoogleAuthStatus: AsyncProcessingStatus.loading,
         ),
       );
-      final GoogleSignInAccount googleUser = await signIn.authenticate();
+      await _authenticationRepository.singInWithGoogle();
 
-      final GoogleSignInAuthentication googleAuth = googleUser.authentication;
-      final String? idToken = googleAuth.idToken;
       _enhancedEmit(
         state.copyWith(
           initializingGoogleAuthStatus: AsyncProcessingStatus.success,
         ),
       );
-
-      if (idToken != null) {
-        // Send this ID Token to your FastAPI backend
-        // and get your own JWT in return.
-        // await sendIdTokenToBackend(idToken);
-      }
     } catch (e) {
       if (e is GoogleSignInException) {
         _enhancedEmit(
@@ -142,8 +170,12 @@ class LoginCubit extends Cubit<LoginState> {
     _enhancedEmit(state.copyWith(loginStatus: AsyncProcessingStatus.loading));
     try {
       final credential = Credential(
-        username: state.phoneNumber,
-        password: state.password,
+        username: state.phoneNumber.isEmpty
+            ? state.cachedCredential?.username ?? state.phoneNumber
+            : state.phoneNumber,
+        password: state.password.isEmpty
+            ? state.cachedCredential?.password ?? state.password
+            : state.password,
       );
       // save credential on device
       await _authenticationRepository.authenticate(credential: credential);

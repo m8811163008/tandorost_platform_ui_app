@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:athletes_directory/athletes_directory.dart';
-import 'package:athletes_directory/src/athlete_detail_history.dart';
 import 'package:athletes_directory/src/creating_exercise_dialogs.dart/create_day_activities.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +13,7 @@ class WorkoutProgramRoute extends StatefulWidget {
 
 class _WorkoutProgramRouteState extends State<WorkoutProgramRoute> {
   int? copySourceWeekIndex;
+
   void startCopy(int weekIndex) {
     setState(() {
       copySourceWeekIndex = weekIndex;
@@ -45,7 +43,7 @@ class _WorkoutProgramRouteState extends State<WorkoutProgramRoute> {
     }
 
     context.read<AthelteDirectoryCubit>().onUpdateWorkoutProgram(
-      context.read<AthelteDirectoryCubit>().state.workoutProgram!.copyWith(
+      context.read<AthelteDirectoryCubit>().state.selectedWorkout!.copyWith(
         days: newDays,
       ),
     );
@@ -57,20 +55,21 @@ class _WorkoutProgramRouteState extends State<WorkoutProgramRoute> {
   Widget build(BuildContext context) {
     return BlocBuilder<AthelteDirectoryCubit, AthelteDirectoryState>(
       buildWhen: (previous, current) =>
-          previous.workoutProgram != current.workoutProgram,
+          previous.workoutPrograms != current.workoutPrograms ||
+          previous.selectedWorkout != current.selectedWorkout,
       builder: (context, state) {
-        if (state.workoutProgram == null) return SizedBox();
+        if (state.workoutPrograms.isEmpty) return SizedBox();
         final daysPerWeek = 7;
-        final weeksCount = (state.workoutProgram!.days.length / daysPerWeek)
+        final weeksCount = (state.selectedWorkout!.days.length / daysPerWeek)
             .ceil();
 
         return Scaffold(
-          appBar: AppBar(title: Text('abc')),
+          appBar: AppBar(title: Text('روزهای هفته')),
           body: ReorderableListView(
             onReorder: (int oldIndex, int newIndex) {
               final int daysPerWeek = 7;
               final workouts = List<AthleteDay?>.from(
-                state.workoutProgram!.days,
+                state.selectedWorkout!.days,
               );
 
               if (oldIndex < newIndex) {
@@ -92,11 +91,12 @@ class _WorkoutProgramRouteState extends State<WorkoutProgramRoute> {
               workouts.insertAll(newStart, weekBlock);
 
               context.read<AthelteDirectoryCubit>().onUpdateWorkoutProgram(
-                state.workoutProgram!.copyWith(days: workouts),
+                state.selectedWorkout!.copyWith(days: workouts),
               );
+              setState(() {});
             },
             padding: EdgeInsets.all(context.sizeExtenstion.medium),
-            header: Text('select between weeks'),
+            header: Text(context.l10n.workoutProgramRouteHeader),
             children: [
               for (int index = 0; index < weeksCount; index++)
                 Padding(
@@ -105,17 +105,22 @@ class _WorkoutProgramRouteState extends State<WorkoutProgramRoute> {
                     vertical: context.sizeExtenstion.small,
                   ),
                   child: ListTile(
-                    title: Text('$index week'),
+                    title: Text(
+                      context.l10n.workoutProgramRouteWeekTileLabel(index),
+                    ),
                     onTap: () {
                       if (copySourceWeekIndex != null &&
                           copySourceWeekIndex != index) {
-                        performCopy(index, state.workoutProgram!.days);
+                        performCopy(index, state.selectedWorkout!.days);
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(SnackBar(content: Text('کپی شد')));
                       } else {
                         Navigator.push(
                           context,
                           MaterialPageRoute<void>(
                             builder: (context) => SelectAthelteDayRoute(
-                              currentDayIndex: index * daysPerWeek,
+                              startDayIndex: index * daysPerWeek,
                             ),
                           ),
                         );
@@ -148,21 +153,25 @@ class _WorkoutProgramRouteState extends State<WorkoutProgramRoute> {
   }
 }
 
-class SelectAthelteDayRoute extends StatelessWidget {
-  const SelectAthelteDayRoute({super.key, required this.currentDayIndex});
-  final int currentDayIndex;
+class SelectAthelteDayRoute extends StatefulWidget {
+  const SelectAthelteDayRoute({super.key, required this.startDayIndex});
+  final int startDayIndex;
 
+  @override
+  State<SelectAthelteDayRoute> createState() => _SelectAthelteDayRouteState();
+}
+
+class _SelectAthelteDayRouteState extends State<SelectAthelteDayRoute> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AthelteDirectoryCubit, AthelteDirectoryState>(
       buildWhen: (previous, current) =>
-          previous.workoutProgram != current.workoutProgram,
+          previous.workoutPrograms != current.workoutPrograms ||
+          previous.selectedWorkout != current.selectedWorkout,
       builder: (context, state) {
-        final workoutLength = state.workoutProgram!.days.length;
-
         return Scaffold(
           appBar: AppBar(
-            title: Text('select days in the week plan'),
+            title: Text(context.l10n.selectAthelteDayRouteTitle),
             actions: [
               IconButton(
                 onPressed: () {
@@ -170,12 +179,12 @@ class SelectAthelteDayRoute extends StatelessWidget {
                     isRestDay: false,
                     activities: [],
                   );
-                  WorkoutProgram workout = state.workoutProgram!.copyWith(
-                    days: List.from(state.workoutProgram!.days),
+                  WorkoutProgram workout = state.selectedWorkout!.copyWith(
+                    days: List.from(state.selectedWorkout!.days),
                   );
                   final thisWeekWorkouts = workout.days.sublist(
-                    currentDayIndex,
-                    currentDayIndex + 7,
+                    widget.startDayIndex,
+                    widget.startDayIndex + 7,
                   );
                   if (thisWeekWorkouts.where((e) => e != null).length == 7) {
                     return;
@@ -184,7 +193,7 @@ class SelectAthelteDayRoute extends StatelessWidget {
                     (e) => e == null,
                   );
 
-                  workout.days[currentDayIndex + firstNotNullIndex] =
+                  workout.days[widget.startDayIndex + firstNotNullIndex] =
                       athleteDay;
 
                   context.read<AthelteDirectoryCubit>().onUpdateWorkoutProgram(
@@ -199,12 +208,12 @@ class SelectAthelteDayRoute extends StatelessWidget {
                     isRestDay: true,
                     activities: [],
                   );
-                  WorkoutProgram workout = state.workoutProgram!.copyWith(
-                    days: List.from(state.workoutProgram!.days),
+                  WorkoutProgram workout = state.selectedWorkout!.copyWith(
+                    days: List.from(state.selectedWorkout!.days),
                   );
                   final thisWeekWorkouts = workout.days.sublist(
-                    currentDayIndex,
-                    currentDayIndex + 7,
+                    widget.startDayIndex,
+                    widget.startDayIndex + 7,
                   );
                   if (thisWeekWorkouts.where((e) => e != null).length == 7) {
                     return;
@@ -213,7 +222,7 @@ class SelectAthelteDayRoute extends StatelessWidget {
                     (e) => e == null,
                   );
 
-                  workout.days[currentDayIndex + firstNotNullIndex] =
+                  workout.days[widget.startDayIndex + firstNotNullIndex] =
                       athleteDay;
 
                   context.read<AthelteDirectoryCubit>().onUpdateWorkoutProgram(
@@ -226,14 +235,15 @@ class SelectAthelteDayRoute extends StatelessWidget {
           ),
           body: BlocBuilder<AthelteDirectoryCubit, AthelteDirectoryState>(
             buildWhen: (previous, current) =>
-                previous.workoutProgram != current.workoutProgram,
+                previous.workoutPrograms != current.workoutPrograms ||
+                previous.selectedWorkout != current.selectedWorkout,
             builder: (context, state) {
               return ReorderableListView(
                 onReorder: (int oldIndex, int newIndex) {
-                  oldIndex = oldIndex + currentDayIndex;
-                  newIndex = newIndex + currentDayIndex;
+                  oldIndex = oldIndex + widget.startDayIndex;
+                  newIndex = newIndex + widget.startDayIndex;
                   final List<AthleteDay?> workouts = List.from(
-                    state.workoutProgram!.days,
+                    state.selectedWorkout!.days,
                   );
                   if (oldIndex < newIndex) {
                     newIndex -= 1;
@@ -241,38 +251,57 @@ class SelectAthelteDayRoute extends StatelessWidget {
                   final AthleteDay? item = workouts.removeAt(oldIndex);
                   workouts.insert(newIndex, item);
                   context.read<AthelteDirectoryCubit>().onUpdateWorkoutProgram(
-                    state.workoutProgram!.copyWith(days: workouts),
+                    state.selectedWorkout!.copyWith(days: workouts),
                   );
+                  setState(() {});
                 },
                 padding: EdgeInsets.all(context.sizeExtenstion.medium),
-                header: Text('add 7 days'),
-                children: state.workoutProgram!.days
-                    .sublist(currentDayIndex, currentDayIndex + 7)
+                header: Text(context.l10n.selectAthelteDayRouteSubTitle),
+                children: state.selectedWorkout!.days
+                    .sublist(widget.startDayIndex, widget.startDayIndex + 7)
                     .asMap()
                     .entries
                     .map((entry) {
                       final i = entry.key;
                       final e = entry.value;
                       if (e == null) {
-                        return Center(
+                        return Padding(
                           key: ValueKey('null-$i'),
-                          child: Text('null'),
+                          padding: EdgeInsets.symmetric(
+                            vertical: context.sizeExtenstion.small,
+                          ),
+                          child: ListTile(
+                            title: Text(
+                              context.l10n.selectAthelteDayRouteEmptyDay,
+                            ),
+                            leading: Icon(Icons.reorder),
+                            tileColor: context
+                                .themeData
+                                .colorScheme
+                                .surfaceContainerLow,
+                          ),
                         );
                       }
                       return Padding(
-                        key: ValueKey('day-${currentDayIndex + i}'),
+                        key: ValueKey('day-${widget.startDayIndex + i}'),
                         padding: EdgeInsets.symmetric(
                           vertical: context.sizeExtenstion.small,
                         ),
                         child: ListTile(
-                          title: Text('${e.isRestDay}'),
+                          title: Text(
+                            e.isRestDay
+                                ? context.l10n.selectAthelteDayRouteIsRestDay
+                                : context
+                                      .l10n
+                                      .selectAthelteDayRouteIsExerciseDay,
+                          ),
                           leading: Icon(Icons.reorder),
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute<void>(
                                 builder: (context) => CreateDayActivitiesRoute(
-                                  athleteDayIndex: currentDayIndex + i,
+                                  athleteDayIndex: widget.startDayIndex + i,
                                 ),
                               ),
                             );
@@ -284,25 +313,25 @@ class SelectAthelteDayRoute extends StatelessWidget {
                                 icon: Icon(Icons.copy),
                                 onPressed: () {
                                   final copiedDay = state
-                                      .workoutProgram!
-                                      .days[currentDayIndex + i];
+                                      .selectedWorkout!
+                                      .days[widget.startDayIndex + i];
                                   final firstNullIndexInCurrentWeek =
-                                      state.workoutProgram!.days
+                                      state.selectedWorkout!.days
                                           .sublist(
-                                            currentDayIndex,
-                                            currentDayIndex + 7,
+                                            widget.startDayIndex,
+                                            widget.startDayIndex + 7,
                                           )
                                           .indexWhere(
                                             (athleteDay) => athleteDay == null,
                                           ) +
-                                      currentDayIndex;
+                                      widget.startDayIndex;
                                   if (firstNullIndexInCurrentWeek == -1) return;
                                   final days = List<AthleteDay?>.from(
-                                    state.workoutProgram!.days,
+                                    state.selectedWorkout!.days,
                                   );
                                   days[firstNullIndexInCurrentWeek] = copiedDay;
 
-                                  final workout = state.workoutProgram!
+                                  final workout = state.selectedWorkout!
                                       .copyWith(days: days);
 
                                   context
@@ -316,19 +345,29 @@ class SelectAthelteDayRoute extends StatelessWidget {
                                   showDialog(
                                     context: context,
                                     builder: (ctx2) => AppDialog(
-                                      title: 'Delete Day',
+                                      title: context
+                                          .l10n
+                                          .selectAthelteDayRouteDeleteDialogTitle,
                                       contents: [
                                         Text(
-                                          'Are you sure you want to delete this workout day?',
+                                          context
+                                              .l10n
+                                              .selectAthelteDayRouteDeleteDialogSubtile,
                                         ),
                                       ],
                                       submitButton: TextButton(
                                         onPressed: () {
-                                          final workout = state.workoutProgram!
+                                          final workout = state.selectedWorkout!
                                               .copyWith(
-                                                days: List<AthleteDay?>.from(
-                                                  state.workoutProgram!.days,
-                                                )..[currentDayIndex + i] = null,
+                                                days:
+                                                    List<AthleteDay?>.from(
+                                                        state
+                                                            .selectedWorkout!
+                                                            .days,
+                                                      )
+                                                      ..[widget.startDayIndex +
+                                                              i] =
+                                                          null,
                                               );
 
                                           context
@@ -336,7 +375,7 @@ class SelectAthelteDayRoute extends StatelessWidget {
                                               .onUpdateWorkoutProgram(workout);
                                           Navigator.of(ctx2).pop();
                                         },
-                                        child: Text('Delete'),
+                                        child: Text(context.l10n.delete),
                                       ),
                                     ),
                                   );

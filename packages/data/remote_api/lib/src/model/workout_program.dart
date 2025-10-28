@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:remote_api/remote_api.dart';
@@ -14,7 +12,12 @@ part 'workout_program.g.dart';
 enum FocusArea { arm, shoulder, chest, back, leg, buttocks, abdomen, fullBody }
 
 @JsonEnum(fieldRename: FieldRename.snake)
-enum ExerciseMetricType { repsOnly, percent1rmAndReps, timeBased }
+enum ExerciseMetricType {
+  repsOnly,
+  @JsonValue('percent_1rm_and_reps')
+  percent1rmAndReps,
+  timeBased,
+}
 
 // =======================================================================
 // Section 2: Core "Library" Models (Referenced Documents)
@@ -24,9 +27,9 @@ enum ExerciseMetricType { repsOnly, percent1rmAndReps, timeBased }
 class ExerciseDefinition extends Equatable {
   final String? id;
   final String title;
-  final String? videoUrl;
-  final String? thumbImageUrl;
-  final String? coverImageUrl;
+  final List<String>? videoUrls;
+
+  final List<String>? coverImageUrl;
   final List<String> preparationSteps;
   final List<String> executionSteps;
   final List<String> keyTips;
@@ -37,8 +40,8 @@ class ExerciseDefinition extends Equatable {
   const ExerciseDefinition({
     this.id,
     required this.title,
-    this.videoUrl,
-    this.thumbImageUrl,
+    this.videoUrls,
+
     this.coverImageUrl,
     required this.preparationSteps,
     required this.executionSteps,
@@ -51,9 +54,9 @@ class ExerciseDefinition extends Equatable {
   ExerciseDefinition copyWith({
     String? id,
     String? title,
-    String? videoUrl,
+    List<String>? videoUrls,
     String? thumbImageUrl,
-    String? coverImageUrl,
+    List<String>? coverImageUrl,
     List<String>? preparationSteps,
     List<String>? executionSteps,
     List<String>? keyTips,
@@ -64,8 +67,7 @@ class ExerciseDefinition extends Equatable {
     return ExerciseDefinition(
       id: id ?? this.id,
       title: title ?? this.title,
-      videoUrl: videoUrl ?? this.videoUrl,
-      thumbImageUrl: thumbImageUrl ?? this.thumbImageUrl,
+      videoUrls: videoUrls ?? this.videoUrls,
       coverImageUrl: coverImageUrl ?? this.coverImageUrl,
       preparationSteps: preparationSteps ?? this.preparationSteps,
       executionSteps: executionSteps ?? this.executionSteps,
@@ -85,8 +87,7 @@ class ExerciseDefinition extends Equatable {
   List<Object?> get props => [
     id,
     title,
-    videoUrl,
-    thumbImageUrl,
+    videoUrls,
     coverImageUrl,
     preparationSteps,
     executionSteps,
@@ -152,26 +153,16 @@ class SetPrescription extends Equatable {
 
 @JsonSerializable(explicitToJson: true)
 class PrescribedExercise extends Equatable {
-  final String? exerciseDefinitionId;
+  final List<String>? exerciseDefinitionId;
   final String? note;
-  final List<SetPrescription>? sets;
-  final bool isRest;
-  final int? restPeriod;
+  final List<SetPrescription?>? sets;
 
-  const PrescribedExercise({
-    this.exerciseDefinitionId,
-    this.note,
-    this.sets,
-    this.isRest = false,
-    this.restPeriod,
-  });
+  const PrescribedExercise({this.exerciseDefinitionId, this.note, this.sets});
 
   const PrescribedExercise.empty({
-    this.exerciseDefinitionId = '',
+    this.exerciseDefinitionId = const [],
     this.note = '',
     this.sets = const [],
-    this.isRest = false,
-    this.restPeriod,
   });
 
   factory PrescribedExercise.fromJson(Map<String, dynamic> json) =>
@@ -180,19 +171,11 @@ class PrescribedExercise extends Equatable {
   Map<String, dynamic> toJson() => _$PrescribedExerciseToJson(this);
 
   @override
-  List<Object?> get props => [
-    exerciseDefinitionId,
-    note,
-    sets,
-    isRest,
-    restPeriod,
-  ];
+  List<Object?> get props => [exerciseDefinitionId, note, sets];
   PrescribedExercise copyWith({
-    ValueGetter<String?>? exerciseDefinitionId,
+    ValueGetter<List<String>?>? exerciseDefinitionId,
     ValueGetter<String?>? note,
-    List<SetPrescription>? sets,
-    bool? isRest,
-    ValueGetter<int?>? restPeriod,
+    List<SetPrescription?>? sets,
   }) {
     return PrescribedExercise(
       exerciseDefinitionId: exerciseDefinitionId != null
@@ -200,8 +183,6 @@ class PrescribedExercise extends Equatable {
           : this.exerciseDefinitionId,
       note: note != null ? note() : this.note,
       sets: sets ?? this.sets,
-      isRest: isRest ?? this.isRest,
-      restPeriod: restPeriod != null ? restPeriod() : this.restPeriod,
     );
   }
 }
@@ -209,24 +190,38 @@ class PrescribedExercise extends Equatable {
 @JsonSerializable(explicitToJson: true)
 class AthleteDay extends Equatable {
   final bool isRestDay;
+  final bool isDone;
 
   final List<PrescribedExercise>?
   activities; // PrescribedExercise or DurationPeriod
 
-  const AthleteDay({this.isRestDay = true, this.activities});
+  const AthleteDay({
+    required this.isRestDay,
+    this.activities,
+    this.isDone = false,
+  });
 
-  const AthleteDay.empty() : isRestDay = true, activities = const [];
+  const AthleteDay.rest()
+    : isRestDay = true,
+      activities = const [],
+      isDone = true;
   factory AthleteDay.from(AthleteDay other) {
     return AthleteDay(
       isRestDay: other.isRestDay,
       activities: other.activities != null
           ? List<PrescribedExercise>.from(other.activities!)
           : [],
+      isDone: other.isDone,
     );
   }
-  AthleteDay copyWith({bool? isRestDay, List<PrescribedExercise>? activities}) {
+  AthleteDay copyWith({
+    bool? isRestDay,
+    bool? isDone,
+    List<PrescribedExercise>? activities,
+  }) {
     return AthleteDay(
       isRestDay: isRestDay ?? this.isRestDay,
+      isDone: isDone ?? this.isDone,
       activities: activities ?? this.activities,
     );
   }
@@ -237,7 +232,7 @@ class AthleteDay extends Equatable {
   Map<String, dynamic> toJson() => _$AthleteDayToJson(this);
 
   @override
-  List<Object?> get props => [isRestDay, activities];
+  List<Object?> get props => [isRestDay, activities, isDone];
 }
 
 @JsonSerializable(explicitToJson: true)

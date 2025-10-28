@@ -60,6 +60,9 @@ android {
             isMinifyEnabled = true // Enable code shrinking
             isShrinkResources = true // Enable resource shrinking
         }
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("release")
+        }
     }
     buildFeatures {
         viewBinding = true

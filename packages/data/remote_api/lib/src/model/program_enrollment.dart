@@ -12,6 +12,7 @@ class ProgramEnrollment extends Equatable {
     required this.coachId,
     required this.workoutProgramId,
     required this.coachProgramId,
+    required this.traineeHistoryId,
     required this.enrollmentDate,
     this.id,
   });
@@ -20,6 +21,7 @@ class ProgramEnrollment extends Equatable {
   final String coachId;
   final String workoutProgramId;
   final String coachProgramId;
+  final String traineeHistoryId;
   final DateTime enrollmentDate;
 
   ProgramEnrollment copyWith({
@@ -28,6 +30,7 @@ class ProgramEnrollment extends Equatable {
     String? coachId,
     String? coachProgramId,
     String? workoutProgramId,
+    String? traineeHistoryId,
     DateTime? enrollmentDate,
   }) {
     return ProgramEnrollment(
@@ -36,6 +39,7 @@ class ProgramEnrollment extends Equatable {
       coachId: coachId ?? this.coachId,
       coachProgramId: coachProgramId ?? this.coachProgramId,
       workoutProgramId: workoutProgramId ?? this.workoutProgramId,
+      traineeHistoryId: traineeHistoryId ?? this.traineeHistoryId,
       enrollmentDate: enrollmentDate ?? this.enrollmentDate,
     );
   }
@@ -53,5 +57,6 @@ class ProgramEnrollment extends Equatable {
     workoutProgramId,
     coachProgramId,
     enrollmentDate,
+    traineeHistoryId,
   ];
 }

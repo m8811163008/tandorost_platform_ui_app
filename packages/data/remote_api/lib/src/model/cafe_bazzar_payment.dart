@@ -11,6 +11,8 @@ class CafeBazzarPaymentInfo {
   final String caffeBazzarSubscriptionPlanThreeMonthSdk;
   final String caffeBazzarSubscriptionPlanSixMonthSdk;
 
+  @JsonKey(name: 'caffe_bazzar_purchase_plan_0')
+  final String caffeBazzarPurchasePlan0;
   @JsonKey(name: 'caffe_bazzar_purchase_plan_1')
   final String caffeBazzarPurchasePlan1;
   @JsonKey(name: 'caffe_bazzar_purchase_plan_2')
@@ -58,6 +60,7 @@ class CafeBazzarPaymentInfo {
     required this.caffeBazzarSubscriptionPlanOneMonthSdk,
     required this.caffeBazzarSubscriptionPlanThreeMonthSdk,
     required this.caffeBazzarSubscriptionPlanSixMonthSdk,
+    required this.caffeBazzarPurchasePlan0,
     required this.caffeBazzarPurchasePlan1,
     required this.caffeBazzarPurchasePlan2,
     required this.caffeBazzarPurchasePlan3,

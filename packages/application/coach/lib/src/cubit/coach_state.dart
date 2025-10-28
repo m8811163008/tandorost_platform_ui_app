@@ -21,7 +21,7 @@ class CoachState extends Equatable {
     this.archivingImagesStatus = AsyncProcessingStatus.inital,
     this.upsertingTraineeHistoryStatus = AsyncProcessingStatus.inital,
     this.archiveImagesId = const [],
-  }) : this.traineeHistory = traineeHistory ?? TraineeHistory.empty();
+  }) : traineeHistory = traineeHistory ?? TraineeHistory.empty();
 
   final List<CoachProfile> coachesProfile;
   final AsyncProcessingStatus readCoachesProfileStatus;
@@ -72,7 +72,7 @@ class CoachState extends Equatable {
       coachesUserProfile: coachesUserProfile ?? this.coachesUserProfile,
       readCoachesUserProfileStatus:
           readCoachesUserProfileStatus ?? this.readCoachesUserProfileStatus,
-      coachesImagesData: readCoachImagesData ?? this.coachesImagesData,
+      coachesImagesData: readCoachImagesData ?? coachesImagesData,
       coachesImagesFilesDetail:
           coachesImagesFilesDetail ?? this.coachesImagesFilesDetail,
       readCoachImagesDataStatus:

@@ -52,7 +52,15 @@ class AppNavigation {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: context.sizeExtenstion.medium),
-            Text(context.l10n.drawerSupportText1),
+            TextButton(
+              onPressed: () async {
+                final Uri launchUri = Uri(scheme: 'tel', path: '+989212805230');
+                if (!await launchUrl(launchUri)) {
+                  throw Exception('Could not launch $launchUri');
+                }
+              },
+              child: Text(context.l10n.drawerSupportText1('09212805230')),
+            ),
             SizedBox(height: context.sizeExtenstion.small),
             Text(context.l10n.drawerSupportText2),
             SizedBox(height: context.sizeExtenstion.medium),
@@ -111,35 +119,38 @@ abstract class DrawerNavigationRoutes {
     0: RoutesNames.searchRoute,
     1: RoutesNames.foodReportRoute,
     2: RoutesNames.fitnessProfileRoute,
-    3: RoutesNames.profileRoute,
-    4: RoutesNames.vo2maxCalculator,
-    5: RoutesNames.loginRoute,
-    6: RoutesNames.coachesListRoute,
-    7: RoutesNames.athletesDirectoryRoute,
+
+    3: RoutesNames.vo2maxCalculator,
+    4: RoutesNames.athleteWorkoutView,
+    5: RoutesNames.coachesListRoute,
+    6: RoutesNames.athletesDirectoryRoute,
+    7: RoutesNames.profileRoute,
+    8: RoutesNames.loginRoute,
   };
   static const Map<int, IconData> icons = {
     0: Icons.search,
     1: Icons.circle,
     2: Icons.monitor_weight,
-    3: Icons.account_box,
-    4: Icons.health_and_safety,
-    5: Icons.login,
-    6: Icons.fitness_center,
-    7: Icons.store_mall_directory,
+    3: Icons.health_and_safety,
+    4: Icons.safety_check,
+    5: Icons.fitness_center,
+    6: Icons.store_mall_directory,
+    7: Icons.account_box,
+    8: Icons.login,
   };
 }
 
 abstract class BottomNavigationRoutes {
   static const Map<int, RoutesNames> routes = {
     0: RoutesNames.searchRoute,
-    1: RoutesNames.foodReportRoute,
+    1: RoutesNames.coachesListRoute,
     2: RoutesNames.fitnessProfileRoute,
     3: RoutesNames.profileRoute,
   };
   static const Map<int, IconData> icons = {
     0: Icons.search,
-    1: Icons.circle,
-    2: Icons.fitness_center,
+    1: Icons.fitness_center,
+    2: Icons.monitor_weight,
     3: Icons.account_box,
   };
 }

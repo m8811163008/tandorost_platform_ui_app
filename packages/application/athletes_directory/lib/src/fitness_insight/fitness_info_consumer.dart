@@ -1,5 +1,4 @@
 import 'package:athletes_directory/athletes_directory.dart';
-import 'package:athletes_directory/src/fitness_insight/fitness_info.dart';
 import 'package:athletes_directory/src/fitness_insight/fitness_insight.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';

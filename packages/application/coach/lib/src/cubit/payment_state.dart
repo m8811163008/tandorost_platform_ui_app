@@ -15,6 +15,7 @@ class PaymentState extends Equatable {
   final UserProfile? userProfile;
   final String? exceptionDetail;
   final CoachProgram? selectedCoachProgram;
+  final List<Referral> referrals;
 
   const PaymentState({
     this.readCoffeBazzarPaymentStatus = AsyncProcessingStatus.inital,
@@ -25,6 +26,7 @@ class PaymentState extends Equatable {
     this.onReadUserProfileStatus = AsyncProcessingStatus.inital,
     this.onUpsertingProgramEnrollmentStatus = AsyncProcessingStatus.inital,
     this.skuDetails = const [],
+    this.referrals = const [],
     this.cafeBazzarPaymentInfo,
     this.userProfile,
     this.selectedCoachProgram,
@@ -49,6 +51,7 @@ class PaymentState extends Equatable {
     subscriptionPayment,
     selectedCoachProgram,
     onUpsertingProgramEnrollmentStatus,
+    referrals,
   ];
   PaymentState copyWith({
     ValueGetter<CafeBazzarPaymentInfo?>? cafeBazzarPaymentInfo,
@@ -62,6 +65,7 @@ class PaymentState extends Equatable {
     AsyncProcessingStatus? onReadUserProfileStatus,
     AsyncProcessingStatus? onUpsertingProgramEnrollmentStatus,
     List<SkuDetails>? skuDetails,
+    List<Referral>? referrals,
     SubscriptionPayment? subscriptionPayment,
     ValueGetter<String?>? exceptionDetail,
     CoachProgram? selectedCoachProgram,
@@ -94,6 +98,7 @@ class PaymentState extends Equatable {
           coffeBazzarConnectionStatus ?? this.coffeBazzarConnectionStatus,
       subscriptionPayment: subscriptionPayment ?? this.subscriptionPayment,
       selectedCoachProgram: selectedCoachProgram ?? this.selectedCoachProgram,
+      referrals: referrals ?? this.referrals,
     );
   }
 }

@@ -6,7 +6,7 @@ class UserInfoRichText extends StatelessWidget {
     super.key,
     this.label = '',
     this.value = '',
-    required this.editValueButton,
+    this.editValueButton,
   });
   final String value;
   final String label;
@@ -15,20 +15,17 @@ class UserInfoRichText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RichText(
-      textAlign: TextAlign.start,
-      text: TextSpan(
-        children: [
-          TextSpan(text: '$label : ', style: context.textTheme.titleSmall),
-          TextSpan(text: value, style: context.textTheme.bodyMedium),
-          WidgetSpan(
-            child: Padding(
-              padding: EdgeInsetsDirectional.only(start: 8.0),
-              child: editValueButton,
-            ),
-          ),
-        ],
-      ),
+    return Wrap(
+      spacing: context.sizeExtenstion.small,
+      children: [
+        Text(label, style: context.textTheme.titleSmall),
+
+        Text(value, style: context.textTheme.bodyMedium),
+        Padding(
+          padding: EdgeInsetsDirectional.only(start: 8.0),
+          child: editValueButton,
+        ),
+      ],
     );
   }
 }

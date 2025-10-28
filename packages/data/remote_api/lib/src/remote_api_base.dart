@@ -6,7 +6,6 @@ import 'package:http_interceptor/http_interceptor.dart';
 import 'package:http_interceptor/http_interceptor.dart' as http;
 import 'package:remote_api/src/interceptor/interceptor.dart';
 import 'package:remote_api/src/model/model.dart';
-import 'package:remote_api/src/model/workout_program.dart';
 import 'package:remote_api/src/remote_api.dart';
 import 'package:remote_api/src/utility/utility.dart';
 import 'package:rxdart/rxdart.dart';
@@ -97,6 +96,25 @@ class RemoteApiBase implements RemoteApi {
     final uri = UriBuilder.authToken();
     final res = await _handleRequest<JsonMap>(
       () => interceptedHttp.post(uri, body: credential.toJson()),
+    );
+    if (await _controller.stream.first != AuthenticationStatus.authorized) {
+      _controller.add(AuthenticationStatus.authorized);
+    }
+
+    return Token.fromJson(res!);
+  }
+
+  @override
+  Future<Token> verifyGoogle(String googleToken) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        ContentTypeInterceptor(requestContentType: ContentType.textPlain),
+      ],
+    );
+    final uri = UriBuilder.verifyGoogle();
+    final res = await _handleRequest<JsonMap>(
+      () => interceptedHttp.post(uri, body: googleToken),
     );
     if (await _controller.stream.first != AuthenticationStatus.authorized) {
       _controller.add(AuthenticationStatus.authorized);
@@ -265,7 +283,7 @@ class RemoteApiBase implements RemoteApi {
     return ArchiveUserImagesResponse.fromJson(res!);
   }
 
-  Future<List<FileData>> addUserImages(UserImage userImage) async {
+  Future<List<FileData>> addUserImages(UserFile userImage) async {
     final uri = UriBuilder.addUsersImages();
     final request = http.MultipartRequest('POST', uri);
 
@@ -513,7 +531,9 @@ class RemoteApiBase implements RemoteApi {
     return NutritionRequirements.fromJson(res);
   }
 
-  Future<List<SubscriptionPayment>> readSubscriptionPayments() async {
+  Future<List<SubscriptionPayment>> readSubscriptionPayments({
+    String? coachId,
+  }) async {
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
         CommonInterceptor(userLanguageProvider),
@@ -521,7 +541,7 @@ class RemoteApiBase implements RemoteApi {
         ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
       ],
     );
-    final uri = UriBuilder.readSubscriptions();
+    final uri = UriBuilder.readSubscriptions(coachId: coachId);
     final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
     return res!.map((e) => SubscriptionPayment.fromJson(e)).toList();
   }
@@ -718,7 +738,7 @@ class RemoteApiBase implements RemoteApi {
     return TraineeHistory.fromJson(res!);
   }
 
-  Future<List<ProgramEnrollment>> readEnrollments({
+  Future<List<ProgramEnrollment>?> readEnrollments({
     String? coachId,
     String? traineeId,
   }) async {
@@ -732,8 +752,8 @@ class RemoteApiBase implements RemoteApi {
       coachId: coachId,
       traineeId: traineeId,
     );
-    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
-    return res!.map((e) => ProgramEnrollment.fromJson(e)).toList();
+    final res = await _handleRequest<List?>(() => interceptedHttp.get(uri));
+    return res?.map((e) => ProgramEnrollment.fromJson(e)).toList();
   }
 
   Future<ProgramEnrollment> upsertEnrollment(
@@ -775,6 +795,7 @@ class RemoteApiBase implements RemoteApi {
     required List<GallaryTag> gallaryTags,
     required List<String> userIds,
   }) async {
+    if (userIds.isEmpty) return [];
     // readUsersImagesGallary
     final interceptedHttp = InterceptedHttp.build(
       interceptors: [
@@ -799,6 +820,47 @@ class RemoteApiBase implements RemoteApi {
     final uri = UriBuilder.readExerciseDefinition();
     final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
     return res!.map((e) => ExerciseDefinition.fromJson(e)).toList();
+  }
+
+  @override
+  Future<void> sendInvite(String identifier) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+        ContentTypeInterceptor(requestContentType: ContentType.applicationJson),
+      ],
+    );
+    final uri = UriBuilder.sendInvite(identifier);
+    await _handleRequest<JsonMap?>(() => interceptedHttp.post(uri, body: null));
+  }
+
+  @override
+  Future<List<Referral>> readReferralByUserId() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readReferralByUserId();
+
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => Referral.fromJson(e)).toList();
+  }
+
+  @override
+  Future<List<Referral>> readReferralByInviterId() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readReferralByInviterId();
+
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => Referral.fromJson(e)).toList();
   }
 
   Future<WorkoutProgram> upsertWorkoutProgram({
@@ -835,6 +897,136 @@ class RemoteApiBase implements RemoteApi {
     return WorkoutProgram.fromJson(res);
   }
 
+  Future<List<UserProfile>> readCoachProfiles() async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        AccessTokenInterceptor(accessTokenProvider),
+      ],
+    );
+    final uri = UriBuilder.readCoachProfiles();
+
+    final res = await _handleRequest<List>(() => interceptedHttp.get(uri));
+    return res!.map((e) => UserProfile.fromJson(e)).toList();
+  }
+
+  Future<void> verifyVerificationCode({
+    required String identifier,
+    required String verificationCode,
+  }) async {
+    final interceptedHttp = InterceptedHttp.build(
+      interceptors: [
+        CommonInterceptor(userLanguageProvider),
+        ContentTypeInterceptor(
+          requestContentType: ContentType.applicationXWwwFormUrlencoded,
+        ),
+      ],
+    );
+    final uri = UriBuilder.verifyVerificationCode();
+    final body = {
+      "identifier": identifier,
+      "verification_code": verificationCode,
+    };
+
+    await _handleRequest<JsonMap>(() => interceptedHttp.post(uri, body: body));
+  }
+
+  Future<void> onVerifyByAi(
+    FileDetail recordedFile, [
+    Language userSpokenLanguage = Language.persian,
+  ]) async {
+    final uri = UriBuilder.onVerifyByAi();
+    final request = http.MultipartRequest('POST', uri);
+
+    final token = await accessTokenProvider();
+    final language = await userLanguageProvider();
+
+    request.headers.addAll({
+      'Authorization': 'Bearer ${token?.accessToken}',
+      HttpHeaders.acceptLanguageHeader: language.name,
+      HttpHeaders.contentTypeHeader: 'multipart/form-data',
+    });
+    request.fields['user_spoken_language'] = userSpokenLanguage.code;
+
+    request.fields['tag'] = GallaryTag.verification.requestName;
+    if (recordedFile.uploadDate != null) {
+      request.fields['upload_date'] = recordedFile.uploadDate!
+          .toUtc()
+          .toIso8601String();
+    }
+
+    request.files.add(
+      await http.MultipartFile.fromBytes(
+        'video_gallary_files',
+        recordedFile.bytes,
+        filename: recordedFile.fileName,
+        contentType: recordedFile.mediaType,
+      ),
+    );
+
+    try {
+      StreamedResponse response = await request.send();
+      if (response.statusCode == 204) {
+        return;
+      }
+
+      if (response.statusCode == 401) {
+        await _handleAuauthorize();
+        throw HttpException('');
+      }
+
+      if (response.statusCode != 204) {
+        final jsonResponseString = await response.stream.bytesToString();
+        final jsonResponse = json.decode(jsonResponseString);
+        assert(jsonResponse is JsonMap);
+        final responseFromJson = ApiErrorResponse.fromJson(
+          (jsonResponse as JsonMap)[_detail],
+        );
+        throw HttpException(responseFromJson.message!);
+      }
+    } on ValidationError {
+      rethrow;
+    } on HttpException {
+      rethrow;
+    } on SocketException {
+      if (!await hasInternetConnection()) {
+        throw InternetConnectionException();
+      }
+      throw HttpException('SocketException');
+    } on TimeoutException {
+      throw HttpException('TimeoutException');
+    } on HandshakeException {
+      throw HttpException('HandshakeException: SSL/TLS handshake failed');
+    } on TlsException {
+      throw HttpException('TlsException: TLS/SSL error occurred');
+    } on OSError catch (e) {
+      throw HttpException('OSError: ${e.message}');
+    } catch (e) {
+      print(e);
+      throw HttpException(e.toString());
+    }
+  }
+
+  // Future<String> sendVerificationCode2({
+  //   required VerificationCodeRequest verificationCodeRequest,
+  // }) async {
+  //   final interceptedHttp = InterceptedHttp.build(
+  //     interceptors: [
+  //       CommonInterceptor(userLanguageProvider),
+  //       ContentTypeInterceptor(
+  //         requestContentType: ContentType.applicationXWwwFormUrlencoded,
+  //       ),
+  //     ],
+  //   );
+  //   final uri = UriBuilder.authSendVerificationCode(
+  //     verificationCodeRequest.verificationType,
+  //   );
+  //   final res = await _handleRequest<String>(
+  //     () => interceptedHttp.post(uri, body: verificationCodeRequest.toJson()),
+  //   );
+
+  //   return res!;
+  // }
   Future<E?> _handleRequest<E>(Future<Response> Function() request) async {
     try {
       final res = await request();
@@ -858,7 +1050,7 @@ class RemoteApiBase implements RemoteApi {
       }
     } on ValidationError {
       rethrow;
-    } on HttpException catch (e) {
+    } on HttpException {
       rethrow;
     } on SocketException {
       if (!await hasInternetConnection()) {

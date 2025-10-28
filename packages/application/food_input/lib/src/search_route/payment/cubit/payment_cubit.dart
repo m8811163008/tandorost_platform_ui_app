@@ -7,7 +7,6 @@ import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_poolakey/flutter_poolakey.dart';
-import 'package:food_input/food_input.dart';
 import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -196,7 +195,7 @@ class PaymentCubit extends Cubit<PaymentState> {
       (skuDetail) => skuDetail.sku == sku,
     );
     final subscriptionPayment = SubscriptionPayment(
-      userId: state.userProfile!.id,
+      subscriberUserId: state.userProfile!.id,
       paidAmount: 0, //skuDetail.price.toRialDouble(),
       discountAmount: 0,
       currency: Currency.irRial,

@@ -31,11 +31,7 @@ class CoachDetailRoute extends StatelessWidget {
         ),
       ),
       body: CoachDetailListener(onTapProgram: onTapProgram),
-      drawer: NavigationDrawer(
-        onDestinationSelected: onDrawerNavigationChanged,
-        selectedIndex: drawerNavigationIndex,
-        children: AppNavigation.getDrawerChildren(context),
-      ),
+
       bottomNavigationBar: BottomNavigationBar(
         onTap: onBottomNavigationChanged,
         currentIndex: bottomNavigationIndex,
@@ -86,7 +82,8 @@ class CoachDetailBuilder extends StatelessWidget {
     return BlocBuilder<CoachCubit, CoachState>(
       buildWhen: (previous, current) =>
           previous.readSelectedCoachProgramsStatus !=
-          current.readSelectedCoachProgramsStatus,
+              current.readSelectedCoachProgramsStatus ||
+          previous.coachesImagesData != current.coachesImagesData,
       builder: (context, state) {
         final coachUserProfile = state.selectedCoacheUserProfile;
         final coachImagesFileDataAchievement = state.coachesImagesData.where(
@@ -105,8 +102,10 @@ class CoachDetailBuilder extends StatelessWidget {
             children: [
               AppCard(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CoachProfileSection(),
+
                     if (coachImagesFileDataCertificate.isNotEmpty) ...[
                       Text(
                         context.l10n.profileCertificatesLabel,
@@ -163,23 +162,50 @@ class CoachProfileSection extends StatelessWidget {
                 imageDetail.fileName == coachProfileImageFileData.fileName,
           );
         }
+
+        final isVerified = state.coachesImagesData
+            .where(
+              (image) =>
+                  image.userId == coachUserProfile!.id &&
+                  image.tag == GallaryTag.verification,
+            )
+            .isNotEmpty;
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Align(
               alignment: AlignmentDirectional.centerStart,
-              child: CircleAvatar(
-                radius: context.sizeExtenstion.extraLarge,
-                backgroundImage: coachProfileImageDetail != null
-                    ? MemoryImage(coachProfileImageDetail.bytes)
-                    : null,
-                child: coachProfileImageDetail == null
-                    ? Icon(
-                        Icons.person,
-                        size: context.sizeExtenstion.extraLarge,
-                      )
-                    : null,
+              child: Stack(
+                alignment: AlignmentDirectional.bottomEnd,
+                children: [
+                  CircleAvatar(
+                    radius: context.sizeExtenstion.extraLarge,
+                    backgroundImage: coachProfileImageDetail != null
+                        ? MemoryImage(coachProfileImageDetail.bytes)
+                        : null,
+                    child: coachProfileImageDetail == null
+                        ? Icon(
+                            Icons.person,
+                            size: context.sizeExtenstion.extraLarge,
+                          )
+                        : null,
+                  ),
+                  if (isVerified)
+                    GestureDetector(
+                      onTap: () {
+                        final content = context.l10n.verifyByAiSnackbar;
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(SnackBar(content: Text(content)));
+                      },
+                      child: Icon(
+                        Icons.verified,
+                        color: context.themeData.colorScheme.primary,
+                      ),
+                    ),
+                ],
               ),
             ),
             gap,
@@ -284,7 +310,10 @@ class CoachProgramsSection extends StatelessWidget {
       builder: (context, state) {
         if (state.readSelectedCoachPrograms == null ||
             state.readSelectedCoachPrograms!.isEmpty) {
-          return SizedBox.shrink();
+          return SizedBox(
+            width: double.infinity,
+            child: Text(context.l10n.emptyList),
+          );
         }
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -353,7 +382,7 @@ class ProgramCard extends StatelessWidget {
               label: context.l10n.profileCoachProfileCoachProgramPriceLabel,
               // add 50% to price
               value:
-                  '${(program.price.price * 10000 * 1.5).toStringAsFixed(0)} ${program.currency.name}',
+                  '${(program.price.price * 10000 * 2).toStringAsFixed(0)} ${program.currency.name}',
             ),
             ProgramCardRichTextRow(
               label: context.l10n.profileCoachProfileCoachProgramFeatureLabel,
@@ -372,7 +401,9 @@ class ProgramCard extends StatelessWidget {
                 context.read<PaymentCubit>().onChangeSelectedprogram(program);
                 onTapProgram?.call();
               },
-              child: Text('data'),
+              child: Text(
+                context.l10n.profileCoachProfileCoachProgramElevatedButoonTitle,
+              ),
             ),
           ],
         ),

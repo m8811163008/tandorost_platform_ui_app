@@ -100,8 +100,8 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @drawerSupportText1.
   ///
   /// In fa, this message translates to:
-  /// **'شماره پشتیبانی 09212805230'**
-  String get drawerSupportText1;
+  /// **'شماره پشتیبانی {phoneNumber}'**
+  String drawerSupportText1(String phoneNumber);
 
   /// No description provided for @drawerSupportText2.
   ///
@@ -114,6 +114,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'خروج از حساب کاربری'**
   String get logout;
+
+  /// No description provided for @notTranslated.
+  ///
+  /// In fa, this message translates to:
+  /// **'ترجمه نشده است'**
+  String get notTranslated;
 
   /// No description provided for @foodName.
   ///
@@ -157,6 +163,12 @@ abstract class ComponentLibraryLocalizations {
   /// **'شناسه'**
   String get id;
 
+  /// No description provided for @success.
+  ///
+  /// In fa, this message translates to:
+  /// **'موفقیت آمیز بود'**
+  String get success;
+
   /// No description provided for @upsertDate.
   ///
   /// In fa, this message translates to:
@@ -192,6 +204,12 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'منبع کربوهیدرات'**
   String get carbohydrateSource;
+
+  /// No description provided for @emptyList.
+  ///
+  /// In fa, this message translates to:
+  /// **'هنوز داده‌ای اضافه نشده است'**
+  String get emptyList;
 
   /// No description provided for @carbohydrateSourceValue.
   ///
@@ -1293,7 +1311,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @appRoutesName.
   ///
   /// In fa, this message translates to:
-  /// **'{routesNames, select, loginRoute{ورود} registerRoute{ثبت نام} searchRoute{جستجو} resultRoute{نتیجه} forgotPassRoute{فراموشی رمز عبور} verificationRoute{تایید شماره} profileRoute{پروفایل} fitnessProfileRoute{ترکیب بدن | تناسب اندام} foodReportRoute{گزارش تغذیه} coachesListRoute{مربیان بدنسازی} coachDetailRoute{جزئیات مربی} traineeForm{فرم اطلاعات شاگرد} athletesDirectoryRoute{شاگردان شما} athleteDetailRoute{جزئیات شاگرد} vo2maxCalculator{هوازی | حداکثر کاهش چربی} other{ترجمه تعریف نشده}}'**
+  /// **'{routesNames, select, loginRoute{ورود} registerRoute{ثبت نام} searchRoute{جستجو} resultRoute{نتیجه} forgotPassRoute{فراموشی رمز عبور} verificationRoute{تایید شماره} profileRoute{پروفایل} fitnessProfileRoute{ترکیب بدن | تناسب اندام} foodReportRoute{گزارش تغذیه} coachesListRoute{مربیان} coachDetailRoute{جزئیات مربی} athleteWorkoutView{اجرای تمرین} traineeForm{فرم اطلاعات شاگرد} athletesDirectoryRoute{مربی} athleteDetailRoute{جزئیات شاگرد} vo2maxCalculator{هوازی | حداکثر کاهش چربی} other{ترجمه تعریف نشده}}'**
   String appRoutesName(String routesNames);
 
   /// No description provided for @wellcomeMessage.
@@ -2067,26 +2085,74 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @vo2maxCalculatorText3.
   ///
   /// In fa, this message translates to:
-  /// **'به طور متوسط، بالاترین نرخ اکسیداسیون چربی (\"fat max\") در ۶۲-۶۳٪ VO2max رخ می‌دهد.'**
+  /// **'هر چه شدت تمرین بیشتر باشد، سرعت شکسته شدن گلیکوژن ماهیچه بیشتر می‌شود.'**
   String get vo2maxCalculatorText3;
 
   /// No description provided for @vo2maxCalculatorText4.
   ///
   /// In fa, this message translates to:
-  /// **'هر چه شدت تمرین بیشتر باشد، سرعت شکسته شدن گلیکوژن ماهیچه بیشتر می‌شود.'**
+  /// **'حداکثر اکسیژن مصرفی (V̇O₂ max) بالاترین نرخی است که بدن می‌تواند در طول فعالیت بدنی به آن برسد و اکسیژن را مصرف کند.'**
   String get vo2maxCalculatorText4;
 
   /// No description provided for @vo2maxCalculatorText5.
   ///
   /// In fa, this message translates to:
-  /// **'برای محاسبه مقدار بهینه و بهترین سرعت برای حداکثر چربی‌سوزی ابتدا تست کوپر را اجرا می‌کنیم و سپس مقدار بهینه مسافتی که باید با سرعت تقریباً ثابت در زمان کاردیو راه بروید را محاسبه می‌کنیم.'**
+  /// **'در طول تمرینات هوازی، بدن برای تأمین انرژی از ترکیبی از **گلیکوژن عضلانی** و **چربی** استفاده می‌کند.'**
   String get vo2maxCalculatorText5;
 
   /// No description provided for @vo2maxCalculatorText6.
   ///
   /// In fa, this message translates to:
-  /// **'به مدت ۱۲ دقیقه روی تردمیل یا زمین صاف حداکثر مسافتی که می‌توانید، بدوید و سپس مسافت را به متر برای محاسبه VO2max در زیر وارد کنید.'**
+  /// **'به طور متوسط، بالاترین نرخ اکسیداسیون چربی (\"fat max\") در ۶۲-۶۳٪ VO2max رخ می‌دهد.'**
   String get vo2maxCalculatorText6;
+
+  /// No description provided for @vo2maxCalculatorText7.
+  ///
+  /// In fa, this message translates to:
+  /// **'تمرین با شدت کم (کمتر از **۵۰٪ حداکثر اکسیژن مصرفی**) عمدتاً از طریق **چربی** تأمین سوخت می‌شود.'**
+  String get vo2maxCalculatorText7;
+
+  /// No description provided for @vo2maxCalculatorText8.
+  ///
+  /// In fa, this message translates to:
+  /// **'با افزایش شدت تمرین (به عنوان مثال، افزایش سرعت دویدن)، نسبت استفاده از **گلیکوژن** نسبت به چربی افزایش می‌یابد.'**
+  String get vo2maxCalculatorText8;
+
+  /// No description provided for @vo2maxCalculatorText9.
+  ///
+  /// In fa, this message translates to:
+  /// **'در تمرین با شدت متوسط (**۵۰ تا ۷۰٪ حداکثر اکسیژن مصرفی**)، گلیکوژن عضلانی حدود نیمی از نیاز انرژی شما را تأمین می‌کند؛ مابقی از **چربی** تأمین می‌شود. **بهینه ترین شدت تمرین برای سوزاندن چربی ۶۲-۶۳٪ حداکثر اکسیژن مصرفی است.**'**
+  String get vo2maxCalculatorText9;
+
+  /// No description provided for @vo2maxCalculatorText10.
+  ///
+  /// In fa, this message translates to:
+  /// **'هنگامی که شدت تمرین از **۷۰٪ حداکثر اکسیژن مصرفی** فراتر می‌رود، سرعت شکسته شدن و انتقال چربی برای تأمین انرژی کافی نیست و در نتیجه، **گلیکوژن عضلانی حداقل ۷۵٪** از نیاز انرژی شما را تأمین می‌کند.'**
+  String get vo2maxCalculatorText10;
+
+  /// No description provided for @vo2maxCalculatorText11.
+  ///
+  /// In fa, this message translates to:
+  /// **'به طور متوسط، در فعالیت‌های عمدتاً بی‌هوازی (Anaerobic)، ذخایر گلیکوژن عضلانی ظرف **۳۰ تا ۴۵ دقیقه** تخلیه می‌شوند و پس از آن گلیکوژن کبد مورد استفاده قرار می‌گیرد. بنابراین، توصیه می‌شود تمرینات مقاومتی/قدرتی (Strength Training) قبل از تمرینات استقامتی مانند دویدن هوازی انجام شود.'**
+  String get vo2maxCalculatorText11;
+
+  /// No description provided for @vo2maxCalculatorText12.
+  ///
+  /// In fa, this message translates to:
+  /// **'پس از تهی شدن ذخایر گلیکوژن عضلانی، **پروتئین** سهم فزاینده‌ای در تأمین نیازهای انرژی ایفا می‌کند. در این حالت، پروتئین‌های عضلانی شکسته می‌شوند تا اسیدهای آمینه لازم برای تولید انرژی و حفظ سطح طبیعی گلوکز خون فراهم شود.'**
+  String get vo2maxCalculatorText12;
+
+  /// No description provided for @vo2maxCalculatorText13.
+  ///
+  /// In fa, this message translates to:
+  /// **'برای محاسبه مقدار بهینه و بهترین سرعت برای حداکثر چربی‌سوزی ابتدا تست کوپر را اجرا می‌کنیم و سپس مقدار بهینه مسافتی که باید با سرعت تقریباً ثابت در زمان کاردیو راه بروید را محاسبه می‌کنیم.'**
+  String get vo2maxCalculatorText13;
+
+  /// No description provided for @vo2maxCalculatorText14.
+  ///
+  /// In fa, this message translates to:
+  /// **'به مدت ۱۲ دقیقه روی تردمیل یا زمین صاف حداکثر مسافتی که می‌توانید، بدوید. سپس مسافت دویده شده را به متر، برای محاسبه VO2max در کادر زیر وارد کنید.'**
+  String get vo2maxCalculatorText14;
 
   /// No description provided for @vo2maxCalculatorLabelText.
   ///
@@ -2219,7 +2285,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @introductionSingleIntroScreen1TitleText.
   ///
   /// In fa, this message translates to:
-  /// **'لاغری سریع'**
+  /// **'پلتفرم لاغری تندرست'**
   String get introductionSingleIntroScreen1TitleText;
 
   /// No description provided for @introductionSingleIntroScreen1DescriptionText.
@@ -2243,7 +2309,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @introductionSingleIntroScreen2DescriptionText.
   ///
   /// In fa, this message translates to:
-  /// **'کاهش چربی و جذابیت اندام شما'**
+  /// **'کاهش چربی و افزایش جذابیت اندام شما را در پی دارد'**
   String get introductionSingleIntroScreen2DescriptionText;
 
   /// No description provided for @introductionSingleIntroScreen3TitleText.
@@ -2906,6 +2972,12 @@ abstract class ComponentLibraryLocalizations {
   /// **'ویژگی‌های برنامه'**
   String get profileCoachProfileCoachProgramFeatureLabel;
 
+  /// No description provided for @profileCoachProfileCoachProgramElevatedButoonTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'خرید برنامه'**
+  String get profileCoachProfileCoachProgramElevatedButoonTitle;
+
   /// No description provided for @profileCoachProfileCoachProgramFeatureValue.
   ///
   /// In fa, this message translates to:
@@ -2942,23 +3014,83 @@ abstract class ComponentLibraryLocalizations {
   /// **'زبان مربی'**
   String get coachDetailLanguageLabel;
 
+  /// No description provided for @verifyByAiSnackbar.
+  ///
+  /// In fa, this message translates to:
+  /// **'فرآیند احراز هویت هوش مصنوعی Gemini ممکن است اشتباه باشد ، بنابراین دوباره بررسی کنید'**
+  String get verifyByAiSnackbar;
+
   /// No description provided for @coachListEmptyListlabel.
   ///
   /// In fa, this message translates to:
-  /// **'مربی فعالی پیدا نمیشود. لطفا با پشیتبانی تماس بگیرید'**
+  /// **'مربی فعالی پیدا نمیشود. لطفا با پشتیبانی تماس بگیرید'**
   String get coachListEmptyListlabel;
 
   /// No description provided for @athleteListEmptyListlabel.
   ///
   /// In fa, this message translates to:
-  /// **'هنوز شاگردی ندارید، تبلیغ کنید و شاگرد دعوت کنید'**
+  /// **'هنوز شاگردی ندارید، تبلیغ کنید یا شاگرد دعوت کنید'**
   String get athleteListEmptyListlabel;
 
-  /// No description provided for @traineeHistoryFormTitle.
+  /// No description provided for @histoyListEmptyListlabel.
   ///
   /// In fa, this message translates to:
-  /// **'پرسشنامه ارزیابی شاگرد'**
-  String get traineeHistoryFormTitle;
+  /// **'درخواست‌های شاگرد در دسترس نیست'**
+  String get histoyListEmptyListlabel;
+
+  /// No description provided for @inviteTraineeSectionHeadline.
+  ///
+  /// In fa, this message translates to:
+  /// **'دعوت از شاگرد'**
+  String get inviteTraineeSectionHeadline;
+
+  /// No description provided for @inviteTraineeSectionSubtitle1.
+  ///
+  /// In fa, this message translates to:
+  /// **'با دعوت شاگرد، خرید برنامه‌های شما در نرم افزار برای شاگرد رایگان میشود'**
+  String get inviteTraineeSectionSubtitle1;
+
+  /// No description provided for @inviteTraineeSectionSubtitle2.
+  ///
+  /// In fa, this message translates to:
+  /// **'دستمزد مربی‌گری را مستقیم مانند کارت به کارت دریافت نمایید'**
+  String get inviteTraineeSectionSubtitle2;
+
+  /// No description provided for @inviteTraineeSectionTextFieldHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'شماره همراه یا ایمیل وارد کنید'**
+  String get inviteTraineeSectionTextFieldHint;
+
+  /// No description provided for @inviteTraineeSectionTextFieldLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'شماره همراه یا ایمیل شاگرد'**
+  String get inviteTraineeSectionTextFieldLabel;
+
+  /// No description provided for @inviteTraineeSectionSubmitButton.
+  ///
+  /// In fa, this message translates to:
+  /// **'ارسال دعوتنامه'**
+  String get inviteTraineeSectionSubmitButton;
+
+  /// No description provided for @financeSectionHeadline.
+  ///
+  /// In fa, this message translates to:
+  /// **'حسابداری'**
+  String get financeSectionHeadline;
+
+  /// No description provided for @financeSectionBalance.
+  ///
+  /// In fa, this message translates to:
+  /// **'موجودی حسابتون در پلتفرم تندرست {balanceValue} {currency} '**
+  String financeSectionBalance(double balanceValue, String currency);
+
+  /// No description provided for @financeSectionBalanceSubtitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'دستمزدهای شما را تا روز 10ام هرماه شمسی بعد از تسویه مارکت‌ها و نداشتن شکایت از مشتریان انجام میدهیم'**
+  String get financeSectionBalanceSubtitle;
 
   /// No description provided for @traineeHistoryFormIllnessHitoryLabel.
   ///
@@ -3073,6 +3205,744 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'{equipment, select, weightMachine{دستگاه بدنسازی} cableMachine{دستگاه سیمکش} bodyWeight{وزن بدن} barbell{هالتر} dumbbell{دمبل} band{کش تمرینی} kettlebell{کتل‌بل} other{ترجمه تعریف نشده}}'**
   String traineeHistoryExerciseEquipmentValue(String equipment);
+
+  /// No description provided for @exerciseDefinitionFocusAreaValue.
+  ///
+  /// In fa, this message translates to:
+  /// **'{focusArea, select, arm{بازو} shoulder{شانه} chest{سینه} back{پشت} leg{پا} buttocks{باسن} abdomen{شکم} fullBody{کل بدن} other{ترجمه تعریف نشده}}'**
+  String exerciseDefinitionFocusAreaValue(String focusArea);
+
+  /// No description provided for @athleteDetailRouteEnrollmentDate.
+  ///
+  /// In fa, this message translates to:
+  /// **'تاریخ ثبت‌نام'**
+  String get athleteDetailRouteEnrollmentDate;
+
+  /// No description provided for @athleteDetailRouteHistoryIllness.
+  ///
+  /// In fa, this message translates to:
+  /// **'سابقه بیماری'**
+  String get athleteDetailRouteHistoryIllness;
+
+  /// No description provided for @athleteDetailRouteHistoryInjuries.
+  ///
+  /// In fa, this message translates to:
+  /// **'آسیب‌های گذشته'**
+  String get athleteDetailRouteHistoryInjuries;
+
+  /// No description provided for @athleteDetailRouteHistoryDisabilities.
+  ///
+  /// In fa, this message translates to:
+  /// **'محدودیت جسمانی'**
+  String get athleteDetailRouteHistoryDisabilities;
+
+  /// No description provided for @athleteDetailRouteHistorySportTrainingHistory.
+  ///
+  /// In fa, this message translates to:
+  /// **'سابقه ورزشی و نوع تمرینات قبل'**
+  String get athleteDetailRouteHistorySportTrainingHistory;
+
+  /// No description provided for @athleteDetailRouteHistoryPracticeFrequencyPerWeek.
+  ///
+  /// In fa, this message translates to:
+  /// **'تعداد دفعات فعلی تمرین در هفته'**
+  String get athleteDetailRouteHistoryPracticeFrequencyPerWeek;
+
+  /// No description provided for @athleteDetailRouteHistoryExerciseGoal.
+  ///
+  /// In fa, this message translates to:
+  /// **'هدف تمرین'**
+  String get athleteDetailRouteHistoryExerciseGoal;
+
+  /// No description provided for @athleteDetailRouteHistoryExerciseEquipment.
+  ///
+  /// In fa, this message translates to:
+  /// **'تجهیزات ورزشی'**
+  String get athleteDetailRouteHistoryExerciseEquipment;
+
+  /// No description provided for @athleteDetailRouteHistoryDailyActivity.
+  ///
+  /// In fa, this message translates to:
+  /// **'فعالیت روزانه و سبک زندگی'**
+  String get athleteDetailRouteHistoryDailyActivity;
+
+  /// No description provided for @athleteDetailRouteHistorySupplements.
+  ///
+  /// In fa, this message translates to:
+  /// **'مکمل‌های مصرفی'**
+  String get athleteDetailRouteHistorySupplements;
+
+  /// No description provided for @athleteDetailRouteHistoryCoachAnalisys.
+  ///
+  /// In fa, this message translates to:
+  /// **'تحلیل مربی'**
+  String get athleteDetailRouteHistoryCoachAnalisys;
+
+  /// No description provided for @athleteDetailRouteHistoryCoachFoodInstructions.
+  ///
+  /// In fa, this message translates to:
+  /// **'راهنمای تغذیه'**
+  String get athleteDetailRouteHistoryCoachFoodInstructions;
+
+  /// No description provided for @athleteDetailRouteHistoryCoachSupplementsInstructions.
+  ///
+  /// In fa, this message translates to:
+  /// **'راهنمای مکمل ورزشی'**
+  String get athleteDetailRouteHistoryCoachSupplementsInstructions;
+
+  /// No description provided for @athleteDetailRouteHistoryUpsertButtonWorkoutProgram.
+  ///
+  /// In fa, this message translates to:
+  /// **'مشاهده/ویرایش تمرین‌های ورزشکار'**
+  String get athleteDetailRouteHistoryUpsertButtonWorkoutProgram;
+
+  /// No description provided for @athleteDetailRouteHistoryEditAnalysisTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'نظر مربی'**
+  String get athleteDetailRouteHistoryEditAnalysisTitle;
+
+  /// No description provided for @athleteDetailRouteHistoryEditAnalysisLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'نظر مربی درباره تاریخچه ورزشی'**
+  String get athleteDetailRouteHistoryEditAnalysisLabel;
+
+  /// No description provided for @athleteDetailRouteHistoryEditAnalysisHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'نظر مربی مانند نقاط قوت و ضعف و برنامه ماکروسیکل'**
+  String get athleteDetailRouteHistoryEditAnalysisHint;
+
+  /// No description provided for @athleteDetailRouteHistoryEditFoodInstructionTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'نظر مربی'**
+  String get athleteDetailRouteHistoryEditFoodInstructionTitle;
+
+  /// No description provided for @athleteDetailRouteHistoryEditFoodInstructionLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'برنامه تغذیه'**
+  String get athleteDetailRouteHistoryEditFoodInstructionLabel;
+
+  /// No description provided for @athleteDetailRouteHistoryEditFoodInstructionHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'مانند رژیم در روزهای هفته یا برنامه غذایی هنگام باشگاه یا نکات تکمیلی تغذیه ورزشی'**
+  String get athleteDetailRouteHistoryEditFoodInstructionHint;
+
+  /// No description provided for @athleteDetailRouteHistoryEditSupplementsInstructionTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'نظر مربی'**
+  String get athleteDetailRouteHistoryEditSupplementsInstructionTitle;
+
+  /// No description provided for @athleteDetailRouteHistoryEditSupplementsInstructionLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'راهنمای مکمل ورزشی'**
+  String get athleteDetailRouteHistoryEditSupplementsInstructionLabel;
+
+  /// No description provided for @athleteDetailRouteHistoryEditSupplementsInstructionHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'راهنمای مصرف مکمل های مجاز wada یا آژانس ضددوپینک جهانی برای ورزشکار'**
+  String get athleteDetailRouteHistoryEditSupplementsInstructionHint;
+
+  /// No description provided for @save.
+  ///
+  /// In fa, this message translates to:
+  /// **'ذخیره'**
+  String get save;
+
+  /// No description provided for @send.
+  ///
+  /// In fa, this message translates to:
+  /// **'ارسال'**
+  String get send;
+
+  /// No description provided for @workoutProgramRouteHeader.
+  ///
+  /// In fa, this message translates to:
+  /// **'انتخاب بین هفته ها'**
+  String get workoutProgramRouteHeader;
+
+  /// No description provided for @workoutProgramRouteWeekTileLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'{index} هفته'**
+  String workoutProgramRouteWeekTileLabel(int index);
+
+  /// No description provided for @athleteDaysListListTileTitleNoPlan.
+  ///
+  /// In fa, this message translates to:
+  /// **'برنامه‌ای برای این روز تعریف نشده'**
+  String get athleteDaysListListTileTitleNoPlan;
+
+  /// No description provided for @athleteDaysListListTileTitleWithPlan.
+  ///
+  /// In fa, this message translates to:
+  /// **'{isRest, select,  true{روز استراحت} false{روز تمرین} other{ترجمه تعریف نشده}}'**
+  String athleteDaysListListTileTitleWithPlan(String isRest);
+
+  /// No description provided for @enrollmentsListEmptyTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'هنوز برنامه ای ثبت نام نکردید'**
+  String get enrollmentsListEmptyTitle;
+
+  /// No description provided for @selectAthelteDayRouteTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'انتخاب روز در هفته'**
+  String get selectAthelteDayRouteTitle;
+
+  /// No description provided for @selectAthelteDayRouteSubTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'7 روز هفته'**
+  String get selectAthelteDayRouteSubTitle;
+
+  /// No description provided for @selectAthelteDayRouteEmptyDay.
+  ///
+  /// In fa, this message translates to:
+  /// **'روز بدون برنامه'**
+  String get selectAthelteDayRouteEmptyDay;
+
+  /// No description provided for @selectAthelteDayRouteIsRestDay.
+  ///
+  /// In fa, this message translates to:
+  /// **'روز استراحت'**
+  String get selectAthelteDayRouteIsRestDay;
+
+  /// No description provided for @selectAthelteDayRouteIsExerciseDay.
+  ///
+  /// In fa, this message translates to:
+  /// **'روز تمرین'**
+  String get selectAthelteDayRouteIsExerciseDay;
+
+  /// No description provided for @createDayActivitiesRouteTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'انتخاب بین تمرین و استراحت'**
+  String get createDayActivitiesRouteTitle;
+
+  /// No description provided for @createDayActivitiesRouteUpsertRestDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'اضافه کردن استراحت'**
+  String get createDayActivitiesRouteUpsertRestDialogTitle;
+
+  /// No description provided for @createDayActivitiesRouteUpsertRestDialogLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'مدت استراحت (ثانیه)'**
+  String get createDayActivitiesRouteUpsertRestDialogLabel;
+
+  /// No description provided for @createDayActivitiesRouteListTileSubtitleLabelIsRest.
+  ///
+  /// In fa, this message translates to:
+  /// **'مدت استراحت {duration} ثانیه'**
+  String createDayActivitiesRouteListTileSubtitleLabelIsRest(int duration);
+
+  /// No description provided for @createDayActivitiesRouteSubtitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'بین تمرین‌ها و استراحت بین تمرین‌ها انتخاب کنید'**
+  String get createDayActivitiesRouteSubtitle;
+
+  /// No description provided for @createDayActivitiesRouteDeleteDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'{isRest, select,  true{حذف } false{حذف تمرین} other{ترجمه تعریف نشده}}'**
+  String createDayActivitiesRouteDeleteDialogTitle(String isRest);
+
+  /// No description provided for @createDayActivitiesRouteDeleteDialogSubtile.
+  ///
+  /// In fa, this message translates to:
+  /// **'آیا مطمئن به حذف این ردیف هستید؟'**
+  String get createDayActivitiesRouteDeleteDialogSubtile;
+
+  /// No description provided for @selectAthelteDayRouteDeleteDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'حذف روز'**
+  String get selectAthelteDayRouteDeleteDialogTitle;
+
+  /// No description provided for @selectAthelteDayRouteDeleteDialogSubtile.
+  ///
+  /// In fa, this message translates to:
+  /// **'آیا مطمئن به حذف این روز هستید؟'**
+  String get selectAthelteDayRouteDeleteDialogSubtile;
+
+  /// No description provided for @athleteDetailRouteHistoryExerciseGoalValue.
+  ///
+  /// In fa, this message translates to:
+  /// **'{goal, select, loseWeight{کاهش وزن} power{سرعت و توان} strength{قدرت} endurance{استقامت} hypertrophy{هایپرتروفی یا افزایش ماهیچه} prepareASportingEvent{آمادگی برای مسابقه} other{ترجمه تعریف نشده}}'**
+  String athleteDetailRouteHistoryExerciseGoalValue(String goal);
+
+  /// No description provided for @athleteDetailRouteHistoryExerciseEquipmentValue.
+  ///
+  /// In fa, this message translates to:
+  /// **'{equipment, select, bodyWeight{وزن بدن} weightMachine{دستگاه بدنسازی} cableMachine{دستگاه سیمکش} barbell{هالتر} dumbbell{دمبل} band{کش تمرینی} kettlebell{کتل‌بل} other{ترجمه تعریف نشده}}'**
+  String athleteDetailRouteHistoryExerciseEquipmentValue(String equipment);
+
+  /// No description provided for @selectExerciseAppbarTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'انتخاب تمرین'**
+  String get selectExerciseAppbarTitle;
+
+  /// No description provided for @activitySettingDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'انتخاب مدت و شدت تمرین'**
+  String get activitySettingDialogTitle;
+
+  /// No description provided for @activitySettingDialogAddSetLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'اضافه کردن ست'**
+  String get activitySettingDialogAddSetLabel;
+
+  /// No description provided for @setPrescriptionRowSetLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'ست {setNumber}'**
+  String setPrescriptionRowSetLabel(int setNumber);
+
+  /// No description provided for @setPrescriptionRowRemoveSet.
+  ///
+  /// In fa, this message translates to:
+  /// **'حذف ست'**
+  String get setPrescriptionRowRemoveSet;
+
+  /// No description provided for @setPrescriptionRowRestLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'استراحت بعد از ست (ثانیه)'**
+  String get setPrescriptionRowRestLabel;
+
+  /// No description provided for @setPrescriptionRepsLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'تکرار در ست'**
+  String get setPrescriptionRepsLabel;
+
+  /// No description provided for @setPrescriptionDrationLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'مدت ست (ثانیه)'**
+  String get setPrescriptionDrationLabel;
+
+  /// No description provided for @setPrescriptionPercentOneRepeatitionMaximumLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'درصد یک تکرار بیشینه (% 1RM)'**
+  String get setPrescriptionPercentOneRepeatitionMaximumLabel;
+
+  /// No description provided for @exerciseDefenitionListTilePreparationSteps.
+  ///
+  /// In fa, this message translates to:
+  /// **'قدم‌های آماده‌سازی'**
+  String get exerciseDefenitionListTilePreparationSteps;
+
+  /// No description provided for @exerciseDefenitionListTileExecutionSteps.
+  ///
+  /// In fa, this message translates to:
+  /// **'قدم‌های اجرا'**
+  String get exerciseDefenitionListTileExecutionSteps;
+
+  /// No description provided for @exerciseDefenitionListTileKeyTips.
+  ///
+  /// In fa, this message translates to:
+  /// **'نکات کلیدی'**
+  String get exerciseDefenitionListTileKeyTips;
+
+  /// No description provided for @exerciseDefenitionListTileFocusAreas.
+  ///
+  /// In fa, this message translates to:
+  /// **'ناحیه‌های اثرگذاری'**
+  String get exerciseDefenitionListTileFocusAreas;
+
+  /// No description provided for @exerciseDefenitionListTileEquipment.
+  ///
+  /// In fa, this message translates to:
+  /// **'ابزار مورد نیاز'**
+  String get exerciseDefenitionListTileEquipment;
+
+  /// No description provided for @exerciseDefenitionListTileWatchVideo.
+  ///
+  /// In fa, this message translates to:
+  /// **'دیدن ویدئو انجام حرکت'**
+  String get exerciseDefenitionListTileWatchVideo;
+
+  /// No description provided for @reorderExercisesDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'ترتیب حرکات'**
+  String get reorderExercisesDialogTitle;
+
+  /// No description provided for @reorderExercisesDialogSubTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'اولویت تمرین‌ها را مشخص نمایید'**
+  String get reorderExercisesDialogSubTitle;
+
+  /// No description provided for @carouselSliderBuilderEmptyState.
+  ///
+  /// In fa, this message translates to:
+  /// **'شاگرد تصویری اضافه نکرده است'**
+  String get carouselSliderBuilderEmptyState;
+
+  /// No description provided for @setPtescribedDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'تعداد تمرین و زمان استراحت'**
+  String get setPtescribedDialogTitle;
+
+  /// No description provided for @workoutsListFABTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'شروع ورزش'**
+  String get workoutsListFABTitle;
+
+  /// No description provided for @workoutsListRouteTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'حرکات این جلسه'**
+  String get workoutsListRouteTitle;
+
+  /// No description provided for @athleteDaysListRouteTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'روزهای برنامه ورزشی'**
+  String get athleteDaysListRouteTitle;
+
+  /// No description provided for @setPtescribedDialogRepsOnlyLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'{reps} تکرار'**
+  String setPtescribedDialogRepsOnlyLabel(int reps);
+
+  /// No description provided for @setPtescribedDialogPercent1rmAndRepsLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'{reps} تکرار با شدت {rm} یک تکرار بیشینه RM% '**
+  String setPtescribedDialogPercent1rmAndRepsLabel(int reps, double rm);
+
+  /// No description provided for @setPtescribedDialogTimeBasedLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'{sec} ثانیه'**
+  String setPtescribedDialogTimeBasedLabel(int sec);
+
+  /// No description provided for @setPtescribedDialogRestAfterExerciseLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'{sec} ثانیه استراحت'**
+  String setPtescribedDialogRestAfterExerciseLabel(int sec);
+
+  /// No description provided for @restScreenAddRestElevatedButtonLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'ثانیه {sec} +'**
+  String restScreenAddRestElevatedButtonLabel(int sec);
+
+  /// No description provided for @enrollmentsListEnrollmentCardTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'تاریخ ثبت‌نام در برنامه'**
+  String get enrollmentsListEnrollmentCardTitle;
+
+  /// No description provided for @enrollmentsListEnrollmentCardCoachAnalysis.
+  ///
+  /// In fa, this message translates to:
+  /// **'تحلیل مربی از شما'**
+  String get enrollmentsListEnrollmentCardCoachAnalysis;
+
+  /// No description provided for @enrollmentsListEnrollmentCardCoachFoodInstruction.
+  ///
+  /// In fa, this message translates to:
+  /// **'راهنمای تغذیه'**
+  String get enrollmentsListEnrollmentCardCoachFoodInstruction;
+
+  /// No description provided for @enrollmentsListEnrollmentCardCoachSupplementsInstruction.
+  ///
+  /// In fa, this message translates to:
+  /// **'راهنمای مکمل‌های ورزشی'**
+  String get enrollmentsListEnrollmentCardCoachSupplementsInstruction;
+
+  /// No description provided for @enrollmentsListEnrollmentCardCoachProfileName.
+  ///
+  /// In fa, this message translates to:
+  /// **'نام مربی'**
+  String get enrollmentsListEnrollmentCardCoachProfileName;
+
+  /// No description provided for @enrollmentsListEnrollmentCardCoachProfilePhoneNumber.
+  ///
+  /// In fa, this message translates to:
+  /// **'شماره تماس'**
+  String get enrollmentsListEnrollmentCardCoachProfilePhoneNumber;
+
+  /// No description provided for @enrollmentsListEnrollmentCardCoachProfileEmail.
+  ///
+  /// In fa, this message translates to:
+  /// **'ایمیل'**
+  String get enrollmentsListEnrollmentCardCoachProfileEmail;
+
+  /// No description provided for @enrollmentsListEnrollmentCardElevatedButtonTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'مشاهده روزهای برنامه'**
+  String get enrollmentsListEnrollmentCardElevatedButtonTitle;
+
+  /// No description provided for @workoutScreenCotrollerRestTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'استراحت'**
+  String get workoutScreenCotrollerRestTitle;
+
+  /// No description provided for @workoutScreenDoneElevatedButtonExerciseTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'انجام دادم'**
+  String get workoutScreenDoneElevatedButtonExerciseTitle;
+
+  /// No description provided for @introductionRouteLearnDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'آموزش پلتفرم تندرست'**
+  String get introductionRouteLearnDialogTitle;
+
+  /// No description provided for @introductionRouteLearnDialogSubTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'جهت یادگیری نرم‌افزار پلتفرم لاغری تندرست ویدئوهای زیر را ببینید'**
+  String get introductionRouteLearnDialogSubTitle;
+
+  /// No description provided for @introductionRouteLearnDialogLinkALabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'آموزش پلتفرم بدنسازی تندرست - قسمت یک'**
+  String get introductionRouteLearnDialogLinkALabel;
+
+  /// No description provided for @introductionRouteLearnDialogLinkBLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'آموزش پلتفرم بدنسازی تندرست - قسمت دو'**
+  String get introductionRouteLearnDialogLinkBLabel;
+
+  /// No description provided for @introductionRouteLearnDialogSubmitLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'ورود / ثبت‌نام'**
+  String get introductionRouteLearnDialogSubmitLabel;
+
+  /// No description provided for @googleSignInButtonText.
+  ///
+  /// In fa, this message translates to:
+  /// **'ادامه با گوگل'**
+  String get googleSignInButtonText;
+
+  /// No description provided for @congratulationScreenAppBarTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'انجام دادید :)'**
+  String get congratulationScreenAppBarTitle;
+
+  /// No description provided for @congratulationScreenTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'انجام شد!'**
+  String get congratulationScreenTitle;
+
+  /// No description provided for @congratulationScreenSubtitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'تمرین را انجام دادید، عالی بود!'**
+  String get congratulationScreenSubtitle;
+
+  /// No description provided for @congratulationScreenFinishButtonLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'پایان جلسه 👏'**
+  String get congratulationScreenFinishButtonLabel;
+
+  /// No description provided for @congratulationScreenFinishResetButtonLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'انجام دوباره جلسه'**
+  String get congratulationScreenFinishResetButtonLabel;
+
+  /// No description provided for @verificationCodeDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'تایید کد احراز اصالت درخواست'**
+  String get verificationCodeDialogTitle;
+
+  /// No description provided for @verificationCodeDialogVerificationCodeTextFieldLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'کد تایید'**
+  String get verificationCodeDialogVerificationCodeTextFieldLabel;
+
+  /// No description provided for @verificationCodeDialogVerificationCodeTextFieldHint.
+  ///
+  /// In fa, this message translates to:
+  /// **'کد ارسال شده را وارد  نمایید'**
+  String get verificationCodeDialogVerificationCodeTextFieldHint;
+
+  /// No description provided for @fitnessInfoTitleAthlete.
+  ///
+  /// In fa, this message translates to:
+  /// **'اطلاعات فیزیکی شاگرد'**
+  String get fitnessInfoTitleAthlete;
+
+  /// No description provided for @fitnessInfoAthletePhysicaDataChart.
+  ///
+  /// In fa, this message translates to:
+  /// **'نمودار پیشرفت شاگرد'**
+  String get fitnessInfoAthletePhysicaDataChart;
+
+  /// No description provided for @fitnessInfoAthleteHistoryTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'برنامه شاگرد'**
+  String get fitnessInfoAthleteHistoryTitle;
+
+  /// No description provided for @restScreenWorkoutTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'حرکت بعدی'**
+  String get restScreenWorkoutTitle;
+
+  /// No description provided for @restScreenWorkoutRestTimeTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'مدت باقی‌مانده استراحت'**
+  String get restScreenWorkoutRestTimeTitle;
+
+  /// No description provided for @workoutScreenWorkoutTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'حرکت حالا'**
+  String get workoutScreenWorkoutTitle;
+
+  /// No description provided for @videoPlayerWidgetHasErrorStatusLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'نمایش ویدئو خطا دارد.'**
+  String get videoPlayerWidgetHasErrorStatusLabel;
+
+  /// No description provided for @videoPlayerWidgetLodingStatusLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'در حال بارگذاری.صبر کنید...'**
+  String get videoPlayerWidgetLodingStatusLabel;
+
+  /// No description provided for @videoPlayerWidgetViewOnline.
+  ///
+  /// In fa, this message translates to:
+  /// **'نمایش ویدئو در وب'**
+  String get videoPlayerWidgetViewOnline;
+
+  /// No description provided for @athletesDirectoryBuilderCoachTraineeTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'شاگردان شما'**
+  String get athletesDirectoryBuilderCoachTraineeTitle;
+
+  /// No description provided for @inviteTraineeSuccessMessage.
+  ///
+  /// In fa, this message translates to:
+  /// **'با موفقیت به پلتفرم تندرست دعوت شد.'**
+  String get inviteTraineeSuccessMessage;
+
+  /// No description provided for @profileRouteReferralsElevatedButtonTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'وضعیت ارسال‌ها'**
+  String get profileRouteReferralsElevatedButtonTitle;
+
+  /// No description provided for @profileRouteReferralsDialogTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'دعوتنامه‌ها'**
+  String get profileRouteReferralsDialogTitle;
+
+  /// No description provided for @noReferralsFound.
+  ///
+  /// In fa, this message translates to:
+  /// **'هنوز کسی را دعوت نکرده‌اید'**
+  String get noReferralsFound;
+
+  /// No description provided for @referralTileInvitedContact.
+  ///
+  /// In fa, this message translates to:
+  /// **'دعوتنامه برای'**
+  String get referralTileInvitedContact;
+
+  /// No description provided for @referralTileStatus.
+  ///
+  /// In fa, this message translates to:
+  /// **'وضعیت دعوتنامه'**
+  String get referralTileStatus;
+
+  /// No description provided for @referralTileUpdatedDate.
+  ///
+  /// In fa, this message translates to:
+  /// **'آخرین بروزرسانی'**
+  String get referralTileUpdatedDate;
+
+  /// No description provided for @coachFinanceId.
+  ///
+  /// In fa, this message translates to:
+  /// **'شماره کارت یا شبا'**
+  String get coachFinanceId;
+
+  /// No description provided for @referralStatus.
+  ///
+  /// In fa, this message translates to:
+  /// **'{status, select, pending{هنوز ثبت‌نام نکرده} claimed{ثبت‌نام کرده} expired{منقضی‌شده} other{ترجمه تعریف نشده}}'**
+  String referralStatus(String status);
+
+  /// No description provided for @choose.
+  ///
+  /// In fa, this message translates to:
+  /// **'انتخاب'**
+  String get choose;
+
+  /// No description provided for @vo2maxLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'هوازی و چربی سوزی'**
+  String get vo2maxLabel;
+
+  /// No description provided for @vo2maxCalculatorLabel.
+  ///
+  /// In fa, this message translates to:
+  /// **'محسابه مسافت بهینه هوازی'**
+  String get vo2maxCalculatorLabel;
+
+  /// No description provided for @lanchUriFailedSnackBarMessage.
+  ///
+  /// In fa, this message translates to:
+  /// **'خطا در بازکردن آدرس، بعدا تلاش کنید'**
+  String get lanchUriFailedSnackBarMessage;
+
+  /// No description provided for @contactCoachEmailSubject.
+  ///
+  /// In fa, this message translates to:
+  /// **'{username} پشتیبانی پلتفرم لاغری تندرست'**
+  String contactCoachEmailSubject(String username);
+
+  /// No description provided for @coachesListShowingStatus.
+  ///
+  /// In fa, this message translates to:
+  /// **'{status, select, pendingVerification{در انتظار احراز هویت} isNotAcceptingNewTrainer{عدم نمایش شاگرد جدید} regullar{در حال نمایش} unknown{نامشخص} other{ترجمه تعریف نشده}}'**
+  String coachesListShowingStatus(String status);
 }
 
 class _ComponentLibraryLocalizationsDelegate

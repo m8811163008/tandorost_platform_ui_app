@@ -82,6 +82,7 @@ const _$GallaryTagEnumMap = {
   GallaryTag.profileImage: 'profile_image',
   GallaryTag.certificate: 'certificate',
   GallaryTag.achievement: 'achievement',
+  GallaryTag.verification: 'verification',
 };
 
 const _$ProcessingStatusEnumMap = {

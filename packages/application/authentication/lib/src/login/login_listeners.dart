@@ -39,6 +39,26 @@ class LoginListener extends StatelessWidget {
         ),
         BlocListener<LoginCubit, LoginState>(
           listenWhen: (previous, current) =>
+              previous.onVerifyGoogleTokenStatus !=
+              current.onVerifyGoogleTokenStatus,
+          listener: (context, state) {
+            if (state.onVerifyGoogleTokenStatus.isConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.exception ?? content)),
+              );
+            } else if (state.onVerifyGoogleTokenStatus.isConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.onVerifyGoogleTokenStatus.isSuccess) {
+              goToHomeRoute?.call();
+            }
+          },
+        ),
+        BlocListener<LoginCubit, LoginState>(
+          listenWhen: (previous, current) =>
               previous.initializingGoogleAuthStatus !=
               current.initializingGoogleAuthStatus,
           listener: (context, state) {
@@ -80,9 +100,8 @@ class LoginListener extends StatelessWidget {
               }
               messenger.showSnackBar(SnackBar(content: Text(content)));
             } else if (state.initializingGoogleAuthStatus.isSuccess) {
-              // fetch jwt
+              // navigate to dashboard
             }
-            print('test');
           },
         ),
       ],

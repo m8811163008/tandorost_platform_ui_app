@@ -19,6 +19,7 @@ ProgramEnrollment _$ProgramEnrollmentFromJson(Map<String, dynamic> json) =>
             'coach_id',
             'workout_program_id',
             'coach_program_id',
+            'trainee_history_id',
             'enrollment_date',
           ],
         );
@@ -31,6 +32,10 @@ ProgramEnrollment _$ProgramEnrollmentFromJson(Map<String, dynamic> json) =>
           ),
           coachProgramId: $checkedConvert(
             'coach_program_id',
+            (v) => v as String,
+          ),
+          traineeHistoryId: $checkedConvert(
+            'trainee_history_id',
             (v) => v as String,
           ),
           enrollmentDate: $checkedConvert(
@@ -46,6 +51,7 @@ ProgramEnrollment _$ProgramEnrollmentFromJson(Map<String, dynamic> json) =>
         'coachId': 'coach_id',
         'workoutProgramId': 'workout_program_id',
         'coachProgramId': 'coach_program_id',
+        'traineeHistoryId': 'trainee_history_id',
         'enrollmentDate': 'enrollment_date',
       },
     );
@@ -57,5 +63,6 @@ Map<String, dynamic> _$ProgramEnrollmentToJson(ProgramEnrollment instance) =>
       'coach_id': instance.coachId,
       'workout_program_id': instance.workoutProgramId,
       'coach_program_id': instance.coachProgramId,
+      'trainee_history_id': instance.traineeHistoryId,
       'enrollment_date': instance.enrollmentDate.toIso8601String(),
     };

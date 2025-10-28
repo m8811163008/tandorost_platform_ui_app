@@ -415,7 +415,7 @@ class _EditImageScreenState extends State<EditImageScreen> {
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text('done'),
+                        child: Text(context.l10n.save),
                       ),
                     ],
                   );

@@ -15,9 +15,12 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
           json,
           allowedKeys: const [
             'id',
-            'user_id',
+            'subscriber_user_id',
+            'coach_user_id',
             'program_id',
             'cafe_bazzar_order_id',
+            'payment_status',
+            'platform_settlement_month',
             'paid_amount',
             'discount_amount',
             'currency',
@@ -32,8 +35,26 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
         );
         final val = SubscriptionPayment(
           id: $checkedConvert('id', (v) => v as String?),
+          subscriberUserId: $checkedConvert(
+            'subscriber_user_id',
+            (v) => v as String,
+          ),
+          coachUserId: $checkedConvert('coach_user_id', (v) => v as String?),
           programId: $checkedConvert('program_id', (v) => v as String?),
-          userId: $checkedConvert('user_id', (v) => v as String),
+          cafeBazzarOrderId: $checkedConvert(
+            'cafe_bazzar_order_id',
+            (v) => v as String?,
+          ),
+          paymentStatus: $checkedConvert(
+            'payment_status',
+            (v) =>
+                $enumDecodeNullable(_$PaymentStatusEnumMap, v) ??
+                PaymentStatus.pendingSettle,
+          ),
+          platformSettlementMonth: $checkedConvert(
+            'platform_settlement_month',
+            (v) => dateTimeUtcFromJsonNullaware(v as String?),
+          ),
           paidAmount: $checkedConvert(
             'paid_amount',
             (v) => (v as num).toDouble(),
@@ -58,17 +79,13 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
             'subscription_type',
             (v) => $enumDecode(_$SubscriptionTypeEnumMap, v),
           ),
-          userAiRequestLimitFoods: $checkedConvert(
-            'user_ai_request_limit_foods',
-            (v) => (v as num?)?.toInt(),
-          ),
-          cafeBazzarOrderId: $checkedConvert(
-            'cafe_bazzar_order_id',
-            (v) => v as String?,
-          ),
           updatedAt: $checkedConvert(
             'updated_at',
             (v) => dateTimeUtcFromJsonNullaware(v as String?),
+          ),
+          userAiRequestLimitFoods: $checkedConvert(
+            'user_ai_request_limit_foods',
+            (v) => (v as num?)?.toInt(),
           ),
           isActive: $checkedConvert('is_active', (v) => v as bool? ?? false),
           userAiRequestedFoods: $checkedConvert(
@@ -79,16 +96,19 @@ SubscriptionPayment _$SubscriptionPaymentFromJson(Map<String, dynamic> json) =>
         return val;
       },
       fieldKeyMap: const {
+        'subscriberUserId': 'subscriber_user_id',
+        'coachUserId': 'coach_user_id',
         'programId': 'program_id',
-        'userId': 'user_id',
+        'cafeBazzarOrderId': 'cafe_bazzar_order_id',
+        'paymentStatus': 'payment_status',
+        'platformSettlementMonth': 'platform_settlement_month',
         'paidAmount': 'paid_amount',
         'discountAmount': 'discount_amount',
         'paymentMethod': 'payment_method',
         'purchaseDate': 'purchase_date',
         'subscriptionType': 'subscription_type',
-        'userAiRequestLimitFoods': 'user_ai_request_limit_foods',
-        'cafeBazzarOrderId': 'cafe_bazzar_order_id',
         'updatedAt': 'updated_at',
+        'userAiRequestLimitFoods': 'user_ai_request_limit_foods',
         'isActive': 'is_active',
         'userAiRequestedFoods': 'user_ai_requested_foods',
       },
@@ -98,9 +118,14 @@ Map<String, dynamic> _$SubscriptionPaymentToJson(
   SubscriptionPayment instance,
 ) => <String, dynamic>{
   'id': ?instance.id,
-  'user_id': instance.userId,
+  'subscriber_user_id': instance.subscriberUserId,
+  'coach_user_id': ?instance.coachUserId,
   'program_id': ?instance.programId,
   'cafe_bazzar_order_id': ?instance.cafeBazzarOrderId,
+  'payment_status': _$PaymentStatusEnumMap[instance.paymentStatus]!,
+  'platform_settlement_month': ?dateTimeUtcToJsonNullaware(
+    instance.platformSettlementMonth,
+  ),
   'paid_amount': instance.paidAmount,
   'discount_amount': instance.discountAmount,
   'currency': _$CurrencyEnumMap[instance.currency]!,
@@ -108,6 +133,14 @@ Map<String, dynamic> _$SubscriptionPaymentToJson(
   'purchase_date': dateTimeUtcToJson(instance.purchaseDate),
   'subscription_type': _$SubscriptionTypeEnumMap[instance.subscriptionType]!,
   'updated_at': ?dateTimeUtcToJsonNullaware(instance.updatedAt),
+};
+
+const _$PaymentStatusEnumMap = {
+  PaymentStatus.pendingSettle: 'pending_settle',
+  PaymentStatus.pendingTransfer: 'pending_transfer',
+  PaymentStatus.failed: 'failed',
+  PaymentStatus.completed: 'completed',
+  PaymentStatus.refund: 'refund',
 };
 
 const _$CurrencyEnumMap = {Currency.irRial: 'ir_rial'};

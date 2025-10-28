@@ -6,12 +6,15 @@ class SearchBodyLayoutHint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _buildHint(context, context.l10n.aiChatButtonTitle),
-        SizedBox(height: context.sizeExtenstion.small),
-        _buildHint(context, context.l10n.aiChatButtonSubTitle),
-      ],
+    return Padding(
+      padding: EdgeInsets.all(context.sizeExtenstion.medium),
+      child: Column(
+        children: [
+          _buildHint(context, context.l10n.aiChatButtonTitle),
+          SizedBox(height: context.sizeExtenstion.small),
+          _buildHint(context, context.l10n.aiChatButtonSubTitle),
+        ],
+      ),
     );
   }
 
@@ -20,9 +23,9 @@ class SearchBodyLayoutHint extends StatelessWidget {
       alignment: AlignmentDirectional.centerStart,
       child: Text(
         title,
-        style: context.textTheme.bodySmall!.apply(
-          color: context.themeData.colorScheme.tertiary.withAlpha(128),
-        ),
+        // style: context.textTheme.bodySmall!.apply(
+        //   color: context.themeData.colorScheme.tertiary.withAlpha(128),
+        // ),
       ),
     );
   }

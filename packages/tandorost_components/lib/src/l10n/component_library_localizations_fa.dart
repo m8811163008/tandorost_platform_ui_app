@@ -9,7 +9,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   ComponentLibraryLocalizationsFa([String locale = 'fa']) : super(locale);
 
   @override
-  String get drawerSupportText1 => 'شماره پشتیبانی 09212805230';
+  String drawerSupportText1(String phoneNumber) {
+    return 'شماره پشتیبانی $phoneNumber';
+  }
 
   @override
   String get drawerSupportText2 =>
@@ -17,6 +19,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get logout => 'خروج از حساب کاربری';
+
+  @override
+  String get notTranslated => 'ترجمه نشده است';
 
   @override
   String get foodName => 'نام غذا';
@@ -41,6 +46,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get id => 'شناسه';
 
   @override
+  String get success => 'موفقیت آمیز بود';
+
+  @override
   String get upsertDate => 'تاریخ ثبت/بروزرسانی';
 
   @override
@@ -57,6 +65,9 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get carbohydrateSource => 'منبع کربوهیدرات';
+
+  @override
+  String get emptyList => 'هنوز داده‌ای اضافه نشده است';
 
   @override
   String carbohydrateSourceValue(String source) {
@@ -788,10 +799,11 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
       'profileRoute': 'پروفایل',
       'fitnessProfileRoute': 'ترکیب بدن | تناسب اندام',
       'foodReportRoute': 'گزارش تغذیه',
-      'coachesListRoute': 'مربیان بدنسازی',
+      'coachesListRoute': 'مربیان',
       'coachDetailRoute': 'جزئیات مربی',
+      'athleteWorkoutView': 'اجرای تمرین',
       'traineeForm': 'فرم اطلاعات شاگرد',
-      'athletesDirectoryRoute': 'شاگردان شما',
+      'athletesDirectoryRoute': 'مربی',
       'athleteDetailRoute': 'جزئیات شاگرد',
       'vo2maxCalculator': 'هوازی | حداکثر کاهش چربی',
       'other': 'ترجمه تعریف نشده',
@@ -1339,19 +1351,51 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get vo2maxCalculatorText3 =>
-      'به طور متوسط، بالاترین نرخ اکسیداسیون چربی (\"fat max\") در ۶۲-۶۳٪ VO2max رخ می‌دهد.';
-
-  @override
-  String get vo2maxCalculatorText4 =>
       'هر چه شدت تمرین بیشتر باشد، سرعت شکسته شدن گلیکوژن ماهیچه بیشتر می‌شود.';
 
   @override
+  String get vo2maxCalculatorText4 =>
+      'حداکثر اکسیژن مصرفی (V̇O₂ max) بالاترین نرخی است که بدن می‌تواند در طول فعالیت بدنی به آن برسد و اکسیژن را مصرف کند.';
+
+  @override
   String get vo2maxCalculatorText5 =>
-      'برای محاسبه مقدار بهینه و بهترین سرعت برای حداکثر چربی‌سوزی ابتدا تست کوپر را اجرا می‌کنیم و سپس مقدار بهینه مسافتی که باید با سرعت تقریباً ثابت در زمان کاردیو راه بروید را محاسبه می‌کنیم.';
+      'در طول تمرینات هوازی، بدن برای تأمین انرژی از ترکیبی از **گلیکوژن عضلانی** و **چربی** استفاده می‌کند.';
 
   @override
   String get vo2maxCalculatorText6 =>
-      'به مدت ۱۲ دقیقه روی تردمیل یا زمین صاف حداکثر مسافتی که می‌توانید، بدوید و سپس مسافت را به متر برای محاسبه VO2max در زیر وارد کنید.';
+      'به طور متوسط، بالاترین نرخ اکسیداسیون چربی (\"fat max\") در ۶۲-۶۳٪ VO2max رخ می‌دهد.';
+
+  @override
+  String get vo2maxCalculatorText7 =>
+      'تمرین با شدت کم (کمتر از **۵۰٪ حداکثر اکسیژن مصرفی**) عمدتاً از طریق **چربی** تأمین سوخت می‌شود.';
+
+  @override
+  String get vo2maxCalculatorText8 =>
+      'با افزایش شدت تمرین (به عنوان مثال، افزایش سرعت دویدن)، نسبت استفاده از **گلیکوژن** نسبت به چربی افزایش می‌یابد.';
+
+  @override
+  String get vo2maxCalculatorText9 =>
+      'در تمرین با شدت متوسط (**۵۰ تا ۷۰٪ حداکثر اکسیژن مصرفی**)، گلیکوژن عضلانی حدود نیمی از نیاز انرژی شما را تأمین می‌کند؛ مابقی از **چربی** تأمین می‌شود. **بهینه ترین شدت تمرین برای سوزاندن چربی ۶۲-۶۳٪ حداکثر اکسیژن مصرفی است.**';
+
+  @override
+  String get vo2maxCalculatorText10 =>
+      'هنگامی که شدت تمرین از **۷۰٪ حداکثر اکسیژن مصرفی** فراتر می‌رود، سرعت شکسته شدن و انتقال چربی برای تأمین انرژی کافی نیست و در نتیجه، **گلیکوژن عضلانی حداقل ۷۵٪** از نیاز انرژی شما را تأمین می‌کند.';
+
+  @override
+  String get vo2maxCalculatorText11 =>
+      'به طور متوسط، در فعالیت‌های عمدتاً بی‌هوازی (Anaerobic)، ذخایر گلیکوژن عضلانی ظرف **۳۰ تا ۴۵ دقیقه** تخلیه می‌شوند و پس از آن گلیکوژن کبد مورد استفاده قرار می‌گیرد. بنابراین، توصیه می‌شود تمرینات مقاومتی/قدرتی (Strength Training) قبل از تمرینات استقامتی مانند دویدن هوازی انجام شود.';
+
+  @override
+  String get vo2maxCalculatorText12 =>
+      'پس از تهی شدن ذخایر گلیکوژن عضلانی، **پروتئین** سهم فزاینده‌ای در تأمین نیازهای انرژی ایفا می‌کند. در این حالت، پروتئین‌های عضلانی شکسته می‌شوند تا اسیدهای آمینه لازم برای تولید انرژی و حفظ سطح طبیعی گلوکز خون فراهم شود.';
+
+  @override
+  String get vo2maxCalculatorText13 =>
+      'برای محاسبه مقدار بهینه و بهترین سرعت برای حداکثر چربی‌سوزی ابتدا تست کوپر را اجرا می‌کنیم و سپس مقدار بهینه مسافتی که باید با سرعت تقریباً ثابت در زمان کاردیو راه بروید را محاسبه می‌کنیم.';
+
+  @override
+  String get vo2maxCalculatorText14 =>
+      'به مدت ۱۲ دقیقه روی تردمیل یا زمین صاف حداکثر مسافتی که می‌توانید، بدوید. سپس مسافت دویده شده را به متر، برای محاسبه VO2max در کادر زیر وارد کنید.';
 
   @override
   String get vo2maxCalculatorLabelText => 'مسافت طی شده به متر';
@@ -1453,7 +1497,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get introductionNextText => 'جلو';
 
   @override
-  String get introductionSingleIntroScreen1TitleText => 'لاغری سریع';
+  String get introductionSingleIntroScreen1TitleText => 'پلتفرم لاغری تندرست';
 
   @override
   String get introductionSingleIntroScreen1DescriptionText =>
@@ -1467,7 +1511,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get introductionSingleIntroScreen2DescriptionText =>
-      'کاهش چربی و جذابیت اندام شما';
+      'کاهش چربی و افزایش جذابیت اندام شما را در پی دارد';
 
   @override
   String get introductionSingleIntroScreen3TitleText => 'پشتیبانی';
@@ -1856,6 +1900,10 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get profileCoachProfileCoachProgramFeatureLabel => 'ویژگی‌های برنامه';
 
   @override
+  String get profileCoachProfileCoachProgramElevatedButoonTitle =>
+      'خرید برنامه';
+
+  @override
   String profileCoachProfileCoachProgramFeatureValue(String feature) {
     String _temp0 = intl.Intl.selectLogic(feature, {
       'phoneSupport': 'پشتیبانی تلفنی',
@@ -1886,15 +1934,61 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get coachDetailLanguageLabel => 'زبان مربی';
 
   @override
+  String get verifyByAiSnackbar =>
+      'فرآیند احراز هویت هوش مصنوعی Gemini ممکن است اشتباه باشد ، بنابراین دوباره بررسی کنید';
+
+  @override
   String get coachListEmptyListlabel =>
-      'مربی فعالی پیدا نمیشود. لطفا با پشیتبانی تماس بگیرید';
+      'مربی فعالی پیدا نمیشود. لطفا با پشتیبانی تماس بگیرید';
 
   @override
   String get athleteListEmptyListlabel =>
-      'هنوز شاگردی ندارید، تبلیغ کنید و شاگرد دعوت کنید';
+      'هنوز شاگردی ندارید، تبلیغ کنید یا شاگرد دعوت کنید';
 
   @override
-  String get traineeHistoryFormTitle => 'پرسشنامه ارزیابی شاگرد';
+  String get histoyListEmptyListlabel => 'درخواست‌های شاگرد در دسترس نیست';
+
+  @override
+  String get inviteTraineeSectionHeadline => 'دعوت از شاگرد';
+
+  @override
+  String get inviteTraineeSectionSubtitle1 =>
+      'با دعوت شاگرد، خرید برنامه‌های شما در نرم افزار برای شاگرد رایگان میشود';
+
+  @override
+  String get inviteTraineeSectionSubtitle2 =>
+      'دستمزد مربی‌گری را مستقیم مانند کارت به کارت دریافت نمایید';
+
+  @override
+  String get inviteTraineeSectionTextFieldHint =>
+      'شماره همراه یا ایمیل وارد کنید';
+
+  @override
+  String get inviteTraineeSectionTextFieldLabel => 'شماره همراه یا ایمیل شاگرد';
+
+  @override
+  String get inviteTraineeSectionSubmitButton => 'ارسال دعوتنامه';
+
+  @override
+  String get financeSectionHeadline => 'حسابداری';
+
+  @override
+  String financeSectionBalance(double balanceValue, String currency) {
+    final intl.NumberFormat balanceValueNumberFormat =
+        intl.NumberFormat.decimalPatternDigits(
+          locale: localeName,
+          decimalDigits: 2,
+        );
+    final String balanceValueString = balanceValueNumberFormat.format(
+      balanceValue,
+    );
+
+    return 'موجودی حسابتون در پلتفرم تندرست $balanceValueString $currency ';
+  }
+
+  @override
+  String get financeSectionBalanceSubtitle =>
+      'دستمزدهای شما را تا روز 10ام هرماه شمسی بعد از تسویه مارکت‌ها و نداشتن شکایت از مشتریان انجام میدهیم';
 
   @override
   String get traineeHistoryFormIllnessHitoryLabel => 'سابقه بیماری';
@@ -1982,6 +2076,495 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
       'dumbbell': 'دمبل',
       'band': 'کش تمرینی',
       'kettlebell': 'کتل‌بل',
+      'other': 'ترجمه تعریف نشده',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String exerciseDefinitionFocusAreaValue(String focusArea) {
+    String _temp0 = intl.Intl.selectLogic(focusArea, {
+      'arm': 'بازو',
+      'shoulder': 'شانه',
+      'chest': 'سینه',
+      'back': 'پشت',
+      'leg': 'پا',
+      'buttocks': 'باسن',
+      'abdomen': 'شکم',
+      'fullBody': 'کل بدن',
+      'other': 'ترجمه تعریف نشده',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get athleteDetailRouteEnrollmentDate => 'تاریخ ثبت‌نام';
+
+  @override
+  String get athleteDetailRouteHistoryIllness => 'سابقه بیماری';
+
+  @override
+  String get athleteDetailRouteHistoryInjuries => 'آسیب‌های گذشته';
+
+  @override
+  String get athleteDetailRouteHistoryDisabilities => 'محدودیت جسمانی';
+
+  @override
+  String get athleteDetailRouteHistorySportTrainingHistory =>
+      'سابقه ورزشی و نوع تمرینات قبل';
+
+  @override
+  String get athleteDetailRouteHistoryPracticeFrequencyPerWeek =>
+      'تعداد دفعات فعلی تمرین در هفته';
+
+  @override
+  String get athleteDetailRouteHistoryExerciseGoal => 'هدف تمرین';
+
+  @override
+  String get athleteDetailRouteHistoryExerciseEquipment => 'تجهیزات ورزشی';
+
+  @override
+  String get athleteDetailRouteHistoryDailyActivity =>
+      'فعالیت روزانه و سبک زندگی';
+
+  @override
+  String get athleteDetailRouteHistorySupplements => 'مکمل‌های مصرفی';
+
+  @override
+  String get athleteDetailRouteHistoryCoachAnalisys => 'تحلیل مربی';
+
+  @override
+  String get athleteDetailRouteHistoryCoachFoodInstructions => 'راهنمای تغذیه';
+
+  @override
+  String get athleteDetailRouteHistoryCoachSupplementsInstructions =>
+      'راهنمای مکمل ورزشی';
+
+  @override
+  String get athleteDetailRouteHistoryUpsertButtonWorkoutProgram =>
+      'مشاهده/ویرایش تمرین‌های ورزشکار';
+
+  @override
+  String get athleteDetailRouteHistoryEditAnalysisTitle => 'نظر مربی';
+
+  @override
+  String get athleteDetailRouteHistoryEditAnalysisLabel =>
+      'نظر مربی درباره تاریخچه ورزشی';
+
+  @override
+  String get athleteDetailRouteHistoryEditAnalysisHint =>
+      'نظر مربی مانند نقاط قوت و ضعف و برنامه ماکروسیکل';
+
+  @override
+  String get athleteDetailRouteHistoryEditFoodInstructionTitle => 'نظر مربی';
+
+  @override
+  String get athleteDetailRouteHistoryEditFoodInstructionLabel =>
+      'برنامه تغذیه';
+
+  @override
+  String get athleteDetailRouteHistoryEditFoodInstructionHint =>
+      'مانند رژیم در روزهای هفته یا برنامه غذایی هنگام باشگاه یا نکات تکمیلی تغذیه ورزشی';
+
+  @override
+  String get athleteDetailRouteHistoryEditSupplementsInstructionTitle =>
+      'نظر مربی';
+
+  @override
+  String get athleteDetailRouteHistoryEditSupplementsInstructionLabel =>
+      'راهنمای مکمل ورزشی';
+
+  @override
+  String get athleteDetailRouteHistoryEditSupplementsInstructionHint =>
+      'راهنمای مصرف مکمل های مجاز wada یا آژانس ضددوپینک جهانی برای ورزشکار';
+
+  @override
+  String get save => 'ذخیره';
+
+  @override
+  String get send => 'ارسال';
+
+  @override
+  String get workoutProgramRouteHeader => 'انتخاب بین هفته ها';
+
+  @override
+  String workoutProgramRouteWeekTileLabel(int index) {
+    return '$index هفته';
+  }
+
+  @override
+  String get athleteDaysListListTileTitleNoPlan =>
+      'برنامه‌ای برای این روز تعریف نشده';
+
+  @override
+  String athleteDaysListListTileTitleWithPlan(String isRest) {
+    String _temp0 = intl.Intl.selectLogic(isRest, {
+      'true': 'روز استراحت',
+      'false': 'روز تمرین',
+      'other': 'ترجمه تعریف نشده',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get enrollmentsListEmptyTitle => 'هنوز برنامه ای ثبت نام نکردید';
+
+  @override
+  String get selectAthelteDayRouteTitle => 'انتخاب روز در هفته';
+
+  @override
+  String get selectAthelteDayRouteSubTitle => '7 روز هفته';
+
+  @override
+  String get selectAthelteDayRouteEmptyDay => 'روز بدون برنامه';
+
+  @override
+  String get selectAthelteDayRouteIsRestDay => 'روز استراحت';
+
+  @override
+  String get selectAthelteDayRouteIsExerciseDay => 'روز تمرین';
+
+  @override
+  String get createDayActivitiesRouteTitle => 'انتخاب بین تمرین و استراحت';
+
+  @override
+  String get createDayActivitiesRouteUpsertRestDialogTitle =>
+      'اضافه کردن استراحت';
+
+  @override
+  String get createDayActivitiesRouteUpsertRestDialogLabel =>
+      'مدت استراحت (ثانیه)';
+
+  @override
+  String createDayActivitiesRouteListTileSubtitleLabelIsRest(int duration) {
+    return 'مدت استراحت $duration ثانیه';
+  }
+
+  @override
+  String get createDayActivitiesRouteSubtitle =>
+      'بین تمرین‌ها و استراحت بین تمرین‌ها انتخاب کنید';
+
+  @override
+  String createDayActivitiesRouteDeleteDialogTitle(String isRest) {
+    String _temp0 = intl.Intl.selectLogic(isRest, {
+      'true': 'حذف ',
+      'false': 'حذف تمرین',
+      'other': 'ترجمه تعریف نشده',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get createDayActivitiesRouteDeleteDialogSubtile =>
+      'آیا مطمئن به حذف این ردیف هستید؟';
+
+  @override
+  String get selectAthelteDayRouteDeleteDialogTitle => 'حذف روز';
+
+  @override
+  String get selectAthelteDayRouteDeleteDialogSubtile =>
+      'آیا مطمئن به حذف این روز هستید؟';
+
+  @override
+  String athleteDetailRouteHistoryExerciseGoalValue(String goal) {
+    String _temp0 = intl.Intl.selectLogic(goal, {
+      'loseWeight': 'کاهش وزن',
+      'power': 'سرعت و توان',
+      'strength': 'قدرت',
+      'endurance': 'استقامت',
+      'hypertrophy': 'هایپرتروفی یا افزایش ماهیچه',
+      'prepareASportingEvent': 'آمادگی برای مسابقه',
+      'other': 'ترجمه تعریف نشده',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String athleteDetailRouteHistoryExerciseEquipmentValue(String equipment) {
+    String _temp0 = intl.Intl.selectLogic(equipment, {
+      'bodyWeight': 'وزن بدن',
+      'weightMachine': 'دستگاه بدنسازی',
+      'cableMachine': 'دستگاه سیمکش',
+      'barbell': 'هالتر',
+      'dumbbell': 'دمبل',
+      'band': 'کش تمرینی',
+      'kettlebell': 'کتل‌بل',
+      'other': 'ترجمه تعریف نشده',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get selectExerciseAppbarTitle => 'انتخاب تمرین';
+
+  @override
+  String get activitySettingDialogTitle => 'انتخاب مدت و شدت تمرین';
+
+  @override
+  String get activitySettingDialogAddSetLabel => 'اضافه کردن ست';
+
+  @override
+  String setPrescriptionRowSetLabel(int setNumber) {
+    return 'ست $setNumber';
+  }
+
+  @override
+  String get setPrescriptionRowRemoveSet => 'حذف ست';
+
+  @override
+  String get setPrescriptionRowRestLabel => 'استراحت بعد از ست (ثانیه)';
+
+  @override
+  String get setPrescriptionRepsLabel => 'تکرار در ست';
+
+  @override
+  String get setPrescriptionDrationLabel => 'مدت ست (ثانیه)';
+
+  @override
+  String get setPrescriptionPercentOneRepeatitionMaximumLabel =>
+      'درصد یک تکرار بیشینه (% 1RM)';
+
+  @override
+  String get exerciseDefenitionListTilePreparationSteps => 'قدم‌های آماده‌سازی';
+
+  @override
+  String get exerciseDefenitionListTileExecutionSteps => 'قدم‌های اجرا';
+
+  @override
+  String get exerciseDefenitionListTileKeyTips => 'نکات کلیدی';
+
+  @override
+  String get exerciseDefenitionListTileFocusAreas => 'ناحیه‌های اثرگذاری';
+
+  @override
+  String get exerciseDefenitionListTileEquipment => 'ابزار مورد نیاز';
+
+  @override
+  String get exerciseDefenitionListTileWatchVideo => 'دیدن ویدئو انجام حرکت';
+
+  @override
+  String get reorderExercisesDialogTitle => 'ترتیب حرکات';
+
+  @override
+  String get reorderExercisesDialogSubTitle => 'اولویت تمرین‌ها را مشخص نمایید';
+
+  @override
+  String get carouselSliderBuilderEmptyState => 'شاگرد تصویری اضافه نکرده است';
+
+  @override
+  String get setPtescribedDialogTitle => 'تعداد تمرین و زمان استراحت';
+
+  @override
+  String get workoutsListFABTitle => 'شروع ورزش';
+
+  @override
+  String get workoutsListRouteTitle => 'حرکات این جلسه';
+
+  @override
+  String get athleteDaysListRouteTitle => 'روزهای برنامه ورزشی';
+
+  @override
+  String setPtescribedDialogRepsOnlyLabel(int reps) {
+    return '$reps تکرار';
+  }
+
+  @override
+  String setPtescribedDialogPercent1rmAndRepsLabel(int reps, double rm) {
+    final intl.NumberFormat rmNumberFormat = intl.NumberFormat.percentPattern(
+      localeName,
+    );
+    final String rmString = rmNumberFormat.format(rm);
+
+    return '$reps تکرار با شدت $rmString یک تکرار بیشینه RM% ';
+  }
+
+  @override
+  String setPtescribedDialogTimeBasedLabel(int sec) {
+    return '$sec ثانیه';
+  }
+
+  @override
+  String setPtescribedDialogRestAfterExerciseLabel(int sec) {
+    return '$sec ثانیه استراحت';
+  }
+
+  @override
+  String restScreenAddRestElevatedButtonLabel(int sec) {
+    return 'ثانیه $sec +';
+  }
+
+  @override
+  String get enrollmentsListEnrollmentCardTitle => 'تاریخ ثبت‌نام در برنامه';
+
+  @override
+  String get enrollmentsListEnrollmentCardCoachAnalysis => 'تحلیل مربی از شما';
+
+  @override
+  String get enrollmentsListEnrollmentCardCoachFoodInstruction =>
+      'راهنمای تغذیه';
+
+  @override
+  String get enrollmentsListEnrollmentCardCoachSupplementsInstruction =>
+      'راهنمای مکمل‌های ورزشی';
+
+  @override
+  String get enrollmentsListEnrollmentCardCoachProfileName => 'نام مربی';
+
+  @override
+  String get enrollmentsListEnrollmentCardCoachProfilePhoneNumber =>
+      'شماره تماس';
+
+  @override
+  String get enrollmentsListEnrollmentCardCoachProfileEmail => 'ایمیل';
+
+  @override
+  String get enrollmentsListEnrollmentCardElevatedButtonTitle =>
+      'مشاهده روزهای برنامه';
+
+  @override
+  String get workoutScreenCotrollerRestTitle => 'استراحت';
+
+  @override
+  String get workoutScreenDoneElevatedButtonExerciseTitle => 'انجام دادم';
+
+  @override
+  String get introductionRouteLearnDialogTitle => 'آموزش پلتفرم تندرست';
+
+  @override
+  String get introductionRouteLearnDialogSubTitle =>
+      'جهت یادگیری نرم‌افزار پلتفرم لاغری تندرست ویدئوهای زیر را ببینید';
+
+  @override
+  String get introductionRouteLearnDialogLinkALabel =>
+      'آموزش پلتفرم بدنسازی تندرست - قسمت یک';
+
+  @override
+  String get introductionRouteLearnDialogLinkBLabel =>
+      'آموزش پلتفرم بدنسازی تندرست - قسمت دو';
+
+  @override
+  String get introductionRouteLearnDialogSubmitLabel => 'ورود / ثبت‌نام';
+
+  @override
+  String get googleSignInButtonText => 'ادامه با گوگل';
+
+  @override
+  String get congratulationScreenAppBarTitle => 'انجام دادید :)';
+
+  @override
+  String get congratulationScreenTitle => 'انجام شد!';
+
+  @override
+  String get congratulationScreenSubtitle => 'تمرین را انجام دادید، عالی بود!';
+
+  @override
+  String get congratulationScreenFinishButtonLabel => 'پایان جلسه 👏';
+
+  @override
+  String get congratulationScreenFinishResetButtonLabel => 'انجام دوباره جلسه';
+
+  @override
+  String get verificationCodeDialogTitle => 'تایید کد احراز اصالت درخواست';
+
+  @override
+  String get verificationCodeDialogVerificationCodeTextFieldLabel => 'کد تایید';
+
+  @override
+  String get verificationCodeDialogVerificationCodeTextFieldHint =>
+      'کد ارسال شده را وارد  نمایید';
+
+  @override
+  String get fitnessInfoTitleAthlete => 'اطلاعات فیزیکی شاگرد';
+
+  @override
+  String get fitnessInfoAthletePhysicaDataChart => 'نمودار پیشرفت شاگرد';
+
+  @override
+  String get fitnessInfoAthleteHistoryTitle => 'برنامه شاگرد';
+
+  @override
+  String get restScreenWorkoutTitle => 'حرکت بعدی';
+
+  @override
+  String get restScreenWorkoutRestTimeTitle => 'مدت باقی‌مانده استراحت';
+
+  @override
+  String get workoutScreenWorkoutTitle => 'حرکت حالا';
+
+  @override
+  String get videoPlayerWidgetHasErrorStatusLabel => 'نمایش ویدئو خطا دارد.';
+
+  @override
+  String get videoPlayerWidgetLodingStatusLabel =>
+      'در حال بارگذاری.صبر کنید...';
+
+  @override
+  String get videoPlayerWidgetViewOnline => 'نمایش ویدئو در وب';
+
+  @override
+  String get athletesDirectoryBuilderCoachTraineeTitle => 'شاگردان شما';
+
+  @override
+  String get inviteTraineeSuccessMessage =>
+      'با موفقیت به پلتفرم تندرست دعوت شد.';
+
+  @override
+  String get profileRouteReferralsElevatedButtonTitle => 'وضعیت ارسال‌ها';
+
+  @override
+  String get profileRouteReferralsDialogTitle => 'دعوتنامه‌ها';
+
+  @override
+  String get noReferralsFound => 'هنوز کسی را دعوت نکرده‌اید';
+
+  @override
+  String get referralTileInvitedContact => 'دعوتنامه برای';
+
+  @override
+  String get referralTileStatus => 'وضعیت دعوتنامه';
+
+  @override
+  String get referralTileUpdatedDate => 'آخرین بروزرسانی';
+
+  @override
+  String get coachFinanceId => 'شماره کارت یا شبا';
+
+  @override
+  String referralStatus(String status) {
+    String _temp0 = intl.Intl.selectLogic(status, {
+      'pending': 'هنوز ثبت‌نام نکرده',
+      'claimed': 'ثبت‌نام کرده',
+      'expired': 'منقضی‌شده',
+      'other': 'ترجمه تعریف نشده',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get choose => 'انتخاب';
+
+  @override
+  String get vo2maxLabel => 'هوازی و چربی سوزی';
+
+  @override
+  String get vo2maxCalculatorLabel => 'محسابه مسافت بهینه هوازی';
+
+  @override
+  String get lanchUriFailedSnackBarMessage =>
+      'خطا در بازکردن آدرس، بعدا تلاش کنید';
+
+  @override
+  String contactCoachEmailSubject(String username) {
+    return '$username پشتیبانی پلتفرم لاغری تندرست';
+  }
+
+  @override
+  String coachesListShowingStatus(String status) {
+    String _temp0 = intl.Intl.selectLogic(status, {
+      'pendingVerification': 'در انتظار احراز هویت',
+      'isNotAcceptingNewTrainer': 'عدم نمایش شاگرد جدید',
+      'regullar': 'در حال نمایش',
+      'unknown': 'نامشخص',
       'other': 'ترجمه تعریف نشده',
     });
     return '$_temp0';

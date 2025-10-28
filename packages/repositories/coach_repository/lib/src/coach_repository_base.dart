@@ -15,15 +15,8 @@ class CoachRepository {
   final StreamController<CoachProfile?> _coachStreamController =
       StreamController.broadcast();
 
-  final StreamController<List<CoachProgram>> _coachProgramStreamController =
-      StreamController.broadcast();
-
   Stream<CoachProfile?> get coachProfileStream async* {
     yield* _coachStreamController.stream.asBroadcastStream();
-  }
-
-  Stream<List<CoachProgram>> get coachProgramsStream async* {
-    yield* _coachProgramStreamController.stream.asBroadcastStream();
   }
 
   Future<void> readCoachProfile() async {
@@ -51,26 +44,8 @@ class CoachRepository {
   Future<void> deleteCoachProgram(String programId) =>
       remoteApi.deleteCoachProgram(programId);
 
-  Future<void> readCoachPrograms() async {
-    final cachedPrograms = await localStorage.read(coachProgramKey);
-    if (cachedPrograms != null) {
-      final programsList = cachedPrograms[coachProgramKey] as List;
-      final List<CoachProgram> programs = [];
-      for (final program in programsList) {
-        programs.add(CoachProgram.fromJson(program as Map<String, dynamic>));
-      }
-      _coachProgramStreamController.add(programs);
-    }
-    final coachPrograms = await remoteApi.readCoachPrograms();
-    _coachProgramStreamController.add(coachPrograms);
-
-    final coachProgramListJson = <Map<String, dynamic>>[];
-    for (final program in coachPrograms) {
-      coachProgramListJson.add(program.toJson());
-    }
-    final coachProgramJson = {coachProgramKey: coachProgramListJson};
-    await localStorage.upsert(coachProgramKey, coachProgramJson);
-  }
+  Future<List<CoachProgram>> readCoachPrograms() =>
+      remoteApi.readCoachPrograms();
 
   Future<List<CoachProfile>> readCoaches() => remoteApi.readCoaches();
   Future<List<UserProfile>> readCoachesProfiles() =>
@@ -80,7 +55,7 @@ class CoachRepository {
   Future<List<FileData>> readCoachImages(String coachId) =>
       remoteApi.readCoachImages(coachId);
 
-  Future<List<ProgramEnrollment>> readEnrollments({
+  Future<List<ProgramEnrollment>?> readEnrollments({
     String? coachId,
     String? traineeId,
   }) => remoteApi.readEnrollments(coachId: coachId, traineeId: traineeId);
@@ -99,4 +74,6 @@ class CoachRepository {
 
   Future<List<ExerciseDefinition>> readExerciseDefinition() =>
       remoteApi.readExerciseDefinition();
+
+  Future<List<UserProfile>> readCoachProfiles() => remoteApi.readCoachProfiles();
 }

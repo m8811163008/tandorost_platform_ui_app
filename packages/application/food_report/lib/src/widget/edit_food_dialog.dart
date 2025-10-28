@@ -25,10 +25,9 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
     final gap = SizedBox(height: context.sizeExtenstion.small);
 
     return BlocListener<FoodReportCubit, FoodReportState>(
-      listenWhen:
-          (previous, current) =>
-              previous.updateFoodsNutritionsStatus !=
-              current.updateFoodsNutritionsStatus,
+      listenWhen: (previous, current) =>
+          previous.updateFoodsNutritionsStatus !=
+          current.updateFoodsNutritionsStatus,
       listener: (context, state) {
         if (state.updateFoodsNutritionsStatus.isConnectionError) {
           final content = context.l10n.networkError;
@@ -85,7 +84,7 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
             gap,
             NumberTextField(
               label: context.l10n.quantityOfUnitOfMeasurement,
-              initalValue: updatedFood.quantityOfUnitOfMeasurement.toString(),
+              initialValue: updatedFood.quantityOfUnitOfMeasurement.toString(),
               onChange: (value) {
                 updatedFood = updatedFood.copyWith(
                   quantityOfUnitOfMeasurement: int.parse(value),
@@ -96,7 +95,7 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
             gap,
             NumberTextField(
               label: context.l10n.calculatedCalorie,
-              initalValue: updatedFood.calculatedCalorie.toString(),
+              initialValue: updatedFood.calculatedCalorie.toString(),
               onChange: (value) {
                 updatedFood = updatedFood.copyWith(
                   calculatedCalorie: int.parse(value),
@@ -107,7 +106,7 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
             gap,
             NumberTextField(
               label: context.l10n.fat,
-              initalValue: updatedFood.macroNutrition.fat.toString(),
+              initialValue: updatedFood.macroNutrition.fat.toString(),
               onChange: (value) {
                 updatedFood = updatedFood.copyWith(
                   macroNutrition: updatedFood.macroNutrition.copyWith(
@@ -120,7 +119,7 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
             gap,
             NumberTextField(
               label: context.l10n.protein,
-              initalValue: updatedFood.macroNutrition.protein.toString(),
+              initialValue: updatedFood.macroNutrition.protein.toString(),
               onChange: (value) {
                 updatedFood = updatedFood.copyWith(
                   macroNutrition: updatedFood.macroNutrition.copyWith(
@@ -133,7 +132,7 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
             gap,
             NumberTextField(
               label: context.l10n.carbohydrate,
-              initalValue: updatedFood.macroNutrition.carbohydrate.toString(),
+              initialValue: updatedFood.macroNutrition.carbohydrate.toString(),
               onChange: (value) {
                 updatedFood = updatedFood.copyWith(
                   macroNutrition: updatedFood.macroNutrition.copyWith(
@@ -146,17 +145,14 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
             DropDownField<CarbohydrateSourceLD>(
               label: context.l10n.carbohydrateSource,
               value: updatedFood.carbohydrateSource,
-              items:
-                  CarbohydrateSourceLD.values
-                      .map(
-                        (e) => DropdownMenuItem(
-                          value: e,
-                          child: Text(
-                            context.l10n.carbohydrateSourceValue(e.name),
-                          ),
-                        ),
-                      )
-                      .toList(),
+              items: CarbohydrateSourceLD.values
+                  .map(
+                    (e) => DropdownMenuItem(
+                      value: e,
+                      child: Text(context.l10n.carbohydrateSourceValue(e.name)),
+                    ),
+                  )
+                  .toList(),
               onChange: (value) {
                 if (value != null) {
                   updatedFood = updatedFood.copyWith(carbohydrateSource: value);
@@ -167,23 +163,22 @@ class _EditFoodDialogState extends State<EditFoodDialog> {
             ),
           ],
           submitButton: BlocBuilder<FoodReportCubit, FoodReportState>(
-            buildWhen:
-                (previous, current) =>
-                    previous.updateFoodsNutritionsStatus !=
-                    current.updateFoodsNutritionsStatus,
+            buildWhen: (previous, current) =>
+                previous.updateFoodsNutritionsStatus !=
+                current.updateFoodsNutritionsStatus,
             builder: (context, state) {
               return state.updateFoodsNutritionsStatus.isLoading
                   ? AppTextButton.loading(label: context.l10n.update)
                   : AppTextButton(
-                    label: context.l10n.update,
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {
-                        context.read<FoodReportCubit>().updateFoodsNutritions(
-                          updatedFood,
-                        );
-                      }
-                    },
-                  );
+                      label: context.l10n.update,
+                      onTap: () {
+                        if (_formKey.currentState!.validate()) {
+                          context.read<FoodReportCubit>().updateFoodsNutritions(
+                            updatedFood,
+                          );
+                        }
+                      },
+                    );
             },
           ),
         ),

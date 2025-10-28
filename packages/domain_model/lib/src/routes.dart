@@ -12,6 +12,7 @@ enum RoutesNames {
   athletesDirectoryRoute('/athletes-directory-route'),
   athleteDetailRoute('/athlete-detail'),
   traineeForm('/trainee-form'),
+  athleteWorkoutView('/athlete-workout-view'),
   foodReportRoute('/food-report'),
   vo2maxCalculator('/vo2max-calculator'),
   introductionRoute('/introduction-route');

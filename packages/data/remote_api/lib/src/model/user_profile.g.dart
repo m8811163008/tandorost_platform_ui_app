@@ -22,6 +22,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
         'change_weight_speed',
         'role',
         'is_time_restricted_eating',
+        'finance_card_id',
       ],
     );
     final val = UserProfile(
@@ -51,6 +52,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
         'is_time_restricted_eating',
         (v) => v as bool,
       ),
+      financeCardId: $checkedConvert('finance_card_id', (v) => v as String?),
     );
     return val;
   },
@@ -59,6 +61,7 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) => $checkedCreate(
     'fullName': 'full_name',
     'changeWeightSpeed': 'change_weight_speed',
     'isTimeRestrictedEating': 'is_time_restricted_eating',
+    'financeCardId': 'finance_card_id',
   },
 );
 
@@ -74,6 +77,7 @@ Map<String, dynamic> _$UserProfileToJson(UserProfile instance) =>
           _$ChangeWeightSpeedEnumMap[instance.changeWeightSpeed]!,
       'role': instance.role.map((e) => _$RoleEnumMap[e]!).toList(),
       'is_time_restricted_eating': instance.isTimeRestrictedEating,
+      'finance_card_id': ?instance.financeCardId,
     };
 
 const _$LanguageEnumMap = {

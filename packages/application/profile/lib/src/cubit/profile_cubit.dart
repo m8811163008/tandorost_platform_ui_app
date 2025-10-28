@@ -35,8 +35,8 @@ class ProfileCubit extends Cubit<ProfileState> {
       if (profile == null) return;
       _enhancedEmit(
         state.copyWith(
-          userProfile: profile,
-          updatedUserProfile: state.updatedUserProfile ?? profile,
+          userProfile: () => profile,
+          updatedUserProfile: () => state.updatedUserProfile ?? profile,
         ),
       );
     });
@@ -46,15 +46,10 @@ class ProfileCubit extends Cubit<ProfileState> {
       if (coachProfile == null) return;
       _enhancedEmit(
         state.copyWith(
-          coachProfile: coachProfile,
-          updatedCoachProfile: state.updatedCoachProfile ?? coachProfile,
+          coachProfile: () => coachProfile,
+          updatedCoachProfile: () => state.updatedCoachProfile ?? coachProfile,
         ),
       );
-    });
-    coachProgramSubscription = _coachRepository.coachProgramsStream.listen((
-      coachPrograms,
-    ) {
-      _enhancedEmit(state.copyWith(coachPrograms: coachPrograms));
     });
   }
   final ProfileRepository _profile;
@@ -65,14 +60,12 @@ class ProfileCubit extends Cubit<ProfileState> {
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
   late final StreamSubscription<UserProfile?> userProfileSubscription;
   late final StreamSubscription<CoachProfile?> coachProfileSubscription;
-  late final StreamSubscription<List<CoachProgram>> coachProgramSubscription;
 
   @override
   Future<void> close() async {
     await Future.wait([
       userProfileSubscription.cancel(),
       coachProfileSubscription.cancel(),
-      coachProgramSubscription.cancel(),
     ]);
     return super.close();
   }
@@ -91,7 +84,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       _enhancedEmit(
         state.copyWith(
           readProfileImageStatus: AsyncProcessingStatus.success,
-          profileImage: actualImage,
+          profileImage: () => actualImage,
         ),
       );
     } on InternetConnectionException {
@@ -149,7 +142,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       state.copyWith(updatingProfileStatus: AsyncProcessingStatus.loading),
     );
     try {
-      final userImage = UserImage(
+      final userImage = UserFile(
         gallaryTag: GallaryTag.profileImage,
         imageGallaryFiles: [profileImage],
       );
@@ -163,7 +156,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       _enhancedEmit(
         state.copyWith(
           updatingProfileStatus: AsyncProcessingStatus.success,
-          profileImage: actualImage,
+          profileImage: () => actualImage,
         ),
       );
     } on InternetConnectionException {
@@ -234,7 +227,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   void onChangeName(String name) async {
     _enhancedEmit(
       state.copyWith(
-        updatedUserProfile: state.updatedUserProfile!.copyWith(fullName: name),
+        updatedUserProfile: () =>
+            state.updatedUserProfile!.copyWith(fullName: name),
       ),
     );
   }
@@ -242,17 +236,21 @@ class ProfileCubit extends Cubit<ProfileState> {
   void onChangPhoneNumber(String phoneNumber) async {
     _enhancedEmit(
       state.copyWith(
-        updatedUserProfile: state.updatedUserProfile!.copyWith(
-          phoneNumber: phoneNumber,
-        ),
+        updatedUserProfile: () =>
+            state.updatedUserProfile!.copyWith(phoneNumber: phoneNumber),
       ),
     );
+  }
+
+  void onChangVerificationCode(String verificationCode) async {
+    _enhancedEmit(state.copyWith(verificationCode: verificationCode));
   }
 
   void onChangEmail(String email) async {
     _enhancedEmit(
       state.copyWith(
-        updatedUserProfile: state.updatedUserProfile!.copyWith(email: email),
+        updatedUserProfile: () =>
+            state.updatedUserProfile!.copyWith(email: email),
       ),
     );
   }
@@ -263,6 +261,77 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   void updatePhoneNumber() async {
     await updateProfile(state.updatedUserProfile!);
+  }
+
+  Future<void> sendVerificationCode({required bool isVerifyPhoneNumber}) async {
+    _enhancedEmit(
+      state.copyWith(sendVerificationCodeStatus: AsyncProcessingStatus.loading),
+    );
+    try {
+      await _authenticationRepositry.sendVerificationCode(
+        verificationCodeRequest: VerificationCodeRequest(
+          identifier: isVerifyPhoneNumber
+              ? state.updatedUserProfile!.phoneNumber!
+              : state.updatedUserProfile!.email!,
+          verificationType: VerificationType.securityCheck,
+        ),
+      );
+
+      _enhancedEmit(
+        state.copyWith(
+          isVerifyPhoneNumber: isVerifyPhoneNumber,
+          sendVerificationCodeStatus: AsyncProcessingStatus.success,
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          sendVerificationCodeStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          sendVerificationCodeStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
+  }
+
+  void verifyVerificationCode() async {
+    _enhancedEmit(
+      state.copyWith(
+        verifyVerificationCodeStatus: AsyncProcessingStatus.loading,
+      ),
+    );
+    try {
+      await _authenticationRepositry.verifyVerificationCode(
+        identifier: state.isVerifyPhoneNumber!
+            ? state.updatedUserProfile!.phoneNumber!
+            : state.updatedUserProfile!.email!,
+        verificationCode: state.verificationCode,
+      );
+
+      _enhancedEmit(
+        state.copyWith(
+          verifyVerificationCodeStatus: AsyncProcessingStatus.success,
+        ),
+      );
+    } on InternetConnectionException {
+      _enhancedEmit(
+        state.copyWith(
+          verifyVerificationCodeStatus:
+              AsyncProcessingStatus.internetConnectionError,
+        ),
+      );
+    } on HttpException {
+      _enhancedEmit(
+        state.copyWith(
+          verifyVerificationCodeStatus: AsyncProcessingStatus.connectionError,
+        ),
+      );
+    }
   }
 
   void updateEmail() async {
@@ -290,7 +359,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       isActive: isAvailable,
     );
     await updateCoachProfile(updatedProfileVar);
-    _enhancedEmit(state.copyWith(updatedCoachProfile: updatedProfileVar));
+    _enhancedEmit(state.copyWith(updatedCoachProfile: () => updatedProfileVar));
   }
 
   void onChangeBodybuildingCoachRole(bool isBodybuildingCoach) async {
@@ -416,9 +485,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   void onChangeLanguage(Language? language) async {
     _enhancedEmit(
       state.copyWith(
-        updatedUserProfile: state.updatedUserProfile!.copyWith(
-          language: language,
-        ),
+        updatedUserProfile: () =>
+            state.updatedUserProfile!.copyWith(language: language),
       ),
     );
   }
@@ -426,9 +494,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   void onChangeCoachBiography(String biography) async {
     _enhancedEmit(
       state.copyWith(
-        updatedCoachProfile: state.updatedCoachProfile!.copyWith(
-          biography: biography,
-        ),
+        updatedCoachProfile: () =>
+            state.updatedCoachProfile!.copyWith(biography: biography),
       ),
     );
   }
@@ -547,7 +614,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       bytes: bytes,
       uploadDate: uploadDate,
     );
-    final userImage = UserImage(
+    final userImage = UserFile(
       gallaryTag: tag,
       imageGallaryFiles: [fileDetail],
       uploadDate: uploadDate,
@@ -654,13 +721,13 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void onChangeCoachProgram(CoachProgram coachProgram) {
-    _enhancedEmit(state.copyWith(cacheCoachProgram: coachProgram));
+    _enhancedEmit(state.copyWith(cacheCoachProgram: () => coachProgram));
   }
 
   void upsertCoachProgram() async {
     assert(state.cacheCoachProgram != null);
     _enhancedEmit(
-      state.copyWith(upsertingCoachProgram: AsyncProcessingStatus.loading),
+      state.copyWith(updatingCoachProgram: AsyncProcessingStatus.loading),
     );
 
     try {
@@ -669,19 +736,19 @@ class ProfileCubit extends Cubit<ProfileState> {
       _enhancedEmit(
         state.copyWith(
           cacheCoachProgram: null,
-          upsertingCoachProgram: AsyncProcessingStatus.success,
+          updatingCoachProgram: AsyncProcessingStatus.success,
         ),
       );
     } on InternetConnectionException {
       _enhancedEmit(
         state.copyWith(
-          readingCoachProgram: AsyncProcessingStatus.internetConnectionError,
+          updatingCoachProgram: AsyncProcessingStatus.internetConnectionError,
         ),
       );
     } on HttpException {
       _enhancedEmit(
         state.copyWith(
-          readingCoachProgram: AsyncProcessingStatus.connectionError,
+          updatingCoachProgram: AsyncProcessingStatus.connectionError,
         ),
       );
     }

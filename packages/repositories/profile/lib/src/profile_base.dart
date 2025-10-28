@@ -112,6 +112,13 @@ class ProfileRepository {
     return result[StorageKey.isShowAddHomeWidgetDialog];
   }
 
+  Future<void> sendInvite(String identifier) =>
+      remoteApi.sendInvite(identifier);
+  Future<List<Referral>> readReferralByUserId() =>
+      remoteApi.readReferralByUserId();
+  Future<List<Referral>> readReferralByInviterId() =>
+      remoteApi.readReferralByInviterId();
+
   Future<void> dispose() => Future.wait([
     _userProfileController.close(),
     _languageController.close(),

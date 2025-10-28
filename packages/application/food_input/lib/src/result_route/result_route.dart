@@ -9,23 +9,33 @@ class ResultRoute extends StatelessWidget {
   const ResultRoute({
     super.key,
     this.onBottomNavigationChanged,
+    this.navigateToReportPage,
     required this.bottomNavigationIndex,
   });
   final ValueChanged<int>? onBottomNavigationChanged;
+  final VoidCallback? navigateToReportPage;
   final int bottomNavigationIndex;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create:
-          (_) => ResultCubit(
-            foodInputRepository: RepositoryProvider.of<FoodInputRepository>(
-              context,
-            ),
-          ),
+      create: (_) => ResultCubit(
+        foodInputRepository: RepositoryProvider.of<FoodInputRepository>(
+          context,
+        ),
+      ),
       child: AppScaffold(
         appBar: AppBar(
           title: Text(context.l10n.appRoutesName(RoutesNames.resultRoute.name)),
+          actions: [
+            IconButton(
+              onPressed: navigateToReportPage,
+              icon: Icon(Icons.report),
+              tooltip: context.l10n.appRoutesName(
+                RoutesNames.foodReportRoute.name,
+              ),
+            ),
+          ],
         ),
 
         bottomNavigationBar: BottomNavigationBar(
@@ -34,12 +44,11 @@ class ResultRoute extends StatelessWidget {
           items: AppNavigation.bottomNavigationItems(context),
         ),
         body: BlocProvider(
-          create:
-              (_) => ResultCubit(
-                foodInputRepository: RepositoryProvider.of<FoodInputRepository>(
-                  context,
-                ),
-              ),
+          create: (_) => ResultCubit(
+            foodInputRepository: RepositoryProvider.of<FoodInputRepository>(
+              context,
+            ),
+          ),
           child: Padding(
             padding: EdgeInsets.symmetric(
               horizontal: context.sizeExtenstion.small,

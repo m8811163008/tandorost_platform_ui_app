@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:profile_app/src/cubit/profile_cubit.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
@@ -78,10 +77,14 @@ class _EditUserInfoDialogState extends State<EditUserInfoDialog> {
           ],
           submitButton: BlocBuilder<ProfileCubit, ProfileState>(
             buildWhen: (previous, current) =>
-                previous.updatingProfileStatus != current.updatingProfileStatus,
+                previous.updatingProfileStatus !=
+                    current.updatingProfileStatus ||
+                previous.sendVerificationCodeStatus !=
+                    current.sendVerificationCodeStatus,
             builder: (context, state) {
               final label = context.l10n.updateButton;
-              return state.updatingProfileStatus.isLoading
+              return state.updatingProfileStatus.isLoading ||
+                      state.sendVerificationCodeStatus.isLoading
                   ? AppTextButton.loading(label: label)
                   : AppTextButton(
                       label: label,

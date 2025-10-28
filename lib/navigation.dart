@@ -21,11 +21,12 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 import 'package:vo2max_calculator/vo2max_calculator.dart';
 import 'package:image_repository/image_repository.dart';
+import 'package:workout_view/workout_view.dart';
 
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: RoutesNames.profileRoute.path,
+      initialLocation: RoutesNames.athletesDirectoryRoute.path,
       observers: [SentryNavigatorObserver()],
       routes: [
         GoRoute(
@@ -50,6 +51,8 @@ class Navigation {
               path: RoutesNames.resultRoute.path,
               builder: (context, state) {
                 return ResultRoute(
+                  navigateToReportPage: () =>
+                      context.go('${RoutesNames.foodReportRoute.path}'),
                   onBottomNavigationChanged: (index) {
                     _onBottomNavigationChanged(context, index);
                   },
@@ -325,6 +328,9 @@ class Navigation {
                 coachRepository: RepositoryProvider.of<CoachRepository>(
                   context,
                 ),
+                paymentRepository: RepositoryProvider.of<PaymentRepository>(
+                  context,
+                ),
                 imageRepository: RepositoryProvider.of<ImageRepository>(
                   context,
                 ),
@@ -337,6 +343,8 @@ class Navigation {
                 fitnessNutrition: RepositoryProvider.of<FitnessNutrition>(
                   context,
                 ),
+                authenticationRepositry:
+                    RepositoryProvider.of<AuthenticationRepository>(context),
               ),
               child: child,
             );
@@ -346,7 +354,7 @@ class Navigation {
               path: RoutesNames.athletesDirectoryRoute.path,
               builder: (context, state) {
                 return AthletesDirectoryRoute(
-                  goToAthleteDetailRoute: () => context.go(
+                  goToAthleteDetailRoute: () => context.push(
                     '${RoutesNames.athletesDirectoryRoute.path}${RoutesNames.athleteDetailRoute.path}',
                   ),
                   onBottomNavigationChanged: (index) {
@@ -389,6 +397,49 @@ class Navigation {
                   // ],
                 ),
               ],
+            ),
+          ],
+        ),
+        ShellRoute(
+          builder: (context, state, child) {
+            return BlocProvider(
+              create: (_) => WorkoutViewCubit(
+                coachRepository: RepositoryProvider.of<CoachRepository>(
+                  context,
+                ),
+                // imageRepository: RepositoryProvider.of<ImageRepository>(
+                //   context,
+                // ),
+                athleteRepository: RepositoryProvider.of<AthleteRepository>(
+                  context,
+                ),
+                profileRepository: RepositoryProvider.of<ProfileRepository>(
+                  context,
+                ),
+                // fitnessNutrition: RepositoryProvider.of<FitnessNutrition>(
+                //   context,
+                // ),
+              ),
+              child: child,
+            );
+          },
+          routes: [
+            GoRoute(
+              path: RoutesNames.athleteWorkoutView.path,
+              builder: (context, state) {
+                return WorkoutViewRoute(
+                  onNavigateToFitnessProfileAfterWorkout: () =>
+                      context.go('${RoutesNames.fitnessProfileRoute.path}'),
+                  onBottomNavigationChanged: (index) {
+                    _onBottomNavigationChanged(context, index);
+                  },
+                  onDrawerNavigationChanged: (index) {
+                    _onDrawerNavigationChanged(context, index);
+                  },
+                  bottomNavigationIndex: _bottomNavigationIndex(state),
+                  drawerNavigationIndex: _drawerNavigationIndex(state),
+                );
+              },
             ),
           ],
         ),

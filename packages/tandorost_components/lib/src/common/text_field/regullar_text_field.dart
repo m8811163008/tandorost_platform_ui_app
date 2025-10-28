@@ -15,11 +15,13 @@ class RegullarTextField extends StatelessWidget {
     this.readOnly = false,
     this.initalValue,
     this.onTap,
+    this.onTapOutside,
     this.errorMessage,
     this.textAlign = TextAlign.start,
     this.formatters = const [],
     this.minLines,
     this.keyboardType,
+    this.suffixWidget,
   });
   final String label;
   final String? prefix;
@@ -31,11 +33,13 @@ class RegullarTextField extends StatelessWidget {
   final String? initalValue;
   final bool readOnly;
   final VoidCallback? onTap;
+  final TapRegionCallback? onTapOutside;
   final String? errorMessage;
   final TextAlign textAlign;
   final List<TextInputFormatter> formatters;
   final int? minLines;
   final TextInputType? keyboardType;
+  final Widget? suffixWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +49,14 @@ class RegullarTextField extends StatelessWidget {
       keyboardType: keyboardType ?? TextInputType.text,
       readOnly: readOnly,
       onTap: onTap,
+      onTapOutside: onTapOutside,
       decoration: InputDecoration(
         labelText: label,
         prefixText: prefix,
         hintText: hintText,
         errorText: errorMessage,
+
+        suffix: suffixWidget,
       ),
       obscureText: obscureText,
       maxLength: maxLength,
@@ -58,12 +65,14 @@ class RegullarTextField extends StatelessWidget {
       textAlign: textAlign,
       onChanged: onChange,
       inputFormatters: formatters,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return context.l10n.emptyFormFieldValidationError;
-        }
-        return null;
-      },
+      validator:
+          validator ??
+          (value) {
+            if (value == null || value.isEmpty) {
+              return context.l10n.emptyFormFieldValidationError;
+            }
+            return null;
+          },
     );
   }
 }

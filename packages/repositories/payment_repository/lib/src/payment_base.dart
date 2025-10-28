@@ -4,8 +4,9 @@ class PaymentRepository {
   final RemoteApi _remoteApi;
   PaymentRepository({required RemoteApi remoteApi}) : _remoteApi = remoteApi;
 
-  Future<List<SubscriptionPayment>> readSubscriptionPayments() async =>
-      _remoteApi.readSubscriptionPayments();
+  Future<List<SubscriptionPayment>> readSubscriptionPayments({
+    String? coachId,
+  }) async => _remoteApi.readSubscriptionPayments(coachId: coachId);
 
   Future<CafeBazzarPaymentInfo> readCoffeBazzarPayment() =>
       _remoteApi.readCoffeBazzarPayment();

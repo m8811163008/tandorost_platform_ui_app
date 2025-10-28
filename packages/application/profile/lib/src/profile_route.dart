@@ -10,9 +10,9 @@ import 'package:profile_app/profile.dart';
 import 'package:profile_app/src/bodybuilding_coach_card.dart';
 import 'package:profile_app/src/cubit/profile_cubit.dart';
 import 'package:profile_app/src/edit_dialog.dart';
-import 'package:profile_app/src/edit_language_button.dart';
 import 'package:profile_app/src/edit_name_button.dart';
 import 'package:profile_app/src/transactions.dart';
+import 'package:profile_app/src/verification_code_dialog.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
 class ProfileRoute extends StatelessWidget {
@@ -211,11 +211,94 @@ class ProfileView extends StatelessWidget {
             }
           },
         ),
+        BlocListener<ProfileCubit, ProfileState>(
+          listenWhen: (previous, current) =>
+              previous.verifyVerificationCodeStatus !=
+              current.verifyVerificationCodeStatus,
+          listener: (context, state) async {
+            if (state.verifyVerificationCodeStatus.isConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state
+                .verifyVerificationCodeStatus
+                .isInternetConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.verifyVerificationCodeStatus.isSuccess) {
+              final cubit = context.read<ProfileCubit>();
+              cubit.updateProfile(state.updatedUserProfile!);
+            }
+          },
+        ),
+        BlocListener<ProfileCubit, ProfileState>(
+          listenWhen: (previous, current) =>
+              previous.sendVerificationCodeStatus !=
+              current.sendVerificationCodeStatus,
+          listener: (context, state) async {
+            if (state.sendVerificationCodeStatus.isConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state
+                .sendVerificationCodeStatus
+                .isInternetConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.sendVerificationCodeStatus.isSuccess) {
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return BlocProvider.value(
+                    value: context.read<ProfileCubit>(),
+                    child: VerificationCodeDialog(
+                      dialogTitle: context.l10n.verificationCodeDialogTitle,
+                      textFieldlabel: context
+                          .l10n
+                          .verificationCodeDialogVerificationCodeTextFieldLabel,
+                      hint: context
+                          .l10n
+                          .verificationCodeDialogVerificationCodeTextFieldHint,
+
+                      onChnaged: context
+                          .read<ProfileCubit>()
+                          .onChangVerificationCode,
+                      onSubmit: context
+                          .read<ProfileCubit>()
+                          .verifyVerificationCode,
+                      validator: (value) {
+                        final phoneRegex = RegExp(r'^\d{4}$');
+                        if (value != null &&
+                            value.isNotEmpty &&
+                            !phoneRegex.hasMatch(value)) {
+                          return context.l10n.minLengthFormFieldValidationError(
+                            4,
+                          );
+                        }
+                        return null;
+                      },
+                    ),
+                  );
+                },
+              );
+            }
+          },
+        ),
       ],
 
       child: SingleChildScrollView(
         child: Column(
-          children: [ProfileCard(), SettingCard(), BodyBuildingCoachCard()],
+          children: [
+            ProfileCard(), SettingCard(),
+
+            // BodyBuildingCoachCard()
+          ],
         ),
       ),
     );
@@ -283,9 +366,11 @@ class ProfileCard extends StatelessWidget {
                         onChnaged: context
                             .read<ProfileCubit>()
                             .onChangPhoneNumber,
-                        onSubmit: context
-                            .read<ProfileCubit>()
-                            .updatePhoneNumber,
+                        onSubmit: () {
+                          context.read<ProfileCubit>().sendVerificationCode(
+                            isVerifyPhoneNumber: true,
+                          );
+                        },
                         validator: (value) {
                           final phoneRegex = RegExp(r'^09\d{9}$');
                           if (value != null &&
@@ -316,7 +401,11 @@ class ProfileCard extends StatelessWidget {
                               cubit.state.userProfile?.email ?? '',
                         ),
                         onChnaged: context.read<ProfileCubit>().onChangEmail,
-                        onSubmit: context.read<ProfileCubit>().updateEmail,
+                        onSubmit: () {
+                          context.read<ProfileCubit>().sendVerificationCode(
+                            isVerifyPhoneNumber: false,
+                          );
+                        },
                         validator: (value) {
                           final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
                           if (value != null &&

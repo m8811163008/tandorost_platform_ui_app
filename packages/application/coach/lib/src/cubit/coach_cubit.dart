@@ -274,7 +274,7 @@ class CoachCubit extends Cubit<CoachState> {
       bytes: bytes,
       uploadDate: uploadDate,
     );
-    final userImage = UserImage(
+    final userImage = UserFile(
       gallaryTag: GallaryTag.defaultTag,
       imageGallaryFiles: [fileDetail],
       uploadDate: uploadDate,

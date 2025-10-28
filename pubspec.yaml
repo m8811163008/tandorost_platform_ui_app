@@ -83,6 +83,8 @@ dependencies:
     path: packages/application/coach
   athletes_directory:
     path: packages/application/athletes_directory
+  workout_view:
+    path: packages/application/workout_view
 
 dev_dependencies:
   flutter_test:

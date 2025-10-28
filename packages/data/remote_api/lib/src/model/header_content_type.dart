@@ -1,7 +1,8 @@
 enum ContentType {
   applicationXWwwFormUrlencoded('application/x-www-form-urlencoded'),
   multipartFormData('multipart/form-data'),
-  applicationJson('application/json');
+  applicationJson('application/json'),
+  textPlain('text/plain');
 
   final String value;
 

@@ -221,7 +221,7 @@ class _UpsertProgramDialogState extends State<UpsertProgramDialog> {
           NumberTextField(
             label:
                 context.l10n.profileCoachProfileCoachProgramDurationWeekLabel,
-            initalValue: _coachProgram.durationWeeks.toString(),
+            initialValue: _coachProgram.durationWeeks.toString(),
             onChange: (value) {
               if (value.isEmpty) return;
               _coachProgram = _coachProgram.copyWith(

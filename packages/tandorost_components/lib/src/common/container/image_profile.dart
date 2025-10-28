@@ -16,8 +16,9 @@ class ImageProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final image =
-        imageProfile != null ? MemoryImage(imageProfile!.bytes) : null;
+    final image = imageProfile != null
+        ? MemoryImage(imageProfile!.bytes)
+        : null;
     return Stack(
       alignment: AlignmentDirectional.bottomStart,
       children: [
@@ -27,7 +28,7 @@ class ImageProfile extends StatelessWidget {
           child: image == null ? Icon(Icons.image) : null,
         ),
         if (!isUploading)
-          IconButton.outlined(icon: Icon(Icons.edit), onPressed: onEditPressed)
+          IconButton.filled(icon: Icon(Icons.edit), onPressed: onEditPressed)
         else
           IconButton.outlined(
             icon: Transform.scale(

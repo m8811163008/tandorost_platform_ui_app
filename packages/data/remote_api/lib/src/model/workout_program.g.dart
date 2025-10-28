@@ -6,81 +6,82 @@ part of 'workout_program.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ExerciseDefinition _$ExerciseDefinitionFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'ExerciseDefinition',
-  json,
-  ($checkedConvert) {
-    $checkKeys(
+ExerciseDefinition _$ExerciseDefinitionFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'ExerciseDefinition',
       json,
-      allowedKeys: const [
-        'id',
-        'title',
-        'video_url',
-        'thumb_image_url',
-        'cover_image_url',
-        'preparation_steps',
-        'execution_steps',
-        'key_tips',
-        'focus_areas',
-        'equipment',
-        'metric_type',
-      ],
+      ($checkedConvert) {
+        $checkKeys(
+          json,
+          allowedKeys: const [
+            'id',
+            'title',
+            'video_urls',
+            'cover_image_url',
+            'preparation_steps',
+            'execution_steps',
+            'key_tips',
+            'focus_areas',
+            'equipment',
+            'metric_type',
+          ],
+        );
+        final val = ExerciseDefinition(
+          id: $checkedConvert('id', (v) => v as String?),
+          title: $checkedConvert('title', (v) => v as String),
+          videoUrls: $checkedConvert(
+            'video_urls',
+            (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+          ),
+          coverImageUrl: $checkedConvert(
+            'cover_image_url',
+            (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+          ),
+          preparationSteps: $checkedConvert(
+            'preparation_steps',
+            (v) => (v as List<dynamic>).map((e) => e as String).toList(),
+          ),
+          executionSteps: $checkedConvert(
+            'execution_steps',
+            (v) => (v as List<dynamic>).map((e) => e as String).toList(),
+          ),
+          keyTips: $checkedConvert(
+            'key_tips',
+            (v) => (v as List<dynamic>).map((e) => e as String).toList(),
+          ),
+          focusAreas: $checkedConvert(
+            'focus_areas',
+            (v) => (v as List<dynamic>)
+                .map((e) => $enumDecode(_$FocusAreaEnumMap, e))
+                .toList(),
+          ),
+          equipment: $checkedConvert(
+            'equipment',
+            (v) => $enumDecode(_$ExerciseEquipmentEnumMap, v),
+          ),
+          metricType: $checkedConvert(
+            'metric_type',
+            (v) => $enumDecode(_$ExerciseMetricTypeEnumMap, v),
+          ),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'videoUrls': 'video_urls',
+        'coverImageUrl': 'cover_image_url',
+        'preparationSteps': 'preparation_steps',
+        'executionSteps': 'execution_steps',
+        'keyTips': 'key_tips',
+        'focusAreas': 'focus_areas',
+        'metricType': 'metric_type',
+      },
     );
-    final val = ExerciseDefinition(
-      id: $checkedConvert('id', (v) => v as String?),
-      title: $checkedConvert('title', (v) => v as String),
-      videoUrl: $checkedConvert('video_url', (v) => v as String?),
-      thumbImageUrl: $checkedConvert('thumb_image_url', (v) => v as String?),
-      coverImageUrl: $checkedConvert('cover_image_url', (v) => v as String?),
-      preparationSteps: $checkedConvert(
-        'preparation_steps',
-        (v) => (v as List<dynamic>).map((e) => e as String).toList(),
-      ),
-      executionSteps: $checkedConvert(
-        'execution_steps',
-        (v) => (v as List<dynamic>).map((e) => e as String).toList(),
-      ),
-      keyTips: $checkedConvert(
-        'key_tips',
-        (v) => (v as List<dynamic>).map((e) => e as String).toList(),
-      ),
-      focusAreas: $checkedConvert(
-        'focus_areas',
-        (v) => (v as List<dynamic>)
-            .map((e) => $enumDecode(_$FocusAreaEnumMap, e))
-            .toList(),
-      ),
-      equipment: $checkedConvert(
-        'equipment',
-        (v) => $enumDecode(_$ExerciseEquipmentEnumMap, v),
-      ),
-      metricType: $checkedConvert(
-        'metric_type',
-        (v) => $enumDecode(_$ExerciseMetricTypeEnumMap, v),
-      ),
-    );
-    return val;
-  },
-  fieldKeyMap: const {
-    'videoUrl': 'video_url',
-    'thumbImageUrl': 'thumb_image_url',
-    'coverImageUrl': 'cover_image_url',
-    'preparationSteps': 'preparation_steps',
-    'executionSteps': 'execution_steps',
-    'keyTips': 'key_tips',
-    'focusAreas': 'focus_areas',
-    'metricType': 'metric_type',
-  },
-);
 
 Map<String, dynamic> _$ExerciseDefinitionToJson(ExerciseDefinition instance) =>
     <String, dynamic>{
       'id': ?instance.id,
       'title': instance.title,
-      'video_url': ?instance.videoUrl,
-      'thumb_image_url': ?instance.thumbImageUrl,
+      'video_urls': ?instance.videoUrls,
       'cover_image_url': ?instance.coverImageUrl,
       'preparation_steps': instance.preparationSteps,
       'execution_steps': instance.executionSteps,
@@ -111,11 +112,12 @@ const _$ExerciseEquipmentEnumMap = {
   ExerciseEquipment.dumbbell: 'dumbbell',
   ExerciseEquipment.band: 'band',
   ExerciseEquipment.kettlebell: 'kettlebell',
+  ExerciseEquipment.smith_machine: 'smith_machine',
 };
 
 const _$ExerciseMetricTypeEnumMap = {
   ExerciseMetricType.repsOnly: 'reps_only',
-  ExerciseMetricType.percent1rmAndReps: 'percent1rm_and_reps',
+  ExerciseMetricType.percent1rmAndReps: 'percent_1rm_and_reps',
   ExerciseMetricType.timeBased: 'time_based',
 };
 
@@ -166,77 +168,71 @@ Map<String, dynamic> _$SetPrescriptionToJson(SetPrescription instance) =>
       'rest_after_set_seconds': instance.restAfterSetSeconds,
     };
 
-PrescribedExercise _$PrescribedExerciseFromJson(
-  Map<String, dynamic> json,
-) => $checkedCreate(
-  'PrescribedExercise',
-  json,
-  ($checkedConvert) {
-    $checkKeys(
+PrescribedExercise _$PrescribedExerciseFromJson(Map<String, dynamic> json) =>
+    $checkedCreate(
+      'PrescribedExercise',
       json,
-      allowedKeys: const [
-        'exercise_definition_id',
-        'note',
-        'sets',
-        'is_rest',
-        'rest_period',
-      ],
+      ($checkedConvert) {
+        $checkKeys(
+          json,
+          allowedKeys: const ['exercise_definition_id', 'note', 'sets'],
+        );
+        final val = PrescribedExercise(
+          exerciseDefinitionId: $checkedConvert(
+            'exercise_definition_id',
+            (v) => (v as List<dynamic>?)?.map((e) => e as String).toList(),
+          ),
+          note: $checkedConvert('note', (v) => v as String?),
+          sets: $checkedConvert(
+            'sets',
+            (v) => (v as List<dynamic>?)
+                ?.map(
+                  (e) => e == null
+                      ? null
+                      : SetPrescription.fromJson(e as Map<String, dynamic>),
+                )
+                .toList(),
+          ),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'exerciseDefinitionId': 'exercise_definition_id'},
     );
-    final val = PrescribedExercise(
-      exerciseDefinitionId: $checkedConvert(
-        'exercise_definition_id',
-        (v) => v as String?,
-      ),
-      note: $checkedConvert('note', (v) => v as String?),
-      sets: $checkedConvert(
-        'sets',
-        (v) => (v as List<dynamic>?)
-            ?.map((e) => SetPrescription.fromJson(e as Map<String, dynamic>))
-            .toList(),
-      ),
-      isRest: $checkedConvert('is_rest', (v) => v as bool? ?? false),
-      restPeriod: $checkedConvert('rest_period', (v) => (v as num?)?.toInt()),
-    );
-    return val;
-  },
-  fieldKeyMap: const {
-    'exerciseDefinitionId': 'exercise_definition_id',
-    'isRest': 'is_rest',
-    'restPeriod': 'rest_period',
-  },
-);
 
 Map<String, dynamic> _$PrescribedExerciseToJson(PrescribedExercise instance) =>
     <String, dynamic>{
       'exercise_definition_id': ?instance.exerciseDefinitionId,
       'note': ?instance.note,
-      'sets': ?instance.sets?.map((e) => e.toJson()).toList(),
-      'is_rest': instance.isRest,
-      'rest_period': ?instance.restPeriod,
+      'sets': ?instance.sets?.map((e) => e?.toJson()).toList(),
     };
 
 AthleteDay _$AthleteDayFromJson(Map<String, dynamic> json) => $checkedCreate(
   'AthleteDay',
   json,
   ($checkedConvert) {
-    $checkKeys(json, allowedKeys: const ['is_rest_day', 'activities']);
+    $checkKeys(
+      json,
+      allowedKeys: const ['is_rest_day', 'is_done', 'activities'],
+    );
     final val = AthleteDay(
-      isRestDay: $checkedConvert('is_rest_day', (v) => v as bool? ?? true),
+      isRestDay: $checkedConvert('is_rest_day', (v) => v as bool),
       activities: $checkedConvert(
         'activities',
         (v) => (v as List<dynamic>?)
             ?.map((e) => PrescribedExercise.fromJson(e as Map<String, dynamic>))
             .toList(),
       ),
+      isDone: $checkedConvert('is_done', (v) => v as bool? ?? false),
     );
     return val;
   },
-  fieldKeyMap: const {'isRestDay': 'is_rest_day'},
+  fieldKeyMap: const {'isRestDay': 'is_rest_day', 'isDone': 'is_done'},
 );
 
 Map<String, dynamic> _$AthleteDayToJson(AthleteDay instance) =>
     <String, dynamic>{
       'is_rest_day': instance.isRestDay,
+      'is_done': instance.isDone,
       'activities': ?instance.activities?.map((e) => e.toJson()).toList(),
     };
 

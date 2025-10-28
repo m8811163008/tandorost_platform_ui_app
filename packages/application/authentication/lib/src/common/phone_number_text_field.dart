@@ -1,3 +1,5 @@
+import 'package:authentication_app/src/login/login.dart';
+import 'package:authentication_app/src/login/login_form.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 
@@ -7,16 +9,20 @@ class IdentifierTextField extends StatelessWidget {
     this.onChange,
     this.textDirection,
     this.autofillHints,
+    this.initialValue,
   });
   final ValueSetter<String>? onChange;
   final TextDirection? textDirection;
   final Iterable<String>? autofillHints;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: textDirection ?? Directionality.of(context),
       child: TextFormField(
+        controller: TextEditingController(text: initialValue),
+
         autofillHints: autofillHints,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         keyboardType: TextInputType.text,

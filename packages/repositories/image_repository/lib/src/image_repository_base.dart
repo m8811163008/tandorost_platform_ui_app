@@ -2,6 +2,16 @@ import 'package:remote_api/remote_api.dart';
 
 class ImageRepository {
   final RemoteApi remoteApi;
+  static final baseUriWithPath = UriBuilder.baseUriWithPath;
+  //   static final baseUri = Uri(scheme: 'http', host: '10.233.31.85', port: 8001);
+  // // static final baseUri = Uri(
+  // //   scheme: 'http',
+  // //   host: '10.105.146.237',
+  // //   port: 8001,
+  // // );
+  // static final basePath = '/api/v1';
+
+  // static final baseUriWithPath = baseUri.replace(path: basePath);
 
   ImageRepository({required this.remoteApi});
 
@@ -26,7 +36,7 @@ class ImageRepository {
   Future<ArchiveUserImagesResponse> archiveUserImages(List<String> imagesId) =>
       remoteApi.archiveUserImages(imagesId);
 
-  Future<List<FileData>> addUserImages(UserImage userImage) =>
+  Future<List<FileData>> addUserImages(UserFile userImage) =>
       remoteApi.addUserImages(userImage);
   Future<List<FileData>> readUsersImages({
     required List<GallaryTag> gallaryTags,

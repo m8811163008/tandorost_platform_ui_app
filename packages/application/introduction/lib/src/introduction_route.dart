@@ -11,7 +11,7 @@ class IntroductionRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedIntroduction(
       isFullScreen: true,
-      footerBgColor: context.themeData.colorScheme.secondary,
+      footerBgColor: context.themeData.colorScheme.primary,
       slides: pages(context),
       indicatorType: IndicatorType.circle,
       footerRadius: context.sizeExtenstion.medium,
@@ -19,6 +19,46 @@ class IntroductionRoute extends StatelessWidget {
         await RepositoryProvider.of<ProfileRepository>(
           context,
         ).visitedIntroductionRoute();
+        // show learning dialog
+        // if (context.mounted) {
+        //   await showDialog(
+        //     context: context,
+        //     builder: (_) {
+        //       return SimpleDialog(
+        //         title: Text(context.l10n.introductionRouteLearnDialogTitle),
+        //         contentPadding: EdgeInsetsGeometry.symmetric(
+        //           horizontal: context.sizeExtenstion.medium,
+        //           vertical: context.sizeExtenstion.small,
+        //         ),
+        //         children: [
+        //           Text(context.l10n.introductionRouteLearnDialogSubTitle),
+        //           SimpleDialogOption(
+        //             padding: EdgeInsets.all(context.sizeExtenstion.small),
+        //             onPressed: () async {
+        //               // Todo add learning link
+        //               if (!await launchUrl(Uri.parse('https://google.com'))) {
+        //                 if (context.mounted) {
+        //                   final content = context.l10n.internetConnectionError;
+        //                   ScaffoldMessenger.of(
+        //                     context,
+        //                   ).showSnackBar(SnackBar(content: Text(content)));
+        //                 }
+        //               }
+        //             },
+        //             child: Text(
+        //               context.l10n.introductionRouteLearnDialogLinkALabel,
+        //               style: context.textTheme.bodyMedium!.copyWith(
+        //                 decoration: TextDecoration.underline,
+        //               ),
+        //             ),
+        //           ),
+
+        //           // TextButton('context.l10n.introductionRouteLearnDialogLinkALabel', onPressed: () {}),
+        //         ],
+        //       );
+        //     },
+        //   );
+        // }
         onDoneIntroduction?.call();
       },
       footerPadding: EdgeInsets.all(context.sizeExtenstion.medium),
@@ -31,7 +71,7 @@ class IntroductionRoute extends StatelessWidget {
 
   Widget _buildNavigation(BuildContext context, String label) {
     return Material(
-      color: context.themeData.colorScheme.primary,
+      color: context.themeData.colorScheme.onPrimary,
       elevation: 4.0,
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -40,9 +80,9 @@ class IntroductionRoute extends StatelessWidget {
         ),
         child: Text(
           label,
-          style: context.textTheme.titleMedium!.apply(
-            color: context.themeData.colorScheme.onPrimary,
-          ),
+          // style: context.textTheme.titleMedium!.apply(
+          //   color: context.themeData.colorScheme.onPrimary,
+          // ),
         ),
       ),
     );
@@ -58,7 +98,11 @@ class IntroductionRoute extends StatelessWidget {
       sideDotsBgColor: context.themeData.colorScheme.secondary, // Oxford Blue
       headerWidget: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24.0),
-        child: Icon(Icons.favorite, color: Colors.redAccent, size: 48),
+        child: Icon(
+          Icons.sports_rounded,
+          size: 48,
+          color: context.themeData.colorScheme.primary,
+        ),
       ),
     ),
     SingleIntroScreen(

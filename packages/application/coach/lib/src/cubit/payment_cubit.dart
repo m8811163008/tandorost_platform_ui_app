@@ -35,6 +35,7 @@ class PaymentCubit extends Cubit<PaymentState> {
       _enhancedEmit(state.copyWith(userProfile: () => profile));
     });
     await onReadCoffeBazzarPaymentInfo();
+    readReferralByUserId();
   }
 
   final ProfileRepository profileRepository;
@@ -86,6 +87,15 @@ class PaymentCubit extends Cubit<PaymentState> {
           readCoffeBazzarPaymentStatus: AsyncProcessingStatus.connectionError,
         ),
       );
+    }
+  }
+
+  Future<void> readReferralByUserId() async {
+    try {
+      final referrals = await profileRepository.readReferralByUserId();
+      _enhancedEmit(state.copyWith(referrals: referrals));
+    } catch (e) {
+      debugPrint(e.toString());
     }
   }
 
@@ -143,15 +153,21 @@ class PaymentCubit extends Cubit<PaymentState> {
   }
 
   void onCafeBazzarSubscribe() async {
+    if (state.userProfile == null) return;
     _enhancedEmit(
       state.copyWith(
         onCafeBazzarSubscribeStatus: AsyncProcessingStatus.loading,
       ),
     );
     final program = state.selectedCoachProgram!;
+    final coachId = program.userId;
+    final isReferraled = state.referrals
+        .where((e) => e.inviterId == coachId)
+        .isNotEmpty;
+    final isSameRole = state.userProfile!.id == coachId;
     try {
       final purchaseInfo = await FlutterPoolakey.purchase(
-        _sku(program),
+        _sku(isSameRole || isReferraled ? PriceLabel.p0 : program.price),
         payload: json.encode(state.userProfile!.toJson()),
       );
       // consume
@@ -175,7 +191,7 @@ class PaymentCubit extends Cubit<PaymentState> {
     }
   }
 
-  void onAddEnrollment() async {
+  void onAddEnrollment(String historyId) async {
     if (state.userProfile == null) {
       return;
     }
@@ -196,6 +212,7 @@ class PaymentCubit extends Cubit<PaymentState> {
       coachId: state.selectedCoachProgram!.userId,
       coachProgramId: state.selectedCoachProgram!.id!,
       workoutProgramId: workout.id!,
+      traineeHistoryId: historyId,
       enrollmentDate: DateTime.now().toUtc(),
     );
     _enhancedEmit(
@@ -277,13 +294,20 @@ class PaymentCubit extends Cubit<PaymentState> {
         SubscriptionType.sixMonth.duration.inDays) {
       subscriptionType = SubscriptionType.sixMonth;
     }
+    final program = state.selectedCoachProgram!;
+    final coachId = program.userId;
+    final isReferraled = state.referrals
+        .where((e) => e.inviterId == coachId)
+        .isNotEmpty;
+    final isSameRole = state.userProfile!.id == coachId;
     // final duration = state
     final subscriptionPayment = SubscriptionPayment(
       programId: state.selectedCoachProgram!.id!,
-      userId: state.userProfile!.id,
+      coachUserId: state.selectedCoachProgram!.userId!,
+      subscriberUserId: state.userProfile!.id,
       cafeBazzarOrderId: state.purchaseInfo!.orderId,
       paidAmount: skuDetail.price.toRialDouble(),
-      discountAmount: 0,
+      discountAmount: isReferraled || isSameRole ? program.price.price : 0,
       currency: Currency.irRial,
       paymentMethod: PaymentMethod.inAppPaymentCafeBazzar,
       purchaseDate: DateTime.fromMillisecondsSinceEpoch(
@@ -324,8 +348,19 @@ class PaymentCubit extends Cubit<PaymentState> {
       state.copyWith(onReadCafeBazzarSkusStatus: AsyncProcessingStatus.loading),
     );
     try {
+      final program = state.selectedCoachProgram!;
+      final coachId = program.userId;
+      final isReferraled = state.referrals
+          .where((e) => e.inviterId == coachId)
+          .isNotEmpty;
+      final isSameRole = state.userProfile!.id == coachId;
+
       final skus = await FlutterPoolakey.getInAppSkuDetails([
-        _sku(state.selectedCoachProgram!),
+        _sku(
+          isSameRole || isReferraled
+              ? PriceLabel.p0
+              : state.selectedCoachProgram!.price,
+        ),
       ]);
       _enhancedEmit(
         state.copyWith(
@@ -343,8 +378,9 @@ class PaymentCubit extends Cubit<PaymentState> {
     }
   }
 
-  String _sku(CoachProgram program) {
-    return switch (program.price) {
+  String _sku(PriceLabel price) {
+    return switch (price) {
+      PriceLabel.p0 => state.cafeBazzarPaymentInfo!.caffeBazzarPurchasePlan0,
       PriceLabel.p1 => state.cafeBazzarPaymentInfo!.caffeBazzarPurchasePlan1,
       PriceLabel.p2 => state.cafeBazzarPaymentInfo!.caffeBazzarPurchasePlan2,
       PriceLabel.p3 => state.cafeBazzarPaymentInfo!.caffeBazzarPurchasePlan3,

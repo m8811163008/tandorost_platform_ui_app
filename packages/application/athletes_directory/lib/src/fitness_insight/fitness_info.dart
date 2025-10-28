@@ -11,15 +11,14 @@ class FitnessInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final gap = SizedBox(height: context.sizeExtenstion.small);
     return AppCard(
+      expanded: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Wrap(
             crossAxisAlignment: WrapCrossAlignment.start,
             children: [
-              AppCardHeader(
-                title: context.l10n.fitnessProfilePhysicalDataLabel,
-              ),
+              AppCardHeader(title: context.l10n.fitnessInfoTitleAthlete),
               HintButton(
                 child: WaistCircumferencePhysicalDataHint(
                   fitnessData: fitnessData,

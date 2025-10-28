@@ -33,11 +33,11 @@ class AthletesDetailRoute extends StatelessWidget {
       body: AthletesDetailListener(
         // goToAthleteDetailRoute: goToAthleteDetailRoute,
       ),
-      drawer: NavigationDrawer(
-        onDestinationSelected: onDrawerNavigationChanged,
-        selectedIndex: drawerNavigationIndex,
-        children: AppNavigation.getDrawerChildren(context),
-      ),
+      // drawer: NavigationDrawer(
+      //   onDestinationSelected: onDrawerNavigationChanged,
+      //   selectedIndex: drawerNavigationIndex,
+      //   children: AppNavigation.getDrawerChildren(context),
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: onBottomNavigationChanged,
         currentIndex: bottomNavigationIndex,
@@ -93,7 +93,6 @@ class _AthletesDetailListenerState extends State<AthletesDetailListener> {
               context
                   .read<AthelteDirectoryCubit>()
                   .onReadCoachAthletesProfile();
-              context.read<AthelteDirectoryCubit>().onReadWorkoutProgram();
             }
           },
         ),
@@ -109,6 +108,28 @@ class _AthletesDetailListenerState extends State<AthletesDetailListener> {
               ).showSnackBar(SnackBar(content: Text(content)));
             } else if (state
                 .onReadAthleteEnrollmentsStatus
+                .isInternetConnectionError) {
+              final content = context.l10n.internetConnectionError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state.onReadCoachEnrollmentsStatus.isSuccess) {
+              context.read<AthelteDirectoryCubit>().onReadWorkoutProgram();
+            }
+          },
+        ),
+        BlocListener<AthelteDirectoryCubit, AthelteDirectoryState>(
+          listenWhen: (previous, current) =>
+              previous.onReadWorkoutProgramStatus !=
+              current.onReadWorkoutProgramStatus,
+          listener: (context, state) {
+            if (state.onReadWorkoutProgramStatus.isConnectionError) {
+              final content = context.l10n.networkError;
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(content)));
+            } else if (state
+                .onReadWorkoutProgramStatus
                 .isInternetConnectionError) {
               final content = context.l10n.internetConnectionError;
               ScaffoldMessenger.of(
@@ -200,6 +221,14 @@ class CarouselSliderBuilder extends StatelessWidget {
         final athletesImages = state.athletesImages.where(
           (e) => e.tag == GallaryTag.defaultTag,
         );
+        if (athletesImages.isEmpty) {
+          return SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: AppCard(
+              child: Text(context.l10n.carouselSliderBuilderEmptyState),
+            ),
+          );
+        }
         final parsedImagesMap = _parseFileDatailByDate(athletesImages.toList());
 
         return SizedBox(
@@ -212,7 +241,9 @@ class CarouselSliderBuilder extends StatelessWidget {
             itemBuilder: (context, index) {
               final dateKey = parsedImagesMap.keys.toList()[index];
               final imagesData = parsedImagesMap[dateKey]!;
-              if (imagesData.isEmpty) return SizedBox();
+              if (imagesData.isEmpty) {
+                return Text(context.l10n.carouselSliderBuilderEmptyState);
+              }
 
               Map<PhotoSide, List<FileData>> imagesBySides = {};
               for (final side in PhotoSide.values) {

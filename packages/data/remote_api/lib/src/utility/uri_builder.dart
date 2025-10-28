@@ -2,13 +2,15 @@ import 'package:remote_api/remote_api.dart';
 
 class UriBuilder {
   // static final baseUri = Uri(scheme: 'https', host: 'tandorost-a.ir');
-  static final baseUri = Uri(scheme: 'http', host: '10.88.134.85', port: 8001);
+  static final baseUri = Uri(scheme: 'http', host: '10.242.123.85', port: 8001);
   // static final baseUri = Uri(
   //   scheme: 'http',
   //   host: '10.105.146.237',
   //   port: 8001,
   // );
   static final basePath = '/api/v1';
+
+  static final baseUriWithPath = baseUri.replace(path: basePath);
   static Uri authSendVerificationCode(VerificationType verificationType) {
     return baseUri.replace(
       path: '$basePath/auth/send_verification_code/',
@@ -26,6 +28,10 @@ class UriBuilder {
 
   static Uri authToken() {
     return baseUri.replace(path: '$basePath/auth/token/');
+  }
+
+  static Uri verifyGoogle() {
+    return baseUri.replace(path: '$basePath/auth/verify_google/');
   }
 
   static Uri logout() {
@@ -57,6 +63,10 @@ class UriBuilder {
 
   static Uri addUsersImages() {
     return baseUri.replace(path: '$basePath/user/add_user_images/');
+  }
+
+  static Uri onVerifyByAi() {
+    return baseUri.replace(path: '$basePath/auth/verify_by_ai/');
   }
 
   static Uri readFoodsNutritionsByText() {
@@ -137,8 +147,13 @@ class UriBuilder {
     );
   }
 
-  static Uri readSubscriptions() {
-    return baseUri.replace(path: '$basePath/payment/read_subscriptions/');
+  static Uri readSubscriptions({String? coachId}) {
+    return baseUri.replace(
+      path: '$basePath/payment/read_subscriptions/',
+      queryParameters: <String, dynamic>{
+        if (coachId != null) 'coach_id': coachId,
+      },
+    );
   }
 
   static Uri readCoffeBazzarPayment() {
@@ -260,5 +275,28 @@ class UriBuilder {
 
   static Uri readExerciseDefinition() {
     return baseUri.replace(path: '$basePath/coach/read_exercise_definition/');
+  }
+
+  static Uri verifyVerificationCode() {
+    return baseUri.replace(path: '$basePath/auth/verify_verification_code/');
+  }
+
+  static Uri sendInvite(String identifier) {
+    return baseUri.replace(
+      path: '$basePath/user/send_invite/',
+      queryParameters: {'identifier': identifier},
+    );
+  }
+
+  static Uri readReferralByUserId() {
+    return baseUri.replace(path: '$basePath/user/read_referral_by_user_id/');
+  }
+
+  static Uri readReferralByInviterId() {
+    return baseUri.replace(path: '$basePath/user/read_referral_by_inviter_id/');
+  }
+
+  static Uri readCoachProfiles() {
+    return baseUri.replace(path: '$basePath/coach/read_coach_profiles/');
   }
 }

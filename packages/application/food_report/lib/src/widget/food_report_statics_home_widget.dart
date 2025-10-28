@@ -1,8 +1,6 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:food_report_app/src/cubit/food_report_cubit.dart';
-import 'package:food_report_app/src/widget/food_suggestion_chips.dart';
-import 'package:food_report_app/src/widget/user_food_requrement_row.dart';
 import 'package:food_report_app/src/widget/user_food_requrement_row_home_widget.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 

@@ -8,8 +8,15 @@ class FoodBottomSheetButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton.filledTonal(
+    return IconButton(
       tooltip: context.l10n.searchFoodBottomSheetHeading,
+      style: IconButton.styleFrom(
+        foregroundColor: context.themeData.colorScheme.onSurfaceVariant,
+        backgroundColor: Colors.white,
+        fixedSize: Size.square(context.sizeExtenstion.profileRadius),
+      ),
+
+      // color: Color.fromARGB(255, 182, 222, 230),
       onPressed: () async {
         await showModalBottomSheet(
           context: context,

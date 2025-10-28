@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tandorost_components/src/utility/build_context_l10n_extension.dart';
 
 class NumberTextField extends StatelessWidget {
   const NumberTextField({
@@ -11,13 +12,14 @@ class NumberTextField extends StatelessWidget {
     this.onChange,
     this.validator,
     this.obscureText = false,
-    this.initalValue,
+    this.initialValue,
     this.errorMessage,
     this.suffix,
     this.textDirection,
     this.autofillHints,
     this.keyboardType = TextInputType.number,
     this.inputFormatters,
+    this.controller,
   });
   final String label;
   final String? prefix;
@@ -26,19 +28,20 @@ class NumberTextField extends StatelessWidget {
   final ValueSetter<String>? onChange;
   final String? Function(String?)? validator;
   final bool obscureText;
-  final String? initalValue;
+  final String? initialValue;
   final String? errorMessage;
   final Widget? suffix;
   final TextDirection? textDirection;
   final Iterable<String>? autofillHints;
   final TextInputType keyboardType;
   final List<TextInputFormatter>? inputFormatters;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       autofillHints: autofillHints,
-      controller: TextEditingController(text: initalValue),
+      controller: controller ?? TextEditingController(text: initialValue),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: keyboardType,
       inputFormatters:
@@ -54,7 +57,14 @@ class NumberTextField extends StatelessWidget {
       maxLength: maxLength,
       maxLines: obscureText ? 1 : null,
       onChanged: onChange,
-      validator: validator,
+      validator:
+          validator ??
+          (value) {
+            if (value == null || value.isEmpty) {
+              return context.l10n.emptyFormFieldValidationError;
+            }
+            return null;
+          },
       textDirection: textDirection,
     );
   }

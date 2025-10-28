@@ -14,10 +14,13 @@ class AppOutLineButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return _isLoading
         ? OutlinedButton.icon(
-          onPressed: onTap,
-          label: Text(label),
-          icon: Transform.scale(scale: 0.7, child: CircularProgressIndicator()),
-        )
+            onPressed: onTap,
+            label: Text(label),
+            icon: Transform.scale(
+              scale: 0.7,
+              child: CircularProgressIndicator(),
+            ),
+          )
         : OutlinedButton(onPressed: onTap, child: Text(label));
   }
 }

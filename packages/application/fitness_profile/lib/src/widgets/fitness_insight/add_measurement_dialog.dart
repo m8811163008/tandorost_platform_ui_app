@@ -51,13 +51,12 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
         onChange: (value) {
           cubit.onChangeArmCircumference(double.tryParse(value));
         },
-        initalValue:
-            context
-                .read<FitnessProfileCubit>()
-                .state
-                .userPhysicalDataUpsert
-                .armCircumference
-                .tryToString(),
+        initialValue: context
+            .read<FitnessProfileCubit>()
+            .state
+            .userPhysicalDataUpsert
+            .armCircumference
+            .tryToString(),
       ),
       gap,
       NumberTextField(
@@ -66,13 +65,12 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
         onChange: (value) {
           cubit.onChangeChestCircumference(double.tryParse(value));
         },
-        initalValue:
-            context
-                .read<FitnessProfileCubit>()
-                .state
-                .userPhysicalDataUpsert
-                .chestCircumference
-                .tryToString(),
+        initialValue: context
+            .read<FitnessProfileCubit>()
+            .state
+            .userPhysicalDataUpsert
+            .chestCircumference
+            .tryToString(),
       ),
       gap,
       NumberTextField(
@@ -81,30 +79,27 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
         onChange: (value) {
           cubit.onChangeThighCircumference(double.tryParse(value));
         },
-        initalValue:
-            context
-                .read<FitnessProfileCubit>()
-                .state
-                .userPhysicalDataUpsert
-                .thighCircumference
-                .tryToString(),
+        initialValue: context
+            .read<FitnessProfileCubit>()
+            .state
+            .userPhysicalDataUpsert
+            .thighCircumference
+            .tryToString(),
       ),
       gap,
       NumberTextField(
-        label:
-            context
-                .l10n
-                .fitnessProfileNewMeasurementDialogCalfMuscleCircumference,
+        label: context
+            .l10n
+            .fitnessProfileNewMeasurementDialogCalfMuscleCircumference,
         onChange: (value) {
           cubit.onChangeCalfMuscleCircumference(double.tryParse(value));
         },
-        initalValue:
-            context
-                .read<FitnessProfileCubit>()
-                .state
-                .userPhysicalDataUpsert
-                .calfMuscleCircumference
-                .tryToString(),
+        initialValue: context
+            .read<FitnessProfileCubit>()
+            .state
+            .userPhysicalDataUpsert
+            .calfMuscleCircumference
+            .tryToString(),
       ),
       gap,
       NumberTextField(
@@ -112,13 +107,12 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
         onChange: (value) {
           cubit.onChangeHipCircumference(double.tryParse(value));
         },
-        initalValue:
-            context
-                .read<FitnessProfileCubit>()
-                .state
-                .userPhysicalDataUpsert
-                .hipCircumference
-                .tryToString(),
+        initialValue: context
+            .read<FitnessProfileCubit>()
+            .state
+            .userPhysicalDataUpsert
+            .hipCircumference
+            .tryToString(),
       ),
       gap,
     ];
@@ -130,16 +124,15 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
         value: context.select<FitnessProfileCubit, Gender?>(
           (cubit) => cubit.state.userPhysicalDataUpsert.gender,
         ),
-        items:
-            Gender.values
-                .sublist(0, Gender.values.length - 1)
-                .map(
-                  (e) => DropdownMenuItem(
-                    value: e,
-                    child: Text(context.l10n.physicalDataGender(e.name)),
-                  ),
-                )
-                .toList(),
+        items: Gender.values
+            .sublist(0, Gender.values.length - 1)
+            .map(
+              (e) => DropdownMenuItem(
+                value: e,
+                child: Text(context.l10n.physicalDataGender(e.name)),
+              ),
+            )
+            .toList(),
         errorText: isGenderError ? '' : null,
       ),
       gap,
@@ -149,16 +142,15 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
         value: context.select<FitnessProfileCubit, ActivityLevel?>(
           (cubit) => cubit.state.userPhysicalDataUpsert.activityLevel,
         ),
-        items:
-            ActivityLevel.values
-                .sublist(0, ActivityLevel.values.length - 1)
-                .map(
-                  (e) => DropdownMenuItem(
-                    value: e,
-                    child: Text(context.l10n.physicalActivityLevel(e.name)),
-                  ),
-                )
-                .toList(),
+        items: ActivityLevel.values
+            .sublist(0, ActivityLevel.values.length - 1)
+            .map(
+              (e) => DropdownMenuItem(
+                value: e,
+                child: Text(context.l10n.physicalActivityLevel(e.name)),
+              ),
+            )
+            .toList(),
         errorText: isActivityLevelError ? '' : null,
       ),
       gap,
@@ -185,22 +177,20 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
         onChange: (value) {
           cubit.onChangeHeight(double.tryParse(value));
         },
-        initalValue:
-            context
-                .read<FitnessProfileCubit>()
-                .state
-                .userPhysicalDataUpsert
-                .height
-                .tryToString(),
+        initialValue: context
+            .read<FitnessProfileCubit>()
+            .state
+            .userPhysicalDataUpsert
+            .height
+            .tryToString(),
         errorMessage: isHeightError ? '' : null,
       ),
       gap,
     ];
     return BlocListener<FitnessProfileCubit, FitnessProfileState>(
-      listenWhen:
-          (previous, current) =>
-              previous.updateUserPhysicalDataStatus !=
-              current.updateUserPhysicalDataStatus,
+      listenWhen: (previous, current) =>
+          previous.updateUserPhysicalDataStatus !=
+          current.updateUserPhysicalDataStatus,
       listener: (context, state) {
         if (state.updateUserPhysicalDataStatus.isConnectionError) {
           final content = context.l10n.networkError;
@@ -230,13 +220,12 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
             onChange: (value) {
               cubit.onChangeWeight(double.tryParse(value));
             },
-            initalValue:
-                context
-                    .read<FitnessProfileCubit>()
-                    .state
-                    .userPhysicalDataUpsert
-                    .weight
-                    .tryToString(),
+            initialValue: context
+                .read<FitnessProfileCubit>()
+                .state
+                .userPhysicalDataUpsert
+                .weight
+                .tryToString(),
             errorMessage: isWeightError ? '' : null,
             keyboardType: TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [
@@ -250,13 +239,12 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
             onChange: (value) {
               cubit.onChangeWaistCircumference(double.tryParse(value));
             },
-            initalValue:
-                context
-                    .read<FitnessProfileCubit>()
-                    .state
-                    .userPhysicalDataUpsert
-                    .waistCircumference
-                    .tryToString(),
+            initialValue: context
+                .read<FitnessProfileCubit>()
+                .state
+                .userPhysicalDataUpsert
+                .waistCircumference
+                .tryToString(),
             suffix: HintButton(child: WaistCircumferenceFieldHint()),
           ),
           gap,
@@ -269,18 +257,18 @@ class _AddNewMeasurementDialogState extends State<AddNewMeasurementDialog> {
             return state.updateUserPhysicalDataStatus.isLoading
                 ? AppTextButton.loading(label: label)
                 : AppTextButton(
-                  label: label,
-                  onTap: () {
-                    if (isRequiredFields) {
-                      validate();
-                    }
-                    if (isValidForm) {
-                      context
-                          .read<FitnessProfileCubit>()
-                          .updateUserPhysicalData();
-                    }
-                  },
-                );
+                    label: label,
+                    onTap: () {
+                      if (isRequiredFields) {
+                        validate();
+                      }
+                      if (isValidForm) {
+                        context
+                            .read<FitnessProfileCubit>()
+                            .updateUserPhysicalData();
+                      }
+                    },
+                  );
           },
         ),
       ),

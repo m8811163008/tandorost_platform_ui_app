@@ -1,5 +1,4 @@
 import 'package:coach/coach.dart';
-import 'package:coach/src/cubit/payment_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 

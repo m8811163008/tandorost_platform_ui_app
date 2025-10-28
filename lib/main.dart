@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:athlete_repository/athlete_repository.dart';
 import 'package:authentication/authentication.dart';
 import 'package:fitness_nutrition/fitness_nutrition.dart';
@@ -7,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:food_input/food_input.dart';
 import 'package:food_report/food_report.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:local_storage/local_storage.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
 import 'package:remote_api/remote_api.dart';
@@ -22,6 +22,7 @@ import 'package:coach_repository/coach_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -82,7 +83,8 @@ class DependencyManager extends StatelessWidget {
       localStorage: localStorage,
     );
     remoteApi.accessTokenProvider = authenticationRep.accessTokenProvider;
-    remoteApi.userLanguageProvider = profileRep.userLanguage;
+    remoteApi.userLanguageProvider = () => Future.value(Language.persian);
+    // remoteApi.userLanguageProvider = profileRep.userLanguage;
 
     final foodInputRep = FoodInputRepository(remoteApi: remoteApi);
 

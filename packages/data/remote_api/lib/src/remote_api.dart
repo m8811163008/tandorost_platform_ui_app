@@ -1,5 +1,4 @@
 import 'package:remote_api/remote_api.dart';
-import 'package:remote_api/src/model/workout_program.dart';
 import 'remote_api_base.dart';
 
 /// An abstract interface class for interacting with a remote API.
@@ -130,7 +129,7 @@ abstract interface class RemoteApi {
   /// - [userImage]: The image data to add.
   ///
   /// Returns a [Future] that resolves to a list of [FileData].
-  Future<List<FileData>> addUserImages(UserImage userImage);
+  Future<List<FileData>> addUserImages(UserFile userImage);
 
   /// Reads food nutrition data based on a text prompt.
   ///
@@ -190,7 +189,7 @@ abstract interface class RemoteApi {
   /// Retrieves a list of all subscription payments.
   ///
   /// Returns a [Future] that completes with a [List] of [SubscriptionPayment] objects.
-  Future<List<SubscriptionPayment>> readSubscriptionPayments();
+  Future<List<SubscriptionPayment>> readSubscriptionPayments({String? coachId});
 
   /// Creates a new subscription payment.
   ///
@@ -225,7 +224,7 @@ abstract interface class RemoteApi {
   Future<List<UserProfile>> readCoachesProfiles();
   Future<List<TraineeHistory>> readTraineeHistory(String traineeId);
   Future<TraineeHistory> upsertTraineeHistory(TraineeHistory traineeHistory);
-  Future<List<ProgramEnrollment>> readEnrollments({
+  Future<List<ProgramEnrollment>?> readEnrollments({
     String? coachId,
     String? traineeId,
   });
@@ -245,6 +244,25 @@ abstract interface class RemoteApi {
   });
 
   Future<WorkoutProgram?> readWorkoutProgram({required String workoutId});
-  
+
   Future<List<ExerciseDefinition>> readExerciseDefinition();
+
+  Future<Token> verifyGoogle(String googleToken);
+  Future<void> sendInvite(String identifier);
+  Future<List<Referral>> readReferralByUserId();
+
+  Future<List<Referral>> readReferralByInviterId();
+
+  Future<void> verifyVerificationCode({
+    required String identifier,
+    required String verificationCode,
+  });
+
+  Future<List<UserProfile>> readCoachProfiles();
+
+  Future<void> onVerifyByAi(
+    FileDetail recordedFile, [
+    // TODO update language
+    Language userSpokenLanguage = Language.persian,
+  ]);
 }

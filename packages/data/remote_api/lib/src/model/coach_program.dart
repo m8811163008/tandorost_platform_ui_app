@@ -95,6 +95,7 @@ enum ProgramFeature {
 }
 
 enum PriceLabel {
+  p0(0.0),
   p1(100.0),
   p2(150.0),
   p3(200.0),

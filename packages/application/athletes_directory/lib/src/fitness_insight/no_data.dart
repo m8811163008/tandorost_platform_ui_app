@@ -8,6 +8,7 @@ class NoDataFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppCard(
+      expanded: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

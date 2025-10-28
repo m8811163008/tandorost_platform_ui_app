@@ -6,12 +6,14 @@ enum GallaryTag {
   defaultTag,
   profileImage,
   certificate,
-  achievement;
+  achievement,
+  verification;
 
   String get requestName => switch (this) {
     GallaryTag.defaultTag => 'default',
     GallaryTag.profileImage => 'profile_image',
     GallaryTag.certificate => 'certificate',
     GallaryTag.achievement => 'achievement',
+    GallaryTag.verification => 'verification',
   };
 }

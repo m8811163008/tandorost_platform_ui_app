@@ -4,6 +4,7 @@ part of 'profile_cubit.dart';
 class ProfileState extends Equatable {
   const ProfileState({
     this.isReminderNotificationPermissionGranted = false,
+    this.isVerifyPhoneNumber,
     this.updatingProfileStatus = AsyncProcessingStatus.inital,
     this.uploadingImageProfileStatus = AsyncProcessingStatus.inital,
     this.readProfileImageStatus = AsyncProcessingStatus.inital,
@@ -17,6 +18,8 @@ class ProfileState extends Equatable {
     this.readingCoachProgram = AsyncProcessingStatus.inital,
     this.deletingCoachProgram = AsyncProcessingStatus.inital,
     this.updatingCoachProgram = AsyncProcessingStatus.inital,
+    this.sendVerificationCodeStatus = AsyncProcessingStatus.inital,
+    this.verifyVerificationCodeStatus = AsyncProcessingStatus.inital,
     this.subscriptions = const [],
     this.filesData = const [],
     this.filesDetail = const [],
@@ -28,9 +31,11 @@ class ProfileState extends Equatable {
     this.profileImage,
     this.coachPrograms = const [],
     this.cacheCoachProgram,
+    this.verificationCode = '',
   });
 
   final bool isReminderNotificationPermissionGranted;
+  final bool? isVerifyPhoneNumber;
   final AsyncProcessingStatus updatingProfileStatus;
   final AsyncProcessingStatus readProfileStatus;
   final AsyncProcessingStatus readProfileImageStatus;
@@ -41,6 +46,8 @@ class ProfileState extends Equatable {
   final AsyncProcessingStatus readUserImageGallaryStatus;
   final AsyncProcessingStatus addUserImageStatus;
   final AsyncProcessingStatus archivingImagesStatus;
+  final AsyncProcessingStatus sendVerificationCodeStatus;
+  final AsyncProcessingStatus verifyVerificationCodeStatus;
 
   final List<FileData> filesData;
   final List<FileDetail> filesDetail;
@@ -56,10 +63,11 @@ class ProfileState extends Equatable {
   final AsyncProcessingStatus readingCoachProgram;
   final AsyncProcessingStatus deletingCoachProgram;
   final AsyncProcessingStatus updatingCoachProgram;
+  final String verificationCode;
 
   ProfileState copyWith({
     bool? isReminderNotificationPermissionGranted,
-
+    bool? isVerifyPhoneNumber,
     AsyncProcessingStatus? updatingProfileStatus,
     AsyncProcessingStatus? readProfileStatus,
     AsyncProcessingStatus? readProfileImageStatus,
@@ -67,62 +75,75 @@ class ProfileState extends Equatable {
     AsyncProcessingStatus? readSubscriptionStatus,
     AsyncProcessingStatus? readCoachProfileStatus,
     AsyncProcessingStatus? updateCoachProfileStatus,
-    AsyncProcessingStatus? readingCoachProgram,
-    AsyncProcessingStatus? deletingCoachProgram,
-    AsyncProcessingStatus? upsertingCoachProgram,
-    List<SubscriptionPayment>? subscriptions,
-    UserProfile? userProfile,
-    UserProfile? updatedUserProfile,
-    CoachProfile? coachProfile,
-    CoachProfile? updatedCoachProfile,
-    FileDetail? profileImage,
-    List<CoachProgram>? coachPrograms,
-    CoachProgram? cacheCoachProgram,
-
     AsyncProcessingStatus? readUserImageGallaryStatus,
     AsyncProcessingStatus? addUserImageStatus,
     AsyncProcessingStatus? archivingImagesStatus,
-
+    AsyncProcessingStatus? sendVerificationCodeStatus,
+    AsyncProcessingStatus? verifyVerificationCodeStatus,
     List<FileData>? filesData,
     List<FileDetail>? filesDetail,
     List<String>? archiveImagesId,
+    ValueGetter<UserProfile?>? userProfile,
+    ValueGetter<UserProfile?>? updatedUserProfile,
+    ValueGetter<CoachProfile?>? coachProfile,
+    ValueGetter<CoachProfile?>? updatedCoachProfile,
+    ValueGetter<FileDetail?>? profileImage,
+    List<SubscriptionPayment>? subscriptions,
+    List<CoachProgram>? coachPrograms,
+    ValueGetter<CoachProgram?>? cacheCoachProgram,
+    AsyncProcessingStatus? readingCoachProgram,
+    AsyncProcessingStatus? deletingCoachProgram,
+    AsyncProcessingStatus? updatingCoachProgram,
+    String? verificationCode,
   }) {
     return ProfileState(
       isReminderNotificationPermissionGranted:
           isReminderNotificationPermissionGranted ??
           this.isReminderNotificationPermissionGranted,
-      coachPrograms: coachPrograms ?? this.coachPrograms,
-      cacheCoachProgram: cacheCoachProgram ?? this.cacheCoachProgram,
+      isVerifyPhoneNumber: isVerifyPhoneNumber ?? this.isVerifyPhoneNumber,
       updatingProfileStatus:
           updatingProfileStatus ?? this.updatingProfileStatus,
-      readingCoachProgram: readingCoachProgram ?? this.readingCoachProgram,
-      deletingCoachProgram: deletingCoachProgram ?? this.deletingCoachProgram,
-      updatingCoachProgram: upsertingCoachProgram ?? this.updatingCoachProgram,
       readProfileStatus: readProfileStatus ?? this.readProfileStatus,
-      uploadingImageProfileStatus:
-          uploadingImageProfileStatus ?? this.uploadingImageProfileStatus,
       readProfileImageStatus:
           readProfileImageStatus ?? this.readProfileImageStatus,
+      uploadingImageProfileStatus:
+          uploadingImageProfileStatus ?? this.uploadingImageProfileStatus,
+      readSubscriptionStatus:
+          readSubscriptionStatus ?? this.readSubscriptionStatus,
       readCoachProfileStatus:
           readCoachProfileStatus ?? this.readCoachProfileStatus,
       updateCoachProfileStatus:
           updateCoachProfileStatus ?? this.updateCoachProfileStatus,
-      userProfile: userProfile ?? this.userProfile,
-      updatedUserProfile: updatedUserProfile ?? this.updatedUserProfile,
-      coachProfile: coachProfile ?? this.coachProfile,
-      updatedCoachProfile: updatedCoachProfile ?? this.updatedCoachProfile,
-      profileImage: profileImage ?? this.profileImage,
-      subscriptions: subscriptions ?? this.subscriptions,
-      readSubscriptionStatus:
-          readSubscriptionStatus ?? this.readSubscriptionStatus,
       readUserImageGallaryStatus:
           readUserImageGallaryStatus ?? this.readUserImageGallaryStatus,
       addUserImageStatus: addUserImageStatus ?? this.addUserImageStatus,
       archivingImagesStatus:
           archivingImagesStatus ?? this.archivingImagesStatus,
+      sendVerificationCodeStatus:
+          sendVerificationCodeStatus ?? this.sendVerificationCodeStatus,
+      verifyVerificationCodeStatus:
+          verifyVerificationCodeStatus ?? this.verifyVerificationCodeStatus,
       filesData: filesData ?? this.filesData,
       filesDetail: filesDetail ?? this.filesDetail,
       archiveImagesId: archiveImagesId ?? this.archiveImagesId,
+      userProfile: userProfile != null ? userProfile() : this.userProfile,
+      updatedUserProfile: updatedUserProfile != null
+          ? updatedUserProfile()
+          : this.updatedUserProfile,
+      coachProfile: coachProfile != null ? coachProfile() : this.coachProfile,
+      updatedCoachProfile: updatedCoachProfile != null
+          ? updatedCoachProfile()
+          : this.updatedCoachProfile,
+      profileImage: profileImage != null ? profileImage() : this.profileImage,
+      subscriptions: subscriptions ?? this.subscriptions,
+      coachPrograms: coachPrograms ?? this.coachPrograms,
+      cacheCoachProgram: cacheCoachProgram != null
+          ? cacheCoachProgram()
+          : this.cacheCoachProgram,
+      readingCoachProgram: readingCoachProgram ?? this.readingCoachProgram,
+      deletingCoachProgram: deletingCoachProgram ?? this.deletingCoachProgram,
+      updatingCoachProgram: updatingCoachProgram ?? this.updatingCoachProgram,
+      verificationCode: verificationCode ?? this.verificationCode,
     );
   }
 
@@ -133,25 +154,29 @@ class ProfileState extends Equatable {
     readProfileStatus,
     readProfileImageStatus,
     uploadingImageProfileStatus,
+    readSubscriptionStatus,
     readCoachProfileStatus,
     updateCoachProfileStatus,
+    readUserImageGallaryStatus,
+    addUserImageStatus,
+    archivingImagesStatus,
+    sendVerificationCodeStatus,
+    verifyVerificationCodeStatus,
+    filesData,
+    filesDetail,
+    archiveImagesId,
     userProfile,
     updatedUserProfile,
     coachProfile,
     updatedCoachProfile,
+    isVerifyPhoneNumber,
     profileImage,
     subscriptions,
-    readSubscriptionStatus,
-    readUserImageGallaryStatus,
-    addUserImageStatus,
-    archivingImagesStatus,
-    filesData,
-    filesDetail,
-    archiveImagesId,
     coachPrograms,
     cacheCoachProgram,
     readingCoachProgram,
     deletingCoachProgram,
     updatingCoachProgram,
+    verificationCode,
   ];
 }

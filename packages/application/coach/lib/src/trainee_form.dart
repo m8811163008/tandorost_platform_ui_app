@@ -68,7 +68,12 @@ class TraineeFormListener extends StatelessWidget {
                 context,
               ).showSnackBar(SnackBar(content: Text(content)));
             } else if (state.upsertingTraineeHistoryStatus.isSuccess) {
-              context.read<PaymentCubit>().onAddEnrollment();
+              final historyId = context
+                  .read<CoachCubit>()
+                  .state
+                  .traineeHistory!
+                  .id!;
+              context.read<PaymentCubit>().onAddEnrollment(historyId);
             }
           },
         ),
@@ -261,7 +266,7 @@ class _TraineeFormState extends State<TraineeForm> {
                 hintText: context
                     .l10n
                     .traineeHistoryCurrentPracticeFrequencyPerWeekHint,
-                initalValue:
+                initialValue:
                     cubit
                             .state
                             .traineeHistory!

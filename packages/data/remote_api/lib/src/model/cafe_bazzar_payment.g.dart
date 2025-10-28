@@ -19,6 +19,7 @@ CafeBazzarPaymentInfo _$CafeBazzarPaymentInfoFromJson(
         'caffe_bazzar_subscription_plan_one_month_sdk',
         'caffe_bazzar_subscription_plan_three_month_sdk',
         'caffe_bazzar_subscription_plan_six_month_sdk',
+        'caffe_bazzar_purchase_plan_0',
         'caffe_bazzar_purchase_plan_1',
         'caffe_bazzar_purchase_plan_2',
         'caffe_bazzar_purchase_plan_3',
@@ -52,6 +53,10 @@ CafeBazzarPaymentInfo _$CafeBazzarPaymentInfoFromJson(
       ),
       caffeBazzarSubscriptionPlanSixMonthSdk: $checkedConvert(
         'caffe_bazzar_subscription_plan_six_month_sdk',
+        (v) => v as String,
+      ),
+      caffeBazzarPurchasePlan0: $checkedConvert(
+        'caffe_bazzar_purchase_plan_0',
         (v) => v as String,
       ),
       caffeBazzarPurchasePlan1: $checkedConvert(
@@ -141,6 +146,7 @@ CafeBazzarPaymentInfo _$CafeBazzarPaymentInfoFromJson(
         'caffe_bazzar_subscription_plan_three_month_sdk',
     'caffeBazzarSubscriptionPlanSixMonthSdk':
         'caffe_bazzar_subscription_plan_six_month_sdk',
+    'caffeBazzarPurchasePlan0': 'caffe_bazzar_purchase_plan_0',
     'caffeBazzarPurchasePlan1': 'caffe_bazzar_purchase_plan_1',
     'caffeBazzarPurchasePlan2': 'caffe_bazzar_purchase_plan_2',
     'caffeBazzarPurchasePlan3': 'caffe_bazzar_purchase_plan_3',

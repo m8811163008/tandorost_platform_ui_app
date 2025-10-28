@@ -25,3 +25,9 @@ export 'src/profile/profile.dart';
 export 'package:persian_datetime_picker/persian_datetime_picker.dart';
 // export bloc
 export 'package:flutter_bloc/flutter_bloc.dart';
+// export video player
+export 'package:video_player/video_player.dart';
+// export url_launcher
+export 'package:url_launcher/url_launcher.dart';
+// font awsume
+export 'package:font_awesome_flutter/font_awesome_flutter.dart';

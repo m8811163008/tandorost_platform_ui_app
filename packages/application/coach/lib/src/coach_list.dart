@@ -123,7 +123,13 @@ class CoachListBuilder extends StatelessWidget {
               current.readCoachImagesDataStatus,
       builder: (context, state) {
         final activeCoachProfiles = state.coachesProfile
-            .where((coach) => coach.isActive)
+            .where(
+              (coach) =>
+                  coach.isActive &&
+                  state.coachesUserProfile
+                      .map((e) => e.id)
+                      .contains(coach.userId),
+            )
             .toList();
         if (activeCoachProfiles.isEmpty) {
           return Padding(
@@ -166,7 +172,11 @@ class CoachListBuilder extends StatelessWidget {
 
                 return ListTile(
                   title: Text(coachUserProfile.fullName ?? 'N/A'),
-                  subtitle: Text(coach.biography),
+                  subtitle: Text(
+                    coach.biography,
+                    maxLines: 4,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                   leading: CircleAvatar(
                     radius: context.sizeExtenstion.extraLarge,
                     backgroundImage: coachProfileImageDetail != null

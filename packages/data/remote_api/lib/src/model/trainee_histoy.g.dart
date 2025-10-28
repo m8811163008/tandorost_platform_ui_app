@@ -25,6 +25,8 @@ TraineeHistory _$TraineeHistoryFromJson(
         'excersice_goal',
         'coach_analysis',
         'daily_activity_desc',
+        'coach_foods_instructions',
+        'coach_supplements_instruction',
         'exercise_equipment',
         'supplements',
       ],
@@ -58,6 +60,14 @@ TraineeHistory _$TraineeHistoryFromJson(
       ),
       supplements: $checkedConvert('supplements', (v) => v as String?),
       coachAnalysis: $checkedConvert('coach_analysis', (v) => v as String?),
+      coachFoodsInstructions: $checkedConvert(
+        'coach_foods_instructions',
+        (v) => v as String?,
+      ),
+      coachSupplementsInstruction: $checkedConvert(
+        'coach_supplements_instruction',
+        (v) => v as String?,
+      ),
     );
     return val;
   },
@@ -69,6 +79,8 @@ TraineeHistory _$TraineeHistoryFromJson(
     'exerciseEquipment': 'exercise_equipment',
     'dailyActivityDesc': 'daily_activity_desc',
     'coachAnalysis': 'coach_analysis',
+    'coachFoodsInstructions': 'coach_foods_instructions',
+    'coachSupplementsInstruction': 'coach_supplements_instruction',
   },
 );
 
@@ -87,6 +99,8 @@ Map<String, dynamic> _$TraineeHistoryToJson(TraineeHistory instance) =>
       ),
       'coach_analysis': ?instance.coachAnalysis,
       'daily_activity_desc': ?instance.dailyActivityDesc,
+      'coach_foods_instructions': ?instance.coachFoodsInstructions,
+      'coach_supplements_instruction': ?instance.coachSupplementsInstruction,
       'exercise_equipment': const ExerciseEquipmentLinkedHashSetConverter()
           .toJson(instance.exerciseEquipment),
       'supplements': ?instance.supplements,
@@ -109,4 +123,5 @@ const _$ExerciseEquipmentEnumMap = {
   ExerciseEquipment.dumbbell: 'dumbbell',
   ExerciseEquipment.band: 'band',
   ExerciseEquipment.kettlebell: 'kettlebell',
+  ExerciseEquipment.smith_machine: 'smith_machine',
 };
