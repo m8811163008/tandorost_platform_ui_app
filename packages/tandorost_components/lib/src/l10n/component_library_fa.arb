@@ -55,6 +55,14 @@
     "searchFoodBottomSheetButtonLabel": "جستجو",
     "networkError": "خطای ارتباط. دوباره امتحان کنید",
     "internetConnectionError": "خطای اینترنت. اینترنت خود را روشن نمایید",
+    "setPrescriptionTimeLeft": "{seconds} ثانیه",
+    "@setPrescriptionTimeLeft": {
+        "placeholders": {
+            "seconds": {
+                "type": "int"
+            }
+        }
+    },
     "voiceAiInsufficientLength": "حداقل {seconds} ثانیه گفتگو کنید",
     "@voiceAiInsufficientLength": {
         "placeholders": {
@@ -638,7 +646,10 @@
     "foodRequerementDialogAgeRelatedFoodConsidarationTrainnigDayText6": "افراد فعال در سنین بالا می‌توانند سطح آمادگی جسمانی بالاتری نسبت به افراد کم‌تحرک جوان داشته باشند. تمرین منظم هوازی و مقاومتی باعث حفظ قدرت، استقامت و ظرفیت هوازی می‌شود و روند افت عملکرد با افزایش سن را به تأخیر می‌اندازد.",
     "foodInputChatButtonLoadingText1": "در حال پردازش...",
     "foodInputChatButtonLoadingText2": "لطفاً منتظر بمانید",
-    "privacyDialogTitle": "حریم خصوصی",
+    "privacyDialogTitle": "شرایط استفاده",
+    "privacyDialogSubtitle0": "قرآن",
+    "privacyDialogText0": "قوانین و شرایط استفاده مطابق متن عربی مبین قرآن است و مراجع و کتب غیرقرآن ساخت بشر و ممکن است دارای خطا یا تناقض با قرآن باشند",
+    "privacyDialogTitle1": "چگونه از اطلاعات شما حراست میکنیم؟",
     "privacyDialogSubtitle1": "چگونه از اطلاعات شما حراست میکنیم؟",
     "privacyDialogSubtitle2": "چه اطلاعاتی از شما دریافت می‌شود؟",
     "privacyDialogSubtitle3": "چگونه از اطلاعات شما محافظت می‌شود؟",
@@ -753,7 +764,7 @@
             }
         }
     },
-    "financeSectionBalanceSubtitle" : "دستمزدهای شما را تا روز 10ام هرماه شمسی بعد از تسویه مارکت‌ها و نداشتن شکایت از مشتریان انجام میدهیم",
+    "financeSectionBalanceSubtitle" : "دستمزدهای شما را 2 هفته بعد از خرید و نداشتن شکایت از مشتریان واریز میکنیم",
     "traineeHistoryFormIllnessHitoryLabel" : "سابقه بیماری",
     "traineeHistoryFormIllnessHitoryHint" : "آیا تاکنون جراحی داشته‌اید؟ اگر بله، لطفاً نوع آن را بنویس. آیا تاکنون پزشک به شما گفته است که به بیماری قلبی، فشار خون بالا، دیابت، آسم یا هر بیماری مزمن یا کهنه دیگری مبتلا هستید؟ لطفاً توضیح دهید.",
     "traineeHistoryFormInguryHitoryLabel" : "آسیب‌های گذشته",
