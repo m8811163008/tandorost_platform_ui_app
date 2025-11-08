@@ -6,7 +6,6 @@ import 'package:camera/camera.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:image_repository/image_repository.dart';
-import 'package:meta/meta.dart';
 
 part 'coach_platform_status_state.dart';
 

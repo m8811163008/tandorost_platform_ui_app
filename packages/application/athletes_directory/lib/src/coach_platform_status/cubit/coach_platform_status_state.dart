@@ -31,7 +31,7 @@ class CoachPlatformStatusState extends Equatable {
       lastVerifyVideo: lastVerifyVideo != null
           ? lastVerifyVideo()
           : this.lastVerifyVideo,
-      onReadVerifyVideos: onReadVerifyVideosStatus ?? this.onReadVerifyVideos,
+      onReadVerifyVideos: onReadVerifyVideosStatus ?? onReadVerifyVideos,
       videoFilesDetail: videoFilesDetail ?? this.videoFilesDetail,
       videoFilesData: videoFilesData ?? this.videoFilesData,
       showingStatus: showingStatus ?? this.showingStatus,

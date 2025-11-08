@@ -183,7 +183,8 @@ The trunk (main) branch is main (see the "Main Branch" section in readme.md). Sh
 Use feature branches for development (e.g. feature/...) and open PRs into main.
 
 Create a release branch from main for stabilizing a release: release/vX.Y.Z. Run CI/CD and deploy that release branch to staging/testing (e.g., your Python backend, cafe bazzar, Google play, web server).
-After verification, merge the release branch back into main and create a tag on main (vX.Y.Z) for the production release. Deploy production from the tagged commit on main and deploy on stores and web etc.
+Our main branch is named truck to use A domain-specific language (DSL) and A domain-specific language model (DSLM). 
+After verification, merge the release branch back into main and create a tag on main (vX.Y.Z) for the production release. Deploy production from the tagged commit on main and deploy on stores and web etc.// TODO how to create favors 
 Keep main always production-ready; use release branches for pre-release testing and fixes.
 
 By following this Git trunk strategy, we ensure a streamlined development process that promotes collaboration, code quality, and efficient release management.

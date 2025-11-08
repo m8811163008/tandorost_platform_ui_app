@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:athletes_directory/athletes_directory.dart';
 import 'package:athletes_directory/src/coach_platform_status/cubit/coach_platform_status_cubit.dart';
 import 'package:athletes_directory/src/coach_platform_status/verification_status_view.dart';
-import 'package:athletes_directory/src/coach_work_space/bodybuilding_coach_card.dart';
 import 'package:camera/camera.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/foundation.dart';

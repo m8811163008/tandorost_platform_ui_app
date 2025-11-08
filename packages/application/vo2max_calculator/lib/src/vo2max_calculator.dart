@@ -1,7 +1,6 @@
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
-import 'package:vo2max_calculator/src/fuel_mixture.dart';
 import 'package:vo2max_calculator/src/vo2max_info_dialog.dart';
 
 class Vo2maxCalculatorRoute extends StatelessWidget {

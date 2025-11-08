@@ -171,7 +171,9 @@ class CoachListBuilder extends StatelessWidget {
                 }
 
                 return ListTile(
-                  title: Text(coachUserProfile.fullName ?? 'N/A'),
+                  title: Text(
+                    '${context.l10n.personalInfoNameLabel}: ${coachUserProfile.fullName ?? 'N/A'}',
+                  ),
                   subtitle: Text(
                     coach.biography,
                     maxLines: 4,

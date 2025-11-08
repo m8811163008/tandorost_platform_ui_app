@@ -7,7 +7,6 @@ import 'package:image_repository/image_repository.dart';
 import 'package:payment_repository/payment.dart';
 import 'package:profile/profile.dart';
 import 'package:profile_app/profile.dart';
-import 'package:profile_app/src/bodybuilding_coach_card.dart';
 import 'package:profile_app/src/cubit/profile_cubit.dart';
 import 'package:profile_app/src/edit_dialog.dart';
 import 'package:profile_app/src/edit_name_button.dart';

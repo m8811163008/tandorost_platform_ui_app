@@ -303,7 +303,7 @@ class PaymentCubit extends Cubit<PaymentState> {
     // final duration = state
     final subscriptionPayment = SubscriptionPayment(
       programId: state.selectedCoachProgram!.id!,
-      coachUserId: state.selectedCoachProgram!.userId!,
+      coachUserId: state.selectedCoachProgram!.userId,
       subscriberUserId: state.userProfile!.id,
       cafeBazzarOrderId: state.purchaseInfo!.orderId,
       paidAmount: skuDetail.price.toRialDouble(),
