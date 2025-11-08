@@ -128,7 +128,7 @@ class EnrollmentsList extends StatelessWidget {
 }
 
 class _BuildRow extends StatelessWidget {
-  const _BuildRow({super.key, required this.label, required this.text});
+  const _BuildRow({required this.label, required this.text});
   final String label;
   final String text;
 
@@ -153,7 +153,6 @@ class _BuildRow extends StatelessWidget {
 
 class _BuildIdentifierRow extends StatelessWidget {
   const _BuildIdentifierRow({
-    super.key,
     required this.label,
     required this.text,
     this.isEmail = true,

@@ -1,9 +1,7 @@
-import 'dart:async';
 
 import 'package:athletes_directory/src/coach_platform_status/camera_app.dart';
 import 'package:athletes_directory/src/coach_platform_status/cubit/coach_platform_status_cubit.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
 

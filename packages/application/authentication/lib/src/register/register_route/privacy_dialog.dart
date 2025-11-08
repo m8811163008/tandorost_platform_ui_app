@@ -10,6 +10,9 @@ class PrivacyDialog extends StatelessWidget {
     return AppDialog(
       title: context.l10n.privacyDialogTitle,
       contents: [
+        Text(context.l10n.privacyDialogSubtitle0),
+        Text(context.l10n.privacyDialogText0),
+        gap,
         Text(context.l10n.privacyDialogSubtitle1),
         Text(context.l10n.privacyDialogText1),
         gap,

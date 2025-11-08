@@ -6,7 +6,6 @@ import 'package:bloc/bloc.dart';
 import 'package:coach_repository/coach_repository.dart';
 import 'package:domain_model/domain_model.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 import 'package:profile/profile.dart';
 
 part 'workout_view_state.dart';

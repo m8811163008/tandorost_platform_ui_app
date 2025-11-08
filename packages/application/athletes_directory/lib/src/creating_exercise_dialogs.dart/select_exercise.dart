@@ -727,29 +727,141 @@ class _SetPrescriptionRowState extends State<SetPrescriptionRow> {
     );
   }
 
-  Widget _buildRestTextField(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: TextField(
-        controller: restController,
-        keyboardType: TextInputType.number,
-        textDirection: TextDirection.ltr,
-        decoration: const InputDecoration(
-          border: OutlineInputBorder(),
-          isDense: true,
-          contentPadding: EdgeInsets.all(8),
-        ),
-        onChanged: (value) {
-          int? rest = int.tryParse(value);
-          if (rest != null && rest >= 0) {
-            widget.onSetUpdated(
-              widget.setPrescription.copyWith(restAfterSetSeconds: rest),
-            );
-          }
-        },
+  /// Predefined common rest durations.
+  static const List<int> _restOptions = [
+    10,
+    15,
+    20,
+    25,
+    30,
+    45,
+    60,
+    90,
+    120,
+    150,
+    180,
+    240,
+    300,
+  ];
+  Widget _buildRestDropdown(BuildContext context) {
+    final int selectedRest = widget.setPrescription.restAfterSetSeconds;
+
+    // Use a DropdownButtonFormField for better integration with forms
+    return DropdownButtonFormField<int>(
+      decoration: InputDecoration(
+        labelText: context.l10n.setPrescriptionRowRestLabel,
+        border: OutlineInputBorder(),
+        isDense: true,
+        contentPadding: EdgeInsets.fromLTRB(12, 8, 12, 8),
       ),
+      value: _restOptions.contains(selectedRest)
+          ? selectedRest
+          : null, // Set value to null if current value isn't in options
+      hint: const Text('Select duration'),
+      items: _restOptions.map((int seconds) {
+        return DropdownMenuItem<int>(
+          value: seconds,
+          child: Text(context.l10n.setPrescriptionTimeLeft(seconds)),
+        );
+      }).toList(),
+      onChanged: (int? newValue) {
+        if (newValue != null) {
+          widget.onSetUpdated(
+            widget.setPrescription.copyWith(restAfterSetSeconds: newValue),
+          );
+        }
+      },
     );
   }
+  // Depareted in favor of more focus centeric component when selecting like drop down
+  // Widget _buildRestSelector(BuildContext context) {
+  //   // Determine the current selected value from the setPrescription.
+  //   final int selectedRest = widget.setPrescription.restAfterSetSeconds;
+
+  //   // Find the closest option or default to the first one if the current
+  //   // value isn't one of the predefined options, so it can be selected
+  //   // in the SegmentedButton.
+  //   final int initialSelection =
+  //       _restOptions.map((e) => e.seconds).contains(selectedRest)
+  //       ? selectedRest
+  //       : _restOptions.first.seconds;
+
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+  //     child: Column(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       mainAxisSize: MainAxisSize.min,
+  //       children: [
+  //         // Optional: Add a label for clarity
+  //         Text(
+  //           'Rest Between Sets',
+  //           style: Theme.of(context).textTheme.labelMedium,
+  //         ),
+  //         const SizedBox(height: 4.0),
+  //         Center(
+  //           child: SegmentedButton<int>(
+  //             // The currently selected value(s). SegmentedButton uses a Set.
+  //             selected: {initialSelection},
+
+  //             // Map the RestOptions to ButtonSegments
+  //             segments: _restOptions.map((option) {
+  //               return ButtonSegment<int>(
+  //                 value: option.seconds,
+  //                 label: Text(option.label),
+  //                 // The SegmentedButton handles tooltips automatically based on label
+  //               );
+  //             }).toList(),
+
+  //             // Handle the selection change
+  //             onSelectionChanged: (Set<int> newSelection) {
+  //               // newSelection will only have one item because it's a single selection
+  //               final int newRestSeconds = newSelection.first;
+
+  //               // Call the update callback with the new rest value
+  //               widget.onSetUpdated(
+  //                 widget.setPrescription.copyWith(
+  //                   restAfterSetSeconds: newRestSeconds,
+  //                 ),
+  //               );
+
+  //               // Optional: Update the TextEditingController if you still want to
+  //               // show the value in a separate display field (not shown here)
+  //               // restController.text = newRestSeconds.toString();
+  //             },
+
+  //             // Ensure only one option can be selected at a time
+  //             multiSelectionEnabled: false,
+  //             emptySelectionAllowed: false, // Don't allow no selection
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
+  // Departed in favor of better ux
+  // Widget _buildRestTextField(BuildContext context) {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(horizontal: 8.0),
+  //     child: TextField(
+  //       controller: restController,
+  //       keyboardType: TextInputType.number,
+  //       textDirection: TextDirection.ltr,
+  //       decoration: const InputDecoration(
+  //         border: OutlineInputBorder(),
+  //         isDense: true,
+  //         contentPadding: EdgeInsets.all(8),
+  //       ),
+  //       onChanged: (value) {
+  //         int? rest = int.tryParse(value);
+  //         if (rest != null && rest >= 0) {
+  //           widget.onSetUpdated(
+  //             widget.setPrescription.copyWith(restAfterSetSeconds: rest),
+  //           );
+  //         }
+  //       },
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -767,7 +879,7 @@ class _SetPrescriptionRowState extends State<SetPrescriptionRow> {
         )
         .toList();
 
-    final restField = _buildRestTextField(context);
+    final restField = _buildRestDropdown(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -798,16 +910,8 @@ class _SetPrescriptionRowState extends State<SetPrescriptionRow> {
             ],
           ),
           Row(children: metricFields),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Row(
-              children: [
-                const SizedBox(width: 8),
-                Text(context.l10n.setPrescriptionRowRestLabel),
-                Expanded(child: restField),
-              ],
-            ),
-          ),
+          SizedBox(height: context.sizeExtenstion.medium),
+          restField,
         ],
       ),
     );

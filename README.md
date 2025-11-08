@@ -173,16 +173,21 @@ This document outlines the Git trunk strategy used in the fitness platform proje
 2. **Release Branches**: For preparing a new release, create a release branch from the `main` branch:
    - `release/vX.Y.Z`
    - Example: `release/v1.0.0`
+   - Git : `git branch release/vX.Y.Z`
 
 3. **Tagging Releases**: After merging a release branch into `main`, tag the commit with the version number:
    - `git tag -a vX.Y.Z -m "Release version X.Y.Z"`
+
+Tagging a Commit
+"Tag the commit with the version number" means applying a permanent, human-readable alias or label directly to a specific point in your Git history, which corresponds to the final state of the code for that release.It provides a clear, memorable reference point. Instead of telling someone to use "commit a1b2c3d4f5g6...," you can simply tell them to use v1.0.0 and improve immutability and stability.
 
 The trunk (main) branch is main (see the "Main Branch" section in readme.md). Short recommended flow:
 
 Use feature branches for development (e.g. feature/...) and open PRs into main.
 
-Create a release branch from main for stabilizing a release: release/vX.Y.Z. Run CI/CD and deploy that release branch to staging/testing (e.g., your Python backend).
-After verification, merge the release branch back into main and create a tag on main (vX.Y.Z) for the production release. Deploy production from the tagged commit on main.
+Create a release branch from main for stabilizing a release: release/vX.Y.Z. Run CI/CD and deploy that release branch to staging/testing (e.g., your Python backend, cafe bazzar, Google play, web server).
+Our main branch is named truck to use A domain-specific language (DSL) and A domain-specific language model (DSLM). 
+After verification, merge the release branch back into main and create a tag on main (vX.Y.Z) for the production release. Deploy production from the tagged commit on main and deploy on stores and web etc.// TODO how to create favors 
 Keep main always production-ready; use release branches for pre-release testing and fixes.
 
 By following this Git trunk strategy, we ensure a streamlined development process that promotes collaboration, code quality, and efficient release management.

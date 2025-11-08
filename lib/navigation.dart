@@ -26,7 +26,7 @@ import 'package:workout_view/workout_view.dart';
 class Navigation {
   static GoRouter goRouter(BuildContext context) {
     return GoRouter(
-      initialLocation: RoutesNames.athletesDirectoryRoute.path,
+      initialLocation: RoutesNames.searchRoute.path,
       observers: [SentryNavigatorObserver()],
       routes: [
         GoRoute(

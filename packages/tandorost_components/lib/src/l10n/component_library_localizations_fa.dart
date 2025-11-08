@@ -130,6 +130,11 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
       'خطای اینترنت. اینترنت خود را روشن نمایید';
 
   @override
+  String setPrescriptionTimeLeft(int seconds) {
+    return '$seconds ثانیه';
+  }
+
+  @override
   String voiceAiInsufficientLength(int seconds) {
     return 'حداقل $seconds ثانیه گفتگو کنید';
   }
@@ -1659,7 +1664,17 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
   String get foodInputChatButtonLoadingText2 => 'لطفاً منتظر بمانید';
 
   @override
-  String get privacyDialogTitle => 'حریم خصوصی';
+  String get privacyDialogTitle => 'شرایط استفاده';
+
+  @override
+  String get privacyDialogSubtitle0 => 'قرآن';
+
+  @override
+  String get privacyDialogText0 =>
+      'قوانین و شرایط استفاده مطابق متن عربی مبین قرآن است و مراجع و کتب غیرقرآن ساخت بشر و ممکن است دارای خطا یا تناقض با قرآن باشند';
+
+  @override
+  String get privacyDialogTitle1 => 'چگونه از اطلاعات شما حراست میکنیم؟';
 
   @override
   String get privacyDialogSubtitle1 => 'چگونه از اطلاعات شما حراست میکنیم؟';
@@ -1988,7 +2003,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get financeSectionBalanceSubtitle =>
-      'دستمزدهای شما را تا روز 10ام هرماه شمسی بعد از تسویه مارکت‌ها و نداشتن شکایت از مشتریان انجام میدهیم';
+      'دستمزدهای شما را 2 هفته بعد از خرید و نداشتن شکایت از مشتریان واریز میکنیم';
 
   @override
   String get traineeHistoryFormIllnessHitoryLabel => 'سابقه بیماری';

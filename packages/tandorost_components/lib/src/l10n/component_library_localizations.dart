@@ -301,6 +301,12 @@ abstract class ComponentLibraryLocalizations {
   /// **'خطای اینترنت. اینترنت خود را روشن نمایید'**
   String get internetConnectionError;
 
+  /// No description provided for @setPrescriptionTimeLeft.
+  ///
+  /// In fa, this message translates to:
+  /// **'{seconds} ثانیه'**
+  String setPrescriptionTimeLeft(int seconds);
+
   /// No description provided for @voiceAiInsufficientLength.
   ///
   /// In fa, this message translates to:
@@ -2537,8 +2543,26 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @privacyDialogTitle.
   ///
   /// In fa, this message translates to:
-  /// **'حریم خصوصی'**
+  /// **'شرایط استفاده'**
   String get privacyDialogTitle;
+
+  /// No description provided for @privacyDialogSubtitle0.
+  ///
+  /// In fa, this message translates to:
+  /// **'قرآن'**
+  String get privacyDialogSubtitle0;
+
+  /// No description provided for @privacyDialogText0.
+  ///
+  /// In fa, this message translates to:
+  /// **'قوانین و شرایط استفاده مطابق متن عربی مبین قرآن است و مراجع و کتب غیرقرآن ساخت بشر و ممکن است دارای خطا یا تناقض با قرآن باشند'**
+  String get privacyDialogText0;
+
+  /// No description provided for @privacyDialogTitle1.
+  ///
+  /// In fa, this message translates to:
+  /// **'چگونه از اطلاعات شما حراست میکنیم؟'**
+  String get privacyDialogTitle1;
 
   /// No description provided for @privacyDialogSubtitle1.
   ///
@@ -3089,7 +3113,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @financeSectionBalanceSubtitle.
   ///
   /// In fa, this message translates to:
-  /// **'دستمزدهای شما را تا روز 10ام هرماه شمسی بعد از تسویه مارکت‌ها و نداشتن شکایت از مشتریان انجام میدهیم'**
+  /// **'دستمزدهای شما را 2 هفته بعد از خرید و نداشتن شکایت از مشتریان واریز میکنیم'**
   String get financeSectionBalanceSubtitle;
 
   /// No description provided for @traineeHistoryFormIllnessHitoryLabel.
