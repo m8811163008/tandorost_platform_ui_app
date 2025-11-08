@@ -1,8 +1,8 @@
 import 'package:remote_api/remote_api.dart';
 
 class UriBuilder {
-  // static final baseUri = Uri(scheme: 'https', host: 'tandorost-a.ir');
-  static final baseUri = Uri(scheme: 'http', host: '10.4.2.1', port: 8001);
+  static final baseUri = Uri(scheme: 'https', host: 'tandorost-a.ir');
+  // static final baseUri = Uri(scheme: 'http', host: '10.4.2.1', port: 8001);
   // static final baseUri = Uri(
   //   scheme: 'http',
   //   host: '10.105.146.237',
