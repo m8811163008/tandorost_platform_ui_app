@@ -178,6 +178,9 @@ This document outlines the Git trunk strategy used in the fitness platform proje
 3. **Tagging Releases**: After merging a release branch into `main`, tag the commit with the version number:
    - `git tag -a vX.Y.Z -m "Release version X.Y.Z"`
 
+Tagging a Commit
+"Tag the commit with the version number" means applying a permanent, human-readable alias or label directly to a specific point in your Git history, which corresponds to the final state of the code for that release.It provides a clear, memorable reference point. Instead of telling someone to use "commit a1b2c3d4f5g6...," you can simply tell them to use v1.0.0 and improve immutability and stability.
+
 The trunk (main) branch is main (see the "Main Branch" section in readme.md). Short recommended flow:
 
 Use feature branches for development (e.g. feature/...) and open PRs into main.
