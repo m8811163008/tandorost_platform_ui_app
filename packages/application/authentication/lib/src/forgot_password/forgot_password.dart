@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+import 'package:authentication_app/src/common/password_text_field.dart';
 import 'package:authentication_app/src/forgot_password/cubit/forgot_password_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:tandorost_components/tandorost_components.dart';
@@ -47,16 +47,15 @@ class ForgotPasswordListener extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
-      listenWhen:
-          (previous, current) =>
-              previous.verificationStatus != current.verificationStatus,
+      listenWhen: (previous, current) =>
+          previous.verificationStatus != current.verificationStatus,
       listener: (context, state) {
-        if (state.verificationStatus.isServerConnectionError) {
+        if (state.verificationStatus.isConnectionError) {
           final content = context.l10n.networkError;
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.exception ?? content)));
-        } else if (state.verificationStatus.isServerConnectionError) {
+        } else if (state.verificationStatus.isInternetConnectionError) {
           final content = context.l10n.internetConnectionError;
           ScaffoldMessenger.of(
             context,
@@ -115,24 +114,23 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
 
           SizedBox(height: context.sizeExtenstion.large),
           BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
-            buildWhen:
-                (previous, current) =>
-                    previous.verificationStatus != current.verificationStatus,
+            buildWhen: (previous, current) =>
+                previous.verificationStatus != current.verificationStatus,
             builder: (context, state) {
               return state.verificationStatus.isLoading
                   ? AppOutLineButton.loading(
-                    label: context.l10n.verifyRouteOutlineLabel,
-                  )
+                      label: context.l10n.verifyRouteOutlineLabel,
+                    )
                   : AppOutLineButton(
-                    label: context.l10n.verifyRouteOutlineLabel,
-                    onTap: () {
-                      if (_formKey.currentState!.validate()) {
-                        context
-                            .read<ForgotPasswordCubit>()
-                            .sendVerificationCode();
-                      }
-                    },
-                  );
+                      label: context.l10n.verifyRouteOutlineLabel,
+                      onTap: () {
+                        if (_formKey.currentState!.validate()) {
+                          context
+                              .read<ForgotPasswordCubit>()
+                              .sendVerificationCode();
+                        }
+                      },
+                    );
             },
           ),
           SizedBox(height: context.sizeExtenstion.large),
@@ -155,8 +153,3 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
     );
   }
 }
-=======
-export 'forgot_password_route/forgot_password_route.dart';
-export 'cubit/forgot_password_cubit.dart';
-export 'verify_route/forgot_password_verify_phone_route.dart';
->>>>>>> origin/refactor-applications
