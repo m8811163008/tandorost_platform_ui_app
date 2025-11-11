@@ -82,6 +82,7 @@ class LoginListener extends StatelessWidget {
                         .googleAuthExceptionClientConfigurationError;
                     break;
                   case GoogleSignInExceptionCode.providerConfigurationError:
+                    // TODO lounch to update google play services update page in android
                     content = context
                         .l10n
                         .googleAuthExceptionProviderConfigurationError;

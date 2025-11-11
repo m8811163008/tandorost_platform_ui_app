@@ -89,11 +89,22 @@ class _SelectExerciseState extends State<SelectExercise> {
           appBar: AppBar(
             title: Text(context.l10n.selectExerciseAppbarTitle),
             actions: [
-              IconButton(onPressed: () async {}, icon: Icon(Icons.sort)),
+              IconButton(onPressed: () async {}, icon: Icon(Icons.filter)),
             ],
           ),
           body: Column(
             children: [
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: context.sizeExtenstion.medium,
+                  vertical: context.sizeExtenstion.small,
+                ),
+                child: SearchBar(
+                  onChanged: (value) {
+                    //TODO complete filter and this
+                  },
+                ),
+              ),
               Expanded(
                 child: ListView(
                   children: exercisesDefinition.map((exerciseDefinition) {

@@ -2903,7 +2903,7 @@ abstract class ComponentLibraryLocalizations {
   /// No description provided for @googleAuthExceptionProviderConfigurationError.
   ///
   /// In fa, this message translates to:
-  /// **'خطا در پیکربندی ارائه‌دهنده ورود با گوگل'**
+  /// **'خطا در پیکربندی . سرویس گوگل پلی را آپدیت کنید'**
   String get googleAuthExceptionProviderConfigurationError;
 
   /// No description provided for @googleAuthExceptionUiUnavailable.
@@ -3121,6 +3121,42 @@ abstract class ComponentLibraryLocalizations {
   /// In fa, this message translates to:
   /// **'سابقه بیماری'**
   String get traineeHistoryFormIllnessHitoryLabel;
+
+  /// No description provided for @traineeHistoryFormPolicyButtonTitle.
+  ///
+  /// In fa, this message translates to:
+  /// **'قوانین و سوالات متداول (مهم)'**
+  String get traineeHistoryFormPolicyButtonTitle;
+
+  /// No description provided for @traineeHistoryFormPolicy.
+  ///
+  /// In fa, this message translates to:
+  /// **'بعد از خرید با مربی تماس بگیرید'**
+  String get traineeHistoryFormPolicy;
+
+  /// No description provided for @traineeHistoryFormPolicy2.
+  ///
+  /// In fa, this message translates to:
+  /// **'اگر مربی ظرف 10 روز برنامه را آماده نکرد مربی دیگری برای شما درنظر میگیریم'**
+  String get traineeHistoryFormPolicy2;
+
+  /// No description provided for @traineeHistoryFormPolicy3.
+  ///
+  /// In fa, this message translates to:
+  /// **'چگونه مربی بهتری انتخاب کنیم؟'**
+  String get traineeHistoryFormPolicy3;
+
+  /// No description provided for @traineeHistoryFormPolicy4.
+  ///
+  /// In fa, this message translates to:
+  /// **'با دقت به موفقیت ها و تصاویر مربی و مدارک مربی میتوان انتخاب مطمئن‌تری داشته باشید.'**
+  String get traineeHistoryFormPolicy4;
+
+  /// No description provided for @traineeHistoryFormSupport.
+  ///
+  /// In fa, this message translates to:
+  /// **'شماره تماس پشتیبانی تندرست عبارت است از 09212805230'**
+  String get traineeHistoryFormSupport;
 
   /// No description provided for @traineeHistoryFormIllnessHitoryHint.
   ///

@@ -259,37 +259,60 @@ class _TraineeFormState extends State<TraineeForm> {
                 },
               ),
               gap,
-              NumberTextField(
+              DropDownField<int>(
                 label: context
                     .l10n
                     .traineeHistoryCurrentPracticeFrequencyPerWeekLabel,
-                hintText: context
-                    .l10n
-                    .traineeHistoryCurrentPracticeFrequencyPerWeekHint,
-                initialValue:
-                    cubit
-                            .state
-                            .traineeHistory!
-                            .currentPracticeFrequencyPerWeek !=
-                        0
-                    ? cubit
-                          .state
-                          .traineeHistory!
-                          .currentPracticeFrequencyPerWeek
-                          .toString()
-                    : null,
+                value:
+                    cubit.state.traineeHistory!.currentPracticeFrequencyPerWeek,
+                items: List.generate(6, (i) => i)
+                    .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
+                    .toList(),
                 onChange: (value) {
-                  final traineeHistory = cubit.state.traineeHistory;
-                  cubit.onChangeTraineeHistory(
-                    traineeHistory!.copyWith(
-                      currentPracticeFrequencyPerWeek: value.isEmpty
-                          ? 0
-                          : int.parse(value),
-                    ),
-                  );
+                  if (value != null) {
+                    final traineeHistory = cubit.state.traineeHistory;
+                    cubit.onChangeTraineeHistory(
+                      traineeHistory!.copyWith(
+                        currentPracticeFrequencyPerWeek: value,
+                      ),
+                    );
+
+                    setState(() {});
+                  }
                 },
+                errorText: null,
               ),
 
+              // NumberTextField(
+              //   label: context
+              //       .l10n
+              //       .traineeHistoryCurrentPracticeFrequencyPerWeekLabel,
+              //   hintText: context
+              //       .l10n
+              //       .traineeHistoryCurrentPracticeFrequencyPerWeekHint,
+              //   initialValue:
+              //       cubit
+              //               .state
+              //               .traineeHistory!
+              //               .currentPracticeFrequencyPerWeek !=
+              //           0
+              //       ? cubit
+              //             .state
+              //             .traineeHistory!
+              //             .currentPracticeFrequencyPerWeek
+              //             .toString()
+              //       : null,
+              //   onChange: (value) {
+              //     final traineeHistory = cubit.state.traineeHistory;
+              //     cubit.onChangeTraineeHistory(
+              //       traineeHistory!.copyWith(
+              //         currentPracticeFrequencyPerWeek: value.isEmpty
+              //             ? 0
+              //             : int.parse(value),
+              //       ),
+              //     );
+              //   },
+              // ),
               Text(context.l10n.traineeHistoryExerciseEquipmentLabel),
 
               BlocBuilder<CoachCubit, CoachState>(
@@ -338,6 +361,34 @@ class _TraineeFormState extends State<TraineeForm> {
                   Text(context.l10n.fitnessProfileImageGallaryTitle),
                   CarouselSliderBuilder(),
                 ],
+              ),
+              gap,
+              TextButton(
+                onPressed: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AppDialog(
+                        title: context.l10n.traineeHistoryFormPolicyButtonTitle,
+
+                        contents: [
+                          Text(context.l10n.traineeHistoryFormPolicy),
+                          gap,
+                          Text(context.l10n.traineeHistoryFormPolicy2),
+                          gap,
+                          Text(context.l10n.traineeHistoryFormPolicy3),
+                          gap,
+                          Text(context.l10n.traineeHistoryFormPolicy4),
+
+                          Divider(height: context.sizeExtenstion.medium),
+
+                          Text(context.l10n.traineeHistoryFormSupport),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Text(context.l10n.traineeHistoryFormPolicyButtonTitle),
               ),
               gap,
               BlocBuilder<CoachCubit, CoachState>(

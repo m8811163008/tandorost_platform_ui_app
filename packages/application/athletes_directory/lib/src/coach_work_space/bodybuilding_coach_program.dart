@@ -213,26 +213,44 @@ class _UpsertProgramDialogState extends State<UpsertProgramDialog> {
             },
           ),
           gap,
-          NumberTextField(
+          // NumberTextField(
+          //   label:
+          //       context.l10n.profileCoachProfileCoachProgramDurationWeekLabel,
+          //   initialValue: _coachProgram.durationWeeks.toString(),
+          //   onChange: (value) {
+          //     if (value.isEmpty) return;
+          //     _coachProgram = _coachProgram.copyWith(
+          //       durationWeeks: int.parse(value),
+          //     );
+          //   },
+          //   validator: (value) {
+          //     if (value == null || value.isEmpty) {
+          //       return context.l10n.emptyFormFieldValidationError;
+          //     } else if (int.parse(value) < 1) {
+          //       return context
+          //           .l10n
+          //           .profileCoachProfileCoachProgramDurationWeekFieldValidationError;
+          //     }
+          //     return null;
+          //   },
+          // ),
+          DropDownField<int>(
             label:
                 context.l10n.profileCoachProfileCoachProgramDurationWeekLabel,
-            initialValue: _coachProgram.durationWeeks.toString(),
+            value: _coachProgram.durationWeeks,
+            items: List.generate(25, (i) => i * 2)
+                .map((e) => DropdownMenuItem(value: e, child: Text('$e')))
+                .toList(),
             onChange: (value) {
-              if (value.isEmpty) return;
-              _coachProgram = _coachProgram.copyWith(
-                durationWeeks: int.parse(value),
-              );
-            },
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return context.l10n.emptyFormFieldValidationError;
-              } else if (int.parse(value) < 1) {
-                return context
-                    .l10n
-                    .profileCoachProfileCoachProgramDurationWeekFieldValidationError;
+              if (value != null) {
+                _coachProgram = _coachProgram = _coachProgram.copyWith(
+                  durationWeeks: value,
+                );
+
+                setState(() {});
               }
-              return null;
             },
+            errorText: null,
           ),
           gap,
           DropDownField<PriceLabel>(
@@ -347,11 +365,13 @@ class FeatureCheckBox extends StatelessWidget {
             onTap?.call();
           },
         ),
-        GestureDetector(
-          onTap: onTap,
-          child: Text(
-            context.l10n.profileCoachProfileCoachProgramFeatureValue(
-              feature.name,
+        Expanded(
+          child: GestureDetector(
+            onTap: onTap,
+            child: Text(
+              context.l10n.profileCoachProfileCoachProgramFeatureValue(
+                feature.name,
+              ),
             ),
           ),
         ),

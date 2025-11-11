@@ -442,44 +442,40 @@ class CoachImagePlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        alignment: AlignmentDirectional.bottomCenter,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(bottom: context.sizeExtenstion.medium),
-            child: SizedBox(
-              height: MediaQuery.of(context).size.height / 3.5,
-              width: MediaQuery.of(context).size.height / 6 * 1.6,
-              child: AppRoundedRectangleBorder(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(
-                    context.sizeExtenstion.small,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CoachImageGestureDetector(
-                        child: Center(child: Image.memory(bytes!)),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: context.sizeExtenstion.small,
-                        ),
-                        child: Text(
-                          description ?? '',
-                          style: context.textTheme.labelSmall,
-                          overflow: TextOverflow.clip,
-                          maxLines: 2,
-                        ),
-                      ),
-                    ],
+    return Padding(
+      padding: EdgeInsets.only(bottom: context.sizeExtenstion.small),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height / 3.5,
+        width: MediaQuery.of(context).size.height / 6 * 1.6,
+        child: AppRoundedRectangleBorder(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(context.sizeExtenstion.small),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: context.sizeExtenstion.small),
+                    child: CoachImageGestureDetector(
+                      child: Center(child: Image.memory(bytes!)),
+                    ),
                   ),
                 ),
-              ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: context.sizeExtenstion.small,
+                  ),
+                  child: Text(
+                    description ?? '',
+                    style: context.textTheme.labelSmall,
+                    overflow: TextOverflow.clip,
+                    maxLines: 2,
+                  ),
+                ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

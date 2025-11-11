@@ -1863,7 +1863,7 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get googleAuthExceptionProviderConfigurationError =>
-      'خطا در پیکربندی ارائه‌دهنده ورود با گوگل';
+      'خطا در پیکربندی . سرویس گوگل پلی را آپدیت کنید';
 
   @override
   String get googleAuthExceptionUiUnavailable =>
@@ -2007,6 +2007,28 @@ class ComponentLibraryLocalizationsFa extends ComponentLibraryLocalizations {
 
   @override
   String get traineeHistoryFormIllnessHitoryLabel => 'سابقه بیماری';
+
+  @override
+  String get traineeHistoryFormPolicyButtonTitle =>
+      'قوانین و سوالات متداول (مهم)';
+
+  @override
+  String get traineeHistoryFormPolicy => 'بعد از خرید با مربی تماس بگیرید';
+
+  @override
+  String get traineeHistoryFormPolicy2 =>
+      'اگر مربی ظرف 10 روز برنامه را آماده نکرد مربی دیگری برای شما درنظر میگیریم';
+
+  @override
+  String get traineeHistoryFormPolicy3 => 'چگونه مربی بهتری انتخاب کنیم؟';
+
+  @override
+  String get traineeHistoryFormPolicy4 =>
+      'با دقت به موفقیت ها و تصاویر مربی و مدارک مربی میتوان انتخاب مطمئن‌تری داشته باشید.';
+
+  @override
+  String get traineeHistoryFormSupport =>
+      'شماره تماس پشتیبانی تندرست عبارت است از 09212805230';
 
   @override
   String get traineeHistoryFormIllnessHitoryHint =>
